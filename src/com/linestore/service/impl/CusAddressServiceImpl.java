@@ -2,7 +2,7 @@ package com.linestore.service.impl;
 
 import com.linestore.dao.CusAddressDao;
 import com.linestore.service.CusAddressService;
-import com.linestore.vo.CusAddressModel;
+import com.linestore.vo.CusAddress;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class CusAddressServiceImpl implements CusAddressService{
 		}
 
 		@Override
-		public void add(CusAddressModel cusAddress) {
+		public void add(CusAddress cusAddress) {
 			// TODO Auto-generated method stub
 			System.out.println("Service中的save方法！");
 			cusAddressDao.add(cusAddress);
@@ -34,27 +34,27 @@ public class CusAddressServiceImpl implements CusAddressService{
 		/**
 		 * 业务层获取单个收货地址方法
 		 */
-		public List<CusAddressModel> selectAll(CusAddressModel cusAddress) {
+		public List<CusAddress> selectAll(CusAddress cusAddress) {
 			// TODO Auto-generated method stub
 			
-			List<CusAddressModel> busAddressList = cusAddressDao.selectAll(cusAddress);
+			List<CusAddress> busAddressList = cusAddressDao.selectAll(cusAddress);
 			return busAddressList;
 		}
 
 		@Override
-		public CusAddressModel select(CusAddressModel cusAddress) {
+		public CusAddress select(CusAddress cusAddress) {
 			// TODO Auto-generated method stub
 			return cusAddressDao.select(cusAddress);
 		}
 
 		@Override
-		public void update(CusAddressModel cusAddress) {
+		public void update(CusAddress cusAddress) {
 			cusAddressDao.update(cusAddress);
 			
 		}
 
 		@Override
-		public void del(CusAddressModel cusAddress) {
+		public void del(CusAddress cusAddress) {
 			cusAddressDao.del(cusAddress);
 			
 		}

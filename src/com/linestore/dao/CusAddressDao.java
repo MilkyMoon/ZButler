@@ -2,21 +2,21 @@ package com.linestore.dao;
 
 import java.util.List;
 
-import com.linestore.vo.CusAddressModel;
+import com.linestore.vo.CusAddress;
 
 public interface CusAddressDao {
 	// 获取用户全部地址
-	List<CusAddressModel> selectAll(CusAddressModel cusAddress);
+	List<CusAddress> selectAll(CusAddress cusAddress);
 
 	// 为用户增加一个地址
-	void add(CusAddressModel cusAddress);
+	void add(CusAddress cusAddress);
 
 	// 获取用户指定地址
-	CusAddressModel select(CusAddressModel cusAddress);
+	CusAddress select(CusAddress cusAddress);
 
 	// 修改用户指定地址
-	void update(CusAddressModel cusAddress);
+	void update(CusAddress cusAddress);
 
 	// 删除用户指定地址
-	void del(CusAddressModel cusAddress);
+	void del(CusAddress cusAddress);
 }
