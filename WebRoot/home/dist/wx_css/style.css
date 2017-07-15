@@ -1,0 +1,1193 @@
+/*登录*/
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(239, 239, 244);
+    font-family: "Microsoft YaHei" !important;
+    letter-spacing: 0.5px;
+}
+
+.login {
+    margin: 8px;
+}
+
+.login .m-cell {
+    background: none;
+}
+
+.login .m-cell:after {
+    border: none;
+}
+
+.login .cell-item {
+    height: 48px;
+    line-height: 48px;
+    background-color: #fff;
+}
+
+.login .cell-item-first {
+    border-radius: 4px 4px 0 0;
+}
+
+.login .cell-item-last {
+    border-radius: 0 0 4px 4px;
+}
+
+.login .cell-left {
+    font-size: 17px;
+    color: #1C1C20;
+}
+
+.login .cell-right input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #e1e1ee;
+}
+
+.login .cell-item:not(:last-child):after {
+    border: none;
+}
+
+.login .cell-item:not(:last-child) {
+    border-bottom: solid 1px #e1e1ee;
+}
+
+/*记住密码*/
+
+/*记住密码*/
+
+.login_button {
+    margin-top: 10px;
+    background-color: rgb(239, 239, 244);
+}
+
+.login_button .login_button_now {
+    font-size: 14px;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+.login_button .login_button_wei {
+    font-size: 14px;
+    /*margin-top: 25px;*/
+    height: 44px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(109, 175, 36);
+}
+
+.login_question {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    border: none;
+    background-color: rgb(239, 239, 244);
+}
+
+.login_question a {
+    font-size: 12px;
+    color: #1C1C20;
+}
+
+/*注册*/
+
+.register {
+    margin: 8px;
+}
+
+.register .m-cell {
+    background: none;
+}
+
+.register .m-cell:after {
+    border: none;
+}
+
+.register .cell-item {
+    height: 48px;
+    line-height: 48px;
+    background-color: #fff;
+}
+
+.register .cell-item-first {
+    border-radius: 4px 4px 0 0;
+}
+
+.register .cell-item-last {
+    border-radius: 0 0 4px 4px;
+}
+
+.register .cell-item-last button {
+    width: 98px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    background-color: rgb(183, 39, 18);
+}
+
+.register .cell-left {
+    font-size: 17px;
+    color: #1C1C20;
+}
+
+.register .cell-right input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #e1e1ee;
+}
+
+.register .cell-item:not(:last-child):after {
+    border: none;
+}
+
+.register .cell-item:not(:last-child) {
+    border-bottom: solid 1px #e1e1ee;
+}
+
+/*已读*/
+
+/*已读*/
+
+.register .register_next {
+    margin-top: 20px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+/*主页*/
+
+.index .m-navbar {
+    position: fixed;
+    width: 100%;
+    background-color: #B72712;
+    z-index: 99;
+}
+
+.index .m-navbar .personIcon {
+    width: 20px;
+}
+
+.index .m-navbar input, .index .m-navbar input::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.index .m-navbar input.choosePlace {
+    width: 50px;
+    border: none;
+}
+
+.index .m-navbar input.search {
+    margin-left: 0;
+}
+
+.index .m-slider {
+    height: 200px;
+    margin-top: 36px;
+}
+
+.index .index_classItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 180px;
+    background-color: #fff;
+}
+
+.index_classItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25%;
+    height: 80px;
+}
+
+.index_classItem img {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+}
+
+.index_classItem span {
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.index_recommends {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 160px;
+    margin-top: 8px;
+}
+
+.index_recommend_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 37.3%;
+    height: 160px;
+    background-color: #fff;
+}
+
+.index_recommend_left img {
+    width: 75px;
+    height: 100px;
+}
+
+.index_recommend_left span {
+    font-size: 14px;
+    color: #1C1C20;
+    height: 20px;
+}
+
+.index_recommend_left strong {
+    font-size: 12px;
+    color: #4A90E2;
+    height: 30px
+}
+
+.index_recommend_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 61.3%;
+    height: 160px;
+}
+
+.recommend_right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 78px;
+    background-color: #fff;
+}
+
+.recommend_right img {
+    width: 60px;
+    height: 56px;
+}
+
+.recommend_right span {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 14px;
+}
+
+.recommend_right span strong {
+    font-size: 12px;
+}
+
+.index_guessYourLike {
+    width: 100%;
+    height: 300px;
+    background-color: #ffffff;
+    margin-top: 8px;
+    padding: 9px 0 0 9px;
+}
+
+.index_guessYourLike h5 {
+    height: 8px;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    text-indent: 6px;
+    border-left: solid 3px #B72712;
+}
+
+.index_guessItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 70px;
+    padding: 8px 0;
+    border-bottom: solid 2px #EFEFF4;
+}
+
+.index_guessItem img {
+    width: 92px;
+    height: 100%;
+}
+
+.index_guessItem .guess_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 10px;
+    flex-grow: 1;
+}
+
+.index_guessItem .guess_content div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.guess_content span {
+    font-size: 12px;
+}
+
+.guess_content .guess_name {
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.guess_content .guess_mark {
+    color: #FF2100;
+}
+
+/*商家详情*/
+
+.businessMessage .businessMessage_bigImg {
+    width: 100%;
+    height: 200px;
+}
+
+.businessMessage .businessMessage_bigImg img {
+    width: 100%;
+    height: 200px;
+}
+
+.businessMessage .businessMessage_businessCommend {
+    width: 100%;
+    padding: 10px 0 10px 8px;
+    background-color: #fff;
+}
+
+.businessCommend_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    padding-right: 8px;
+}
+
+.businessCommend_title h5 {
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.businessCommend_detail {
+    width: 100%;
+}
+
+.businessCommend_detail h5 {
+    height: 8px;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    text-indent: 6px;
+    border-left: solid 3px #B72712;
+}
+
+.businessCommend_detail p {
+    width: 100%;
+    padding: 12px 8px 8px 8px;
+    color: #1C1C20;
+    font-size: 14px;
+    border-bottom: solid 2px #EFEFF4;
+}
+
+.businessCommend_address {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 8px 10px 0;
+}
+
+.businessCommend_address .icon-location {
+    width: 40px;
+    font-size: 16px;
+}
+
+.businessCommend_address p {
+    font-size: 14px;
+    color: #1C1C20;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.businessCommend_address_phone {
+    width: 60px;
+    height: 30px;
+    border-left: solid 1px #EFEFF4;
+}
+
+.businessCommend_address_phone img {
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+}
+
+.businessMessage_evaluate {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px 0 0 8px;
+    background-color: #fff;
+}
+
+.businessMessage_evaluate h5 {
+    height: 8px;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    text-indent: 6px;
+    border-left: solid 3px #B72712;
+}
+
+.businessMessage_evaluateItem {
+    width: 100%;
+}
+
+.businessMessage_evaluateItem_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 8px 10px 0;
+}
+
+.businessMessage_evaluateItem_title div {
+    font-size: 12px;
+    color: #DB412A;
+}
+.businessMessage_evaluateItem_title span{
+    font-size: 12px;
+}
+.businessMessage_evaluateItem p{
+    font-size: 12px;
+    color: #1C1C20;
+    text-align: left;
+    flex-grow: 1;
+    padding: 0 8px 10px 0;
+    border-bottom: solid 2px #EFEFF4;
+}
+.businessMessage_evaluate_more{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    color: #DB412A;
+    font-size: 12px;
+}
+
+.businessMessage_hotBusiness {
+    width: 100%;
+    height: 300px;
+    background-color: #ffffff;
+    margin-top: 8px;
+    padding: 9px 0 0 9px;
+}
+
+.businessMessage_hotBusiness h5 {
+    height: 8px;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    text-indent: 6px;
+    border-left: solid 3px #B72712;
+}
+
+.businessMessage_hotBusinessItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 70px;
+    padding: 8px 0;
+    border-bottom: solid 2px #EFEFF4;
+}
+
+.businessMessage_hotBusinessItem img {
+    width: 92px;
+    height: 100%;
+}
+
+.businessMessage_hotBusinessItem .hotBusiness_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 10px;
+    flex-grow: 1;
+}
+
+.businessMessage_hotBusinessItem .hotBusiness_content div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hotBusiness_content span {
+    font-size: 12px;
+}
+
+.hotBusiness_content .hotBusiness_name {
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.hotBusiness_content .hotBusiness_mark {
+    color: #FF2100;
+}
+
+
+/*绑定卡号*/
+
+.bindCard{
+    margin: 8px;
+}
+.bindCard .m-cell, .bindCard .cell-item{
+    border-radius: 4px;
+    height: 44px;
+}
+.bindCard .m-cell:after{
+    border-bottom: none;
+}
+.bindCard .cell-item input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #1C1C20;
+}
+.bindCard .btn-primary{
+    height: 44px;
+    margin-top: 160px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+/*收款记录*/
+
+.collectMoneyRecord{
+    width: 100%;
+}
+.collectMoneyRecord .collectMoneyItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 65px;
+    padding: 0 10px;
+    line-height: 65px;
+    background-color: #fff;
+    border-bottom: solid 1px #EFEFF4;
+}
+.collectMoneyRecord .collectMoney_num{
+    font-size: 18px;
+    color: #1C1C20;
+}
+.collectMoneyRecord .collectMoney_time{
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+/*零钱*/
+
+.smallMoney{
+    width: 100%;
+}
+.smallMoney_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+    height: 100px;
+    background-color: #fff;
+}
+.smallMoney_content_left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.smallMoney_content_canUse{
+    height: 45px;
+    font-size: 14px;
+    color: #1C1C20;
+}
+.smallMoney_content_canUse span{
+    font-size: 36px;
+    color: #B72712;
+}
+.smallMoney_content_cantUse{
+    height: 20px;
+    font-size: 10px;
+    color: #A3A3B5;
+}
+.smallMoney_content_right{
+    align-self: center;
+}
+.smallMoney_content .fa-angle-right{
+    font-size: 35px;
+    color: #EFEFF4;
+}
+.smallMoney_operation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    margin-top: 10px;
+    padding: 8px;
+}
+
+.smallMoney_operation a {
+    font-size: 18px;
+    color: #1C1C20;
+}
+
+/*零钱3，4*/
+
+.smallMoney3, .smallMoney4{
+    padding: 8px;
+    background-color: #fff;
+}
+.smallMoney3_content, .smallMoney4_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    background-color: #fff;
+}
+.smallMoney3_content div, .smallMoney4_content div{
+    font-size: 18px;
+    color: #1C1C20;
+}
+.smallMoney3 .btn-primary, .smallMoney4 .btn-primary{
+    height: 44px;
+    margin-top: 160px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+
+/*充值记录*/
+
+.rechargeRecord{
+    width: 100%;
+}
+.rechargeRecord .rechargeItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 65px;
+    padding: 0 10px;
+    line-height: 65px;
+    background-color: #fff;
+    border-bottom: solid 1px #EFEFF4;
+}
+.rechargeRecord .recharge_num{
+    font-size: 18px;
+    color: #1C1C20;
+}
+.rechargeRecord .recharge_time{
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+
+/*提现记录*/
+
+
+.takeMoneyRecord{
+    width: 100%;
+}
+.takeMoneyRecord .takeMoneyItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 65px;
+    padding: 0 10px;
+    line-height: 65px;
+    background-color: #fff;
+    border-bottom: solid 1px #EFEFF4;
+}
+.takeMoneyRecord .takeMoney_num{
+    width: 40%;
+    font-size: 18px;
+    color: #1C1C20;
+    text-align: left;
+}
+.takeMoneyRecord .takeMoney_type{
+    width: 20%;
+    font-size: 14px;
+    color: #1C1C20;
+    text-align: center;
+}
+.takeMoneyRecord .takeMoney_time{
+    width: 40%;
+    font-size: 14px;
+    color: #1C1C20;
+    text-align: right;
+}
+
+/*奖金提现*/
+
+
+.bonusTakeMoney{
+    padding: 8px;
+    background-color: #fff;
+}
+.bonusTakeMoney .cell-item{
+    height: 44px;
+}
+.bonusTakeMoney .cell-item .cell-left{
+    font-size: 14px;
+    color: #1C1C20;
+}
+.bonusTakeMoney .cell-item .cell-right{
+    margin-left: 10px;
+}
+.bonusTakeMoney .cell-item input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #e1e1ee;
+}
+.bonusTakeMoney p{
+    font-size: 12px;
+    color: #1C1C20;
+}
+
+.bonusTakeMoney .btn-primary{
+    height: 44px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+/*奖金提现2*/
+
+.bonusTakeMoney2{
+    padding: 8px;
+    background-color: #fff;
+}
+.bonusTakeMoney2_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    background-color: #fff;
+}
+.bonusTakeMoney2_content div{
+    font-size: 18px;
+    color: #1C1C20;
+}
+.bonusTakeMoney2 .btn-primary{
+    height: 44px;
+    margin-top: 160px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+
+/*奖金*/
+
+.bonus{
+    width: 100%;
+}
+.bonus_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+    height: 100px;
+    background-color: #fff;
+}
+.bonus_content_left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bonus_content_canUse{
+    height: 45px;
+    font-size: 14px;
+    color: #1C1C20;
+}
+.bonus_content_canUse span{
+    font-size: 36px;
+    color: #B72712;
+}
+.bonus_content_cantUse{
+    height: 20px;
+    font-size: 10px;
+    color: #A3A3B5;
+}
+.bonus_content_right{
+    align-self: center;
+}
+.bonus_content .fa-angle-right{
+    font-size: 35px;
+    color: #EFEFF4;
+}
+.bonus_operation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    margin-top: 10px;
+    padding: 8px;
+}
+
+.bonus_operation a {
+    font-size: 18px;
+    color: #1C1C20;
+}
+/*奖金2*/
+
+.bonus2{
+    padding: 8px;
+    background-color: #fff;
+}
+.bonus2_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    background-color: #fff;
+}
+.bonus2_content div{
+    font-size: 18px;
+    color: #1C1C20;
+}
+.bonus2 .btn-primary{
+    height: 44px;
+    margin-top: 160px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+
+
+/*积分*/
+
+.integral{
+    width: 100%;
+}
+.integral_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+    height: 120px;
+    background-color: #fff;
+}
+.integral_content_left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.integral_content_canUse{
+    height: 45px;
+    font-size: 14px;
+    color: #1C1C20;
+}
+.integral_content_canUse span{
+    font-size: 36px;
+    color: #B72712;
+}
+.integral_content_cantUse{
+    height: 40px;
+    font-size: 10px;
+    color: #A3A3B5;
+    line-height: 15px;
+
+}
+.integral_content_right{
+    align-self: center;
+}
+.integral_content .fa-angle-right{
+    font-size: 35px;
+    color: #EFEFF4;
+}
+.integral_operation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    margin-top: 10px;
+    padding: 8px;
+}
+
+.integral_operation a {
+    font-size: 18px;
+    color: #1C1C20;
+}
+/*积分5*/
+
+.integral5{
+    padding: 8px;
+    background-color: #fff;
+}
+.integral5_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    background-color: #fff;
+}
+.integral5_content div{
+    font-size: 18px;
+    color: #1C1C20;
+    text-align: center;
+}
+.integral5 .btn-primary{
+    height: 44px;
+    margin-top: 160px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+
+/*返点比例*/
+
+.rebateProportion{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 240px;
+    background-color: #fff;
+}
+.rebateProportion div {
+    height: 70px;
+    line-height: 100px;
+    font-size: 12px;
+    color: #1C1C20;
+}
+
+.rebateProportion div span{
+    font-size: 48px;
+    color: #1C1C20;
+}
+
+/*提现账户2*/
+
+.takeSmallMoney{
+    padding: 8px;
+    background-color: #fff;
+}
+.takeSmallMoney .cell-item{
+    height: 44px;
+}
+.takeSmallMoney .cell-item .cell-left{
+    font-size: 14px;
+    color: #1C1C20;
+}
+.takeSmallMoney .cell-item .cell-right{
+    margin-left: 10px;
+}
+.takeSmallMoney .cell-item input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #e1e1ee;
+}
+.takeSmallMoney p{
+    font-size: 12px;
+    color: #1C1C20;
+}
+
+.takeSmallMoney .btn-primary{
+    height: 44px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+
+/*零钱体现*/
+
+.takeMoneyAccount2{
+    padding: 8px;
+    background-color: #fff;
+}
+.takeMoneyAccount2 .cell-item{
+    height: 44px;
+}
+.takeMoneyAccount2 .cell-item .cell-left{
+    font-size: 14px;
+    color: #1C1C20;
+}
+.takeMoneyAccount2 .cell-item .cell-right{
+    margin-left: 10px;
+}
+.takeMoneyAccount2 .cell-item input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #e1e1ee;
+}
+.takeMoneyAccount2 .btn-primary{
+    height: 44px;
+    margin-top: 60px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+/*收货地址*/
+
+.deliveryAddress{
+    width: 100%;
+}
+.deliveryAddressItem{
+    padding: 10px 0 0 8px;
+    background-color: #fff;
+    margin-bottom: 6px;
+}
+.deliveryAddressItem_content{
+    padding: 8px;
+    padding-left: 0;
+    border-bottom: solid 2px #EFEFF4;
+    font-size: 14px;
+    color: #1C1C20;
+}
+.deliveryAddressItem_content_title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.deliveryAddressItem_operation{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    height: 55px;
+    padding-right: 8px;
+}
+.deliveryAddressItem_operation a{
+    width: 56px;
+    height: 32px;
+    margin-left: 15px;
+    font-size: 14px;
+    color: #1C1C20;
+    background-color: #EFEFF4;
+}
+.deliveryAddressItem_operation a:active{
+    background-color: #ccc;
+}
+.deliveryAddress .deliveryAddress_addButton{
+    padding: 8px;
+}
+.deliveryAddress .btn-danger{
+    height: 44px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+/*收货地址2*/
+.deliveryAddress2{
+    padding: 8px;
+}
+
+.deliveryAddress2 .m-cell {
+    background: none;
+}
+
+.deliveryAddress2 .m-cell:after {
+    border: none;
+}
+
+.deliveryAddress2 .cell-item {
+    height: 48px;
+    line-height: 48px;
+    background-color: #fff;
+}
+
+.deliveryAddress2 .cell-left {
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.deliveryAddress2 .cell-right input::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #e1e1ee;
+}
+
+.deliveryAddress2 .cell-item-first {
+    border-radius: 4px 4px 0 0;
+}
+
+.deliveryAddress2 .cell-item-last {
+    border-radius: 0 0 4px 4px;
+    height: 100px;
+}
+
+.deliveryAddress2 .cell-item-last .cell-left{
+    height: 45px;
+}
+.deliveryAddress2 .cell-item-last textarea{
+    height: 90px;
+}
+.deliveryAddress2 .cell-item-last textarea::-webkit-input-placeholder {
+    font-size: 14px;
+    color: #e1e1ee;
+}
+
+.deliveryAddress2 .cell-item:not(:last-child):after {
+    border: none;
+}
+
+.deliveryAddress2 .cell-item:not(:last-child) {
+    border-bottom: solid 1px #e1e1ee;
+}
+
+.deliveryAddress2 .btn-primary{
+    height: 44px;
+    margin-top: 160px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}

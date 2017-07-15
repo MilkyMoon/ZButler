@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-15 12:07:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.linestore.vo.MessageModel" table="message">
+        <id name="mesId" type="java.lang.Integer">
+            <column name="mes_id" />
+            <!-- 主键的生成策略，native本地生成策略 -->
+            <generator class="native" />
+        </id>
+        <property name="mesCusId" type="java.lang.Integer">
+            <column name="mes_cus_id" />
+        </property>
+        <property name="mesTitle" type="java.lang.String">
+            <column name="mes_title" />
+        </property>
+         <property name="mesType" type="java.lang.String">
+            <column name="mes_type" />
+        </property>
+         <property name="mesContent" type="java.lang.String">
+            <column name="mes_content" />
+        </property>
+     
+         <property name="mesTime" type="java.sql.Timestamp">
+            <column name="mes_time" />
+        </property>
+     
+    </class>
+</hibernate-mapping>

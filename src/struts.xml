@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <!-- 指定默认编码集 -->    
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+    
+    <package name="struts2" extends="struts-default" namespace="/">
+        <action name="user_*" class="com.linestore.action.UserAction" method="{1}">
+        	<result name="success" type="redirect">admin/index.jsp</result>
+        	<result name="error">admin/login.jsp</result>
+        </action>
+        	<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
+			method="{1}">
+			<result name="success">index.jsp</result>
+			<result name="cusAddressList">home/deliveryAddress.jsp</result>
+			<result name="cusAddressAdd">home/deliveryAddressAdd.jsp</result>
+			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
+			<result name="error">admin/login.jsp</result>
+		</action>
+    </package>
+</struts>
