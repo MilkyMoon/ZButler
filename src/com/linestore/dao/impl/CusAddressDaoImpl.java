@@ -2,7 +2,7 @@ package com.linestore.dao.impl;
 
 import com.linestore.dao.CusAddressDao;
 
-import com.linestore.vo.CusAddressModel;
+import com.linestore.vo.CusAddress;
 import java.util.List;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
@@ -13,7 +13,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
  *
  */
 public class CusAddressDaoImpl extends HibernateDaoSupport implements CusAddressDao {
-	public void add(CusAddressModel cusAddress) {
+	public void add(CusAddress cusAddress) {
 		// TODO Auto-generated method stub
 		System.out.println("DAO中的save方法！");
 		// 执行插入方法
@@ -22,20 +22,20 @@ public class CusAddressDaoImpl extends HibernateDaoSupport implements CusAddress
 	}
 
 	@Override
-	public List<CusAddressModel> selectAll(CusAddressModel cusAddress) {
+	public List<CusAddress> selectAll(CusAddress cusAddress) {
 		// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
-		String hql = "from CusAddressModel where customer.cusId = ?";
-		List<CusAddressModel> list = (List<CusAddressModel>) this.getHibernateTemplate().find(hql,cusAddress.getCustomer().getCusId());
+		String hql = "from CusAddress where customer.cusId = ?";
+		List<CusAddress> list = (List<CusAddress>) this.getHibernateTemplate().find(hql,cusAddress.getCustomer().getCusId());
 		
 		return list;
 	}
 
 	@Override
-	public CusAddressModel select(CusAddressModel cusAddress) {
+	public CusAddress select(CusAddress cusAddress) {
 		// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
-		CusAddressModel cusAddressResult=null;
-		String hql = "from CusAddressModel where caId = ?";
-		List<CusAddressModel> list = (List<CusAddressModel>) this.getHibernateTemplate().find(hql,
+		CusAddress cusAddressResult=null;
+		String hql = "from CusAddress where caId = ?";
+		List<CusAddress> list = (List<CusAddress>) this.getHibernateTemplate().find(hql,
 				cusAddress.getCaId());
 		if (list.size() > 0) {
 			cusAddress = list.get(0);
@@ -43,14 +43,14 @@ public class CusAddressDaoImpl extends HibernateDaoSupport implements CusAddress
 		return cusAddress;
 	}
 	@Override
-	public void update(CusAddressModel cusAddress) {
+	public void update(CusAddress cusAddress) {
 		// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
 		this.getHibernateTemplate().update(cusAddress);;
 
 	}
 
 	@Override
-	public void del(CusAddressModel cusAddress) {
+	public void del(CusAddress cusAddress) {
 		// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
 				this.getHibernateTemplate().delete(cusAddress);
 		

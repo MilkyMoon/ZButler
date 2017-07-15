@@ -4,26 +4,26 @@ import java.util.List;
 
 import com.linestore.service.CusAddressService;
 import com.linestore.service.UserService;
-import com.linestore.vo.CusAddressModel;
-import com.linestore.vo.CustomerModel;
+import com.linestore.vo.CusAddress;
+import com.linestore.vo.Customer;
 import com.linestore.vo.UserModel;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class CusAddressAction extends ActionSupport implements ModelDriven<CusAddressModel> {
+public class CusAddressAction extends ActionSupport implements ModelDriven<CusAddress> {
 	// 模型驱动使用的类
-	private CusAddressModel cusAddress = new CusAddressModel();
-	// implements ModelDriven<CusAddressModel>
+	private CusAddress cusAddress = new CusAddress();
+	// implements ModelDriven<CusAddress>
 	// 封装返回结果
-	private List<CusAddressModel> cusAddressList;
-	private CusAddressModel cusAddressResult;
+	private List<CusAddress> cusAddressList;
+	private CusAddress cusAddressResult;
 
 	// cusAddress已在上方实例化
 	@Override
-	public CusAddressModel getModel() {
+	public CusAddress getModel() {
 		if (cusAddress == null) {
-			cusAddress = new CusAddressModel();
+			cusAddress = new CusAddress();
 		}
 		return cusAddress;
 	}
@@ -40,7 +40,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的add方法！");
 		cusAddress.setCaCountry("中国");
 //		cusAddress.setCaCusId(1);
-		CustomerModel customer=new CustomerModel();
+		Customer customer=new Customer();
 		customer.setCusId(1);
 		cusAddress.setCustomer(customer);
 		cusAddressService.add(cusAddress);
@@ -53,7 +53,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的selectAll方法！");
 
 //		cusAddress.setCaCusId(1);
-		CustomerModel customer=new CustomerModel();
+		Customer customer=new Customer();
 		customer.setCusId(1);
 		cusAddress.setCustomer(customer);
 		System.out.println(cusAddress + " : " + cusAddressService);
@@ -78,7 +78,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的edit方法！");
 
 //		cusAddress.setCaCusId(1);
-		CustomerModel customer=new CustomerModel();
+		Customer customer=new Customer();
 		customer.setCusId(1);
 		cusAddress.setCustomer(customer);
 		cusAddress.setCaCountry("中国");
@@ -96,7 +96,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 
 		cusAddressService.del(cusAddress);
 //		cusAddress.setCaCusId(1);
-		CustomerModel customer=new CustomerModel();
+		Customer customer=new Customer();
 		customer.setCusId(1);
 		cusAddress.setCustomer(customer);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
@@ -104,19 +104,19 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		return "cusAddressList";
 	}
 
-	public List<CusAddressModel> getCusAddressList() {
+	public List<CusAddress> getCusAddressList() {
 		return cusAddressList;
 	}
 
-	public void setCusAddressList(List<CusAddressModel> cusAddressList) {
+	public void setCusAddressList(List<CusAddress> cusAddressList) {
 		this.cusAddressList = cusAddressList;
 	}
 
-	public CusAddressModel getCusAddressResult() {
+	public CusAddress getCusAddressResult() {
 		return cusAddressResult;
 	}
 
-	public void setCusAddressResult(CusAddressModel cusAddressResult) {
+	public void setCusAddressResult(CusAddress cusAddressResult) {
 		this.cusAddressResult = cusAddressResult;
 	}
 
