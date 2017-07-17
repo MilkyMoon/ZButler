@@ -14,14 +14,14 @@ public class Order implements java.io.Serializable {
 
 	private Integer ordId;
 	private Customer customer;
-	private Integer ordStatus;
+	private Boolean ordStatus;
 	private Timestamp ordPayTime;
 	private Timestamp ordStartTime;
 	private Integer ordStaging;
-	private Integer ordType;
+	private Boolean ordType;
 	private Float ordTotal;
 	private Float ordMoney;
-	private Integer ordComfire;
+	private Boolean ordComfire;
 	private Set ordDetailses = new HashSet(0);
 	private Set evaluates = new HashSet(0);
 
@@ -32,8 +32,8 @@ public class Order implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Order(Customer customer, Integer ordStatus, Timestamp ordPayTime, Timestamp ordStartTime, Integer ordStaging,
-			Integer ordType, Float ordTotal, Float ordMoney, Integer ordComfire, Set ordDetailses, Set evaluates) {
+	public Order(Customer customer, Boolean ordStatus, Timestamp ordPayTime, Timestamp ordStartTime, Integer ordStaging,
+			Boolean ordType, Float ordTotal, Float ordMoney, Boolean ordComfire, Set ordDetailses, Set evaluates) {
 		this.customer = customer;
 		this.ordStatus = ordStatus;
 		this.ordPayTime = ordPayTime;
@@ -65,7 +65,13 @@ public class Order implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	
+	public Boolean getOrdStatus() {
+		return this.ordStatus;
+	}
+
+	public void setOrdStatus(Boolean ordStatus) {
+		this.ordStatus = ordStatus;
+	}
 
 	public Timestamp getOrdPayTime() {
 		return this.ordPayTime;
@@ -91,7 +97,13 @@ public class Order implements java.io.Serializable {
 		this.ordStaging = ordStaging;
 	}
 
+	public Boolean getOrdType() {
+		return this.ordType;
+	}
 
+	public void setOrdType(Boolean ordType) {
+		this.ordType = ordType;
+	}
 
 	public Float getOrdTotal() {
 		return this.ordTotal;
@@ -109,28 +121,11 @@ public class Order implements java.io.Serializable {
 		this.ordMoney = ordMoney;
 	}
 
-	
-	public Integer getOrdStatus() {
-		return ordStatus;
+	public Boolean getOrdComfire() {
+		return this.ordComfire;
 	}
 
-	public void setOrdStatus(Integer ordStatus) {
-		this.ordStatus = ordStatus;
-	}
-
-	public Integer getOrdType() {
-		return ordType;
-	}
-
-	public void setOrdType(Integer ordType) {
-		this.ordType = ordType;
-	}
-
-	public Integer getOrdComfire() {
-		return ordComfire;
-	}
-
-	public void setOrdComfire(Integer ordComfire) {
+	public void setOrdComfire(Boolean ordComfire) {
 		this.ordComfire = ordComfire;
 	}
 

@@ -15,35 +15,24 @@ public class Customer implements java.io.Serializable {
 	private Integer cusId;
 	private String cusNickname;
 	private String cusImgUrl;
-	private Integer cusSex;
+	private Boolean cusSex;
 	private Date cusBirth;
 	private String cusHobby;
 	private String cusTagId;
 	private String cusPhone;
 	private String cusPassword;
-	private Integer cusStatus;
+	private Boolean cusStatus;
 	private String cusOpenId;
-	private Set<CusAddress> cusAddresses = new HashSet<CusAddress>();
-	private Set<Message> messages = new HashSet<Message>();
-	private Set<CusBank> cusBanks = new HashSet<CusBank>();
-	private Set<History> histories = new HashSet<History>();
-	private Set<Evaluate> evaluates = new HashSet<Evaluate>();
-	private Set<Friends> friendses = new HashSet<Friends>();
-	private Set<CusAccount> cusAccounts = new HashSet<CusAccount>();
-	private Set<Order> orders = new HashSet<Order>();
-	 private Set<CtaTrading> ctaTradings=new HashSet<CtaTrading>();
-	private Set<CusCoupon> cusCoupons = new HashSet<CusCoupon>();
-
-	// private Set cusBanks = new HashSet(0);
-	// private Set histories = new HashSet(0);
-	//// private Set cusAddresses = new HashSet(0);
-	// private Set evaluates = new HashSet(0);
-	// private Set friendses = new HashSet(0);
-	// private Set cusAccounts = new HashSet(0);
-	// private Set orders = new HashSet(0);
-//	private Set ctaTradings = new HashSet(0);
-	//// private Set messages = new HashSet(0);
-	// private Set cusCoupons = new HashSet(0);
+	private Set cusBanks = new HashSet(0);
+	private Set histories = new HashSet(0);
+	private Set cusAddresses = new HashSet(0);
+	private Set evaluates = new HashSet(0);
+	private Set friendses = new HashSet(0);
+	private Set cusAccounts = new HashSet(0);
+	private Set orders = new HashSet(0);
+	private Set ctaTradings = new HashSet(0);
+	private Set messages = new HashSet(0);
+	private Set cusCoupons = new HashSet(0);
 
 	// Constructors
 
@@ -52,8 +41,8 @@ public class Customer implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Customer(String cusNickname, String cusImgUrl, Integer cusSex, Date cusBirth, String cusHobby,
-			String cusTagId, String cusPhone, String cusPassword, Integer cusStatus, String cusOpenId, Set cusBanks,
+	public Customer(String cusNickname, String cusImgUrl, Boolean cusSex, Date cusBirth, String cusHobby,
+			String cusTagId, String cusPhone, String cusPassword, Boolean cusStatus, String cusOpenId, Set cusBanks,
 			Set histories, Set cusAddresses, Set evaluates, Set friendses, Set cusAccounts, Set orders, Set ctaTradings,
 			Set messages, Set cusCoupons) {
 		this.cusNickname = cusNickname;
@@ -104,11 +93,11 @@ public class Customer implements java.io.Serializable {
 		this.cusImgUrl = cusImgUrl;
 	}
 
-	public Integer getCusSex() {
-		return cusSex;
+	public Boolean getCusSex() {
+		return this.cusSex;
 	}
 
-	public void setCusSex(Integer cusSex) {
+	public void setCusSex(Boolean cusSex) {
 		this.cusSex = cusSex;
 	}
 
@@ -152,12 +141,11 @@ public class Customer implements java.io.Serializable {
 		this.cusPassword = cusPassword;
 	}
 
-
-	public Integer getCusStatus() {
-		return cusStatus;
+	public Boolean getCusStatus() {
+		return this.cusStatus;
 	}
 
-	public void setCusStatus(Integer cusStatus) {
+	public void setCusStatus(Boolean cusStatus) {
 		this.cusStatus = cusStatus;
 	}
 
@@ -169,164 +157,84 @@ public class Customer implements java.io.Serializable {
 		this.cusOpenId = cusOpenId;
 	}
 
-	public Set<CusAddress> getCusAddresses() {
-		return cusAddresses;
+	public Set getCusBanks() {
+		return this.cusBanks;
 	}
 
-	public void setCusAddresses(Set<CusAddress> cusAddresses) {
-		this.cusAddresses = cusAddresses;
-	}
-
-	public Set<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(Set<Message> messages) {
-		this.messages = messages;
-	}
-
-	public Set<CusBank> getCusBanks() {
-		return cusBanks;
-	}
-
-	public void setCusBanks(Set<CusBank> cusBanks) {
+	public void setCusBanks(Set cusBanks) {
 		this.cusBanks = cusBanks;
 	}
 
-	public Set<History> getHistories() {
-		return histories;
+	public Set getHistories() {
+		return this.histories;
 	}
 
-	public void setHistories(Set<History> histories) {
+	public void setHistories(Set histories) {
 		this.histories = histories;
 	}
 
-	public Set<Evaluate> getEvaluates() {
-		return evaluates;
+	public Set getCusAddresses() {
+		return this.cusAddresses;
 	}
 
-	public void setEvaluates(Set<Evaluate> evaluates) {
+	public void setCusAddresses(Set cusAddresses) {
+		this.cusAddresses = cusAddresses;
+	}
+
+	public Set getEvaluates() {
+		return this.evaluates;
+	}
+
+	public void setEvaluates(Set evaluates) {
 		this.evaluates = evaluates;
 	}
 
-	public Set<Friends> getFriendses() {
-		return friendses;
+	public Set getFriendses() {
+		return this.friendses;
 	}
 
-	public void setFriendses(Set<Friends> friendses) {
+	public void setFriendses(Set friendses) {
 		this.friendses = friendses;
 	}
 
-	public Set<CusAccount> getCusAccounts() {
-		return cusAccounts;
+	public Set getCusAccounts() {
+		return this.cusAccounts;
 	}
 
-	public void setCusAccounts(Set<CusAccount> cusAccounts) {
+	public void setCusAccounts(Set cusAccounts) {
 		this.cusAccounts = cusAccounts;
 	}
 
-	public Set<Order> getOrders() {
-		return orders;
+	public Set getOrders() {
+		return this.orders;
 	}
 
-	public void setOrders(Set<Order> orders) {
+	public void setOrders(Set orders) {
 		this.orders = orders;
 	}
 
-	 public Set<CtaTrading> getCtaTradings() {
-	 return ctaTradings;
-	 }
-	
-	 public void setCtaTradings(Set<CtaTrading> ctaTradings) {
-	 this.ctaTradings = ctaTradings;
-	 }
-
-	public Set<CusCoupon> getCusCoupons() {
-		return cusCoupons;
+	public Set getCtaTradings() {
+		return this.ctaTradings;
 	}
 
-	public void setCusCoupons(Set<CusCoupon> cusCoupons) {
+	public void setCtaTradings(Set ctaTradings) {
+		this.ctaTradings = ctaTradings;
+	}
+
+	public Set getMessages() {
+		return this.messages;
+	}
+
+	public void setMessages(Set messages) {
+		this.messages = messages;
+	}
+
+	public Set getCusCoupons() {
+		return this.cusCoupons;
+	}
+
+	public void setCusCoupons(Set cusCoupons) {
 		this.cusCoupons = cusCoupons;
 	}
-
-	// public Set getCusBanks() {
-	// return this.cusBanks;
-	// }
-	//
-	// public void setCusBanks(Set cusBanks) {
-	// this.cusBanks = cusBanks;
-	// }
-	//
-	// public Set getHistories() {
-	// return this.histories;
-	// }
-	//
-	// public void setHistories(Set histories) {
-	// this.histories = histories;
-	// }
-	//
-	// public Set getCusAddresses() {
-	// return this.cusAddresses;
-	// }
-	//
-	// public void setCusAddresses(Set cusAddresses) {
-	// this.cusAddresses = cusAddresses;
-	// }
-	//
-	// public Set getEvaluates() {
-	// return this.evaluates;
-	// }
-	//
-	// public void setEvaluates(Set evaluates) {
-	// this.evaluates = evaluates;
-	// }
-	//
-	// public Set getFriendses() {
-	// return this.friendses;
-	// }
-	//
-	// public void setFriendses(Set friendses) {
-	// this.friendses = friendses;
-	// }
-	//
-	// public Set getCusAccounts() {
-	// return this.cusAccounts;
-	// }
-	//
-	// public void setCusAccounts(Set cusAccounts) {
-	// this.cusAccounts = cusAccounts;
-	// }
-	//
-	// public Set getOrders() {
-	// return this.orders;
-	// }
-	//
-	// public void setOrders(Set orders) {
-	// this.orders = orders;
-	// }
-	//
-//	public Set getCtaTradings() {
-//		return this.ctaTradings;
-//	}
-//
-//	public void setCtaTradings(Set ctaTradings) {
-//		this.ctaTradings = ctaTradings;
-//	}
-	//
-	// public Set getMessages() {
-	// return this.messages;
-	// }
-	//
-	// public void setMessages(Set messages) {
-	// this.messages = messages;
-	// }
-	//
-	// public Set getCusCoupons() {
-	// return this.cusCoupons;
-	// }
-	//
-	// public void setCusCoupons(Set cusCoupons) {
-	// this.cusCoupons = cusCoupons;
-	// }
 
 }

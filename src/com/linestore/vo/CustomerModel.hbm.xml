@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-15 12:07:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.linestore.vo.CustomerModel" table="customer">
+		<id name="cusId" type="java.lang.Integer">
+			<column name="cus_id" />
+			<!-- 主键的生成策略，native本地生成策略 -->
+			<generator class="native" />
+		</id>
+		<property name="cusNickname" type="java.lang.String">
+			<column name="cus_nickname" />
+		</property>
+		<property name="cusImgUrl" type="java.lang.String">
+			<column name="cus_img_url" />
+		</property>
+		<property name="cusSex" type="java.lang.Integer">
+			<column name="cus_sex" />
+		</property>
+		<property name="cusBirth" type="java.lang.String">
+			<column name="cus_birth" />
+		</property>
+
+		<property name="cusHobby" type="java.lang.String">
+			<column name="cus_hobby" />
+		</property>
+		<property name="cusTagId" type="java.lang.String">
+			<column name="cus_tag_id" />
+		</property>
+		<property name="cusPhone" type="java.lang.String">
+			<column name="cus_phone" />
+		</property>
+		<property name="cusPassword" type="java.lang.String">
+			<column name="cus_password" />
+		</property>
+		<property name="cusStatus" type="java.lang.Integer">
+			<column name="cus_status"  />
+		</property>
+		<property name="cusOpenId" type="java.lang.String">
+			<column name="cus_open_id" />
+		</property>
+		<!-- 表之间关系映射 -->
+		<set name="cusAddressSet" cascade="save-update,delete" lazy="true">
+			<key column="ca_cus_id"></key>
+			<one-to-many class="com.linestore.vo.CusAddressModel" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -20,9 +20,9 @@ public class Goods implements java.io.Serializable {
 	private String gooNum;
 	private Integer gooCondi;
 	private String gooDescribe;
-	private Integer gooType;
-	private Integer gooStatus;
-	private Integer gooFreight;
+	private Boolean gooType;
+	private Boolean gooStatus;
+	private Boolean gooFreight;
 	private String gooKeyWord;
 	private Integer gooWeight;
 	private Timestamp gooCreateDate;
@@ -38,7 +38,7 @@ public class Goods implements java.io.Serializable {
 
 	/** full constructor */
 	public Goods(Brand brand, Supplier supplier, Catetory catetory, String gooTitle, String gooNum, Integer gooCondi,
-			String gooDescribe, Integer gooType, Integer gooStatus, Integer gooFreight, String gooKeyWord,
+			String gooDescribe, Boolean gooType, Boolean gooStatus, Boolean gooFreight, String gooKeyWord,
 			Integer gooWeight, Timestamp gooCreateDate, Set proattributes, Set skus, Set histories) {
 		this.brand = brand;
 		this.supplier = supplier;
@@ -124,28 +124,27 @@ public class Goods implements java.io.Serializable {
 		this.gooDescribe = gooDescribe;
 	}
 
-
-	public Integer getGooType() {
-		return gooType;
+	public Boolean getGooType() {
+		return this.gooType;
 	}
 
-	public void setGooType(Integer gooType) {
+	public void setGooType(Boolean gooType) {
 		this.gooType = gooType;
 	}
 
-	public Integer getGooStatus() {
-		return gooStatus;
+	public Boolean getGooStatus() {
+		return this.gooStatus;
 	}
 
-	public void setGooStatus(Integer gooStatus) {
+	public void setGooStatus(Boolean gooStatus) {
 		this.gooStatus = gooStatus;
 	}
 
-	public Integer getGooFreight() {
-		return gooFreight;
+	public Boolean getGooFreight() {
+		return this.gooFreight;
 	}
 
-	public void setGooFreight(Integer gooFreight) {
+	public void setGooFreight(Boolean gooFreight) {
 		this.gooFreight = gooFreight;
 	}
 

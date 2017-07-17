@@ -7,55 +7,79 @@ import java.sql.Timestamp;
  */
 
 public class Message implements java.io.Serializable {
-	private int mesId;
-//    private int mesCusId;
-    private String mesTitle;
-    private String mesType;
-    private String mesContent;
-    private Timestamp mesTime;
-    private Customer customer;
-	public int getMesId() {
-		return mesId;
+
+	// Fields
+
+	private Integer mesId;
+	private Customer customer;
+	private String mesTitle;
+	private Boolean mesType;
+	private String mesContent;
+	private Timestamp mesTime;
+
+	// Constructors
+
+	/** default constructor */
+	public Message() {
 	}
-	public void setMesId(int mesId) {
-		this.mesId = mesId;
-	}
-//	public int getMesCusId() {
-//		return mesCusId;
-//	}
-//	public void setMesCusId(int mesCusId) {
-//		this.mesCusId = mesCusId;
-//	}
-	public String getMesTitle() {
-		return mesTitle;
-	}
-	public void setMesTitle(String mesTitle) {
+
+	/** full constructor */
+	public Message(Customer customer, String mesTitle, Boolean mesType, String mesContent, Timestamp mesTime) {
+		this.customer = customer;
 		this.mesTitle = mesTitle;
-	}
-	public String getMesType() {
-		return mesType;
-	}
-	public void setMesType(String mesType) {
 		this.mesType = mesType;
-	}
-	public String getMesContent() {
-		return mesContent;
-	}
-	public void setMesContent(String mesContent) {
 		this.mesContent = mesContent;
-	}
-	public Timestamp getMesTime() {
-		return mesTime;
-	}
-	public void setMesTime(Timestamp mesTime) {
 		this.mesTime = mesTime;
 	}
-	public Customer getCustomer() {
-		return customer;
+
+	// Property accessors
+
+	public Integer getMesId() {
+		return this.mesId;
 	}
+
+	public void setMesId(Integer mesId) {
+		this.mesId = mesId;
+	}
+
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 
+	public String getMesTitle() {
+		return this.mesTitle;
+	}
+
+	public void setMesTitle(String mesTitle) {
+		this.mesTitle = mesTitle;
+	}
+
+	public Boolean getMesType() {
+		return this.mesType;
+	}
+
+	public void setMesType(Boolean mesType) {
+		this.mesType = mesType;
+	}
+
+	public String getMesContent() {
+		return this.mesContent;
+	}
+
+	public void setMesContent(String mesContent) {
+		this.mesContent = mesContent;
+	}
+
+	public Timestamp getMesTime() {
+		return this.mesTime;
+	}
+
+	public void setMesTime(Timestamp mesTime) {
+		this.mesTime = mesTime;
+	}
 
 }

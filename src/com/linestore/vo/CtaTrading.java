@@ -10,7 +10,7 @@ public class CtaTrading implements java.io.Serializable {
 
 	private Integer ctaId;
 	private Customer customer;
-	private Integer ctaType;
+	private Boolean ctaType;
 	private Float ctaMoney;
 
 	// Constructors
@@ -20,7 +20,7 @@ public class CtaTrading implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public CtaTrading(Customer customer, Integer ctaType, Float ctaMoney) {
+	public CtaTrading(Customer customer, Boolean ctaType, Float ctaMoney) {
 		this.customer = customer;
 		this.ctaType = ctaType;
 		this.ctaMoney = ctaMoney;
@@ -44,13 +44,11 @@ public class CtaTrading implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	
-
-	public Integer getCtaType() {
-		return ctaType;
+	public Boolean getCtaType() {
+		return this.ctaType;
 	}
 
-	public void setCtaType(Integer ctaType) {
+	public void setCtaType(Boolean ctaType) {
 		this.ctaType = ctaType;
 	}
 

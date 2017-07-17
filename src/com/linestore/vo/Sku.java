@@ -15,7 +15,7 @@ public class Sku implements java.io.Serializable {
 	private Goods goods;
 	private Integer skuNum;
 	private Float skuPrice;
-	private Integer skuStatus;
+	private Boolean skuStatus;
 	private String skuName;
 	private String skuProperties;
 	private Set ordDetailses = new HashSet(0);
@@ -28,7 +28,7 @@ public class Sku implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Sku(Goods goods, Integer skuNum, Float skuPrice, Integer skuStatus, String skuName, String skuProperties,
+	public Sku(Goods goods, Integer skuNum, Float skuPrice, Boolean skuStatus, String skuName, String skuProperties,
 			Set ordDetailses, Set proattributes) {
 		this.goods = goods;
 		this.skuNum = skuNum;
@@ -74,12 +74,11 @@ public class Sku implements java.io.Serializable {
 		this.skuPrice = skuPrice;
 	}
 
-
-	public Integer getSkuStatus() {
-		return skuStatus;
+	public Boolean getSkuStatus() {
+		return this.skuStatus;
 	}
 
-	public void setSkuStatus(Integer skuStatus) {
+	public void setSkuStatus(Boolean skuStatus) {
 		this.skuStatus = skuStatus;
 	}
 
