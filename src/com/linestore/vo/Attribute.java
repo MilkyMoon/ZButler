@@ -14,14 +14,14 @@ public class Attribute implements java.io.Serializable {
 	private Integer attId;
 	private Catetory catetory;
 	private String attName;
-	private Integer attIscolor;
-	private Integer attIsenum;
-	private Integer attIsinput;
-	private Integer attIskey;
-	private Integer attIssell;
-	private Integer attIsmust;
-	private Integer attIsmore;
-	private Integer attStatus;
+	private Boolean attIscolor;
+	private Boolean attIsenum;
+	private Boolean attIsinput;
+	private Boolean attIskey;
+	private Boolean attIssell;
+	private Boolean attIsmust;
+	private Boolean attIsmore;
+	private Boolean attStatus;
 	private Set attValues = new HashSet(0);
 	private Set proattributes = new HashSet(0);
 
@@ -32,8 +32,8 @@ public class Attribute implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Attribute(Catetory catetory, String attName, Integer attIscolor, Integer attIsenum, Integer attIsinput,
-			Integer attIskey, Integer attIssell, Integer attIsmust, Integer attIsmore, Integer attStatus, Set attValues,
+	public Attribute(Catetory catetory, String attName, Boolean attIscolor, Boolean attIsenum, Boolean attIsinput,
+			Boolean attIskey, Boolean attIssell, Boolean attIsmust, Boolean attIsmore, Boolean attStatus, Set attValues,
 			Set proattributes) {
 		this.catetory = catetory;
 		this.attName = attName;
@@ -75,68 +75,67 @@ public class Attribute implements java.io.Serializable {
 		this.attName = attName;
 	}
 
-
-	public Integer getAttIscolor() {
-		return attIscolor;
+	public Boolean getAttIscolor() {
+		return this.attIscolor;
 	}
 
-	public void setAttIscolor(Integer attIscolor) {
+	public void setAttIscolor(Boolean attIscolor) {
 		this.attIscolor = attIscolor;
 	}
 
-	public Integer getAttIsenum() {
-		return attIsenum;
+	public Boolean getAttIsenum() {
+		return this.attIsenum;
 	}
 
-	public void setAttIsenum(Integer attIsenum) {
+	public void setAttIsenum(Boolean attIsenum) {
 		this.attIsenum = attIsenum;
 	}
 
-	public Integer getAttIsinput() {
-		return attIsinput;
+	public Boolean getAttIsinput() {
+		return this.attIsinput;
 	}
 
-	public void setAttIsinput(Integer attIsinput) {
+	public void setAttIsinput(Boolean attIsinput) {
 		this.attIsinput = attIsinput;
 	}
 
-	public Integer getAttIskey() {
-		return attIskey;
+	public Boolean getAttIskey() {
+		return this.attIskey;
 	}
 
-	public void setAttIskey(Integer attIskey) {
+	public void setAttIskey(Boolean attIskey) {
 		this.attIskey = attIskey;
 	}
 
-	public Integer getAttIssell() {
-		return attIssell;
+	public Boolean getAttIssell() {
+		return this.attIssell;
 	}
 
-	public void setAttIssell(Integer attIssell) {
+	public void setAttIssell(Boolean attIssell) {
 		this.attIssell = attIssell;
 	}
 
-	public Integer getAttIsmust() {
-		return attIsmust;
+	public Boolean getAttIsmust() {
+		return this.attIsmust;
 	}
 
-	public void setAttIsmust(Integer attIsmust) {
+	public void setAttIsmust(Boolean attIsmust) {
 		this.attIsmust = attIsmust;
 	}
 
-	public Integer getAttIsmore() {
-		return attIsmore;
+	public Boolean getAttIsmore() {
+		return this.attIsmore;
 	}
 
-	public void setAttIsmore(Integer attIsmore) {
+	public void setAttIsmore(Boolean attIsmore) {
 		this.attIsmore = attIsmore;
 	}
 
-	public Integer getAttStatus() {
-		return attStatus;
+	public Boolean getAttStatus() {
+		return this.attStatus;
 	}
 
-	public void setAttStatus(Integer attStatus) {
+	public void setAttStatus(Boolean attStatus) {
 		this.attStatus = attStatus;
 	}
 

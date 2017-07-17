@@ -73,8 +73,8 @@ button, input, select {
     vertical-align: baseline;
     border-radius: 0;
     background-color: transparent;
-    /*-webkit-appearance: none;*/
-    /*-moz-appearance: none*/
+    -webkit-appearance: none;
+    -moz-appearance: none
 }
 
 .mask-black, .mask-black-dialog {

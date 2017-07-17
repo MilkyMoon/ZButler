@@ -12,7 +12,7 @@ public class Friends implements java.io.Serializable {
 
 	private Integer friId;
 	private Customer customer;
-	private Integer friType;
+	private Boolean friType;
 	private String friPhone;
 	private Timestamp friDate;
 
@@ -23,7 +23,7 @@ public class Friends implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Friends(Customer customer, Integer friType, String friPhone, Timestamp friDate) {
+	public Friends(Customer customer, Boolean friType, String friPhone, Timestamp friDate) {
 		this.customer = customer;
 		this.friType = friType;
 		this.friPhone = friPhone;
@@ -48,13 +48,11 @@ public class Friends implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	
-
-	public Integer getFriType() {
-		return friType;
+	public Boolean getFriType() {
+		return this.friType;
 	}
 
-	public void setFriType(Integer friType) {
+	public void setFriType(Boolean friType) {
 		this.friType = friType;
 	}
 

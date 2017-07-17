@@ -13,7 +13,7 @@
         <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
             <column name="fri_cus_id" />
         </many-to-one>
-        <property name="friType" type="java.lang.Integer">
+        <property name="friType" type="java.lang.Boolean">
             <column name="fri_type" />
         </property>
         <property name="friPhone" type="java.lang.String">

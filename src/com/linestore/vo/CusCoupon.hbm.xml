@@ -16,7 +16,7 @@
         <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
             <column name="cc_cus_id" />
         </many-to-one>
-        <property name="ccStatus" type="java.lang.Integer">
+        <property name="ccStatus" type="java.lang.Boolean">
             <column name="cc_status" />
         </property>
     </class>

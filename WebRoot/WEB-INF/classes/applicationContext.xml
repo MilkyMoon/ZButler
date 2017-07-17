@@ -1,78 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!-- 导入资源文件 -->
-	<context:property-placeholder location="classpath:db.properties" />
+    <!-- 导入资源文件 -->
+    <context:property-placeholder location="classpath:db.properties" />
 
-	<!-- 配置C3P0数据源 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="user" value="${jdbc.user}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-		<property name="driverClass" value="${jdbc.driverClass}"></property>
-		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
-	</bean>
-
-	<!-- 定义Hibernate的SessionFactory -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<!-- 接入连接池 -->
-		<property name="dataSource" ref="dataSource"></property>
-
-		<!-- 配置Hibernate的属性 -->
-		<property name="hibernateProperties">
-			<props>
-				<!-- 方言 ctrl+shift+t 输入mysql5，找到org.hibernate.dialect.MySQL5InnoDBDialect -->
+    <!-- 配置C3P0数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="user" value="${jdbc.user}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="driverClass" value="${jdbc.driverClass}"></property>
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+    </bean>
+        
+    <!-- 定义Hibernate的SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    	<!-- 接入连接池 -->
+        <property name="dataSource" ref="dataSource"></property>
+       
+        <!-- 配置Hibernate的属性 -->
+        <property name="hibernateProperties">
+       		<props>
+       			<!-- 方言 ctrl+shift+t 输入mysql5，找到org.hibernate.dialect.MySQL5InnoDBDialect-->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 				<!-- 是否显示格式化sql -->
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 生成数据表的策略 -->
-				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
-			</props>
-		</property>
-		<property name="mappingLocations" value="classpath:com/linestore/vo/*.hbm.xml"></property>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+       		</props>
+       </property>
+       <property name="mappingLocations" value="classpath:com/linestore/vo/*.hbm.xml"></property>
+    </bean>
+
+	<!-- <bean id="userAction" class="com.linestore.action.UserAction">
+		<property name="userService" ref="userService" ></property>
+	</bean> -->
 	
-	</bean>
-
-	<!-- <bean id="userAction" class="com.linestore.action.UserAction"> <property 
-		name="userService" ref="userService" ></property> </bean> -->
-
-	<!-- 定义DAO Bean -->
-	<bean id="userDao" class="com.linestore.dao.impl.UserDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="cusAddressDao" class="com.linestore.dao.impl.CusAddressDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="messageDao" class="com.linestore.dao.impl.MessageDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<!-- 配置一个业务逻辑组件 -->
-	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
-		<property name="userDao" ref="userDao"></property>
-	</bean>
-	<bean id="cusAddressService" class="com.linestore.service.impl.CusAddressServiceImpl">
-		<property name="cusAddressDao" ref="cusAddressDao"></property>
-	</bean>
-	<bean id="messageService" class="com.linestore.service.impl.MessageServiceImpl">
-		<property name="messageDao" ref="messageDao"></property>
-	</bean>
-	<!-- 配置一个事务管理器 -->
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-
-	<!-- 开启注解事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 定义DAO Bean-->
+    <bean id="userDao" class="com.linestore.dao.impl.UserDaoImpl" >
+        <!-- 注入持久化操作所需的SessionFactory -->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+  <bean id="cusAddressDao" class="com.linestore.dao.impl.CusAddressDaoImpl" >
+        <!-- 注入持久化操作所需的SessionFactory -->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!-- 配置一个业务逻辑组件 -->
+    <bean id="userService" class="com.linestore.service.impl.UserServiceImpl" >
+        <property name="userDao" ref="userDao" ></property>
+    </bean>
+    <bean id="cusAddressService" class="com.linestore.service.impl.CusAddressServiceImpl" >
+        <property name="cusAddressDao" ref="cusAddressDao" ></property>
+    </bean>
+    <!-- 配置一个事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    	<property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <!-- 开启注解事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

@@ -21,10 +21,10 @@ public class Business implements java.io.Serializable {
 	private String busLicenseUrl;
 	private String busTaxUrl;
 	private String busOrgUrl;
-	private Integer busDistrict;
+	private Boolean busDistrict;
 	private Integer busSmallCate;
-	private Integer busStatus;
-	private Integer busLevel;
+	private Boolean busStatus;
+	private Boolean busLevel;
 	private Set busCoupons = new HashSet(0);
 	private Set busBanks = new HashSet(0);
 
@@ -37,7 +37,7 @@ public class Business implements java.io.Serializable {
 	/** full constructor */
 	public Business(Supplier supplier, Catetory catetory, String busShopName, String busOwnerFname,
 			String busOwnerLname, String busIdcardUrl, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
-			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, Set busCoupons,
+			Boolean busDistrict, Integer busSmallCate, Boolean busStatus, Boolean busLevel, Set busCoupons,
 			Set busBanks) {
 		this.supplier = supplier;
 		this.catetory = catetory;
@@ -138,6 +138,14 @@ public class Business implements java.io.Serializable {
 		this.busOrgUrl = busOrgUrl;
 	}
 
+	public Boolean getBusDistrict() {
+		return this.busDistrict;
+	}
+
+	public void setBusDistrict(Boolean busDistrict) {
+		this.busDistrict = busDistrict;
+	}
+
 	public Integer getBusSmallCate() {
 		return this.busSmallCate;
 	}
@@ -146,29 +154,19 @@ public class Business implements java.io.Serializable {
 		this.busSmallCate = busSmallCate;
 	}
 
-	
-
-	public Integer getBusDistrict() {
-		return busDistrict;
+	public Boolean getBusStatus() {
+		return this.busStatus;
 	}
 
-	public void setBusDistrict(Integer busDistrict) {
-		this.busDistrict = busDistrict;
-	}
-
-	public Integer getBusStatus() {
-		return busStatus;
-	}
-
-	public void setBusStatus(Integer busStatus) {
+	public void setBusStatus(Boolean busStatus) {
 		this.busStatus = busStatus;
 	}
 
-	public Integer getBusLevel() {
-		return busLevel;
+	public Boolean getBusLevel() {
+		return this.busLevel;
 	}
 
-	public void setBusLevel(Integer busLevel) {
+	public void setBusLevel(Boolean busLevel) {
 		this.busLevel = busLevel;
 	}
 
