@@ -15,7 +15,7 @@ public class AttValue implements java.io.Serializable {
 	private Catetory catetory;
 	private Attribute attribute;
 	private String avaName;
-	private Boolean avaStatus;
+	private Integer avaStatus;
 	private Set proattributes = new HashSet(0);
 
 	// Constructors
@@ -25,7 +25,7 @@ public class AttValue implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AttValue(Catetory catetory, Attribute attribute, String avaName, Boolean avaStatus, Set proattributes) {
+	public AttValue(Catetory catetory, Attribute attribute, String avaName, Integer avaStatus, Set proattributes) {
 		this.catetory = catetory;
 		this.attribute = attribute;
 		this.avaName = avaName;
@@ -67,11 +67,12 @@ public class AttValue implements java.io.Serializable {
 		this.avaName = avaName;
 	}
 
-	public Boolean getAvaStatus() {
-		return this.avaStatus;
+	
+	public Integer getAvaStatus() {
+		return avaStatus;
 	}
 
-	public void setAvaStatus(Boolean avaStatus) {
+	public void setAvaStatus(Integer avaStatus) {
 		this.avaStatus = avaStatus;
 	}
 

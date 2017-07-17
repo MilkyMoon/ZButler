@@ -52,9 +52,6 @@
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-tx-4.3.9.RELEASE-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-tx-4.3.9.RELEASE-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-tx-4.3.9.RELEASE.jar"/>
-	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-web-4.3.9.RELEASE-javadoc.jar"/>
-	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-web-4.3.9.RELEASE-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-web-4.3.9.RELEASE.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc-4.3.9.RELEASE-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc-4.3.9.RELEASE-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/spring-webmvc-4.3.9.RELEASE.jar"/>
@@ -94,6 +91,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-web-4.3.9.RELEASE-javadoc.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-web-4.3.9.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-web-4.3.9.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_121]">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
