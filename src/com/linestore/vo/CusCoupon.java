@@ -11,7 +11,7 @@ public class CusCoupon implements java.io.Serializable {
 	private Integer ccId;
 	private BusCoupon busCoupon;
 	private Customer customer;
-	private Boolean ccStatus;
+	private Integer ccStatus;
 
 	// Constructors
 
@@ -20,7 +20,7 @@ public class CusCoupon implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public CusCoupon(BusCoupon busCoupon, Customer customer, Boolean ccStatus) {
+	public CusCoupon(BusCoupon busCoupon, Customer customer, Integer ccStatus) {
 		this.busCoupon = busCoupon;
 		this.customer = customer;
 		this.ccStatus = ccStatus;
@@ -52,12 +52,14 @@ public class CusCoupon implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	public Boolean getCcStatus() {
-		return this.ccStatus;
+	public Integer getCcStatus() {
+		return ccStatus;
 	}
 
-	public void setCcStatus(Boolean ccStatus) {
+	public void setCcStatus(Integer ccStatus) {
 		this.ccStatus = ccStatus;
 	}
+
+	
 
 }
