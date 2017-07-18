@@ -7,79 +7,63 @@ import java.sql.Timestamp;
  */
 
 public class Message implements java.io.Serializable {
-
-	// Fields
-
-	private Integer mesId;
-	private Customer customer;
-	private String mesTitle;
-	private Boolean mesType;
-	private String mesContent;
-	private Timestamp mesTime;
-
-	// Constructors
-
-	/** default constructor */
-	public Message() {
+	private int mesId;
+//    private int mesCusId;
+    private String mesTitle;
+    private String mesType;
+    private String mesContent;
+    private Timestamp mesTime;
+    //格式化后的mesTime
+    private String mesTimeStr;
+    private Customer customer;
+	public int getMesId() {
+		return mesId;
 	}
-
-	/** full constructor */
-	public Message(Customer customer, String mesTitle, Boolean mesType, String mesContent, Timestamp mesTime) {
-		this.customer = customer;
-		this.mesTitle = mesTitle;
-		this.mesType = mesType;
-		this.mesContent = mesContent;
-		this.mesTime = mesTime;
-	}
-
-	// Property accessors
-
-	public Integer getMesId() {
-		return this.mesId;
-	}
-
-	public void setMesId(Integer mesId) {
+	public void setMesId(int mesId) {
 		this.mesId = mesId;
 	}
-
-	public Customer getCustomer() {
-		return this.customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
+//	public int getMesCusId() {
+//		return mesCusId;
+//	}
+//	public void setMesCusId(int mesCusId) {
+//		this.mesCusId = mesCusId;
+//	}
 	public String getMesTitle() {
-		return this.mesTitle;
+		return mesTitle;
 	}
-
 	public void setMesTitle(String mesTitle) {
 		this.mesTitle = mesTitle;
 	}
-
-	public Boolean getMesType() {
-		return this.mesType;
+	public String getMesType() {
+		return mesType;
 	}
-
-	public void setMesType(Boolean mesType) {
+	public void setMesType(String mesType) {
 		this.mesType = mesType;
 	}
-
 	public String getMesContent() {
-		return this.mesContent;
+		return mesContent;
 	}
-
 	public void setMesContent(String mesContent) {
 		this.mesContent = mesContent;
 	}
-
 	public Timestamp getMesTime() {
-		return this.mesTime;
+		return mesTime;
 	}
-
 	public void setMesTime(Timestamp mesTime) {
 		this.mesTime = mesTime;
 	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public String getMesTimeStr() {
+		return mesTimeStr;
+	}
+	public void setMesTimeStr(String mesTimeStr) {
+		this.mesTimeStr = mesTimeStr;
+	}
+
 
 }
