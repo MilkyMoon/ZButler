@@ -10,7 +10,7 @@
             <column name="mes_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="mes_cus_id" />
         </many-to-one>
         <property name="mesTitle" type="java.lang.String">

@@ -32,7 +32,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 生成数据表的策略 -->
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			    <prop key="hibernate.hbm2ddl.auto">none</prop>
        		</props>
        </property>
        <property name="mappingLocations" value="classpath:com/linestore/vo/*.hbm.xml"></property>
@@ -51,12 +51,35 @@
         <!-- 注入持久化操作所需的SessionFactory -->
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="customerDao" class="com.linestore.dao.impl.CustomerDaoImpl" >
+        <!-- 注入持久化操作所需的SessionFactory -->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="cusCouponDao" class="com.linestore.dao.impl.CusCouponDaoImpl" >
+        <!-- 注入持久化操作所需的SessionFactory -->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="evaluateDao" class="com.linestore.dao.impl.EvaluateDaoImpl" >
+        <!-- 注入持久化操作所需的SessionFactory -->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     <!-- 配置一个业务逻辑组件 -->
     <bean id="userService" class="com.linestore.service.impl.UserServiceImpl" >
         <property name="userDao" ref="userDao" ></property>
     </bean>
     <bean id="cusAddressService" class="com.linestore.service.impl.CusAddressServiceImpl" >
         <property name="cusAddressDao" ref="cusAddressDao" ></property>
+    </bean>
+    <bean id="customerService" class="com.linestore.service.impl.CustomerServiceImpl" >
+        <property name="customerDao" ref="customerDao" ></property>
+    </bean>
+    <bean id="cusCouponService" class="com.linestore.service.impl.CusCouponServiceImpl" >
+        <property name="cusCouponDao" ref="cusCouponDao" ></property>
+    </bean>
+   
+    <bean id="EvaluateService" class="com.linestore.service.impl.EvaluateServiceImpl" >
+        <property name="evaluateDao" ref="evaluateDao" ></property>
     </bean>
     <!-- 配置一个事务管理器 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">

@@ -10,7 +10,7 @@
             <column name="sku_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="goods" class="com.linestore.vo.Goods" fetch="select">
+        <many-to-one name="goods" class="com.linestore.vo.Goods" fetch="select" lazy="false">
             <column name="sku_goo_id" />
         </many-to-one>
         <property name="skuNum" type="java.lang.Integer">
@@ -28,13 +28,13 @@
         <property name="skuProperties" type="java.lang.String">
             <column name="sku_properties" length="65535" />
         </property>
-        <set name="ordDetailses" inverse="true">
+        <set name="ordDetailses" inverse="true" lazy="false">
             <key>
                 <column name="ode_sku_id" />
             </key>
             <one-to-many class="com.linestore.vo.OrdDetails" />
         </set>
-        <set name="proattributes" inverse="true">
+        <set name="proattributes" inverse="true" lazy="false">
             <key>
                 <column name="pat_sku_id" />
             </key>

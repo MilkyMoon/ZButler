@@ -10,10 +10,10 @@
             <column name="bus_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select">
+        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select" lazy="false">
             <column name="bus_sup_id" />
         </many-to-one>
-        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select">
+        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select" lazy="false">
             <column name="bus_cate_id" />
         </many-to-one>
         <property name="busShopName" type="java.lang.String">
@@ -49,13 +49,13 @@
         <property name="busLevel" type="java.lang.Boolean">
             <column name="bus_level" />
         </property>
-        <set name="busCoupons" inverse="true">
+        <set name="busCoupons" inverse="true" lazy="false">
             <key>
                 <column name="bc_bus_id" />
             </key>
             <one-to-many class="com.linestore.vo.BusCoupon" />
         </set>
-        <set name="busBanks" inverse="true">
+        <set name="busBanks" inverse="true" lazy="false">
             <key>
                 <column name="bb_bus_id" />
             </key>

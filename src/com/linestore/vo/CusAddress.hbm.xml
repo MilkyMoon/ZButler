@@ -10,7 +10,7 @@
             <column name="ca_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="ca_cus_id" />
         </many-to-one>
         <property name="caCountry" type="java.lang.String">

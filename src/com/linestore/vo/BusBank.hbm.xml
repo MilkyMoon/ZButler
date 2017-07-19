@@ -10,7 +10,7 @@
             <column name="bb_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="business" class="com.linestore.vo.Business" fetch="select">
+        <many-to-one name="business" class="com.linestore.vo.Business" fetch="select" lazy="false">
             <column name="bb_bus_id" />
         </many-to-one>
         <property name="bbBankCard" type="java.lang.String">

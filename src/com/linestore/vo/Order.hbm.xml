@@ -10,7 +10,7 @@
             <column name="ord_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="ord_cus_id" />
         </many-to-one>
         <property name="ordStatus" type="java.lang.Boolean">
@@ -37,13 +37,13 @@
         <property name="ordComfire" type="java.lang.Boolean">
             <column name="ord_comfire" />
         </property>
-        <set name="ordDetailses" inverse="true">
+        <set name="ordDetailses" inverse="true" lazy="false">
             <key>
                 <column name="ode_ord_id" />
             </key>
             <one-to-many class="com.linestore.vo.OrdDetails" />
         </set>
-        <set name="evaluates" inverse="true">
+        <set name="evaluates" inverse="true" lazy="false">
             <key>
                 <column name="eva_ord_id" />
             </key>

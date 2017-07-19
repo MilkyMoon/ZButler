@@ -10,7 +10,7 @@
             <column name="cac_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="cac_cus_id" />
         </many-to-one>
         <property name="cacChange" type="java.lang.Float">

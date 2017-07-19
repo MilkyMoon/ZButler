@@ -4,17 +4,18 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-    <constant name="struts.devMode" value="true" />
-    <!-- 指定默认编码集 -->    
-    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
-    <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
-    
-    <package name="struts2" extends="struts-default" namespace="/">
-        <action name="user_*" class="com.linestore.action.UserAction" method="{1}">
-        	<result name="success" type="redirect">admin/index.jsp</result>
-        	<result name="error">admin/login.jsp</result>
-        </action>
-        	<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
+	<constant name="struts.devMode" value="true" />
+	<!-- 指定默认编码集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
+	<package name="struts2" extends="struts-default" namespace="/">
+		<action name="user_*" class="com.linestore.action.UserAction"
+			method="{1}">
+			<result name="success" type="redirect">admin/index.jsp</result>
+			<result name="error">admin/login.jsp</result>
+		</action>
+		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
 			method="{1}">
 			<result name="success">index.jsp</result>
 			<result name="cusAddressList">home/deliveryAddress.jsp</result>
@@ -22,5 +23,34 @@
 			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
-    </package>
+		<action name="Customer" class="com.linestore.action.CustomerAction" >
+			<result name="gotoRegister">/home/register.jsp</result>
+			<result name="gotoLogin">/home/login.jsp</result>
+			<result name="gotoCustomer">/home/customer.jsp</result>
+			<result name="gotoCusMessage">/home/cusMessage.jsp</result>
+			<result name="gotoForgetTwo">/home/forgetPasswordTwo.jsp</result>
+		</action>
+		<action name="CusCoupon" class="com.linestore.action.CusCouponAction" >
+			<result name="gotoCoupon">/home/coupon.jsp</result>
+			<result name="gotoLogin">/home/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="strutsJson" extends="json-default">
+		<action name="CustomerJson" class="com.linestore.action.CustomerAction" method="sendMessage">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="BindPhoneJson" class="com.linestore.action.CustomerAction" method="BindPhone">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="ForgetPassJson" class="com.linestore.action.CustomerAction" method="forgetPass">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
 </struts>

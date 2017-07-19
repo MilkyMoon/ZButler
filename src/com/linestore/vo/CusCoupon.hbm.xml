@@ -10,10 +10,10 @@
             <column name="cc_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="busCoupon" class="com.linestore.vo.BusCoupon" fetch="select">
+        <many-to-one name="busCoupon" class="com.linestore.vo.BusCoupon" fetch="select" lazy="false">
             <column name="cc_bc_id" />
         </many-to-one>
-        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="cc_cus_id" />
         </many-to-one>
         <property name="ccStatus" type="java.lang.Boolean">

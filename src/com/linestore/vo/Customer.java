@@ -15,19 +15,23 @@ public class Customer implements java.io.Serializable {
 	private Integer cusId;
 	private String cusNickname;
 	private String cusImgUrl;
-	private Boolean cusSex;
+	private Integer cusSex;
 	private Date cusBirth;
 	private String cusHobby;
 	private String cusTagId;
 	private String cusPhone;
 	private String cusPassword;
-	private Boolean cusStatus;
+	private Integer cusStatus;
 	private String cusOpenId;
+	private String cusTdCode;
+	private String cusShareUrl;
+	private String cusPayPassword;
 	private Set cusBanks = new HashSet(0);
 	private Set histories = new HashSet(0);
 	private Set cusAddresses = new HashSet(0);
 	private Set evaluates = new HashSet(0);
 	private Set friendses = new HashSet(0);
+	private Set businesses = new HashSet(0);
 	private Set cusAccounts = new HashSet(0);
 	private Set orders = new HashSet(0);
 	private Set ctaTradings = new HashSet(0);
@@ -41,10 +45,10 @@ public class Customer implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Customer(String cusNickname, String cusImgUrl, Boolean cusSex, Date cusBirth, String cusHobby,
-			String cusTagId, String cusPhone, String cusPassword, Boolean cusStatus, String cusOpenId, Set cusBanks,
-			Set histories, Set cusAddresses, Set evaluates, Set friendses, Set cusAccounts, Set orders, Set ctaTradings,
-			Set messages, Set cusCoupons) {
+	public Customer(String cusNickname, String cusImgUrl, Integer cusSex, Date cusBirth, String cusHobby,
+			String cusTagId, String cusPhone, String cusPassword, Integer cusStatus, String cusOpenId, String cusTdCode,
+			String cusShareUrl, String cusPayPassword, Set cusBanks, Set histories, Set cusAddresses, Set evaluates,
+			Set friendses, Set businesses, Set cusAccounts, Set orders, Set ctaTradings, Set messages, Set cusCoupons) {
 		this.cusNickname = cusNickname;
 		this.cusImgUrl = cusImgUrl;
 		this.cusSex = cusSex;
@@ -55,11 +59,15 @@ public class Customer implements java.io.Serializable {
 		this.cusPassword = cusPassword;
 		this.cusStatus = cusStatus;
 		this.cusOpenId = cusOpenId;
+		this.cusTdCode = cusTdCode;
+		this.cusShareUrl = cusShareUrl;
+		this.cusPayPassword = cusPayPassword;
 		this.cusBanks = cusBanks;
 		this.histories = histories;
 		this.cusAddresses = cusAddresses;
 		this.evaluates = evaluates;
 		this.friendses = friendses;
+		this.businesses = businesses;
 		this.cusAccounts = cusAccounts;
 		this.orders = orders;
 		this.ctaTradings = ctaTradings;
@@ -93,11 +101,11 @@ public class Customer implements java.io.Serializable {
 		this.cusImgUrl = cusImgUrl;
 	}
 
-	public Boolean getCusSex() {
+	public Integer getCusSex() {
 		return this.cusSex;
 	}
 
-	public void setCusSex(Boolean cusSex) {
+	public void setCusSex(Integer cusSex) {
 		this.cusSex = cusSex;
 	}
 
@@ -141,11 +149,11 @@ public class Customer implements java.io.Serializable {
 		this.cusPassword = cusPassword;
 	}
 
-	public Boolean getCusStatus() {
+	public Integer getCusStatus() {
 		return this.cusStatus;
 	}
 
-	public void setCusStatus(Boolean cusStatus) {
+	public void setCusStatus(Integer cusStatus) {
 		this.cusStatus = cusStatus;
 	}
 
@@ -155,6 +163,30 @@ public class Customer implements java.io.Serializable {
 
 	public void setCusOpenId(String cusOpenId) {
 		this.cusOpenId = cusOpenId;
+	}
+
+	public String getCusTdCode() {
+		return this.cusTdCode;
+	}
+
+	public void setCusTdCode(String cusTdCode) {
+		this.cusTdCode = cusTdCode;
+	}
+
+	public String getCusShareUrl() {
+		return this.cusShareUrl;
+	}
+
+	public void setCusShareUrl(String cusShareUrl) {
+		this.cusShareUrl = cusShareUrl;
+	}
+
+	public String getCusPayPassword() {
+		return this.cusPayPassword;
+	}
+
+	public void setCusPayPassword(String cusPayPassword) {
+		this.cusPayPassword = cusPayPassword;
 	}
 
 	public Set getCusBanks() {
@@ -195,6 +227,14 @@ public class Customer implements java.io.Serializable {
 
 	public void setFriendses(Set friendses) {
 		this.friendses = friendses;
+	}
+
+	public Set getBusinesses() {
+		return this.businesses;
+	}
+
+	public void setBusinesses(Set businesses) {
+		this.businesses = businesses;
 	}
 
 	public Set getCusAccounts() {

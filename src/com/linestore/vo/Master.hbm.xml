@@ -10,7 +10,7 @@
             <column name="mas_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select">
+        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select" lazy="false">
             <column name="mas_sup_id" />
         </many-to-one>
         <property name="masFname" type="java.lang.String">
