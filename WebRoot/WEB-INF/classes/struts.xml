@@ -36,5 +36,14 @@
 
 			<result name="error">admin/login.jsp</result>
 		</action>
+				<action name="WxTest_*" class="com.linestore.action.WxTestAction"
+			method="{1}">
+		</action>
+		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectActioin"
+			method="{1}">
+		</action>
+		<action name="WxJsApi_*" class="com.linestore.action.WxJsApiAction"
+			method="{1}">
+		</action>
 	</package>
 </struts>
