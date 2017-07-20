@@ -38,8 +38,7 @@ public class WxJsApiAction extends ActionSupport implements ServletRequestAware,
 		WxMpInMemoryConfigStorage config = new WxMpInMemoryConfigStorage();
 		// 微信测试账号
 		config.setAppId("wx33584f71b4a84fa9"); // 设置微信公众号的appid
-		config.setSecret("029b4c9b947564b763b0191445aabdca"); // 设置微信公众号的
-																// appsecret
+		config.setSecret("029b4c9b947564b763b0191445aabdca"); // 设置微信公众号的appsecret
 		config.setToken("wxdev"); // 设置微信公众号的token
 		WxMpService wxService = new WxMpServiceImpl();
 		wxService.setWxMpConfigStorage(config);
