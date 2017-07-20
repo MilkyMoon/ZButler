@@ -24,7 +24,7 @@ public class Supplier implements java.io.Serializable {
 	private String supBankPermit;
 	private String supBrandLetter;
 	private String supOther;
-	private Boolean supStatus;
+	private Integer supStatus;
 	private Set masters = new HashSet(0);
 	private Set goodses = new HashSet(0);
 	private Set corporations = new HashSet(0);
@@ -41,7 +41,7 @@ public class Supplier implements java.io.Serializable {
 	/** full constructor */
 	public Supplier(Catetory catetory, String supName, String supLogoUrl, String supPhone, String supTime,
 			String supAbstract, String supLicenseUrl, String supTaxUrl, String supOrgUrl, String supBankPermit,
-			String supBrandLetter, String supOther, Boolean supStatus, Set masters, Set goodses, Set corporations,
+			String supBrandLetter, String supOther, Integer supStatus, Set masters, Set goodses, Set corporations,
 			Set businesses, Set contacts, Set supAddresses) {
 		this.catetory = catetory;
 		this.supName = supName;
@@ -170,11 +170,12 @@ public class Supplier implements java.io.Serializable {
 		this.supOther = supOther;
 	}
 
-	public Boolean getSupStatus() {
-		return this.supStatus;
+
+	public Integer getSupStatus() {
+		return supStatus;
 	}
 
-	public void setSupStatus(Boolean supStatus) {
+	public void setSupStatus(Integer supStatus) {
 		this.supStatus = supStatus;
 	}
 

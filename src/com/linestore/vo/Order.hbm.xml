@@ -13,7 +13,7 @@
         <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="ord_cus_id" />
         </many-to-one>
-        <property name="ordStatus" type="java.lang.Boolean">
+        <property name="ordStatus" type="java.lang.Integer">
             <column name="ord_status" />
         </property>
         <property name="ordPayTime" type="java.sql.Timestamp">
@@ -25,7 +25,7 @@
         <property name="ordStaging" type="java.lang.Integer">
             <column name="ord_staging" />
         </property>
-        <property name="ordType" type="java.lang.Boolean">
+        <property name="ordType" type="java.lang.Integer">
             <column name="ord_type" />
         </property>
         <property name="ordTotal" type="java.lang.Float">
@@ -34,7 +34,7 @@
         <property name="ordMoney" type="java.lang.Float">
             <column name="ord_money" precision="12" scale="0" />
         </property>
-        <property name="ordComfire" type="java.lang.Boolean">
+        <property name="ordComfire" type="java.lang.Integer">
             <column name="ord_comfire" />
         </property>
         <set name="ordDetailses" inverse="true" lazy="false">

@@ -15,7 +15,7 @@ public class Proattribute implements java.io.Serializable {
 	private Attribute attribute;
 	private AttValue attValue;
 	private Goods goods;
-	private Boolean patIssku;
+	private Integer patIssku;
 	private Timestamp patCreateDate;
 
 	// Constructors
@@ -25,7 +25,7 @@ public class Proattribute implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Proattribute(Sku sku, Attribute attribute, AttValue attValue, Goods goods, Boolean patIssku,
+	public Proattribute(Sku sku, Attribute attribute, AttValue attValue, Goods goods, Integer patIssku,
 			Timestamp patCreateDate) {
 		this.sku = sku;
 		this.attribute = attribute;
@@ -77,11 +77,13 @@ public class Proattribute implements java.io.Serializable {
 		this.goods = goods;
 	}
 
-	public Boolean getPatIssku() {
-		return this.patIssku;
+	
+
+	public Integer getPatIssku() {
+		return patIssku;
 	}
 
-	public void setPatIssku(Boolean patIssku) {
+	public void setPatIssku(Integer patIssku) {
 		this.patIssku = patIssku;
 	}
 

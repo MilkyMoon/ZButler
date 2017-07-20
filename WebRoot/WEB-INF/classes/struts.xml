@@ -15,6 +15,7 @@
 			<result name="success" type="redirect">admin/index.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
+
 		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
 			method="{1}">
 			<result name="success">index.jsp</result>
@@ -51,6 +52,26 @@
 			<result type="json">
 				<param name="root">result</param>
 			</result>
+		<action name="Message_*" class="com.linestore.action.MessageAction"
+			method="{1}">
+			<result name="success">index.jsp</result>
+			<result name="messageList">home/leaveWord.jsp</result>
+			<result name="error">admin/login.jsp</result>
+		</action>
+		<action name="Customer_*" class="com.linestore.action.CustomerAction"
+			method="{1}">
+			<result name="success">index.jsp</result>
+
+			<result name="error">admin/login.jsp</result>
+		</action>
+				<action name="WxTest_*" class="com.linestore.action.WxTestAction"
+			method="{1}">
+		</action>
+		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectActioin"
+			method="{1}">
+		</action>
+		<action name="WxJsApi_*" class="com.linestore.action.WxJsApiAction"
+			method="{1}">
 		</action>
 	</package>
 </struts>

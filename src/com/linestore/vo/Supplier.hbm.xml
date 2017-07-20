@@ -46,7 +46,7 @@
         <property name="supOther" type="java.lang.String">
             <column name="sup_other" length="65535" />
         </property>
-        <property name="supStatus" type="java.lang.Boolean">
+        <property name="supStatus" type="java.lang.Integer">
             <column name="sup_status" />
         </property>
         <set name="masters" inverse="true" lazy="false">

@@ -37,16 +37,16 @@
         <property name="busOrgUrl" type="java.lang.String">
             <column name="bus_org_url" length="65535" />
         </property>
-        <property name="busDistrict" type="java.lang.Boolean">
+        <property name="busDistrict" type="java.lang.Integer">
             <column name="bus_district" />
         </property>
         <property name="busSmallCate" type="java.lang.Integer">
             <column name="bus_small_cate" />
         </property>
-        <property name="busStatus" type="java.lang.Boolean">
+        <property name="busStatus" type="java.lang.Integer">
             <column name="bus_status" />
         </property>
-        <property name="busLevel" type="java.lang.Boolean">
+        <property name="busLevel" type="java.lang.Integer">
             <column name="bus_level" />
         </property>
         <set name="busCoupons" inverse="true" lazy="false">

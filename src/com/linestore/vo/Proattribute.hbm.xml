@@ -22,7 +22,7 @@
         <many-to-one name="goods" class="com.linestore.vo.Goods" fetch="select" lazy="false">
             <column name="pat_goo_id" />
         </many-to-one>
-        <property name="patIssku" type="java.lang.Boolean">
+        <property name="patIssku" type="java.lang.Integer">
             <column name="pat_issku" />
         </property>
         <property name="patCreateDate" type="java.sql.Timestamp">

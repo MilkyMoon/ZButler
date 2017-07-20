@@ -11,7 +11,7 @@ public class Pictures implements java.io.Serializable {
 	private Integer picId;
 	private String picUrl;
 	private Integer picOtherId;
-	private Boolean picType;
+	private Integer picType;
 	private String picMd5;
 
 	// Constructors
@@ -21,7 +21,7 @@ public class Pictures implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Pictures(String picUrl, Integer picOtherId, Boolean picType, String picMd5) {
+	public Pictures(String picUrl, Integer picOtherId, Integer picType, String picMd5) {
 		this.picUrl = picUrl;
 		this.picOtherId = picOtherId;
 		this.picType = picType;
@@ -54,11 +54,13 @@ public class Pictures implements java.io.Serializable {
 		this.picOtherId = picOtherId;
 	}
 
-	public Boolean getPicType() {
-		return this.picType;
+	
+
+	public Integer getPicType() {
+		return picType;
 	}
 
-	public void setPicType(Boolean picType) {
+	public void setPicType(Integer picType) {
 		this.picType = picType;
 	}
 

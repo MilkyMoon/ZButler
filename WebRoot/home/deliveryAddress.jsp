@@ -72,7 +72,7 @@
 			</div>
 		</div> --%>
 		<div class="deliveryAddress_addButton">
-			<button type="button" class="btn-block btn-danger">添加</button>
+				<button  type="button" class="btn-block btn-danger" onclick="goAdd();">添加</button>
 		</div>
 	</div>
 </body>
@@ -80,9 +80,9 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script type="text/javascript">
-<%-- function editCusAddress(caId){
-	window.location.href=<%=basePath%>+"CusAddress_select?caId="+caId;
-	
-} --%>
+	function goAdd() {
+		window.location.href ="<%=basePath%>home/deliveryAddressAdd.jsp";
+
+	}
 </script>
 </html>

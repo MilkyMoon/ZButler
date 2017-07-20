@@ -19,7 +19,7 @@
         <property name="avaName" type="java.lang.String">
             <column name="ava_name" length="40" />
         </property>
-        <property name="avaStatus" type="java.lang.Boolean">
+        <property name="avaStatus" type="java.lang.Integer">
             <column name="ava_status" />
         </property>
         <set name="proattributes" inverse="true" lazy="false">

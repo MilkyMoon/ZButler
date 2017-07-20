@@ -75,6 +75,7 @@ public class Customer implements java.io.Serializable {
 		this.cusCoupons = cusCoupons;
 	}
 
+
 	// Property accessors
 
 	public Integer getCusId() {
@@ -193,36 +194,36 @@ public class Customer implements java.io.Serializable {
 		return this.cusBanks;
 	}
 
-	public void setCusBanks(Set cusBanks) {
-		this.cusBanks = cusBanks;
-	}
-
-	public Set getHistories() {
-		return this.histories;
-	}
-
-	public void setHistories(Set histories) {
-		this.histories = histories;
-	}
-
-	public Set getCusAddresses() {
-		return this.cusAddresses;
-	}
-
-	public void setCusAddresses(Set cusAddresses) {
+	public void setCusAddresses(Set<CusAddress> cusAddresses) {
 		this.cusAddresses = cusAddresses;
 	}
 
-	public Set getEvaluates() {
-		return this.evaluates;
+	public Set<Message> getMessages() {
+		return messages;
 	}
 
-	public void setEvaluates(Set evaluates) {
-		this.evaluates = evaluates;
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
 	}
 
-	public Set getFriendses() {
-		return this.friendses;
+	public Set<CusBank> getCusBanks() {
+		return cusBanks;
+	}
+
+	public void setCusBanks(Set<CusBank> cusBanks) {
+		this.cusBanks = cusBanks;
+	}
+
+	public Set<History> getHistories() {
+		return histories;
+	}
+
+	public void setHistories(Set<History> histories) {
+		this.histories = histories;
+	}
+
+	public Set<Evaluate> getEvaluates() {
+		return evaluates;
 	}
 
 	public void setFriendses(Set friendses) {
@@ -241,40 +242,140 @@ public class Customer implements java.io.Serializable {
 		return this.cusAccounts;
 	}
 
-	public void setCusAccounts(Set cusAccounts) {
+	public Set<Friends> getFriendses() {
+		return friendses;
+	}
+
+	public void setFriendses(Set<Friends> friendses) {
+		this.friendses = friendses;
+	}
+
+	public Set<CusAccount> getCusAccounts() {
+		return cusAccounts;
+	}
+
+	public void setCusAccounts(Set<CusAccount> cusAccounts) {
 		this.cusAccounts = cusAccounts;
 	}
 
-	public Set getOrders() {
-		return this.orders;
+	public Set<Order> getOrders() {
+		return orders;
 	}
 
-	public void setOrders(Set orders) {
+	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
 
-	public Set getCtaTradings() {
-		return this.ctaTradings;
+	 public Set<CtaTrading> getCtaTradings() {
+	 return ctaTradings;
+	 }
+	
+	 public void setCtaTradings(Set<CtaTrading> ctaTradings) {
+	 this.ctaTradings = ctaTradings;
+	 }
+
+	public Set<CusCoupon> getCusCoupons() {
+		return cusCoupons;
 	}
 
-	public void setCtaTradings(Set ctaTradings) {
-		this.ctaTradings = ctaTradings;
-	}
-
-	public Set getMessages() {
-		return this.messages;
-	}
-
-	public void setMessages(Set messages) {
-		this.messages = messages;
-	}
-
-	public Set getCusCoupons() {
-		return this.cusCoupons;
-	}
-
-	public void setCusCoupons(Set cusCoupons) {
+	public void setCusCoupons(Set<CusCoupon> cusCoupons) {
 		this.cusCoupons = cusCoupons;
 	}
+
+	public String getCusTdCode() {
+		return cusTdCode;
+	}
+
+	public void setCusTdCode(String cusTdCode) {
+		this.cusTdCode = cusTdCode;
+	}
+
+	public String getCusShareUrl() {
+		return cusShareUrl;
+	}
+
+	public void setCusShareUrl(String cusShareUrl) {
+		this.cusShareUrl = cusShareUrl;
+	}
+
+	// public Set getCusBanks() {
+	// return this.cusBanks;
+	// }
+	//
+	// public void setCusBanks(Set cusBanks) {
+	// this.cusBanks = cusBanks;
+	// }
+	//
+	// public Set getHistories() {
+	// return this.histories;
+	// }
+	//
+	// public void setHistories(Set histories) {
+	// this.histories = histories;
+	// }
+	//
+	// public Set getCusAddresses() {
+	// return this.cusAddresses;
+	// }
+	//
+	// public void setCusAddresses(Set cusAddresses) {
+	// this.cusAddresses = cusAddresses;
+	// }
+	//
+	// public Set getEvaluates() {
+	// return this.evaluates;
+	// }
+	//
+	// public void setEvaluates(Set evaluates) {
+	// this.evaluates = evaluates;
+	// }
+	//
+	// public Set getFriendses() {
+	// return this.friendses;
+	// }
+	//
+	// public void setFriendses(Set friendses) {
+	// this.friendses = friendses;
+	// }
+	//
+	// public Set getCusAccounts() {
+	// return this.cusAccounts;
+	// }
+	//
+	// public void setCusAccounts(Set cusAccounts) {
+	// this.cusAccounts = cusAccounts;
+	// }
+	//
+	// public Set getOrders() {
+	// return this.orders;
+	// }
+	//
+	// public void setOrders(Set orders) {
+	// this.orders = orders;
+	// }
+	//
+//	public Set getCtaTradings() {
+//		return this.ctaTradings;
+//	}
+//
+//	public void setCtaTradings(Set ctaTradings) {
+//		this.ctaTradings = ctaTradings;
+//	}
+	//
+	// public Set getMessages() {
+	// return this.messages;
+	// }
+	//
+	// public void setMessages(Set messages) {
+	// this.messages = messages;
+	// }
+	//
+	// public Set getCusCoupons() {
+	// return this.cusCoupons;
+	// }
+	//
+	// public void setCusCoupons(Set cusCoupons) {
+	// this.cusCoupons = cusCoupons;
+	// }
 
 }
