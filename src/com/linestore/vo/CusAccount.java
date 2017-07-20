@@ -56,8 +56,8 @@ public class CusAccount implements java.io.Serializable {
 		return this.cacPoints;
 	}
 
-	public void setCacPoints(Float cacPoints) {
-		this.cacPoints = cacPoints;
+	public void setCacPoints(Float d) {
+		this.cacPoints =  d;
 	}
 
 }

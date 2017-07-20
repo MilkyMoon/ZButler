@@ -1215,7 +1215,7 @@ body {
     align-items: center;
     width: 88px;
     height: 44px;
-    border: solid 1px #DDDDE9;
+    border: solid 2px #DDDDE9;
     border-radius: 4px;
 }
 
@@ -1236,6 +1236,77 @@ body {
     background-color: rgb(183, 39, 18);
 }
 
+.integral2 .dialog{
+    display: none;
+}
+.integral2 .dialog_bg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0 -8px;
+    background-color: rgba(0,0,0,0.1);
+}
+.integral2 .dialog_message{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0 -8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.integral2 .dialog_content{
+    width: 250px;
+    height: 150px;
+    margin-top: 140px;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.integral2 .dialog_title{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 100;
+    border-radius: 4px 4px 0 0;
+    background-color: #A42310;
+}
+.integral2 .dialog_content span{
+    width: 100%;
+    margin: 12px 0 14px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #1C1C20;
+}
+.integral2 .dialog_operation{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.integral2 .dialog_operation div{
+    width: 92px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.integral2 .dialog_operation .no{
+    background-color: #EFEFF4;
+    color: #1C1C20;
+}
+.integral2 .dialog_operation .yes{
+    background-color: #6DAF24;
+    color: #fff;
+}
 /*积分4*/
 
 .integral4 {
@@ -1247,6 +1318,73 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+}
+
+.integral4_content div {
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.integral4_content h5 {
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.integral4_content span {
+    font-size: 36px;
+    color: #B72712;
+}
+
+.integral4 .btn-primary {
+    height: 44px;
+    font-size: 14px;
+    margin-top: 280px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: #6DAF24;
+}
+/*积分5*/
+
+.integral5 {
+    padding: 8px;
+    background-color: #fff;
+}
+
+.integral5_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    background-color: #fff;
+}
+
+.integral5_content div {
+    font-size: 18px;
+    color: #1C1C20;
+    text-align: center;
+}
+
+.integral5 .btn-primary {
+    height: 44px;
+    margin-top: 160px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+/*返点比例*/
+
+.rebateProportion {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 80px;
@@ -1320,7 +1458,6 @@ body {
     height: 240px;
     background-color: #fff;
 }
-
 .rebateProportion div {
     height: 70px;
     line-height: 100px;
@@ -1403,7 +1540,7 @@ body {
     padding-left: 20px;
     margin-bottom: 10px;
     border-radius: 4px;
-    background-image: url("../image/bank.png");
+    background-image: url("../wx_image/bank.png");
     background-size: 100% 100%;
 }
 
@@ -1607,6 +1744,7 @@ body {
 }
 
 .coupon .couponItem {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -1615,15 +1753,23 @@ body {
     max-width: 358px;
     height: 88px;
     margin-bottom: 10px;
-    background-image: url("../image/coupon.png");
+    background-image: url("../wx_image/coupon.png");
     background-size: 100% 100%;
+}
+.coupon .couponItem .cantUse{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(120,80,80,0.6);
+}
+
 }
 
 @media (max-width: 375px) {
     .coupon .couponItem {
         width: 100%;
         height: 75px;
-        background-image: url("../image/coupon.png");
+        background-image: url("../wx_image/coupon.png");
         background-size: 100% 100%;
     }
 }
@@ -1902,10 +2048,20 @@ body {
     flex-direction: row;
     justify-content: center;
     width: 33.3%;
-    height: 117px;
+    height: 115px;
     margin-bottom: 10px;
 }
-
+.storeImg_addImg .addImg{
+    width: 115px;
+    height: 115px;
+    background-color: #EFEFF4;
+    border-radius: 4px;
+}
+.storeImg_addImg .addImg img{
+    width: 45px;
+    height: 45px;
+    margin: 35px auto;
+}
 .storeImg_img {
     float: left;
     display: flex;
@@ -1916,15 +2072,24 @@ body {
 }
 
 .storeImg_img img {
-    width: 117px;
-    height: 117px;
+    width: 115px;
+    height: 115px;
 }
 
 @media (max-width: 375px) {
     .storeImg_addImg {
         height: 96px;
     }
+    .storeImg_addImg .addImg {
+        width: 96px;
+        height: 96px;
+    }
 
+    .storeImg_addImg .addImg img{
+        width: 40px;
+        height: 40px;
+        margin: 28px auto;
+    }
     .storeImg_img img {
         width: 96px;
         height: 96px;
@@ -2386,7 +2551,7 @@ body {
 .mine_order_content_fk {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-size: 1200%;
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -2395,7 +2560,7 @@ body {
 .mine_order_content_fh {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-size: 1200%;
     background-position: -77px 0;
     background-repeat: no-repeat;
@@ -2404,7 +2569,7 @@ body {
 .mine_order_content_sh {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-size: 1200%;
     background-position: -155px 0;
     background-repeat: no-repeat;
@@ -2413,7 +2578,7 @@ body {
 .mine_order_content_pj {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-size: 1200%;
     background-position: -234px 0;
     background-repeat: no-repeat;
@@ -2422,7 +2587,7 @@ body {
 .mine_order_content_tk {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-size: 1200%;
     background-position: -312px 0;
     background-repeat: no-repeat;
@@ -2463,7 +2628,7 @@ body {
 }
 
 .mine_function_pyq div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -92px;
@@ -2476,7 +2641,7 @@ body {
 }
 
 .mine_function_jfcz div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -92px;
@@ -2489,7 +2654,7 @@ body {
 }
 
 .mine_function_ewm div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -92px;
@@ -2502,7 +2667,7 @@ body {
 }
 
 .mine_function_fx div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -299px -92px;
@@ -2516,7 +2681,7 @@ body {
 }
 
 .mine_function_shdz div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -160px;
@@ -2529,7 +2694,7 @@ body {
 }
 
 .mine_function_xgmm div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -160px;
@@ -2542,7 +2707,7 @@ body {
 }
 
 .mine_function_kffw div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -160px;
@@ -2555,7 +2720,7 @@ body {
 }
 
 .mine_function_yhq div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -298px -160px;
@@ -2569,7 +2734,7 @@ body {
 }
 
 .mine_function_sqrz div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -226px;
@@ -2582,7 +2747,7 @@ body {
 }
 
 .mine_function_wddp div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -226px;
@@ -2595,7 +2760,7 @@ body {
 }
 
 .mine_function_sjsk div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -226px;
@@ -2608,7 +2773,7 @@ body {
 }
 
 .mine_function_bdkh div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.png");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -299px -226px;
@@ -2665,6 +2830,57 @@ body {
     margin-top: -6px;
 }
 
+.myMessage .dialog{
+    display: none;
+}
+.myMessage .dialog_bg{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: rgba(0,0,0,0.1);
+}
+.myMessage .dialog_message{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.myMessage .dialog_content{
+    width: 250px;
+    height: 120px;
+    margin-top: 200px;
+    color: #1C1C20;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.myMessage .dialog_title{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 12px;
+    border-radius: 4px 4px 0 0;
+    border-bottom: solid 1px rgb(218,218,218);
+}
+.myMessage .dialog_select div{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 12px;
+    border-bottom: solid 1px rgb(228,228,228);
+}
+.myMessage .dialog_select div:active{
+    background-color: rgb(238,238,238);
+}
 @media (max-width: 375px) {
     .myMessage .cell-right img {
         margin-top: 0;

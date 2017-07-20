@@ -15,7 +15,7 @@ public class BusCoupon implements java.io.Serializable {
 	private Integer bcId;
 	private Business business;
 	private Date bcStartDate;
-	private Integer bcEndDate;
+	private Date bcEndDate;
 	private Integer bcStatus;
 	private Integer bcCondition;
 	private Integer bcRebate;
@@ -30,7 +30,7 @@ public class BusCoupon implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public BusCoupon(Business business, Date bcStartDate, Integer bcEndDate, Integer bcStatus, Integer bcCondition,
+	public BusCoupon(Business business, Date bcStartDate, Date bcEndDate, Integer bcStatus, Integer bcCondition,
 			Integer bcRebate, Integer bcCount, Integer bcUserCount, Set cusCoupons) {
 		this.business = business;
 		this.bcStartDate = bcStartDate;
@@ -69,18 +69,16 @@ public class BusCoupon implements java.io.Serializable {
 		this.bcStartDate = bcStartDate;
 	}
 
-	public Integer getBcEndDate() {
+	public Date getBcEndDate() {
 		return this.bcEndDate;
 	}
 
-	public void setBcEndDate(Integer bcEndDate) {
+	public void setBcEndDate(Date bcEndDate) {
 		this.bcEndDate = bcEndDate;
 	}
 
-
-
 	public Integer getBcStatus() {
-		return bcStatus;
+		return this.bcStatus;
 	}
 
 	public void setBcStatus(Integer bcStatus) {
