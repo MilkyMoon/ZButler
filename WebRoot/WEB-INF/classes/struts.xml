@@ -60,7 +60,7 @@
 
 		<action name="Message_*" class="com.linestore.action.MessageAction"
 			method="{1}">
-			<result name="success">index.jsp</result>
+			<result name="success">home/leaveWord.jsp</result>
 			<result name="messageList">home/leaveWord.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>

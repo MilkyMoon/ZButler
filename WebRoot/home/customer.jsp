@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div></div>
             <span>修改密码</span>
         </a>
-        <a href="#" class="mine_function_kffw">
+        <a href="<%=basePath%>home/customerService.jsp" class="mine_function_kffw">
             <div></div>
             <span>客服服务</span>
         </a>
