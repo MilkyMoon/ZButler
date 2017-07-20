@@ -10,13 +10,13 @@
             <column name="goo_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="brand" class="com.linestore.vo.Brand" fetch="select">
+        <many-to-one name="brand" class="com.linestore.vo.Brand" fetch="select" lazy="false">
             <column name="goo_bra_id" />
         </many-to-one>
-        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select">
+        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select" lazy="false">
             <column name="goo_sup_id" />
         </many-to-one>
-        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select">
+        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select" lazy="false">
             <column name="goo_cate_id" />
         </many-to-one>
         <property name="gooTitle" type="java.lang.String">
@@ -49,19 +49,19 @@
         <property name="gooCreateDate" type="java.sql.Timestamp">
             <column name="goo_create_date" length="19" />
         </property>
-        <set name="proattributes" inverse="true">
+        <set name="proattributes" inverse="true" lazy="false">
             <key>
                 <column name="pat_goo_id" />
             </key>
             <one-to-many class="com.linestore.vo.Proattribute" />
         </set>
-        <set name="skus" inverse="true">
+        <set name="skus" inverse="true" lazy="false">
             <key>
                 <column name="sku_goo_id" />
             </key>
             <one-to-many class="com.linestore.vo.Sku" />
         </set>
-        <set name="histories" inverse="true">
+        <set name="histories" inverse="true" lazy="false">
             <key>
                 <column name="his_goo_id" />
             </key>

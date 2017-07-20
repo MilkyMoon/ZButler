@@ -87,6 +87,18 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
     	<property name="dataSource" ref="dataSource"></property>
     </bean>
-    <!-- 开启注解事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+   
+	<bean id="messageDao" class="com.linestore.dao.impl.MessageDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 配置一个业务逻辑组件 -->
+	<bean id="messageService" class="com.linestore.service.impl.MessageServiceImpl">
+		<property name="messageDao" ref="messageDao"></property>
+	</bean>
+
+	<!-- 开启注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

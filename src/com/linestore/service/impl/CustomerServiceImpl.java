@@ -2,10 +2,13 @@ package com.linestore.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.CustomerDao;
 import com.linestore.service.CustomerService;
+import com.linestore.util.QrCodeUtil;
 import com.linestore.vo.Customer;
 
 
@@ -67,7 +70,7 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		// 存储user并获取id
 		System.out.println("Service中的save方法！");
-		customerDao.save(customer);
+		customerDao.addCustomer(customer);
 		System.out.println(customer);
 		Integer cusId = customer.getCusId();
 		System.out.println(cusId);

@@ -10,16 +10,16 @@
             <column name="bc_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="business" class="com.linestore.vo.Business" fetch="select">
+        <many-to-one name="business" class="com.linestore.vo.Business" fetch="select" lazy="false">
             <column name="bc_bus_id" />
         </many-to-one>
         <property name="bcStartDate" type="java.util.Date">
             <column name="bc_start_date" length="10" />
         </property>
-        <property name="bcEndDate" type="java.lang.Integer">
-            <column name="bc_end_date" />
+        <property name="bcEndDate" type="java.util.Date">
+            <column name="bc_end_date" length="10" />
         </property>
-        <property name="bcStatus" type="java.lang.Boolean">
+        <property name="bcStatus" type="java.lang.Integer">
             <column name="bc_status" />
         </property>
         <property name="bcCondition" type="java.lang.Integer">
@@ -34,7 +34,7 @@
         <property name="bcUserCount" type="java.lang.Integer">
             <column name="bc_user_count" />
         </property>
-        <set name="cusCoupons" inverse="true">
+        <set name="cusCoupons" inverse="true" lazy="false">
             <key>
                 <column name="cc_bc_id" />
             </key>
