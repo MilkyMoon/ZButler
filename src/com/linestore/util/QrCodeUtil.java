@@ -13,7 +13,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
-
+//构造二维码工具类
 public class QrCodeUtil {
 
 	// public static void main(String[] args) {
