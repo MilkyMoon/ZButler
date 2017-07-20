@@ -1,17 +1,25 @@
 package com.linestore.service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-import org.springframework.http.HttpRequest;
-import org.springframework.transaction.annotation.Transactional;
-import com.linestore.dao.UserDao;
 import com.linestore.vo.Customer;
-import com.linestore.vo.UserModel;
 
-@Transactional
 public interface CustomerService {
-
-	void save(Customer customer,HttpServletRequest request);
-
 	
+public void addCustomer(Customer customer);
+	
+	public void updateCustomer(Customer customer);
+	
+	public void delCustomer(int cusId);
+	
+	public Customer findById(int cusId);
+	
+	public List<Customer> findByPhone(String phone);
+	
+	public List<Customer> queryAll(final int offset, final int length);
+	
+	public boolean checkCustomer(Customer customer);
+	
+	public void updateField(String field, String value, int id);
+
 }

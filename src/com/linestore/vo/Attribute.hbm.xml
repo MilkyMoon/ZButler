@@ -10,7 +10,7 @@
             <column name="att_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select">
+        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select" lazy="false">
             <column name="att_cate_id" />
         </many-to-one>
         <property name="attName" type="java.lang.String">
@@ -40,13 +40,13 @@
         <property name="attStatus" type="java.lang.Integer">
             <column name="att_status" />
         </property>
-        <set name="attValues" inverse="true">
+        <set name="attValues" inverse="true" lazy="false">
             <key>
                 <column name="ava_att_id" />
             </key>
             <one-to-many class="com.linestore.vo.AttValue" />
         </set>
-        <set name="proattributes" inverse="true">
+        <set name="proattributes" inverse="true" lazy="false">
             <key>
                 <column name="pat_att_id" />
             </key>

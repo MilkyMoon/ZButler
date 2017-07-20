@@ -11,6 +11,7 @@
            <!-- 主键的生成策略，native本地生成策略 -->
             <generator class="native" />
         </id>
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
        <!--  <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
             <column name="cta_cus_id" />
         </many-to-one> -->
