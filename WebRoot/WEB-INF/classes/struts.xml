@@ -33,10 +33,10 @@
 		<action name="Customer_*" class="com.linestore.action.CustomerAction"
 			method="{1}">
 			<result name="success">index.jsp</result>
-
+			<result name="customerResult">home/myQRCode.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
-				<action name="WxTest_*" class="com.linestore.action.WxTestAction"
+		<action name="WxTest_*" class="com.linestore.action.WxTestAction"
 			method="{1}">
 		</action>
 		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectActioin"

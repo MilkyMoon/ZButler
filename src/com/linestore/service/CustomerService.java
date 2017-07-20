@@ -10,8 +10,10 @@ import com.linestore.vo.UserModel;
 
 @Transactional
 public interface CustomerService {
+	// 新增用户
+	void save(Customer customer, HttpServletRequest request);
 
-	void save(Customer customer,HttpServletRequest request);
+	// 获取一个指定用户
+	Customer select(Customer customer);
 
-	
 }
