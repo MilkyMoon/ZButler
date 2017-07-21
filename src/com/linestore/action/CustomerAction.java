@@ -16,6 +16,7 @@ import com.linestore.vo.Customer;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.thoughtworks.xstream.mapper.Mapper.Null;
 
 import net.sf.json.JSONObject;
 
@@ -39,7 +40,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		Random random = new Random();
 		int code = random.nextInt(max) % (max - min + 1) + min;
 		System.out.println(code);
-		// SendMessage.send(String.valueOf(code), phone);
+		SendMessage.send(String.valueOf(code), phone);
 		return String.valueOf(code);
 	}
 
@@ -71,7 +72,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			CusAccount cusAccount = new CusAccount();
 			cusAccount.setCacPoints((float) 0);
 			cusAccount.setCacChange((float) 0);
-			
+
 			Set<CusAccount> set = new HashSet(0);
 			set.add(cusAccount);
 			customer.setCusAccounts(set);
@@ -141,7 +142,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		this.result = JSONObject.fromObject(map).toString();
 		return SUCCESS;
 	}
-	
+
+	public String logout() {
+		ActionContext.getContext().getSession().put("user", null);
+		return "logout";
+	}
+
 	public String toForgetTwo() {
 		return "gotoForgetTwo";
 	}
