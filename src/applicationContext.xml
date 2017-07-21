@@ -99,13 +99,6 @@
 		<property name="messageDao" ref="messageDao"></property>
 	</bean>
 
-	<!-- 配置一个事务管理器 -->
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-
 	<!-- 开启注解事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

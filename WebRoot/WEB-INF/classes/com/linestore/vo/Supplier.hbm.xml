@@ -10,7 +10,7 @@
             <column name="sup_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select">
+        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select" lazy="false">
             <column name="sup_cate_id" />
         </many-to-one>
         <property name="supName" type="java.lang.String">
@@ -49,37 +49,37 @@
         <property name="supStatus" type="java.lang.Integer">
             <column name="sup_status" />
         </property>
-        <set name="masters" inverse="true">
+        <set name="masters" inverse="true" lazy="false">
             <key>
                 <column name="mas_sup_id" />
             </key>
             <one-to-many class="com.linestore.vo.Master" />
         </set>
-        <set name="goodses" inverse="true">
+        <set name="goodses" inverse="true" lazy="false">
             <key>
                 <column name="goo_sup_id" />
             </key>
             <one-to-many class="com.linestore.vo.Goods" />
         </set>
-        <set name="corporations" inverse="true">
+        <set name="corporations" inverse="true" lazy="false">
             <key>
                 <column name="cor_sup_id" />
             </key>
             <one-to-many class="com.linestore.vo.Corporation" />
         </set>
-        <set name="businesses" inverse="true">
+        <set name="businesses" inverse="true" lazy="false">
             <key>
                 <column name="bus_sup_id" />
             </key>
             <one-to-many class="com.linestore.vo.Business" />
         </set>
-        <set name="contacts" inverse="true">
+        <set name="contacts" inverse="true" lazy="false">
             <key>
                 <column name="con_sup_id" />
             </key>
             <one-to-many class="com.linestore.vo.Contact" />
         </set>
-        <set name="supAddresses" inverse="true">
+        <set name="supAddresses" inverse="true" lazy="false">
             <key>
                 <column name="sa_sup_id" />
             </key>

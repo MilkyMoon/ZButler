@@ -25,38 +25,42 @@
 			<result name="error">admin/login.jsp</result>
 		</action>
 
-		<action name="Customer" class="com.linestore.action.CustomerAction" >
+		<action name="Customer" class="com.linestore.action.CustomerAction">
 			<result name="gotoRegister">/home/register.jsp</result>
 			<result name="gotoLogin">/home/login.jsp</result>
 			<result name="gotoCustomer">/home/customer.jsp</result>
 			<result name="gotoCusMessage">/home/cusMessage.jsp</result>
 			<result name="gotoForgetTwo">/home/forgetPasswordTwo.jsp</result>
 		</action>
-		<action name="CusCoupon" class="com.linestore.action.CusCouponAction" >
+		<action name="CusCoupon" class="com.linestore.action.CusCouponAction">
 			<result name="gotoCoupon">/home/coupon.jsp</result>
 			<result name="gotoLogin">/home/login.jsp</result>
 		</action>
 	</package>
-	
+
 	<package name="strutsJson" extends="json-default">
-		<action name="CustomerJson" class="com.linestore.action.CustomerAction" method="sendMessage">
+		<action name="CustomerJson" class="com.linestore.action.CustomerAction"
+			method="sendMessage">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
-		<action name="BindPhoneJson" class="com.linestore.action.CustomerAction" method="BindPhone">
+		<action name="BindPhoneJson" class="com.linestore.action.CustomerAction"
+			method="BindPhone">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
-		<action name="ForgetPassJson" class="com.linestore.action.CustomerAction" method="forgetPass">
+		<action name="ForgetPassJson" class="com.linestore.action.CustomerAction"
+			method="forgetPass">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
-      
+		</action>
+
 		<action name="Message_*" class="com.linestore.action.MessageAction"
 			method="{1}">
-			<result name="success">index.jsp</result>
+			<result name="success">home/leaveWord.jsp</result>
 			<result name="messageList">home/leaveWord.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
@@ -66,7 +70,7 @@
 
 			<result name="error">admin/login.jsp</result>
 		</action>
-				<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
+		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
 			method="{1}">
 		</action>
 		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectActioin"

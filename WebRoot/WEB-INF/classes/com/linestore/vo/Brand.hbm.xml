@@ -10,7 +10,7 @@
             <column name="bra_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select">
+        <many-to-one name="catetory" class="com.linestore.vo.Catetory" fetch="select" lazy="false">
             <column name="bra_cate_id" />
         </many-to-one>
         <property name="braName" type="java.lang.String">
@@ -25,7 +25,7 @@
         <property name="braUrl" type="java.lang.String">
             <column name="bra_url" length="40" />
         </property>
-        <set name="goodses" inverse="true">
+        <set name="goodses" inverse="true" lazy="false">
             <key>
                 <column name="goo_bra_id" />
             </key>

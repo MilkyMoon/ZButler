@@ -51,7 +51,7 @@
      <!--    <button type="button" class="btn-block btn-primary">提交</button> -->
      <input type="submit" class="btn-block btn-primary" value="提交"/>
     </form>
-    <a href="#">查看我的留言</a>
+    <a href="<%=basePath%>Message_selectAll.action">查看我的留言</a>
 </div>
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>

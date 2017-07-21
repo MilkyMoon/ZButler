@@ -27,7 +27,6 @@ public class SubscribeHandler extends AbstractHandler {
 		}
 
 		// 关注回复
-
 		try {
 
 			System.out.println("关注事件");
