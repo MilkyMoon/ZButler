@@ -34,7 +34,7 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutTextMessage;
 import me.chanjar.weixin.mp.builder.kefu.TextBuilder;
 
-public class WxIndexAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+public class WxIndexAction extends WeXinConfigAction implements ServletRequestAware, ServletResponseAware {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	protected WxMpMessageRouter wxMpMessageRouter;
@@ -46,6 +46,11 @@ public class WxIndexAction extends ActionSupport implements ServletRequestAware,
 
 	}
 
+	public WxIndexAction() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		// TODO Auto-generated method stub
@@ -54,48 +59,14 @@ public class WxIndexAction extends ActionSupport implements ServletRequestAware,
 	}
 
 	public void wxConfig() throws Exception {
-		WxMpInMemoryConfigStorage config = new WxMpInMemoryConfigStorage();
-		// 众邦管理账号
-		config.setAppId("wx5b69c56ac01ed858"); // 设置微信公众号的appid
-		config.setSecret("4ad3ebbd02e8f82aede3a22d1a3335a6"); // 设置微信公众号的app appsecret
-		config.setToken("wxdev"); // 设置微信公众号的token
-		config.setAesKey("Cm4ntEWySoVGGA6aFGG8CeLzqVf4le9cif4BkW4GHaj"); // 设置微信公众号的EncodingAESKey
-		// 微信测试账号
-//		config.setAppId("wx33584f71b4a84fa9"); // 设置微信公众号的appid
-//		config.setSecret("029b4c9b947564b763b0191445aabdca"); // 设置微信公众号的app appsecret
-//		config.setToken("wxdev"); // 设置微信公众号的token
-		config.setOauth2redirectUri("http://yanglan520.com/ZButler/WxOauthRedirect!oauth.action");
-		
 
-		WxMpService wxService = new WxMpServiceImpl();
-		wxService.setWxMpConfigStorage(config);
-		
 		// 消息路由 注意顺序
-		wxMpMessageRouter = new WxMpMessageRouter(wxService);
-		wxMpMessageRouter
-		.rule()
-		.async(false)
-		.content("oauth")
-		.handler(new OAuth2Handler())
-		.end()
-		.rule()
-		.async(false)
-		.msgType(WxConsts.CUSTOM_MSG_TEXT)
-		.handler(new MsgHandler())
-		.end()
-		.rule()
-		.async(false)
-		.msgType(WxConsts.XML_MSG_EVENT)
-		.event(WxConsts.EVT_SUBSCRIBE)
-		.handler(new SubscribeHandler())
-		.end()
-		.rule()
-		.async(false)
-		.msgType(WxConsts.XML_MSG_EVENT)
-		.event(WxConsts.EVT_UNSUBSCRIBE)
-		.handler(new MsgHandler())
-		.end();
-
+		wxMpMessageRouter = new WxMpMessageRouter(this.wxService);
+		wxMpMessageRouter.rule().async(false).content("oauth").handler(new OAuth2Handler()).end().rule().async(false)
+				.msgType(WxConsts.CUSTOM_MSG_TEXT).handler(new MsgHandler()).end().rule().async(false)
+				.msgType(WxConsts.XML_MSG_EVENT).event(WxConsts.EVT_SUBSCRIBE).handler(new SubscribeHandler()).end()
+				.rule().async(false).msgType(WxConsts.XML_MSG_EVENT).event(WxConsts.EVT_UNSUBSCRIBE)
+				.handler(new MsgHandler()).end();
 
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
@@ -103,8 +74,8 @@ public class WxIndexAction extends ActionSupport implements ServletRequestAware,
 		String signature = request.getParameter("signature");
 		String nonce = request.getParameter("nonce");
 		String timestamp = request.getParameter("timestamp");
-		
-		if (!wxService.checkSignature(timestamp, nonce, signature)) {
+
+		if (!this.wxService.checkSignature(timestamp, nonce, signature)) {
 			// 消息签名不正确，说明不是公众平台发过来的消息
 			response.getWriter().println("非法请求");
 			return;

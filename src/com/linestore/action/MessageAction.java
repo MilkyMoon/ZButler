@@ -50,7 +50,7 @@ public class MessageAction extends ActionSupport implements ModelDriven<Message>
 		message.setMesTime(timestamp);
 		messageService.add(message);
 
-		return SUCCESS;
+		return "success";
 	}
 
 	// 获取已登录用户的全部留言
