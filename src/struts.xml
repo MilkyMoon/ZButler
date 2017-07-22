@@ -24,7 +24,9 @@
 			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
-
+		<action name="CustomerWeChat" class="com.linestore.action.CustomerAction" method="weChat">
+			<result name="gotoCustomer" type="redirect">/home/customer.jsp</result>
+		</action>
 		<action name="Customer" class="com.linestore.action.CustomerAction">
 			<result name="gotoRegister">/home/register.jsp</result>
 			<result name="gotoLogin">/home/login.jsp</result>
@@ -41,6 +43,11 @@
 		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
 			method="{1}">
 		</action>
+		
+		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectActioin">
+			<result name="gotoWeChat" type="redirectAction">CustomerWeChat</result>
+		</action>
+		
 	</package>
 
 	<package name="strutsJson" extends="json-default">

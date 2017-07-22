@@ -30,7 +30,7 @@
 		</div>
 		<div class="mine_myMessage">
 			<div class="mine_myMessage_head">
-				<img src="home/dist/wx_image/111.jpg" />
+				<img src="${user.cusImgUrl}" />
 			</div>
 			<div class="mine_myMessage_content">
 				<div>${user.cusNickname}</div>
