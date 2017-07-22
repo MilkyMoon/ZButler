@@ -56,8 +56,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	public Customer findById(int cusId) {
 		System.out.println("exec cusId");
 		try {
-			List<Customer> customers = (List<Customer>) this.getHibernateTemplate().find("from Customer where cusId=?",
-					cusId);
+			List<Customer> customers = (List<Customer>) this.getHibernateTemplate().find("from Customer where cusId=?", cusId);
 			System.out.println("exec cusId");
 			return customers.get(0);
 		} catch (RuntimeException e) {
@@ -70,8 +69,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	public List<Customer> findByPhone(String phone) {
 		System.out.println("exec findByPhone");
 		try {
-			List<Customer> customers = (List<Customer>) this.getHibernateTemplate()
-					.find("from Customer where cusPhone=?", phone);
+			List<Customer> customers = (List<Customer>) this.getHibernateTemplate().find("from Customer where cusPhone=?", phone);
 			System.out.println("find sucessful");
 			return customers;
 		} catch (RuntimeException e) {
@@ -81,7 +79,8 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	}
 
 	/**
-	 * offset 第几页 length 每页长度
+	 * offset 第几页
+	 * length 每页长度
 	 */
 	@Override
 	public List<Customer> queryAll(final int offset, final int length) {
@@ -108,9 +107,11 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	public boolean checkCustomer(Customer customer) {
 		System.out.println("exec checkCustomer");
 		try {
-			List<Customer> cus = (List<Customer>) this.getHibernateTemplate().find(
-					"from Customer where cusPhone=? and cusPassword=?", customer.getCusPhone(),
-					customer.getCusPassword());
+			List<Customer> cus =  (List<Customer>) this.getHibernateTemplate().find(
+					"from Customer where cusPhone=? and cusPassword=?", 
+					customer.getCusPhone(), 
+					customer.getCusPassword()
+					);
 			if (cus.size() == 1) {
 				System.out.println("登录成功！");
 				return true;
@@ -129,26 +130,12 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		System.out.println("exec updateField");
 		try {
 			Session session = this.getSessionFactory().getCurrentSession();
-			String hql = "update Customer c set c." + field + "='" + value + "' where id=" + id;
+			String hql = "update Customer c set c."+field+"='"+value+"' where id="+id;
 			Query query = session.createQuery(hql);
 			query.executeUpdate();
 			System.out.println("updateField successful!");
 		} catch (Exception e) {
 			System.out.println("updateField failed!\n" + e);
-			throw e;
-		}
-	}
-
-	@Override
-	public List<Customer> findByOpenId(String openId) {
-		System.out.println("exec findByOpenId");
-		try {
-			List<Customer> customers = (List<Customer>) this.getHibernateTemplate()
-					.find("from Customer where cusOpenId=?", openId);
-			System.out.println("find sucessful");
-			return customers;
-		} catch (RuntimeException e) {
-			System.out.println("find failed!\n" + e);
 			throw e;
 		}
 	}

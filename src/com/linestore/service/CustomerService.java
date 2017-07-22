@@ -16,8 +16,6 @@ public void addCustomer(Customer customer);
 	
 	public List<Customer> findByPhone(String phone);
 	
-	public List<Customer> findByOpenId(String openId);
-	
 	public List<Customer> queryAll(final int offset, final int length);
 	
 	public boolean checkCustomer(Customer customer);

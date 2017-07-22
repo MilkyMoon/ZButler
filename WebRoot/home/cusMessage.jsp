@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="cell-item">
 					<div class="cell-left">头像</div>
 					<div class="cell-right cell-arrow">
-						<img src="${user.cusImgUrl}" />
+						<img src="home/dist/wx_image/111.jpg" />
 					</div>
 				</div>
 			</a> <a href="<%=basePath%>home/updateNickname.jsp">
