@@ -12,18 +12,28 @@ public class CusAccount implements java.io.Serializable {
 	private Customer customer;
 	private Float cacChange;
 	private Float cacPoints;
+	private Float cacBonus;
 
 	// Constructors
+
+	public Float getCacBonus() {
+		return cacBonus;
+	}
+
+	public void setCacBonus(Float cacBonus) {
+		this.cacBonus = cacBonus;
+	}
 
 	/** default constructor */
 	public CusAccount() {
 	}
 
 	/** full constructor */
-	public CusAccount(Customer customer, Float cacChange, Float cacPoints) {
+	public CusAccount(Customer customer, Float cacChange, Float cacPoints, Float cacBonus) {
 		this.customer = customer;
 		this.cacChange = cacChange;
 		this.cacPoints = cacPoints;
+		this.cacBonus = cacBonus;
 	}
 
 	// Property accessors

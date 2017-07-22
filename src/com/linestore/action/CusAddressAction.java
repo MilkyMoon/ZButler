@@ -45,7 +45,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		cusAddress.setCustomer(customer);
 		cusAddressService.add(cusAddress);
 
-		return SUCCESS;
+		return "success";
 	}
 
 	// 获取已登录用户的全部收货地址

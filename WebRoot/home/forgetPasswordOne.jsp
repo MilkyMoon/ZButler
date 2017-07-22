@@ -48,6 +48,7 @@
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
+<script src="<%=basePath%>home/dist/wx_js/md5.js"></script>
 <script>
 
 	//    表单验证
@@ -119,7 +120,7 @@
 								window.YDUI.dialog.alert(data.ErrorMessage);
 							} else {
 
-								$("#data").val(data.code);
+								$("#data").val(hex_md5(data.code));
 							}
 						});
 				}
@@ -133,7 +134,7 @@
 
 		$("#signupForm").submit(function(e) {
 
-			if ($("#data").val() != $("#code").val()) {
+			if ($("#data").val() != hex_md5($("#code").val())) {
 				e.preventDefault();
 				window.YDUI.dialog.alert('验证码错误！');
 			}

@@ -1,1 +1,5 @@
+/applicationContext.xml
 /com/
+/db.properties
+/log4j2.xml
+/struts.xml
