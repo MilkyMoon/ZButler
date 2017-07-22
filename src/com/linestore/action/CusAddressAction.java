@@ -45,7 +45,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		cusAddress.setCustomer(customer);
 		cusAddressService.add(cusAddress);
 
-		return "success";
+		return "add";
 	}
 
 	// 获取已登录用户的全部收货地址
@@ -59,7 +59,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println(cusAddress + " : " + cusAddressService);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
 
-		return "cusAddressList";
+		return "selectAll";
 	}
 
 	// 获取已登录用户的指定收货地址
@@ -70,7 +70,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		cusAddressResult = cusAddressService.select(cusAddress);
 		System.out.println("cusAddressResult:" + cusAddressResult.getCaName() + " : " + cusAddressResult.getCaAddress()
 				+ " : " + cusAddressResult.getCaPhone());
-		return "cusAddressEdit";
+		return "select";
 	}
 
 	// 编辑已登录用户的指定收货地址
@@ -87,7 +87,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 
 		cusAddressList = cusAddressService.selectAll(cusAddress);
 
-		return "cusAddressList";
+		return "selectAll";
 	}
 
 	// 删除已登录用户的指定收货地址
@@ -101,7 +101,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		cusAddress.setCustomer(customer);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
 
-		return "cusAddressList";
+		return "selectAll";
 	}
 
 	public List<CusAddress> getCusAddressList() {

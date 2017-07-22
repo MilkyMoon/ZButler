@@ -126,7 +126,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/httpclient-4.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/httpcore-4.4.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/httpmime-4.5.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/qrcode-utils-1.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.7.24.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/weixin-java-common-2.7.0.jar"/>
@@ -137,5 +136,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xstream-1.4.9.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-core-5.2.10.Final.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-core-4.3.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/Library/Tomcat8/lib/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="/Library/Tomcat8/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="/Library/Tomcat8/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+//import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 import com.opensymphony.xwork2.ActionSupport;
 
