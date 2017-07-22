@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
+import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.util.SendMessage;
 import com.linestore.vo.CusAccount;
@@ -33,6 +34,17 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private String field;
 
 	private CustomerService customerService;
+	
+	private CusAccountService cusAccountService;
+	
+	private void init(Customer cus) {
+		CusAccount cusAccount = new CusAccount();
+		cusAccount.setCacPoints((float) 0);
+		cusAccount.setCacChange((float) 0);
+		cusAccount.setCacBonus((float) 0);
+		cusAccount.setCustomer(cus);
+		cusAccountService.addCusAccount(cusAccount);
+	}
 
 	private String sendCode(String phone) {
 		int min = 1000;
@@ -40,7 +52,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		Random random = new Random();
 		int code = random.nextInt(max) % (max - min + 1) + min;
 		System.out.println(code);
-		SendMessage.send(String.valueOf(code), phone);
+		//SendMessage.send(String.valueOf(code), phone);
 		return String.valueOf(code);
 	}
 
@@ -69,14 +81,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		if (customer.getCusPassword() != null && customer.getCusPhone() != null) {
 			customer.setCusNickname("ZB_" + customer.getCusPhone());
 			customer.setCusStatus(1);
-			CusAccount cusAccount = new CusAccount();
-			cusAccount.setCacPoints((float) 0);
-			cusAccount.setCacChange((float) 0);
-
-			Set<CusAccount> set = new HashSet(0);
-			set.add(cusAccount);
-			customer.setCusAccounts(set);
 			customerService.addCustomer(customer);
+			init(customer);
+			customer = customerService.findByPhone(customer.getCusPhone()).get(0);
 			// System.out.println(customerService.findByPhone(customer.getCusPhone()).get(0));
 			ActionContext.getContext().getSession().put("user", customer);
 		}
@@ -187,5 +194,13 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public void setCustomerService(CustomerService customerService) {
 		this.customerService = customerService;
+	}
+
+	public CusAccountService getCusAccountService() {
+		return cusAccountService;
+	}
+
+	public void setCusAccountService(CusAccountService cusAccountService) {
+		this.cusAccountService = cusAccountService;
 	}
 }

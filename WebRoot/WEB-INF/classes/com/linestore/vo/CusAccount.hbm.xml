@@ -21,5 +21,10 @@
                 <comment>积分</comment>
             </column>
         </property>
+        <property name="cacBonus" type="java.lang.Float">
+            <column name="cac_bonus" precision="12" scale="0">
+                <comment>奖金</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>
