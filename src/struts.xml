@@ -72,7 +72,7 @@
 		<action name="Customer_*" class="com.linestore.action.CustomerAction"
 			method="{1}">
 			<result name="success">index.jsp</result>
-
+			<result name="customerResult">home/myQRCode.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
 		
