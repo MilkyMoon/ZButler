@@ -27,7 +27,7 @@
 				<div class="couponItem_num">
 					<span>${coupon.busCoupon.bcRebate}</span>&nbsp;元
 				</div>
-				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止未使用</div>
+				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止<br>未使用</div>
 			</div>
 		</c:forEach>
 		
@@ -37,7 +37,7 @@
 				<div class="couponItem_num">
 					<span>${coupon.busCoupon.bcRebate}</span>&nbsp;元
 				</div>
-				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止已使用</div>
+				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止<br>已使用</div>
 			</div>
 		</c:forEach>
 		
@@ -47,7 +47,7 @@
 				<div class="couponItem_num">
 					<span>${coupon.busCoupon.bcRebate}</span>&nbsp;元
 				</div>
-				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止已过期</div>
+				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止<br>已过期</div>
 			</div>
 		</c:forEach>
 		

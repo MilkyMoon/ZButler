@@ -127,7 +127,6 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 
 	@Override
 	public void updateField(String field, String value, int id) {
-		// TODO Auto-generated method stub
 		System.out.println("exec updateField");
 		try {
 			Session session = this.getSessionFactory().getCurrentSession();

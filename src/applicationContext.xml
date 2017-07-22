@@ -16,6 +16,11 @@
 		<property name="password" value="${jdbc.password}"></property>
 		<property name="driverClass" value="${jdbc.driverClass}"></property>
 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="acquireIncrement" value="1"></property>
+		<property name="initialPoolSize" value="15"></property>
+		<property name="maxIdleTime" value="60"></property>
+		<property name="maxPoolSize" value="15"></property>
+		<property name="minPoolSize" value="3"></property>
 	</bean>
 
 	<!-- 定义Hibernate的SessionFactory -->
@@ -65,6 +70,17 @@
         <!-- 注入持久化操作所需的SessionFactory -->
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    
+    <bean id="cusAccountDao" class="com.linestore.dao.impl.CusAccountDaoImpl" >
+        <!-- 注入持久化操作所需的SessionFactory -->
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="messageDao" class="com.linestore.dao.impl.MessageDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
     <!-- 配置一个业务逻辑组件 -->
     <bean id="userService" class="com.linestore.service.impl.UserServiceImpl" >
         <property name="userDao" ref="userDao" ></property>
@@ -82,22 +98,21 @@
     <bean id="EvaluateService" class="com.linestore.service.impl.EvaluateServiceImpl" >
         <property name="evaluateDao" ref="evaluateDao" ></property>
     </bean>
-    <!-- 配置一个事务管理器 -->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    	<property name="dataSource" ref="dataSource"></property>
-    </bean>
-    
-   
-	<bean id="messageDao" class="com.linestore.dao.impl.MessageDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	<!-- 配置一个业务逻辑组件 -->
 	<bean id="messageService" class="com.linestore.service.impl.MessageServiceImpl">
 		<property name="messageDao" ref="messageDao"></property>
 	</bean>
+	
+	<bean id="cusAccountService" class="com.linestore.service.impl.CusAccountServiceImpl">
+		<property name="cusAccountDao" ref="cusAccountDao"></property>
+	</bean>
+	
+	<!-- 配置一个事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    	<property name="dataSource" ref="dataSource"></property>
+    </bean>
 
 	<!-- 开启注解事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
