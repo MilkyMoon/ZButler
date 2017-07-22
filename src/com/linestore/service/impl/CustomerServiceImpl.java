@@ -98,6 +98,11 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.setCusTdCode(imgPath);
 
 	}
+
+	@Override
+	public List<Customer> findByOpenId(String openId) {
+		return customerDao.findByOpenId(openId);
+	}
 	
 	@Override
  +	public Customer select(Customer customer) {

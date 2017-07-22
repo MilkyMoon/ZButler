@@ -3,6 +3,7 @@ package com.linestore.action;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -45,6 +46,21 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		cusAccount.setCustomer(cus);
 		cusAccountService.addCusAccount(cusAccount);
 	}
+	
+	public String weChat() {
+		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
+		System.out.println(cus.getCusOpenId());
+		System.out.println(customerService.findByOpenId(cus.getCusOpenId()).size());
+		if (customerService.findByOpenId(cus.getCusOpenId()).size() < 1) {
+			customerService.addCustomer(cus);
+			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
+			init(cus);
+		} else {
+			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
+		}
+		ActionContext.getContext().getSession().put("user", cus);
+		return "gotoCustomer";
+	}
 
 	private String sendCode(String phone) {
 		int min = 1000;
@@ -81,6 +97,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		if (customer.getCusPassword() != null && customer.getCusPhone() != null) {
 			customer.setCusNickname("ZB_" + customer.getCusPhone());
 			customer.setCusStatus(1);
+			customer.setCusImgUrl("home/dist/wx_image/111.jpg");
 			customerService.addCustomer(customer);
 			init(customer);
 			customer = customerService.findByPhone(customer.getCusPhone()).get(0);
