@@ -26,7 +26,7 @@
 				<div class="cell-item cell-item-first">
 					<div class="cell-left">收货人姓名：</div>
 					<div class="cell-right">
-						<input type="hidden" id="caId" value="<s:property value='cusAddressResult.caId'></s:property>"/>
+				<input type="hidden" id="caId" value="<s:property value='cusAddressResult.caId'></s:property>"/>
 						<input type="text" id="caName"  class="cell-input" 
 							value="<s:property value='cusAddressResult.caName'></s:property>" autocomplete="off" />
 					</div>

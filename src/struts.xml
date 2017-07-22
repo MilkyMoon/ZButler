@@ -18,19 +18,40 @@
 
 		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
 			method="{1}">
-			<result name="success" type="redirect">home/deliveryAddress.jsp</result>
-			<result name="cusAddressList">home/deliveryAddress.jsp</result>
-			<result name="cusAddressAdd">home/deliveryAddressAdd.jsp</result>
-			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
-			<result name="error">admin/login.jsp</result>
+			<result name="success" type="redirect">index.jsp</result>
+			<result name="selectAll" >home/deliveryAddress.jsp</result>
+			<result name="add" type="redirect">home/deliveryAddressAdd.jsp</result>
+			<result name="edit" >home/deliveryAddressEdit.jsp</result>
+			<result name="error" >admin/login.jsp</result>
 		</action>
-
-		<action name="Customer" class="com.linestore.action.CustomerAction">
+		<action name="Message_*" class="com.linestore.action.MessageAction"
+			method="{1}">
+			<result name="success" >index.jsp</result>
+			<result name="selectAll">home/leaveWord.jsp</result>
+			<result name="error" >admin/login.jsp</result>
+		</action>
+		<action name="Friends_*" class="com.linestore.action.FriendsAction"
+			method="{1}">
+			<result name="success" type="redirect">index.jsp</result>
+			<result name="selectAll" >home/myFriendO.jsp</result>
+			<result name="selectType" >index.jsp</result>
+			<result name="error" >admin/login.jsp</result>
+		</action>
+		<action name="Order_*" class="com.linestore.action.OrderAction"
+			method="{1}">
+			<result name="success" >index.jsp</result>
+			<result name="selectAll" >home/myOrder.jsp</result>
+			<result name="selectType" >home/myOrder.jsp</result>
+			<result name="error" >admin/login.jsp</result>
+		</action>
+		<action name="Customer_*" class="com.linestore.action.CustomerAction" method="{1}">
 			<result name="gotoRegister">/home/register.jsp</result>
 			<result name="gotoLogin">/home/login.jsp</result>
 			<result name="gotoCustomer" type="redirect">/home/customer.jsp</result>
 			<result name="gotoCusMessage">/home/cusMessage.jsp</result>
 			<result name="gotoForgetTwo">/home/forgetPasswordTwo.jsp</result>
+			<result name="askRegister">/home/share.jsp</result>
+			<result name="myQRCode" >home/myQRCode.jsp</result>
 			<result name="logout">/home/login.jsp</result>
 		</action>
 		<action name="CusCoupon" class="com.linestore.action.CusCouponAction">
@@ -63,19 +84,7 @@
 			</result>
 		</action>
 
-		<action name="Message_*" class="com.linestore.action.MessageAction"
-			method="{1}">
-			<result name="success">home/leaveWord.jsp</result>
-			<result name="messageList">home/leaveWord.jsp</result>
-			<result name="error">admin/login.jsp</result>
-		</action>
-		<action name="Customer_*" class="com.linestore.action.CustomerAction"
-			method="{1}">
-			<result name="success">index.jsp</result>
-			<result name="customerResult">home/myQRCode.jsp</result>
-			<result name="error">admin/login.jsp</result>
-		</action>
-		
+	
 		<!-- 微信相关配置 -->
 		<action name="WxJsApi" class="com.linestore.action.WxJsApiAction"
 			method="JsApiParams">

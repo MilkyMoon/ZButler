@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import org.eclipse.jdt.internal.compiler.batch.Main;
+//import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
@@ -24,6 +24,8 @@ import net.sf.json.JSONObject;
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
 
 	private Customer customer = new Customer();
+	
+	private Customer customerResult;
 
 	private String valid;
 
@@ -154,6 +156,36 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		ActionContext.getContext().getSession().put("user", null);
 		return "logout";
 	}
+	
+	
+	// 邀请注册用户
+		public String askRegister() {
+			System.out.println("Action中的askRegister方法！");
+			// 邀请人的cusId
+			customer.getCusId();
+			//补全邀请人的信息，传递到页面;注册者完成注册时还需要用到邀请人的信息
+			customer=customerService.select(customer);
+
+			return "askRegister";
+		}
+
+		// 获取当前用户的资料
+		public String myQRCode() {
+			System.out.println("Action中的myQRCode方法！");
+			// 通过action上下文获取session
+			// 直接将session中存的用户信息通过数据库获取完整，返回页面
+			// 由于登录功能尚未完成，因此先写固定值cusId=1
+			// HttpSession session = ServletActionContext.getRequest().getSession();
+			// Customer customerResult = (Customer)
+			// session.getAttribute("customer");
+			customer.setCusId(1);
+			customerResult = customerService.select(customer);
+			System.out.println(customerResult);
+			return "myQRCode";
+		}
+	
+	
+	
 
 	public String toForgetTwo() {
 		return "gotoForgetTwo";
@@ -203,4 +235,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public void setCusAccountService(CusAccountService cusAccountService) {
 		this.cusAccountService = cusAccountService;
 	}
+
+	public Customer getCustomerResult() {
+		return customerResult;
+	}
+
+	public void setCustomerResult(Customer customerResult) {
+		this.customerResult = customerResult;
+	}
+	
+	
 }

@@ -8,8 +8,6 @@ import com.linestore.service.CustomerService;
 import com.linestore.service.MessageService;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Message;
-import com.opensymphony.xwork2.ActionChainResult;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -39,38 +37,34 @@ public class MessageAction extends ActionSupport implements ModelDriven<Message>
 	// 增加留言（模拟已登录用户）
 	public String add() {
 		System.out.println("MessageAction中的add方法！");
-//		Customer customer = new Customer();
-//		customer.setCusId(1);
-		
-		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+		Customer customer = new Customer();
+		customer.setCusId(1);
 		message.setCustomer(customer);
 		System.out.println(message.getMesType()+" : "+message.getMesTitle()+" : "+message.getMesContent());
 		Date date = new Date();       
 		Timestamp timestamp = new Timestamp(date.getTime());
 		message.setMesTime(timestamp);
 		messageService.add(message);
-
-		return "success";
+		messageList = messageService.selectAll(message);
+		return "selectAll";
 	}
 
 	// 获取已登录用户的全部留言
 	public String selectAll() {
 		System.out.println("MessageAction中的selectAll方法！");
-//		Customer customer = new Customer();
-//		customer.setCusId(1);
-		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+		Customer customer = new Customer();
+		customer.setCusId(1);
 		message.setCustomer(customer);
 		messageList = messageService.selectAll(message);
 
-		return "messageList";
+		return "selectAll";
 	}
 	//删除用户指定留言
 	public String del(){
 		System.out.println("MessageAction中的del方法！");
 		messageService.del(message);
-//		Customer customer = new Customer();
-//		customer.setCusId(1);
-		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+		Customer customer = new Customer();
+		customer.setCusId(1);
 		message.setCustomer(customer);
 		messageList = messageService.selectAll(message);
 
