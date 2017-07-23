@@ -38,81 +38,97 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 生成数据表的策略 -->
-			    <prop key="hibernate.hbm2ddl.auto">none</prop>
-       		</props>
-       </property>
-       <property name="mappingLocations" value="classpath:com/linestore/vo/*.hbm.xml"></property>
-    </bean>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+			</props>
+		</property>
+		<property name="mappingLocations" value="classpath:com/linestore/vo/*.hbm.xml"></property>
+	</bean>
 
-	<!-- <bean id="userAction" class="com.linestore.action.UserAction">
-		<property name="userService" ref="userService" ></property>
-	</bean> -->
-	
-	<!-- 定义DAO Bean-->
-    <bean id="userDao" class="com.linestore.dao.impl.UserDaoImpl" >
-        <!-- 注入持久化操作所需的SessionFactory -->
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-  <bean id="cusAddressDao" class="com.linestore.dao.impl.CusAddressDaoImpl" >
-        <!-- 注入持久化操作所需的SessionFactory -->
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="customerDao" class="com.linestore.dao.impl.CustomerDaoImpl" >
-        <!-- 注入持久化操作所需的SessionFactory -->
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="cusCouponDao" class="com.linestore.dao.impl.CusCouponDaoImpl" >
-        <!-- 注入持久化操作所需的SessionFactory -->
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <bean id="evaluateDao" class="com.linestore.dao.impl.EvaluateDaoImpl" >
-        <!-- 注入持久化操作所需的SessionFactory -->
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <bean id="cusAccountDao" class="com.linestore.dao.impl.CusAccountDaoImpl" >
-        <!-- 注入持久化操作所需的SessionFactory -->
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <bean id="messageDao" class="com.linestore.dao.impl.MessageDaoImpl">
+	<!-- <bean id="userAction" class="com.linestore.action.UserAction"> <property 
+		name="userService" ref="userService" ></property> </bean> -->
+
+	<!-- 定义DAO Bean -->
+	<bean id="userDao" class="com.linestore.dao.impl.UserDaoImpl">
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-    <!-- 配置一个业务逻辑组件 -->
-    <bean id="userService" class="com.linestore.service.impl.UserServiceImpl" >
-        <property name="userDao" ref="userDao" ></property>
-    </bean>
-    <bean id="cusAddressService" class="com.linestore.service.impl.CusAddressServiceImpl" >
-        <property name="cusAddressDao" ref="cusAddressDao" ></property>
-    </bean>
-    <bean id="customerService" class="com.linestore.service.impl.CustomerServiceImpl" >
-        <property name="customerDao" ref="customerDao" ></property>
-    </bean>
-    <bean id="cusCouponService" class="com.linestore.service.impl.CusCouponServiceImpl" >
-        <property name="cusCouponDao" ref="cusCouponDao" ></property>
-    </bean>
-   
-    <bean id="EvaluateService" class="com.linestore.service.impl.EvaluateServiceImpl" >
-        <property name="evaluateDao" ref="evaluateDao" ></property>
-    </bean>
-	
+	<bean id="customerDao" class="com.linestore.dao.impl.CustomerDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="cusAddressDao" class="com.linestore.dao.impl.CusAddressDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="messageDao" class="com.linestore.dao.impl.MessageDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="friendsDao" class="com.linestore.dao.impl.FriendsDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="orderDao" class="com.linestore.dao.impl.OrderDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="cusCouponDao" class="com.linestore.dao.impl.CusCouponDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="evaluateDao" class="com.linestore.dao.impl.EvaluateDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="cusAccountDao" class="com.linestore.dao.impl.CusAccountDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+
 	<!-- 配置一个业务逻辑组件 -->
+	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="cusAddressService" class="com.linestore.service.impl.CusAddressServiceImpl">
+		<property name="cusAddressDao" ref="cusAddressDao"></property>
+	</bean>
 	<bean id="messageService" class="com.linestore.service.impl.MessageServiceImpl">
 		<property name="messageDao" ref="messageDao"></property>
 	</bean>
-	
+	<bean id="friendsService" class="com.linestore.service.impl.FriendsServiceImpl">
+		<property name="friendsDao" ref="friendsDao"></property>
+	</bean>
+	<bean id="orderService" class="com.linestore.service.impl.OrderServiceImpl">
+		<property name="orderDao" ref="orderDao"></property>
+	</bean>
+	<bean id="customerService" class="com.linestore.service.impl.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao"></property>
+	</bean>
+	<bean id="cusCouponService" class="com.linestore.service.impl.CusCouponServiceImpl">
+		<property name="cusCouponDao" ref="cusCouponDao"></property>
+	</bean>
+
+	<bean id="EvaluateService" class="com.linestore.service.impl.EvaluateServiceImpl">
+		<property name="evaluateDao" ref="evaluateDao"></property>
+	</bean>
+
+	<!-- 配置一个业务逻辑组件 -->
+
 	<bean id="cusAccountService" class="com.linestore.service.impl.CusAccountServiceImpl">
 		<property name="cusAccountDao" ref="cusAccountDao"></property>
 	</bean>
-	
+
 	<!-- 配置一个事务管理器 -->
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    	<property name="dataSource" ref="dataSource"></property>
-    </bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 
 	<!-- 开启注解事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />

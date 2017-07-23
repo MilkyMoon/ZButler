@@ -139,5 +139,17 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 			throw e;
 		}
 	}
-
+	// 获取一个用户
+		@Override
+		public Customer select(Customer customer) {
+			System.out.println("DAO中的select方法！");
+			Customer customerResult = null;
+			// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
+			String hql = "from Customer where cusId = ?";
+			List<Customer> list = (List<Customer>) this.getHibernateTemplate().find(hql, customer.getCusId());
+			if (list.size() > 0) {
+				customerResult = list.get(0);
+			}
+			return customerResult;
+		}
 }

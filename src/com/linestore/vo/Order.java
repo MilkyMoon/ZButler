@@ -17,6 +17,8 @@ public class Order implements java.io.Serializable {
 	private Integer ordStatus;
 	private Timestamp ordPayTime;
 	private Timestamp ordStartTime;
+	private String ordPayTimeStr;
+	private String ordStartTimeStr;
 	private Integer ordStaging;
 	private Integer ordType;
 	private Float ordTotal;
@@ -148,6 +150,22 @@ public class Order implements java.io.Serializable {
 
 	public void setEvaluates(Set evaluates) {
 		this.evaluates = evaluates;
+	}
+
+	public String getOrdPayTimeStr() {
+		return ordPayTimeStr;
+	}
+
+	public void setOrdPayTimeStr(String ordPayTimeStr) {
+		this.ordPayTimeStr = ordPayTimeStr;
+	}
+
+	public String getOrdStartTimeStr() {
+		return ordStartTimeStr;
+	}
+
+	public void setOrdStartTimeStr(String ordStartTimeStr) {
+		this.ordStartTimeStr = ordStartTimeStr;
 	}
 
 }
