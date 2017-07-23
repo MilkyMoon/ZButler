@@ -111,12 +111,20 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
+	$('.dialog').css('display', 'none');
     $('.dialog_bg').css('height',document.body.scrollHeight);
-    if (${!empty user.cusPhone and !empty user.cusOpenId}) {
-    	$('.dialog').css('display', 'none');
+    if (${empty user.cusPhone or empty user.cusOpenId}) {
+    	$('.dialog').css('display', 'block');
     }
     $(".mine_myMessage").click(function(){
     	window.location.href = "<%=basePath%>home/cusMessage.jsp";
+    });
+    
+    $(".mine_mySmallMoney").click(function(){
+    	window.location.href = "<%=basePath%>CusAccount!change.action";
+    });
+    $(".mine_myIntegral").click(function(){
+    	window.location.href = "<%=basePath%>CusAccount!points.action";
     });
     
 </script>

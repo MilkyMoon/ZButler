@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="cell-left">兴趣爱好</div>
 					<div class="cell-right cell-arrow">${user.cusHobby}</div>
 				</div>
-			</a> <a href="<%=basePath%>home">
+			</a> <a href="<%=basePath%>Customer!tag.action">
 				<div class="cell-item">
 					<div class="cell-left">个人标签</div>
 					<div class="cell-right cell-arrow">勿忘初心点丶一路向西</div>
@@ -134,9 +134,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				function(data) {});
 		});
 	})(jQuery);
-	
-	if (${!empty user.cusPhone and !empty user.cusOpenId}) {
-    	$('.dialog_guide').css('display', 'none');
+	$('.dialog_guide').css('display', 'none');
+	if (${empty user.cusPhone and empty user.cusOpenId}) {
+    	$('.dialog_guide').css('display', 'block');
     }
 </script>
 </html>

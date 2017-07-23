@@ -149,6 +149,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		this.result = JSONObject.fromObject(map).toString();
 		return SUCCESS;
 	}
+	
+	public String tag() {
+		return "gotoCusLabel";
+	}
 
 	public String logout() {
 		ActionContext.getContext().getSession().put("user", null);

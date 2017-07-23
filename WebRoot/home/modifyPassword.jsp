@@ -53,6 +53,7 @@
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
+<script src="<%=basePath%>home/dist/wx_js/md5.js"></script>
 <script>
 
 	//    表单验证
@@ -85,7 +86,7 @@
 		});
 		
 		$("#signupForm").submit(function(e) {
-			if ($("#old").val() != "${user.cusPassword}") {
+			if (hex_md5($("#old").val()) != hex_md5("${user.cusPassword}")) {
 				e.preventDefault();
 				window.YDUI.dialog.alert('密码错误！');
 			}

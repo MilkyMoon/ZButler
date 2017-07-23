@@ -54,7 +54,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 
 	@Override
 	public Customer findById(int cusId) {
-		System.out.println("exec cusId");
+		System.out.println("exec findById");
 		try {
 			List<Customer> customers = (List<Customer>) this.getHibernateTemplate().find("from Customer where cusId=?", cusId);
 			System.out.println("exec cusId");
