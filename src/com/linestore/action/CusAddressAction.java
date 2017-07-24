@@ -40,12 +40,12 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的add方法！");
 		cusAddress.setCaCountry("中国");
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		cusAddressService.add(cusAddress);
-
-		return "success";
+		return selectAll();
 	}
 
 	// 获取已登录用户的全部收货地址
@@ -53,13 +53,14 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的selectAll方法！");
 
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		System.out.println(cusAddress + " : " + cusAddressService);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
 
-		return "cusAddressList";
+		return "selectAll";
 	}
 
 	// 获取已登录用户的指定收货地址
@@ -70,7 +71,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		cusAddressResult = cusAddressService.select(cusAddress);
 		System.out.println("cusAddressResult:" + cusAddressResult.getCaName() + " : " + cusAddressResult.getCaAddress()
 				+ " : " + cusAddressResult.getCaPhone());
-		return "cusAddressEdit";
+		return "select";
 	}
 
 	// 编辑已登录用户的指定收货地址
@@ -78,8 +79,9 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的edit方法！");
 
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		cusAddress.setCaCountry("中国");
 
@@ -87,7 +89,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 
 		cusAddressList = cusAddressService.selectAll(cusAddress);
 
-		return "cusAddressList";
+		return "selectAll";
 	}
 
 	// 删除已登录用户的指定收货地址
@@ -96,12 +98,13 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 
 		cusAddressService.del(cusAddress);
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
 
-		return "cusAddressList";
+		return "selectAll";
 	}
 
 	public List<CusAddress> getCusAddressList() {

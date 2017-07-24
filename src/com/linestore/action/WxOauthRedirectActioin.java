@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+//import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
-import com.linestore.vo.Customer;
-import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import net.sf.json.JSONObject;
@@ -51,19 +54,12 @@ public class WxOauthRedirectActioin extends WeXinConfigAction implements Servlet
 		return SUCCESS;
 	}
 
-	public String oauth() throws WxErrorException {
+	public void oauth() throws WxErrorException {
 		WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(request.getParameter("code"));
 		// 获取用户信息
 		WxMpUser wxMpUser = this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
 		// 区别登陆或者绑定
 		wxMpOAuth2AccessToken = this.wxService.oauth2refreshAccessToken(wxMpOAuth2AccessToken.getRefreshToken());
-		Customer customer = new Customer();
-		customer.setCusSex(wxMpUser.getSexId());
-		customer.setCusImgUrl(wxMpUser.getHeadImgUrl());
-		customer.setCusNickname(wxMpUser.getNickname());
-		customer.setCusOpenId(wxMpUser.getOpenId());
-		ActionContext.getContext().getSession().put("weChat", customer);
-		return "gotoWeChat";
 	}
 
 	public String getResult() {
