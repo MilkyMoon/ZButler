@@ -50,7 +50,7 @@
 			<result name="gotoCusMessage">/home/cusMessage.jsp</result>
 			<result name="gotoForgetTwo">/home/forgetPasswordTwo.jsp</result>
 
-			<result name="gotoCusLabel">/home/cusLabel.jsp</result>
+			
 			<result name="askRegister">/home/share.jsp</result>
 
 			<result name="myQRCode" >home/myQRCode.jsp</result>
@@ -76,6 +76,10 @@
 		<action name="CusAccount" class="com.linestore.action.CusAccountAction">
 			<result name="gotoChangeOne">home/changeOne.jsp</result>
 			<result name="gotoPointsOne">home/pointsOne.jsp</result>
+		</action>
+		
+		<action name="Tag" class="com.linestore.action.TagAction">
+			<result name="gotoCusLabel">/home/cusLabel.jsp</result>
 		</action>
 	</package>
 

@@ -9,6 +9,9 @@ import com.linestore.vo.Message;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
+@Transactional
 public class MessageServiceImpl implements MessageService{
 	//业务层注入DAO的类
 			private MessageDao messageDao;
