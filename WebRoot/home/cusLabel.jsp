@@ -4,7 +4,8 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -21,23 +22,15 @@
 
 <body>
 	<div class="myLabel">
-		<form>
+		<form action="<%=basePath%>Customer!update.action" method="post">
 			<div class="myLabel_list">
-				<span onclick="checkLabel($(this))">可爱ing</span>
-            	<span onclick="checkLabel($(this))">学习ing</span>
-            	<span onclick="checkLabel($(this))">可爱ing</span>
-            	<span onclick="checkLabel($(this))">学习ing</span>
-            	<span onclick="checkLabel($(this))">可爱ing</span>
-            	<span onclick="checkLabel($(this))">学习ing</span>
-            	<span onclick="checkLabel($(this))">可爱ing</span>
-            	<span onclick="checkLabel($(this))">学习ing</span>
-            	<span onclick="checkLabel($(this))">可爱ing</span>
-            	<span onclick="checkLabel($(this))">学习ing</span>
-            	<span onclick="checkLabel($(this))">可爱ing</span>
-            	<span onclick="checkLabel($(this))">学习ing</span>
+				
 			</div>
-			<div class="checkedLabelItem"></div>
-			<button type="button" class="btn-block btn-primary">提交</button>
+			<div class="checkedLabelItem">
+			</div>
+			<input type="hidden" id="data" name="cusTagId" value="${user.cusTagId}">
+			<input type="hidden"  name="field" value="cusTagId">
+			<button type="submit" class="btn-block btn-primary">提交</button>
 		</form>
 	</div>
 </body>
@@ -45,16 +38,41 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
+	var map = new Map([
+		<c:forEach var="tag" items="${tags}">
+        	["${tag.tagId}","${tag.tagName}"],
+        </c:forEach>
+	]);
+	var tags = "${user.cusTagId}";
+	tags = tags.split(',');
+	console.log(tags);
+	var selected = new Map();
+	var unselected = new Map();
+	for (var x of map) {
+		if (tags.indexOf(x[0]) != -1) {
+			selected.set(x[0], x[1]);
+		} else {
+			unselected.set(x[0], x[1]);
+		}
+	}
+	for (var z of selected) {
+		var SelectedHtml = '<span>' + z[1] + '<i class="icon-error-outline" id="' + z[0] + '" onclick="delLabel($(this))"></i></span>';
+		$('.checkedLabelItem').append(SelectedHtml);
+	}
+	
+	for (var y of unselected) {
+		 var unselectedHtml = '<span id="' + y[0] + '" onclick="checkLabel($(this))">' + y[1] + '</span>';
+		 $('.myLabel_list').append(unselectedHtml);
+	}
+	
     var myLabel = $('.myLabel_list>span');
-    for (var i = 0; i < myLabel.length; i++) {
-        myLabel.eq(i).attr('id', i + 1);
-    }
     function checkLabel(checkLabel) {
         var clickId = checkLabel.attr('id');
         var clickText = checkLabel.text();
         var checkedLabelHtml = '<span>' + clickText + '<i class="icon-error-outline" id="' + clickId + '" onclick="delLabel($(this))"></i></span>';
         checkLabel.remove();
         $('.checkedLabelItem').append(checkedLabelHtml);
+        jiancha();
     }
     function delLabel(delLabel) {
         var delId = delLabel.attr('id');
@@ -62,11 +80,19 @@
         var delLabelHtml = '<span id="' + delId + '" onclick="checkLabel($(this))">' + delText + '</span>';
         delLabel.parent().remove();
         $('.myLabel_list').append(delLabelHtml);
+        jiancha();
     }
-    $('.btn-primary').click(function () {
+    function jiancha() {
+    	console.log("-----");
+    	var ids = "";
         for(var i = 0; i < $('.checkedLabelItem>span').length; i++){
-            console.log($('.checkedLabelItem>span>i').eq(i).attr('id'))
+        	if (i == $('.checkedLabelItem>span').length - 1) {
+        		ids += $('.checkedLabelItem>span>i').eq(i).attr('id');
+        	} else {
+        		ids += $('.checkedLabelItem>span>i').eq(i).attr('id') + ",";
+        	}
         }
-    })
+        $("#data").attr("value", ids);
+    }
 </script>
 </html>

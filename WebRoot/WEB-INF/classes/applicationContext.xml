@@ -83,6 +83,11 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="tagDao" class="com.linestore.dao.impl.TagDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 
 
@@ -111,6 +116,10 @@
 
 	<bean id="EvaluateService" class="com.linestore.service.impl.EvaluateServiceImpl">
 		<property name="evaluateDao" ref="evaluateDao"></property>
+	</bean>
+	
+	<bean id="tagService" class="com.linestore.service.impl.TagServiceImpl">
+		<property name="tagDao" ref="tagDao"></property>
 	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->

@@ -61,10 +61,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="cell-left">兴趣爱好</div>
 					<div class="cell-right cell-arrow">${user.cusHobby}</div>
 				</div>
-			</a> <a href="<%=basePath%>Customer!tag.action">
+			</a> <a href="<%=basePath%>Tag!tag.action">
 				<div class="cell-item">
 					<div class="cell-left">个人标签</div>
-					<div class="cell-right cell-arrow">勿忘初心点丶一路向西</div>
+					<div class="cell-right cell-arrow"></div>
 				</div>
 			</a> <a href="<%=basePath%>home/forgetPasswordOne.jsp">
 				<div class="cell-item" style="margin-top: 12px">

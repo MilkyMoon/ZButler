@@ -154,6 +154,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			value = customer.getCusPassword();
 		} else if ("cusPayPassword".equals(field)) {
 			value = customer.getCusPayPassword();
+		} else if ("cusTagId".equals(field)) {
+			value = customer.getCusTagId();
+			System.out.println("-----------------------");
 		}
 		customer = (Customer) ActionContext.getContext().getSession().get("user");
 		customerService.updateField(field, value, customer.getCusId());
@@ -185,9 +188,6 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return SUCCESS;
 	}
 	
-	public String tag() {
-		return "gotoCusLabel";
-	}
 
 	public String logout() {
 		ActionContext.getContext().getSession().put("user", null);
