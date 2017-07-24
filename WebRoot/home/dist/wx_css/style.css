@@ -727,12 +727,12 @@ body {
 
 .collectMoneyRecord .collectMoney_num {
     font-size: 18px;
-    color: #1C1C20;
+    color: #B72712;
 }
 
 .collectMoneyRecord .collectMoney_time {
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
 }
 
 /*零钱*/
@@ -926,12 +926,12 @@ body {
 
 .rechargeRecord .recharge_num {
     font-size: 18px;
-    color: #1C1C20;
+    color: #B72712;
 }
 
 .rechargeRecord .recharge_time {
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
 }
 
 /*提现记录*/
@@ -954,7 +954,7 @@ body {
 
 .takeMoneyRecord .takeMoney_num {
     font-size: 18px;
-    color: #1C1C20;
+    color: #B72712;
     text-align: left;
 }
 
@@ -966,7 +966,7 @@ body {
 
 .takeMoneyRecord .takeMoney_time {
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
     text-align: right;
 }
 
@@ -1806,7 +1806,7 @@ body {
 
 .myQRCode span {
     margin-top: 20px;
-    color: #1C1C20;
+    color: #B72712;
     font-size: 14px;
     font-weight: bold;
 }
@@ -1828,7 +1828,7 @@ body {
 
 .storeReceipts span {
     margin-top: 20px;
-    color: #1C1C20;
+    color: #B72712;
     font-size: 14px;
     font-weight: bold;
 }
@@ -1972,7 +1972,7 @@ body {
     height: 35px;
     line-height: 30px;
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
 }
 
 .myOrder_order {
@@ -1990,12 +1990,19 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-left: 4px;
 }
 
-.myOrder_food, .myOrder_price {
+.myOrder_food {
     margin-left: 5px;
     font-size: 14px;
     color: #1C1C20;
+}
+
+.myOrder_price {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #B72712;
 }
 
 .myOrder_state {
@@ -2018,7 +2025,7 @@ body {
     height: 32px;
     margin: 8px;
     padding: 0;
-    color: #1C1C20;
+    color: #B72712;
     font-size: 14px;
     line-height: 32px;
     border-radius: 4px;
@@ -2300,7 +2307,7 @@ body {
 
 .share_register_introduce {
     font-size: 14px;
-    color: #1C1C20;
+    color: #B72712;
 }
 
 .share_register .m-cell {
@@ -2333,7 +2340,7 @@ body {
     height: 32px;
     line-height: 32px;
     font-size: 14px;
-    background-color: #1C1C20;
+    background-color: #B72712;
 }
 
 .share_register .cell-right textarea {
@@ -2358,7 +2365,7 @@ body {
     font-size: 14px;
     line-height: 44px;
     border-radius: 4px;
-    background-color: #1C1C20;
+    background-color: #B72712;
 }
 
 .share_comment {
@@ -2407,7 +2414,7 @@ body {
 
 .share_comment_content p {
     font-size: 12px;
-    color: #1C1C20;
+    color: #B72712;
     padding-right: 8px;
 }
 
@@ -2439,41 +2446,48 @@ body {
 .mine {
     width: 100%;
 }
-.mine .dialog_bg{
+
+.mine .dialog{
+	display: none;
+}
+
+.mine .dialog_bg {
     position: absolute;
     width: 100%;
     min-height: 100%;
     z-index: 1;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.mine .dialog_content{
+
+.mine .dialog_content {
     position: absolute;
     display: flex;
     flex-direction: column;
     z-index: 1;
 }
-.mine .dialog_content img{
+
+.mine .dialog_content img {
     width: 40%;
     margin-top: 30px;
     margin-right: 50px;
     align-self: flex-end;
     z-index: 1;
 }
-.mine .dialog_content span{
+
+.mine .dialog_content span {
     align-self: flex-start;
     padding: 30px;
     font-size: 20px;
     color: #fff;
     z-index: 1;
 }
-.mine .dialog {
-	display: none;
-}
-.mine .dialog_content a{
+
+.mine .dialog_content a {
     align-self: center;
     width: 100px;
     z-index: 1;
 }
+
 .mine_myMessage {
     display: flex;
     flex-direction: row;
@@ -2592,7 +2606,7 @@ body {
 .mine_order_content_fk {
     width: 28px;
     height: 28px;
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -2601,7 +2615,7 @@ body {
 .mine_order_content_fh {
     width: 28px;
     height: 28px;
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -77px 0;
     background-repeat: no-repeat;
@@ -2610,7 +2624,7 @@ body {
 .mine_order_content_sh {
     width: 28px;
     height: 28px;
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -155px 0;
     background-repeat: no-repeat;
@@ -2619,7 +2633,7 @@ body {
 .mine_order_content_pj {
     width: 28px;
     height: 28px;
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -234px 0;
     background-repeat: no-repeat;
@@ -2628,7 +2642,7 @@ body {
 .mine_order_content_tk {
     width: 28px;
     height: 28px;
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -312px 0;
     background-repeat: no-repeat;
@@ -2669,7 +2683,7 @@ body {
 }
 
 .mine_function_pyq div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -92px;
@@ -2682,7 +2696,7 @@ body {
 }
 
 .mine_function_jfcz div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -92px;
@@ -2695,7 +2709,7 @@ body {
 }
 
 .mine_function_ewm div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -92px;
@@ -2708,10 +2722,10 @@ body {
 }
 
 .mine_function_fx div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
-    background-position: -299px -92px;
+    background-position: -298px -92px;
 }
 
 .mine_function_shdz {
@@ -2722,7 +2736,7 @@ body {
 }
 
 .mine_function_shdz div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -160px;
@@ -2735,7 +2749,7 @@ body {
 }
 
 .mine_function_xgmm div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -160px;
@@ -2748,7 +2762,7 @@ body {
 }
 
 .mine_function_kffw div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -160px;
@@ -2761,7 +2775,7 @@ body {
 }
 
 .mine_function_yhq div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -298px -160px;
@@ -2775,7 +2789,7 @@ body {
 }
 
 .mine_function_sqrz div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -226px;
@@ -2788,7 +2802,7 @@ body {
 }
 
 .mine_function_wddp div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -226px;
@@ -2801,7 +2815,7 @@ body {
 }
 
 .mine_function_sjsk div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -226px;
@@ -2814,7 +2828,7 @@ body {
 }
 
 .mine_function_bdkh div {
-    background-image: url("../wx_image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -299px -226px;
@@ -2843,32 +2857,36 @@ body {
 .myMessage {
     width: 100%;
 }
-.myMessage .dialog_guide{
-	display: none;
+
+.myMessage .dialog_guide {
+    display: none;
 }
 
-.myMessage .dialog_guide_bg{
+.myMessage .dialog_guide_bg {
     position: absolute;
     width: 100%;
     min-height: 100%;
     z-index: 9;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.myMessage .dialog_guide_content{
+
+.myMessage .dialog_guide_content {
     position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
     z-index: 9;
 }
-.myMessage .dialog_guide_content a{
+
+.myMessage .dialog_guide_content a {
     position: absolute;
     width: 80px;
     margin-top: 100px;
     margin-left: 100px;
     z-index: 9;
 }
-.myMessage .dialog_guide_content span{
+
+.myMessage .dialog_guide_content span {
     position: absolute;
     width: 100%;
     padding: 30px;
@@ -2878,7 +2896,8 @@ body {
     color: #fff;
     z-index: 9;
 }
-.myMessage .dialog_guide_content img{
+
+.myMessage .dialog_guide_content img {
     position: absolute;
     width: 130px;
     margin-top: 250px;
@@ -2886,16 +2905,18 @@ body {
     align-self: flex-start;
     z-index: 9;
 }
-.myMessage .dialog_guide_content div{
+
+.myMessage .dialog_guide_content div {
     position: absolute;
     align-self: flex-start;
     width: 75px;
-    height: 42px;
+    height: 90px;
     margin-left: 4px;
     margin-top: 385px;
     border: solid 5px red;
     z-index: 9;
 }
+
 .myMessage .m-cell {
     background: none;
     margin-top: 8px;
@@ -2923,7 +2944,7 @@ body {
     margin-top: -6px;
 }
 
-.myMessage .dialog {
+.myMessage .dialog{
     display: none;
 }
 
@@ -2992,20 +3013,23 @@ body {
     width: 100%;
     padding: 8px;
 }
-.myLabel .myLabel_list{
+
+.myLabel .myLabel_list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 10px;
 }
-.myLabel .myLabel_list span{
+
+.myLabel .myLabel_list span {
     padding: 3px 8px;
     margin: 3px 6px;
     color: #fff;
     border-radius: 8px;
     background-color: #00f;
 }
-.myLabel .checkedLabelItem{
+
+.myLabel .checkedLabelItem {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -3016,7 +3040,8 @@ body {
     border-radius: 4px;
     background-color: #fff;
 }
-.myLabel .checkedLabelItem span{
+
+.myLabel .checkedLabelItem span {
     height: 22px;
     padding: 3px 8px;
     margin: 3px 6px;
@@ -3024,11 +3049,13 @@ body {
     border-radius: 8px;
     background-color: #00f;
 }
-.myLabel .checkedLabelItem span i{
+
+.myLabel .checkedLabelItem span i {
     color: #ccc;
     font-size: 12px;
     margin-left: 4px;
 }
+
 .myLabel .btn-primary {
     height: 44px;
     margin-top: 80px;
