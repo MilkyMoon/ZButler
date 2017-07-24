@@ -22,7 +22,14 @@ public class FriendsDaoImpl extends HibernateDaoSupport implements FriendsDao {
 
 	@Override
 	public void save(Friends friends) {
-
+		System.out.println("exec save");
+		try {
+			this.getHibernateTemplate().save(friends);
+			System.out.println("add successful");
+		} catch (RuntimeException e) {
+			System.out.println("add failed!\n" + e);
+			throw e;
+		}
 	}
 
 	@Override

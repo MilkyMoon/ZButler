@@ -55,11 +55,13 @@
 
 </body>
 
+
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
+${js}
 <script>
 
     //    表单验证
@@ -71,7 +73,7 @@
     }); */
 
     $().ready(function () {
-    	${js}
+    	
     	if (window.localStorage.getItem("user")) {
     		$("#username").val(window.localStorage.getItem("user"));
     		$("#password").val(window.localStorage.getItem("pass"));

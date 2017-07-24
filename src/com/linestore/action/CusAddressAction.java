@@ -45,12 +45,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		cusAddressService.add(cusAddress);
-
-<<<<<<< HEAD
 		return selectAll();
-=======
-		return "add";
->>>>>>> MilkyMoon/revert-15-master
 	}
 
 	// 获取已登录用户的全部收货地址

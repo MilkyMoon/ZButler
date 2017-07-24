@@ -21,7 +21,7 @@ public class CusAccountAction extends ActionSupport implements ModelDriven<CusAc
 	public String change() {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		System.out.println(cus.getCusId());
-		//ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
+		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
 		return "gotoChangeOne";
 	}
 	

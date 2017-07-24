@@ -30,14 +30,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 		<div class="m-cell">
-			<a href="#">
 				<div class="cell-item">
 					<div class="cell-left">头像</div>
 					<div class="cell-right cell-arrow">
-						<img src="home/dist/wx_image/111.jpg" />
+						<img src="${user.cusImgUrl}" />
 					</div>
 				</div>
-			</a> <a href="<%=basePath%>home/updateNickname.jsp">
+				<a href="<%=basePath%>home/updateNickname.jsp">
 				<div class="cell-item">
 					<div class="cell-left">昵称</div>
 					<div class="cell-right cell-arrow">${user.cusNickname}</div>
@@ -134,8 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				function(data) {});
 		});
 	})(jQuery);
-	$('.dialog_guide').css('display', 'none');
-	if (${empty user.cusPhone and empty user.cusOpenId}) {
+	if (${empty user.cusPhone or empty user.cusOpenId}) {
     	$('.dialog_guide').css('display', 'block');
     }
 </script>

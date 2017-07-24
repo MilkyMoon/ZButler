@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div class="myQRCode">
-		<img src="<%=basePath%><s:property value="customerResult.cusTdCode"/>" /> <span><s:property value="customerResult.cusPhone"></s:property></span>
+		<img src="${user.cusTdCode}" /> <span>${user.cusPhone}</span>
 	</div>
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>

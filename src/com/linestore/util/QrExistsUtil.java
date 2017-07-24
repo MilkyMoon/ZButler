@@ -38,11 +38,11 @@ public class QrExistsUtil {
 		// 二维码图片存放路径
 		StringBuffer sb = new StringBuffer("");
 		// tomcat运行时的项目所在路径
-		//HttpServletRequest request = ServletActionContext.getRequest();
-		//String realPath = request.getSession().getServletContext().getRealPath("");
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String realPath = request.getSession().getServletContext().getRealPath("");
 		// 暂时用手写的项目路径代替
 		// String realPath="/Users/wutianci/GitHub/ZButler/WebRoot/";
-		//sb.append(realPath);
+		sb.append(realPath);
 		sb.append("home/qr");
 		String qrPath = sb.toString();
 		// 文件名
@@ -51,8 +51,7 @@ public class QrExistsUtil {
 		QrCodeUtil.createQrCode(url, qrPath, fileName);
 
 		// 图片全路径
-		String imgPath = qrPath + "/" + fileName;
-
+		String imgPath = "http://" + request.getServerName() +":" + request.getServerPort() + "/ZButler/home/qr" + "/" + fileName;
 		// 用户邀请链接、二维码路径存放到数据表
 		customer.setCusShareUrl(url);
 		customer.setCusTdCode(imgPath);

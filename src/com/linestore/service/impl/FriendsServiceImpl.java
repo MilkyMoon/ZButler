@@ -23,8 +23,7 @@ public class FriendsServiceImpl implements FriendsService {
 
 	@Override
 	public void save(Friends friends) {
-		// TODO Auto-generated method stub
-
+		friendsDao.save(friends);
 	}
 
 	@Override
