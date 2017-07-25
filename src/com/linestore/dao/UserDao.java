@@ -7,5 +7,7 @@ public interface UserDao{
 	UserModel select(UserModel user);
 
 	void save(UserModel user);
+	
+	UserModel selectUserGroup(UserModel user);
 
 }

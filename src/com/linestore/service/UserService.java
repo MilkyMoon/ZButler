@@ -11,4 +11,5 @@ public interface UserService {
 
 	UserModel login(UserModel user);
 	
+	UserModel selectUserGroup(UserModel user);
 }
