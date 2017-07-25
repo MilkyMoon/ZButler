@@ -48,7 +48,7 @@ public class CusCouponDaoImpl extends HibernateDaoSupport implements CusCouponDa
 		try {
 			this.getHibernateTemplate().save(cusCoupon);
 			System.out.println("addCusCoupon successful");
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("addCusCoupon failed!");
 			throw e;
 		}

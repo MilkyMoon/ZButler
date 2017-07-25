@@ -88,6 +88,11 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="cusBankDao" class="com.linestore.dao.impl.CusBankDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 
 
@@ -120,6 +125,10 @@
 	
 	<bean id="tagService" class="com.linestore.service.impl.TagServiceImpl">
 		<property name="tagDao" ref="tagDao"></property>
+	</bean>
+	
+	<bean id="cusBankService" class="com.linestore.service.impl.CusBankServiceImpl">
+		<property name="cusBankDao" ref="cusBankDao"></property>
 	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->

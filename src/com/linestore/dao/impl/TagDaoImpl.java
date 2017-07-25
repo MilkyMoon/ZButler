@@ -16,7 +16,7 @@ public class TagDaoImpl extends HibernateDaoSupport implements TagDao {
 			List<Tag> tags = (List<Tag>) this.getHibernateTemplate().find("from Tag");
 			System.out.println("query successful!");
 			return tags;
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("query failed!\n" + e);
 			throw e;
 		}

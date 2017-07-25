@@ -81,6 +81,10 @@
 		<action name="Tag" class="com.linestore.action.TagAction">
 			<result name="gotoCusLabel">/home/cusLabel.jsp</result>
 		</action>
+		
+		<action name="CusBank" class="com.linestore.action.CusBankAction">
+			<result name="gotoBindCardOne" type="redirect">/home/bindCardOne.jsp</result>
+		</action>
 	</package>
 
 	<package name="strutsJson" extends="json-default">

@@ -119,7 +119,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 				System.out.println("登录失败！");
 				return false;
 			}
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("check failed!\n" + e);
 			throw e;
 		}
@@ -134,7 +134,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 			Query query = session.createQuery(hql);
 			query.executeUpdate();
 			System.out.println("updateField successful!");
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("updateField failed!\n" + e);
 			throw e;
 		}
