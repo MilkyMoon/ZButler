@@ -132,5 +132,8 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate-core-5.2.10.Final.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-core-4.3.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Library/Tomcat8/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="/Library/Tomcat8/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="/Library/Tomcat8/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

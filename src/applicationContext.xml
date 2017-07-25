@@ -69,6 +69,10 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="ruleDao" class="com.linestore.dao.impl.RuleDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="cusCouponDao" class="com.linestore.dao.impl.CusCouponDaoImpl">
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />

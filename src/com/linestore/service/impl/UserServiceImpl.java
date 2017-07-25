@@ -29,4 +29,10 @@ public class UserServiceImpl implements UserService{
 			UserModel existUser = userDao.select(user);
 			return existUser;
 		}
+
+		@Override
+		public UserModel selectUserGroup(UserModel user) {
+			// TODO Auto-generated method stub
+			return userDao.selectUserGroup(user);
+		}
 }

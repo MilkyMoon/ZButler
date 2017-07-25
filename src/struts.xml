@@ -16,18 +16,7 @@
 			<result name="error">admin/login.jsp</result>
 		</action>
 
-		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
-			method="{1}">
-			<result name="success" type="redirect">home/deliveryAddress.jsp</result>
-			<result name="cusAddressList" type="redirect">home/deliveryAddress.jsp</result>
-			<result name="cusAddressAdd">home/deliveryAddressAdd.jsp</result>
-			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
-			<result name="error">admin/login.jsp</result>
-			<result name="selectAll" >home/deliveryAddress.jsp</result>
-			<result name="add" type="redirect">home/deliveryAddressAdd.jsp</result>
-			<result name="edit" >home/deliveryAddressEdit.jsp</result>
-
-		</action>
+	
 		
 		<action name="Friends_*" class="com.linestore.action.FriendsAction"
 			method="{1}">
@@ -116,6 +105,42 @@
 			<result type="json">
 				<param name="root">result</param>
 			</result>
+		</action>
+	</package>
+	<!--受权限控制的Action请求配置 -->
+	<package name="authority" extends="struts-default">
+		<interceptors>
+			<!--定义一个名为authority的拦截器 -->
+			<interceptor class="com.linestore.inteceptor.AuthorizedInterceptor"
+				name="authority">
+				<param name="userDao"></param>
+			</interceptor>
+			<!--定义一个包含权限检查的拦截器栈 -->
+			<interceptor-stack name="mydefault">
+				<!--配置内建默认拦截器 -->
+				<interceptor-ref name="defaultStack" />
+				<!--配置自定义的拦截器 -->
+				<interceptor-ref name="authority" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="mydefault" />
+		<!--定义全局Result -->
+		<global-results>
+			<result name="LoginFail">admin/login.jsp</result>
+			<result name="GoFail">admin/index.jsp</result>
+		</global-results>
+		<!-- 下边是被拦截的action，先把收货地址拿来测试，经测试收货地址被拦截，其他action未被拦截 -->
+		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
+			method="{1}">
+			<result name="success" type="redirect">home/deliveryAddress.jsp</result>
+			<result name="cusAddressList" type="redirect">home/deliveryAddress.jsp</result>
+			<result name="cusAddressAdd">home/deliveryAddressAdd.jsp</result>
+			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
+			<result name="error">admin/login.jsp</result>
+			<result name="selectAll" >home/deliveryAddress.jsp</result>
+			<result name="add" type="redirect">home/deliveryAddressAdd.jsp</result>
+			<result name="edit" >home/deliveryAddressEdit.jsp</result>
 		</action>
 	</package>
 </struts>

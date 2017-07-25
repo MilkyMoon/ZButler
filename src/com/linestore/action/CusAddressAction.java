@@ -52,10 +52,10 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 	public String selectAll() {
 		System.out.println("CusAddressAction中的selectAll方法！");
 
-//		cusAddress.setCaCusId(1);
-//		Customer customer=new Customer();
-//		customer.setCusId(1);
-		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+		//cusAddress.setCaCusId(1);
+		Customer customer=new Customer();
+		customer.setCusId(1);
+		//Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		System.out.println(cusAddress + " : " + cusAddressService);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
