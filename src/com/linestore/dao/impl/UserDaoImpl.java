@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
  *
  */
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao{
+	
 	public void save(UserModel user) {
 		// TODO Auto-generated method stub
 		System.out.println("DAO中的save方法！");

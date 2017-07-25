@@ -189,21 +189,27 @@ body {
     background-color: #B72712;
     z-index: 99;
 }
-.index .navbar-item{
-    min-width: 50px;
+
+.index .navbar-item {
+    min-width: 55px;
     flex: 0 0 16%;
 }
+
 .index .choosePlace {
+
     border: none;
 }
-.index .m-navbar .personIcon{
+
+.index .m-navbar .personIcon {
     min-width: 40px;
     flex: 0 0 12%;
 }
-.index .m-navbar .personIcon img{
+
+.index .m-navbar .personIcon img {
     width: 20px;
 }
-.index .navbar-center{
+
+.index .navbar-center {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -214,22 +220,27 @@ body {
     background-color: #DB412A;
     border-radius: 4px;
 }
-.index .navbar-center i{
+
+.index .navbar-center i {
     float: left;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
     margin: 8px;
 }
-.index .navbar-center input{
+
+.index .navbar-center input {
     border: none;
 }
+
 .index .m-navbar input, .index .m-navbar input::-webkit-input-placeholder {
     color: #fff;
 }
-.index .m-navbar input::-webkit-search-cancel-button{
+
+.index .m-navbar input::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
+
 .index .m-slider {
     height: 200px;
     margin-top: 36px;
@@ -430,26 +441,31 @@ body {
     font-size: 14px;
     color: #1C1C20;
 }
-.businessCommend_title_mark{
+
+.businessCommend_title_mark {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
 }
-.businessCommend_title_starNum, .businessMessage_evaluateItem_starNum{
+
+.businessCommend_title_starNum, .businessMessage_evaluateItem_starNum {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
-.businessCommend_title_starNum img, .businessMessage_evaluateItem_starNum img{
+
+.businessCommend_title_starNum img, .businessMessage_evaluateItem_starNum img {
     width: 14px;
     height: 14px;
     margin-right: 4px;
 }
+
 .businessCommend_title_starNum span, .businessMessage_evaluateItem_starNum span {
     font-size: 12px;
     color: #DB412A;
 }
+
 .businessCommend_detail {
     width: 100%;
 }
@@ -711,12 +727,12 @@ body {
 
 .collectMoneyRecord .collectMoney_num {
     font-size: 18px;
-    color: #1C1C20;
+    color: #B72712;
 }
 
 .collectMoneyRecord .collectMoney_time {
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
 }
 
 /*零钱*/
@@ -910,12 +926,12 @@ body {
 
 .rechargeRecord .recharge_num {
     font-size: 18px;
-    color: #1C1C20;
+    color: #B72712;
 }
 
 .rechargeRecord .recharge_time {
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
 }
 
 /*提现记录*/
@@ -938,7 +954,7 @@ body {
 
 .takeMoneyRecord .takeMoney_num {
     font-size: 18px;
-    color: #1C1C20;
+    color: #B72712;
     text-align: left;
 }
 
@@ -950,7 +966,7 @@ body {
 
 .takeMoneyRecord .takeMoney_time {
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
     text-align: right;
 }
 
@@ -1215,7 +1231,7 @@ body {
     align-items: center;
     width: 88px;
     height: 44px;
-    border: solid 1px #DDDDE9;
+    border: solid 2px #DDDDE9;
     border-radius: 4px;
 }
 
@@ -1234,6 +1250,87 @@ body {
     line-height: 44px;
     border-radius: 4px;
     background-color: rgb(183, 39, 18);
+}
+
+.integral2 .dialog {
+    display: none;
+}
+
+.integral2 .dialog_bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0 -8px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.integral2 .dialog_message {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0 -8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.integral2 .dialog_content {
+    width: 250px;
+    height: 150px;
+    margin-top: 140px;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.integral2 .dialog_title {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 100;
+    border-radius: 4px 4px 0 0;
+    background-color: #A42310;
+}
+
+.integral2 .dialog_content span {
+    width: 100%;
+    margin: 12px 0 14px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.integral2 .dialog_operation {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.integral2 .dialog_operation div {
+    width: 92px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.integral2 .dialog_operation .no {
+    background-color: #EFEFF4;
+    color: #1C1C20;
+}
+
+.integral2 .dialog_operation .yes {
+    background-color: #6DAF24;
+    color: #fff;
 }
 
 /*积分4*/
@@ -1403,7 +1500,7 @@ body {
     padding-left: 20px;
     margin-bottom: 10px;
     border-radius: 4px;
-    background-image: url("../image/bank.png");
+    background-image: url("../wx_image/bank.png");
     background-size: 100% 100%;
 }
 
@@ -1607,6 +1704,7 @@ body {
 }
 
 .coupon .couponItem {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -1615,15 +1713,22 @@ body {
     max-width: 358px;
     height: 88px;
     margin-bottom: 10px;
-    background-image: url("../image/coupon.png");
+    background-image: url("../wx_image/coupon.png");
     background-size: 100% 100%;
+}
+
+.coupon .couponItem .cantUse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(120, 80, 80, 0.6);
 }
 
 @media (max-width: 375px) {
     .coupon .couponItem {
         width: 100%;
         height: 75px;
-        background-image: url("../image/coupon.png");
+        background-image: url("../wx_image/coupon.png");
         background-size: 100% 100%;
     }
 }
@@ -1701,7 +1806,7 @@ body {
 
 .myQRCode span {
     margin-top: 20px;
-    color: #1C1C20;
+    color: #B72712;
     font-size: 14px;
     font-weight: bold;
 }
@@ -1723,7 +1828,7 @@ body {
 
 .storeReceipts span {
     margin-top: 20px;
-    color: #1C1C20;
+    color: #B72712;
     font-size: 14px;
     font-weight: bold;
 }
@@ -1795,6 +1900,43 @@ body {
     border-bottom: solid 2px #EFEFF4;
 }
 
+/*我的朋友圈2*/
+
+.myFriendO2 .m-cell {
+    font-size: 14px;
+    color: #1C1C20;
+    margin: 0;
+}
+
+.myFriendO2_list {
+    width: 100%;
+}
+
+.myFriendO2_listItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    padding-left: 8px;
+    border-bottom: solid 1px #ccc;
+    background-color: #fff;
+}
+
+.myFriendO2_listItem span {
+    font-size: 12px;
+    color: #A3A3B5;
+    margin-right: 8px;
+}
+
+.myFriendO2_listItem .money {
+    color: #A3A3B5;
+    border-radius: 8px;
+    background-color: blue;
+    padding: 0 4px;
+}
+
 /*我的订单*/
 
 .myOrder {
@@ -1830,7 +1972,7 @@ body {
     height: 35px;
     line-height: 30px;
     font-size: 14px;
-    color: #1C1C20;
+    color: #A3A3B5;
 }
 
 .myOrder_order {
@@ -1848,12 +1990,19 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-left: 4px;
 }
 
-.myOrder_food, .myOrder_price {
+.myOrder_food {
     margin-left: 5px;
     font-size: 14px;
     color: #1C1C20;
+}
+
+.myOrder_price {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #B72712;
 }
 
 .myOrder_state {
@@ -1876,7 +2025,7 @@ body {
     height: 32px;
     margin: 8px;
     padding: 0;
-    color: #1C1C20;
+    color: #B72712;
     font-size: 14px;
     line-height: 32px;
     border-radius: 4px;
@@ -1902,8 +2051,21 @@ body {
     flex-direction: row;
     justify-content: center;
     width: 33.3%;
-    height: 117px;
+    height: 115px;
     margin-bottom: 10px;
+}
+
+.storeImg_addImg .addImg {
+    width: 115px;
+    height: 115px;
+    background-color: #EFEFF4;
+    border-radius: 4px;
+}
+
+.storeImg_addImg .addImg img {
+    width: 45px;
+    height: 45px;
+    margin: 35px auto;
 }
 
 .storeImg_img {
@@ -1916,13 +2078,24 @@ body {
 }
 
 .storeImg_img img {
-    width: 117px;
-    height: 117px;
+    width: 115px;
+    height: 115px;
 }
 
 @media (max-width: 375px) {
     .storeImg_addImg {
         height: 96px;
+    }
+
+    .storeImg_addImg .addImg {
+        width: 96px;
+        height: 96px;
+    }
+
+    .storeImg_addImg .addImg img {
+        width: 40px;
+        height: 40px;
+        margin: 28px auto;
     }
 
     .storeImg_img img {
@@ -2098,6 +2271,12 @@ body {
     margin-bottom: 20px;
 }
 
+.applyAdmission #allmap {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
 .applyAdmission p {
     width: 100%;
     font-size: 12px;
@@ -2128,7 +2307,7 @@ body {
 
 .share_register_introduce {
     font-size: 14px;
-    color: #1C1C20;
+    color: #B72712;
 }
 
 .share_register .m-cell {
@@ -2161,7 +2340,7 @@ body {
     height: 32px;
     line-height: 32px;
     font-size: 14px;
-    background-color: #1C1C20;
+    background-color: #B72712;
 }
 
 .share_register .cell-right textarea {
@@ -2186,7 +2365,7 @@ body {
     font-size: 14px;
     line-height: 44px;
     border-radius: 4px;
-    background-color: #1C1C20;
+    background-color: #B72712;
 }
 
 .share_comment {
@@ -2235,7 +2414,7 @@ body {
 
 .share_comment_content p {
     font-size: 12px;
-    color: #1C1C20;
+    color: #B72712;
     padding-right: 8px;
 }
 
@@ -2266,6 +2445,47 @@ body {
 
 .mine {
     width: 100%;
+}
+
+.mine .dialog{
+	display: none;
+}
+
+.mine .dialog_bg {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mine .dialog_content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.mine .dialog_content img {
+    width: 40%;
+    margin-top: 30px;
+    margin-right: 50px;
+    align-self: flex-end;
+    z-index: 1;
+}
+
+.mine .dialog_content span {
+    align-self: flex-start;
+    padding: 30px;
+    font-size: 20px;
+    color: #fff;
+    z-index: 1;
+}
+
+.mine .dialog_content a {
+    align-self: center;
+    width: 100px;
+    z-index: 1;
 }
 
 .mine_myMessage {
@@ -2386,7 +2606,7 @@ body {
 .mine_order_content_fk {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -2395,7 +2615,7 @@ body {
 .mine_order_content_fh {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -77px 0;
     background-repeat: no-repeat;
@@ -2404,7 +2624,7 @@ body {
 .mine_order_content_sh {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -155px 0;
     background-repeat: no-repeat;
@@ -2413,7 +2633,7 @@ body {
 .mine_order_content_pj {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -234px 0;
     background-repeat: no-repeat;
@@ -2422,7 +2642,7 @@ body {
 .mine_order_content_tk {
     width: 28px;
     height: 28px;
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-size: 1200%;
     background-position: -312px 0;
     background-repeat: no-repeat;
@@ -2463,7 +2683,7 @@ body {
 }
 
 .mine_function_pyq div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -92px;
@@ -2476,7 +2696,7 @@ body {
 }
 
 .mine_function_jfcz div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -92px;
@@ -2489,7 +2709,7 @@ body {
 }
 
 .mine_function_ewm div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -92px;
@@ -2502,10 +2722,10 @@ body {
 }
 
 .mine_function_fx div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
-    background-position: -299px -92px;
+    background-position: -298px -92px;
 }
 
 .mine_function_shdz {
@@ -2516,7 +2736,7 @@ body {
 }
 
 .mine_function_shdz div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -160px;
@@ -2529,7 +2749,7 @@ body {
 }
 
 .mine_function_xgmm div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -160px;
@@ -2542,7 +2762,7 @@ body {
 }
 
 .mine_function_kffw div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -160px;
@@ -2555,7 +2775,7 @@ body {
 }
 
 .mine_function_yhq div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -298px -160px;
@@ -2569,7 +2789,7 @@ body {
 }
 
 .mine_function_sqrz div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -14px -226px;
@@ -2582,7 +2802,7 @@ body {
 }
 
 .mine_function_wddp div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -110px -226px;
@@ -2595,7 +2815,7 @@ body {
 }
 
 .mine_function_sjsk div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -203px -226px;
@@ -2608,7 +2828,7 @@ body {
 }
 
 .mine_function_bdkh div {
-    background-image: url("../image/message.png");
+    background-image: url("../wx_image/message.jpg");
     background-repeat: no-repeat;
     background-size: 1200%;
     background-position: -299px -226px;
@@ -2638,6 +2858,65 @@ body {
     width: 100%;
 }
 
+.myMessage .dialog_guide {
+    display: none;
+}
+
+.myMessage .dialog_guide_bg {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.myMessage .dialog_guide_content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 9;
+}
+
+.myMessage .dialog_guide_content a {
+    position: absolute;
+    width: 80px;
+    margin-top: 100px;
+    margin-left: 100px;
+    z-index: 9;
+}
+
+.myMessage .dialog_guide_content span {
+    position: absolute;
+    width: 100%;
+    padding: 30px;
+    margin-top: 150px;
+    font-size: 20px;
+    text-align: right;
+    color: #fff;
+    z-index: 9;
+}
+
+.myMessage .dialog_guide_content img {
+    position: absolute;
+    width: 130px;
+    margin-top: 250px;
+    margin-left: 50px;
+    align-self: flex-start;
+    z-index: 9;
+}
+
+.myMessage .dialog_guide_content div {
+    position: absolute;
+    align-self: flex-start;
+    width: 75px;
+    height: 90px;
+    margin-left: 4px;
+    margin-top: 385px;
+    border: solid 5px red;
+    z-index: 9;
+}
+
 .myMessage .m-cell {
     background: none;
     margin-top: 8px;
@@ -2665,6 +2944,64 @@ body {
     margin-top: -6px;
 }
 
+.myMessage .dialog{
+    display: none;
+}
+
+.myMessage .dialog_bg {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.myMessage .dialog_message {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myMessage .dialog_content {
+    width: 250px;
+    height: 120px;
+    margin-top: 200px;
+    color: #1C1C20;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.myMessage .dialog_title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 12px;
+    border-radius: 4px 4px 0 0;
+    border-bottom: solid 1px rgb(218, 218, 218);
+}
+
+.myMessage .dialog_select div {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 12px;
+    border-bottom: solid 1px rgb(228, 228, 228);
+}
+
+.myMessage .dialog_select div:active {
+    background-color: rgb(238, 238, 238);
+}
+
 @media (max-width: 375px) {
     .myMessage .cell-right img {
         margin-top: 0;
@@ -2677,23 +3014,46 @@ body {
     padding: 8px;
 }
 
-.myLabel .m-cell {
-    background: none;
+.myLabel .myLabel_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
-.myLabel .m-cell:after {
-    border: none;
+.myLabel .myLabel_list span {
+    padding: 3px 8px;
+    margin: 3px 6px;
+    color: #fff;
+    border-radius: 8px;
+    background-color: #00f;
 }
 
-.myLabel .cell-item {
-    background-color: #fff;
+.myLabel .checkedLabelItem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+    min-height: 120px;
+    margin-top: 10px;
     border-radius: 4px;
-    border: solid 1px #E1E1EE;
+    background-color: #fff;
 }
 
-.myLabel .cell-item textarea::-webkit-input-placeholder {
-    font-size: 14px;
-    color: #96969F;
+.myLabel .checkedLabelItem span {
+    height: 22px;
+    padding: 3px 8px;
+    margin: 3px 6px;
+    color: #fff;
+    border-radius: 8px;
+    background-color: #00f;
+}
+
+.myLabel .checkedLabelItem span i {
+    color: #ccc;
+    font-size: 12px;
+    margin-left: 4px;
 }
 
 .myLabel .btn-primary {
@@ -3118,10 +3478,11 @@ body {
 }
 
 /*留言*/
-.leaveWord{
+.leaveWord {
     width: 100%;
 }
-.leaveWordItem{
+
+.leaveWordItem {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -3129,18 +3490,21 @@ body {
     background-color: #fff;
     border-bottom: solid 1px #E1E1EE;
 }
-.leaveWord_title{
+
+.leaveWord_title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-size: 15px;
-    color: rgb(120,120,120);
+    color: rgb(120, 120, 120);
 }
-.leaveWord_title a{
-    color: rgb(70,170,250);
+
+.leaveWord_title a {
+    color: rgb(70, 170, 250);
 }
-.leaveWord_content{
+
+.leaveWord_content {
     font-size: 12px;
     padding: 4px 0;
-    color: rgb(170,170,170);
+    color: rgb(170, 170, 170);
 }

@@ -49,20 +49,16 @@
 
 	<!-- 定义DAO Bean -->
 	<bean id="userDao" class="com.linestore.dao.impl.UserDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="customerDao" class="com.linestore.dao.impl.CustomerDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="cusAddressDao" class="com.linestore.dao.impl.CusAddressDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="messageDao" class="com.linestore.dao.impl.MessageDaoImpl">
-		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="friendsDao" class="com.linestore.dao.impl.FriendsDaoImpl">
@@ -84,6 +80,11 @@
 	</bean>
 
 	<bean id="cusAccountDao" class="com.linestore.dao.impl.CusAccountDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="tagDao" class="com.linestore.dao.impl.TagDaoImpl">
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -115,6 +116,10 @@
 
 	<bean id="EvaluateService" class="com.linestore.service.impl.EvaluateServiceImpl">
 		<property name="evaluateDao" ref="evaluateDao"></property>
+	</bean>
+	
+	<bean id="tagService" class="com.linestore.service.impl.TagServiceImpl">
+		<property name="tagDao" ref="tagDao"></property>
 	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->

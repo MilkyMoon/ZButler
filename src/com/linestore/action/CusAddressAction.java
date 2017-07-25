@@ -40,12 +40,12 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的add方法！");
 		cusAddress.setCaCountry("中国");
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		cusAddressService.add(cusAddress);
-
-		return "add";
+		return selectAll();
 	}
 
 	// 获取已登录用户的全部收货地址
@@ -53,8 +53,9 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的selectAll方法！");
 
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		System.out.println(cusAddress + " : " + cusAddressService);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
@@ -78,8 +79,9 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		System.out.println("CusAddressAction中的edit方法！");
 
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		cusAddress.setCaCountry("中国");
 
@@ -96,8 +98,9 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 
 		cusAddressService.del(cusAddress);
 //		cusAddress.setCaCusId(1);
-		Customer customer=new Customer();
-		customer.setCusId(1);
+//		Customer customer=new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		cusAddress.setCustomer(customer);
 		cusAddressList = cusAddressService.selectAll(cusAddress);
 

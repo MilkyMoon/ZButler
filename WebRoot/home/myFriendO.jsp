@@ -22,10 +22,10 @@
 	<div class="myFriendO">
 		<div class="myFriendO_myMessage">
 			<div class="myFriendO_myMessage_head">
-				<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
+				<img src="${user.cusImgUrl}" />
 			</div>
 			<div class="myFriendO_myMessage_content">
-				<div class="userName"><s:property value="customerResult.cusNickname"/></div>
+				<div class="userName">${user.cusNickname}</div>
 				<span>普通会员</span>
 			</div>
 		</div>
@@ -34,11 +34,11 @@
 				<a href="#"> 我的朋友：<span><s:property value="%{friendsList.size()}"/></span>
 				</a>
 			</div>
-			<%-- <s:iterator id="friends" value="friendsList" status="">
+			<s:iterator id="friends" value="friendsList" status="">
 			<div class="myFriendO_myFriendItem">
-				<a href="#"><s:property value="customer.cusNickname"/> </a>
+				<a href="#"><s:property value="friPhone"/> </a>
 			</div>
-			</s:iterator> --%>
+			</s:iterator>
 			 <div class="myFriendO_myFriendItem">
 				<a href="<%=basePath%>Friends_selectType?friType=1"> 我的朋友A </a>
 			</div>

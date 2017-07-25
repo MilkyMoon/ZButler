@@ -49,7 +49,7 @@
 					href="#">《用户协议》</a></span>
 			</div>
 			<div class="register_button">
-				<button type="submit" class="btn-block btn-primary" id="zhuce">下一步</button>
+				<button type="submit" class="btn-block btn-primary" id="zhuce">注册</button>
 			</div>
 		</form>
 	</div>
@@ -155,8 +155,8 @@
 			}
 		});
 
-		$('#submit').click(function() {
-			if ($('input[name="readed"]').prop("checked")) {
+		$('#zhuce').click(function() {
+			if ($('input[name="rePassword"]').prop("checked")) {
 				$('.register_readed').find('.error').remove();
 			} else {
 				var error = '<span class="error">请接受此项</span>';

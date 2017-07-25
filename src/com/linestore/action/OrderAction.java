@@ -10,6 +10,7 @@ import com.linestore.vo.Customer;
 import com.linestore.vo.Friends;
 import com.linestore.vo.OrdDetails;
 import com.linestore.vo.Order;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -35,8 +36,9 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	// 获取用户全部订单
 	public String selectAll() {
 		System.out.println("Action selectAll");
-		Customer customer = new Customer();
-		customer.setCusId(1);
+//		Customer customer = new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		order.setCustomer(customer);
 		orderList = orderService.selectAll(order);
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -50,8 +52,9 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	// 获取用户分类订单
 	public String selectType() {
 		System.out.println("Action selectType");
-		Customer customer = new Customer();
-		customer.setCusId(1);
+//		Customer customer = new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
 		order.setCustomer(customer);
 		orderList = orderService.selectType(order);
 		return "selectType";
