@@ -22,20 +22,20 @@
 	<div class="share">
 		<div class="share_register">
 			<div class="share_register_introduce">
-			
-				积分宝是国内首家消费养老平台， 全国有600多个县区服务中心，遍及西藏以外的所有省市。<br>
-				<br> 积分宝推出充值赚钱小游戏，是为了更好的锁定会员消费，积累会员数据！
+
+				众邦管家是国内首家消费养老平台， 全国有600多个县区服务中心，遍及西藏以外的所有省市。<br> <br>
+				众邦管家推出充值赚钱小游戏，是为了更好的锁定会员消费，积累会员数据！
 			</div>
 			<form id="signupForm" method="post"
-			action="<%=basePath%>Customer!register.action">
+				action="<%=basePath%>Customer!register.action">
 				<div class="m-cell">
 					<div class="cell-item cell-item-first" id="telDiv">
 						<div class="cell-right">
 							<input type="number" name="cusPhone" pattern="[0-9]*"
-								class="cell-input" placeholder="输入手机号，立即注册积分宝"
-								autocomplete="off" id="tel" />
-							<input type="hidden" value="1" name="ReType">
-							<input type="hidden" value="${user.cusPhone}" name="valid">
+								class="cell-input" placeholder="输入手机号，立即注册众邦管家"
+								autocomplete="off" id="tel" /> <input type="hidden" value="1"
+								name="ReType"> <input type="hidden"
+								value="${user.cusPhone}" name="valid">
 						</div>
 					</div>
 					<div class="cell-item cell-item-last">
@@ -76,7 +76,7 @@
 		<div class="share_QRCode">
 			<img src="<%=basePath%>home/dist/wx_image/QRCode.png" />
 			<div>
-				目前已经有100万用户加入积分宝商城<br>微信扫一扫关注积分宝
+				目前已经有100万用户加入众邦管家商城<br>微信扫一扫关注众邦管家
 			</div>
 		</div>
 	</div>
@@ -111,18 +111,7 @@ ${js}
 			resetStr : '重新获取验证码'
 		});
 
-		$getCode.on('click', function() {
-			/* ajax 成功发送验证码后调用【start】 */
-			YDUI.dialog.loading.open('发送中');
-			setTimeout(function() {
-
-				YDUI.dialog.loading.close();
-
-				$getCode.sendCode('start');
-
-
-			}, 1500);
-		});
+		
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
@@ -156,6 +145,15 @@ ${js}
 							window.YDUI.dialog.alert(data.ErrorMessage);
 						} else {
 							$("#data").val(hex_md5(data.code));
+							YDUI.dialog.loading.open('发送中');
+							setTimeout(function() {
+
+								YDUI.dialog.loading.close();
+
+								$getCode.sendCode('start');
+
+
+							}, 1500);
 						}
 					});
 			}

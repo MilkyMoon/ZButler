@@ -47,7 +47,7 @@
 				<button type="button" class="btn-block btn-primary login_button_wei"><a  id="wxlogin"href="">微信登陆</a></button>
 			</div>
 			<div class="login_question">
-				<a href="<%=basePath%>home/register.jsp">免费注册</a> <a href="#">忘记密码</a>
+				<a href="<%=basePath%>home/register.jsp">免费注册</a> <a href="<%=basePath%>home/forgetPasswordOne.jsp">忘记密码</a>
 			</div>
 		</form>
 

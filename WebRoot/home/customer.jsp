@@ -97,13 +97,13 @@
 				class="mine_function_yhq">
 				<div></div> <span>我的优惠券</span>
 			</a> 
-			<a href="#" class="mine_function_sqrz">
+			<a href="<%=basePath%>Catetory!queryFirst.action" class="mine_function_sqrz">
 				<div></div> <span>申请入驻</span>
 			</a> 
 			<a href="<%=basePath%>home/myStore.jsp" class="mine_function_wddp">
 				<div></div> <span>我的店铺</span>
 			</a> 
-			<a href="#" class="mine_function_sjsk">
+			<a href="<%=basePath%>home/storeReceipts.jsp" class="mine_function_sjsk">
 				<div></div> <span>商家收款</span>
 			</a> 
 			<a href="<%=basePath%>CusBank!queryAll.action" class="mine_function_bdkh">
@@ -119,7 +119,7 @@
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
-
+${js}
 <script>
     $('.dialog_bg').css('height',document.body.scrollHeight);
     if (${empty user.cusPhone or empty user.cusOpenId}) {

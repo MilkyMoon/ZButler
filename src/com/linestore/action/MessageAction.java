@@ -46,7 +46,7 @@ public class MessageAction extends ActionSupport implements ModelDriven<Message>
 		message.setMesTime(timestamp);
 		messageService.add(message);
 		messageList = messageService.selectAll(message);
-		return "selectAll";
+		return "goto";
 	}
 
 	// 获取已登录用户的全部留言

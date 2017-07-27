@@ -1861,6 +1861,7 @@ body {
     bottom: 50px;
 }
 
+
 /*我的朋友圈*/
 
 .myFriendO_myMessage {
@@ -1914,11 +1915,34 @@ body {
 
 .myFriendO_myFriends_num, .myFriendO_myFriendItem {
     width: 100%;
-    height: 45px;
     line-height: 45px;
     font-size: 14px;
     color: #1C1C20;
     border-bottom: solid 2px #EFEFF4;
+}
+.myFriendO_myFriendItem span{
+    float: right;
+    width: 20px;
+    height: 20px;
+    margin: 12px 20px;
+    color: #fff;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #B72712;
+}
+.myFriendO_myFriendItem_down{
+    display: none;
+    width: 100%;
+    height: auto;
+}
+.myFriendO_myFriendItem_down div{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    color: #A3A3B5;
+    border-top: solid 1px #EFEFF4;
 }
 
 /*我的朋友圈2*/
@@ -2273,7 +2297,7 @@ body {
 }
 
 .applyAdmission .cell-select {
-    color: #e1e1ee;
+    color: #1C1C20;
     -webkit-appearance: none
 }
 
@@ -2575,7 +2599,7 @@ body {
 }
 
 .mine_myAccount_text {
-    color: #A3A3B5 !important;
+    color: #1C1C20 !important;
 }
 
 .mine_order {
@@ -2603,7 +2627,7 @@ body {
 
 .mine_order_title a {
     font-size: 12px;
-    color: #A3A3B5;
+    color: #1C1C20;
 }
 
 .mine_order_content {
@@ -2671,7 +2695,7 @@ body {
 
 .mine_order_content span {
     font-size: 12px;
-    color: #A3A3B5;
+    color: #1C1C20;
 }
 
 .mine_function {
@@ -2858,7 +2882,7 @@ body {
 .mine_function span {
     font-size: 12px;
     height: 10px;
-    color: #A3A3B5;
+    color: #1C1C20;
 }
 
 .mine_button {
@@ -2869,9 +2893,10 @@ body {
     height: 44px;
     margin-top: 40px;
     font-size: 14px;
+    color: #FFFFFF;
     line-height: 44px;
     border-radius: 4px;
-    background-color: #C6C6D2;
+    background-color: rgb(109, 175, 36);
 }
 
 /*个人信息*/

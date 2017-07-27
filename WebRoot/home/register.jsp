@@ -85,19 +85,6 @@
 			resetStr : '重新获取验证码'
 		});
 
-		$getCode.on('click', function() {
-			/* ajax 成功发送验证码后调用【start】 */
-			YDUI.dialog.loading.open('发送中');
-			setTimeout(function() {
-
-				YDUI.dialog.loading.close();
-
-				$getCode.sendCode('start');
-
-
-			}, 1500);
-		});
-
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
@@ -134,6 +121,15 @@
 							window.YDUI.dialog.alert(data.ErrorMessage);
 						} else {
 							$("#data").val(hex_md5(data.code));
+							YDUI.dialog.loading.open('发送中');
+							setTimeout(function() {
+
+								YDUI.dialog.loading.close();
+
+								$getCode.sendCode('start');
+
+
+							}, 1500);
 						}
 					});
 			}

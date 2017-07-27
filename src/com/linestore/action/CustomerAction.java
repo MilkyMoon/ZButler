@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import com.linestore.service.CatetoryService;
+
 //import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import com.linestore.service.CusAccountService;
@@ -47,6 +49,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	
 	private CusAccountService cusAccountService;
 	
+	private CatetoryService catetoryService;
+	
 	private void init(Customer cus) {
 		CusAccount cusAccount = new CusAccount();
 		cusAccount.setCacPoints((float) 0);
@@ -63,7 +67,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		Random random = new Random();
 		int code = random.nextInt(max) % (max - min + 1) + min;
 		System.out.println(code);
-		//SendMessage.send(String.valueOf(code), phone);
+		SendMessage.send(String.valueOf(code), phone);
 		return String.valueOf(code);
 	}
 
@@ -168,7 +172,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isError", "false");
 		String code = sendCode(customer.getCusPhone());
-		map.put("code", sendCode(customer.getCusPhone()));
+		map.put("code", code);
 		this.result = JSONObject.fromObject(map).toString();
 		return SUCCESS;
 	}
@@ -297,6 +301,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public void setReType(String reType) {
 		ReType = reType;
+	}
+
+	public CatetoryService getCatetoryService() {
+		return catetoryService;
+	}
+
+	public void setCatetoryService(CatetoryService catetoryService) {
+		this.catetoryService = catetoryService;
 	}
 	
 	
