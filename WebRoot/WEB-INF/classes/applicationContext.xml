@@ -35,7 +35,7 @@
 				<!-- 方言 ctrl+shift+t 输入mysql5，找到org.hibernate.dialect.MySQL5InnoDBDialect -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 				<!-- 是否显示格式化sql -->
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 生成数据表的策略 -->
 				<prop key="hibernate.hbm2ddl.auto">none</prop>
@@ -92,8 +92,26 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
-
+	
+	<bean id="cusBankDao" class="com.linestore.dao.impl.CusBankDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="ctaTradingDao" class="com.linestore.dao.impl.CtaTradingDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="businessDao" class="com.linestore.dao.impl.BusinessDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="catetoryDao" class="com.linestore.dao.impl.CatetoryDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->
 	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
@@ -124,6 +142,22 @@
 	
 	<bean id="tagService" class="com.linestore.service.impl.TagServiceImpl">
 		<property name="tagDao" ref="tagDao"></property>
+	</bean>
+	
+	<bean id="cusBankService" class="com.linestore.service.impl.CusBankServiceImpl">
+		<property name="cusBankDao" ref="cusBankDao"></property>
+	</bean>
+	
+	<bean id="ctaTradingService" class="com.linestore.service.impl.CtaTradingServiceImpl">
+		<property name="ctaTradingDao" ref="ctaTradingDao"></property>
+	</bean>
+	
+	<bean id="businessService" class="com.linestore.service.impl.BusinessServiceImpl">
+		<property name="businessDao" ref="businessDao"></property>
+	</bean>
+	
+	<bean id="catetoryService" class="com.linestore.service.impl.CatetoryServiceImpl">
+		<property name="catetoryDao" ref="catetoryDao"></property>
 	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->

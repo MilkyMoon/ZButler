@@ -71,7 +71,7 @@ public class CusAddressAction extends ActionSupport implements ModelDriven<CusAd
 		cusAddressResult = cusAddressService.select(cusAddress);
 		System.out.println("cusAddressResult:" + cusAddressResult.getCaName() + " : " + cusAddressResult.getCaAddress()
 				+ " : " + cusAddressResult.getCaPhone());
-		return "select";
+		return "cusAddressEdit";
 	}
 
 	// 编辑已登录用户的指定收货地址

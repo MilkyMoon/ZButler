@@ -17,7 +17,7 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 		try {
 			this.getHibernateTemplate().save(cusAccount);
 			System.out.println("add successful!");
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("add failed!\n" + e);
 			throw e;
 		}
@@ -33,7 +33,7 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 			Query query = session.createQuery(hql);
 			query.executeUpdate();
 			System.out.println("updateField successful!");
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("updateField failed!\n" + e);
 			throw e;
 		}

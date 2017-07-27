@@ -28,6 +28,11 @@ public class Catetory implements java.io.Serializable {
 	/** default constructor */
 	public Catetory() {
 	}
+	
+	public Catetory(Integer catePid, String cateName) {
+		this.catePid = catePid;
+		this.cateName = cateName;
+	}
 
 	/** full constructor */
 	public Catetory(Integer catePid, String cateName, Integer cateCount, String cateChild, Set attValues, Set brands,

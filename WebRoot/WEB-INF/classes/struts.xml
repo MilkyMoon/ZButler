@@ -15,8 +15,30 @@
 			<result name="success" type="redirect">admin/index.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
+		
+		<action name="business_*" class="com.linestore.action.BusinessAction" method="{1}">
+			<result name="gotoCustomer">home/customer.jsp</result>
+			<result name="success" type="redirectAction">business_jump</result>
+        	<result name="selectAll">admin/business.jsp</result>
+        	<result name="error">admin/index.jsp</result>
+        </action>
 
+<<<<<<< HEAD
 	
+=======
+		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
+			method="{1}">
+			<result name="success" type="redirect">home/deliveryAddress.jsp</result>
+			<result name="cusAddressList" type="redirect">home/deliveryAddress.jsp</result>
+			<result name="cusAddressAdd">home/deliveryAddressAdd.jsp</result>
+			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
+			<result name="error">admin/login.jsp</result>
+			<result name="selectAll" >home/deliveryAddress.jsp</result>
+			<result name="add" type="redirect">home/deliveryAddressAdd.jsp</result>
+			<result name="edit" >home/deliveryAddressEdit.jsp</result>
+			
+		</action>
+>>>>>>> pr/21
 		
 		<action name="Friends_*" class="com.linestore.action.FriendsAction"
 			method="{1}">
@@ -57,7 +79,8 @@
 		
 		<action name="Message_*" class="com.linestore.action.MessageAction"
 			method="{1}">
-			<result name="success" type="redirect">home/leaveWord.jsp</result>
+			<result name="selectAll">home/leaveWord.jsp</result>
+			<result name="goto" type="redirectAction">Message_selectAll</result>
 			<result name="messageList">home/leaveWord.jsp</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
@@ -69,6 +92,14 @@
 		
 		<action name="Tag" class="com.linestore.action.TagAction">
 			<result name="gotoCusLabel">/home/cusLabel.jsp</result>
+		</action>
+		
+		<action name="CusBank" class="com.linestore.action.CusBankAction">
+			<result name="gotoBindCardOne" type="redirect">/home/bindCardOne.jsp</result>
+		</action>
+		
+		<action name="Catetory" class="com.linestore.action.CatetoryAction">
+			<result name="gotoApply">/home/applyAdmission.jsp</result>
 		</action>
 	</package>
 
@@ -91,6 +122,13 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		
+		<action name="querySmallJson" class="com.linestore.action.CatetoryAction"
+			method="querySmall">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 
 
 		<!-- 微信相关配置 -->
@@ -107,6 +145,7 @@
 			</result>
 		</action>
 	</package>
+<<<<<<< HEAD
 	<!--受权限控制的Action请求配置 -->
 	<package name="authority" extends="struts-default">
 		<interceptors>
@@ -143,4 +182,15 @@
 			<result name="edit" >home/deliveryAddressEdit.jsp</result>
 		</action>
 	</package>
+=======
+	
+	<package name="struts3" extends="struts-default" namespace="/admin">
+		<action name="business_*" class="com.linestore.action.BusinessAction" method="{1}">
+        	<result name="selectAll">business.jsp</result>
+        	<result name="read">readBusiness.jsp</result>
+        	<result name="edit">editBusiness.jsp</result>
+        	<result name="error">index.jsp</result>
+        </action>
+    </package>
+>>>>>>> pr/21
 </struts>

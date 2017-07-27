@@ -21,7 +21,8 @@
 
 <body>
 	<div class="forgetPassword">
-		<form id="signupForm" action="<%=basePath%>Customer!toForgetTwo.action" method="post">
+		<form id="signupForm"
+			action="<%=basePath%>Customer!toForgetTwo.action" method="post">
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right" id="telDiv">
@@ -33,7 +34,7 @@
 					<div class="cell-right">
 						<input type="number" pattern="[0-9]*" class="cell-input" id="code"
 							placeholder="请输入验证码" autocomplete="off" />
-						<button type="submit" class="btn btn-primary" id="get">获取验证码</button>
+						<button type="button" class="btn btn-primary" id="getCode">获取验证码</button>
 					</div>
 				</div>
 			</div>
@@ -60,7 +61,7 @@
 	}); */
 
 	$().ready(function() {
-		var $getCode = $('#get');
+		var $getCode = $('#getCode');
 		/* 定义参数 */
 		$getCode.sendCode({
 			disClass : 'btn-disabled',
@@ -70,18 +71,6 @@
 			resetStr : '重新获取验证码'
 		});
 
-		$getCode.on('click', function() {
-			/* ajax 成功发送验证码后调用【start】 */
-			YDUI.dialog.loading.open('发送中');
-			setTimeout(function() {
-
-				YDUI.dialog.loading.close();
-
-				$getCode.sendCode('start');
-
-
-			}, 1500);
-		});
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
@@ -98,8 +87,9 @@
 			}
 		});
 		//        点击验证码验证手机号
-		$('#get').click(function() {
+		$('#getCode').click(function() {
 			if ($('#tel').val().length !== 11) {
+				$("#data").val("empty");
 				$('#telDiv').find("label").remove();
 				var telError = '<label style="width:50%;color:red;font-size:12px">手机号无效</label>';
 				$('#telDiv').append(telError);
@@ -115,14 +105,24 @@
 						},
 						function(data) {
 							data = $.parseJSON(data);
-							console.log(data);
+							//console.log(data);
 							if (data.isError === "true") {
 								window.YDUI.dialog.alert(data.ErrorMessage);
 							} else {
 
 								$("#data").val(hex_md5(data.code));
+								YDUI.dialog.loading.open('发送中');
+								setTimeout(function() {
+
+									YDUI.dialog.loading.close();
+
+									$getCode.sendCode('start');
+
+
+								}, 1500);
 							}
 						});
+						console.log("-------");
 				}
 
 			}
@@ -134,9 +134,14 @@
 
 		$("#signupForm").submit(function(e) {
 
-			if ($("#data").val() != hex_md5($("#code").val())) {
+			if ($("#data").val() != "empty") {
+				if ($("#data").val() != hex_md5($("#code").val())) {
+					e.preventDefault();
+					window.YDUI.dialog.alert('验证码错误！');
+				}
+			} else {
 				e.preventDefault();
-				window.YDUI.dialog.alert('验证码错误！');
+				window.YDUI.dialog.alert('验证码不能为空！');
 			}
 
 		});

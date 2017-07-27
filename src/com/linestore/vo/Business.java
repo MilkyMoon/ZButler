@@ -13,6 +13,7 @@ public class Business implements java.io.Serializable {
 
 	private Integer busId;
 	private Supplier supplier;
+	private Customer customer;
 	private Catetory catetory;
 	private String busShopName;
 	private String busOwnerFname;
@@ -25,8 +26,17 @@ public class Business implements java.io.Serializable {
 	private Integer busSmallCate;
 	private Integer busStatus;
 	private Integer busLevel;
+	private String baCountry;
+	private String baProvince;
+	private String baCity;
+	private String baCounty;
+	private String baAddress;
+	private Float baLatitude;
+	private Float baLongitude;
+	private String bbBankCard;
+	private String bbBank;
+	private String bbBankPerson;
 	private Set busCoupons = new HashSet(0);
-	private Set busBanks = new HashSet(0);
 
 	// Constructors
 
@@ -35,11 +45,13 @@ public class Business implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Business(Supplier supplier, Catetory catetory, String busShopName, String busOwnerFname,
+	public Business(Supplier supplier, Customer customer, Catetory catetory, String busShopName, String busOwnerFname,
 			String busOwnerLname, String busIdcardUrl, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
-			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, Set busCoupons,
-			Set busBanks) {
+			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, String baCountry,
+			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
+			String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons) {
 		this.supplier = supplier;
+		this.customer = customer;
 		this.catetory = catetory;
 		this.busShopName = busShopName;
 		this.busOwnerFname = busOwnerFname;
@@ -52,8 +64,17 @@ public class Business implements java.io.Serializable {
 		this.busSmallCate = busSmallCate;
 		this.busStatus = busStatus;
 		this.busLevel = busLevel;
+		this.baCountry = baCountry;
+		this.baProvince = baProvince;
+		this.baCity = baCity;
+		this.baCounty = baCounty;
+		this.baAddress = baAddress;
+		this.baLatitude = baLatitude;
+		this.baLongitude = baLongitude;
+		this.bbBankCard = bbBankCard;
+		this.bbBank = bbBank;
+		this.bbBankPerson = bbBankPerson;
 		this.busCoupons = busCoupons;
-		this.busBanks = busBanks;
 	}
 
 	// Property accessors
@@ -72,6 +93,14 @@ public class Business implements java.io.Serializable {
 
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
+	}
+
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public Catetory getCatetory() {
@@ -138,6 +167,14 @@ public class Business implements java.io.Serializable {
 		this.busOrgUrl = busOrgUrl;
 	}
 
+	public Integer getBusDistrict() {
+		return this.busDistrict;
+	}
+
+	public void setBusDistrict(Integer busDistrict) {
+		this.busDistrict = busDistrict;
+	}
+
 	public Integer getBusSmallCate() {
 		return this.busSmallCate;
 	}
@@ -146,18 +183,8 @@ public class Business implements java.io.Serializable {
 		this.busSmallCate = busSmallCate;
 	}
 
-	
-
-	public Integer getBusDistrict() {
-		return busDistrict;
-	}
-
-	public void setBusDistrict(Integer busDistrict) {
-		this.busDistrict = busDistrict;
-	}
-
 	public Integer getBusStatus() {
-		return busStatus;
+		return this.busStatus;
 	}
 
 	public void setBusStatus(Integer busStatus) {
@@ -165,11 +192,91 @@ public class Business implements java.io.Serializable {
 	}
 
 	public Integer getBusLevel() {
-		return busLevel;
+		return this.busLevel;
 	}
 
 	public void setBusLevel(Integer busLevel) {
 		this.busLevel = busLevel;
+	}
+
+	public String getBaCountry() {
+		return this.baCountry;
+	}
+
+	public void setBaCountry(String baCountry) {
+		this.baCountry = baCountry;
+	}
+
+	public String getBaProvince() {
+		return this.baProvince;
+	}
+
+	public void setBaProvince(String baProvince) {
+		this.baProvince = baProvince;
+	}
+
+	public String getBaCity() {
+		return this.baCity;
+	}
+
+	public void setBaCity(String baCity) {
+		this.baCity = baCity;
+	}
+
+	public String getBaCounty() {
+		return this.baCounty;
+	}
+
+	public void setBaCounty(String baCounty) {
+		this.baCounty = baCounty;
+	}
+
+	public String getBaAddress() {
+		return this.baAddress;
+	}
+
+	public void setBaAddress(String baAddress) {
+		this.baAddress = baAddress;
+	}
+
+	public Float getBaLatitude() {
+		return this.baLatitude;
+	}
+
+	public void setBaLatitude(Float baLatitude) {
+		this.baLatitude = baLatitude;
+	}
+
+	public Float getBaLongitude() {
+		return this.baLongitude;
+	}
+
+	public void setBaLongitude(Float baLongitude) {
+		this.baLongitude = baLongitude;
+	}
+
+	public String getBbBankCard() {
+		return this.bbBankCard;
+	}
+
+	public void setBbBankCard(String bbBankCard) {
+		this.bbBankCard = bbBankCard;
+	}
+
+	public String getBbBank() {
+		return this.bbBank;
+	}
+
+	public void setBbBank(String bbBank) {
+		this.bbBank = bbBank;
+	}
+
+	public String getBbBankPerson() {
+		return this.bbBankPerson;
+	}
+
+	public void setBbBankPerson(String bbBankPerson) {
+		this.bbBankPerson = bbBankPerson;
 	}
 
 	public Set getBusCoupons() {
@@ -178,14 +285,6 @@ public class Business implements java.io.Serializable {
 
 	public void setBusCoupons(Set busCoupons) {
 		this.busCoupons = busCoupons;
-	}
-
-	public Set getBusBanks() {
-		return this.busBanks;
-	}
-
-	public void setBusBanks(Set busBanks) {
-		this.busBanks = busBanks;
 	}
 
 }

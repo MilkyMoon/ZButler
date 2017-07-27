@@ -23,13 +23,11 @@
 <body>
 	<div class="myLabel">
 		<form action="<%=basePath%>Customer!update.action" method="post">
-			<div class="myLabel_list">
-				
-			</div>
-			<div class="checkedLabelItem">
-			</div>
-			<input type="hidden" id="data" name="cusTagId" value="${user.cusTagId}">
-			<input type="hidden"  name="field" value="cusTagId">
+			<div class="myLabel_list"></div>
+			<div class="checkedLabelItem"></div>
+			<input type="hidden" id="data" name="cusTagId"
+				value="${user.cusTagId}"> <input type="hidden" name="field"
+				value="cusTagId">
 			<button type="submit" class="btn-block btn-primary">提交</button>
 		</form>
 	</div>
@@ -38,6 +36,8 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
+	var color = "#ffff00,#ff3366,#99ff33,#66ffff,#ff0000,#cc6699,#663399,#3333cc,#006600,#660066,#ffcccc,#6600cc";
+	var color = color.split(",");
 	var map = new Map([
 		<c:forEach var="tag" items="${tags}">
         	["${tag.tagId}","${tag.tagName}"],
@@ -45,7 +45,7 @@
 	]);
 	var tags = "${user.cusTagId}";
 	tags = tags.split(',');
-	console.log(tags);
+	console.log(color);
 	var selected = new Map();
 	var unselected = new Map();
 	for (var x of map) {
@@ -56,12 +56,12 @@
 		}
 	}
 	for (var z of selected) {
-		var SelectedHtml = '<span>' + z[1] + '<i class="icon-error-outline" id="' + z[0] + '" onclick="delLabel($(this))"></i></span>';
+		var SelectedHtml = '<span style="background-color:'+ color[Math.floor(Math.random() * 12)] +'">' + z[1] + '<i class="icon-error-outline" id="' + z[0] + '" onclick="delLabel($(this))"></i></span>';
 		$('.checkedLabelItem').append(SelectedHtml);
 	}
 	
 	for (var y of unselected) {
-		 var unselectedHtml = '<span id="' + y[0] + '" onclick="checkLabel($(this))">' + y[1] + '</span>';
+		 var unselectedHtml = '<span id="' + y[0] + '" onclick="checkLabel($(this))" style="background-color:'+ color[Math.floor(Math.random() * 12)] +'">' + y[1] + '</span>';
 		 $('.myLabel_list').append(unselectedHtml);
 	}
 	
@@ -69,7 +69,8 @@
     function checkLabel(checkLabel) {
         var clickId = checkLabel.attr('id');
         var clickText = checkLabel.text();
-        var checkedLabelHtml = '<span>' + clickText + '<i class="icon-error-outline" id="' + clickId + '" onclick="delLabel($(this))"></i></span>';
+        var checkedLabelcolor = checkLabel.css("background-color");
+        var checkedLabelHtml = '<span style="background-color:'+checkedLabelcolor+'">' + clickText + '<i class="icon-error-outline" id="' + clickId + '" onclick="delLabel($(this))"></i></span>';
         checkLabel.remove();
         $('.checkedLabelItem').append(checkedLabelHtml);
         jiancha();
@@ -77,7 +78,8 @@
     function delLabel(delLabel) {
         var delId = delLabel.attr('id');
         var delText = delLabel.parent().text();
-        var delLabelHtml = '<span id="' + delId + '" onclick="checkLabel($(this))">' + delText + '</span>';
+        var delLabelcolor = delLabel.parent().css("background-color");
+        var delLabelHtml = '<span id="' + delId + '" onclick="checkLabel($(this))" style="background-color:'+ delLabelcolor +'" >' + delText + '</span>';
         delLabel.parent().remove();
         $('.myLabel_list').append(delLabelHtml);
         jiancha();
