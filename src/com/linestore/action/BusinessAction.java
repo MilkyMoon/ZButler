@@ -78,7 +78,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //		HttpServletRequest request = ServletActionContext.getRequest ();
 //		request.setAttribute("businessList", businessList);
 		System.out.println(businessList.get(0).getBusDistrict());
-		ActionContext.getContext().getSession().put("list", businessList);
+		ActionContext.getContext().getValueStack().set("list", businessList);
 		return "selectAll";
 	}
 	

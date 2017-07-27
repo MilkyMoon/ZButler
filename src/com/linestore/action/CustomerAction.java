@@ -165,6 +165,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customer = (Customer) ActionContext.getContext().getSession().get("user");
 		customerService.updateField(field, value, customer.getCusId());
 		ActionContext.getContext().getSession().put("user", customerService.findById(customer.getCusId()));
+		if ("cusPassword".equals(field))
+			return "gotoLogin";
 		return "gotoCusMessage";
 	}
 
