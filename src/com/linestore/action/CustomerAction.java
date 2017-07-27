@@ -1,19 +1,25 @@
 package com.linestore.action;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import com.linestore.service.CatetoryService;
+
 //import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
+import com.linestore.service.FriendsService;
 import com.linestore.util.SendMessage;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
+import com.linestore.vo.Friends;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -28,6 +34,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private Customer customerResult;
 
 	private String valid;
+	
+	private String ReType;
 
 	private Map<String, Object> request;
 
@@ -37,7 +45,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	private CustomerService customerService;
 	
+	private FriendsService friendsService;
+	
 	private CusAccountService cusAccountService;
+	
+	private CatetoryService catetoryService;
 	
 	private void init(Customer cus) {
 		CusAccount cusAccount = new CusAccount();
@@ -46,6 +58,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		cusAccount.setCacBonus((float) 0);
 		cusAccount.setCustomer(cus);
 		cusAccountService.addCusAccount(cusAccount);
+		customerService.select(cus);
 	}
 
 	private String sendCode(String phone) {
@@ -54,7 +67,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		Random random = new Random();
 		int code = random.nextInt(max) % (max - min + 1) + min;
 		System.out.println(code);
-		//SendMessage.send(String.valueOf(code), phone);
+		SendMessage.send(String.valueOf(code), phone);
 		return String.valueOf(code);
 	}
 
@@ -80,13 +93,36 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	}
 
 	public String register() {
-		if (customer.getCusPassword() != null && customer.getCusPhone() != null) {
-			customer.setCusNickname("ZB_" + customer.getCusPhone());
-			customer.setCusStatus(1);
+		
+		customer.setCusNickname("ZB_" + customer.getCusPhone());
+		customer.setCusImgUrl("home/dist/wx_image/111.jpg");
+		customer.setCusStatus(1);
+		
+		if (ReType != null) {
+			customer.setCusPassword("123456");
 			customerService.addCustomer(customer);
 			init(customer);
+			Friends friends = new Friends();
+			Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
+			friends.setCustomer(cus);
+			friends.setFriDate(new Timestamp(new Date().getTime()));
+			friends.setFriPhone(customer.getCusPhone());
+			friends.setFriType(Integer.valueOf(ReType));
+			friendsService.save(friends);
+			request = (Map<String, Object>) ActionContext.getContext().get("request");
+			String js = "<script>YDUI.dialog.alert('注册成功！');</script>";
+			request.put("js", js);
+			return "askRegister";
+		}
+		
+		if (customer.getCusPassword() != null && customer.getCusPhone() != null) {
+			
+			customerService.addCustomer(customer);
+			init(customer);
+			
 			customer = customerService.findByPhone(customer.getCusPhone()).get(0);
 			// System.out.println(customerService.findByPhone(customer.getCusPhone()).get(0));
+			ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(customer.getCusId()));
 			ActionContext.getContext().getSession().put("user", customer);
 		}
 		return "gotoCustomer";
@@ -94,12 +130,13 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public String login() {
 		if (customerService.checkCustomer(customer)) {
-			ActionContext.getContext().getSession().put("user",
-					customerService.findByPhone(customer.getCusPhone()).get(0));
+			Customer cus = customerService.findByPhone(customer.getCusPhone()).get(0);
+			ActionContext.getContext().getSession().put("user", cus);
+			ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
 			return "gotoCustomer";
 		}
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
-		String js = "YDUI.dialog.alert('用户名或密码错误！');";
+		String js = "<script>YDUI.dialog.alert('用户名或密码错误！');</script>";
 		request.put("js", js);
 		return "gotoLogin";
 	}
@@ -121,6 +158,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			value = customer.getCusPassword();
 		} else if ("cusPayPassword".equals(field)) {
 			value = customer.getCusPayPassword();
+		} else if ("cusTagId".equals(field)) {
+			value = customer.getCusTagId();
+			System.out.println("-----------------------");
 		}
 		customer = (Customer) ActionContext.getContext().getSession().get("user");
 		customerService.updateField(field, value, customer.getCusId());
@@ -132,7 +172,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isError", "false");
 		String code = sendCode(customer.getCusPhone());
-		map.put("code", sendCode(customer.getCusPhone()));
+		map.put("code", code);
 		this.result = JSONObject.fromObject(map).toString();
 		return SUCCESS;
 	}
@@ -151,6 +191,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		this.result = JSONObject.fromObject(map).toString();
 		return SUCCESS;
 	}
+	
 
 	public String logout() {
 		ActionContext.getContext().getSession().put("user", null);
@@ -162,9 +203,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		public String askRegister() {
 			System.out.println("Action中的askRegister方法！");
 			// 邀请人的cusId
-			customer.getCusId();
-			//补全邀请人的信息，传递到页面;注册者完成注册时还需要用到邀请人的信息
-			customer=customerService.select(customer);
+//			customer.getCusId();
+//			Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+//			//补全邀请人的信息，传递到页面;注册者完成注册时还需要用到邀请人的信息
+//			customer=customerService.select(customer);
 
 			return "askRegister";
 		}
@@ -178,9 +220,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			// HttpSession session = ServletActionContext.getRequest().getSession();
 			// Customer customerResult = (Customer)
 			// session.getAttribute("customer");
-			customer.setCusId(1);
-			customerResult = customerService.select(customer);
-			System.out.println(customerResult);
+//			customer.setCusId(1);
+//			Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+//			customerResult = customerService.select(customer);
+//			System.out.println(customerResult);
 			return "myQRCode";
 		}
 	
@@ -240,8 +283,32 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return customerResult;
 	}
 
+	public FriendsService getFriendsService() {
+		return friendsService;
+	}
+
+	public void setFriendsService(FriendsService friendsService) {
+		this.friendsService = friendsService;
+	}
+
 	public void setCustomerResult(Customer customerResult) {
 		this.customerResult = customerResult;
+	}
+
+	public String getReType() {
+		return ReType;
+	}
+
+	public void setReType(String reType) {
+		ReType = reType;
+	}
+
+	public CatetoryService getCatetoryService() {
+		return catetoryService;
+	}
+
+	public void setCatetoryService(CatetoryService catetoryService) {
+		this.catetoryService = catetoryService;
 	}
 	
 	

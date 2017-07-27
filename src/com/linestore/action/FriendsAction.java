@@ -5,6 +5,7 @@ import java.util.List;
 import com.linestore.service.FriendsService;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Friends;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -31,12 +32,12 @@ public class FriendsAction extends ActionSupport implements ModelDriven<Friends>
 	// 获取用户朋友圈
 	public String selectAll() {
 		System.out.println("Action selectAll");
-		Customer customer = new Customer();
-		customer.setCusId(1);
-
+//		Customer customer = new Customer();
+//		customer.setCusId(1);
+		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+//		System.out.println(customer.getCusNickname() + " : " + customer.getCusId());
 		friendsList = friendsService.selectAll(customer);
-		customerResult = friendsList.get(0).getCustomer();
-		System.out.println(customerResult.getCusNickname() + " : " + customerResult.getCusId());
+//		System.out.println(customerResult.getCusNickname() + " : " + customerResult.getCusId());
 		return "selectAll";
 	}
 

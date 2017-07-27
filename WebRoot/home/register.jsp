@@ -49,7 +49,7 @@
 					href="#">《用户协议》</a></span>
 			</div>
 			<div class="register_button">
-				<button type="submit" class="btn-block btn-primary" id="zhuce">下一步</button>
+				<button type="submit" class="btn-block btn-primary" id="zhuce">注册</button>
 			</div>
 		</form>
 	</div>
@@ -83,19 +83,6 @@
 			run : false,
 			runStr : '{%s}秒后重新获取',
 			resetStr : '重新获取验证码'
-		});
-
-		$getCode.on('click', function() {
-			/* ajax 成功发送验证码后调用【start】 */
-			YDUI.dialog.loading.open('发送中');
-			setTimeout(function() {
-
-				YDUI.dialog.loading.close();
-
-				$getCode.sendCode('start');
-
-
-			}, 1500);
 		});
 
 		// 在键盘按下并释放及提交后验证提交表单
@@ -134,6 +121,15 @@
 							window.YDUI.dialog.alert(data.ErrorMessage);
 						} else {
 							$("#data").val(hex_md5(data.code));
+							YDUI.dialog.loading.open('发送中');
+							setTimeout(function() {
+
+								YDUI.dialog.loading.close();
+
+								$getCode.sendCode('start');
+
+
+							}, 1500);
 						}
 					});
 			}
@@ -155,8 +151,8 @@
 			}
 		});
 
-		$('#submit').click(function() {
-			if ($('input[name="readed"]').prop("checked")) {
+		$('#zhuce').click(function() {
+			if ($('input[name="rePassword"]').prop("checked")) {
 				$('.register_readed').find('.error').remove();
 			} else {
 				var error = '<span class="error">请接受此项</span>';

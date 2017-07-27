@@ -29,4 +29,9 @@ public class CusAccountServiceImpl implements CusAccountService {
 		cusAccountDao.updateField(field, value, id);
 	}
 
+	@Override
+	public CusAccount findByCusId(int cusId) {
+		return cusAccountDao.findByCusId(cusId);
+	}
+
 }

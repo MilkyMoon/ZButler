@@ -47,7 +47,7 @@
 				<button type="button" class="btn-block btn-primary login_button_wei"><a  id="wxlogin"href="">微信登陆</a></button>
 			</div>
 			<div class="login_question">
-				<a href="<%=basePath%>home/register.jsp">免费注册</a> <a href="#">忘记密码</a>
+				<a href="<%=basePath%>home/register.jsp">免费注册</a> <a href="<%=basePath%>home/forgetPasswordOne.jsp">忘记密码</a>
 			</div>
 		</form>
 
@@ -55,11 +55,13 @@
 
 </body>
 
+
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
+${js}
 <script>
 
     //    表单验证
@@ -71,7 +73,7 @@
     }); */
 
     $().ready(function () {
-    	${js}
+    	
     	if (window.localStorage.getItem("user")) {
     		$("#username").val(window.localStorage.getItem("user"));
     		$("#password").val(window.localStorage.getItem("pass"));

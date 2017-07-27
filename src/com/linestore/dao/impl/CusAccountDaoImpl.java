@@ -1,5 +1,7 @@
 package com.linestore.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
@@ -15,7 +17,7 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 		try {
 			this.getHibernateTemplate().save(cusAccount);
 			System.out.println("add successful!");
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("add failed!\n" + e);
 			throw e;
 		}
@@ -31,8 +33,21 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 			Query query = session.createQuery(hql);
 			query.executeUpdate();
 			System.out.println("updateField successful!");
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			System.out.println("updateField failed!\n" + e);
+			throw e;
+		}
+	}
+
+	@Override
+	public CusAccount findByCusId(int cusId) {
+		System.out.println("exec findByCusId");
+		try {
+			List<CusAccount> customers = (List<CusAccount>) this.getHibernateTemplate().find("from CusAccount where customer.cusId=?", cusId);
+			System.out.println("find sucessful");
+			return customers.get(0);
+		} catch (RuntimeException e) {
+			System.out.println("find failed!\n" + e);
 			throw e;
 		}
 	}
