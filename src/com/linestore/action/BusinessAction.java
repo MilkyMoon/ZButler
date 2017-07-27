@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.query.criteria.internal.expression.SizeOfPluralAttributeExpression;
 
 public class BusinessAction extends ActionSupport implements ModelDriven<Business>{
 	private Business business = new Business();
@@ -55,6 +56,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //		} else {
 //			business.setBusStatus(0);
 //		}
+		
 		System.out.println(business.getBusStatus());
 		businessService.update(business);
 		businessList = businessService.selectAll(business);
