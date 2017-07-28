@@ -40,15 +40,14 @@
                     </li>
                     <li><a><i class="fa fa-table"></i> 招商管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/business_selectAll">供应商入驻管理</a></li>
+                            <li><a href="#">供应商入驻管理</a></li>
                             <li><a href="business.jsp">供应商账号管理</a></li>
                             <li><a href="business.jsp">黑名单管理</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> 代理商管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="form.html">代理商基本信息</a></li>
-                            <li><a href="form_advanced.html">代理商等级</a></li>
+                            <li><a href="<%=basePath%>admin/business_selectAll">代理商基本信息</a></li>
                             <li><a href="form_validation.html">收款账号管理</a></li>
                             <li><a href="form_wizards.html">账期管理</a></li>
                         </ul>
