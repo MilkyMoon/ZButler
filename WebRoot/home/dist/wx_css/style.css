@@ -3554,3 +3554,211 @@ body {
     padding: 4px 0;
     color: rgb(170, 170, 170);
 }
+
+/*支付*/
+.pay {
+	width: 100%;
+}
+
+.pay .m-cell {
+	display: flex;
+	flex-direction: column;
+	align-content: stretch;
+	padding-bottom: 12px;
+}
+
+.pay_store {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	width: 100%;
+	padding: 14px;
+}
+
+.pay_storeImg {
+	margin-right: 14px;
+}
+
+.pay_storeImg img {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+}
+
+.pay_storeName {
+	flex-grow: 1;
+	font-size: 14px;
+	color: #1C1C20;
+}
+
+.pay_storeName span {
+	font-size: 12px;
+	color: #A3A3B5;
+}
+
+.pay_storeTel {
+	font-size: 12px;
+	color: #A3A3B5;
+}
+
+.pay input {
+	height: 44px;
+	margin: 0 14px;
+	padding-left: 10px;
+	border-radius: 4px;
+	border: solid 1px #ccc;
+}
+
+.pay input::-webkit-input-placeholder {
+	font-size: 14px;
+	color: #e1e1ee;
+}
+
+.pay_button {
+	padding: 0 14px;
+}
+
+.pay_button .btn-primary {
+	height: 44px;
+	margin-top: 40px;
+	font-size: 14px;
+	line-height: 44px;
+	border-radius: 4px;
+	background-color: #6DAF24;
+}
+
+
+/*充值  */
+.integral2 {
+    padding: 8px;
+    background-color: #fff;
+}
+
+.integral2_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+}
+
+.integral2_content a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 88px;
+    height: 44px;
+    border: solid 2px #DDDDE9;
+    border-radius: 4px;
+}
+
+.integral2_content a span {
+    height: 16px;
+}
+
+.integral2_content a.active {
+    border: solid 1px #B72712;
+}
+.integral2 .m-celltitle{
+    margin-top: 40px;
+    font-size: 14px;
+    color: #A3A3B5;
+}
+.integral2 .m-cell input{
+
+}
+.integral2 .btn-primary {
+    height: 44px;
+    font-size: 14px;
+    margin-top: 100px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
+
+.integral2 .dialog {
+    display: none;
+    z-index: 1;
+}
+
+.integral2 .dialog_bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0 -8px;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.integral2 .dialog_message {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0 -8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+.integral2 .dialog_content {
+    width: 250px;
+    height: 150px;
+    margin-top: 140px;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.integral2 .dialog_title {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 100;
+    border-radius: 4px 4px 0 0;
+    background-color: #A42310;
+}
+
+.integral2 .dialog_content span {
+    width: 100%;
+    margin: 12px 0 14px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.integral2 .dialog_operation {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.integral2 .dialog_operation div {
+    width: 92px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.integral2 .dialog_operation .no {
+    background-color: #EFEFF4;
+    color: #1C1C20;
+}
+
+.integral2 .dialog_operation .yes {
+    background-color: #6DAF24;
+    color: #fff;
+}

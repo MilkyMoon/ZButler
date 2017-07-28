@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="ZButler">
+    <wb-module deploy-name="ZButler-0.0.1-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-jee/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/ZButler/WebRoot/WEB-INF/classes"/>
-        <property name="context-root" value="/ZButler"/>
         <property name="me-merge-utility-modules" value="true"/>
+        <property name="context-root" value="ZButler"/>
     </wb-module>
 </project-modules>

@@ -44,7 +44,7 @@
 			</div>
 			<div class="login_button">
 				<button type="submit" class="btn-block btn-primary login_button_now">立即登陆</button>
-				<button type="button" class="btn-block btn-primary login_button_wei"><a  id="wxlogin"href="">微信登陆</a></button>
+				<a  id="wxlogin"href=""><button type="button" class="btn-block btn-primary login_button_wei">微信登陆</button></a>
 			</div>
 			<div class="login_question">
 				<a href="<%=basePath%>home/register.jsp">免费注册</a> <a href="<%=basePath%>home/forgetPasswordOne.jsp">忘记密码</a>
@@ -86,7 +86,7 @@ ${js}
 		url : "<%=basePath%>/ZButler/WxOauthRedirect!WeXinLogin.action",
 		success : function(result) {
 			console.log(result)
-			$(".login_button_wei").find("a").attr("href",JSON.parse(result).LoginUrl);
+			$(".login_button").find("a").attr("href",JSON.parse(result).LoginUrl);
 		}
 	});
     	
