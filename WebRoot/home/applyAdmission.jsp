@@ -210,6 +210,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			},
 			function(data){
 				var obj = JSON.parse(data);
+				opString = null;
+				$("#busSmallCate").children().remove();
 				for (var i = 0; i < obj.smalls.length; i++) {
 					var opString = '<option value="'+obj.smalls[i].cateId+'">'+obj.smalls[i].cateName+'</option>';
 					$("#busSmallCate").append(opString);

@@ -6,7 +6,7 @@ import com.linestore.vo.Business;
 
 public interface BusinessService {
 	void add(Business business);
-	void update(Business business);
+	void update(String hql);
 	List<Business> selectAll(Business business);
 	Business select(Business business);
 	void delete(Business business);

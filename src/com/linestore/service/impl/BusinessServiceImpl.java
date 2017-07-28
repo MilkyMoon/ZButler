@@ -25,9 +25,9 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 
 	@Override
-	public void update(Business business) {
+	public void update(String hql) {
 		// TODO Auto-generated method stub
-		businessDao.update(business);
+		businessDao.update(hql);
 	}
 
 	@Override

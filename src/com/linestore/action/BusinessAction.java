@@ -1,11 +1,18 @@
 package com.linestore.action;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import com.linestore.service.BusinessService;
+import com.linestore.service.CatetoryService;
+import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Business;
+import com.linestore.vo.Catetory;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -19,6 +26,14 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	private List<Business> businessList;
 	private Business businessResult;
 	
+	private List<Catetory> catetoriesList;
+	
+	private CatetoryService catetoryService;
+	
+
+	public void setCatetoryService(CatetoryService catetoryService) {
+		this.catetoryService = catetoryService;
+	}
 
 	@Override
 	public Business getModel() {
@@ -57,10 +72,36 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //			business.setBusStatus(0);
 //		}
 		
-		System.out.println(business.getBusStatus());
-		businessService.update(business);
-		businessList = businessService.selectAll(business);
-		ActionContext.getContext().getValueStack().set("list", businessList);
+		System.out.println("-------------" +business.getCatetory().getCateId());
+			int id = business.getBusId();
+//			business.setBusId(null);
+			
+			String hql;
+			try {
+				
+				hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, id);
+//				System.out.println(business.getBusStatus());
+				businessService.update(hql);
+				businessList = businessService.selectAll(business);
+				ActionContext.getContext().getValueStack().set("list", businessList);
+				
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		
 		return "selectAll";
 	}
@@ -73,6 +114,10 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		return "selectAll";
 	}
 	
+	public void setCatetoriesList(List<Catetory> catetoriesList) {
+		this.catetoriesList = catetoriesList;
+	}
+
 	public String selectAll(){
 		
 		businessList = businessService.selectAll(business);
@@ -86,6 +131,10 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	public String read(){
 		businessResult = businessService.select(business);
+		catetoriesList = catetoryService.queryByPid(0);
+//		Map<String, Object> req = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.setAttribute("roots", catetoriesList);
+		
 		if(businessResult == null){
 			return ERROR;
 		}else{
@@ -105,6 +154,11 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	public String select(){
 		businessResult = businessService.select(business);
+		
+		List<Catetory> catetories = catetoryService.queryByPid(0);
+		Map<String, Object> req = (Map<String, Object>) ActionContext.getContext().get("request");
+		req.put("roots", catetories);
+		
 		if(businessResult == null){
 			return ERROR;
 		}else{

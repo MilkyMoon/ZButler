@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import com.linestore.dao.BusinessDao;
 import com.linestore.vo.Business;
@@ -16,10 +17,13 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 	}
 
 	@Override
-	public void update(Business business) {
+	public void update(String hql) {
 		// TODO Auto-generated method stub
-
-		this.getHibernateTemplate().merge(business);
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+//		this.getHibernateTemplate().update(business);
+		
 	}
 
 	@Override
