@@ -129,25 +129,35 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		return "selectAll";
 	}
 	
-	public String read(){
+	public Business selectById(){
 		businessResult = businessService.select(business);
+		
+		return businessResult;
+	}
+	
+	
+	public String read(){
+		businessResult = selectById();
 		catetoriesList = catetoryService.queryByPid(0);
-//		Map<String, Object> req = (Map<String, Object>) ActionContext.getContext().get("request");
-		request.setAttribute("roots", catetoriesList);
 		
 		if(businessResult == null){
 			return ERROR;
 		}else{
+			request.setAttribute("roots", catetoriesList);
 			request.setAttribute("businessResult", businessResult);
 			return "read";
 		}
 	}
 	
 	public String edit(){
-		businessResult = businessService.select(business);
+		businessResult = selectById();
+		catetoriesList = catetoryService.queryByPid(0);
+		
 		if(businessResult == null){
 			return ERROR;
 		}else{
+			request.setAttribute("roots", catetoriesList);
+			request.setAttribute("businessResult", businessResult);
 			return "edit";
 		}
 	}

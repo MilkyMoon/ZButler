@@ -153,7 +153,9 @@
 	                          	<td>是</td>
 	                          </s:if>
 	                          <s:if test="%{#businessList.busStatus == NULL}"><td></td></s:if>
-	                          <td><a href="business_read?busId=<s:property value='busId'></s:property>">查看</a><%-- &nbsp;&nbsp;&nbsp;&nbsp;<a href="business_edit?busId=<s:property value='busId'></s:property>" style="color:#53a3e8">编辑</a> --%>&nbsp;&nbsp;&nbsp;&nbsp;<a href="business_delete?busId=<s:property value='busId'></s:property>" style="color:#c7254e">删除</a></td>
+	                          <td><a href="business_read?busId=<s:property value='busId'></s:property>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                          <a href="business_edit?busId=<s:property value='busId'></s:property>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                          <a href="business_delete?busId=<s:property value='busId'></s:property>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a></td>
 	                        </tr>
                         </s:iterator>
                       </tbody>
