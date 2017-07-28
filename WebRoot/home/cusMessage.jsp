@@ -1,7 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,19 +25,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="dialog_guide">
 			<div class="dialog_guide_bg"></div>
 			<div class="dialog_guide_content">
-				<a href="myMessage.html" class="btn btn-primary">下一步</a> <span>点击这里，绑定手机、微信</span>
+				<a href="" class="btn btn-primary">下一步</a> <span>点击这里，绑定手机、微信</span>
 				<img src="home/dist/wx_image/guide2.png">
 				<div></div>
 			</div>
 		</div>
 		<div class="m-cell">
-				<div class="cell-item">
-					<div class="cell-left">头像</div>
-					<div class="cell-right cell-arrow">
-						<img src="${user.cusImgUrl}" />
-					</div>
+			<div class="cell-item">
+				<div class="cell-left">头像</div>
+				<div class="cell-right cell-arrow">
+					<img src="${user.cusImgUrl}" />
 				</div>
-				<a href="<%=basePath%>home/updateNickname.jsp">
+			</div>
+			<a href="<%=basePath%>home/updateNickname.jsp">
 				<div class="cell-item">
 					<div class="cell-left">昵称</div>
 					<div class="cell-right cell-arrow">${user.cusNickname}</div>
@@ -76,20 +77,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="cell-left">修改密码</div>
 					<div class="cell-right cell-arrow"></div>
 				</div>
-			</a> <a href="<%=basePath%>home/BindingPhone.jsp">
-				<div class="cell-item">
-					<div class="cell-left">
-						<c:if test="${empty user.cusOpenId}">微信绑定</c:if>
-						<c:if test="${empty user.cusPhone}">手机绑定</c:if>
-						<c:if test="${!empty user.cusPhone and !empty user.cusOpenId}">解除绑定</c:if>
+			</a>
+			<c:if test="${empty user.cusPhone or empty user.cusOpenId}">
+				<a href="<%=basePath%>home/BindingPhone.jsp">
+					<div class="cell-item">
+						<div class="cell-left">
+							<c:if test="${empty user.cusOpenId and !empty user.cusPhone}">微信绑定</c:if>
+							<c:if test="${empty user.cusPhone and !empty user.cusOpenId}">手机绑定</c:if>
+						</div>
+						<div class="cell-right cell-arrow"></div>
 					</div>
-					<div class="cell-right cell-arrow"></div>
-				</div>
-			</a> <a href="<%=basePath%>home/setPayPassword.jsp">
+				</a>
+			</c:if>
+			<a href="<%=basePath%>home/setPayPassword.jsp">
 				<div class="cell-item">
 					<div class="cell-left">支付密码</div>
 					<div class="cell-right cell-arrow"></div>
-				</div> 
+				</div>
 			</a>
 		</div>
 		<div class="dialog">
@@ -112,6 +116,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
 	!(function($) {
+	
+		
 		$('.dialog_guide_bg').css('height', document.body.scrollHeight);
 		$('.sex').click(function() {
 			$('.dialog').css('display', 'block')
@@ -132,9 +138,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				},
 				function(data) {});
 		});
+		
+		if (${empty user.cusPhone or empty user.cusOpenId}) {
+    		$('.dialog_guide').css('display', 'block');
+    	}
+		
+		if (${empty user.cusOpenId}) {
+			// 微信登陆
+	    	$.ajax({
+			type : "get",
+			dataType : "json",
+			url : "<%=basePath%>/ZButler/WxOauthRedirect!bindWeChat.action",
+			success : function(result) {
+				console.log(result)
+				$(".dialog_guide_content").find("a").attr("href",JSON.parse(result).LoginUrl);
+			}
+			});
+		} else {
+			$(".dialog_guide_content").find("a").attr("href","<%=basePath%>home/BindingPhone.jsp");
+		}
 	})(jQuery);
-	if (${empty user.cusPhone or empty user.cusOpenId}) {
-    	$('.dialog_guide').css('display', 'block');
-    }
+	
 </script>
 </html>

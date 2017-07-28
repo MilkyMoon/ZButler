@@ -50,7 +50,7 @@
 			<result name="selectType" >home/myOrder.jsp</result>
 			<result name="error" >admin/login.jsp</result>
 		</action>
-		<action name="Customer" class="com.linestore.action.CustomerAction">
+		<action name="Customer_*" class="com.linestore.action.CustomerAction" method="{1}">
 			<result name="gotoRegister">/home/register.jsp</result>
 			<result name="gotoLogin">/home/login.jsp</result>
 			<result name="gotoCustomer" type="redirect">/home/customer.jsp</result>
@@ -67,10 +67,6 @@
 		<action name="CusCoupon" class="com.linestore.action.CusCouponAction">
 			<result name="gotoCoupon">/home/coupon.jsp</result>
 			<result name="gotoLogin">/home/login.jsp</result>
-		</action>
-		<!-- 微信入口配置 -->
-		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
-			method="{1}">
 		</action>
 		
 		<action name="Message_*" class="com.linestore.action.MessageAction"
@@ -96,6 +92,27 @@
 		
 		<action name="Catetory" class="com.linestore.action.CatetoryAction">
 			<result name="gotoApply">/home/applyAdmission.jsp</result>
+		</action>
+		
+		<!-- 微信入口配置 -->
+		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
+			method="{1}">
+		</action>
+
+
+		<action name="WeXinConfig_*" class="com.linestore.action.WeXinConfigAction"
+			method="{1}">
+		</action>
+
+		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
+			<result name="gotoBind" type="redirectAction">Customer_update</result>
+			<result name="gotoPay">home/Pay.jsp</result>
+			<result name="gotoRecharge">home/integral.jsp</result>
+		</action>
+		
+		<action name="WxPay" class="com.linestore.action.WxPayAction"
+			method="payNotify">
 		</action>
 	</package>
 
@@ -128,14 +145,24 @@
 
 
 		<!-- 微信相关配置 -->
+		<!-- 微信网页授权js参数 -->
 		<action name="WxJsApi" class="com.linestore.action.WxJsApiAction"
 			method="JsApiParams">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
-		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectActioin"
-			method="WeXinLogin">
+		<!-- 网页授权静默获取OpenId -->
+		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+			
+		</action>
+
+		<!-- 发起微信支付参数配置 -->
+		<action name="WxPayJson" class="com.linestore.action.WxPayAction"
+			method="getPayInfo">
 			<result type="json">
 				<param name="root">result</param>
 			</result>

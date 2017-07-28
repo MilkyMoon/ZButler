@@ -64,6 +64,20 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 			throw e;
 		}
 	}
+	
+	@Override
+	public List<Customer> findByOpenId(String openId) {
+		System.out.println("exec findByOpenId");
+		try {
+			List<Customer> customers = (List<Customer>) this.getHibernateTemplate()
+					.find("from Customer where cusOpenId=?", openId);
+			System.out.println("find sucessful");
+			return customers;
+		} catch (RuntimeException e) {
+			System.out.println("find failed!\n" + e);
+			throw e;
+		}
+	}
 
 	@Override
 	public List<Customer> findByPhone(String phone) {

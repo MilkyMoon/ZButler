@@ -110,7 +110,6 @@
 					},
 					function(data) {
 						data = $.parseJSON(data);
-						console.log(data);
 						if (data.isError === "true") {
 							window.YDUI.dialog.alert(data.ErrorMessage);
 						} else {

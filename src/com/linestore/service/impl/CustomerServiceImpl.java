@@ -45,6 +45,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer findById(int cusId) {
 		return customerDao.findById(cusId);
 	}
+	
+	@Override
+	public List<Customer> findByOpenId(String openId) {
+		return customerDao.findByOpenId(openId);
+	}
 
 	@Override
 	public List<Customer> findByPhone(String phone) {

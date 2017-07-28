@@ -51,6 +51,22 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	
 	private CatetoryService catetoryService;
 	
+	public String weChat() {
+		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
+		System.out.println(cus.getCusOpenId());
+		System.out.println(customerService.findByOpenId(cus.getCusOpenId()).size());
+		if (customerService.findByOpenId(cus.getCusOpenId()).size() < 1) {
+			customerService.addCustomer(cus);
+			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
+			init(cus);
+		} else {
+			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
+		}
+		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
+		ActionContext.getContext().getSession().put("user", cus);
+		return "gotoCustomer";
+	}
+	
 	private void init(Customer cus) {
 		CusAccount cusAccount = new CusAccount();
 		cusAccount.setCacPoints((float) 0);
@@ -143,6 +159,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public String update() {
 		String value = null;
+		
+		if (ActionContext.getContext().getSession().get("Bind") != null) {
+			field = (String) ActionContext.getContext().getSession().get("Bind");
+			value = (String) ActionContext.getContext().getSession().get("openId");
+			ActionContext.getContext().getSession().put("Bind", null);
+		}
 		if ("cusNickname".equals(field)) {
 			value = customer.getCusNickname();
 		} else if ("cusHobby".equals(field)) {

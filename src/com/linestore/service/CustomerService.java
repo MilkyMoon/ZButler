@@ -13,6 +13,8 @@ public interface CustomerService {
 	public void delCustomer(int cusId);
 
 	public Customer findById(int cusId);
+	
+	public List<Customer> findByOpenId(String openId);
 
 	public List<Customer> findByPhone(String phone);
 

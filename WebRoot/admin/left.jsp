@@ -54,7 +54,7 @@
                     </li>
                     <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="general_elements.html">分类管理</a></li>
+                            <li><a href="catetory.jsp">分类管理</a></li>
                             <li><a href="media_gallery.html">品牌管理</a></li>
                             <li><a href="typography.html">商品属性模板管理</a></li>
                         </ul>
