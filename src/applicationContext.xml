@@ -35,7 +35,7 @@
 				<!-- 方言 ctrl+shift+t 输入mysql5，找到org.hibernate.dialect.MySQL5InnoDBDialect -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 				<!-- 是否显示格式化sql -->
-				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 生成数据表的策略 -->
 				<prop key="hibernate.hbm2ddl.auto">none</prop>

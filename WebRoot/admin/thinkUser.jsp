@@ -4,6 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,22 +47,22 @@
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
-								Tables <small>Some examples to get you started</small>
+								<a href="thinkUser_add?thuId=2"><button type="button" class="btn btn-success btn-lg">添加管理员</button></a> <small>只能添加自己权限以下的管理员</small>
 							</h3>
 						</div>
 
-						<div class="title_right">
-							<div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="输入地区、姓名、电话或邮箱 ..."> <span
-										class="input-group-btn">
-										<button class="btn btn-default" type="button">搜索</button>
-									</span>
+						<form action="thinkUser_select" method="get">
+							<div class="title_right">
+								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+									<div class="input-group">
+										<input type="text" class="form-control" name="thuName" placeholder="输入地区、姓名、电话或邮箱 ..."> 	
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Go!</button>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 
 					<div class="clearfix"></div>
@@ -119,113 +120,51 @@
 											</thead>
 
 											<tbody>
-												<tr class="even pointer">
-													<td class="a-center "><input type="checkbox"
-														class="flat" name="table_records"></td>
-													<td class=" ">张三</td>
-													<td class=" ">众帮管家</td>
-													<td class=" ">1324585545</td>
-													<td class=" ">1400251@qq.com</td>
-													<td class=" ">是</td>
-													<td><a
-														href="business_read?busId=<s:property value='busId'></s:property>"
-														class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;关闭</a>&nbsp;&nbsp;&nbsp;&nbsp;
-														<a
-														href="business_edit?busId=<s:property value='busId'></s:property>"
-														class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-														<a
-														href="business_delete?busId=<s:property value='busId'></s:property>"
-														class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
-													</td>
-												</tr>
 												<c:forEach var="root" items="${list}">
 													<tr class="even pointer">
-														<td class="a-center "><input type="checkbox"
-															class="flat" name="table_records"></td>
-														<td class=" ">张三</td>
+														<td class="a-center ">
+															<input type="checkbox" class="flat" name="table_records">
+														</td>
+														
+														<c:if test="${empty root.thuName}">
+															<td class=" " style="color:red">未指定</td>
+														</c:if>
+														<c:if test="${!empty root.thuName}">
+															<td class=" ">${root.thuName }</td>
+														</c:if>
 														<td class=" ">${root.thuArea}</td>
-														<td class=" ">1324585545</td>
-														<td class=" ">1400251@qq.com</td>
-														<td class=" ">是</td>
-														<td><a
-															href="business_read?busId=<s:property value='busId'></s:property>"
-															class="btn btn-primary btn-xs"><i
-																class="fa fa-folder"></i>&nbsp;&nbsp;关闭</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a
-															href="business_edit?busId=<s:property value='busId'></s:property>"
-															class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a
-															href="business_delete?busId=<s:property value='busId'></s:property>"
-															class="btn btn-danger btn-xs"><i
-																class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a></td>
+														<td class=" ">${root.thuPhone}</td>
+														<td class=" ">${root.thuEmail}</td>
+														<c:if test="${root.thuStatus == '1'}">
+															<td class=" ">是</td>
+														</c:if>
+														<c:if test="${root.thuStatus == '-1'}">
+															<td class=" " style="color:#d9534f">否</td>
+														</c:if>
+														<td>
+															<c:if test="${root.thuStatus == '1'}">
+																<a href="thinkUser_status?thuStatus=-1&thuId=${root.thuId}" class="btn btn-primary btn-xs">
+																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															</c:if>
+															<c:if test="${root.thuStatus == '-1'}">
+																<a href="thinkUser_status?thuStatus=1&thuId=${root.thuId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
+																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															</c:if>
+															
+															<a href="thinkUser_edit?thuId=${root.thuId}" class="btn btn-info btn-xs">
+															    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
+															</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="thinkUser_delete?thuId=${root.thuId}" class="btn btn-danger btn-xs">
+																<i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除
+															</a>
+														</td>
 													</tr>
 												</c:forEach>
-
-												<%-- <tr class="even pointer">
-	                                            <td class="a-center ">
-	                                                <input type="checkbox" class="flat" name="table_records">
-	                                            </td>
-	                                            <td class=" ">张三</td>
-	                                            <td class=" ">|——北京市</td>
-	                                            <td class=" ">1324585545</td>
-	                                            <td class=" ">1400251@qq.com</td>
-	                                            <td class=" ">是</td>
-	                                            <td>
-	                                            	<a href="business_read?busId=<s:property value='busId'></s:property>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;关闭</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_edit?busId=<s:property value='busId'></s:property>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_delete?busId=<s:property value='busId'></s:property>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
-							                    </td>
-	                                        </tr>
-	                                        <tr class="even pointer">
-	                                            <td class="a-center ">
-	                                                <input type="checkbox" class="flat" name="table_records">
-	                                            </td>
-	                                            <td class=" ">张三</td>
-	                                            <td class=" ">|——|——北京市</td>
-	                                            <td class=" ">1324585545</td>
-	                                            <td class=" ">1400251@qq.com</td>
-	                                            <td class=" ">是</td>
-	                                            <td>
-	                                            	<a href="business_read?busId=<s:property value='busId'></s:property>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;关闭</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_edit?busId=<s:property value='busId'></s:property>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_delete?busId=<s:property value='busId'></s:property>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
-							                    </td>
-	                                        </tr>
-	                                        <tr class="even pointer">
-	                                            <td class="a-center ">
-	                                                <input type="checkbox" class="flat" name="table_records">
-	                                            </td>
-	                                            <td class=" ">张三</td>
-	                                            <td class=" ">|——|——|——海淀区</td>
-	                                            <td class=" ">1324585545</td>
-	                                            <td class=" ">1400251@qq.com</td>
-	                                            <td class=" ">是</td>
-	                                            <td>
-	                                            	<a href="business_read?busId=<s:property value='busId'></s:property>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;关闭</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_edit?busId=<s:property value='busId'></s:property>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_delete?busId=<s:property value='busId'></s:property>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
-							                    </td>
-	                                        </tr>
-	                                        <tr class="even pointer">
-	                                            <td class="a-center ">
-	                                                <input type="checkbox" class="flat" name="table_records">
-	                                            </td>
-	                                            <td class=" ">张三</td>
-	                                            <td class=" ">|——河北省</td>
-	                                            <td class=" ">1324585545</td>
-	                                            <td class=" ">1400251@qq.com</td>
-	                                            <td class=" ">是</td>
-	                                            <td>
-	                                            	<a href="business_read?busId=<s:property value='busId'></s:property>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;关闭</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_edit?busId=<s:property value='busId'></s:property>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							                        <a href="business_delete?busId=<s:property value='busId'></s:property>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
-							                    </td>
-	                                        </tr> --%>
 											</tbody>
 										</table>
 									</div>
-
-
 								</div>
 							</div>
 						</div>

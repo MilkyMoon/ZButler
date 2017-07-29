@@ -218,9 +218,9 @@
         	<result name="error">index.jsp</result>
         </action>
         <action name="thinkUser_*" class="com.linestore.action.ThinkUserAction" method="{1}">
-        	<result name="SelectAll">thinkUser.jsp</result>
-        	<result name="read">readBusiness.jsp</result>
-        	<result name="edit">editBusiness.jsp</result>
+        	<result name="selectAll">thinkUser.jsp</result>
+        	<result name="add">thinkUserAdd.jsp</result>
+        	<result name="edit">thinkUserEdit.jsp</result>
         	<result name="error">index.jsp</result>
         </action>
     </package>

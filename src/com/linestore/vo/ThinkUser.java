@@ -15,13 +15,14 @@ public class ThinkUser implements java.io.Serializable {
 	// Fields
 
 	private Integer thuId;
-	private String thuName;
+	private String thuUsername;
 	private String thuPassword;
 	private String thuStatus;
 	private Integer thuPid;
 	private String thuArea;
 	private String thuEmail;
 	private String thuPhone;
+	private String thuName;
 	private Set groupAccesses = new HashSet(0);
 
 	// Constructors
@@ -31,13 +32,15 @@ public class ThinkUser implements java.io.Serializable {
 	}
 
 	public ThinkUser(ThinkUser thu) {
-		this.thuName = thu.getThuName();
+		this.thuId = thu.getThuId();
+		this.thuUsername = thu.getThuUsername();
 		this.thuPassword = thu.getThuPassword();
 		this.thuStatus = thu.getThuStatus();
 		this.thuPid = thu.getThuPid();
 		this.thuArea = thu.getThuArea();
 		this.thuEmail = thu.getThuEmail();
 		this.thuPhone = thu.getThuPhone();
+		this.thuName = thu.getThuName();
 	}
 
 	/** minimal constructor */
@@ -48,10 +51,10 @@ public class ThinkUser implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ThinkUser(String thuName, String thuPassword, String thuStatus, Timestamp thuCreateTime,
+	public ThinkUser(String thuUsername, String thuPassword, String thuStatus, Timestamp thuCreateTime,
 			Timestamp thuUpdateTime, Integer thuPid, String thuArea, String thuEmail, String thuPhone,
-			Set groupAccesses) {
-		this.thuName = thuName;
+			Set groupAccesses,String thuName) {
+		this.thuUsername = thuUsername;
 		this.thuPassword = thuPassword;
 		this.thuStatus = thuStatus;
 		this.thuPid = thuPid;
@@ -59,6 +62,7 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuEmail = thuEmail;
 		this.thuPhone = thuPhone;
 		this.groupAccesses = groupAccesses;
+		this.thuName = thuName;
 	}
 
 	// Property accessors
@@ -69,6 +73,14 @@ public class ThinkUser implements java.io.Serializable {
 
 	public void setThuId(Integer thuId) {
 		this.thuId = thuId;
+	}
+	
+	public String getThuUsername() {
+		return this.thuUsername;
+	}
+
+	public void setThuUsername(String thuUsername) {
+		this.thuUsername = thuUsername;
 	}
 
 	public String getThuName() {
