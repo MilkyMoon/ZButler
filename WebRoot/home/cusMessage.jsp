@@ -118,7 +118,7 @@
 	!(function($) {
 	
 		
-		$('.dialog_guide_bg').css('height', document.body.scrollHeight);
+		/* $('.dialog_guide_bg').css('height', document.body.scrollHeight); */
 		$('.sex').click(function() {
 			$('.dialog').css('display', 'block')
 		});

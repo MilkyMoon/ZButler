@@ -41,7 +41,7 @@
 			</a> <a href="javascript:;"> <span>￥<span>100</span></span> </span>
 			</a>
 		</div>
-		<div class="m-celltitle">其他数量:</div>
+		<div class="m-celltitle">其他金额:</div>
 		<div class="cell-item">
 			<input type="number" id="otherNum" pattern="[0-9]*"
 				class="cell-input" placeholder="请输入金额" autocomplete="off" />

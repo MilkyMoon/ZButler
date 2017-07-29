@@ -1,5 +1,7 @@
 package com.linestore.vo;
 
+import java.sql.Timestamp;
+
 /**
  * CtaTrading entity. @author MyEclipse Persistence Tools
  */
@@ -8,10 +10,11 @@ public class CtaTrading implements java.io.Serializable {
 
 	// Fields
 
-	private Integer ctaId;
+	private String ctaId;
 	private Customer customer;
 	private Integer ctaType;
 	private Float ctaMoney;
+	private Timestamp ctaTime;
 
 	// Constructors
 
@@ -19,20 +22,27 @@ public class CtaTrading implements java.io.Serializable {
 	public CtaTrading() {
 	}
 
+	/** minimal constructor */
+	public CtaTrading(String ctaId) {
+		this.ctaId = ctaId;
+	}
+
 	/** full constructor */
-	public CtaTrading(Customer customer, Integer ctaType, Float ctaMoney) {
+	public CtaTrading(String ctaId, Customer customer, Integer ctaType, Float ctaMoney, Timestamp ctaTime) {
+		this.ctaId = ctaId;
 		this.customer = customer;
 		this.ctaType = ctaType;
 		this.ctaMoney = ctaMoney;
+		this.ctaTime = ctaTime;
 	}
 
 	// Property accessors
 
-	public Integer getCtaId() {
+	public String getCtaId() {
 		return this.ctaId;
 	}
 
-	public void setCtaId(Integer ctaId) {
+	public void setCtaId(String ctaId) {
 		this.ctaId = ctaId;
 	}
 
@@ -44,10 +54,8 @@ public class CtaTrading implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	
-
 	public Integer getCtaType() {
-		return ctaType;
+		return this.ctaType;
 	}
 
 	public void setCtaType(Integer ctaType) {
@@ -60,6 +68,14 @@ public class CtaTrading implements java.io.Serializable {
 
 	public void setCtaMoney(Float ctaMoney) {
 		this.ctaMoney = ctaMoney;
+	}
+
+	public Timestamp getCtaTime() {
+		return this.ctaTime;
+	}
+
+	public void setCtaTime(Timestamp ctaTime) {
+		this.ctaTime = ctaTime;
 	}
 
 }

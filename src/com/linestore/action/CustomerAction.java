@@ -56,10 +56,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		System.out.println(cus.getCusOpenId());
 		System.out.println(customerService.findByOpenId(cus.getCusOpenId()).size());
 		if (customerService.findByOpenId(cus.getCusOpenId()).size() < 1) {
+			cus.setCusPassword("111");
 			customerService.addCustomer(cus);
 			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
 			init(cus);
 		} else {
+			System.out.println("--------------");
 			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
 		}
 		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
