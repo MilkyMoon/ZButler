@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Gentelella Alela! |</title>
+<title>代理商管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -62,7 +62,7 @@
 							<h3>Form Elements</h3>
 						</div>
 
-						<div class="title_right">
+						<%-- <div class="title_right">
 							<div
 								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
@@ -73,7 +73,7 @@
 									</span>
 								</div>
 							</div>
-						</div>
+						</div> --%>
 					</div>
 					<div class="clearfix"></div>
 					<div class="row">
@@ -84,7 +84,12 @@
 									<div class="x_title">
 										<h2>
 											<s:property value="busShopName" />
-											<small style="color:red">待审核</small>
+											<s:if test="%{#businessList.busStatus == 0}">
+												<small style="color:red">待审核</small>
+               								</s:if> 
+              								<s:if test="%{#businessList.busStatus == 1}">
+												<small style="color:red">审核通过</small>
+                      						</s:if>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -235,17 +240,15 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">审核状态</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<div class="radio">
-														<label> <s:if test="%{#businessList.busStatus == 0}">
-																	<input type="radio" class="flat" name="busStatus"
-																		value="1"> 通过
-			                          								<input type="radio" class="flat" checked
-																		name="busStatus" value="0"> 未通过
-		                          								</s:if> 
-		                          								<s:if test="%{#businessList.busStatus == 1}">
-																	<input type="radio" class="flat" checked
-																		name="busStatus" value="1"> 通过
-		                          								</s:if>
-
+														<label> 
+															<s:if test="%{#businessList.busStatus == 0}">
+																<input type="radio" class="flat" name="busStatus" value="1"> 通过
+		                          								<input type="radio" class="flat" checked name="busStatus" value="0"> 未通过
+	                          								</s:if> 
+	                          								<s:if test="%{#businessList.busStatus == 1}">
+																<input type="radio" class="flat" checked name="busStatus" value="1"> 通过
+		                          								<input type="radio" class="flat" name="busStatus" value="0"> 未通过
+	                          								</s:if>
 														</label>
 													</div>
 												</div>
@@ -360,8 +363,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											<s:property value="busShopName" />
-											<small style="color:red">待审核</small>
+											商家地址
+											<small style="color:red"><s:property value="busShopName" /></small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i

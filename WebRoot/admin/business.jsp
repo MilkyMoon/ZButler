@@ -47,7 +47,7 @@
                 <h3>Users <small>Some examples to get you started</small></h3>
               </div>
 
-              <div class="title_right">
+              <%-- <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
@@ -56,7 +56,7 @@
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> --%>
             </div>
 
             <div class="clearfix"></div>
@@ -66,7 +66,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>招商管理<small>供应商入驻管理</small></h2>
+                    <h2>代理商管理<small>代理商基本信息管理</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -92,7 +92,7 @@
                       <thead>
                         <tr>
                           <th>
-							 <th><input type="checkbox" id="check-all" class="flat"></th>
+							 <th><input type="checkbox" id="check-all" class="flat"/></th>
 						  </th>
                           <th>店铺名称</th>
                           <th>商家类别</th>
@@ -108,7 +108,7 @@
                       	<s:iterator value="list" status="" id="businessList">
 	                        <tr>
 	                          <td>
-								 <th><input type="checkbox" id="check-all" class="flat"></th>
+								 <th><input type="checkbox" class="flat" name="table_records"/></th>
 							  </td>
 	                          <td><s:property value="busShopName"></s:property></td>
 	                          <s:if test="%{#businessList.busLevel == 0}">
@@ -153,7 +153,9 @@
 	                          	<td>是</td>
 	                          </s:if>
 	                          <s:if test="%{#businessList.busStatus == NULL}"><td></td></s:if>
-	                          <td><a href="business_read?busId=<s:property value='busId'></s:property>">查看</a><%-- &nbsp;&nbsp;&nbsp;&nbsp;<a href="business_edit?busId=<s:property value='busId'></s:property>" style="color:#53a3e8">编辑</a> --%>&nbsp;&nbsp;&nbsp;&nbsp;<a href="business_delete?busId=<s:property value='busId'></s:property>" style="color:#c7254e">删除</a></td>
+	                          <td><a href="business_read?busId=<s:property value='busId'></s:property>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                          <a href="business_edit?busId=<s:property value='busId'></s:property>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	                          <a href="business_delete?busId=<s:property value='busId'></s:property>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a></td>
 	                        </tr>
                         </s:iterator>
                       </tbody>
