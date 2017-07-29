@@ -1,5 +1,7 @@
 package com.linestore.service.impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.CtaTradingDao;
@@ -22,6 +24,11 @@ public class CtaTradingServiceImpl implements CtaTradingService {
 
 	public void setCtaTradingDao(CtaTradingDao ctaTradingDao) {
 		this.ctaTradingDao = ctaTradingDao;
+	}
+
+	@Override
+	public List<CtaTrading> queryByCusid(int cusId) {
+		return ctaTradingDao.queryByCusid(cusId);
 	}
 	
 

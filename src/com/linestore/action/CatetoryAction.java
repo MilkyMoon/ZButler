@@ -57,6 +57,8 @@ public class CatetoryAction extends ActionSupport implements ModelDriven<Catetor
 		this.result = JSONObject.fromObject(map, cfg).toString();
 		return SUCCESS;
 	}
+	
+	
 
 	public CatetoryService getCatetoryService() {
 		return catetoryService;

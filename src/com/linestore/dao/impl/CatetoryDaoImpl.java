@@ -1,6 +1,9 @@
 package com.linestore.dao.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
@@ -71,6 +74,4 @@ public class CatetoryDaoImpl extends HibernateDaoSupport implements CatetoryDao 
 			throw e;
 		}
 	}
-
-
 }
