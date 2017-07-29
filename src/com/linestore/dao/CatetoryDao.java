@@ -17,4 +17,6 @@ public interface CatetoryDao {
 	
 	public List<Catetory> queryAll();
 
+	public List<Catetory> queryFormat(List<Catetory> list, int pid, int level);
+
 }
