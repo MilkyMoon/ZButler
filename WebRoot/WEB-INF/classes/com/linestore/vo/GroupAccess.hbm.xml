@@ -10,11 +10,11 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-      <property name="uid" type="java.lang.Integer">
-            <column name="uid"/>
-        </property>
-         <property name="groupid" type="java.lang.Integer">
-            <column name="groupid"/>
+        <many-to-one name="thinkUser" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
+            <column name="uid" not-null="true" />
+        </many-to-one>
+        <property name="groupid" type="java.lang.Integer">
+            <column name="groupid" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

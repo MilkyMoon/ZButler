@@ -210,6 +210,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			},
 			function(data){
 				var obj = JSON.parse(data);
+				console.log(obj);
 				opString = null;
 				$("#busSmallCate").children().remove();
 				for (var i = 0; i < obj.smalls.length; i++) {

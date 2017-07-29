@@ -1,5 +1,6 @@
 package com.linestore.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,8 +59,6 @@ public class CatetoryAction extends ActionSupport implements ModelDriven<Catetor
 		return SUCCESS;
 	}
 	
-	
-
 	public CatetoryService getCatetoryService() {
 		return catetoryService;
 	}
