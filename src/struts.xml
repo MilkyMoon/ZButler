@@ -213,6 +213,12 @@
         	<result name="edit">editBusiness.jsp</result>
         	<result name="error">index.jsp</result>
         </action>
+        <action name="thinkUser_*" class="com.linestore.action.ThinkUserAction" method="{1}">
+        	<result name="SelectAll">thinkUser.jsp</result>
+        	<result name="read">readBusiness.jsp</result>
+        	<result name="edit">editBusiness.jsp</result>
+        	<result name="error">index.jsp</result>
+        </action>
     </package>
 
 </struts>
