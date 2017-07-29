@@ -94,6 +94,10 @@
 			<result name="gotoApply">/home/applyAdmission.jsp</result>
 		</action>
 		
+		<action name="CtaTrading" class="com.linestore.action.CtaTradingAction">
+			<result name="gotoRecord">/home/rechargeRecord.jsp</result>
+		</action>
+		
 		<!-- 微信入口配置 -->
 		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
 			method="{1}">
