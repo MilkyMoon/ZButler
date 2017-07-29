@@ -2908,7 +2908,7 @@ body {
     display: none;
 }
 
-.myMessage .dialog_guide_bg {
+.myMessage .dialog_guide_content {
     position: absolute;
     width: 100%;
     min-height: 100%;
@@ -2956,7 +2956,7 @@ body {
     position: absolute;
     align-self: flex-start;
     width: 75px;
-    height: 90px;
+    height: 42px;
     margin-left: 4px;
     margin-top: 385px;
     border: solid 5px red;

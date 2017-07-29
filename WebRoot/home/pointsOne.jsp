@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="integral_operation">
-			<a href="#">充值记录</a>
+			<a href="#">交易记录</a>
 		</div>
 	</div>
 </body>

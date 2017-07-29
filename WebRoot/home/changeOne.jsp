@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="smallMoney_operation">
-			<a href="#">提现记录</a> <a href="#">提现</a>
+			<a href="#">交易记录</a> <a href="<%=basePath%>WxOauthRedirect!IntoRechage.action">充值</a>
 		</div>
 	</div>
 </body>

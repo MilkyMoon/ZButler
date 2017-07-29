@@ -74,8 +74,8 @@
 			<a href="<%=basePath%>Friends!selectAll.action" class="mine_function_pyq">
 				<div></div> <span>我的朋友圈</span>
 			</a> 
-			<a href="#" class="mine_function_jfcz">
-				<div></div> <span>积分充值</span>
+			<a href="<%=basePath%>WxOauthRedirect!IntoRechage.action" class="mine_function_jfcz">
+				<div></div> <span>零钱充值</span>
 			</a> 
 			<a href="<%=basePath%>Customer!myQRCode.action" class="mine_function_ewm">
 				<div></div> <span>二维码</span>
