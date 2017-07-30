@@ -34,4 +34,10 @@ public class CusAccountServiceImpl implements CusAccountService {
 		return cusAccountDao.findByCusId(cusId);
 	}
 
+	@Override
+	public void updateCusAccount(CusAccount cusAccount) {
+		cusAccountDao.updateCusAccount(cusAccount);
+		
+	}
+
 }

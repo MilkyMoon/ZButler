@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.CatetoryDao;
 import com.linestore.vo.Catetory;
 
+@Transactional
 public class CatetoryDaoImpl extends HibernateDaoSupport implements CatetoryDao {
 
 	@Override

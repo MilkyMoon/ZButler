@@ -35,4 +35,17 @@ public class CtaTradingDaoImpl extends HibernateDaoSupport implements CtaTrading
 		}
 	}
 
+	@Override
+	public List<CtaTrading> queryPoint(int cusId) {
+		System.out.println("exec queryByCusid");
+		try {
+			List<CtaTrading> ctaTradings = (List<CtaTrading>) this.getHibernateTemplate().find("from CtaTrading where customer.cusId=? and ctaType > 10 order by ctaTime desc", cusId);
+			System.out.println("queryByCusid successful!");
+			return ctaTradings;
+		} catch (RuntimeException e) {
+			System.out.println("query failed!\n" + e);
+			throw e;
+		}
+	}
+
 }
