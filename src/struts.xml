@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<!-- 指定默认编码集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+
+	<package name="struts2" extends="struts-default" namespace="/">
+
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.linestore.inteceptor.LoginInteceptor">
+				<param name="excludeMethods">login,weChats</param>
+			</interceptor>
+			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
+			<interceptor-stack name="defaultinter">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		<default-interceptor-ref name="defaultinter"></default-interceptor-ref> 
+		
+		<global-results>
+            <result name="Login">/home/login.jsp</result>  
+        </global-results> 
+
+		<action name="user_*" class="com.linestore.action.UserAction"
+			method="{1}">
+			<result name="success" type="redirect">admin/index.jsp</result>
+			<result name="error">admin/login.jsp</result>
+		</action>
+
+		<action name="business_*" class="com.linestore.action.BusinessAction"
+			method="{1}">
+			<result name="gotoCustomer">home/customer.jsp</result>
+			<result name="success" type="redirectAction">business_jump</result>
+			<result name="selectAll">admin/business.jsp</result>
+			<result name="error">admin/index.jsp</result>
+		</action>
+
+		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
+			method="{1}">
+			<result name="success" type="redirect">home/deliveryAddress.jsp</result>
+			<result name="cusAddressList" type="redirect">home/deliveryAddress.jsp
+			</result>
+			<result name="cusAddressAdd">home/deliveryAddressAdd.jsp</result>
+			<result name="cusAddressEdit">home/deliveryAddressEdit.jsp</result>
+			<result name="error">admin/login.jsp</result>
+			<result name="selectAll">home/deliveryAddress.jsp</result>
+			<result name="add" type="redirect">home/deliveryAddressAdd.jsp</result>
+			<result name="edit">home/deliveryAddressEdit.jsp</result>
+
+		</action>
+
+		<action name="Friends_*" class="com.linestore.action.FriendsAction"
+			method="{1}">
+			<result name="success" type="redirect">index.jsp</result>
+			<result name="selectAll">home/myFriendO.jsp</result>
+			<result name="selectType">index.jsp</result>
+			<result name="error">admin/login.jsp</result>
+		</action>
+		<action name="Order_*" class="com.linestore.action.OrderAction"
+			method="{1}">
+			<result name="success">index.jsp</result>
+			<result name="selectAll">home/myOrder.jsp</result>
+			<result name="selectType">home/myOrder.jsp</result>
+			<result name="error">admin/login.jsp</result>
+		</action>
+		<action name="Customer_*" class="com.linestore.action.CustomerAction"
+			method="{1}">
+			<result name="gotoRegister">/home/register.jsp</result>
+			<result name="gotoLogin">/home/login.jsp</result>
+			<result name="gotoCustomer" type="redirect">/home/customer.jsp</result>
+			<result name="gotoCusMessage">/home/cusMessage.jsp</result>
+			<result name="gotoForgetTwo">/home/forgetPasswordTwo.jsp</result>
+
+
+			<result name="askRegister">/home/share.jsp</result>
+
+			<result name="myQRCode">home/myQRCode.jsp</result>
+
+			<result name="logout">/home/login.jsp</result>
+		</action>
+		<action name="CusCoupon" class="com.linestore.action.CusCouponAction">
+			<result name="gotoCoupon">/home/coupon.jsp</result>
+			<result name="gotoLogin">/home/login.jsp</result>
+		</action>
+
+		<action name="Message_*" class="com.linestore.action.MessageAction"
+			method="{1}">
+			<result name="selectAll">home/leaveWord.jsp</result>
+			<result name="goto" type="redirectAction">Message_selectAll</result>
+			<result name="messageList">home/leaveWord.jsp</result>
+			<result name="error">admin/login.jsp</result>
+		</action>
+
+		<action name="CusAccount" class="com.linestore.action.CusAccountAction">
+			<result name="gotoChangeOne">home/changeOne.jsp</result>
+			<result name="gotoPointsOne">home/pointsOne.jsp</result>
+		</action>
+
+		<action name="Tag" class="com.linestore.action.TagAction">
+			<result name="gotoCusLabel">/home/cusLabel.jsp</result>
+		</action>
+
+		<action name="CusBank" class="com.linestore.action.CusBankAction">
+			<result name="gotoBindCardOne" type="redirect">/home/bindCardOne.jsp
+			</result>
+		</action>
+
+		<action name="Catetory" class="com.linestore.action.CatetoryAction">
+			<result name="gotoApply">/home/applyAdmission.jsp</result>
+		</action>
+
+		<action name="CtaTrading" class="com.linestore.action.CtaTradingAction">
+			<result name="gotoRecord">/home/rechargeRecord.jsp</result>
+		</action>
+
+		<!-- 微信入口配置 -->
+		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
+			method="{1}">
+		</action>
+
+
+		<action name="WeXinConfig_*" class="com.linestore.action.WeXinConfigAction"
+			method="{1}">
+		</action>
+
+		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
+			<result name="gotoBind" type="redirectAction">Customer_update</result>
+			<result name="gotoPay">home/Pay.jsp</result>
+			<result name="gotoRecharge">home/integral.jsp</result>
+		</action>
+
+		<action name="WxPay" class="com.linestore.action.WxPayAction"
+			method="payNotify">
+		</action>
+	</package>
+
+	<package name="strutsJson" extends="json-default">
+		<action name="CustomerJson" class="com.linestore.action.CustomerAction"
+			method="sendMessage">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="BindPhoneJson" class="com.linestore.action.CustomerAction"
+			method="BindPhone">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="ForgetPassJson" class="com.linestore.action.CustomerAction"
+			method="forgetPass">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="querySmallJson" class="com.linestore.action.CatetoryAction"
+			method="querySmall">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+
+		<!-- 微信相关配置 -->
+		<!-- 微信网页授权js参数 -->
+		<action name="WxJsApi" class="com.linestore.action.WxJsApiAction"
+			method="JsApiParams">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 网页授权静默获取OpenId -->
+		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+
+		</action>
+
+		<!-- 发起微信支付参数配置 -->
+		<action name="WxPayJson" class="com.linestore.action.WxPayAction"
+			method="getPayInfo">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+  
+	<package name="struts3" extends="struts-default" namespace="/admin">
+		<action name="business_*" class="com.linestore.action.BusinessAction" method="{1}">
+        	<result name="selectAll">business.jsp</result>
+        	<result name="read">readBusiness.jsp</result>
+        	<result name="edit">editBusiness.jsp</result>
+        	<result name="error">index.jsp</result>
+        </action>
+        <action name="thinkUser_*" class="com.linestore.action.ThinkUserAction" method="{1}">
+        	<result name="selectAll">thinkUser.jsp</result>
+        	<result name="add">thinkUserAdd.jsp</result>
+        	<result name="edit">thinkUserEdit.jsp</result>
+        	<result name="error">index.jsp</result>
+        </action>
+    </package>
+
+</struts>
