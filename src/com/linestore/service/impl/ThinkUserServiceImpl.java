@@ -16,7 +16,32 @@ public class ThinkUserServiceImpl implements ThinkUserService{
 		this.thinkUserDao = thinkUserDao;
 	}
 
-	public void queryFormat(List<ThinkUser> list, int pid) {
-		thinkUserDao.queryFormat(list, pid, 0);
+	public void queryFormat(List<ThinkUser> list, int pid, int level) {
+		thinkUserDao.queryFormat(list, pid, level);
+	}
+	
+	public void add(ThinkUser thinkUser){
+		thinkUserDao.add(thinkUser);
+	}
+	
+	public void delete(ThinkUser thinkUser){
+		thinkUserDao.delete(thinkUser);
+	}
+
+	@Override
+	public ThinkUser selectById(ThinkUser thinkUser) {
+		return thinkUserDao.selectById(thinkUser);
+	}
+
+	@Override
+	public List<ThinkUser> select(ThinkUser thinkUser) {
+		// TODO Auto-generated method stub
+		return thinkUserDao.select(thinkUser);
+	}
+
+	@Override
+	public void status(ThinkUser thinkUser) {
+		// TODO Auto-generated method stub
+		thinkUserDao.status(thinkUser);
 	}
 }

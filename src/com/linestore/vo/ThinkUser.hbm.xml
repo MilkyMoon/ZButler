@@ -11,13 +11,16 @@
             <generator class="identity" />
         </id>
         <property name="thuName" type="java.lang.String">
-            <column name="thu_name" not-null="true" />
+            <column name="thu_name" />
+        </property>
+        <property name="thuUsername" type="java.lang.String">
+            <column name="thu_username" />
         </property>
         <property name="thuPassword" type="java.lang.String">
-            <column name="thu_password" not-null="true" />
+            <column name="thu_password"  />
         </property>
         <property name="thuStatus" type="java.lang.String">
-            <column name="thu_status" length="2" not-null="true" />
+            <column name="thu_status" length="2"  />
         </property>
         <property name="thuPid" type="java.lang.Integer">
             <column name="thu_pid" />
@@ -33,7 +36,7 @@
         </property>
         <set name="groupAccesses" inverse="true" lazy="false">
             <key>
-                <column name="uid" not-null="true" />
+                <column name="uid"  />
             </key>
             <one-to-many class="com.linestore.vo.GroupAccess" />
         </set>

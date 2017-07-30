@@ -120,25 +120,24 @@
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/com.genuitec.embedded.tomcat.runtime.v85"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.20.0-GA.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/weixin-java-pay-2.7.6.BETA.jar"/>
-	<classpathentry kind="lib" path="/Users/mac/Documents/git/ZButler/ZButler/src/com/linestore/action"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-2.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/core-3.1.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j.api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/async-http-client-1.9.40.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/fastjson-1.2.16.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jodd-core-3.8.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jodd-http-3.8.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jodd-upload-3.8.6.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/async-http-client-1.9.40.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-2.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/core-3.1.0.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/fastjson-1.2.16.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/netty-3.10.6.Final.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.7.12.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.7.21.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j.api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/weixin-java-pay-2.7.6.BETA.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

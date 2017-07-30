@@ -38,7 +38,7 @@
                             <li><a href="index3.html">Dashboard3</a></li>
                         </ul> -->
                     </li>
-                    <li><a><i class="fa fa-table"></i> 招商管理 <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-table"></i> 供应商管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="#">供应商入驻管理</a></li>
                             <li><a href="business.jsp">供应商账号管理</a></li>
@@ -71,7 +71,7 @@
                     </li>
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/thinkUser_SelectAll">平台用户管理</a></li>
+                            <li><a href="<%=basePath%>admin/thinkUser_select">平台用户管理</a></li>
                             <li><a href="#">角色管理</a></li>
                             <li><a href="#">权限管理</a></li>
                         </ul>
