@@ -26,7 +26,14 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
-<div class="pay">
+<div class="pay" style="padding-top:53px;">
+	<div class="integral2_top">
+		<div class="integral2_top_left">
+			<i class="fa fa-angle-left"></i> <a
+				href="<%=basePath%>home/customer.jsp">返回</a>
+		</div>
+		<div class="integral2_top_center"></div>
+	</div>
 	<form id="signupForm">
 		<div class="m-cell">
 			<div class="pay_store">
@@ -73,21 +80,21 @@
 		}
 	});
 
-/* 	wx.ready(function() {
-		wx.onMenuShareTimeline({
-			title : '分享连接', // 分享标题
-			link : 'http://yanglan520.com/ZButler/home/WeXinTest.jsp', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-			imgUrl : 'http://tvax3.sinaimg.cn/crop.0.0.996.996.180/006dDppTly8fhtoqtheunj30ro0rogn0.jpg', // 分享图标
-			success : function() {
-				// 用户确认分享后执行的回调函数
-				alert("分享成功");
-			},
-			cancel : function() {
-				// 用户取消分享后执行的回调函数
-				alert("分享失败");
-			}
-		});
-	}); */
+	/* 	wx.ready(function() {
+			wx.onMenuShareTimeline({
+				title : '分享连接', // 分享标题
+				link : 'http://yanglan520.com/ZButler/home/WeXinTest.jsp', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl : 'http://tvax3.sinaimg.cn/crop.0.0.996.996.180/006dDppTly8fhtoqtheunj30ro0rogn0.jpg', // 分享图标
+				success : function() {
+					// 用户确认分享后执行的回调函数
+					alert("分享成功");
+				},
+				cancel : function() {
+					// 用户取消分享后执行的回调函数
+					alert("分享失败");
+				}
+			});
+		}); */
 
 	//时间监听，发起微信支付
 
@@ -114,9 +121,7 @@
 							signType : config.signType,
 							package : config.package,
 							paySign : config.paySign,
-							success : function(res) {
-								alert(res)
-							}
+							success : function(res) {}
 						})
 				}
 			});

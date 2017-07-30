@@ -16,13 +16,21 @@
 	content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
 <title>积分</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 
 </head>
 
 <body>
-	<div class="integral">
+	<div class="integral" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<div class="integral_content">
 			<div class="integral_content_left">
 				<a href="<%=basePath%>home/pointToChange.jsp">

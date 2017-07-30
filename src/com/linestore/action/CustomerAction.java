@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.linestore.service.CatetoryService;
 
 //import org.eclipse.jdt.internal.compiler.batch.Main;
@@ -20,6 +22,7 @@ import com.linestore.util.SendMessage;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Friends;
+import com.linestore.vo.Template;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -30,11 +33,11 @@ import net.sf.json.JSONObject;
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
 
 	private Customer customer = new Customer();
-	
+
 	private Customer customerResult;
 
 	private String valid;
-	
+
 	private String ReType;
 
 	private Map<String, Object> request;
@@ -44,13 +47,13 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private String field;
 
 	private CustomerService customerService;
-	
+
 	private FriendsService friendsService;
-	
+
 	private CusAccountService cusAccountService;
-	
+
 	private CatetoryService catetoryService;
-	
+
 	public String weChat() {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
 		System.out.println(cus.getCusOpenId());
@@ -68,7 +71,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		ActionContext.getContext().getSession().put("user", cus);
 		return "gotoCustomer";
 	}
-	
+
 	private void init(Customer cus) {
 		CusAccount cusAccount = new CusAccount();
 		cusAccount.setCacPoints((float) 0);
@@ -111,11 +114,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	}
 
 	public String register() {
-		
+
 		customer.setCusNickname("ZB_" + customer.getCusPhone());
 		customer.setCusImgUrl("home/dist/wx_image/111.jpg");
 		customer.setCusStatus(1);
-		
+
 		if (ReType != null) {
 			customer.setCusPassword("123456");
 			customerService.addCustomer(customer);
@@ -130,14 +133,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			String js = "<script>YDUI.dialog.alert('注册成功！');</script>";
 			request.put("js", js);
-			return "askRegister";
+			return "gotoCustomer";
 		}
-		
+
 		if (customer.getCusPassword() != null && customer.getCusPhone() != null) {
-			
+
 			customerService.addCustomer(customer);
 			init(customer);
-			
+
 			customer = customerService.findByPhone(customer.getCusPhone()).get(0);
 			// System.out.println(customerService.findByPhone(customer.getCusPhone()).get(0));
 			ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(customer.getCusId()));
@@ -161,7 +164,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public String update() {
 		String value = null;
-		
+
 		if (ActionContext.getContext().getSession().get("Bind") != null) {
 			field = (String) ActionContext.getContext().getSession().get("Bind");
 			value = (String) ActionContext.getContext().getSession().get("openId");
@@ -188,7 +191,28 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}
 		customer = (Customer) ActionContext.getContext().getSession().get("user");
 		customerService.updateField(field, value, customer.getCusId());
-		ActionContext.getContext().getSession().put("user", customerService.findById(customer.getCusId()));
+		customer = customerService.findById(customer.getCusId());
+		ActionContext.getContext().getSession().put("user", customer);
+		if ("111".equals(customer.getCusPassword())) {
+
+			// * @example:{{first.DATA}} 帐号：{{keyword1.DATA}}
+			// 备注：{{keyword2.DATA}}
+			// * {{remark.DATA}}
+			// *
+			Template template = new Template();
+			template.setFirst("手机账号绑定成功");
+			Map<String, String> keywordMap = new HashMap<String, String>();
+			keywordMap.put("keyword1", customer.getCusPhone());
+			keywordMap.put("keyword2", "密码已经发送至手机" + customer.getCusPhone() + "请注意查收");
+
+			template.setKeyword(keywordMap);
+			template.setOpenId(customer.getCusOpenId());
+			template.setRemark("账号："+ customer.getCusPhone() + "初始密码为111，请及时修改");
+			template.setUrl(ServletActionContext.getRequest().getRequestURL());
+
+			ActionContext.getContext().getSession().put("template", template);
+			return "gotoNotify";
+		}
 		if ("cusPassword".equals(field))
 			return "gotoLogin";
 		return "gotoCusMessage";
@@ -217,44 +241,46 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		this.result = JSONObject.fromObject(map).toString();
 		return SUCCESS;
 	}
-	
 
 	public String logout() {
 		ActionContext.getContext().getSession().put("user", null);
 		return "logout";
 	}
-	
-	
+
 	// 邀请注册用户
-		public String askRegister() {
-			System.out.println("Action中的askRegister方法！");
-			// 邀请人的cusId
-//			customer.getCusId();
-//			Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
-//			//补全邀请人的信息，传递到页面;注册者完成注册时还需要用到邀请人的信息
-//			customer=customerService.select(customer);
-
-			return "askRegister";
+	public String askRegister() {
+		System.out.println("Action中的askRegister方法！");
+		// 邀请人的cusId
+		// customer.getCusId();
+		System.out.println(customer);
+		if (customer.getCusId() != null) {
+			Customer cus = customerService.findById(customer.getCusId());
+			request = (Map<String, Object>) ActionContext.getContext().get("request");
+			request.put("id", cus);
 		}
 
-		// 获取当前用户的资料
-		public String myQRCode() {
-			System.out.println("Action中的myQRCode方法！");
-			// 通过action上下文获取session
-			// 直接将session中存的用户信息通过数据库获取完整，返回页面
-			// 由于登录功能尚未完成，因此先写固定值cusId=1
-			// HttpSession session = ServletActionContext.getRequest().getSession();
-			// Customer customerResult = (Customer)
-			// session.getAttribute("customer");
-//			customer.setCusId(1);
-//			Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
-//			customerResult = customerService.select(customer);
-//			System.out.println(customerResult);
-			return "myQRCode";
-		}
-	
-	
-	
+		// //补全邀请人的信息，传递到页面;注册者完成注册时还需要用到邀请人的信息
+		// customer=customerService.select(customer);
+
+		return "askRegister";
+	}
+
+	// 获取当前用户的资料
+	public String myQRCode() {
+		System.out.println("Action中的myQRCode方法！");
+		// 通过action上下文获取session
+		// 直接将session中存的用户信息通过数据库获取完整，返回页面
+		// 由于登录功能尚未完成，因此先写固定值cusId=1
+		// HttpSession session = ServletActionContext.getRequest().getSession();
+		// Customer customerResult = (Customer)
+		// session.getAttribute("customer");
+		// customer.setCusId(1);
+		// Customer customer = (Customer)
+		// ActionContext.getContext().getSession().get("user");
+		// customerResult = customerService.select(customer);
+		// System.out.println(customerResult);
+		return "myQRCode";
+	}
 
 	public String toForgetTwo() {
 		return "gotoForgetTwo";
@@ -336,6 +362,5 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public void setCatetoryService(CatetoryService catetoryService) {
 		this.catetoryService = catetoryService;
 	}
-	
-	
+
 }

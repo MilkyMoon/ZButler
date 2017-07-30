@@ -20,14 +20,22 @@
 </head>
 
 <body>
-	<div class="forgetPassword2">
-		<form id="signupForm" method="post" action="<%=basePath%>Customer!update.action">
+	<div class="forgetPassword2" style="margin-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
+		<form id="signupForm" method="post"
+			action="<%=basePath%>Customer!update.action">
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right">
 						<input type="password" id="cusPassword" name="cusPassword"
-							class="cell-input" placeholder="请输入新密码" autocomplete="off" />
-							<input type="hidden" value="cusPassword" name="field">
+							class="cell-input" placeholder="请输入新密码" autocomplete="off" /> <input
+							type="hidden" value="cusPassword" name="field">
 					</div>
 				</div>
 				<div class="cell-item cell-item-last">
@@ -51,11 +59,11 @@
 
 	//    表单验证
 
-/* 	$.validator.setDefaults({
-		submitHandler : function() {
-			alert("提交事件!");
-		}
-	}); */
+	/* 	$.validator.setDefaults({
+			submitHandler : function() {
+				alert("提交事件!");
+			}
+		}); */
 
 	$().ready(function() {
 		// 在键盘按下并释放及提交后验证提交表单
