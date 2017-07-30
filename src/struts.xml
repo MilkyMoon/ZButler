@@ -117,6 +117,10 @@
 			<result name="gotoRecord">/home/rechargeRecord.jsp</result>
 			<result name="update" type="redirect">/home/pointToChange.jsp</result>
 		</action>
+		
+		<action name="cateLine_*" class="com.linestore.action.CateLineAction" method="{1}">
+        	<result name="selectAll">/home/applyAdmission.jsp</result>
+        </action>
 
 		<!-- 微信入口配置 -->
 		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"

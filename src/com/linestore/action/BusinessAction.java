@@ -9,9 +9,11 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import com.linestore.service.BusinessService;
+import com.linestore.service.CateLineService;
 import com.linestore.service.CatetoryService;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Business;
+import com.linestore.vo.CateLine;
 import com.linestore.vo.Catetory;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,13 +28,11 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	private List<Business> businessList;
 	private Business businessResult;
 	
-	private List<Catetory> catetoriesList;
+	private List<CateLine> cateLineList;
+	private CateLineService cateLineService;
 	
-	private CatetoryService catetoryService;
-	
-
-	public void setCatetoryService(CatetoryService catetoryService) {
-		this.catetoryService = catetoryService;
+	public void setCateLineService(CateLineService cateLineService) {
+		this.cateLineService = cateLineService;
 	}
 
 	@Override
@@ -72,7 +72,6 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //			business.setBusStatus(0);
 //		}
 		
-		System.out.println("-------------" +business.getCatetory().getCateId());
 			int id = business.getBusId();
 //			business.setBusId(null);
 			
@@ -114,10 +113,6 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		return "selectAll";
 	}
 	
-	public void setCatetoriesList(List<Catetory> catetoriesList) {
-		this.catetoriesList = catetoriesList;
-	}
-
 	public String selectAll(){
 		
 		businessList = businessService.selectAll(business);
@@ -138,36 +133,28 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	public String read(){
 		businessResult = selectById();
-		catetoriesList = catetoryService.queryByPid(0);
+		cateLineList = cateLineService.selectAll();
 		
 		if(businessResult == null){
 			return ERROR;
 		}else{
-			request.setAttribute("roots", catetoriesList);
+			request.setAttribute("roots", cateLineList);
 			request.setAttribute("businessResult", businessResult);
 			return "read";
 		}
 	}
 	
 	public String edit(){
-		businessResult = selectById();
-		catetoriesList = catetoryService.queryByPid(0);
-		
-		if(businessResult == null){
-			return ERROR;
-		}else{
-			request.setAttribute("roots", catetoriesList);
-			request.setAttribute("businessResult", businessResult);
-			return "edit";
-		}
+		read();
+		return "edit";
 	}
 	
 	public String select(){
 		businessResult = businessService.select(business);
 		
-		List<Catetory> catetories = catetoryService.queryByPid(0);
+		cateLineList = cateLineService.selectAll();
 		Map<String, Object> req = (Map<String, Object>) ActionContext.getContext().get("request");
-		req.put("roots", catetories);
+		req.put("roots", cateLineList);
 		
 		if(businessResult == null){
 			return ERROR;
