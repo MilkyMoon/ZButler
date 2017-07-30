@@ -205,6 +205,7 @@
         </action>
         <action name="thinkUser_*" class="com.linestore.action.ThinkUserAction" method="{1}">
         	<result name="selectAll">thinkUser.jsp</result>
+        	<result name="select" type="redirectAction">thinkUser_select</result>
         	<result name="add">thinkUserAdd.jsp</result>
         	<result name="edit">thinkUserEdit.jsp</result>
         	<result name="error">index.jsp</result>
