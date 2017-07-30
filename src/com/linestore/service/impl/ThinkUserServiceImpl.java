@@ -24,8 +24,8 @@ public class ThinkUserServiceImpl implements ThinkUserService{
 		thinkUserDao.add(thinkUser);
 	}
 	
-	public void delete(ThinkUser thinkUser){
-		thinkUserDao.delete(thinkUser);
+	public void delete(int thuId){
+		thinkUserDao.delete(thuId);
 	}
 
 	@Override
@@ -43,5 +43,11 @@ public class ThinkUserServiceImpl implements ThinkUserService{
 	public void status(ThinkUser thinkUser) {
 		// TODO Auto-generated method stub
 		thinkUserDao.status(thinkUser);
+	}
+
+	@Override
+	public void update(String hql) {
+		// TODO Auto-generated method stub
+		thinkUserDao.update(hql);
 	}
 }

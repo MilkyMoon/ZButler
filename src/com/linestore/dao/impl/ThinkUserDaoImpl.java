@@ -2,11 +2,14 @@ package com.linestore.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.ThinkUserDao;
 import com.linestore.vo.ThinkUser;
-
+@Transactional
 public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDao{
 	
 	public List<ThinkUser> queryFormat(List<ThinkUser> list, int pid, int level) {
@@ -38,9 +41,10 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 	}
 
 	@Override
-	public void delete(ThinkUser thinkUser) {
+	public void delete(int thuId) {
 		// TODO Auto-generated method stub
-		this.getHibernateTemplate().delete(thinkUser);
+		List<ThinkUser> thinkUsers = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where thuId=?", thuId);
+		this.getHibernateTemplate().delete(thinkUsers.get(0));
 	}
 
 	@Override
@@ -74,5 +78,14 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 	public void status(ThinkUser thinkUser) {
 		// TODO Auto-generated method stub
 		this.getHibernateTemplate().update(thinkUser);
+	}
+
+	@Override
+	public void update(String hql) {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+		session.clear();
 	}
 }
