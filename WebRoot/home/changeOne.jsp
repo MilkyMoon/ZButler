@@ -15,13 +15,21 @@
 	content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
 <title>零钱</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 
 </head>
 
 <body>
-	<div class="smallMoney">
+	<div class="smallMoney" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<div class="smallMoney_content">
 			<div class="smallMoney_content_left">
 				<div class="smallMoney_content_canUse">

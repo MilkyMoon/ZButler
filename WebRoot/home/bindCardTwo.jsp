@@ -20,27 +20,35 @@
 </head>
 
 <body>
-	<div class="takeMoneyAccount2">
-		<form id="signupForm" action="<%=basePath%>CusBank!add.action" method="post">
+	<div class="takeMoneyAccount2" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
+		<form id="signupForm" action="<%=basePath%>CusBank!add.action"
+			method="post">
 			<div class="m-cell">
 				<div class="cell-item">
 					<div class="cell-left">账户姓名：</div>
 					<div class="cell-right">
-						<input type="text" name="cbBankPerson" class="cell-input" placeholder="张三"
-							autocomplete="off" />
+						<input type="text" name="cbBankPerson" class="cell-input"
+							placeholder="张三" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">储蓄卡号：</div>
 					<div class="cell-right">
-						<input type="text" name="cbBankCard"  id="haorooms"
+						<input type="text" name="cbBankCard" id="haorooms"
 							class="cell-input" placeholder="0000****000" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">银行名称：</div>
 					<div class="cell-right">
-						<input type="text" name="cbBank" class="cell-input" 
+						<input type="text" name="cbBank" class="cell-input"
 							placeholder="中国建设银行" autocomplete="off" />
 					</div>
 				</div>
@@ -60,11 +68,11 @@
 
 	//    表单验证
 
-/* 	$.validator.setDefaults({
-		submitHandler : function() {
-			alert("提交事件!");
-		}
-	}); */
+	/* 	$.validator.setDefaults({
+			submitHandler : function() {
+				alert("提交事件!");
+			}
+		}); */
 
 	$().ready(function() {
 		// 在键盘按下并释放及提交后验证提交表单
@@ -72,16 +80,16 @@
 			rules : {
 				cbBankPerson : "required",
 				cbBankCard : {
-					required:true,
-					maxlength:23
+					required : true,
+					maxlength : 23
 				},
 				cbBank : "required",
 			},
 			messages : {
 				cbBankPerson : "请输入姓名",
 				cbBankCard : {
-					required: "请输入储蓄卡号",
-					maxlength: "长度为23"
+					required : "请输入储蓄卡号",
+					maxlength : "长度为23"
 				},
 				cbBank : "请输入银行名称",
 			}

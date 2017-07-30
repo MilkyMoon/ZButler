@@ -35,7 +35,8 @@
 								class="cell-input" placeholder="输入手机号，立即注册众邦管家"
 								autocomplete="off" id="tel" /> <input type="hidden" value="1"
 								name="ReType"> <input type="hidden"
-								value="${user.cusPhone}" name="valid">
+								value="${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if>"
+								name="valid">
 						</div>
 					</div>
 					<div class="cell-item cell-item-last">
@@ -88,6 +89,7 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/md5.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 ${js}
 <script>
 
@@ -98,6 +100,44 @@ ${js}
 	            alert("提交事件!");
 	        }
 	    }); */
+
+	$.ajax({
+		type : "post",
+		dataType : "json",
+		url : "<%=basePath%>/ZButler/WxJsApi!JsApiParams.action",
+		async : false,
+		data : {
+			url : location.href.split("#")[0]
+		},
+		success : function(result) {
+			var config = JSON.parse(result);
+			config.debug = false;
+			config.jsApiList = [
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
+				'uploadImage',
+				'chooseImage'
+			];
+			wx.config(config)
+		}
+	});
+
+	wx.ready(function() {
+		wx.onMenuShareTimeline({
+			title : '${user.cusNickname}<c:if test="${ empty user.cusNickname}">${id.cusNickname}</c:if>邀请你注册众帮管家', // 分享标题
+			link : '<%=basePath%>Customer_askRegister?cusId=${user.cusId}<c:if test="${ empty user.cusId}">${id.cusId}</c:if>', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+			imgUrl : '<%=basePath%>home/dist/wx_image/111.jpg', // 分享图标
+			success : function() {
+				// 页面跳转
+				
+			},
+			cancel : function() {
+				// 用户取消分享后执行的回调函数
+				/* alert("分享失败"); */
+				// 刷新
+			}
+		});
+	})
 
 	$().ready(function() {
 		var $getCode = $('#get');
@@ -111,7 +151,7 @@ ${js}
 			resetStr : '重新获取验证码'
 		});
 
-		
+
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
@@ -174,6 +214,11 @@ ${js}
 				window.YDUI.dialog.alert('验证码不能为空！');
 			}
 		});
+
+		// ${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if>
+
+
+
 	});
 </script>
 </html>

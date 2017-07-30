@@ -20,7 +20,14 @@
 </head>
 
 <body>
-	<div class="register">
+	<div class="register" style="margin-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/login.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<form id="signupForm" method="post"
 			action="<%=basePath%>Customer!register.action">
 			<div class="m-cell">
@@ -31,7 +38,7 @@
 					</div>
 				</div>
 				<div class="cell-item">
-					<div class="cell-right">
+					<div class="cell-right" id="passDiv">
 						<input type="password" name="cusPassword" class="cell-input"
 							id="pass" placeholder="请输入登录密码" autocomplete="off" />
 					</div>
@@ -108,9 +115,13 @@
 				$('#telDiv').find("label").remove();
 				var telError = '<label style="width:50%;color:red;font-size:12px">手机号无效</label>';
 				$('#telDiv').append(telError);
+			} else if ($('#pass').val().length <= 6) {
+				$('#passDiv').find("label").remove();
+				var passError = '<label style="width:50%;color:red;font-size:12px">密码长度必须大于等于6位</label>';
+				$('#passDiv').append(passError);
 			} else {
 				var tel = $("#tel").val();
-				$.post("<%=basePath%>CustomerJson",
+				$.post("<%=basePath%>CustomerJso、、n",
 					{
 						cusPhone : tel,
 					},
@@ -147,7 +158,7 @@
 				}
 			} else {
 				e.preventDefault();
-				window.YDUI.dialog.alert('验证码不能为空！');
+				window.YDUI.dialog.alert('请获取验证码！');
 			}
 		});
 

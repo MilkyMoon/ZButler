@@ -19,19 +19,30 @@
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 </head>
 <body>
-	<div class="leaveWord">
+	<div class="leaveWord" style="margin-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<s:iterator id="message" value="messageList" status="">
 			<div class="leaveWordItem">
 				<div class="leaveWord_title">
 					<div>
-						留言：<span><s:property value="customer.cusNickname"></s:property></span>-<span><s:property value="mesTimeStr"></s:property></span>
+						留言：<span><s:property value="customer.cusNickname"></s:property></span>-<span><s:property
+								value="mesTimeStr"></s:property></span>
 					</div>
-					<a href="<%=basePath%>Message_del?mesId=<s:property value="mesId"></s:property>">删除</a>
+					<a
+						href="<%=basePath%>Message_del?mesId=<s:property value="mesId"></s:property>">删除</a>
 				</div>
-				<div class="leaveWord_content"><span><s:property value="mesContent"></s:property></div>
+				<div class="leaveWord_content">
+					<span><s:property value="mesContent"></s:property>
+				</div>
 			</div>
 		</s:iterator>
-	<%-- 	<div class="leaveWordItem">
+		<%-- 	<div class="leaveWordItem">
 			<div class="leaveWord_title">
 				<div>
 					留言：<span>张三</span>-<span>2017.07.05 09:02:48</span>
