@@ -44,8 +44,7 @@
 			</div>
 		</div>
 		<div class="smallMoney_operation">
-			<a href="#">交易记录</a> <a
-				href="<%=basePath%>WxOauthRedirect!IntoRechage.action">充值</a>
+			<a href="<%=basePath%>CtaTrading!queryByCusId.action">交易记录</a> <a href="<%=basePath%>WxOauthRedirect!IntoRechage.action">充值</a>
 		</div>
 	</div>
 </body>

@@ -8,5 +8,7 @@ public interface CusAccountService {
 	
 	public void addCusAccount(CusAccount cusAccount);
 	
+	public void updateCusAccount(CusAccount cusAccount);
+	
 	public void updateField(String field, String value, int id);
 }

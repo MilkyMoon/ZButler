@@ -7,3 +7,4 @@
 
 .classpath
 /target/
+/WebRoot/WEB-INF/classes/

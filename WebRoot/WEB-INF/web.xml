@@ -43,7 +43,16 @@
 		<extension>txt</extension>
 		<mime-type>text/plain</mime-type>
 	</mime-mapping>
-	
-	
+
+	<filter>
+		<filter-name>login</filter-name>
+		<filter-class>com.linestore.inteceptor.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>login</filter-name>
+		<url-pattern>/home/*</url-pattern>
+	</filter-mapping>
+
+
 
 </web-app>

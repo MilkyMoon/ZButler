@@ -16,8 +16,8 @@
         <property name="cateName" type="java.lang.String">
             <column name="cate_name" length="20" />
         </property>
-        <property name="cateCount" type="java.lang.Integer">
-            <column name="cate_count" />
+        <property name="cateStatus" type="java.lang.Integer">
+            <column name="cate_status" />
         </property>
         <property name="cateChild" type="java.lang.String">
             <column name="cate_child" length="100" />
