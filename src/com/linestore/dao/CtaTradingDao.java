@@ -9,5 +9,7 @@ public interface CtaTradingDao {
 	public void addCtaTrading(CtaTrading ctaTrading);
 	
 	public List<CtaTrading> queryByCusid(int cusId);
+	
+	public List<CtaTrading> queryPoint(int cusId);
 
 }

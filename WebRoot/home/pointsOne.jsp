@@ -25,9 +25,9 @@
 	<div class="integral">
 		<div class="integral_content">
 			<div class="integral_content_left">
-				<div class="integral_content_canUse">
-					我的积分&nbsp;&nbsp;<span>${cac.cacPoints}</span>
-				</div>
+				<a href="<%=basePath%>home/pointToChange.jsp">
+				<div class="integral_content_canUse">我的积分&nbsp;&nbsp;<span>${cac.cacPoints}</span>
+				</div></a>
 				<div class="integral_content_cantUse">
 					<span>亲，您没有积分，会错过奖金哦！</span><br> <span>线下消费、淘宝天猫京东购物、零钱充值，都可以获得积分！</span>
 				</div>
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="integral_operation">
-			<a href="#">交易记录</a>
+			<a href="<%=basePath%>CtaTrading!queryPoint.action">交易记录</a>
 		</div>
 	</div>
 </body>

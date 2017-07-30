@@ -52,4 +52,17 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 		}
 	}
 
+	@Override
+	public void updateCusAccount(CusAccount cusAccount) {
+		
+		System.out.println("exec updateCusAccount");
+		try {
+			this.getHibernateTemplate().update(cusAccount);
+			System.out.println("update successful!");
+		} catch (RuntimeException e) {
+			System.out.println("update failed!\n" + e);
+			throw e;
+		}
+	}
+
 }

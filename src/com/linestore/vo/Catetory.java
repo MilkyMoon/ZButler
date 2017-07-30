@@ -14,7 +14,7 @@ public class Catetory implements java.io.Serializable {
 	private Integer cateId;
 	private Integer catePid;
 	private String cateName;
-	private Integer cateCount;
+	private Integer cateStatus;
 	private String cateChild;
 	private Set attValues = new HashSet(0);
 	private Set brands = new HashSet(0);
@@ -39,7 +39,7 @@ public class Catetory implements java.io.Serializable {
 			Set goodses, Set suppliers, Set businesses, Set attributes) {
 		this.catePid = catePid;
 		this.cateName = cateName;
-		this.cateCount = cateCount;
+		this.cateStatus = cateCount;
 		this.cateChild = cateChild;
 		this.attValues = attValues;
 		this.brands = brands;
@@ -75,12 +75,12 @@ public class Catetory implements java.io.Serializable {
 		this.cateName = cateName;
 	}
 
-	public Integer getCateCount() {
-		return this.cateCount;
+	public Integer getCateStatus() {
+		return cateStatus;
 	}
 
-	public void setCateCount(Integer cateCount) {
-		this.cateCount = cateCount;
+	public void setCateStatus(Integer cateStatus) {
+		this.cateStatus = cateStatus;
 	}
 
 	public String getCateChild() {

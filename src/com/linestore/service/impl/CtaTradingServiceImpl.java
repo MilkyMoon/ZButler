@@ -30,6 +30,10 @@ public class CtaTradingServiceImpl implements CtaTradingService {
 	public List<CtaTrading> queryByCusid(int cusId) {
 		return ctaTradingDao.queryByCusid(cusId);
 	}
-	
+
+	@Override
+	public List<CtaTrading> queryPoint(int cusId) {
+		return ctaTradingDao.queryPoint(cusId);
+	}
 
 }

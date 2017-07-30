@@ -26,7 +26,7 @@
 				<div class="takeMoney_num">${cta.ctaMoney}</div>
 				<div class="takeMoney_type">
 					<c:if test="${cta.ctaType == 1}">充值零钱</c:if>
-					<c:if test="${cta.ctaType == 2}">积分转零钱</c:if>
+					<c:if test="${cta.ctaType == 11}">积分转零钱</c:if>
 				</div>
 				<div class="takeMoney_time">${cta.ctaTime}</div>
 			</div>
