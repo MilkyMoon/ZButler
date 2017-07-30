@@ -87,19 +87,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="cell-item">
 					<div class="cell-left">经营类别*：</div>
 					<label class="cell-right cell-arrow"> 
-					<select class="cell-select" name="busCateId" id="busCateId">
-							<option value="">请选择大类别</option>
+					<select class="cell-select" name="cateLine.calId" id="busCateId">
 							<c:forEach var="root" items="${roots}">
-								<option value="${root.cateId}">${root.cateName}</option>
+								<option value="${root.calId}">${root.calName}</option>
 							</c:forEach>
-					</select>
-					</label>
-				</div>
-				<div class="cell-item">
-					<div class="cell-left">经营小类别*：</div>
-					<label class="cell-right cell-arrow"> 
-					<select class="cell-select" name="busSmallCate" id="busSmallCate">
-							<option value="">请选择小类别</option>
 					</select>
 					</label>
 				</div>
@@ -201,24 +192,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        }
 	    }); */
 	$().ready(function() {
-	
-		$("#busCateId").change(function(){
-			var pid = $(this).val();
-			$.post("<%=basePath%>querySmallJson",
-			{
-				pid: pid,
-			},
-			function(data){
-				var obj = JSON.parse(data);
-				console.log(obj);
-				opString = null;
-				$("#busSmallCate").children().remove();
-				for (var i = 0; i < obj.smalls.length; i++) {
-					var opString = '<option value="'+obj.smalls[i].cateId+'">'+obj.smalls[i].cateName+'</option>';
-					$("#busSmallCate").append(opString);
-				}
-			});
-		});
 		
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
@@ -229,7 +202,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				baProvince : "required",
 				baAddress : "required",
 				busDistrict : "required",
-				busCateId : "required",
 				busLicenseUrl : "required",
 				bbBank : "required",
 				busSmallCate : "required",
@@ -245,7 +217,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				baProvince : "请输入地址",
 				baAddress : "请输入详细地址",
 				busDistrict : "请选择所在商圈",
-				busCateId : "请选择经营类别",
 				busLicenseUrl : "请输入执照号",
 				busSmallCate : "请选择经营小类别",
 				bbBank : "请输入开户行",

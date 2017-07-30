@@ -208,34 +208,25 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营类别</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" name="catetory.cateId"
+													<select class="form-control" name="cateLine.calId"
 														id="busCateId">
 
 														<c:forEach var="root" items="${roots}">
 
 															<c:if
-																test="${root.cateId ==  businessList.catetory.cateId}">
-																<option value="${root.cateId}" selected="selected">${root.cateName}</option>
+																test="${root.calId ==  businessList.cateLine.calId}">
+																<option value="${root.calId}" selected="selected">${root.calName}</option>
 															</c:if>
 															<c:if
-																test="${root.cateId !=  businessList.catetory.cateId}">
-																<option value="${root.cateId}">${root.cateName}</option>
+																test="${root.calId !=  businessList.cateLine.calId}">
+																<option value="${root.calId}">${root.calName}</option>
 															</c:if>
 
 														</c:forEach>
 													</select>
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营小类别</label>
-												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" name="busSmallCate"
-														id="busSmallCate">
-														<option value="">请选择小类别</option>
-													</select>
-												</div>
-											</div>
-
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">审核状态</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
@@ -442,46 +433,6 @@
 		src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
 
 	<script type="text/javascript">
-		$().ready(function() {
-			$.post("<%=basePath%>querySmallJson",
-				{
-					pid: ${businessList.catetory.cateId},
-				},
-				function(data){
-					var obj = JSON.parse(data);
-					console.log(obj);
-					var opString = null;
-					$("#busSmallCate").children().remove();
-					for (var i = 0; i < obj.smalls.length; i++) {
-						if(${businessList.busSmallCate} == obj.smalls[i].cateId){
-							opString = '<option value="'+obj.smalls[i].cateId+'" selected="selected">'+obj.smalls[i].cateName+'</option>';
-						}else{
-							opString = '<option value="'+obj.smalls[i].cateId+'">'+obj.smalls[i].cateName+'</option>';
-						}
-						$("#busSmallCate").append(opString);
-					}
-				});
-				
-			$("#busCateId").change(function(){
-				
-				
-				var pid = $(this).val();
-				$.post("<%=basePath%>querySmallJson",
-				{
-					pid: pid,
-				},
-				function(data){
-					var obj = JSON.parse(data);
-					console.log(obj);
-					opString = null;
-					$("#busSmallCate").children().remove();
-					for (var i = 0; i < obj.smalls.length; i++) {
-						var opString = '<option value="'+obj.smalls[i].cateId+'">'+obj.smalls[i].cateName+'</option>';
-						$("#busSmallCate").append(opString);
-					}
-				});
-			});
-		});
 		// 百度地图API功能
 /* 		var map = new BMap.Map("allmap");
 		var point = new BMap.Point(${businessList.baLatitude}, ${businessList.baLongitude});

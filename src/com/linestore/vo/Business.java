@@ -13,8 +13,8 @@ public class Business implements java.io.Serializable {
 
 	private Integer busId;
 	private Supplier supplier;
+	private CateLine cateLine;
 	private Customer customer;
-	private Catetory catetory;
 	private String busShopName;
 	private String busOwnerFname;
 	private String busOwnerLname;
@@ -45,14 +45,14 @@ public class Business implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Business(Supplier supplier, Customer customer, Catetory catetory, String busShopName, String busOwnerFname,
+	public Business(Supplier supplier, CateLine cateLine, Customer customer, String busShopName, String busOwnerFname,
 			String busOwnerLname, String busIdcardUrl, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
 			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, String baCountry,
 			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
 			String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons) {
 		this.supplier = supplier;
+		this.cateLine = cateLine;
 		this.customer = customer;
-		this.catetory = catetory;
 		this.busShopName = busShopName;
 		this.busOwnerFname = busOwnerFname;
 		this.busOwnerLname = busOwnerLname;
@@ -95,20 +95,20 @@ public class Business implements java.io.Serializable {
 		this.supplier = supplier;
 	}
 
+	public CateLine getCateLine() {
+		return this.cateLine;
+	}
+
+	public void setCateLine(CateLine cateLine) {
+		this.cateLine = cateLine;
+	}
+
 	public Customer getCustomer() {
 		return this.customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	public Catetory getCatetory() {
-		return this.catetory;
-	}
-
-	public void setCatetory(Catetory catetory) {
-		this.catetory = catetory;
 	}
 
 	public String getBusShopName() {

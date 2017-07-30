@@ -117,6 +117,11 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="cateLineDao" class="com.linestore.dao.impl.CateLineDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->
 	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
@@ -167,6 +172,10 @@
 	
 	<bean id="thinkUserService" class="com.linestore.service.impl.ThinkUserServiceImpl">
 		<property name="thinkUserDao" ref="thinkUserDao"></property>
+	</bean>
+	
+	<bean id="cateLineService" class="com.linestore.service.impl.CateLineServiceImpl">
+		<property name="cateLineDao" ref="cateLineDao"></property>
 	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->

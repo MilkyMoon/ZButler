@@ -1,5 +1,8 @@
 package com.linestore.vo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * CateLine entity. @author MyEclipse Persistence Tools
  */
@@ -13,6 +16,7 @@ public class CateLine implements java.io.Serializable {
 	private String calImg;
 	private Integer calStatus;
 	private Integer calAuth;
+	private Set businesses = new HashSet(0);
 
 	// Constructors
 
@@ -21,11 +25,12 @@ public class CateLine implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public CateLine(String calName, String calImg, Integer calStatus, Integer calAuth) {
+	public CateLine(String calName, String calImg, Integer calStatus, Integer calAuth, Set businesses) {
 		this.calName = calName;
 		this.calImg = calImg;
 		this.calStatus = calStatus;
 		this.calAuth = calAuth;
+		this.businesses = businesses;
 	}
 
 	// Property accessors
@@ -68,6 +73,14 @@ public class CateLine implements java.io.Serializable {
 
 	public void setCalAuth(Integer calAuth) {
 		this.calAuth = calAuth;
+	}
+
+	public Set getBusinesses() {
+		return this.businesses;
+	}
+
+	public void setBusinesses(Set businesses) {
+		this.businesses = businesses;
 	}
 
 }

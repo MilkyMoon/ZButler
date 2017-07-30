@@ -97,7 +97,7 @@
 				class="mine_function_yhq">
 				<div></div> <span>我的优惠券</span>
 			</a> 
-			<a href="<%=basePath%>Catetory!queryFirst.action" class="mine_function_sqrz">
+			<a href="<%=basePath%>cateLine_selectAll" class="mine_function_sqrz">
 				<div></div> <span>申请入驻</span>
 			</a> 
 			<a href="<%=basePath%>home/myStore.jsp" class="mine_function_wddp">
