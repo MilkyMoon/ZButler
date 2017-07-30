@@ -90,19 +90,23 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		List<ThinkUser> listOld = new ArrayList<ThinkUser>();
 		List<ThinkUser> listNew = new ArrayList<ThinkUser>();
 		List<ThinkUser> listResault = new ArrayList<ThinkUser>();
-		Integer a = 2;
+		Integer a = 0;
+		
 		
 		if(thinkUser.getThuName() == null || thinkUser.getThuName().equals("")){
 			thinkUser.setThuId(a);
 			selectById();
-			thinkUserService.queryFormat(listNew, 2, 1); //2为管理员id
-			listResault.add(thinkUserResult);
+			if(a == 0){
+				thinkUserService.queryFormat(listNew, a, 0); //2为管理员id
+			} else {
+				thinkUserService.queryFormat(listNew, a, 1); //2为管理员id
+				listResault.add(thinkUserResult);	
+			}
 			listResault.addAll(listNew);
-//			selectAll();
 		} else {
 			System.out.println("搜索---else");
 			thinkUserList = thinkUserService.select(thinkUser);
-			thinkUserService.queryFormat(listOld, 2, 1); //2为管理员id
+			thinkUserService.queryFormat(listOld, a, 1); //a为管理员id
 			
 			//当前管理员所能管理的管理员集合
 			String arr[] = new String[listOld.size()+1];
@@ -127,15 +131,18 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 			boolean inList = false;
 			for(int i = 0; i < listNew.size(); i++){
 				List<ThinkUser> list = new ArrayList<ThinkUser>();
+				
 				System.out.println("listNew:"+listNew.get(i).getThuArea());
+				System.out.println("listNewId:"+listNew.get(i).getThuId());
+				
 				thinkUserService.queryFormat(list, listNew.get(i).getThuId(), 1);
 				
-				System.out.println("listsize:"+listNew.get(i).getThuId());
-				
+				//判断当前集合是否存在于其他集合当中
 				for(int j = 0; j < listNew.size(); j++){
 					thinkUserService.queryFormat(listFor, listNew.get(j).getThuId(), 1);
 					for(int m = 0; m < listFor.size(); m++){
-						if(listNew.get(i).getThuId() == listFor.get(j).getThuId() && i != j){
+						System.out.println("listFor:"+listFor.get(m).getThuId());
+						if(listNew.get(i).getThuId() == listFor.get(m).getThuId()){
 							System.out.println("id:"+listNew.get(i).getThuId());
 							inList = true;
 							break;
@@ -145,28 +152,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 					if(inList){
 						break;
 					}
-					
 				}
 				
-//				for(int m = 0; m < listNew.size(); m++){
-//					thinkUserService.queryFormat(listFor, listNew.get(m).getThuId(), 1);
-//					for(int l = 0; l < listFor.size(); l++){
-//						if(list.size() < listFor.size() && listFor.get(l).getThuId() == list.get(0).getThuId()){
-//							System.out.println("l:"+l);
-//							System.out.println("m:"+m);
-//							System.out.println("i:"+m);
-//							System.out.println("----------------");
-//							System.out.println("id:"+listFor.get(l).getThuId());
-//							inList = true;
-//							break;
-//						}
-//					}
-//					
-//					if(inList){
-//						break;
-//					}
-//				}
-//				
 				if(inList){
 					inList = false;
 					continue;
