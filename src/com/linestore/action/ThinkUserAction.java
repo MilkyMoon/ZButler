@@ -13,6 +13,7 @@ import com.linestore.service.CatetoryService;
 import com.linestore.service.ThinkUserService;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Catetory;
+import com.linestore.vo.GroupAccess;
 import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -24,6 +25,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	private ThinkUserService thinkUserService;
 	private ThinkUser thinkUserResult;
 	private Integer userId = 4;
+	private GroupAccess groupAccess = new GroupAccess();
+	private List<GroupAccess> listGroupAccess;
 
 
 	@Override
@@ -276,6 +279,14 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 			arr[j+1] = userList.get(j).getThuId().toString();
 		}
 		return arr;
+	}
+	
+	
+	
+	public String Login(){
+		
+		
+		return "login";
 	}
 
 }

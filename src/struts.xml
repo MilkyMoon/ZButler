@@ -214,6 +214,20 @@
         	<result name="edit">thinkUserEdit.jsp</result>
         	<result name="error">index.jsp</result>
         </action>
+        <action name="group_*" class="com.linestore.action.GroupAction" method="{1}">
+        	<result name="selectAll">thinkUser.jsp</result>
+        	<result name="select" type="redirectAction">thinkUser_select</result>
+        	<result name="add">thinkUserAdd.jsp</result>
+        	<result name="edit">thinkUserEdit.jsp</result>
+        	<result name="error">index.jsp</result>
+        </action>
+        <action name="category_*" class="com.linestore.action.CatetoryAction" method="{1}">
+        	<result name="selectAll">category.jsp</result>
+        	<result name="select" type="redirectAction">category_select</result>
+        	<result name="add">categoryAdd.jsp</result>
+        	<result name="edit">categoryEdit.jsp</result>
+        	<result name="error">index.jsp</result>
+        </action>
     </package>
 
 </struts>

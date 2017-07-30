@@ -31,12 +31,12 @@ public class Template {
 		this.remark = remark;
 	}
 
-	public String getUrl() {
+	public StringBuffer getUrl() {
 		return url;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUrl(StringBuffer stringBuffer) {
+		this.url = stringBuffer;
 	}
 
 	public Map<String, String> getKeyword() {
@@ -47,6 +47,6 @@ public class Template {
 		this.keyword = keyword;
 	}
 
-	private String url;
+	private StringBuffer url;
 	private Map<String, String> keyword;
 }

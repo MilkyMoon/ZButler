@@ -1,72 +1,106 @@
 package com.linestore.vo;
 
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * Sku entity. @author MyEclipse Persistence Tools
+ * Rule entity. @author MyEclipse Persistence Tools
  */
 
 public class Rule implements java.io.Serializable {
 
 	// Fields
 
-	private Integer id;
+	private Short id;
 	private String rules;
 	private String title;
-	private Integer type;
-	private Integer status;
+	private Boolean type;
+	private Boolean status;
 	private String condition;
 	private Timestamp createTime;
 	private Timestamp updateTime;
-	public Integer getId() {
-		return id;
+
+	// Constructors
+
+	/** default constructor */
+	public Rule() {
 	}
-	public void setId(Integer id) {
+
+	/** full constructor */
+	public Rule(String rules, String title, Boolean type, Boolean status, String condition, Timestamp createTime,
+			Timestamp updateTime) {
+		this.rules = rules;
+		this.title = title;
+		this.type = type;
+		this.status = status;
+		this.condition = condition;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+	}
+
+	// Property accessors
+
+	public Short getId() {
+		return this.id;
+	}
+
+	public void setId(Short id) {
 		this.id = id;
 	}
+
 	public String getRules() {
-		return rules;
+		return this.rules;
 	}
+
 	public void setRules(String rules) {
 		this.rules = rules;
 	}
+
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Integer getType() {
-		return type;
+
+	public Boolean getType() {
+		return this.type;
 	}
-	public void setType(Integer type) {
+
+	public void setType(Boolean type) {
 		this.type = type;
 	}
-	public Integer getStatus() {
-		return status;
+
+	public Boolean getStatus() {
+		return this.status;
 	}
-	public void setStatus(Integer status) {
+
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
+
 	public String getCondition() {
-		return condition;
+		return this.condition;
 	}
+
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
+
 	public Timestamp getCreateTime() {
-		return createTime;
+		return this.createTime;
 	}
+
 	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
 	}
+
 	public Timestamp getUpdateTime() {
-		return updateTime;
+		return this.updateTime;
 	}
+
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-	
+
 }

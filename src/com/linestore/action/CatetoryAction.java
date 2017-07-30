@@ -59,6 +59,11 @@ public class CatetoryAction extends ActionSupport implements ModelDriven<Catetor
 		return SUCCESS;
 	}
 	
+	public String select(){
+		
+		return "selectAll";
+	}
+	
 	public CatetoryService getCatetoryService() {
 		return catetoryService;
 	}
