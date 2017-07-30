@@ -10,7 +10,7 @@ import com.linestore.vo.ThinkUser;
 public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDao{
 	
 	public List<ThinkUser> queryFormat(List<ThinkUser> list, int pid, int level) {
-		System.out.println(level);
+//		System.out.println(level);
 		List<ThinkUser> catetories = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where thuPid=?", pid);
 		if (catetories != null) {
 			for (int i = 0; i < catetories.size(); i++) {

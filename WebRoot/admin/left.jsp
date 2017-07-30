@@ -71,7 +71,7 @@
                     </li>
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/thinkUser_selectAll">平台用户管理</a></li>
+                            <li><a href="<%=basePath%>admin/thinkUser_select">平台用户管理</a></li>
                             <li><a href="#">角色管理</a></li>
                             <li><a href="#">权限管理</a></li>
                         </ul>

@@ -97,7 +97,8 @@
 								<div class="x_content">
 									<p>
 										<code>注意：</code>
-										删除上级管理员会删除所有下级管理员
+										1.删除上级管理员会删除所有下级管理员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										2.搜索时会将其下级都显示出来
 									</p>
 									<div class="table-responsive">
 										<table class="table table-striped jambo_table bulk_action">
