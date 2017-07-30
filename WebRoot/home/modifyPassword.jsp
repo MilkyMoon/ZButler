@@ -20,14 +20,22 @@
 </head>
 
 <body>
-	<div class="modifyPassword">
-		<form id="signupForm" method="post" action="<%=basePath%>Customer!update.action">
+	<div class="modifyPassword" style="padding-top:53px;">
+			<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
+		<form id="signupForm" method="post"
+			action="<%=basePath%>Customer!update.action">
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right">
-						<input type="password"  class="cell-input" id="old" name="old"
-							placeholder="原密码" autocomplete="off" />
-						<input type="hidden" value="cusPassword" name="field">
+						<input type="password" class="cell-input" id="old" name="old"
+							placeholder="原密码" autocomplete="off" /> <input type="hidden"
+							value="cusPassword" name="field">
 					</div>
 				</div>
 				<div class="cell-item">
@@ -38,7 +46,7 @@
 				</div>
 				<div class="cell-item cell-item-last">
 					<div class="cell-right">
-						<input type="password"  class="cell-input" id ="comfirm" name="new2"
+						<input type="password" class="cell-input" id="comfirm" name="new2"
 							placeholder="重复密码" autocomplete="off" />
 					</div>
 				</div>
@@ -58,18 +66,21 @@
 
 	//    表单验证
 
-/* 	$.validator.setDefaults({
-		submitHandler : function() {
-			alert("提交事件!");
-		}
-	}); */
+	/* 	$.validator.setDefaults({
+			submitHandler : function() {
+				alert("提交事件!");
+			}
+		}); */
 
 	$().ready(function() {
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
 				old : "required",
-				cusPassword : "required",
+				cusPassword : {
+					required : true,
+					minlength : 6
+				},
 				new2 : {
 					required : true,
 					equalTo : "#password"
@@ -77,14 +88,17 @@
 			},
 			messages : {
 				old : "请输入原密码",
-				cusPassword : "请输入新密码",
+				cusPassword : {
+					required : "请输入新密码",
+					minlength : "密码长度必须大于6位"
+				},
 				new2 : {
 					required : "请重复新密码",
 					equalTo : "两次输入不一致"
 				}
 			}
 		});
-		
+
 		$("#signupForm").submit(function(e) {
 			if (hex_md5($("#old").val()) != hex_md5("${user.cusPassword}")) {
 				e.preventDefault();

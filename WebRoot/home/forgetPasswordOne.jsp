@@ -141,7 +141,7 @@
 				}
 			} else {
 				e.preventDefault();
-				window.YDUI.dialog.alert('验证码不能为空！');
+				window.YDUI.dialog.alert('请获取验证码！');
 			}
 
 		});

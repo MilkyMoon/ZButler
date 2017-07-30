@@ -31,10 +31,21 @@
 
 <body>
 	<div class="integral2">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+			<div class="integral2_top_right">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>WxOauthRedirect!IntoRechage.action">刷新</a>
+			</div>
+		</div>
 		<div class="integral2_content">
-			<a href="javascript:;" class="active"> <span>￥<span>2</span></span>
+			<a href="javascript:;" class="active"> <span>￥<span>1</span></span>
 				</span>
-			</a> <a href="javascript:;"> <span>￥<span>1</span></span> </span>
+			</a> <a href="javascript:;"> <span>￥<span>2</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>5</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>10</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>50</span></span> </span>
@@ -45,6 +56,9 @@
 		<div class="cell-item">
 			<input type="number" id="otherNum" pattern="[0-9]*"
 				class="cell-input" placeholder="请输入金额" autocomplete="off" />
+		</div>
+		<div class="integral2_moneyNum">
+			￥<span></span>
 		</div>
 		<button type="button" class="btn-block btn-primary">提交</button>
 
@@ -74,7 +88,7 @@
 		type : "post",
 		dataType : "json",
 		url : "<%=basePath%>WxJsApi",
-		async : true,
+		async : false,
 		data : {
 			url : location.href.split("#")[0]
 		},
@@ -91,22 +105,46 @@
 		}
 	});
 
-	$('#otherNum').val($('.active').find('span').eq(0).find('span').eq(0).text());
+
+
+	var money = $('.active').find('span').eq(0).find('span').eq(0).text();
+	var moneyNum = parseFloat(money);
+
+	$('.integral2_moneyNum>span').text(moneyNum.toFixed(2));
 	$('.integral2_content a').click(function() {
-		$('#otherNum').val('');
+		$("#otherNum").val('');
 		$('.integral2_content').find('a').attr('class', '');
 		$(this).attr('class', 'active');
-		$('#otherNum').val($(this).find('span').eq(0).find('span').eq(0).text());
+		money = $(this).find('span').eq(0).find('span').eq(0).text();
+		moneyNum = parseFloat(money);
+		$('.integral2_moneyNum>span').text(moneyNum.toFixed(2));
+
 	});
 	$('#otherNum').click(function() {
 		$('.integral2_content').find('a').attr('class', '');
 	});
+	$('#otherNum').bind('input propertychange', function() {
+		money = $("#otherNum").val();
+		moneyNum = parseFloat(money);
+
+		if (isNaN(moneyNum)) {
+			$('.integral2_moneyNum>span').text("0.00");
+		} else {
+			$('.integral2_moneyNum>span').text(moneyNum.toFixed(2));
+		}
+
+	});
 	$('.btn-primary').click(function() {
-		$('.dialog').css('display', 'block');
+		if ($('.integral2_moneyNum>span').text() === 'NaN') {
+			alert('请输入正确金额!')
+		} else {
+			$('.dialog').css('display', 'block');
+		}
 	});
 	$('.no').click(function() {
 		$('.dialog').css('display', 'none');
-	})
+	});
+
 
 	$('.yes').click(function() {
 		// 获取金额，启用微信支付
@@ -132,7 +170,8 @@
 							package : config.package,
 							paySign : config.paySign,
 							success : function(res) {
-								alert(res)
+								$('.dialog').css('display', 'none');
+								window.location.href = "<%=basePath%>CusAccount!change.action"
 							}
 						})
 				}

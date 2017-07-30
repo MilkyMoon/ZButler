@@ -20,7 +20,14 @@
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 </head>
 <body>
-	<div class="myFriendO">
+	<div class="myFriendO" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<div class="myFriendO_myMessage">
 			<div class="myFriendO_myMessage_head">
 				<img src="${user.cusImgUrl}" />
@@ -41,7 +48,7 @@
 					<a href="#"><s:property value="friPhone" /> </a>
 				</div>
 			</s:iterator> --%>
-			
+
 			<div class="myFriendO_myFriendItem">
 				我的朋友A<span>50</span>
 				<div class="myFriendO_myFriendItem_down">
@@ -73,13 +80,13 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
-    $('.myFriendO_myFriendItem').click(function () {
-        if ($(this).find('.myFriendO_myFriendItem_down').css('display') === 'block') {
-            $('.myFriendO_myFriendItem_down').css('display', 'none');
-        } else {
-            $('.myFriendO_myFriendItem_down').css('display', 'none');
-            $(this).find('.myFriendO_myFriendItem_down').css('display', 'block');
-        }
-    })
+	$('.myFriendO_myFriendItem').click(function() {
+		if ($(this).find('.myFriendO_myFriendItem_down').css('display') === 'block') {
+			$('.myFriendO_myFriendItem_down').css('display', 'none');
+		} else {
+			$('.myFriendO_myFriendItem_down').css('display', 'none');
+			$(this).find('.myFriendO_myFriendItem_down').css('display', 'block');
+		}
+	})
 </script>
 </html>

@@ -21,36 +21,55 @@
 </head>
 
 <body>
-	<div class="coupon">
+	<div class="coupon" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<c:forEach var="coupon" items="${usable}" varStatus="i">
 			<div class="couponItem">
 				<div class="couponItem_num">
 					<span>${coupon.busCoupon.bcRebate}</span>&nbsp;元
 				</div>
-				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止<br>未使用</div>
+				<div class="couponItem_name">
+					<fmt:formatDate value="${coupon.busCoupon.bcEndDate}"
+						pattern="yyyy-MM-dd" />
+					截止<br>未使用
+				</div>
 			</div>
 		</c:forEach>
-		
+
 		<c:forEach var="coupon" items="${used}" varStatus="i">
 			<div class="couponItem">
 				<div class="cantUse"></div>
 				<div class="couponItem_num">
 					<span>${coupon.busCoupon.bcRebate}</span>&nbsp;元
 				</div>
-				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止<br>已使用</div>
+				<div class="couponItem_name">
+					<fmt:formatDate value="${coupon.busCoupon.bcEndDate}"
+						pattern="yyyy-MM-dd" />
+					截止<br>已使用
+				</div>
 			</div>
 		</c:forEach>
-		
+
 		<c:forEach var="coupon" items="${expired}" varStatus="i">
 			<div class="couponItem">
 				<div class="cantUse"></div>
 				<div class="couponItem_num">
 					<span>${coupon.busCoupon.bcRebate}</span>&nbsp;元
 				</div>
-				<div class="couponItem_name"><fmt:formatDate value="${coupon.busCoupon.bcEndDate}" pattern="yyyy-MM-dd"/>截止<br>已过期</div>
+				<div class="couponItem_name">
+					<fmt:formatDate value="${coupon.busCoupon.bcEndDate}"
+						pattern="yyyy-MM-dd" />
+					截止<br>已过期
+				</div>
 			</div>
 		</c:forEach>
-		
+
 	</div>
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>

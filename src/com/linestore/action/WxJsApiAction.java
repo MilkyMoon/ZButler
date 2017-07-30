@@ -45,7 +45,8 @@ public class WxJsApiAction extends WeXinConfigAction implements ServletRequestAw
 	}
 
 	public String JsApiParams() throws WxErrorException {
-		this.wxService.getJsapiTicket(true);
+		
+		this.wxService.getJsapiTicket(false);
 		response.setContentType("text/html;charset=utf-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		String URL = request.getParameter("url");
@@ -56,7 +57,6 @@ public class WxJsApiAction extends WeXinConfigAction implements ServletRequestAw
 		map.put("timestamp", signature.getTimestamp());
 		map.put("appId", signature.getAppId());
 		this.result = JSONObject.fromObject(map).toString();
-		System.out.println(this.result);
 		return SUCCESS;
 	}
 
