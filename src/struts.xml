@@ -123,6 +123,11 @@
 			method="{1}">
 			<result name="selectAll">/home/applyAdmission.jsp</result>
 		</action>
+		
+		<action name="offlineStore_*" class="com.linestore.action.OfflineStoreAction"
+			method="{1}">
+			<result name="selectAll">/home/offlineStore.jsp</result>
+		</action>
 
 		<!-- 微信入口配置 -->
 		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
