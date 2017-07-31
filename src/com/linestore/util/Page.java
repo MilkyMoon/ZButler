@@ -2,19 +2,19 @@ package com.linestore.util;
 
 public class Page {
 	
-	private int everyPage;
+	private int everyPage; //每页条数
 	
-	private int totalCount;
+	private int totalCount; //总数据
 	
-	private int totalPage;
+	private int totalPage; //总共页数
 	
-	private int currentPage;
+	private int currentPage; //当前页
 	
-	private int beginIndex;
+	private int beginIndex; //开始页
 	
-	private boolean hasPrePage;
+	private boolean hasPrePage; //是否有上一页
 	
-	private boolean hasNextPage;
+	private boolean hasNextPage; //是否有下一页
 
 	public Page(int everyPage, int totalCount, int totalPage, int currentPage, int beginIndex, boolean hasPrePage,
 			boolean hasNextPage) {

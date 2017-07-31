@@ -11,8 +11,10 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.CustomerDao;
+import com.linestore.util.Page;
 import com.linestore.vo.Customer;
 
+@Transactional
 public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao {
 
 	@Override
@@ -97,20 +99,16 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	 * length 每页长度
 	 */
 	@Override
-	public List<Customer> queryAll(final int offset, final int length) {
+	public int queryAll() {
 		System.out.println("exec queryAll");
 		try {
-			List<Customer> customers = (List<Customer>) this.getHibernateTemplate().execute(new HibernateCallback() {
-				public Object doInHibernate(Session session) throws HibernateException {
-					Query query = session.createQuery("from Customer");
-					query.setFirstResult(offset);
-					query.setMaxResults(length);
-					List list = query.list();
-					return list;
-				}
-			});
+			Session session = this.getSessionFactory().getCurrentSession();
+			Query query= session.createQuery("select count(*) from Customer");
+			int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+	        System.out.println(count);
+			
 			System.out.println("query successful");
-			return customers;
+			return count;
 		} catch (RuntimeException e) {
 			System.out.println("query failed!\n" + e);
 			throw e;
@@ -154,16 +152,26 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		}
 	}
 	// 获取一个用户
-		@Override
-		public Customer select(Customer customer) {
-			System.out.println("DAO中的select方法！");
-			Customer customerResult = null;
-			// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
-			String hql = "from Customer where cusId = ?";
-			List<Customer> list = (List<Customer>) this.getHibernateTemplate().find(hql, customer.getCusId());
-			if (list.size() > 0) {
-				customerResult = list.get(0);
-			}
-			return customerResult;
+	@Override
+	public Customer select(Customer customer) {
+		System.out.println("DAO中的select方法！");
+		Customer customerResult = null;
+		// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
+		String hql = "from Customer where cusId = ?";
+		List<Customer> list = (List<Customer>) this.getHibernateTemplate().find(hql, customer.getCusId());
+		if (list.size() > 0) {
+			customerResult = list.get(0);
 		}
+		return customerResult;
+	}
+	
+	public List<Customer> queryAll(Page page) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from Customer");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
+	}
+		
 }

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.CustomerDao;
 import com.linestore.service.CustomerService;
+import com.linestore.util.Page;
 import com.linestore.util.QrCodeUtil;
 import com.linestore.util.QrExistsUtil;
 import com.linestore.vo.Customer;
@@ -57,9 +58,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> queryAll(int offset, int length) {
-		// TODO Auto-generated method stub
-		return null;
+	public int queryAll() {
+		return customerDao.queryAll();
 	}
 
 	@Override
@@ -95,5 +95,11 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		return customer;
+	}
+
+	@Override
+	public List<Customer> queryAll(Page page) {
+		// TODO Auto-generated method stub
+		return customerDao.queryAll(page);
 	}
 }
