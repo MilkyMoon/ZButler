@@ -88,4 +88,25 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 		query.executeUpdate();
 		session.clear();
 	}
+
+	@Override
+	public ThinkUser checkThinkUser(ThinkUser thinkUser) {
+		System.out.println("exec checkThinkuser");
+		try {
+			List<ThinkUser> thus = (List<ThinkUser>) this.getHibernateTemplate().findByExample(thinkUser);
+			
+			if (thus.size() < 1) {
+				return null;
+			} else {
+				if (thus.get(0).getThuStatus().equals("1")) {
+					return thus.get(0);
+				} else {
+					return null;
+				}
+			}
+		} catch (RuntimeException e) {
+			System.out.println("check failed!\n" + e);
+			throw e;
+		}
+	}
 }

@@ -12,4 +12,6 @@ public interface ThinkUserDao {
 	public List<ThinkUser> select(ThinkUser thinkUser);
 	public void status(ThinkUser thinkUser);
 	public void update(String hql);
+	
+	public ThinkUser checkThinkUser(ThinkUser thinkUser);
 }
