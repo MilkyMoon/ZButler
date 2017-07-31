@@ -21,6 +21,7 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 	private List<Customer> customerList = new ArrayList<Customer>();
 	
 	private String pageNow = "1";
+	private String everyPage = "10";
 
 	@Override
 	public Customer getModel() {
@@ -34,7 +35,13 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 	
 	public String selectAll(){
 		int totalCount = customerService.queryAll();
-		Page page = PageUtil.createPage(10, totalCount, Integer.parseInt(pageNow));
+		if(everyPage.equals("") || everyPage == null){
+			everyPage = "10";
+		}
+		if(pageNow.equals("") || pageNow == null){
+			pageNow = "1";
+		}
+		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		System.out.println("总页数："+page.getTotalPage());
 		System.out.println("当前页："+page.getCurrentPage());
 		System.out.println("每页数："+page.getEveryPage());
@@ -63,7 +70,13 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 		this.pageNow = pageNow;
 	}
 	
-	
+	public String getEveryPage() {
+		return everyPage;
+	}
+
+	public void setEveryPage(String everyPage) {
+		this.everyPage = everyPage;
+	}
 	
 
 }

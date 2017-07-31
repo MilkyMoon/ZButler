@@ -81,7 +81,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 				hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, id);
 //				System.out.println(business.getBusStatus());
 				businessService.update(hql);
-				businessList = businessService.selectAll(business);
+				businessList = businessService.selectAll();
 				ActionContext.getContext().getValueStack().set("list", businessList);
 				
 			} catch (NoSuchMethodException e) {
@@ -107,7 +107,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	public String delete(){
 		businessService.delete(business);
-		businessList = businessService.selectAll(business);
+		businessList = businessService.selectAll();
 		ActionContext.getContext().getValueStack().set("list", businessList);
 		
 		return "selectAll";
@@ -115,7 +115,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	public String selectAll(){
 		
-		businessList = businessService.selectAll(business);
+		businessList = businessService.selectAll();
 //		System.out.println("list:"+businessList);
 //		HttpServletRequest request = ServletActionContext.getRequest ();
 //		request.setAttribute("businessList", businessList);

@@ -31,9 +31,9 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 
 	@Override
-	public List<Business> selectAll(Business business) {
+	public List<Business> selectAll() {
 		// TODO Auto-generated method stub
-		List<Business> allBusiness = businessDao.selectAll(business);
+		List<Business> allBusiness = businessDao.selectAll();
 		return allBusiness;
 	}
 

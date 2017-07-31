@@ -27,7 +27,7 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 	}
 
 	@Override
-	public List<Business> selectAll(Business business) {
+	public List<Business> selectAll() {
 		// TODO Auto-generated method stub
 		String hql = "from Business";
 		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);

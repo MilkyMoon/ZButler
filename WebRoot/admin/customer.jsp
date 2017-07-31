@@ -30,6 +30,15 @@
 
 <!-- Custom Theme Style -->
 <link href="./build/css/custom.min.css" rel="stylesheet">
+<style type="text/css">
+	.page-form{
+		width:172px;
+		margin:20px 0;
+	}
+	.page-form span{
+		line-height:32px;
+	}
+</style>
 </head>
 
 <body class="nav-md">
@@ -162,61 +171,68 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-5">
-							<div class="dataTables_info" id="datatable-checkbox_info" role="status" aria-live="polite" style="margin: 20px 0;">
-								当前显示${(page.currentPage-1)*page.everyPage+1} ~  
-								<c:if test="${page.hasNextPage}">${page.currentPage*page.everyPage}</c:if>
-								<c:if test="${!page.hasNextPage}">${page.totalCount}</c:if>条记录（共${page.totalCount}条记录）
+						<form action="customer_selectAll">
+							<div class="col-sm-5">
+								<div class="dataTables_info" id="datatable-checkbox_info" role="status" aria-live="polite" style="margin: 20px 0;height: 32px;line-height: 32px;">
+									当前显示${(page.currentPage-1)*page.everyPage+1} ~  
+									<c:if test="${page.hasNextPage}">${page.currentPage*page.everyPage}</c:if>
+									<c:if test="${!page.hasNextPage}">${page.totalCount}</c:if>条记录（共${page.totalCount}条记录,共${page.totalCount}页）
+								</div>
+								<div class="input-group page-form">
+									<span style="float:left;padding:0 5px">每页显示</span>
+									<input type="text" value="${page.everyPage}" name="everyPage" class="form-control" style="text-align:center;width:42px;padding:5px">
+									<span style="padding:0 5px">条</span>
+		                        </div>
 							</div>
-							<div class="input-group" style="width:100px;margin:20px 0;">
-	                            <input type="text" class="form-control">
-	                            <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary">Go!</button>
-                                </span>
-	                        </div>
-						</div>
-						<div class="col-sm-7">
-							<div class="dataTables_paginate paging_simple_numbers" id="datatable-checkbox_paginate">
-								<ul class="pagination">
-									<c:if test="${page.hasPrePage}">
-										<li class="paginate_button previous" id="datatable-checkbox_previous">
-											<a href="customer_selectAll?pageNow=${page.currentPage-1}" data-dt-idx="0" tabindex="0">上一页</a>
-										</li>
-										<li class="paginate_button">
-											<a href="customer_selectAll?pageNow=1" data-dt-idx="1" tabindex="0">首页</a>
-										</li>
-									</c:if>
-									<c:if test="${!page.hasPrePage}">
-										<li class="paginate_button previous disabled" id="datatable-checkbox_previous">
-											<a href="#" data-dt-idx="0" tabindex="0">上一页</a>
-										</li>
-										<li class="paginate_button active">
-											<a href="customer_selectAll?pageNow=1" data-dt-idx="1" tabindex="0">首页</a>
-										</li>
-									</c:if>
-									
+							<div class="col-sm-7">
+								<div class="input-group page-form" style="float: right;">
+									<span style="float:left;padding:0 5px">跳转到</span>
+									<input type="text" name="pageNow" value="${page.currentPage}" class="form-control" style="text-align:center;width:42px;padding:5px">
+									<span style="float:right;padding:0 5px">页</span>
+		                            <span class="input-group-btn">
+	                                    <button type="submit" class="btn btn-primary">Go!</button>
+	                                </span>
+		                        </div>
+								<div class="dataTables_paginate paging_simple_numbers" id="datatable-checkbox_paginate">
+									<ul class="pagination">
+										<c:if test="${page.hasPrePage}">
+											<li class="paginate_button previous" id="datatable-checkbox_previous">
+												<a href="customer_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
+											</li>
+											<li class="paginate_button">
+												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+											</li>
+										</c:if>
+										<c:if test="${!page.hasPrePage}">
+											<li class="paginate_button previous disabled" id="datatable-checkbox_previous">
+												<a href="#" data-dt-idx="0" tabindex="0">上一页</a>
+											</li>
+											<li class="paginate_button active">
+												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+											</li>
+										</c:if>
+										
+										<c:if test="${page.hasNextPage}">
+											<li class="paginate_button">
+												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+											</li>
+											<li class="paginate_button next" id="datatable-checkbox_next">
+												<a href="customer_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
+											</li>
+										</c:if>
+										<c:if test="${!page.hasNextPage}">
+											<li class="paginate_button active">
+												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+											</li>
+											<li class="paginate_button next disabled" id="datatable-checkbox_next">
+												<a href="#" data-dt-idx="4" tabindex="0">下一页</a>
+											</li>
+										</c:if>
+									</ul>
+								</div>
 								
-									
-									
-									<c:if test="${page.hasNextPage}">
-										<li class="paginate_button">
-											<a href="customer_selectAll?pageNow=${page.totalPage}" data-dt-idx="3" tabindex="0">尾页</a>
-										</li>
-										<li class="paginate_button next" id="datatable-checkbox_next">
-											<a href="customer_selectAll?pageNow=${page.currentPage+1}" data-dt-idx="4" tabindex="0">下一页</a>
-										</li>
-									</c:if>
-									<c:if test="${!page.hasNextPage}">
-										<li class="paginate_button active">
-											<a href="customer_selectAll?pageNow=${page.totalPage}" data-dt-idx="3" tabindex="0">尾页</a>
-										</li>
-										<li class="paginate_button next disabled" id="datatable-checkbox_next">
-											<a href="#" data-dt-idx="4" tabindex="0">下一页</a>
-										</li>
-									</c:if>
-								</ul>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
