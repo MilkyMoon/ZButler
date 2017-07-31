@@ -199,8 +199,14 @@
 			<result type="json">
 				<param name="root">result</param>
 			</result>
-
 		</action>
+		
+		<!-- 图片上传 -->
+        <action name="saveImg" class="com.linestore.util.FileUpload" method="saveImg">
+        	<result type="json">
+				<param name="root">result</param>
+			</result>
+        </action>
 
 		<!-- 发起微信支付参数配置 -->
 		<action name="WxPayJson" class="com.linestore.action.WxPayAction"
@@ -256,6 +262,18 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
+        
+        <action name="cateLine_*" class="com.linestore.action.CateLineAction" method="{1}">
+            <result name="selectAll">cateline.jsp</result>
+            <result name="select" type="redirectAction">cateLine_selectAll</result>
+            <result name="add">catelineAdd.jsp</result>
+            <result name="edit">catelineEdit.jsp</result>
+        </action>
+        <action name="customer_*" class="com.linestore.action.AdminCustomerAction" method="{1}">
+            <result name="selectAll">customer.jsp</result>
+            <result name="select" type="redirectAction">customer_selectAll</result>
+            <result name="edit">catelineEdit.jsp</result>
+        </action>
 	</package>
 
 </struts>

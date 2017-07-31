@@ -25,9 +25,6 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	private ThinkUserService thinkUserService;
 	private ThinkUser thinkUserResult;
 	private Integer userId = 4;
-	private GroupAccess groupAccess = new GroupAccess();
-	private List<GroupAccess> listGroupAccess;
-
 
 	@Override
 	public ThinkUser getModel() {
@@ -279,14 +276,6 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 			arr[j+1] = userList.get(j).getThuId().toString();
 		}
 		return arr;
-	}
-	
-	
-	
-	public String Login(){
-		
-		
-		return "login";
 	}
 
 }
