@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
 	    HttpServletResponse res = (HttpServletResponse)response;  
 	    String path = req.getContextPath(); 
 	    String indexPath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+path+ "/home/login.jsp"; 
-	    System.out.println(req.getRequestURI());
+//	    System.out.println(req.getRequestURI());
 	    if(req.getRequestURI().endsWith("login.jsp") 
 	    		|| req.getRequestURI().endsWith("register.jsp") 
 	    		|| req.getRequestURI().endsWith(".css") 
@@ -37,7 +37,7 @@ public class LoginFilter implements Filter {
 	    		|| req.getRequestURI().endsWith(".map")
 	    		|| req.getRequestURI().endsWith("offlineStore.jsp"))
 	    { 
-	    	System.out.println("-------");
+//	    	System.out.println(req.getRequestURI());
 	      chain.doFilter(request, response);  
 	      return; 
 	    } 

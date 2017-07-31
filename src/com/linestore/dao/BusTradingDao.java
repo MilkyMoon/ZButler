@@ -6,6 +6,6 @@ import com.linestore.vo.BusTrading;
 
 public interface BusTradingDao {
 	
-	public List<BusTrading> queryHot();
+	public List queryHot();
 
 }

@@ -51,5 +51,12 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 		List<CateLine> list = (List<CateLine>)this.getHibernateTemplate().find(hql, cateLine.getCalId());
 		return list.get(0);
 	}
+	
+	public List<CateLine> selectEight() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from CateLine order by calAuth desc");
+		query.setMaxResults(8);
+		return query.list();
+	}
 
 }

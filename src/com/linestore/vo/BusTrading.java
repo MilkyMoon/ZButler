@@ -15,7 +15,7 @@ public class BusTrading implements java.io.Serializable {
 	private Integer btaType;
 	private Float btaMoney;
 	private Timestamp btaTime;
-
+	private String btaAddress;
 	// Constructors
 
 	/** default constructor */
@@ -78,4 +78,13 @@ public class BusTrading implements java.io.Serializable {
 		this.btaTime = btaTime;
 	}
 
+	public String getBtaAddress() {
+		return btaAddress;
+	}
+
+	public void setBtaAddress(String btaAddress) {
+		this.btaAddress = btaAddress;
+	}
+	
+	
 }

@@ -10,4 +10,8 @@ public interface BusinessService {
 	List<Business> selectAll(Business business);
 	Business select(Business business);
 	void delete(Business business);
+	
+	public Business select(int busId);
+	
+	public List<Business> queryByCity(String city, int count);
 }

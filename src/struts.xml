@@ -14,7 +14,7 @@
 		<interceptors>
 			<interceptor name="loginInterceptor"
 				class="com.linestore.inteceptor.LoginInteceptor">
-				<param name="excludeMethods">login,weChats,oauth,forgetPass,sendMessage</param>
+				<param name="excludeMethods">login,weChats,oauth,forgetPass,sendMessage,offline</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
 			<interceptor-stack name="defaultinter">
@@ -126,7 +126,7 @@
 		
 		<action name="offlineStore_*" class="com.linestore.action.OfflineStoreAction"
 			method="{1}">
-			<result name="selectAll">/home/offlineStore.jsp</result>
+			<result name="gotoOfflineStore">/home/offlineStore.jsp</result>
 		</action>
 
 		<!-- 微信入口配置 -->
