@@ -115,19 +115,20 @@
 				$('#telDiv').find("label").remove();
 				var telError = '<label style="width:50%;color:red;font-size:12px">手机号无效</label>';
 				$('#telDiv').append(telError);
-			} else if ($('#pass').val().length <= 6) {
+			} else if ($('#pass').val().length < 6) {
 				$('#passDiv').find("label").remove();
 				var passError = '<label style="width:50%;color:red;font-size:12px">密码长度必须大于等于6位</label>';
 				$('#passDiv').append(passError);
 			} else {
 				var tel = $("#tel").val();
-				$.post("<%=basePath%>CustomerJso、、n",
+				$.post("<%=basePath%>CustomerJson",
 					{
 						cusPhone : tel,
 					},
 					function(data) {
+					console.log(data);
 						data = $.parseJSON(data);
-						//console.log(data);
+						
 						if (data.isError === "true") {
 							window.YDUI.dialog.alert(data.ErrorMessage);
 						} else {

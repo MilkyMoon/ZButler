@@ -50,4 +50,9 @@ public class ThinkUserServiceImpl implements ThinkUserService{
 		// TODO Auto-generated method stub
 		thinkUserDao.update(hql);
 	}
+
+	@Override
+	public ThinkUser checkThinkUser(ThinkUser thinkUser) {
+		return thinkUserDao.checkThinkUser(thinkUser);
+	}
 }
