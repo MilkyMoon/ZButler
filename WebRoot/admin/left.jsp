@@ -62,7 +62,7 @@
                     </li>
                     <li><a><i class="fa fa-bar-chart-o"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="chartjs.html">用户管理</a></li>
+                            <li><a href="<%=basePath%>admin/customer_selectAll">用户管理</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>账单管理 <span class="fa fa-chevron-down"></span></a>

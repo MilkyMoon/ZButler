@@ -40,8 +40,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/httpcore-4.4.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/httpmime-4.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jandex-2.0.3.Final.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.20.0-GA.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jboss-logging-3.3.0.Final.jar"/>
@@ -134,5 +132,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xpp3_min-1.1.4c.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xstream-1.4.9.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.3.32.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

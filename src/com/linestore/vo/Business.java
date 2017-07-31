@@ -37,6 +37,7 @@ public class Business implements java.io.Serializable {
 	private String bbBank;
 	private String bbBankPerson;
 	private Set busCoupons = new HashSet(0);
+	private Set busTradings = new HashSet(0);
 
 	// Constructors
 
@@ -49,7 +50,7 @@ public class Business implements java.io.Serializable {
 			String busOwnerLname, String busIdcardUrl, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
 			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, String baCountry,
 			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
-			String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons) {
+			String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons, Set busTradings) {
 		this.supplier = supplier;
 		this.cateLine = cateLine;
 		this.customer = customer;
@@ -75,6 +76,7 @@ public class Business implements java.io.Serializable {
 		this.bbBank = bbBank;
 		this.bbBankPerson = bbBankPerson;
 		this.busCoupons = busCoupons;
+		this.busTradings = busTradings;
 	}
 
 	// Property accessors
@@ -285,6 +287,14 @@ public class Business implements java.io.Serializable {
 
 	public void setBusCoupons(Set busCoupons) {
 		this.busCoupons = busCoupons;
+	}
+
+	public Set getBusTradings() {
+		return this.busTradings;
+	}
+
+	public void setBusTradings(Set busTradings) {
+		this.busTradings = busTradings;
 	}
 
 }

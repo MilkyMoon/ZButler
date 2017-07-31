@@ -2,6 +2,7 @@ package com.linestore.dao;
 
 import java.util.List;
 
+import com.linestore.util.Page;
 import com.linestore.vo.Customer;
 
 public interface CustomerDao {
@@ -18,11 +19,13 @@ public interface CustomerDao {
 
 	public List<Customer> findByPhone(String phone);
 
-	public List<Customer> queryAll(final int offset, final int length);
+	public int queryAll();
 
 	public boolean checkCustomer(Customer customer);
 
 	public void updateField(String field, String value, int id);
+	
+	public List<Customer> queryAll(Page page);
 
 	// 获取指定用户资料
 	Customer select(Customer customer);

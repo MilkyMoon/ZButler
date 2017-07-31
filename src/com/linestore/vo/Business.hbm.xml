@@ -10,13 +10,13 @@
             <column name="bus_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select">
+        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select" lazy="false">
             <column name="bus_sup_id" />
         </many-to-one>
-        <many-to-one name="cateLine" class="com.linestore.vo.CateLine" fetch="select">
+        <many-to-one name="cateLine" class="com.linestore.vo.CateLine" fetch="select" lazy="false">
             <column name="bus_cal_id" />
         </many-to-one>
-        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select">
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="bus_cus_id" />
         </many-to-one>
         <property name="busShopName" type="java.lang.String">
@@ -82,11 +82,17 @@
         <property name="bbBankPerson" type="java.lang.String">
             <column name="bb_bank_person" length="20" />
         </property>
-        <set name="busCoupons" inverse="true">
+        <set name="busCoupons" inverse="true" lazy="false">
             <key>
                 <column name="bc_bus_id" />
             </key>
             <one-to-many class="com.linestore.vo.BusCoupon" />
+        </set>
+        <set name="busTradings" inverse="true" lazy="false">
+            <key>
+                <column name="cta_bus_id" />
+            </key>
+            <one-to-many class="com.linestore.vo.BusTrading" />
         </set>
     </class>
 </hibernate-mapping>
