@@ -16,6 +16,8 @@
     <link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
     <!-- iCheck -->
     <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
@@ -25,6 +27,7 @@
     <link href="./vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="./vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+   
 
     <!-- Custom Theme Style -->
     <link href="./build/css/custom.min.css" rel="stylesheet">
@@ -769,6 +772,8 @@
 <script src="./vendors/fastclick/lib/fastclick.js"></script>
 <!-- NProgress -->
 <script src="./vendors/nprogress/nprogress.js"></script>
+<!-- jQuery custom content scroller -->
+<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 <!-- Chart.js -->
 <script src="./vendors/Chart.js/dist/Chart.min.js"></script>
 <!-- gauge.js -->

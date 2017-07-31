@@ -21,7 +21,7 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	
 	public String selectAll() {
 		
-		List<Business> buss = businessService.selectAll(business);
+		List<Business> buss = businessService.selectAll();
 		
 		return "gotoOfflineStore";
 		

@@ -29,4 +29,8 @@ public interface CustomerDao {
 
 	// 获取指定用户资料
 	Customer select(Customer customer);
+	
+	void update(String hql);
+	
+	public List<Customer> search(String keywords);
 }

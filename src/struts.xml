@@ -218,9 +218,29 @@
 	</package>
 
 	<package name="struts3" extends="struts-default" namespace="/admin">
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.linestore.inteceptor.LoginInteceptor">
+				<param name="excludeMethods">login,code</param>
+			</interceptor>
+			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
+			<interceptor-stack name="defaultinter">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultinter"></default-interceptor-ref>
+
+		<global-results>
+			<result name="Login" type="redirect">login.jsp</result>
+		</global-results>
+	
+	
 		<action name="business_*" class="com.linestore.action.BusinessAction"
 			method="{1}">
 			<result name="selectAll">business.jsp</result>
+			<result name="select" type="redirectAction">business_selectAll</result>
 			<result name="read">readBusiness.jsp</result>
 			<result name="edit">editBusiness.jsp</result>
 			<result name="error">index.jsp</result>

@@ -24,6 +24,8 @@
 		rel="stylesheet">
 	<!-- NProgress -->
 	<link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- jQuery custom content scroller -->
+    <link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 	<!-- Dropzone.js -->
 	<link href="./vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
 	<!-- iCheck -->
@@ -168,6 +170,8 @@
 	<script src="./vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
 	<script src="./vendors/nprogress/nprogress.js"></script>
+	<!-- jQuery custom content scroller -->
+	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- Dropzone.js -->
     <script src="./vendors/dropzone/dist/min/dropzone.min.js"></script>
 	<!-- bootstrap-progressbar -->

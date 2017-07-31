@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.linestore.dao.CusAccountDao;
+import com.linestore.vo.Business;
 import com.linestore.vo.CusAccount;
 
 public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccountDao {
@@ -63,6 +64,17 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 			System.out.println("update failed!\n" + e);
 			throw e;
 		}
+	}
+
+	@Override
+	public void delete(int cusId) {
+		// TODO Auto-generated method stub
+		String hql = "delete from CusAccount where cac_cus_id = " + cusId;
+		
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+		session.clear();
 	}
 
 }

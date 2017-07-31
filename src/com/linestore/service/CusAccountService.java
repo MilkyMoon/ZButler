@@ -11,4 +11,6 @@ public interface CusAccountService {
 	public void updateCusAccount(CusAccount cusAccount);
 	
 	public void updateField(String field, String value, int id);
+	
+	public void delete(int cusId);
 }

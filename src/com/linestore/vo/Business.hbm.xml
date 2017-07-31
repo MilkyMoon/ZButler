@@ -22,14 +22,11 @@
         <property name="busShopName" type="java.lang.String">
             <column name="bus_shop_name" length="50" />
         </property>
-        <property name="busOwnerFname" type="java.lang.String">
-            <column name="bus_owner_fname" length="10" />
+        <property name="busOwnerName" type="java.lang.String">
+            <column name="bus_owner_name" length="10" />
         </property>
-        <property name="busOwnerLname" type="java.lang.String">
-            <column name="bus_owner_lname" length="10" />
-        </property>
-        <property name="busIdcardUrl" type="java.lang.String">
-            <column name="bus_idcard_url" length="65535" />
+        <property name="busDesc" type="java.lang.String">
+            <column name="bus_desc" length="65535" />
         </property>
         <property name="busLicenseUrl" type="java.lang.String">
             <column name="bus_license_url" length="65535" />

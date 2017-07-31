@@ -44,7 +44,8 @@ public class AdminLoginAction extends ActionSupport implements ModelDriven<Think
 			ActionContext.getContext().getSession().put("admin", thinkUser);
 			return "gotoIndex";
 		}
-		ActionContext.getContext().getSession().put("test", "1");
+		Map<String, Object> req = (Map<String, Object>) ActionContext.getContext().get("request");
+		req.put("test", "1");
 		return "gotoLogin";
 	}
 

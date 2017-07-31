@@ -38,7 +38,7 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 
 	@Override
-	public Business select(Business business) {
+	public List<Business> select(Business business) {
 		// TODO Auto-generated method stub
 		return businessDao.select(business);
 	}
@@ -47,6 +47,18 @@ public class BusinessServiceImpl implements BusinessService{
 	public void delete(Business business) {
 		// TODO Auto-generated method stub
 		businessDao.delete(business);
+	}
+
+	@Override
+	public List<Business> selectByArea(Business business) {
+		// TODO Auto-generated method stub
+		return businessDao.selectByArea(business);
+	}
+
+	@Override
+	public List<Business> select(String sql) {
+		// TODO Auto-generated method stub
+		return businessDao.select(sql);
 	}
 	
 }

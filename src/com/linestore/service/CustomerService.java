@@ -29,4 +29,8 @@ public interface CustomerService {
 
 	// 获取一个指定用户
 	Customer select(Customer customer);
+	
+	void update(String hql);
+	
+	public List<Customer> search(String keywords);
 }

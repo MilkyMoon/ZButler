@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.CustomerDao;
 import com.linestore.util.Page;
+import com.linestore.vo.Business;
 import com.linestore.vo.Customer;
 
 @Transactional
@@ -172,6 +173,22 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		query.setFirstResult(page.getBeginIndex());
 		
 		return query.list();
+	}
+
+	@Override
+	public void update(String hql) {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+	}
+
+	@Override
+	public List<Customer> search(String keywords) {
+		// TODO Auto-generated method stub
+		String hql = "from Customer where cusNickname like '%"+keywords+"%' or cusPhone like '%"+keywords+"%'";
+		List<Customer> list = (List<Customer>) this.getHibernateTemplate().find(hql);
+		return list;
 	}
 		
 }

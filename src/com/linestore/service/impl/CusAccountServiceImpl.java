@@ -40,4 +40,10 @@ public class CusAccountServiceImpl implements CusAccountService {
 		
 	}
 
+	@Override
+	public void delete(int cusId) {
+		// TODO Auto-generated method stub
+		cusAccountDao.delete(cusId);
+	}
+
 }
