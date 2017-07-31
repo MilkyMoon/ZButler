@@ -26,6 +26,7 @@ public class Business implements java.io.Serializable {
 	private Integer busStatus;
 	private Integer busLevel;
 	private String baCountry;
+	private String busIdcardUrl;
 	private String baProvince;
 	private String baCity;
 	private String baCounty;
@@ -45,11 +46,21 @@ public class Business implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Business(Supplier supplier, CateLine cateLine, Customer customer, String busShopName, String busOwnerName,
-			 String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
+	
+
+	// Property accessors
+
+	public Integer getBusId() {
+		return this.busId;
+	}
+
+	public Business(Integer busId, Supplier supplier, CateLine cateLine, Customer customer, String busShopName,
+			String busOwnerName, String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
 			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, String baCountry,
-			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
-			String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons, Set busTradings) {
+			String busIdcardUrl, String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude,
+			Float baLongitude, String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons, Set busTradings) {
+		super();
+		this.busId = busId;
 		this.supplier = supplier;
 		this.cateLine = cateLine;
 		this.customer = customer;
@@ -64,6 +75,7 @@ public class Business implements java.io.Serializable {
 		this.busStatus = busStatus;
 		this.busLevel = busLevel;
 		this.baCountry = baCountry;
+		this.busIdcardUrl = busIdcardUrl;
 		this.baProvince = baProvince;
 		this.baCity = baCity;
 		this.baCounty = baCounty;
@@ -77,10 +89,12 @@ public class Business implements java.io.Serializable {
 		this.busTradings = busTradings;
 	}
 
-	// Property accessors
+	public String getBusIdcardUrl() {
+		return busIdcardUrl;
+	}
 
-	public Integer getBusId() {
-		return this.busId;
+	public void setBusIdcardUrl(String busIdcardUrl) {
+		this.busIdcardUrl = busIdcardUrl;
 	}
 
 	public void setBusId(Integer busId) {

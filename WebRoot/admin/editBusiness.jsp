@@ -448,7 +448,12 @@
 		
 		// 百度地图API功能
 		var map = new BMap.Map("allmap");
-		var point = new BMap.Point(${businessList.baLongitude}, ${businessList.baLatitude});
+		if(${empty businessList.baLongitude} || ${empty businessList.baLatitude}){
+			var point = new BMap.Point(116.404, 39.915);
+		} else {
+			var point = new BMap.Point(${businessList.baLongitude}, ${businessList.baLatitude});
+		}
+		
 		var marker = new BMap.Marker(point);  // 创建标注
 		map.addOverlay(marker);              // 将标注添加到地图中
 		map.centerAndZoom(point, 15);

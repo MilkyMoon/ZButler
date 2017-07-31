@@ -43,8 +43,6 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 
 	public String selectAll(){
-		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = thinkUser.getThuId();
 		List<ThinkUser> list = new ArrayList<ThinkUser>();
 		thinkUserService.queryFormat(list, 0, 0);
 		ActionContext.getContext().getSession().clear();
@@ -54,8 +52,10 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String add(){
-		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = thinkUser.getThuId();
+		ThinkUser think = new ThinkUser();
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = think.getThuId();
+		
 		List<ThinkUser> list = new ArrayList<ThinkUser>();
 		thinkUser.setThuId(userId);
 		selectById();
@@ -71,8 +71,9 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String edit(){
-		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = thinkUser.getThuId();
+		ThinkUser think = new ThinkUser();
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = think.getThuId();
 		String[] arr = inList(userId);
 		
 		int i = 0;
@@ -101,17 +102,28 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 
 	public String save(){
+		if(thinkUser.getThuStatus().equals("-1") || thinkUser.getThuScale() == null || thinkUser.getThuScale() > 1 || thinkUser.getThuScale() < 0){
+			thinkUser.setThuScale((float) 1);
+		}
 		thinkUserService.add(thinkUser);
 		return "select";
 	}
 	
 	public String update(){
+		ThinkUser think = new ThinkUser();
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = think.getThuId();
 		int id = thinkUser.getThuId();
 //		business.setBusId(null);
 		
 		String hql;
 		try {
-			
+			if(thinkUser.getThuStatus().equals("-1") || thinkUser.getThuScale() == null || thinkUser.getThuScale() > 1 || thinkUser.getThuScale() < 0){
+				thinkUser.setThuScale((float) 1);
+			}
+			if(thinkUser.getThuId() == userId && thinkUser.getThuPid() != 0){
+				thinkUser.setThuScale(think.getThuScale());
+			}
 			hql = ReturnUpdateHql.ReturnHql(thinkUser.getClass(), thinkUser, id);
 //			System.out.println(business.getBusStatus());
 			thinkUserService.update(hql);
@@ -137,8 +149,9 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String delete(){
-		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = thinkUser.getThuId();
+		ThinkUser think = new ThinkUser();
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = think.getThuId();
 		
 		Integer thId = thinkUser.getThuId();
 		if(thId == userId){
@@ -182,8 +195,9 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String select(){
-		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = thinkUser.getThuId();
+		ThinkUser think = new ThinkUser();
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = think.getThuId();
 		
 		System.out.println("userId:"+userId);
 		
@@ -203,6 +217,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 			listResault.addAll(listNew);
 		} else {
 			System.out.println("搜索---else");
+			System.out.println(thinkUser.getThuName());
 			thinkUserList = thinkUserService.select(thinkUser);
 			
 			String[] arr = inList(userId);
@@ -222,7 +237,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 			for(int i = 0; i < listNew.size(); i++){
 				List<ThinkUser> list = new ArrayList<ThinkUser>();
 				
-				System.out.println("listNew:"+listNew.get(i).getThuArea());
+				System.out.println("listArea:"+listNew.get(i).getThuArea());
 				System.out.println("listNewId:"+listNew.get(i).getThuId());
 				
 				thinkUserService.queryFormat(list, listNew.get(i).getThuId(), 1);
@@ -260,9 +275,14 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String status(){
-		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = thinkUser.getThuId();
+		ThinkUser think = new ThinkUser();
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = think.getThuId();
 		
+		System.out.println("status:"+thinkUser.getThuId());
+		if(thinkUser.getThuId() == userId){
+			return "select";
+		}
 		String[] arr = inList(userId);
 		
 		int i = 0;
@@ -278,6 +298,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		
 		selectById();
 		thinkUserResult.setThuStatus(thinkUser.getThuStatus());
+		thinkUserResult.setThuScale((float) 1);
 		thinkUserService.status(thinkUserResult);
 		
 		return "select";

@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>平台用户管理 | 众帮管家</title>
+<title>账单管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -59,15 +59,15 @@
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
-								用户管理 <small></small>
+								账单管理 <small>只可查询与自己相关的账单</small>
 							</h3>
 						</div>
 
-						<form action="customer_select" method="get">
+						<form action="bill_select" method="get">
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="keywords" placeholder="输入昵称、电话 ..."> 	
+										<input type="text" class="form-control" name="keywords" placeholder="输入姓名、昵称或电话 ..."> 	
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>

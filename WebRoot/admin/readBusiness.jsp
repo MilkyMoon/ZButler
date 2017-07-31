@@ -86,7 +86,14 @@
 									<div class="x_title">
 										<h2>
 											<s:property value="busShopName" />
-											<small style="color:red">待审核</small>
+											<small style="color:red">
+												<s:if test="%{#businessList.busStatus == 0}">
+                       								带审核
+                      							</s:if> 
+                      							<s:if test="%{#businessList.busStatus == 1}">
+													已通过
+                      							</s:if>
+                      						</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -105,37 +112,35 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<s:form action="business_update"
+										<s:form action="#"
 											class="form-horizontal form-label-left">
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">店铺名称</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="busShopName"
-														value="<s:property value='busShopName'/>">
+														value="<s:property value='busShopName'/>" disabled="disabled"/>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">店主姓名</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<input type="text" class="form-control"
-														name="busOwnerName"
-														value="<s:property value="busOwnerName"/>">
+													<input type="text" class="form-control" name="busOwnerName"
+														value="<s:property value='busOwnerName'/>" disabled="disabled"/>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">身份证号</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="busIdcardUrl"
-														value="<s:property value="busIdcardUrl"/>">
+														value="<s:property value='busIdcardUrl'/>" disabled="disabled"/>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">营业执照</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<input type="text" class="form-control"
-														name="busLicenseUrl"
-														value="<s:property value="busLicenseUrl"/>">
+													<input type="text" class="form-control" name="busLicenseUrl"
+														value="<s:property value='busLicenseUrl'/>" disabled="disabled"/>
 												</div>
 											</div>
 
@@ -145,7 +150,7 @@
 												</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<textarea class="form-control" rows="3" name="busTaxUrl"
-														placeholder='<s:property value="busTaxUrl"/>'><s:property value="busTaxUrl"/></textarea>
+														placeholder='<s:property value="busTaxUrl"/>' disabled="disabled"><s:property value="busTaxUrl"/></textarea>
 												</div>
 											</div>
 											<div class="form-group">
@@ -154,14 +159,14 @@
 												</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<textarea class="form-control" rows="3" name="busOrgUrl"
-														placeholder='<s:property value="busOrgUrl"/>'><s:property value="busOrgUrl"/></textarea>
+														placeholder='<s:property value="busOrgUrl"/>' disabled="disabled"><s:property value="busOrgUrl"/></textarea>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">商圈</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" display="display"
+													<select class="form-control" disabled="disabled"
 														name="busDistrict">
 														<s:if test="%{#businessList.busDistrict == 1}">
 															<option value="1" selected="selected">商业区</option>
@@ -205,30 +210,21 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营类别</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" name="catetory.cateId"
-														id="busCateId">
+													<select class="form-control" name="cateLine.calId"
+														id="busCateId" disabled="disabled">
 
 														<c:forEach var="root" items="${roots}">
 
 															<c:if
-																test="${root.cateId ==  businessList.catetory.cateId}">
-																<option value="${root.cateId}" selected="selected">${root.cateName}</option>
+																test="${root.calId ==  businessList.cateLine.calId}">
+																<option value="${root.calId}" selected="selected">${root.calName}</option>
 															</c:if>
 															<c:if
-																test="${root.cateId !=  businessList.catetory.cateId}">
-																<option value="${root.cateId}">${root.cateName}</option>
+																test="${root.calId !=  businessList.cateLine.calId}">
+																<option value="${root.calId}">${root.calName}</option>
 															</c:if>
 
 														</c:forEach>
-													</select>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营小类别</label>
-												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" name="busSmallCate"
-														id="busSmallCate">
-														<option value="">请选择小类别</option>
 													</select>
 												</div>
 											</div>
@@ -238,14 +234,12 @@
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<div class="radio">
 														<label> <s:if test="%{#businessList.busStatus == 0}">
-																	<input type="radio" class="flat" name="busStatus"
-																		value="1"> 通过
 			                          								<input type="radio" class="flat" checked
-																		name="busStatus" value="0"> 未通过
+																		name="busStatus" value="0" disabled="disabled"> 未通过
 		                          								</s:if> 
 		                          								<s:if test="%{#businessList.busStatus == 1}">
 																	<input type="radio" class="flat" checked
-																		name="busStatus" value="1"> 通过
+																		name="busStatus" value="1" disabled="disabled"> 通过
 		                          								</s:if>
 
 														</label>
@@ -255,7 +249,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">商家类别</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" name="busLevel">
+													<select class="form-control" name="busLevel" disabled="disabled">
 														<s:if test="%{#businessList.busLevel == 0}">
 															<option value="0" selected="selected">商家</option>
 														</s:if>
@@ -287,73 +281,66 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">银行卡号</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="bbBankCard"
-														value="<s:property value="bbBankCard"/>">
+														value="<s:property value="bbBankCard"/>" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">银行卡所属人</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="bbBankPerson"
-														value="<s:property value="bbBankPerson"/>">
+														value="<s:property value="bbBankPerson"/>" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">国家</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baCountry"
-														value="中国">
+														value="中国" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baProvince"
-														value="<s:property value="baProvince"/>" id="baProvince">
+														value="<s:property value="baProvince"/>" id="baProvince" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baCity"
-														value="<s:property value="baCity"/>" id="baCity">
+														value="<s:property value="baCity"/>" id="baCity" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baCounty"
-														value="<s:property value="baCounty"/>" id="baCounty">
+														value="<s:property value="baCounty"/>" id="baCounty" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">详细地址</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baAddress"
-														value="<s:property value="baAddress"/>" id="baAddress">
+														value="<s:property value="baAddress"/>" id="baAddress" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">经度</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baLongitude"
-														value="${businessList.baLongitude}" id="baLongitude">
+														value="${businessList.baLongitude}" id="baLongitude" disabled="disabled">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">纬度</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baLatitude"
-														value="${businessList.baLatitude}" id="baLatitude">
+														value="${businessList.baLatitude}" id="baLatitude" disabled="disabled">
 												</div>
 											</div>
 											<div class="ln_solid"></div>
-											<div class="form-group">
-												<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-													<input type="hidden" name="busId"
-														value="<s:property value="busId"/>" />
-													<button type="submit" class="btn btn-success">提交</button>
-												</div>
-											</div>
 										</s:form>
 									</div>
 								</div>
@@ -363,7 +350,6 @@
 									<div class="x_title">
 										<h2>
 											<s:property value="busShopName" />
-											<small style="color:red">待审核</small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -443,46 +429,6 @@
 		src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
 
 	<script type="text/javascript">
-		$().ready(function() {
-			$.post("<%=basePath%>querySmallJson",
-				{
-					pid: ${businessList.catetory.cateId},
-				},
-				function(data){
-					var obj = JSON.parse(data);
-					console.log(obj);
-					var opString = null;
-					$("#busSmallCate").children().remove();
-					for (var i = 0; i < obj.smalls.length; i++) {
-						if(${businessList.busSmallCate} == obj.smalls[i].cateId){
-							opString = '<option value="'+obj.smalls[i].cateId+'" selected="selected">'+obj.smalls[i].cateName+'</option>';
-						}else{
-							opString = '<option value="'+obj.smalls[i].cateId+'">'+obj.smalls[i].cateName+'</option>';
-						}
-						$("#busSmallCate").append(opString);
-					}
-				});
-				
-			$("#busCateId").change(function(){
-				
-				
-				var pid = $(this).val();
-				$.post("<%=basePath%>querySmallJson",
-				{
-					pid: pid,
-				},
-				function(data){
-					var obj = JSON.parse(data);
-					console.log(obj);
-					opString = null;
-					$("#busSmallCate").children().remove();
-					for (var i = 0; i < obj.smalls.length; i++) {
-						var opString = '<option value="'+obj.smalls[i].cateId+'">'+obj.smalls[i].cateName+'</option>';
-						$("#busSmallCate").append(opString);
-					}
-				});
-			});
-		});
 		// 百度地图API功能
 /* 		var map = new BMap.Map("allmap");
 		var point = new BMap.Point(${businessList.baLatitude}, ${businessList.baLongitude});
@@ -505,20 +451,7 @@
 		showAddress();
 		
 		//            鼠标点击拾取ip坐标 更新图标位置
-		function showInfo(e) {
-			var allOverlay = map.getOverlays();
-			point = new BMap.Point(e.point.lng, e.point.lat);
-			mk = new BMap.Marker(e.point);
-			map.removeOverlay(allOverlay[0]);
-			map.removeOverlay(allOverlay[1]);
-			map.addOverlay(mk);
-			map.panTo(e.point);
-			$("#baLatitude").val(e.point.lat);
-			$("#baLongitude").val(e.point.lng);
-			
-			showAddress();
-		}
-		map.addEventListener("click", showInfo); 
+		
 		
 		function showAddress(){
 			var gc = new BMap.Geocoder();  //初始化，Geocoder类

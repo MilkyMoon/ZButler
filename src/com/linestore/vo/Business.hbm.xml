@@ -28,6 +28,9 @@
         <property name="busDesc" type="java.lang.String">
             <column name="bus_desc" length="65535" />
         </property>
+        <property name="busIdcardUrl" type="java.lang.String">
+            <column name="bus_idcard_url" length="65535" />
+        </property>
         <property name="busLicenseUrl" type="java.lang.String">
             <column name="bus_license_url" length="65535" />
         </property>
