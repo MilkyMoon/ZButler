@@ -21,5 +21,35 @@ public class CateLineServiceImpl implements CateLineService{
 		// TODO Auto-generated method stub
 		return cateLineDao.selectAll();
 	}
+
+	@Override
+	public void save(CateLine cateLine) {
+		// TODO Auto-generated method stub
+		cateLineDao.save(cateLine);
+	}
+
+	@Override
+	public void delete(CateLine cateLine) {
+		// TODO Auto-generated method stub
+		cateLineDao.delete(cateLine);
+	}
+
+	@Override
+	public void status(CateLine cateLine) {
+		// TODO Auto-generated method stub
+		cateLineDao.status(cateLine);
+	}
+
+	@Override
+	public void update(String hql) {
+		// TODO Auto-generated method stub
+		cateLineDao.update(hql);
+	}
+
+	@Override
+	public CateLine selectById(CateLine cateLine) {
+		// TODO Auto-generated method stub
+		return cateLineDao.selectById(cateLine);
+	}
 	
 }

@@ -48,6 +48,7 @@
                     <li><a><i class="fa fa-edit"></i> 代理商管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/business_selectAll">代理商基本信息</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">店铺分类</a></li>
                             <li><a href="form_validation.html">收款账号管理</a></li>
                             <li><a href="form_wizards.html">账期管理</a></li>
                         </ul>
