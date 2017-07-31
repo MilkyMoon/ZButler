@@ -6,21 +6,21 @@
 -->
 <hibernate-mapping>
     <class name="com.linestore.vo.BusTrading" table="bus_trading" catalog="bdm262404465_db">
-        <id name="ctaId" type="java.lang.String">
-            <column name="cta_id" length="40" />
+        <id name="btaId" type="java.lang.String">
+            <column name="bta_id" length="40" />
             <generator class="assigned" />
         </id>
         <many-to-one name="business" class="com.linestore.vo.Business" fetch="select" lazy="false">
-            <column name="cta_bus_id" />
+            <column name="bta_bus_id" />
         </many-to-one>
-        <property name="ctaType" type="java.lang.Integer">
-            <column name="cta_type" />
+        <property name="btaType" type="java.lang.Integer">
+            <column name="bta_type" />
         </property>
-        <property name="ctaMoney" type="java.lang.Float">
-            <column name="cta_money" precision="12" scale="0" />
+        <property name="btaMoney" type="java.lang.Float">
+            <column name="bta_money" precision="12" scale="0" />
         </property>
-        <property name="ctaTime" type="java.sql.Timestamp">
-            <column name="cta_time" length="19" />
+        <property name="btaTime" type="java.sql.Timestamp">
+            <column name="bta_time" length="19" />
         </property>
     </class>
 </hibernate-mapping>

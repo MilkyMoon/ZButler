@@ -10,11 +10,11 @@ public class BusTrading implements java.io.Serializable {
 
 	// Fields
 
-	private String ctaId;
+	private String btaId;
 	private Business business;
-	private Integer ctaType;
-	private Float ctaMoney;
-	private Timestamp ctaTime;
+	private Integer btaType;
+	private Float btaMoney;
+	private Timestamp btaTime;
 
 	// Constructors
 
@@ -23,27 +23,27 @@ public class BusTrading implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public BusTrading(String ctaId) {
-		this.ctaId = ctaId;
+	public BusTrading(String btaId) {
+		this.btaId = btaId;
 	}
 
 	/** full constructor */
-	public BusTrading(String ctaId, Business business, Integer ctaType, Float ctaMoney, Timestamp ctaTime) {
-		this.ctaId = ctaId;
+	public BusTrading(String btaId, Business business, Integer btaType, Float btaMoney, Timestamp btaTime) {
+		this.btaId = btaId;
 		this.business = business;
-		this.ctaType = ctaType;
-		this.ctaMoney = ctaMoney;
-		this.ctaTime = ctaTime;
+		this.btaType = btaType;
+		this.btaMoney = btaMoney;
+		this.btaTime = btaTime;
 	}
 
 	// Property accessors
 
-	public String getCtaId() {
-		return this.ctaId;
+	public String getBtaId() {
+		return this.btaId;
 	}
 
-	public void setCtaId(String ctaId) {
-		this.ctaId = ctaId;
+	public void setBtaId(String btaId) {
+		this.btaId = btaId;
 	}
 
 	public Business getBusiness() {
@@ -54,28 +54,28 @@ public class BusTrading implements java.io.Serializable {
 		this.business = business;
 	}
 
-	public Integer getCtaType() {
-		return this.ctaType;
+	public Integer getBtaType() {
+		return this.btaType;
 	}
 
-	public void setCtaType(Integer ctaType) {
-		this.ctaType = ctaType;
+	public void setBtaType(Integer btaType) {
+		this.btaType = btaType;
 	}
 
-	public Float getCtaMoney() {
-		return this.ctaMoney;
+	public Float getBtaMoney() {
+		return this.btaMoney;
 	}
 
-	public void setCtaMoney(Float ctaMoney) {
-		this.ctaMoney = ctaMoney;
+	public void setBtaMoney(Float btaMoney) {
+		this.btaMoney = btaMoney;
 	}
 
-	public Timestamp getCtaTime() {
-		return this.ctaTime;
+	public Timestamp getBtaTime() {
+		return this.btaTime;
 	}
 
-	public void setCtaTime(Timestamp ctaTime) {
-		this.ctaTime = ctaTime;
+	public void setBtaTime(Timestamp btaTime) {
+		this.btaTime = btaTime;
 	}
 
 }

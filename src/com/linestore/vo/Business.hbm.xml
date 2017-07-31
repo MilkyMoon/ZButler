@@ -90,7 +90,7 @@
         </set>
         <set name="busTradings" inverse="true" lazy="false">
             <key>
-                <column name="cta_bus_id" />
+                <column name="bta_bus_id" />
             </key>
             <one-to-many class="com.linestore.vo.BusTrading" />
         </set>
