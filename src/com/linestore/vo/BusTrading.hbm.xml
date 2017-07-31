@@ -16,6 +16,9 @@
         <property name="btaType" type="java.lang.Integer">
             <column name="bta_type" />
         </property>
+        <property name="btaAddress" type="java.lang.String">
+            <column name="bta_address" length="255"/>
+        </property>
         <property name="btaMoney" type="java.lang.Float">
             <column name="bta_money" precision="12" scale="0" />
         </property>

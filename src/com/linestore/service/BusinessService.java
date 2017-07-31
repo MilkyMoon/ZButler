@@ -11,5 +11,11 @@ public interface BusinessService {
 	List<Business> select(Business business);
 	List<Business> selectByArea(Business business);
 	void delete(Business business);
+
 	List<Business> select(String sql);
+
+	public Business select(int busId);
+	
+	public List<Business> queryByCity(String city, int count);
+
 }

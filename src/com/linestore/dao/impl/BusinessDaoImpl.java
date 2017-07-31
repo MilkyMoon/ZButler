@@ -62,5 +62,18 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 		String hql = "from Business where baProvince like '%"+business.getBaProvince()+"%' or baCity like '%"+business.getBaCity()+"%' or baCounty like '%"+business.getBaCounty()+"%'";
 		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
 		return list;
+    }
+
+	public Business select(int busId) {
+		return (Business) this.getHibernateTemplate().find("from Business where busId=?", busId).get(0);
+	}
+	
+	public List<Business> queryByCity(String city, int count) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from Business where baCity like '%"+ city +"%'");
+		if (count != 0) {
+			query.setMaxResults(count);
+		}
+		return query.list();
 	}
 }

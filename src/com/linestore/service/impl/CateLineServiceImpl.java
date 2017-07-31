@@ -51,5 +51,11 @@ public class CateLineServiceImpl implements CateLineService{
 		// TODO Auto-generated method stub
 		return cateLineDao.selectById(cateLine);
 	}
+
+	@Override
+	public List<CateLine> selectEight() {
+		
+		return cateLineDao.selectEight();
+	}
 	
 }

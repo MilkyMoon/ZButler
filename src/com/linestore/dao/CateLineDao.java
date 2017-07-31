@@ -11,4 +11,6 @@ public interface CateLineDao {
 	public void status(CateLine cateLine);
 	public CateLine selectById(CateLine cateLine);
 	void update(String hql);
+	
+	public List<CateLine> selectEight();
 }

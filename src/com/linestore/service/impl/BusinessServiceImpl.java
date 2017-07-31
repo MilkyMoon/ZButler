@@ -59,6 +59,16 @@ public class BusinessServiceImpl implements BusinessService{
 	public List<Business> select(String sql) {
 		// TODO Auto-generated method stub
 		return businessDao.select(sql);
+    }
+    
+	public Business select(int busId) {
+		return businessDao.select(busId);
+	}
+
+	@Override
+	public List<Business> queryByCity(String city, int count) {
+		
+		return businessDao.queryByCity(city, count);
 	}
 	
 }
