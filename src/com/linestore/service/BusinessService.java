@@ -7,11 +7,15 @@ import com.linestore.vo.Business;
 public interface BusinessService {
 	void add(Business business);
 	void update(String hql);
-	List<Business> selectAll(Business business);
-	Business select(Business business);
+	List<Business> selectAll();
+	List<Business> select(Business business);
+	List<Business> selectByArea(Business business);
 	void delete(Business business);
-	
+
+	List<Business> select(String sql);
+
 	public Business select(int busId);
 	
 	public List<Business> queryByCity(String city, int count);
+
 }

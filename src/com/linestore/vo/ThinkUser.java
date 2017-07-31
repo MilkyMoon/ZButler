@@ -1,8 +1,5 @@
 package com.linestore.vo;
 
-// default package
-
-import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +20,7 @@ public class ThinkUser implements java.io.Serializable {
 	private String thuEmail;
 	private String thuPhone;
 	private String thuName;
+	private Float thuScale;
 	private Set groupAccesses = new HashSet(0);
 
 	// Constructors
@@ -30,7 +28,7 @@ public class ThinkUser implements java.io.Serializable {
 	/** default constructor */
 	public ThinkUser() {
 	}
-
+	
 	public ThinkUser(ThinkUser thu) {
 		this.thuId = thu.getThuId();
 		this.thuUsername = thu.getThuUsername();
@@ -41,19 +39,19 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuEmail = thu.getThuEmail();
 		this.thuPhone = thu.getThuPhone();
 		this.thuName = thu.getThuName();
+		this.thuScale = thu.getThuScale();
 	}
 
 	/** minimal constructor */
-	public ThinkUser(String thuName, String thuPassword, String thuStatus) {
-		this.thuName = thuName;
+	public ThinkUser(String thuUsername, String thuPassword, String thuStatus) {
+		this.thuUsername = thuUsername;
 		this.thuPassword = thuPassword;
 		this.thuStatus = thuStatus;
 	}
 
 	/** full constructor */
-	public ThinkUser(String thuUsername, String thuPassword, String thuStatus, Timestamp thuCreateTime,
-			Timestamp thuUpdateTime, Integer thuPid, String thuArea, String thuEmail, String thuPhone,
-			Set groupAccesses,String thuName) {
+	public ThinkUser(String thuUsername, String thuPassword, String thuStatus, Integer thuPid, String thuArea,
+			String thuEmail, String thuPhone, String thuName, Float thuScale, Set groupAccesses) {
 		this.thuUsername = thuUsername;
 		this.thuPassword = thuPassword;
 		this.thuStatus = thuStatus;
@@ -61,8 +59,9 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuArea = thuArea;
 		this.thuEmail = thuEmail;
 		this.thuPhone = thuPhone;
-		this.groupAccesses = groupAccesses;
 		this.thuName = thuName;
+		this.thuScale = thuScale;
+		this.groupAccesses = groupAccesses;
 	}
 
 	// Property accessors
@@ -74,21 +73,13 @@ public class ThinkUser implements java.io.Serializable {
 	public void setThuId(Integer thuId) {
 		this.thuId = thuId;
 	}
-	
+
 	public String getThuUsername() {
 		return this.thuUsername;
 	}
 
 	public void setThuUsername(String thuUsername) {
 		this.thuUsername = thuUsername;
-	}
-
-	public String getThuName() {
-		return this.thuName;
-	}
-
-	public void setThuName(String thuName) {
-		this.thuName = thuName;
 	}
 
 	public String getThuPassword() {
@@ -137,6 +128,22 @@ public class ThinkUser implements java.io.Serializable {
 
 	public void setThuPhone(String thuPhone) {
 		this.thuPhone = thuPhone;
+	}
+
+	public String getThuName() {
+		return this.thuName;
+	}
+
+	public void setThuName(String thuName) {
+		this.thuName = thuName;
+	}
+
+	public Float getThuScale() {
+		return this.thuScale;
+	}
+
+	public void setThuScale(Float thuScale) {
+		this.thuScale = thuScale;
 	}
 
 	public Set getGroupAccesses() {

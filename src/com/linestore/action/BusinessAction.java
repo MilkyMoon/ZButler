@@ -1,25 +1,23 @@
 package com.linestore.action;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.linestore.service.BusinessService;
 import com.linestore.service.CateLineService;
-import com.linestore.service.CatetoryService;
+import com.linestore.util.ReturnSelectHql;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Business;
 import com.linestore.vo.CateLine;
-import com.linestore.vo.Catetory;
+import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.query.criteria.internal.expression.SizeOfPluralAttributeExpression;
 
 public class BusinessAction extends ActionSupport implements ModelDriven<Business>{
 	private Business business = new Business();
@@ -30,6 +28,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	private List<CateLine> cateLineList;
 	private CateLineService cateLineService;
+	private ThinkUser thinkUser = new ThinkUser();
 	
 	public void setCateLineService(CateLineService cateLineService) {
 		this.cateLineService = cateLineService;
@@ -81,8 +80,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 				hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, id);
 //				System.out.println(business.getBusStatus());
 				businessService.update(hql);
-				businessList = businessService.selectAll(business);
-				ActionContext.getContext().getValueStack().set("list", businessList);
+				
 				
 			} catch (NoSuchMethodException e) {
 				// TODO Auto-generated catch block
@@ -102,43 +100,74 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 			}
 			
 		
-		return "selectAll";
+		return "select";
 	}
 	
 	public String delete(){
 		businessService.delete(business);
-		businessList = businessService.selectAll(business);
+		businessList = businessService.selectAll();
 		ActionContext.getContext().getValueStack().set("list", businessList);
 		
 		return "selectAll";
 	}
 	
 	public String selectAll(){
+		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		System.out.println("thinkUser:"+thinkUser.getThuArea());
 		
-		businessList = businessService.selectAll(business);
+		if(thinkUser.getThuPid() == 0){
+			businessList = businessService.selectAll();
+		}else{
+			business.setBaCounty(thinkUser.getThuArea());
+			business.setBaCity(thinkUser.getThuArea());
+			business.setBaProvince(thinkUser.getThuArea());
+			
+			businessList = (List<Business>) businessService.selectByArea(business);
+		}
+		
 //		System.out.println("list:"+businessList);
 //		HttpServletRequest request = ServletActionContext.getRequest ();
 //		request.setAttribute("businessList", businessList);
-		System.out.println(businessList.get(0).getBusDistrict());
+//		System.out.println(businessList.get(0).getBusDistrict());
+//		request.setAttribute("list", businessList);
 		ActionContext.getContext().getValueStack().set("list", businessList);
 		return "selectAll";
 	}
 	
 	public Business selectById(){
-		businessResult = businessService.select(business);
-		
+		String hql;
+		try {
+			hql = ReturnSelectHql.ReturnHql(business.getClass(), business);
+			businessResult = businessService.select(hql).get(0);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return businessResult;
 	}
 	
 	
 	public String read(){
 		businessResult = selectById();
-		cateLineList = cateLineService.selectAll();
+//		cateLineList = cateLineService.selectAll();
 		
 		if(businessResult == null){
 			return ERROR;
 		}else{
-			request.setAttribute("roots", cateLineList);
+//			request.setAttribute("roots", cateLineList);
 			request.setAttribute("businessResult", businessResult);
 			return "read";
 		}
@@ -150,7 +179,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	}
 	
 	public String select(){
-		businessResult = businessService.select(business);
+		businessResult = businessService.select(business).get(0);
 		
 		cateLineList = cateLineService.selectAll();
 		Map<String, Object> req = (Map<String, Object>) ActionContext.getContext().get("request");

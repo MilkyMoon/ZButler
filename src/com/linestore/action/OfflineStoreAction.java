@@ -34,7 +34,6 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		return business;
 	}
 	
-	
 	public String offline() {
 		System.out.println("offline");
 //		List list = busTradingService.queryHot();

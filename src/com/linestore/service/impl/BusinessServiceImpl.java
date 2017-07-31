@@ -31,14 +31,14 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 
 	@Override
-	public List<Business> selectAll(Business business) {
+	public List<Business> selectAll() {
 		// TODO Auto-generated method stub
-		List<Business> allBusiness = businessDao.selectAll(business);
+		List<Business> allBusiness = businessDao.selectAll();
 		return allBusiness;
 	}
 
 	@Override
-	public Business select(Business business) {
+	public List<Business> select(Business business) {
 		// TODO Auto-generated method stub
 		return businessDao.select(business);
 	}
@@ -50,6 +50,17 @@ public class BusinessServiceImpl implements BusinessService{
 	}
 
 	@Override
+	public List<Business> selectByArea(Business business) {
+		// TODO Auto-generated method stub
+		return businessDao.selectByArea(business);
+	}
+
+	@Override
+	public List<Business> select(String sql) {
+		// TODO Auto-generated method stub
+		return businessDao.select(sql);
+    }
+    
 	public Business select(int busId) {
 		return businessDao.select(busId);
 	}

@@ -16,9 +16,8 @@ public class Business implements java.io.Serializable {
 	private CateLine cateLine;
 	private Customer customer;
 	private String busShopName;
-	private String busOwnerFname;
-	private String busOwnerLname;
-	private String busIdcardUrl;
+	private String busOwnerName;
+	private String busDesc;
 	private String busLicenseUrl;
 	private String busTaxUrl;
 	private String busOrgUrl;
@@ -46,8 +45,8 @@ public class Business implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Business(Supplier supplier, CateLine cateLine, Customer customer, String busShopName, String busOwnerFname,
-			String busOwnerLname, String busIdcardUrl, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
+	public Business(Supplier supplier, CateLine cateLine, Customer customer, String busShopName, String busOwnerName,
+			 String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
 			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, String baCountry,
 			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
 			String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons, Set busTradings) {
@@ -55,9 +54,8 @@ public class Business implements java.io.Serializable {
 		this.cateLine = cateLine;
 		this.customer = customer;
 		this.busShopName = busShopName;
-		this.busOwnerFname = busOwnerFname;
-		this.busOwnerLname = busOwnerLname;
-		this.busIdcardUrl = busIdcardUrl;
+		this.busOwnerName = busOwnerName;
+		this.busDesc = busDesc;
 		this.busLicenseUrl = busLicenseUrl;
 		this.busTaxUrl = busTaxUrl;
 		this.busOrgUrl = busOrgUrl;
@@ -121,28 +119,20 @@ public class Business implements java.io.Serializable {
 		this.busShopName = busShopName;
 	}
 
-	public String getBusOwnerFname() {
-		return this.busOwnerFname;
+	public String getBusOwnerName() {
+		return this.busOwnerName;
 	}
 
-	public void setBusOwnerFname(String busOwnerFname) {
-		this.busOwnerFname = busOwnerFname;
+	public void setBusOwnerName(String busOwnerName) {
+		this.busOwnerName = busOwnerName;
 	}
 
-	public String getBusOwnerLname() {
-		return this.busOwnerLname;
+	public String getBusDesc() {
+		return this.busDesc;
 	}
 
-	public void setBusOwnerLname(String busOwnerLname) {
-		this.busOwnerLname = busOwnerLname;
-	}
-
-	public String getBusIdcardUrl() {
-		return this.busIdcardUrl;
-	}
-
-	public void setBusIdcardUrl(String busIdcardUrl) {
-		this.busIdcardUrl = busIdcardUrl;
+	public void setBusDesc(String busDesc) {
+		this.busDesc = busDesc;
 	}
 
 	public String getBusLicenseUrl() {

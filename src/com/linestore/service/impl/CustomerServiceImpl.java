@@ -102,4 +102,16 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		return customerDao.queryAll(page);
 	}
+
+	@Override
+	public void update(String hql) {
+		// TODO Auto-generated method stub
+		customerDao.update(hql);
+	}
+
+	@Override
+	public List<Customer> search(String keywords) {
+		// TODO Auto-generated method stub
+		return customerDao.search(keywords);
+	}
 }

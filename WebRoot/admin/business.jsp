@@ -144,7 +144,7 @@
 	                          	<td>混合区</td>
 	                          </s:if>
 	                          <s:if test="%{#businessList.busDistrict == NULL}"><td></td></s:if>
-	                          <td><s:property value="busOwnerFname"></s:property></td>
+	                          <td><s:property value="busOwnerName"></s:property></td>
 	                          <%-- <td><s:property value="busStatus"></s:property></td> --%>
 	                          <s:if test="%{#businessList.busStatus == 0}">
 	                          	<td style="color:red">否</td>
@@ -183,6 +183,8 @@
     <script src="./vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="./vendors/nprogress/nprogress.js"></script>
+    <!-- jQuery custom content scroller -->
+	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- iCheck -->
     <script src="./vendors/iCheck/icheck.min.js"></script>
     <!-- Datatables -->

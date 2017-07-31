@@ -17,6 +17,8 @@
 	<link href="./vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<!-- NProgress -->
 	<link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+	<!-- jQuery custom content scroller -->
+    <link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 	<!-- iCheck -->
 	<link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 	<!-- Datatables -->
@@ -130,6 +132,8 @@
     <script src="./vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="./vendors/nprogress/nprogress.js"></script>
+    <!-- jQuery custom content scroller -->
+	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- iCheck -->
     <script src="./vendors/iCheck/icheck.min.js"></script>
     <!-- Datatables -->

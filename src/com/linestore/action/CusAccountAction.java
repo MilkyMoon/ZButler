@@ -31,6 +31,11 @@ public class CusAccountAction extends ActionSupport implements ModelDriven<CusAc
 		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
 		return "gotoPointsOne";
 	}
+	
+	public String delete(){
+		
+		return "delete";
+	}
 
 	public CusAccountService getCusAccountService() {
 		return cusAccountService;

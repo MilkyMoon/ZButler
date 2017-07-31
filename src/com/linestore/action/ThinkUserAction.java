@@ -24,13 +24,15 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	private List<ThinkUser> thinkUserList;
 	private ThinkUserService thinkUserService;
 	private ThinkUser thinkUserResult;
-	private Integer userId = 4;
+	private Integer userId;
 
 	@Override
 	public ThinkUser getModel() {
 		// TODO Auto-generated method stub
 		return thinkUser;
 	}
+	
+	
 	
 //	public void setThinkUserList(List<ThinkUser> thinkUserList) {
 //		this.thinkUserList = thinkUserList;
@@ -41,6 +43,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 
 	public String selectAll(){
+		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = thinkUser.getThuId();
 		List<ThinkUser> list = new ArrayList<ThinkUser>();
 		thinkUserService.queryFormat(list, 0, 0);
 		ActionContext.getContext().getSession().clear();
@@ -50,6 +54,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String add(){
+		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = thinkUser.getThuId();
 		List<ThinkUser> list = new ArrayList<ThinkUser>();
 		thinkUser.setThuId(userId);
 		selectById();
@@ -65,6 +71,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String edit(){
+		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = thinkUser.getThuId();
 		String[] arr = inList(userId);
 		
 		int i = 0;
@@ -129,6 +137,9 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String delete(){
+		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = thinkUser.getThuId();
+		
 		Integer thId = thinkUser.getThuId();
 		if(thId == userId){
 			return "select";
@@ -171,6 +182,11 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String select(){
+		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = thinkUser.getThuId();
+		
+		System.out.println("userId:"+userId);
+		
 		List<ThinkUser> listFor = new ArrayList<ThinkUser>();
 		List<ThinkUser> listNew = new ArrayList<ThinkUser>();
 		List<ThinkUser> listResault = new ArrayList<ThinkUser>();		
@@ -244,6 +260,9 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 	
 	public String status(){
+		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		this.userId = thinkUser.getThuId();
+		
 		String[] arr = inList(userId);
 		
 		int i = 0;

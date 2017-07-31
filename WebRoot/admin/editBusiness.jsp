@@ -26,6 +26,8 @@
 	rel="stylesheet">
 <!-- NProgress -->
 <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- jQuery custom content scroller -->
+<link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 <!-- iCheck -->
 <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 <!-- bootstrap-wysiwyg -->
@@ -122,8 +124,8 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">店主姓名</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control"
-														name="busOwnerFname"
-														value="<s:property value="busOwnerFname"/>">
+														name="busOwnerName"
+														value="<s:property value="busOwnerName"/>">
 												</div>
 											</div>
 											<div class="form-group">
@@ -400,6 +402,8 @@
 	<script src="./vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
 	<script src="./vendors/nprogress/nprogress.js"></script>
+	<!-- jQuery custom content scroller -->
+	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- bootstrap-progressbar -->
 	<script
 		src="./vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
