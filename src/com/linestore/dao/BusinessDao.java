@@ -10,4 +10,8 @@ public interface BusinessDao {
 	List<Business> selectAll();
 	Business select(Business business);
 	void delete(Business business);
+	
+	public Business select(int busId);
+	
+	public List<Business> queryByCity(String city, int count);
 }

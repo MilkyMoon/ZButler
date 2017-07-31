@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -26,7 +26,7 @@
 	<div class="index">
 		<header class="m-navbar">
 		<div class="navbar-item">
-			<input type="text" readonly id="J_Address" placeholder="北京"
+			<input type="text" readonly id="J_Address" placeholder='<c:if test="${empty city}">北京</c:if><c:if test="${!empty city}">${city}</c:if>'
 				class="choosePlace">
 		</div>
 		<div class="navbar-center">
@@ -60,7 +60,7 @@
 		</div>
 
 		<div class="index_classItems">
-			<div class="index_classItem">
+			<%-- <div class="index_classItem">
 				<img src="<%=basePath%>home/dist/wx_image/Food.png" /> <span>美食</span>
 			</div>
 			<div class="index_classItem">
@@ -83,7 +83,13 @@
 			</div>
 			<div class="index_classItem">
 				<img src="<%=basePath%>home/dist/wx_image/Life.png" /> <span>生活</span>
-			</div>
+			</div> --%>
+			
+			<c:forEach items="${cateLins}" var="cate">
+				<div class="index_classItem">
+					<img src="${cate.calImg}" /> <span>${cate.calName}</span>
+				</div>
+			</c:forEach>
 		</div>
 
 		<div class="index_recommends">
@@ -104,7 +110,20 @@
 
 		<div class="index_guessYourLike">
 			<h5>猜你喜欢</h5>
-			<div class="index_guessItem">
+			<c:forEach items="${buss}" var="bus">
+				<div class="index_guessItem">
+				<img src="${bus.busOrgUrl}" />
+				<div class="guess_content">
+					<div>
+						<span class="guess_name">${bus.busShopName}</span> <span class="guess_mark">10%</span>
+					</div>
+					<div>
+						<span>${bus.cateLine.calName}</span> <span>其他</span>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+			<%-- <div class="index_guessItem">
 				<img src="image/111.jpg" />
 				<div class="guess_content">
 					<div>
@@ -136,7 +155,7 @@
 						<span>靓丽类</span> <span>其他</span>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 		</div>
 
 	</div>
@@ -148,7 +167,7 @@
 <!--百度地图定位-->
 <script type="text/javascript">
 	// 百度地图API功能
-	var map = new BMap.Map("allmap");
+	/* var map = new BMap.Map("allmap");
 	var point = new BMap.Point(116.331398, 39.897445);
 	map.centerAndZoom(point, 12);
 	var geoc = new BMap.Geocoder();
@@ -164,21 +183,23 @@
 				var addComp = rs.addressComponents;
 				function province(pro) {
 					var ans;
-					if (pro[pro.length - 1] == "省") {
+					if (pro[pro.length - 1] == "市") {
 						ans = pro.substring(0, pro.length - 1);
-					} else {
-						ans = pro.substring(0, 2);
 					}
 					return ans;
 				}
-				$('#J_Address').attr('placeholder', province(addComp.province));
+				if (addComp.city == '') {
+					$('#J_Address').attr('placeholder', '北京');
+				} else {
+					$('#J_Address').attr('placeholder', addComp.city);
+				}
 			});
 		} else {
-			alert('failed' + this.getStatus());
+			$('#J_Address').attr('placeholder', province("北京"));
 		}
 	}, {
 		enableHighAccuracy : true
-	})
+	}) */
 
 	//    轮播图初始化
 	$('#J_Slider').slider({
@@ -200,7 +221,8 @@
 		/* 省：ret.provance */
 		/* 市：ret.city */
 		/* 县：ret.area */
-		$(this).val(ret.provance);
+		$(this).val(ret.city);
+		window.location.href = "<%=basePath%>offlineStore!offline.action?city="+ret.city;
 	});
 </script>
 </html>
