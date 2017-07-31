@@ -9,7 +9,6 @@ public class LoginInteceptor extends MethodFilterInterceptor {
 
 	@Override
 	protected String doIntercept(ActionInvocation arg0) throws Exception {
-		System.out.println(arg0.invoke());
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		if (cus != null) {
 			return arg0.invoke();

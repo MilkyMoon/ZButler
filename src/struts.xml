@@ -12,8 +12,9 @@
 	<package name="struts2" extends="struts-default" namespace="/">
 
 		<interceptors>
-			<interceptor name="loginInterceptor" class="com.linestore.inteceptor.LoginInteceptor">
-				<param name="excludeMethods">login,weChats,oauth</param>
+			<interceptor name="loginInterceptor"
+				class="com.linestore.inteceptor.LoginInteceptor">
+				<param name="excludeMethods">login,weChats,oauth,forgetPass,sendMessage</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
 			<interceptor-stack name="defaultinter">
@@ -21,12 +22,12 @@
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
-		
-		<default-interceptor-ref name="defaultinter"></default-interceptor-ref> 
-		
+
+		<default-interceptor-ref name="defaultinter"></default-interceptor-ref>
+
 		<global-results>
-            <result name="Login">/home/login.jsp</result>  
-        </global-results> 
+			<result name="Login">/home/login.jsp</result>
+		</global-results>
 
 		<action name="user_*" class="com.linestore.action.UserAction"
 			method="{1}">
@@ -117,10 +118,11 @@
 			<result name="gotoRecord">/home/rechargeRecord.jsp</result>
 			<result name="update" type="redirect">/home/pointToChange.jsp</result>
 		</action>
-		
-		<action name="cateLine_*" class="com.linestore.action.CateLineAction" method="{1}">
-        	<result name="selectAll">/home/applyAdmission.jsp</result>
-        </action>
+
+		<action name="cateLine_*" class="com.linestore.action.CateLineAction"
+			method="{1}">
+			<result name="selectAll">/home/applyAdmission.jsp</result>
+		</action>
 
 		<!-- 微信入口配置 -->
 		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
@@ -136,7 +138,7 @@
 		<action name="registerSuccessNotify" class="com.linestore.action.TemplateMessageAction"
 			method="registerSuccessNotify">
 			<result name="goPersonalCenter">/home/customer.jsp</result>
-			
+
 		</action>
 
 		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
@@ -209,46 +211,64 @@
 			</result>
 		</action>
 	</package>
-  
+
 	<package name="struts3" extends="struts-default" namespace="/admin">
-		<action name="business_*" class="com.linestore.action.BusinessAction" method="{1}">
-        	<result name="selectAll">business.jsp</result>
-        	<result name="read">readBusiness.jsp</result>
-        	<result name="edit">editBusiness.jsp</result>
-        	<result name="error">index.jsp</result>
-        </action>
-        <action name="thinkUser_*" class="com.linestore.action.ThinkUserAction" method="{1}">
-        	<result name="selectAll">thinkUser.jsp</result>
-        	<result name="select" type="redirectAction">thinkUser_select</result>
-        	<result name="add">thinkUserAdd.jsp</result>
-        	<result name="edit">thinkUserEdit.jsp</result>
-        	<result name="error">index.jsp</result>
-        </action>
-        <action name="group_*" class="com.linestore.action.GroupAction" method="{1}">
-        	<result name="selectAll">thinkUser.jsp</result>
-        	<result name="select" type="redirectAction">thinkUser_select</result>
-        	<result name="add">thinkUserAdd.jsp</result>
-        	<result name="edit">thinkUserEdit.jsp</result>
-        	<result name="error">index.jsp</result>
-        </action>
-        <action name="category_*" class="com.linestore.action.CatetoryAction" method="{1}">
-        	<result name="selectAll">category.jsp</result>
-        	<result name="select" type="redirectAction">category_select</result>
-        	<result name="add">categoryAdd.jsp</result>
-        	<result name="edit">categoryEdit.jsp</result>
-        	<result name="error">index.jsp</result>
-        </action>
+		<action name="business_*" class="com.linestore.action.BusinessAction"
+			method="{1}">
+			<result name="selectAll">business.jsp</result>
+			<result name="read">readBusiness.jsp</result>
+			<result name="edit">editBusiness.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+		<action name="thinkUser_*" class="com.linestore.action.ThinkUserAction"
+			method="{1}">
+			<result name="selectAll">thinkUser.jsp</result>
+			<result name="select" type="redirectAction">thinkUser_select</result>
+			<result name="add">thinkUserAdd.jsp</result>
+			<result name="edit">thinkUserEdit.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+		<action name="group_*" class="com.linestore.action.GroupAction"
+			method="{1}">
+			<result name="selectAll">thinkUser.jsp</result>
+			<result name="select" type="redirectAction">thinkUser_select</result>
+			<result name="add">thinkUserAdd.jsp</result>
+			<result name="edit">thinkUserEdit.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+		<action name="category_*" class="com.linestore.action.CatetoryAction"
+			method="{1}">
+			<result name="selectAll">category.jsp</result>
+			<result name="select" type="redirectAction">category_select</result>
+			<result name="add">categoryAdd.jsp</result>
+			<result name="edit">categoryEdit.jsp</result>
+			<result name="error">index.jsp</result>
+		</action>
+
+		<action name="adminLogin" class="com.linestore.action.AdminLoginAction"
+			method="login">
+			<result name="gotoIndex" type="redirect">index.jsp</result>
+			<result name="gotoLogin">login.jsp</result>
+		</action>
+		<action name="code" class="com.linestore.action.AdminLoginAction"
+			method="code">
+			<result type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+        
         <action name="cateLine_*" class="com.linestore.action.CateLineAction" method="{1}">
-        	<result name="selectAll">cateline.jsp</result>
-        	<result name="select" type="redirectAction">cateLine_selectAll</result>
-        	<result name="add">catelineAdd.jsp</result>
-        	<result name="edit">catelineEdit.jsp</result>
+            <result name="selectAll">cateline.jsp</result>
+            <result name="select" type="redirectAction">cateLine_selectAll</result>
+            <result name="add">catelineAdd.jsp</result>
+            <result name="edit">catelineEdit.jsp</result>
         </action>
         <action name="customer_*" class="com.linestore.action.AdminCustomerAction" method="{1}">
-        	<result name="selectAll">customer.jsp</result>
-        	<result name="select" type="redirectAction">customer_selectAll</result>
-        	<result name="edit">catelineEdit.jsp</result>
+            <result name="selectAll">customer.jsp</result>
+            <result name="select" type="redirectAction">customer_selectAll</result>
+            <result name="edit">catelineEdit.jsp</result>
         </action>
-    </package>
+	</package>
 
 </struts>
