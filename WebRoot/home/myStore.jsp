@@ -35,7 +35,8 @@
 			<div style="background-color: #8B572A">商户编辑</div>
 			<div style="background-color: #7ED321">店铺图片</div>
 			<div style="background-color: #417505">返点比例</div>
-			<div style="background-color: #4A90E2">提现账户</div>
+			<div style="background-color: #4A90E2">零钱提现</div>
+			<div style="background-color: #4A90E2">商家收款</div>
 		</div>
 	</div>
 </body>
