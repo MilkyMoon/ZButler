@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface BusTradingService {
 	
-	public List queryHot();
+	public List queryHot(String city);
 
 }

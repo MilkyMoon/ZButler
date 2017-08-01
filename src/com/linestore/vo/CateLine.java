@@ -16,6 +16,7 @@ public class CateLine implements java.io.Serializable {
 	private String calImg;
 	private Integer calStatus;
 	private Integer calAuth;
+	private Integer calPid;
 	private Set businesses = new HashSet(0);
 
 	// Constructors
@@ -25,18 +26,33 @@ public class CateLine implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public CateLine(String calName, String calImg, Integer calStatus, Integer calAuth, Set businesses) {
-		this.calName = calName;
-		this.calImg = calImg;
-		this.calStatus = calStatus;
-		this.calAuth = calAuth;
-		this.businesses = businesses;
-	}
-
+	
+	
 	// Property accessors
 
 	public Integer getCalId() {
 		return this.calId;
+	}
+
+
+	public CateLine(Integer calId, String calName, String calImg, Integer calStatus, Integer calAuth, Integer calPid,
+			Set businesses) {
+		super();
+		this.calId = calId;
+		this.calName = calName;
+		this.calImg = calImg;
+		this.calStatus = calStatus;
+		this.calAuth = calAuth;
+		this.calPid = calPid;
+		this.businesses = businesses;
+	}
+
+	public Integer getCalPid() {
+		return calPid;
+	}
+
+	public void setCalPid(Integer calPid) {
+		this.calPid = calPid;
 	}
 
 	public void setCalId(Integer calId) {

@@ -19,6 +19,9 @@
         <property name="calStatus" type="java.lang.Integer">
             <column name="cal_status" />
         </property>
+        <property name="calPid" type="java.lang.Integer">
+            <column name="cal_pid" />
+        </property>
         <property name="calAuth" type="java.lang.Integer">
             <column name="cal_auth" />
         </property>

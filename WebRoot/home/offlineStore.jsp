@@ -26,15 +26,20 @@
 	<div class="index">
 		<header class="m-navbar">
 		<div class="navbar-item">
-			<input type="text" readonly id="J_Address" placeholder='<c:if test="${empty city}">北京</c:if><c:if test="${!empty city}">${city}</c:if>'
+			<input type="text" readonly id="J_Address"
+				placeholder='<c:if test="${empty city}">密云区</c:if><c:if test="${!empty city}">${city}</c:if>'
 				class="choosePlace">
 		</div>
 		<div class="navbar-center">
-			<i class="icon-search"></i> <input type="search"
-				placeholder="输入商家/品类/商圈">
+			<i class="icon-search"></i>
+			<form action="javascript:seach()" method="post">
+				<input type="search" placeholder="输入商家/品类/商圈" id="seach"> <input
+					type="hidden" id="city"
+					value="<c:if test="${empty city}">密云区</c:if><c:if test="${!empty city}">${city}</c:if>">
+			</form>
 		</div>
-		<a href="<%=basePath%>home/login.jsp" class="navbar-item personIcon"> <img
-			src="<%=basePath%>home/dist/wx_image/person.png" />
+		<a href="<%=basePath%>home/login.jsp" class="navbar-item personIcon">
+			<img src="<%=basePath%>home/dist/wx_image/person.png" />
 		</a> </header>
 
 		<div class="m-slider" id="J_Slider">
@@ -84,7 +89,7 @@
 			<div class="index_classItem">
 				<img src="<%=basePath%>home/dist/wx_image/Life.png" /> <span>生活</span>
 			</div> --%>
-			
+
 			<c:forEach items="${cateLins}" var="cate">
 				<div class="index_classItem">
 					<img src="${cate.calImg}" /> <span>${cate.calName}</span>
@@ -94,15 +99,18 @@
 
 		<div class="index_recommends">
 			<div class="index_recommend_left">
-				<img src="<%=basePath%>home/dist/wx_image/Trval.png" /> <span>我们旅行</span> <strong>恋人爱人好朋友</strong>
+				<img src="<%=basePath%>home/dist/wx_image/Trval.png" /> <span>我们旅行</span>
+				<strong>恋人爱人好朋友</strong>
 			</div>
 			<div class="index_recommend_right">
 				<div class="recommend_right">
-					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span> 底价超值 <strong>十元惠生活</strong>
+					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span>
+						底价超值 <strong>十元惠生活</strong>
 					</span>
 				</div>
 				<div class="recommend_right">
-					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span> 底价超值 <strong>十元惠生活</strong>
+					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span>
+						底价超值 <strong>十元惠生活</strong>
 					</span>
 				</div>
 			</div>
@@ -111,17 +119,20 @@
 		<div class="index_guessYourLike">
 			<h5>猜你喜欢</h5>
 			<c:forEach items="${buss}" var="bus">
-				<div class="index_guessItem">
-				<img src="${bus.busOrgUrl}" />
-				<div class="guess_content">
-					<div>
-						<span class="guess_name">${bus.busShopName}</span> <span class="guess_mark">10%</span>
-					</div>
-					<div>
-						<span>${bus.cateLine.calName}</span> <span>其他</span>
-					</div>
-				</div>
-			</div>
+				<a
+					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}"><div
+						class="index_guessItem">
+						<img src="${bus.busOrgUrl}" />
+						<div class="guess_content">
+							<div>
+								<span class="guess_name">${bus.busShopName}</span> <span
+									class="guess_mark">10%</span>
+							</div>
+							<div>
+								<span>${bus.cateLine.calName}</span> <span>其他</span>
+							</div>
+						</div>
+					</div> </a>
 			</c:forEach>
 			<%-- <div class="index_guessItem">
 				<img src="image/111.jpg" />
@@ -166,40 +177,52 @@
 <script src="<%=basePath%>home/dist/wx_js/ydui.citys.js"></script>
 <!--百度地图定位-->
 <script type="text/javascript">
-	// 百度地图API功能
-	/* var map = new BMap.Map("allmap");
-	var point = new BMap.Point(116.331398, 39.897445);
-	map.centerAndZoom(point, 12);
-	var geoc = new BMap.Geocoder();
-	var geolocation = new BMap.Geolocation();
-	geolocation.getCurrentPosition(function(r) {
-		if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-			var mk = new BMap.Marker(r.point);
-			map.addOverlay(mk);
-			map.panTo(r.point);
-			//            ip逆解析
-			var pt = new BMap.Point(r.point.lng, r.point.lat);
-			geoc.getLocation(pt, function(rs) {
-				var addComp = rs.addressComponents;
-				function province(pro) {
-					var ans;
-					if (pro[pro.length - 1] == "市") {
-						ans = pro.substring(0, pro.length - 1);
-					}
-					return ans;
+// 百度地图API功能
+/* var map = new BMap.Map("allmap");
+var point = new BMap.Point(116.331398, 39.897445);
+map.centerAndZoom(point, 12);
+var geoc = new BMap.Geocoder();
+var geolocation = new BMap.Geolocation();
+geolocation.getCurrentPosition(function(r) {
+	if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+		var mk = new BMap.Marker(r.point);
+		map.addOverlay(mk);
+		map.panTo(r.point);
+		//            ip逆解析
+		var pt = new BMap.Point(r.point.lng, r.point.lat);
+		geoc.getLocation(pt, function(rs) {
+			var addComp = rs.addressComponents;
+			function province(pro) {
+				var ans;
+				if (pro[pro.length - 1] == "市") {
+					ans = pro.substring(0, pro.length - 1);
 				}
-				if (addComp.city == '') {
-					$('#J_Address').attr('placeholder', '北京');
-				} else {
-					$('#J_Address').attr('placeholder', addComp.city);
-				}
-			});
-		} else {
-			$('#J_Address').attr('placeholder', province("北京"));
+				return ans;
+			}
+			if (addComp.city == '') {
+				$('#J_Address').attr('placeholder', '北京');
+			} else {
+				$('#J_Address').attr('placeholder', addComp.city);
+			}
+		});
+	} else {
+		$('#J_Address').attr('placeholder', province("北京"));
+	}
+}, {
+	enableHighAccuracy : true
+}) */
+
+	function seach() {
+		window.location.href = "<%=basePath%>offlineStore!seach.action?city=" + $("#city").val() + "&seach=" + $("#seach").val();
+	}
+
+	function province(pro) {
+		var ans;
+		if (pro[pro.length - 1] == "市") {
+			ans = pro.substring(0, pro.length - 1);
 		}
-	}, {
-		enableHighAccuracy : true
-	}) */
+		return ans;
+	}
 
 	//    轮播图初始化
 	$('#J_Slider').slider({
@@ -222,7 +245,9 @@
 		/* 市：ret.city */
 		/* 县：ret.area */
 		$(this).val(ret.city);
-		window.location.href = "<%=basePath%>offlineStore!offline.action?city="+ret.city;
+		ret.city = province(ret.city);
+
+		window.location.href = "<%=basePath%>offlineStore!offline.action?city=" + ret.city;
 	});
 </script>
 </html>
