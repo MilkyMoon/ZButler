@@ -12,5 +12,7 @@ public interface CateLineService {
 	public CateLine selectById(CateLine cateLine);
 	void update(String hql);
 	
-	public List<CateLine> selectEight();
+	public List<CateLine> selectEight(int pid);
+	
+	public CateLine queryByName(String seach);
 }

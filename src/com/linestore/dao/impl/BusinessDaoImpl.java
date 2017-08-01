@@ -70,10 +70,23 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 	
 	public List<Business> queryByCity(String city, int count) {
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query = session.createQuery("from Business where baCity like '%"+ city +"%'");
+		Query query = session.createQuery("from Business where baCity like '%"+ city +"%' and busStatus=1");
 		if (count != 0) {
 			query.setMaxResults(count);
 		}
+		return query.list();
+	}
+
+	@Override
+	public List<Business> queryByCate(int cate, String city) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from Business where baCity like '%"+ city +"%' and busCalId="+ cate +" and busStatus=1");
+		return query.list();
+	}
+	
+	public List<Business> queryByShopName(String seach, String city) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from Business where baCity like '%"+ city +"%' and busShopName='"+seach+"' and busStatus=1");
 		return query.list();
 	}
 }

@@ -53,9 +53,14 @@ public class CateLineServiceImpl implements CateLineService{
 	}
 
 	@Override
-	public List<CateLine> selectEight() {
+	public List<CateLine> selectEight(int pid) {
 		
-		return cateLineDao.selectEight();
+		return cateLineDao.selectEight(pid);
+	}
+
+	@Override
+	public CateLine queryByName(String seach) {
+		return cateLineDao.queryByName(seach);
 	}
 	
 }

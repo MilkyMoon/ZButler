@@ -128,6 +128,8 @@
 		<action name="offlineStore_*" class="com.linestore.action.OfflineStoreAction"
 			method="{1}">
 			<result name="gotoOfflineStore">/home/offlineStore.jsp</result>
+			<result name="gotoBusiness">/home/busDetails.jsp</result>
+			<result name="gotoSeach">/home/seach.jsp</result>
 		</action>
 
 		<!-- 微信入口配置 -->

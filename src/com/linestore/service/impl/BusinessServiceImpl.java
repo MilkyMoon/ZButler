@@ -70,5 +70,16 @@ public class BusinessServiceImpl implements BusinessService{
 		
 		return businessDao.queryByCity(city, count);
 	}
+
+	@Override
+	public List<Business> queryByCate(int cate, String city) {
+		return businessDao.queryByCate(cate, city);
+	}
+
+	@Override
+	public List<Business> queryByShopName(String seach, String city) {
+		// TODO Auto-generated method stub
+		return businessDao.queryByShopName(seach, city);
+	}
 	
 }

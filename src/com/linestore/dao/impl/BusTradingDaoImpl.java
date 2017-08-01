@@ -14,10 +14,10 @@ import com.linestore.vo.BusTrading;
 public class BusTradingDaoImpl extends HibernateDaoSupport implements BusTradingDao {
 
 	@Override
-	public List queryHot() {
+	public List queryHot(String city) {
 		System.out.println("exec queryHot");
 		Session session =  this.getSessionFactory().getCurrentSession();
-		Query query = session.createQuery("select count(*) as c,business.busId from BusTrading group by business order by c desc");
+		Query query = session.createQuery("select count(*) as c,business.busId from BusTrading where btaAddress like '%"+ city +"%' group by business order by c desc");
 		query.setMaxResults(15);  
 		return query.list();
 	}
