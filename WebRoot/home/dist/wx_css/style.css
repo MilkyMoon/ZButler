@@ -851,6 +851,7 @@ px
 	margin: 8px;
 }
 
+
 .bindCard .m-cell, .bindCard .cell-item {
 	border-radius: 4px;
 	height: 44px;
@@ -1684,6 +1685,14 @@ px
 	background-color: #fff;
 }
 
+.takeMoneyAccount .btn-primary {
+    height: 44px;
+    margin-top: 60px;
+    font-size: 14px;
+    line-height: 44px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18)
+}
 .takeMoneyAccountItem {
 	position: relative;
 	width: 100%;

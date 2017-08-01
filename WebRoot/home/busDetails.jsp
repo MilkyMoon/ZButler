@@ -54,7 +54,7 @@
 				</div>
 
 				<div class="businessCommend_address_phone">
-					<a href="tel:15732685341"><img src="<%=basePath%>home/dist/wx_image/ic_phone.png" /></a>
+					<a href="tel:${business.busPhone}"><img src="<%=basePath%>home/dist/wx_image/ic_phone.png" /></a>
 				</div>
 			</div>
 		</div>
