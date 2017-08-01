@@ -62,5 +62,10 @@ public class CateLineServiceImpl implements CateLineService{
 	public CateLine queryByName(String seach) {
 		return cateLineDao.queryByName(seach);
 	}
+
+	@Override
+	public List<CateLine> selectChildren(int pid) {
+		return cateLineDao.selectChildren(pid);
+	}
 	
 }

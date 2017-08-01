@@ -26,8 +26,8 @@
 			<c:if test="${!empty buss}">
 			<h5>商店</h5>
 			<c:forEach items="${buss}" var="bus">
-				<a
-					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}"><div
+				<a href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
+				<div
 						class="index_guessItem">
 						<img src="${bus.busOrgUrl}" />
 						<div class="guess_content">
@@ -43,10 +43,9 @@
 			</c:forEach>
 			</c:if>
 			
-			
-			<c:if test="${!empty cate}">
+			 <c:if test="${!empty cateSeach}">
 			<h5>分类</h5>
-			<c:forEach items="${cate}" var="bus">
+			<c:forEach items="${cateSeach}" var="bus">
 				<a
 					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}"><div
 						class="index_guessItem">
@@ -62,8 +61,8 @@
 						</div>
 					</div> </a>
 			</c:forEach>
-			</c:if>
-			<c:if test="${empty cate and empty cate}">
+			</c:if> 
+			<c:if test="${empty cate and empty buss}">
 				<p style="text-align: center; font-size: 17px">没有相关商店</p>
 				<p style="text-align: center"><a href="<%=basePath%>offlineStore!offline.action" style="color:red; font-size: 21px; margin-top: 5px;">返回</a></p>
 			</c:if>

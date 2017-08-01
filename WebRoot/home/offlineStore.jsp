@@ -33,7 +33,7 @@
 		<div class="navbar-center">
 			<i class="icon-search"></i>
 			<form action="javascript:seach()" method="post">
-				<input type="search" placeholder="输入商家/品类/商圈" id="seach"> <input
+				<input type="search" placeholder="输入商家/品类" id="seach"> <input
 					type="hidden" id="city"
 					value="<c:if test="${empty city}">密云区</c:if><c:if test="${!empty city}">${city}</c:if>">
 			</form>
@@ -92,7 +92,8 @@
 
 			<c:forEach items="${cateLins}" var="cate">
 				<div class="index_classItem">
-					<img src="${cate.calImg}" /> <span>${cate.calName}</span>
+					<a href="<%=basePath%>offlineStore_queryCate?cate=${cate.calId}"><img src="${cate.calImg}" /></a> 
+					<span>${cate.calName}</span>
 				</div>
 			</c:forEach>
 		</div>
@@ -220,6 +221,8 @@ geolocation.getCurrentPosition(function(r) {
 		var ans;
 		if (pro[pro.length - 1] == "市") {
 			ans = pro.substring(0, pro.length - 1);
+		} else {
+			ans = pro;
 		}
 		return ans;
 	}
@@ -246,7 +249,6 @@ geolocation.getCurrentPosition(function(r) {
 		/* 县：ret.area */
 		$(this).val(ret.city);
 		ret.city = province(ret.city);
-
 		window.location.href = "<%=basePath%>offlineStore!offline.action?city=" + ret.city;
 	});
 </script>

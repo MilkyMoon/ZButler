@@ -21,11 +21,15 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	
 	private Map<String, Object> request;
 	
-	private String city = "北京";
+	private String city = "密云";
 	
 	private String seach;
 	
 	private int busId;
+	
+	private int cate;
+	
+	private int child = -1;
 	
 	private BusinessService businessService;
 	
@@ -39,7 +43,7 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	}
 	
 	public String offline() {
-		System.out.println("offline");
+		//System.out.println("offline");
 //		List list = busTradingService.queryHot();
 //		List<Business> buss = new ArrayList<Business>();
 //		for (int i = 0; i < list.size(); i++) {
@@ -50,7 +54,7 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		ActionContext.getContext().getSession().put("buss", businessService.queryByCity(city, 0));
 		List<CateLine> cates = cateLineService.selectEight(0);
 		ActionContext.getContext().getSession().put("city", city);
-		System.out.println(cates.size());
+		//System.out.println(cates.size());
 		ActionContext.getContext().getSession().put("cateLins", cates);
 		
 		return "gotoOfflineStore";
@@ -72,6 +76,32 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		return "gotoBusiness";
 	}
 	
+	public String queryCate() {
+		List<CateLine> cates = cateLineService.selectChildren(cate);
+		
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("cate", cate);
+		request.put("cates", cates);
+		List<Business> buss = null;
+		String city = (String) ActionContext.getContext().getSession().get("city");
+		if (child == -1) {
+			buss = businessService.querySmall(city, cates.get(0).getCalId());
+			request.put("name", cates.get(0).getCalName());
+		} else {
+			buss = businessService.querySmall(city, child);
+			for (int i =0; i < cates.size(); i++) {
+				if (child == cates.get(i).getCalId()) {
+					request.put("name", cates.get(i).getCalName());
+					break;
+				}
+			}
+		}
+		request.put("child", child);
+		request.put("buss", buss);
+		System.out.println(city);
+		return "gotoStoreCate";
+	}
+	
 	public String seach() {
 		System.out.println(city);
 		System.out.println(seach);
@@ -81,11 +111,12 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		System.out.println("------");
 		if (cate != null) {
 			List<Business> buss = businessService.queryByCate(cate.getCalId(), city);
-			System.out.println("cate:" + buss);
-			request.put("cate", buss);
+			System.out.println("cateSeach:" + buss);
+			request.put("cateSeach", buss);
 		}
 		System.out.println("------");
 		List<Business> bus = businessService.queryByShopName(seach, city);
+		System.out.println(bus);
 		System.out.println("buss:" + bus);
 		request.put("buss", bus);
 		return "gotoSeach";
@@ -146,7 +177,21 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	public void setSeach(String seach) {
 		this.seach = seach;
 	}
-	
-	
+
+	public int getCate() {
+		return cate;
+	}
+
+	public void setCate(int cate) {
+		this.cate = cate;
+	}
+
+	public int getChild() {
+		return child;
+	}
+
+	public void setChild(int child) {
+		this.child = child;
+	}
 	
 }
