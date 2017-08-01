@@ -61,7 +61,9 @@
 						</div>
 					</div> </a>
 			</c:forEach>
-			</c:if> 
+         
+			</c:if>
+
 			<c:if test="${empty cate and empty buss}">
 				<p style="text-align: center; font-size: 17px">没有相关商店</p>
 				<p style="text-align: center"><a href="<%=basePath%>offlineStore!offline.action" style="color:red; font-size: 21px; margin-top: 5px;">返回</a></p>
