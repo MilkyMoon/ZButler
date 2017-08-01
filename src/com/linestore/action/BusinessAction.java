@@ -112,15 +112,16 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	}
 	
 	public String selectAll(){
-		thinkUser = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		System.out.println("thinkUser:"+thinkUser.getThuArea());
+		ThinkUser think = new ThinkUser();
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		System.out.println("thinkUser:"+think.getThuArea());
 		
-		if(thinkUser.getThuPid() == 0){
+		if(think.getThuPid() == 0){
 			businessList = businessService.selectAll();
 		}else{
-			business.setBaCounty(thinkUser.getThuArea());
-			business.setBaCity(thinkUser.getThuArea());
-			business.setBaProvince(thinkUser.getThuArea());
+			business.setBaCounty(think.getThuArea());
+			business.setBaCity(think.getThuArea());
+			business.setBaProvince(think.getThuArea());
 			
 			businessList = (List<Business>) businessService.selectByArea(business);
 		}
@@ -162,12 +163,12 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	public String read(){
 		businessResult = selectById();
-//		cateLineList = cateLineService.selectAll();
+		cateLineList = cateLineService.selectAll();
 		
 		if(businessResult == null){
 			return ERROR;
 		}else{
-//			request.setAttribute("roots", cateLineList);
+			request.setAttribute("roots", cateLineList);
 			request.setAttribute("businessResult", businessResult);
 			return "read";
 		}

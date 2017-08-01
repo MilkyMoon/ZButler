@@ -37,24 +37,11 @@
 
 </html>
 <script type="text/javascript">
-	$(function() {
-		pushHistory();
-		window.addEventListener("popstate", function(e) {
-			//history.go(-2);
-			console.log(window.history)
-		}, false);
-		function pushHistory() {
-			var state = {
-				title : "title",
-				url : "#"
-			};
-			window.history.pushState(state, "title", "#");
-		}
-	});
+
 	$.ajax({
 		type : "post",
 		dataType : "json",
-		url : "<%=basePath%>/ZButler/WxJsApi!JsApiParams.action",
+		url : "<%=basePath%>WxJsApi!JsApiParams.action",
 		async : false,
 		data : {
 			url : location.href.split("#")[0]
@@ -66,7 +53,9 @@
 				'onMenuShareTimeline',
 				'onMenuShareAppMessage',
 				'uploadImage',
-				'chooseImage'
+				'chooseImage',
+				'openLocation',
+				'getLocation'
 			];
 			wx.config(config)
 		}
@@ -111,7 +100,7 @@
 
 	$("#map").click(function() {
 
-/* 		wx.getLocation({
+		wx.getLocation({
 			type : 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
 			success : function(res) {
 				var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
@@ -124,13 +113,28 @@
 					longitude : longitude, // 经度，浮点数，范围为180 ~ -180。
 					name : '', // 位置名
 					address : '', // 地址详情说明
-					scale : 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+					scale : 15, // 地图缩放级别,整形值,范围从1~28。默认为最大
 					infoUrl : '' // 在查看位置界面底部显示的超链接,可点击跳转
 				});
 			}
-		}); */
+		});
 
 	})
+
+/* 	$(function() {
+		pushHistory();
+		window.addEventListener("popstate", function(e) {
+			//history.go(-2);
+			console.log(window.history)
+		}, false);
+		function pushHistory() {
+			var state = {
+				title : "title",
+				url : "#"
+			};
+			window.history.pushState(state, "title", "#");
+		}
+	}); */
 	/* wx.uploadImage({
 		localId : '', // 需要上传的图片的本地ID，由chooseImage接口获得
 		isShowProgressTips : 1, // 默认为1，显示进度提示

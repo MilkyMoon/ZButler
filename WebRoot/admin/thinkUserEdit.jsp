@@ -131,8 +131,11 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
 												<select class="form-control" name="thuPid" id="busCateId">
-														<c:if test="${list[0].thuId == listInfo.thuId}">
+														<c:if test="${list[0].thuId == listInfo.thuId && listInfo.thuPid != 0}">
 															<option value="${listPinfo.thuId}" selected="selected">${listPinfo.thuArea}</option>
+														</c:if>
+														<c:if test="${list[0].thuId == listInfo.thuId && listInfo.thuPid == 0}">
+															<option value="0" selected="selected">${listInfo.thuArea}</option>
 														</c:if>
 														<c:if test="${list[0].thuId != listInfo.thuId}">
 															<c:forEach var="root" items="${list}" varStatus="i">
@@ -157,6 +160,18 @@
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">电&nbsp;&nbsp;&nbsp;&nbsp;话</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
 												<input type="text" class="form-control" name="thuPhone" value="${listInfo.thuPhone}" placeholder="请输入管理员电话">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<c:if test="${list[0].thuId == listInfo.thuId && listInfo.thuPid != 0}">
+													<input type="text" class="form-control" name="thuScale" value="${listInfo.thuScale}" disabled="disabled" placeholder="请输入抽成比例">
+												</c:if>
+												<c:if test="${list[0].thuId != listInfo.thuId || listInfo.thuPid == 0}">
+													<input type="text" class="form-control" name="thuScale" value="${listInfo.thuScale}" placeholder="请输入抽成比例">
+												</c:if>
+												<p style="margin-top:10px;"><code>注意：</code>此比例为上级用户向当前用户所抽取的比例，取值为0~1。当用户未设置或未启用时请将比例设置为1。关闭时会自动将值设置为1</p>
 											</div>
 										</div>
 										<div class="form-group">
