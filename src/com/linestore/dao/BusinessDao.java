@@ -21,5 +21,7 @@ public interface BusinessDao {
 	public List<Business> queryByCate(int cate, String city);
 	
 	public List<Business> queryByShopName(String seach, String city);
+	
+	public List<Business> querySmall(String city, int small);
 
 }

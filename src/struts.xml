@@ -15,7 +15,7 @@
 			<interceptor name="loginInterceptor"
 				class="com.linestore.inteceptor.LoginInteceptor">
 				<param name="excludeMethods">
-	login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,wxConfig,JsApiParams,payNotify</param>
+	login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,wxConfig,JsApiParams,payNotify,queryCate,askRegister,register</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
 			<interceptor-stack name="defaultinter">
@@ -130,6 +130,7 @@
 			<result name="gotoOfflineStore">/home/offlineStore.jsp</result>
 			<result name="gotoBusiness">/home/busDetails.jsp</result>
 			<result name="gotoSeach">/home/seach.jsp</result>
+			<result name="gotoStoreCate">/home/storeCate.jsp</result>
 		</action>
 
 		<!-- 微信入口配置 -->
@@ -181,7 +182,7 @@
 			</result>
 		</action>
 
-		<action name="querySmallJson" class="com.linestore.action.CatetoryAction"
+		<action name="querySmallJson" class="com.linestore.action.CateLineAction"
 			method="querySmall">
 			<result type="json">
 				<param name="root">result</param>

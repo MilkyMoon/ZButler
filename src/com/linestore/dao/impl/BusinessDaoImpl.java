@@ -80,7 +80,7 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 	@Override
 	public List<Business> queryByCate(int cate, String city) {
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query = session.createQuery("from Business where baCity like '%"+ city +"%' and busCalId="+ cate +" and busStatus=1");
+		Query query = session.createQuery("from Business where baCity like '%"+ city +"%' and cateLine.calId="+ cate +" and busStatus=1");
 		return query.list();
 	}
 	
@@ -88,5 +88,10 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("from Business where baCity like '%"+ city +"%' and busShopName='"+seach+"' and busStatus=1");
 		return query.list();
+	}
+	
+	public List<Business> querySmall(String city, int small) {
+		List<Business> buss = (List<Business>) this.getHibernateTemplate().find("from Business where baCity like '%" + city +"%' and busSmallCate="+small);
+		return buss;
 	}
 }

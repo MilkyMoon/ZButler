@@ -46,6 +46,7 @@ public class LoginFilter implements Filter {
 	    Object loginuser = req.getSession().getAttribute("user");  
 	    if(loginuser == null){ 
 	      res.sendRedirect(indexPath);
+	      System.out.println(req.getRequestURI());
 	      System.out.println("***********");
 	      return;  
 	    } 

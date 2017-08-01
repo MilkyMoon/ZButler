@@ -78,8 +78,12 @@ public class BusinessServiceImpl implements BusinessService{
 
 	@Override
 	public List<Business> queryByShopName(String seach, String city) {
-		// TODO Auto-generated method stub
 		return businessDao.queryByShopName(seach, city);
+	}
+
+	@Override
+	public List<Business> querySmall(String city, int small) {
+		return businessDao.querySmall(city, small);
 	}
 	
 }
