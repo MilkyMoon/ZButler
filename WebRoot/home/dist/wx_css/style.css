@@ -4950,3 +4950,90 @@ px
 .integral2_top_center {
 	font-size: 14px;
 }
+
+/*饭呢类*/
+.fenlei{
+
+}
+.fenlei .m-cell{
+    height: 40px;
+    background-color: #fff;
+    color: #A3A3B5;
+    padding: 0;
+}
+.fenlei .cell-item{
+    color: #A3A3B5;
+    padding-top: 0;
+}
+.fenlei .cell-item .cell-right{
+    height: 40px;
+}
+
+.fenleiList {
+    width: 100%;
+    margin-top: -16px;
+    background-color: #ffffff;
+    padding-left: 9px;
+}
+
+.fenleiItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 80px;
+    padding: 8px 0;
+    border-bottom: solid 2px #EFEFF4;
+}
+
+.fenleiItem img {
+    width: 106px;
+    height: 100%;
+}
+
+.fenleiItem_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 10px;
+    color: #A3A3B5;
+    flex-grow: 1;
+}
+.fenleiItem_content_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 24px;
+    line-height: 20px;
+}
+
+.fenleiItem_content span {
+    font-size: 12px;
+}
+
+.fenleiItem_content .fenleiItem_name {
+    font-size: 14px;
+    color: #1C1C20;
+}
+
+.fenleiItem_content .fenleiItem_mark {
+    color: #FF2100;
+}
+.fenleiItem_content .businessCommend_title_starNum {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.fenleiItem_content .businessCommend_title_starNum img {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+}
+
+.fenleiItem_content .businessCommend_title_starNum span {
+    font-size: 12px;
+    color: #DB412A;
+}

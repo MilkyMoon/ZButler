@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -121,11 +122,11 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customer.setCusStatus(1);
 
 		if (ReType != null) {
-			customer.setCusPassword("123456");
+			customer.setCusPassword("111");
 			customerService.addCustomer(customer);
 			init(customer);
 			Friends friends = new Friends();
-			Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
+			Customer cus = customerService.findByPhone(valid).get(0);
 			friends.setCustomer(cus);
 			friends.setFriDate(new Timestamp(new Date().getTime()));
 			friends.setFriPhone(customer.getCusPhone());
@@ -169,6 +170,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		if (ActionContext.getContext().getSession().get("Bind") != null) {
 			field = (String) ActionContext.getContext().getSession().get("Bind");
 			value = (String) ActionContext.getContext().getSession().get("openId");
+			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
+			if (check.size() > 0) {
+				customerService.delCustomer(check.get(0).getCusId());
+			}
 			ActionContext.getContext().getSession().put("Bind", null);
 		}
 		if ("cusNickname".equals(field)) {

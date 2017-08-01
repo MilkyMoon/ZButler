@@ -15,4 +15,6 @@ public interface CateLineDao {
 	public List<CateLine> selectEight(int pid);
 	
 	public CateLine queryByName(String seach);
+	
+	public List<CateLine> selectChildren(int pid);
 }

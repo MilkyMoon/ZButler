@@ -67,5 +67,8 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 		}
 		return null;
 	}
-
+	
+	public List<CateLine> selectChildren(int pid) {
+		return (List<CateLine>) this.getHibernateTemplate().find("from CateLine where calPid="+pid);
+	}
 }

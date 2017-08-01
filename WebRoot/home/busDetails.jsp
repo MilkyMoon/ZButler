@@ -5,7 +5,6 @@
 			+ path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -67,18 +66,20 @@
 		<div class="businessMessage_hotBusiness">
 			<h5>热门商家</h5>
 			<c:forEach items="${hots}" var="bus">
-				<div class="index_guessItem">
-					<img src="${bus.busOrgUrl}" />
-					<div class="guess_content">
-						<div>
-							<span class="guess_name">${bus.busShopName}</span> <span
-								class="guess_mark">10%</span>
-						</div>
-						<div>
-							<span>${bus.cateLine.calName}</span> <span>其他</span>
+				<a href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
+					<div class="index_guessItem">
+						<img src="${bus.busOrgUrl}" />
+						<div class="guess_content">
+							<div>
+								<span class="guess_name">${bus.busShopName}</span> <span
+									class="guess_mark">10%</span>
+							</div>
+							<div>
+								<span>${bus.cateLine.calName}</span> <span>其他</span>
+							</div>
 						</div>
 					</div>
-				</div>
+				</a>
 			</c:forEach>
 			<!-- <div class="businessMessage_hotBusinessItem">
 				<img src="image/111.jpg" />
