@@ -46,10 +46,10 @@
 					<span>${cac.cacPoints}</span> <span
 						class="mine_myAccount_text">积分</span>
 				</div>
-				<div class="mine_myBonus">
+<%-- 				<div class="mine_myBonus">
 					<span>${cac.cacBonus}</span> <span
 						class="mine_myAccount_text">奖金</span>
-				</div>
+				</div> --%>
 		</div>
 		<div class="mine_order">
 			<div class="mine_order_title">

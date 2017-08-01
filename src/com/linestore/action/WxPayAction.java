@@ -54,9 +54,10 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private String result;
-	
+
 	private CtaTradingService ctaTradingService;
 	private CusAccountService cusAccountService;
+
 	public CusAccountService getCusAccountService() {
 		return cusAccountService;
 	}
@@ -105,12 +106,9 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	// 统一下单
 	public String getPayInfo() throws WxPayException {
 		// 产生订单号（订单号重复）
-		int min = 1000;
-		int max = 9999;
-		Random random = new Random();
 		// 获取业务类型 R-充值/P-支付商品
 		String service = request.getParameter("service").toUpperCase();
-		String out_trade_no = new java.util.Date().getTime() + service + random.nextInt(max) % (max - min + 1);
+		String out_trade_no = new java.util.Date().getTime() + service + this.RandomStr();
 		// 获取金额
 		String payNum = request.getParameter("payNum");
 
@@ -131,35 +129,37 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						.outTradeNo(out_trade_no) // 唯一订单
 						.openid((String) ActionContext.getContext().getSession().get("SCOPE_BASE_OPENID")).build());
 		this.result = JSONObject.fromObject(payInfo).toString();
-		
-		System.out.println(this.result.toString());
 		return SUCCESS;
 	}
 
 	// 回调处理
 
 	public void payNotify() {
-
+		String returnString = null;
 		try {
 			synchronized (this) {
 				Map<String, String> kvm = XMLUtil.parseRequestXmlToMap(request);
 				if (SignUtils.checkSign(kvm, this.payConfig.getMchKey())) {
 					if (kvm.get("result_code").equals("SUCCESS")) {
+						// 应答微信
+						response.setContentType(" text/xml");
+						response.setCharacterEncoding("utf-8");
+						response.getWriter().write(
+								"<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>");
+
 						// 区分业务逻辑
 						String out_trade_no = kvm.get("out_trade_no");
 						String service = out_trade_no.substring(out_trade_no.length() - 5, out_trade_no.length() - 4);
-						System.out.println(service);
+
 						switch (service) {
 						// 获取业务类型 R-充值/P-支付商品
 						case "P":
 							// 转账
-							
+
 							break;
 						case "R":
 							CtaTrading cta = new CtaTrading();
 							String openId = kvm.get("openid");
-							System.out.println(kvm.toString());
-							System.out.println(Float.valueOf(kvm.get("total_fee")) / 100);
 							Customer cus = (Customer) customerService.findByOpenId(openId).get(0);
 							CusAccount cusAccount = cusAccountService.findByCusId(cus.getCusId());
 							Float money = cusAccount.getCacChange() + Float.valueOf(kvm.get("total_fee")) / 100;
@@ -172,14 +172,12 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							cta.setCtaTime(new Timestamp(date.getTime()));
 							ctaTradingService.addCtaTrading(cta);
 							break;
-
 						default:
 							break;
 						}
 
 						System.out.println("out_trade_no: " + kvm.get("out_trade_no") + " pay SUCCESS!");
-						response.getWriter().write(
-								"<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[ok]]></return_msg></xml>");
+
 					} else {
 						System.out.println("out_trade_no: " + kvm.get("out_trade_no") + " result_code is FAIL");
 						response.getWriter().write(
@@ -195,7 +193,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 			e.printStackTrace();
 		}
 	}
-
 	// 企业付款到个人
 
 	public void payToIndividual() throws WxPayException {
@@ -229,6 +226,16 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+	
+	private String RandomStr() {
+		Random random = new Random();
+		String radnString = "";
+		for (int i = 0; i < 4; i++) {
+			radnString += (int) (Math.random() * 10);
+		}
+
+		return radnString;
 	}
 
 }

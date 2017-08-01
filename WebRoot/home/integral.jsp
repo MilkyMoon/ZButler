@@ -135,7 +135,7 @@
 
 	});
 	$('.btn-primary').click(function() {
-		if ($('.integral2_moneyNum>span').text() === 'NaN') {
+		if ($('.integral2_moneyNum>span').text() === '0.00') {
 			alert('请输入正确金额!')
 		} else {
 			$('.dialog').css('display', 'block');

@@ -20,23 +20,23 @@
 </head>
 
 <body>
-	<div class="myStore" style="padding-top:53px;>
+	<div class="myStore" style="padding-top:53px;">
 		<div class="integral2_top">
-		<div class="integral2_top_left">
-			<i class="fa fa-angle-left"></i> <a
-				href="<%=basePath%>home/customer.jsp">返回</a>
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
 		</div>
-		<div class="integral2_top_center"></div>
-	</div>
-	<div class="myStore_content">
-		<div style="background-color: #D0021B">收款明细</div>
-		<div style="background-color: #F5A623">提现明细</div>
-		<div style="background-color: #C767DA">现金收款</div>
-		<div style="background-color: #8B572A">商户编辑</div>
-		<div style="background-color: #7ED321">店铺图片</div>
-		<div style="background-color: #417505">返点比例</div>
-		<div style="background-color: #4A90E2">提现账户</div>
-	</div>
+		<div class="myStore_content">
+			<div style="background-color: #D0021B">收款明细</div>
+			<div style="background-color: #F5A623">提现明细</div>
+			<div style="background-color: #C767DA">现金收款</div>
+			<div style="background-color: #8B572A">商户编辑</div>
+			<div style="background-color: #7ED321">店铺图片</div>
+			<div style="background-color: #417505">返点比例</div>
+			<div style="background-color: #4A90E2">提现账户</div>
+		</div>
 	</div>
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>

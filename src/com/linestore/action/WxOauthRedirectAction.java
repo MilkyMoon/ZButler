@@ -113,7 +113,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 			returnString = "gotoBind";
 			break;
 		default:
-			returnString = "gotoPay";
+			returnString = "login";
 			break;
 		}
 		// 刷新access_token
