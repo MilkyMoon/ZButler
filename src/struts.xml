@@ -15,7 +15,7 @@
 			<interceptor name="loginInterceptor"
 				class="com.linestore.inteceptor.LoginInteceptor">
 				<param name="excludeMethods">
-	login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu</param>
+					login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
 			<interceptor-stack name="defaultinter">
@@ -124,7 +124,7 @@
 			method="{1}">
 			<result name="selectAll">/home/applyAdmission.jsp</result>
 		</action>
-		
+
 		<action name="offlineStore_*" class="com.linestore.action.OfflineStoreAction"
 			method="{1}">
 			<result name="gotoOfflineStore">/home/offlineStore.jsp</result>
@@ -192,9 +192,16 @@
 			</result>
 		</action>
 
+		<action name="fileUpload" class="com.linestore.action.fileUploadAction"
+			method="execute">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
 
 		<!-- 微信相关配置 -->
-		
+
 		<!-- 微信网页授权js参数 -->
 		<action name="WxJsApi" class="com.linestore.action.WxJsApiAction"
 			method="JsApiParams">
@@ -208,13 +215,14 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-		
+
 		<!-- 图片上传 -->
-        <action name="saveImg" class="com.linestore.util.FileUpload" method="saveImg">
-        	<result type="json">
+		<action name="saveImg" class="com.linestore.util.FileUpload"
+			method="saveImg">
+			<result type="json">
 				<param name="root">result</param>
 			</result>
-        </action>
+		</action>
 
 		<!-- 发起微信支付参数配置 -->
 		<action name="WxPayJson" class="com.linestore.action.WxPayAction"
@@ -243,8 +251,8 @@
 		<global-results>
 			<result name="Login" type="redirect">login.jsp</result>
 		</global-results>
-	
-	
+
+
 		<action name="business_*" class="com.linestore.action.BusinessAction"
 			method="{1}">
 			<result name="selectAll">business.jsp</result>
@@ -290,18 +298,20 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-        
-        <action name="cateLine_*" class="com.linestore.action.CateLineAction" method="{1}">
-            <result name="selectAll">cateline.jsp</result>
-            <result name="select" type="redirectAction">cateLine_selectAll</result>
-            <result name="add">catelineAdd.jsp</result>
-            <result name="edit">catelineEdit.jsp</result>
-        </action>
-        <action name="customer_*" class="com.linestore.action.AdminCustomerAction" method="{1}">
-            <result name="selectAll">customer.jsp</result>
-            <result name="select" type="redirectAction">customer_selectAll</result>
-            <result name="edit">catelineEdit.jsp</result>
-        </action>
+
+		<action name="cateLine_*" class="com.linestore.action.CateLineAction"
+			method="{1}">
+			<result name="selectAll">cateline.jsp</result>
+			<result name="select" type="redirectAction">cateLine_selectAll</result>
+			<result name="add">catelineAdd.jsp</result>
+			<result name="edit">catelineEdit.jsp</result>
+		</action>
+		<action name="customer_*" class="com.linestore.action.AdminCustomerAction"
+			method="{1}">
+			<result name="selectAll">customer.jsp</result>
+			<result name="select" type="redirectAction">customer_selectAll</result>
+			<result name="edit">catelineEdit.jsp</result>
+		</action>
 	</package>
 
 </struts>
