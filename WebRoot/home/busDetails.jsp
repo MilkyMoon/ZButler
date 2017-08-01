@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
 
 <body>
@@ -47,10 +48,13 @@
 				<p>${business.busDesc}</p>
 			</div>
 			<div class="businessCommend_address">
-				<i class="icon-location"></i>
-				<p>${business.baProvince}${business.baCity}${business.baCounty}${business.baAddress}</p>
+				<div id="address">
+					<i class="icon-location"></i>
+					<p>${business.baProvince}${business.baCity}${business.baCounty}${business.baAddress}</p>
+				</div>
+
 				<div class="businessCommend_address_phone">
-					<img src="<%=basePath%>home/dist/wx_image/ic_phone.png" />
+					<a href="tel:15732685341"><img src="<%=basePath%>home/dist/wx_image/ic_phone.png" /></a>
 				</div>
 			</div>
 		</div>
@@ -58,40 +62,6 @@
 			<h5>
 				评价（<span>0</span>）
 			</h5>
-			<!-- <div class="businessMessage_evaluateItem">
-				<div class="businessMessage_evaluateItem_title">
-					<div>肖*****浪</div>
-					<span>6月5日</span>
-				</div>
-				<div class="businessMessage_evaluateItem_starNum" data="4">
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<span>5.0</span>
-				</div>
-				<p>非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃</p>
-			</div>
-
-			<div class="businessMessage_evaluateItem">
-				<div class="businessMessage_evaluateItem_title">
-					<div>肖*****浪</div>
-					<span>6月5日</span>
-				</div>
-				<div class="businessMessage_evaluateItem_starNum" data="3.6">
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<img src="image/star.png"/>
-					<span>5.0</span>
-				</div>
-				<p>非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃非常好吃</p>
-			</div>
-			<div class="businessMessage_evaluate_more">
-				<a href="#">加载更多+</a>
-			</div> -->
 		</div>
 
 		<div class="businessMessage_hotBusiness">
@@ -153,6 +123,37 @@
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
-<script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
-<script src="<%=basePath%>home/dist/wx_js/score.js"></script>
+<%-- <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script> --%>
+<script type="text/javascript">
+
+	$.ajax({
+		type : "post",
+		dataType : "json",
+		url : "<%=basePath%>WxJsApi!JsApiParams.action",
+		async : false,
+		data : {
+			url : location.href.split("#")[0]
+		},
+		success : function(result) {
+			var config = JSON.parse(result);
+			config.debug = false;
+			config.jsApiList = [
+				'openLocation',
+			];
+			wx.config(config)
+		}
+	});
+
+	$("#address").click(function() {
+		wx.openLocation({
+			latitude : ${business.baLatitude},// 纬度，浮点数，范围为90 ~ -90
+			longitude : ${business.baLongitude}, // 经度，浮点数，范围为180 ~ -180。
+			name : '${business.baProvince}${business.baCity}${business.baCounty}',// 位置名
+			address : '${business.baAddress}',// 地址详情说明
+			scale : 18// 地图缩放级别,整形值,范围从1~28。默认为最大
+		});
+
+	})
+</script>
 </html>
+
