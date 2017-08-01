@@ -14,6 +14,7 @@ import com.linestore.util.ReturnSelectHql;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Business;
 import com.linestore.vo.CateLine;
+import com.linestore.vo.Customer;
 import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -53,14 +54,17 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //		
 //		busAddressService.add(busAddress);
 //		busBankService.add(busBank);
+		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		String str = business.getBaProvince();
 		String strs[] = str.split(" ");
+		business.setCustomer(cus);
 		business.setBaProvince(strs[0]);
 		business.setBaCity(strs[1]);
 		business.setBaCounty(strs[2]);
 		business.setBusStatus(0);
 		business.setBusOrgUrl("Public/Uploads/store.png");
 		businessService.add(business);
+		businessService.CreateTd(business);
 		return SUCCESS;
 	}
 	
@@ -200,6 +204,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		map.put("js", js);
 		return "gotoCustomer";
 	}
+	
 
 	public List<Business> getBusinessList() {
 		return businessList;

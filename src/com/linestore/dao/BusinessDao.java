@@ -3,6 +3,7 @@ package com.linestore.dao;
 import java.util.List;
 
 import com.linestore.vo.Business;
+import com.linestore.vo.Customer;
 
 public interface BusinessDao {
 	void add(Business business);
@@ -23,5 +24,7 @@ public interface BusinessDao {
 	public List<Business> queryByShopName(String seach, String city);
 	
 	public List<Business> querySmall(String city, int small);
+	
+	void update(Business business);
 
 }

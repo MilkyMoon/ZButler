@@ -94,4 +94,9 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 		List<Business> buss = (List<Business>) this.getHibernateTemplate().find("from Business where baCity like '%" + city +"%' and busSmallCate="+small);
 		return buss;
 	}
+
+	@Override
+	public void update(Business business) {
+		this.getHibernateTemplate().update(business);
+	}
 }

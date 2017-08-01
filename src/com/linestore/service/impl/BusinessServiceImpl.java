@@ -6,7 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.BusinessDao;
 import com.linestore.service.BusinessService;
+import com.linestore.util.QrExistsUtil;
 import com.linestore.vo.Business;
+import com.linestore.vo.Customer;
 
 @Transactional
 public class BusinessServiceImpl implements BusinessService{
@@ -84,6 +86,30 @@ public class BusinessServiceImpl implements BusinessService{
 	@Override
 	public List<Business> querySmall(String city, int small) {
 		return businessDao.querySmall(city, small);
+	}
+
+	@Override
+	public Business CreateTd(Business business) {
+		Business businessResult = null;
+		// 获取数据库中用户二维码信息
+		business = businessDao.select(business).get(0);
+		// 判断二维码信息是否存在
+		if (business.getBusTdCode() != null && !"".equals(business.getBusTdCode())) {
+			boolean isQrExists = QrExistsUtil.qrExists(business.getBusTdCode());
+			// 如果数据库二维码信息存在，判断二维码图片文件是否存在
+			if (isQrExists == false) {
+				businessResult = QrExistsUtil.qrCreate(business);
+				business.setBusShareUrl(businessResult.getBusShareUrl());
+				business.setBusTdCode(businessResult.getBusTdCode());
+			}
+		} else {
+
+			businessResult = QrExistsUtil.qrCreate(business);
+			businessDao.update(businessResult);
+			business=businessDao.select(business).get(0);
+		}
+
+		return business;
 	}
 	
 }
