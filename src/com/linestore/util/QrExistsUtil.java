@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.linestore.vo.Business;
 import com.linestore.vo.Customer;
 
 public class QrExistsUtil {
@@ -58,5 +59,36 @@ public class QrExistsUtil {
 		customer.setCusShareUrl(url);
 		customer.setCusTdCode(imgPath);
 		return customer;
+	}
+	
+	public static Business qrCreate(Business business) {
+
+		// 生成用户邀请注册链接，并构造对应二维码图片，将图片url存入数据库
+		// 邀请注册链接,含邀请人id参数
+		HttpServletRequest request = ServletActionContext.getRequest();
+		REG_PATH = "http://" + request.getServerName() +":" + request.getServerPort() + "/ZButler/WxOauthRedirect!IntoRechage.action?busId=";
+		String url = REG_PATH + business.getBusId();
+
+		// 二维码图片存放路径
+		StringBuffer sb = new StringBuffer("");
+		// tomcat运行时的项目所在路径
+		
+		String realPath = request.getSession().getServletContext().getRealPath("");
+		// 暂时用手写的项目路径代替
+		// String realPath="/Users/wutianci/GitHub/ZButler/WebRoot/";
+		sb.append(realPath);
+		sb.append("home/qr");
+		String qrPath = sb.toString();
+		// 文件名
+		String fileName = business.getBusId() + ".jpg";
+		// 执行二维码生成及保存文件
+		QrCodeUtil.createQrCode(url, qrPath, fileName);
+
+		// 图片全路径
+		String imgPath = "http://" + request.getServerName() +":" + request.getServerPort() + "/ZButler/home/qr" + "/" + fileName;
+		// 用户邀请链接、二维码路径存放到数据表
+		business.setBusShareUrl(url);
+		business.setBusTdCode(imgPath);
+		return business;
 	}
 }

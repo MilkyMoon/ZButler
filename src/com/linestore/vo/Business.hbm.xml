@@ -25,6 +25,12 @@
         <property name="busPhone" type="java.lang.String">
             <column name="bus_phone" length="15" />
         </property>
+        <property name="busTdCode" type="java.lang.String">
+            <column name="bus_TdCode" length="255" />
+        </property>
+        <property name="busShareUrl" type="java.lang.String">
+            <column name="bus_share_url" length="200" />
+        </property>
         <property name="busOwnerName" type="java.lang.String">
             <column name="bus_owner_name" length="10" />
         </property>

@@ -32,13 +32,16 @@ public class Business implements java.io.Serializable {
 	private String baCity;
 	private String baCounty;
 	private String baAddress;
+	private String busTdCode;
 	private Float baLatitude;
 	private Float baLongitude;
 	private String bbBankCard;
+	private String busShareUrl;
 	private String bbBank;
 	private String bbBankPerson;
 	private Set busCoupons = new HashSet(0);
 	private Set busTradings = new HashSet(0);
+	
 
 	// Constructors
 
@@ -60,8 +63,8 @@ public class Business implements java.io.Serializable {
 			String busOwnerName, String busPhone, String busDesc, String busLicenseUrl, String busTaxUrl,
 			String busOrgUrl, Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel,
 			String baCountry, String busIdcardUrl, String baProvince, String baCity, String baCounty, String baAddress,
-			Float baLatitude, Float baLongitude, String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons,
-			Set busTradings) {
+			String busTdCode, Float baLatitude, Float baLongitude, String bbBankCard, String busShareUrl, String bbBank,
+			String bbBankPerson, Set busCoupons, Set busTradings) {
 		super();
 		this.busId = busId;
 		this.supplier = supplier;
@@ -84,9 +87,11 @@ public class Business implements java.io.Serializable {
 		this.baCity = baCity;
 		this.baCounty = baCounty;
 		this.baAddress = baAddress;
+		this.busTdCode = busTdCode;
 		this.baLatitude = baLatitude;
 		this.baLongitude = baLongitude;
 		this.bbBankCard = bbBankCard;
+		this.busShareUrl = busShareUrl;
 		this.bbBank = bbBank;
 		this.bbBankPerson = bbBankPerson;
 		this.busCoupons = busCoupons;
@@ -312,5 +317,24 @@ public class Business implements java.io.Serializable {
 	public void setBusPhone(String busPhone) {
 		this.busPhone = busPhone;
 	}
+
+	public String getBusTdCode() {
+		return busTdCode;
+	}
+
+	public void setBusTdCode(String busTdCode) {
+		this.busTdCode = busTdCode;
+	}
+
+	public String getBusShareUrl() {
+		return busShareUrl;
+	}
+
+	public void setBusShareUrl(String busShareUrl) {
+		this.busShareUrl = busShareUrl;
+	}
+	
+	
+	
 
 }
