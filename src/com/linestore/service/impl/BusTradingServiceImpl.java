@@ -13,8 +13,8 @@ public class BusTradingServiceImpl implements BusTradingService {
 	private BusTradingDao busTradingDao;
 
 	@Override
-	public List queryHot() {
-		return busTradingDao.queryHot();
+	public List queryHot(String city) {
+		return busTradingDao.queryHot(city);
 	}
 
 	public BusTradingDao getBusTradingDao() {

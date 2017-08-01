@@ -52,11 +52,20 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 		return list.get(0);
 	}
 	
-	public List<CateLine> selectEight() {
+	public List<CateLine> selectEight(int pid) {
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query = session.createQuery("from CateLine order by calAuth desc");
+		Query query = session.createQuery("from CateLine where calStatus=1 and calPid=" + pid+ " order by calAuth desc");
 		query.setMaxResults(8);
 		return query.list();
+	}
+
+	@Override
+	public CateLine queryByName(String seach) {
+		List<CateLine> cate = (List<CateLine>) this.getHibernateTemplate().find("from CateLine where calName='"+seach+"' and calStatus=1");
+		if (cate.size() > 0) {
+			return cate.get(0);
+		}
+		return null;
 	}
 
 }

@@ -4,7 +4,8 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -37,7 +38,7 @@
 						<!--<span>5.0</span>-->
 					</div>
 					<div class="businessCommend_title_buyNum">
-						消费次数: <span>5</span>
+						消费次数: <span>${fn:length(business.busTradings)}</span>
 					</div>
 				</div>
 			</div>
@@ -95,7 +96,20 @@
 
 		<div class="businessMessage_hotBusiness">
 			<h5>热门商家</h5>
-			<div class="businessMessage_hotBusinessItem">
+			<c:forEach items="${hots}" var="bus">
+				<div class="index_guessItem">
+				<img src="${bus.busOrgUrl}" />
+				<div class="guess_content">
+					<div>
+						<span class="guess_name">${bus.busShopName}</span> <span class="guess_mark">10%</span>
+					</div>
+					<div>
+						<span>${bus.cateLine.calName}</span> <span>其他</span>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+			<!-- <div class="businessMessage_hotBusinessItem">
 				<img src="image/111.jpg" />
 				<div class="hotBusiness_content">
 					<div>
@@ -130,7 +144,7 @@
 						<span>靓丽类</span> <span>其他</span>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </body>
