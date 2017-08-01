@@ -245,9 +245,10 @@ geolocation.getCurrentPosition(function(r) {
 		/* 市：ret.city */
 		/* 县：ret.area */
 		$(this).val(ret.city);
-		ret.city = province(ret.city);
+		//ret.city = province(ret.city);
 
 		window.location.href = "<%=basePath%>offlineStore!offline.action?city=" + ret.city;
+		console.log(1111)
 	});
 </script>
 </html>
