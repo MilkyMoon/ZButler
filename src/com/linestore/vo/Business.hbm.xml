@@ -22,6 +22,9 @@
         <property name="busShopName" type="java.lang.String">
             <column name="bus_shop_name" length="50" />
         </property>
+        <property name="busPhone" type="java.lang.String">
+            <column name="bus_phone" length="15" />
+        </property>
         <property name="busOwnerName" type="java.lang.String">
             <column name="bus_owner_name" length="10" />
         </property>

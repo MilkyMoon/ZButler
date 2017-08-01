@@ -17,6 +17,7 @@ public class Business implements java.io.Serializable {
 	private Customer customer;
 	private String busShopName;
 	private String busOwnerName;
+	private String busPhone;
 	private String busDesc;
 	private String busLicenseUrl;
 	private String busTaxUrl;
@@ -54,11 +55,13 @@ public class Business implements java.io.Serializable {
 		return this.busId;
 	}
 
+
 	public Business(Integer busId, Supplier supplier, CateLine cateLine, Customer customer, String busShopName,
-			String busOwnerName, String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
-			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel, String baCountry,
-			String busIdcardUrl, String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude,
-			Float baLongitude, String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons, Set busTradings) {
+			String busOwnerName, String busPhone, String busDesc, String busLicenseUrl, String busTaxUrl,
+			String busOrgUrl, Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busLevel,
+			String baCountry, String busIdcardUrl, String baProvince, String baCity, String baCounty, String baAddress,
+			Float baLatitude, Float baLongitude, String bbBankCard, String bbBank, String bbBankPerson, Set busCoupons,
+			Set busTradings) {
 		super();
 		this.busId = busId;
 		this.supplier = supplier;
@@ -66,6 +69,7 @@ public class Business implements java.io.Serializable {
 		this.customer = customer;
 		this.busShopName = busShopName;
 		this.busOwnerName = busOwnerName;
+		this.busPhone = busPhone;
 		this.busDesc = busDesc;
 		this.busLicenseUrl = busLicenseUrl;
 		this.busTaxUrl = busTaxUrl;
@@ -299,6 +303,14 @@ public class Business implements java.io.Serializable {
 
 	public void setBusTradings(Set busTradings) {
 		this.busTradings = busTradings;
+	}
+
+	public String getBusPhone() {
+		return busPhone;
+	}
+
+	public void setBusPhone(String busPhone) {
+		this.busPhone = busPhone;
 	}
 
 }
