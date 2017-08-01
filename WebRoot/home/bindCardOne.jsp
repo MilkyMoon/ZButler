@@ -1,7 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -37,7 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</c:forEach>
-		<a href="<%=basePath%>home/bindCardTwo.jsp">添加新账户</a>
+
+		<div class="takeMoneyAccount2_button">
+			<button type="submit" class="btn-block btn-primary">
+				<a href="<%=basePath%>home/bindCardTwo.jsp">添加</a>
+			</button>
+		</div>
+
 	</div>
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>

@@ -179,11 +179,15 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						System.out.println("out_trade_no: " + kvm.get("out_trade_no") + " pay SUCCESS!");
 
 					} else {
+						response.setContentType(" text/xml");
+						response.setCharacterEncoding("utf-8");
 						System.out.println("out_trade_no: " + kvm.get("out_trade_no") + " result_code is FAIL");
 						response.getWriter().write(
 								"<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[result_code is FAIL]]></return_msg></xml>");
 					}
 				} else {
+					response.setContentType(" text/xml");
+					response.setCharacterEncoding("utf-8");
 					response.getWriter().write(
 							"<xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[check signature FAIL]]></return_msg></xml>");
 					System.out.println("out_trade_no: " + kvm.get("out_trade_no") + " check signature FAIL");
