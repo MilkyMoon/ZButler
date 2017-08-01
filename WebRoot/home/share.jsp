@@ -31,12 +31,9 @@
 				<div class="m-cell">
 					<div class="cell-item cell-item-first" id="telDiv">
 						<div class="cell-right">
-							<input type="number" name="cusPhone" pattern="[0-9]*"
-								class="cell-input" placeholder="输入手机号，立即注册众邦管家"
-								autocomplete="off" id="tel" /> <input type="hidden" value="1"
-								name="ReType"> <input type="hidden"
-								value="${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if>"
-								name="valid">
+							<input type="number" name="cusPhone" pattern="[0-9]*" class="cell-input" placeholder="输入手机号，立即注册众邦管家" autocomplete="off" id="tel" /> 
+								<input type="hidden" value="1" name="ReType"> 
+								<input type="hidden" value="${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if>" name="valid">
 						</div>
 					</div>
 					<div class="cell-item cell-item-last">

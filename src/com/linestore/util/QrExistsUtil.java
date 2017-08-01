@@ -12,7 +12,7 @@ import com.linestore.vo.Customer;
 public class QrExistsUtil {
 
 	public static boolean isExists;
-	public static final String REG_PATH = "http://localhost:8080/Customer_askRegister?cusId=";
+	private static String REG_PATH;
 
 	// 判断二维码图片是否存在
 	public static boolean qrExists(String qrPath) {
@@ -33,12 +33,14 @@ public class QrExistsUtil {
 
 		// 生成用户邀请注册链接，并构造对应二维码图片，将图片url存入数据库
 		// 邀请注册链接,含邀请人id参数
+		HttpServletRequest request = ServletActionContext.getRequest();
+		REG_PATH = "http://" + request.getServerName() +":" + request.getServerPort() + "/ZButler/Customer_askRegister?cusId=";
 		String url = REG_PATH + customer.getCusId();
 
 		// 二维码图片存放路径
 		StringBuffer sb = new StringBuffer("");
 		// tomcat运行时的项目所在路径
-		HttpServletRequest request = ServletActionContext.getRequest();
+		
 		String realPath = request.getSession().getServletContext().getRealPath("");
 		// 暂时用手写的项目路径代替
 		// String realPath="/Users/wutianci/GitHub/ZButler/WebRoot/";

@@ -59,6 +59,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		business.setBaCity(strs[1]);
 		business.setBaCounty(strs[2]);
 		business.setBusStatus(0);
+		business.setBusOrgUrl("Public/Uploads/store.png");
 		businessService.add(business);
 		return SUCCESS;
 	}

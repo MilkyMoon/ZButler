@@ -39,9 +39,7 @@
 		</div>
 		<div class="myFriendO_myFriends">
 			<div class="myFriendO_myFriends_num">
-				<a href="#"> 我的朋友：<span><s:property
-							value="%{friendsList.size()}" /></span>
-				</a>
+				我的朋友：<span><s:property value="%{friendsList.size()}" /></span>
 			</div>
 			<%-- <s:iterator id="friends" value="friendsList" status="">
 				<div class="myFriendO_myFriendItem">
@@ -50,27 +48,24 @@
 			</s:iterator> --%>
 
 			<div class="myFriendO_myFriendItem">
-				我的朋友A<span>50</span>
+				我的朋友A<span><s:property
+							value="%{friendsList.size()}" /></span>
 				<div class="myFriendO_myFriendItem_down">
-					<div>18831655696</div>
-					<div>18831655696</div>
-					<div>18831655696</div>
+					<s:iterator id="friends" value="friendsList" status="">
+						<div><s:property value="friPhone" /></div>
+					</s:iterator>
 				</div>
 			</div>
 			<div class="myFriendO_myFriendItem">
-				我的朋友B<span>50</span>
+				我的朋友B<span>0</span>
 				<div class="myFriendO_myFriendItem_down">
-					<div>18831655696</div>
-					<div>18831655696</div>
-					<div>18831655696</div>
+					
 				</div>
 			</div>
 			<div class="myFriendO_myFriendItem">
-				我的朋友C<span>50</span>
+				我的朋友C<span>0</span>
 				<div class="myFriendO_myFriendItem_down">
-					<div>18831655696</div>
-					<div>18831655696</div>
-					<div>18831655696</div>
+					
 				</div>
 			</div>
 		</div>

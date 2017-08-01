@@ -1,7 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -37,6 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<div class="cell-item">
+					<div class="cell-left">手机号码*：</div>
+					<div class="cell-right">
+						<input type="text" name="busPhone" class="cell-input"
+							placeholder="" autocomplete="off" />
+					</div>
+				</div>
+				<div class="cell-item">
 					<div class="cell-left">身份证号码*：</div>
 					<div class="cell-right">
 						<input type="text" name="busIdcardUrl" class="cell-input"
@@ -59,8 +67,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="applyAdmission_map">
 					<div id="allmap"></div>
-					<input type="hidden" name="baLatitude" id="baLatitude">
-					<input type="hidden" name="baLongitude" id="baLongitude">
+					<input type="hidden" name="baLatitude" id="baLatitude"> <input
+						type="hidden" name="baLongitude" id="baLongitude">
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">所在商圈*：</div>
@@ -76,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</select>
 					</label>
 				</div>
-				
+
 				<div class="cell-item">
 					<div class="cell-left">营业执照号*：</div>
 					<div class="cell-right">
@@ -86,11 +94,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">经营类别*：</div>
-					<label class="cell-right cell-arrow"> 
-					<select class="cell-select" name="cateLine.calId" id="busCateId">
+					<label class="cell-right cell-arrow"> <select
+						class="cell-select" name="cateLine.calId" id="busCateId">
+							<option value="">请选择类别</option>
 							<c:forEach var="root" items="${roots}">
 								<option value="${root.calId}">${root.calName}</option>
 							</c:forEach>
+					</select>
+					</label>
+				</div>
+				<div class="cell-item">
+					<div class="cell-left">经营小类别*：</div>
+					<label class="cell-right cell-arrow"> <select
+						class="cell-select" name="busSmallCate" id="busSmallCate">
+							<option value="">请选择小类别</option>
 					</select>
 					</label>
 				</div>
@@ -150,7 +167,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath%>home/dist/wx_js/ydui.citys.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
+<script type="text/javascript"
+	src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
 <script>
 
 	//    选择地址
@@ -192,10 +210,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        }
 	    }); */
 	$().ready(function() {
-		
+
+		$("#busCateId").change(function() {
+			var pid = $(this).val();
+			if (pid != '') {
+				$.post("<%=basePath%>querySmallJson",
+					{
+						pid : pid,
+					},
+					function(data) {
+						var obj = JSON.parse(data);
+						opString = null;
+						$("#busSmallCate").children().remove();
+						for (var i = 0; i < obj.smalls.length; i++) {
+							var opString = '<option value="' + obj.smalls[i].calId + '">' + obj.smalls[i].calName + '</option>';
+							$("#busSmallCate").append(opString);
+						}
+					});
+			}
+
+		});
+
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
+				busPhone : "required",
 				busShopName : "required",
 				busOwnerFname : "required",
 				busIdcardUrl : "required",
@@ -211,6 +250,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 			},
 			messages : {
+				busPhone : '请输入手机号码',
 				busShopName : "请输入店铺名称",
 				busOwnerFname : "请输入店主姓名",
 				busIdcardUrl : "请输入身份证号",
