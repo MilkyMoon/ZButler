@@ -34,6 +34,7 @@ public class LoginFilter implements Filter {
 	    		|| req.getRequestURI().endsWith(".jpg")
 	    		|| req.getRequestURI().endsWith(".png")
 	    		|| req.getRequestURI().endsWith(".action")
+	    		|| req.getRequestURI().endsWith("Pay.jsp")
 	    		|| req.getRequestURI().endsWith(".map")
 	    		|| req.getRequestURI().endsWith(".woff2")
 	    		|| req.getRequestURI().endsWith("offlineStore.jsp"))
