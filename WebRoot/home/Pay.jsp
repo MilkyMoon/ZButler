@@ -27,13 +27,6 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
 <div class="pay" style="padding-top:53px;">
-	<div class="integral2_top">
-		<div class="integral2_top_left">
-			<i class="fa fa-angle-left"></i> <a
-				href="<%=basePath%>home/customer.jsp">返回</a>
-		</div>
-		<div class="integral2_top_center"></div>
-	</div>
 	<form id="signupForm">
 		<div class="m-cell">
 			<div class="pay_store">

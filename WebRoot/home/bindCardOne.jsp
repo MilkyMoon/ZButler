@@ -40,7 +40,7 @@
 		</c:forEach>
 
 		<div class="takeMoneyAccount2_button">
-			<button type="submit" class="btn-block btn-primary">
+			<button type="submit" class="btn-block btn-primary" style="padding:0 20px;">
 				<a href="<%=basePath%>home/bindCardTwo.jsp">添加</a>
 			</button>
 		</div>

@@ -55,6 +55,8 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 
 	public void IntoPayPage() throws IOException {
 		// 获取商户id
+		ActionContext.getContext().getSession().put("busId", request.getParameter("busId"));
+		
 		// 微信授权
 		String oauthUrl = this.wxService.oauth2buildAuthorizationUrl(
 				this.wxService.getWxMpConfigStorage().getOauth2redirectUri(), WxConsts.OAUTH2_SCOPE_BASE, "pay");
