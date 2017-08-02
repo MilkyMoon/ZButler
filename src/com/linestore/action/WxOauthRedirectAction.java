@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import com.linestore.service.BusinessService;
+import com.linestore.vo.Business;
 import com.linestore.vo.Customer;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -24,6 +26,25 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 	private HttpServletResponse response;
 
 	private String result;
+
+	private int busId;
+	private BusinessService bus;
+
+	public int getBusId() {
+		return busId;
+	}
+
+	public void setBusId(int busId) {
+		this.busId = busId;
+	}
+
+	public BusinessService getBus() {
+		return bus;
+	}
+
+	public void setBus(BusinessService bus) {
+		this.bus = bus;
+	}
 
 	@Override
 	public void setServletResponse(HttpServletResponse response) {
@@ -55,8 +76,11 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 
 	public void IntoPayPage() throws IOException {
 		// 获取商户id
-		ActionContext.getContext().getSession().put("busId", request.getParameter("busId"));
+//		ActionContext.getContext().getSession().put("busId", request.getParameter("busId"));
+		System.out.println(Integer.parseInt(request.getParameter("busId")));
+		Business business = bus.select(Integer.parseInt(request.getParameter("busId")));
 		
+		ActionContext.getContext().getSession().put("pay_business", business);
 		// 微信授权
 		String oauthUrl = this.wxService.oauth2buildAuthorizationUrl(
 				this.wxService.getWxMpConfigStorage().getOauth2redirectUri(), WxConsts.OAUTH2_SCOPE_BASE, "pay");
@@ -69,7 +93,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 				this.wxService.getWxMpConfigStorage().getOauth2redirectUri(), WxConsts.OAUTH2_SCOPE_BASE, "reChage");
 		response.sendRedirect(oauthUrl);
 	}
-	
+
 	public String bindWeChat() throws IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("LoginUrl",

@@ -50,9 +50,11 @@
 			</a> <a href="javascript:;"> <span>￥<span>10</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>50</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>100</span></span> </span>
+			</a> <a href="javascript:;"> <span>￥<span>200</span></span> </span>
+			</a> <a href="javascript:;"> <span>￥<span>500</span></span> </span>
 			</a>
 		</div>
-		<div class="m-celltitle">其他金额:</div>
+		<div class="m-celltitle">其它金额:</div>
 		<div class="cell-item">
 			<input type="number" id="otherNum" pattern="[0-9]*"
 				class="cell-input" placeholder="请输入金额" autocomplete="off" />
@@ -97,8 +99,6 @@
 
 			config.debug = false;
 			config.jsApiList = [
-				'onMenuShareTimeline',
-				'onMenuShareAppMessage',
 				'chooseWXPay'
 			];
 			wx.config(config)
@@ -148,7 +148,7 @@
 
 	$('.yes').click(function() {
 		// 获取金额，启用微信支付
-		var payNum = $("#otherNum").val();
+		var payNum = $('.integral2_moneyNum>span').text();
 		if ('' != payNum) {
 			$.ajax({
 				type : "post",

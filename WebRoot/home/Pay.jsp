@@ -34,7 +34,7 @@
 					<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
 				</div>
 				<div class="pay_storeName">
-					<div>阿阳美食</div>
+					<div>${pay_business.busShopName}</div>
 					<span>海油大街店</span>
 				</div>
 				<div class="pay_storeTel">15732684596</div>
