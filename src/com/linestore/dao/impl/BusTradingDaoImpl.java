@@ -22,4 +22,43 @@ public class BusTradingDaoImpl extends HibernateDaoSupport implements BusTrading
 		return query.list();
 	}
 
+	@Override
+	public void addBusTrading(BusTrading busTrading) {
+		System.out.println("exec addBusTrading");
+		try {
+			this.getHibernateTemplate().save(busTrading);
+			System.out.println("addBusTrading successful!");
+		} catch (RuntimeException e) {
+			System.out.println("addBusTrading failed!\n" + e);
+			throw e;
+		}
+		
+	}
+
+	@Override
+	public List<BusTrading> queryIncome(int busId) {
+		System.out.println("exec queryIncome");
+		try {
+			List<BusTrading> busTradings = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where business.busId=? and btaType<10 order by btaTime desc", busId);
+			System.out.println("queryIncome successful!");
+			return busTradings;
+		} catch (RuntimeException e) {
+			System.out.println("queryIncome failed!\n" + e);
+			throw e;
+		}
+	}
+
+	@Override
+	public List<BusTrading> queryWithdraw(int busId) {
+		System.out.println("exec queryWithdraw");
+		try {
+			List<BusTrading> busTradings = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where business.busId=? and btaType > 10 order by btaTime desc", busId);
+			System.out.println("queryWithdraw successful!");
+			return busTradings;
+		} catch (RuntimeException e) {
+			System.out.println("queryWithdraw failed!\n" + e);
+			throw e;
+		}
+	}
+
 }

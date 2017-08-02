@@ -36,7 +36,7 @@
 					<c:if test="${cta.ctaType == 1}">充值零钱</c:if>
 					<c:if test="${cta.ctaType == 11}">积分转零钱</c:if>
 				</div>
-				<div class="takeMoney_time">${cta.ctaTime}</div>
+				<div class="takeMoney_time"><fmt:formatDate value="${cta.ctaTime}" pattern="yyyy-MM-dd" /></div>
 			</div>
 		</c:forEach>
 		<!-- <div class="takeMoneyItem">
