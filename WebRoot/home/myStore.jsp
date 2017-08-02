@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -16,7 +16,8 @@
 <title>我的店铺</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 
 <body>
@@ -29,14 +30,24 @@
 			<div class="integral2_top_center"></div>
 		</div>
 		<div class="myStore_content">
-			<div style="background-color: #D0021B">收款明细</div>
-			<div style="background-color: #F5A623">提现明细</div>
-			<div style="background-color: #C767DA">现金收款</div>
-			<div style="background-color: #8B572A">商户编辑</div>
-			<div style="background-color: #7ED321">店铺图片</div>
-			<div style="background-color: #417505">返点比例</div>
-			<div style="background-color: #4A90E2">零钱提现</div>
-			<div style="background-color: #4A90E2">商家收款</div>
+
+					<c:if test="${!empty store and store.busStatus != 0}">
+						<a href="<%=basePath%>busTrading_queryIncome"><div style="background-color: #D0021B">收款明细</div></a>
+						<a href="<%=basePath%>busTrading_queryWithdraw"><div style="background-color: #F5A623">提现明细</div></a>
+						<!-- <div style="background-color: #C767DA">现金收款</div> -->
+						<a href="<%=basePath%>home/editBus.jsp"><div style="background-color: #8B572A">商户编辑</div></a>
+						<a href="<%=basePath%>home/storeImg.jsp"><div style="background-color: #7ED321">店铺图片</div></a>
+						<a href="<%=basePath%>home/rebateProportion.jsp"><div style="background-color: #417505">返点比例</div></a>
+						<c:if test="${store.busLevel == 3}"><div style="background-color: #4A90E2">零钱提现</div></c:if>
+						<a href="<%=basePath%>home/storeReceipts.jsp"><div style="background-color: #4A90E2">商家收款</div></a>
+					</c:if>
+					<c:if test="${!empty store and store.busStatus == 0}">
+						<p style="color:red;font-size:18px;text-align: center;width:100%">申请尚未通过，如有疑问请留言或质询客服</p>
+					</c:if>
+
+			<c:if test="${empty store}">
+				<p style="color:red;font-size:18px;text-align:center;width:100%">还未申请商铺</p>
+			</c:if>
 		</div>
 	</div>
 </body>

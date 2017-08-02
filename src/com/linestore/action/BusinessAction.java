@@ -57,6 +57,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		String str = business.getBaProvince();
 		String strs[] = str.split(" ");
+		System.out.println(cus.getCusId());
 		business.setCustomer(cus);
 		business.setBaProvince(strs[0]);
 		business.setBaCity(strs[1]);
@@ -85,6 +86,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 				hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, id);
 //				System.out.println(business.getBusStatus());
 				businessService.update(hql);
+				ActionContext.getContext().getSession().put("store", businessService.select(id));
 				
 				
 			} catch (NoSuchMethodException e) {
@@ -104,8 +106,51 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 				e.printStackTrace();
 			}
 			
+			
 		
 		return "select";
+	}
+	
+public String updateBus(){
+		
+//		if(business.getBusStatus().equals("on")){
+//			business.setBusStatus(1);
+//		} else {
+//			business.setBusStatus(0);
+//		}
+		
+			int id = business.getBusId();
+//			business.setBusId(null);
+			
+			String hql;
+			try {
+				
+				hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, id);
+//				System.out.println(business.getBusStatus());
+				businessService.update(hql);
+				ActionContext.getContext().getSession().put("store", businessService.select(id));
+				
+				
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		
+		return "gotoStore";
 	}
 	
 	public String delete(){
@@ -182,6 +227,15 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	public String edit(){
 		read();
 		return "edit";
+	}
+	
+	public String store() {
+		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
+		List<Business> bus = (List<Business>) businessService.queryByCusId(cus.getCusId());
+		if (bus.size() > 0) {
+			ActionContext.getContext().getSession().put("store", bus.get(0));
+		}
+		return "gotoStore";
 	}
 	
 	public String select(){

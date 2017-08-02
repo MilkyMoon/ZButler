@@ -5037,3 +5037,41 @@ px
     font-size: 12px;
     color: #DB412A;
 }
+
+/*上传头像*/
+.addHeadImg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(239, 239, 244);
+}
+.addHeadImg_button{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.addHeadImg_button #image {
+    position: absolute;
+    width: 70%;
+    height: 40px;
+    top: 60px;
+    left: 15%;
+    opacity:0;
+    cursor: pointer;
+    outline: medium none;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+}
+.addHeadImg_button .my_input{
+    width: 70%;
+    height: 40px;
+    margin-top: 60px;
+    color: #fff;
+    line-height: 40px;
+    font-size:16px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}

@@ -42,6 +42,7 @@
 			<result name="success" type="redirectAction">business_jump</result>
 			<result name="selectAll">admin/business.jsp</result>
 			<result name="error">admin/index.jsp</result>
+			<result name="gotoStore">home/myStore.jsp</result>
 		</action>
 
 		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
@@ -131,6 +132,12 @@
 			<result name="gotoBusiness">/home/busDetails.jsp</result>
 			<result name="gotoSeach">/home/seach.jsp</result>
 			<result name="gotoStoreCate">/home/storeCate.jsp</result>
+		</action>
+		
+		<action name="busTrading_*" class="com.linestore.action.BusTradingAction"
+			method="{1}">
+			<result name="gotoIncom">/home/busGetMoney.jsp</result>
+			<result name="gotoWithdraw">/home/busWithdraw.jsp</result>
 		</action>
 
 		<!-- 微信入口配置 -->
