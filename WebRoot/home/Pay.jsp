@@ -25,6 +25,7 @@
 <title>支付</title>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 <div class="pay" style="padding-top:53px;">
 	<form id="signupForm">
@@ -34,7 +35,7 @@
 					<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
 				</div>
 				<div class="pay_storeName">
-					<div>阿阳美食</div>
+					<div>${pay_business.busShopName}</div>
 					<span>海油大街店</span>
 				</div>
 				<div class="pay_storeTel">15732684596</div>

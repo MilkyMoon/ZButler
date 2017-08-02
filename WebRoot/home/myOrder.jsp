@@ -17,6 +17,7 @@
 <title>我的订单</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 <body>
 	<div class="myOrder" style="padding-top:53px;">

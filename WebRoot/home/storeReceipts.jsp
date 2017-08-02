@@ -38,6 +38,6 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
-	$('.storeReceipts').css('height', document.body.scrollHeight);
+	/* $('.storeReceipts').css('height', document.body.scrollHeight); */
 </script>
 </html>

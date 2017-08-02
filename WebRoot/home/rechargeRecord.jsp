@@ -16,11 +16,19 @@
 <title>提现记录</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 
 </head>
 
 <body>
-	<div class="takeMoneyRecord">
+	<div class="takeMoneyRecord" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<c:forEach var="cta" items="${ctas}">
 			<div class="takeMoneyItem">
 				<div class="takeMoney_num">${cta.ctaMoney}</div>

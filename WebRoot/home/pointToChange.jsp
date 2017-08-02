@@ -22,7 +22,14 @@
 </head>
 
 <body>
-	<div class="smallMoney2">
+	<div class="smallMoney2" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>home/customer.jsp">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<div class="smallMoney2_content">
 			<div class="smallMoney_content_left">
 				<div class="smallMoney_content_canUse">
@@ -32,7 +39,8 @@
 			<div class="smallMoney_content_right"></div>
 		</div>
 		<div class="smallMoney2_exchange">
-			<form id="signupForm" action="<%=basePath%>CtaTrading!pointToChange.action">
+			<form id="signupForm"
+				action="<%=basePath%>CtaTrading!pointToChange.action">
 				<div class="smallMoney2_exchange_canUse">
 					可转零钱的消费积分：<span id="point">${cac.cacPoints}</span>
 				</div>
