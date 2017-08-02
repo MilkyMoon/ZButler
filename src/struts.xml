@@ -231,6 +231,7 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+	
 	</package>
 
 	<package name="struts3" extends="struts-default" namespace="/admin">

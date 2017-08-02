@@ -27,6 +27,7 @@
 	-->
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 
 <body>
@@ -48,11 +49,13 @@
 			</a> <a href="javascript:;"> <span>￥<span>2</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>5</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>10</span></span> </span>
+			</a> <a href="javascript:;"> <span>￥<span>20</span></span> </span>
+			</a> <a href="javascript:;"> <span>￥<span>30</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>50</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>100</span></span> </span>
 			</a>
 		</div>
-		<div class="m-celltitle">其他金额:</div>
+		<div class="m-celltitle">其它金额:</div>
 		<div class="cell-item">
 			<input type="number" id="otherNum" pattern="[0-9]*"
 				class="cell-input" placeholder="请输入金额" autocomplete="off" />
@@ -97,8 +100,6 @@
 
 			config.debug = false;
 			config.jsApiList = [
-				'onMenuShareTimeline',
-				'onMenuShareAppMessage',
 				'chooseWXPay'
 			];
 			wx.config(config)
@@ -148,7 +149,7 @@
 
 	$('.yes').click(function() {
 		// 获取金额，启用微信支付
-		var payNum = $("#otherNum").val();
+		var payNum = $('.integral2_moneyNum>span').text();
 		if ('' != payNum) {
 			$.ajax({
 				type : "post",

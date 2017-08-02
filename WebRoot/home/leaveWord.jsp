@@ -17,6 +17,7 @@
 <title>留言</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 <body>
 	<div class="leaveWord" style="margin-top:53px;">
