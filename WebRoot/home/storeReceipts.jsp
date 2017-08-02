@@ -22,7 +22,7 @@
 </head>
 
 <body>
-	<div class="storeReceipts" style="padding-top:53px;">
+	<div class="storeReceipts">
 		<div class="integral2_top">
 			<div class="integral2_top_left">
 				<i class="fa fa-angle-left"></i> <a
@@ -38,6 +38,6 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
-	/* $('.storeReceipts').css('height', document.body.scrollHeight); */
+	$('.storeReceipts').css('height', document.body.scrollHeight);
 </script>
 </html>
