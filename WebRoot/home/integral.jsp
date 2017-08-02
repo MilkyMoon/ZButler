@@ -27,6 +27,7 @@
 	-->
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 
 <body>
@@ -48,10 +49,10 @@
 			</a> <a href="javascript:;"> <span>￥<span>2</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>5</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>10</span></span> </span>
+			</a> <a href="javascript:;"> <span>￥<span>20</span></span> </span>
+			</a> <a href="javascript:;"> <span>￥<span>30</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>50</span></span> </span>
 			</a> <a href="javascript:;"> <span>￥<span>100</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>200</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>500</span></span> </span>
 			</a>
 		</div>
 		<div class="m-celltitle">其它金额:</div>
