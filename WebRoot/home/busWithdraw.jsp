@@ -26,7 +26,7 @@
 			<div class="takeMoneyItem">
 				<div class="takeMoney_num">${item.btaMoney}</div>
 				<div class="takeMoney_type">零钱</div>
-				<div class="takeMoney_time"><fmt:formatDate value="${item.btaTime}" pattern="yyyy-MM-dd" /> </div>
+				<div class="takeMoney_time"><fmt:formatDate value="${item.btaTime}" type="both" /> </div>
 			</div>
 		</c:forEach>
 

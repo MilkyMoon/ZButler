@@ -240,7 +240,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	public void paymentToMerchant() throws WxPayException {
 		// 构建WxEntPayRequest
 		WxEntPayRequest request = new WxEntPayRequest();
-		String partner_trade_no = new java.util.Date().getTime() + "";
+		String partner_trade_no = new java.util.Date().getTime() + ""+"";
 		WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
 		wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
 		wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");

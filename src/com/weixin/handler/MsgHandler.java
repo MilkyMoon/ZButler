@@ -22,7 +22,16 @@ public class MsgHandler extends AbstractHandler {
 		System.out.println("文字消息转发");
 		// TODO 组装回复消息
 		WxMpUser userWxInfo = wxMpService.getUserService().userInfo(wxMessage.getFromUser(), null);
-
+		
+//		// 消息分析 
+//		switch (wxMessage.getContent().equals("ddd")) {
+//		case value:
+//			
+//			break;
+//
+//		default:
+//			break;
+//		}
 		String content = userWxInfo.getNickname() + ":" + wxMessage.getContent();
 
 		return new TextBuilder().build(content, wxMessage, wxMpService);

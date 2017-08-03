@@ -36,7 +36,7 @@
 		<div class="integral2_top">
 			<div class="integral2_top_left">
 				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/customer.jsp">返回</a>
+					href="<%=basePath%>CusAccount!change.action">返回</a>
 			</div>
 			<div class="integral2_top_center"></div>
 			<div class="integral2_top_right">

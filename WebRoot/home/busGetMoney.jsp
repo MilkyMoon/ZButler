@@ -24,7 +24,7 @@
 		<c:forEach var="item" items="${Income}">
 			<div class="collectMoneyItem">
 				<div class="collectMoney_num">${item.btaMoney}</div>
-				<div class="collectMoney_time"><fmt:formatDate value="${item.btaTime}" pattern="yyyy-MM-dd" /></div>
+				<div class="collectMoney_time"><fmt:formatDate value="${item.btaTime}" type="both" /></div>
 			</div>
 		</c:forEach>
 
