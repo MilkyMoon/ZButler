@@ -17,15 +17,26 @@
 <title>收款记录</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 
 </head>
 
 <body>
-	<div class="collectMoneyRecord">
+	<div class="collectMoneyRecord" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>business_store.action">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<c:forEach var="item" items="${Income}">
 			<div class="collectMoneyItem">
-				<div class="collectMoney_num">${item.btaMoney}</div><div>获得零钱</div>
-				<div class="collectMoney_time"><fmt:formatDate value="${item.btaTime}" type="both" /></div>
+				<div class="collectMoney_num">${item.btaMoney}</div>
+				<div>获得零钱</div>
+				<div class="collectMoney_time">
+					<fmt:formatDate value="${item.btaTime}" type="both" />
+				</div>
 			</div>
 		</c:forEach>
 
