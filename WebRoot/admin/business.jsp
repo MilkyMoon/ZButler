@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -149,7 +150,7 @@
 	                          <s:if test="%{#businessList.busStatus == 0}">
 	                          	<td style="color:red">否</td>
 	                          </s:if>
-	                          <s:if test="%{#businessList.busStatus == 1}">
+	                          <s:if test="%{#businessList.busStatus != 0}">
 	                          	<td>是</td>
 	                          </s:if>
 	                          <s:if test="%{#businessList.busStatus == NULL}"><td></td></s:if>

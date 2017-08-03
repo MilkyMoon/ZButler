@@ -216,8 +216,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 			}
 			listResault.addAll(listNew);
 		} else {
-			System.out.println("搜索---else");
-			System.out.println(thinkUser.getThuName());
+			System.out.println("---------"+thinkUser.getThuName());
 			thinkUserList = thinkUserService.select(thinkUser);
 			
 			String[] arr = inList(userId);

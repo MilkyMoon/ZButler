@@ -114,11 +114,22 @@
 													<th>
 														<th><input type="checkbox" id="check-all" class="flat" /></th>
 													</th>
-													<th class="column-title">用户头像</th>
-													<th class="column-title">用户昵称</th>
-													<th class="column-title">性别</th>
-													<th class="column-title">手机号</th>
-													<th class="column-title">是否启用</th>
+													<th class="column-title">用户</th>
+													<th class="column-title">用户付款</th>
+													<th class="column-title">商家</th>
+													<th class="column-title">商家收款</th>
+													<th class="column-title">物业</th>
+													<th class="column-title">物业收款</th>
+													<th class="column-title">县级代理</th>
+													<th class="column-title">县级收款</th>
+													<th class="column-title">市级代理</th>
+													<th class="column-title">市级收款</th>
+													<th class="column-title">省级代理</th>
+													<th class="column-title">省级收款</th>
+													<c:if test="${sessionScope.admin.thuPid == 0}">
+														<th class="column-title">众帮收款</th>
+													</c:if>
+													
 													<th class="column-title no-link last">操作</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
 														style="color:#fff; font-weight:500;">Bulk Actions ( <span
@@ -133,28 +144,45 @@
 														<td class="a-center ">
 															<th><input type="checkbox" class="flat" name="table_records" /></th>
 														</td>
-														<td>
-															<img src="${root.cusImgUrl}" style="width: 36px;max-height: 36px;border-radius: 5px;"/>
-														</td>
-														<td>${root.cusNickname}</td>
-														<c:if test="${root.cusSex == 1}">
-															<td>男</td>
+														<td>${root.customer.cusNickname}</td>
+														<td>${root.bilCusMoney}</td>
+														<td>${root.business.busShopName}</td>
+														<td>${root.bilBusMoney}</td>
+														<td>${root.thinkUserByThuPropertyId.thuName}</td>
+														<td>${root.bilPropertyMoney}</td>
+														<!-- 判断当前用户是否显示县级代理 -->					
+														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId}">
+															<td>${root.thinkUserByThuCountyId.thuName}</td>
+															<td>${root.bilCountyMoney}</td>
 														</c:if>
-														<c:if test="${root.cusSex == 2}">
-															<td>女</td>
-														</c:if>
-														<c:if test="${empty root.cusSex}">
+														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId}">
+															<td></td>
 															<td></td>
 														</c:if>
-														<td>${root.cusPhone}</td>
-														<c:if test="${root.cusStatus == 1}">
-															<td>是</td>
+														<!-- 判断当前用户是否显示市级代理 -->	
+														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
+															<td>${root.thinkUserByThuCityId.thuName}</td>
+															<td>${root.bilCityMoney}</td>
 														</c:if>
-														<c:if test="${root.cusStatus == 0}">
-															<td style="color:#d9534f">否</td>
+														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
+															<td></td>
+															<td></td>
 														</c:if>
+														<!-- 判断当前用户是否显示省级代理 -->	
+														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuCityId.thuId && sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
+															<td>${root.thinkUserByThuProvinceId.thuName}</td>
+															<td>${root.bilProvinceMoney}</td>
+														</c:if>
+														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuCityId.thuId || sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
+															<td></td>
+															<td></td>
+														</c:if>
+														<c:if test="${sessionScope.admin.thuPid == 0}">
+															<td>${root.bilZongMoney}</td>
+														</c:if>
+														
 														<td>
-															<c:if test="${root.cusStatus == 1}">
+															<%-- <c:if test="${root.cusStatus == 1}">
 																<a href="customer_update?cusStatus=0&cusId=${root.cusId}" class="btn btn-primary btn-xs">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -163,10 +191,8 @@
 																<a href="customer_update?cusStatus=1&cusId=${root.cusId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															</c:if>
-															<a href="customer_read?cusId=${root.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="#" class="btn btn-info btn-xs" disabled="disabled"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="#" class="btn btn-danger btn-xs" disabled="disabled"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+															</c:if> --%>
+															<a href="#" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>

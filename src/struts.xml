@@ -265,8 +265,8 @@
 			method="{1}">
 			<result name="selectAll">business.jsp</result>
 			<result name="select" type="redirectAction">business_selectAll</result>
-			<result name="read">readBusiness.jsp</result>
-			<result name="edit">editBusiness.jsp</result>
+			<result name="read">businessRead.jsp</result>
+			<result name="edit">businessEdit.jsp</result>
 			<result name="error">index.jsp</result>
 		</action>
 		<action name="thinkUser_*" class="com.linestore.action.ThinkUserAction"
@@ -319,6 +319,12 @@
 			<result name="selectAll">customer.jsp</result>
 			<result name="select" type="redirectAction">customer_selectAll</result>
 			<result name="edit">catelineEdit.jsp</result>
+		</action>
+		<action name="bill_*" class="com.linestore.action.BillAction"
+			method="{1}">
+			<result name="selectAll">bill.jsp</result>
+			<result name="select" type="redirectAction">bill_selectAll</result>
+			<result name="read">billRead.jsp</result>
 		</action>
 	</package>
 
