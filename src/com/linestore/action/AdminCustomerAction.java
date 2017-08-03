@@ -55,6 +55,12 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 		return "selectAll";
 	}
 	
+	public String read(){
+		
+		
+		return "read";
+	}
+	
 	public String selectAll(){
 		int totalCount = customerService.queryAll();
 		if(everyPage.equals("") || everyPage == null){

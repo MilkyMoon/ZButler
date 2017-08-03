@@ -20,38 +20,39 @@
 </head>
 <body>
 	<div class="applyAdmission">
-		<s:form id="signupForm" action="business_add" namespace="/">
+		<s:form id="signupForm" action="business_updateBus" namespace="/">
+		<input type="hidden" name="busId" value="${store.busId}">
 			<h5>基本资料填写（*为必填）</h5>
 			<div class="m-cell">
 				<div class="cell-item">
 					<div class="cell-left">店铺名称*：</div>
 					<div class="cell-right">
-						<input type="text" name="busShopName" class="cell-input"
+						<input type="text" name="busShopName" class="cell-input" value="${store.busShopName}"
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">店主姓名*：</div>
 					<div class="cell-right">
-						<input type="text" name="busOwnerName" class="cell-input"
+						<input type="text" name="busOwnerName" class="cell-input" value="${store.busOwnerName}" disabled="disabled" 
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">手机号码*：</div>
 					<div class="cell-right">
-						<input type="text" name="busPhone" class="cell-input"
+						<input type="text" name="busPhone" class="cell-input" value="${store.busPhone}"
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">身份证号码*：</div>
 					<div class="cell-right">
-						<input type="text" name="busIdcardUrl" class="cell-input"
+						<input type="text" name="busIdcardUrl" class="cell-input" value="${store.busIdcardUrl}"
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
-				<div class="cell-item">
+				<!-- <div class="cell-item">
 					<div class="cell-left">所在地址*：</div>
 					<div class="cell-right">
 						<input type="text" name="baProvince" class="cell-input" readonly
@@ -69,7 +70,7 @@
 					<div id="allmap"></div>
 					<input type="hidden" name="baLatitude" id="baLatitude"> <input
 						type="hidden" name="baLongitude" id="baLongitude">
-				</div>
+				</div> -->
 				<div class="cell-item">
 					<div class="cell-left">所在商圈*：</div>
 					<label class="cell-right cell-arrow"> <select
@@ -85,14 +86,14 @@
 					</label>
 				</div>
 
-				<div class="cell-item">
+				<!-- <div class="cell-item">
 					<div class="cell-left">营业执照号*：</div>
 					<div class="cell-right">
 						<input type="text" name="busLicenseUrl" class="cell-input"
 							placeholder="" autocomplete="off" />
 					</div>
-				</div>
-				<div class="cell-item">
+				</div> -->
+				<%-- <div class="cell-item">
 					<div class="cell-left">经营类别*：</div>
 					<label class="cell-right cell-arrow"> <select
 						class="cell-select" name="cateLine.calId" id="busCateId">
@@ -110,7 +111,7 @@
 							<option value="">请选择小类别</option>
 					</select>
 					</label>
-				</div>
+				</div> --%>
 				<!--<div class="cell-item">
                 <div class="cell-left">商家返利*：</div>
                 <label class="cell-right cell-arrow">
@@ -132,7 +133,7 @@
 				<div class="cell-item">
 					<div class="cell-left">开户行*：</div>
 					<div class="cell-right">
-						<input type="text" name="bbBank" class="cell-input" placeholder=""
+						<input type="text" name="bbBank" class="cell-input" placeholder="" value="${store.bbBank}"
 							autocomplete="off" />
 					</div>
 				</div>
@@ -140,7 +141,7 @@
 					<div class="cell-left">银行卡号*：</div>
 					<div class="cell-right">
 						<input type="text" name="bbBankCard" pattern="[0-9]*"
-							class="cell-input" id="haorooms" placeholder=""
+							class="cell-input" id="haorooms" placeholder="" value="${store.bbBankCard}"
 							autocomplete="off" />
 					</div>
 				</div>
@@ -156,7 +157,7 @@
                 </label>
             </div> -->
 			</div>
-			<button type="submit" class="btn-block btn-primary">马上申请</button>
+			<button type="submit" class="btn-block btn-primary">修改</button>
 		</s:form>
 
 	</div>

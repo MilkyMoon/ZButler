@@ -22,23 +22,11 @@
         <property name="busShopName" type="java.lang.String">
             <column name="bus_shop_name" length="50" />
         </property>
-        <property name="busPhone" type="java.lang.String">
-            <column name="bus_phone" length="15" />
-        </property>
-        <property name="busTdCode" type="java.lang.String">
-            <column name="bus_TdCode" length="255" />
-        </property>
-        <property name="busShareUrl" type="java.lang.String">
-            <column name="bus_share_url" length="200" />
-        </property>
         <property name="busOwnerName" type="java.lang.String">
             <column name="bus_owner_name" length="10" />
         </property>
         <property name="busDesc" type="java.lang.String">
             <column name="bus_desc" length="65535" />
-        </property>
-        <property name="busIdcardUrl" type="java.lang.String">
-            <column name="bus_idcard_url" length="65535" />
         </property>
         <property name="busLicenseUrl" type="java.lang.String">
             <column name="bus_license_url" length="65535" />
@@ -57,6 +45,9 @@
         </property>
         <property name="busStatus" type="java.lang.Integer">
             <column name="bus_status" />
+        </property>
+        <property name="busThuId" type="java.lang.Integer">
+            <column name="bus_thu_id" />
         </property>
         <property name="busLevel" type="java.lang.Integer">
             <column name="bus_level" />
@@ -91,17 +82,31 @@
         <property name="bbBankPerson" type="java.lang.String">
             <column name="bb_bank_person" length="20" />
         </property>
+        <property name="busIdcardUrl" type="java.lang.String">
+            <column name="bus_idcard_url" length="65535" />
+        </property>
+        <property name="busPhone" type="java.lang.String">
+            <column name="bus_phone" length="15" />
+        </property>
+        <property name="busTdCode" type="java.lang.String">
+            <column name="bus_TdCode" />
+        </property>
+        <property name="busShareUrl" type="java.lang.String">
+            <column name="bus_share_url" length="200" />
+        </property>
         <set name="busCoupons" inverse="true" lazy="false">
             <key>
                 <column name="bc_bus_id" />
             </key>
             <one-to-many class="com.linestore.vo.BusCoupon" />
         </set>
-        <set name="busTradings" inverse="true" lazy="false">
+        <set name="bills" inverse="true" lazy="false">
             <key>
-                <column name="bta_bus_id" />
+                <column name="bus_id">
+                    <comment>店铺</comment>
+                </column>
             </key>
-            <one-to-many class="com.linestore.vo.BusTrading" />
+            <one-to-many class="com.linestore.vo.Bill" />
         </set>
     </class>
 </hibernate-mapping>

@@ -137,29 +137,30 @@
 															<img src="${root.cusImgUrl}" style="width: 36px;max-height: 36px;border-radius: 5px;"/>
 														</td>
 														<td>${root.cusNickname}</td>
-														<c:if test="${root.cusSex == 1}">
-															<td>男</td>
-														</c:if>
-														<c:if test="${root.cusSex == 2}">
-															<td>女</td>
-														</c:if>
-														<c:if test="${empty root.cusSex}">
-															<td></td>
-														</c:if>
+														<td>
+															<c:if test="${root.cusSex == 1}">
+																男
+															</c:if>
+															<c:if test="${root.cusSex == 2}">
+																女
+															</c:if>
+														</td>
 														<td>${root.cusPhone}</td>
+														<td>
 														<c:if test="${root.cusStatus == 1}">
-															<td>是</td>
+															是
 														</c:if>
-														<c:if test="${root.cusStatus == 0}">
-															<td style="color:#d9534f">否</td>
-														</c:if>
+															<c:if test="${root.cusStatus == 0}">
+																<c style="color:#d9534f">否</c>
+															</c:if>
+														</td>
 														<td>
 															<c:if test="${root.cusStatus == 1}">
 																<a href="customer_update?cusStatus=0&cusId=${root.cusId}" class="btn btn-primary btn-xs">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															</c:if>
-															<c:if test="${root.cusStatus == 0}">
+															<c:if test="${root.cusStatus != 1}">
 																<a href="customer_update?cusStatus=1&cusId=${root.cusId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;

@@ -1,6 +1,6 @@
 package com.linestore.vo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Bill entity. @author MyEclipse Persistence Tools
@@ -11,19 +11,19 @@ public class Bill implements java.io.Serializable {
 	// Fields
 
 	private Integer bilId;
-	private Integer cusId;
+	private Business business;
+	private ThinkUser thinkUserByThuProvinceId;
+	private ThinkUser thinkUserByThuCityId;
+	private Customer customer;
+	private ThinkUser thinkUserByThuCountyId;
+	private ThinkUser thinkUserByThuPropertyId;
 	private Float bilCusMoney;
-	private Integer busId;
 	private Float bilBusMoney;
-	private Integer thuPropertyId;
 	private Float bilPropertyMoney;
-	private Integer thuCountyId;
 	private Float bilCountyMoney;
-	private Integer thuCityId;
 	private Float bilCityMoney;
-	private Integer thuProvinceId;
 	private Float bilProvinceMoney;
-	private Date bilDate;
+	private Timestamp bilDate;
 	private Float bilZongMoney;
 
 	// Constructors
@@ -33,20 +33,21 @@ public class Bill implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Bill(Integer cusId, Float bilCusMoney, Integer busId, Float bilBusMoney, Integer thuPropertyId,
-			Float bilPropertyMoney, Integer thuCountyId, Float bilCountyMoney, Integer thuCityId, Float bilCityMoney,
-			Integer thuProvinceId, Float bilProvinceMoney, Date bilDate, Float bilZongMoney) {
-		this.cusId = cusId;
+	public Bill(Business business, ThinkUser thinkUserByThuProvinceId, ThinkUser thinkUserByThuCityId,
+			Customer customer, ThinkUser thinkUserByThuCountyId, ThinkUser thinkUserByThuPropertyId, Float bilCusMoney,
+			Float bilBusMoney, Float bilPropertyMoney, Float bilCountyMoney, Float bilCityMoney, Float bilProvinceMoney,
+			Timestamp bilDate, Float bilZongMoney) {
+		this.business = business;
+		this.thinkUserByThuProvinceId = thinkUserByThuProvinceId;
+		this.thinkUserByThuCityId = thinkUserByThuCityId;
+		this.customer = customer;
+		this.thinkUserByThuCountyId = thinkUserByThuCountyId;
+		this.thinkUserByThuPropertyId = thinkUserByThuPropertyId;
 		this.bilCusMoney = bilCusMoney;
-		this.busId = busId;
 		this.bilBusMoney = bilBusMoney;
-		this.thuPropertyId = thuPropertyId;
 		this.bilPropertyMoney = bilPropertyMoney;
-		this.thuCountyId = thuCountyId;
 		this.bilCountyMoney = bilCountyMoney;
-		this.thuCityId = thuCityId;
 		this.bilCityMoney = bilCityMoney;
-		this.thuProvinceId = thuProvinceId;
 		this.bilProvinceMoney = bilProvinceMoney;
 		this.bilDate = bilDate;
 		this.bilZongMoney = bilZongMoney;
@@ -62,12 +63,52 @@ public class Bill implements java.io.Serializable {
 		this.bilId = bilId;
 	}
 
-	public Integer getCusId() {
-		return this.cusId;
+	public Business getBusiness() {
+		return this.business;
 	}
 
-	public void setCusId(Integer cusId) {
-		this.cusId = cusId;
+	public void setBusiness(Business business) {
+		this.business = business;
+	}
+
+	public ThinkUser getThinkUserByThuProvinceId() {
+		return this.thinkUserByThuProvinceId;
+	}
+
+	public void setThinkUserByThuProvinceId(ThinkUser thinkUserByThuProvinceId) {
+		this.thinkUserByThuProvinceId = thinkUserByThuProvinceId;
+	}
+
+	public ThinkUser getThinkUserByThuCityId() {
+		return this.thinkUserByThuCityId;
+	}
+
+	public void setThinkUserByThuCityId(ThinkUser thinkUserByThuCityId) {
+		this.thinkUserByThuCityId = thinkUserByThuCityId;
+	}
+
+	public Customer getCustomer() {
+		return this.customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public ThinkUser getThinkUserByThuCountyId() {
+		return this.thinkUserByThuCountyId;
+	}
+
+	public void setThinkUserByThuCountyId(ThinkUser thinkUserByThuCountyId) {
+		this.thinkUserByThuCountyId = thinkUserByThuCountyId;
+	}
+
+	public ThinkUser getThinkUserByThuPropertyId() {
+		return this.thinkUserByThuPropertyId;
+	}
+
+	public void setThinkUserByThuPropertyId(ThinkUser thinkUserByThuPropertyId) {
+		this.thinkUserByThuPropertyId = thinkUserByThuPropertyId;
 	}
 
 	public Float getBilCusMoney() {
@@ -78,28 +119,12 @@ public class Bill implements java.io.Serializable {
 		this.bilCusMoney = bilCusMoney;
 	}
 
-	public Integer getBusId() {
-		return this.busId;
-	}
-
-	public void setBusId(Integer busId) {
-		this.busId = busId;
-	}
-
 	public Float getBilBusMoney() {
 		return this.bilBusMoney;
 	}
 
 	public void setBilBusMoney(Float bilBusMoney) {
 		this.bilBusMoney = bilBusMoney;
-	}
-
-	public Integer getThuPropertyId() {
-		return this.thuPropertyId;
-	}
-
-	public void setThuPropertyId(Integer thuPropertyId) {
-		this.thuPropertyId = thuPropertyId;
 	}
 
 	public Float getBilPropertyMoney() {
@@ -110,28 +135,12 @@ public class Bill implements java.io.Serializable {
 		this.bilPropertyMoney = bilPropertyMoney;
 	}
 
-	public Integer getThuCountyId() {
-		return this.thuCountyId;
-	}
-
-	public void setThuCountyId(Integer thuCountyId) {
-		this.thuCountyId = thuCountyId;
-	}
-
 	public Float getBilCountyMoney() {
 		return this.bilCountyMoney;
 	}
 
 	public void setBilCountyMoney(Float bilCountyMoney) {
 		this.bilCountyMoney = bilCountyMoney;
-	}
-
-	public Integer getThuCityId() {
-		return this.thuCityId;
-	}
-
-	public void setThuCityId(Integer thuCityId) {
-		this.thuCityId = thuCityId;
 	}
 
 	public Float getBilCityMoney() {
@@ -142,14 +151,6 @@ public class Bill implements java.io.Serializable {
 		this.bilCityMoney = bilCityMoney;
 	}
 
-	public Integer getThuProvinceId() {
-		return this.thuProvinceId;
-	}
-
-	public void setThuProvinceId(Integer thuProvinceId) {
-		this.thuProvinceId = thuProvinceId;
-	}
-
 	public Float getBilProvinceMoney() {
 		return this.bilProvinceMoney;
 	}
@@ -158,11 +159,11 @@ public class Bill implements java.io.Serializable {
 		this.bilProvinceMoney = bilProvinceMoney;
 	}
 
-	public Date getBilDate() {
+	public Timestamp getBilDate() {
 		return this.bilDate;
 	}
 
-	public void setBilDate(Date bilDate) {
+	public void setBilDate(Timestamp bilDate) {
 		this.bilDate = bilDate;
 	}
 

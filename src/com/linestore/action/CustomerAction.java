@@ -194,6 +194,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		} else if ("cusTagId".equals(field)) {
 			value = customer.getCusTagId();
 			System.out.println("-----------------------");
+		} else if ("cusImgUrl".equals(field)) {
+			value = customer.getCusImgUrl();
 		}
 		customer = (Customer) ActionContext.getContext().getSession().get("user");
 		customerService.updateField(field, value, customer.getCusId());

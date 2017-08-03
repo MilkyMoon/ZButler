@@ -101,7 +101,7 @@
 			<a href="<%=basePath%>cateLine_selectAll" class="mine_function_sqrz">
 				<div></div> <span>申请入驻</span>
 			</a> 
-			<a href="<%=basePath%>home/myStore.jsp" class="mine_function_wddp">
+			<a href="<%=basePath%>business_store.action" class="mine_function_wddp">
 				<div></div> <span>我的店铺</span>
 			</a> 
 			<a href="<%=basePath%>home/storeReceipts.jsp" class="mine_function_sjsk">

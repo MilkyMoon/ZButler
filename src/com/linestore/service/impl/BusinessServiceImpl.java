@@ -92,7 +92,7 @@ public class BusinessServiceImpl implements BusinessService{
 	public Business CreateTd(Business business) {
 		Business businessResult = null;
 		// 获取数据库中用户二维码信息
-		business = businessDao.select(business).get(0);
+		
 		// 判断二维码信息是否存在
 		if (business.getBusTdCode() != null && !"".equals(business.getBusTdCode())) {
 			boolean isQrExists = QrExistsUtil.qrExists(business.getBusTdCode());
@@ -106,10 +106,14 @@ public class BusinessServiceImpl implements BusinessService{
 
 			businessResult = QrExistsUtil.qrCreate(business);
 			businessDao.update(businessResult);
-			business=businessDao.select(business).get(0);
 		}
 
 		return business;
+	}
+
+	@Override
+	public List<Business> queryByCusId(int cusId) {
+		return businessDao.queryByCusId(cusId);
 	}
 	
 }

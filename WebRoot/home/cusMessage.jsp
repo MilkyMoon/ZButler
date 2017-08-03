@@ -39,12 +39,14 @@
 			</div>
 		</div>
 		<div class="m-cell">
+		<a href="<%=basePath%>home/updateHeadImg.jsp">
 			<div class="cell-item">
 				<div class="cell-left">头像</div>
 				<div class="cell-right cell-arrow">
 					<img src="${user.cusImgUrl}" />
 				</div>
 			</div>
+			</a>
 			<a href="<%=basePath%>home/updateNickname.jsp">
 				<div class="cell-item">
 					<div class="cell-left">昵称</div>

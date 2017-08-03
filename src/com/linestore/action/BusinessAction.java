@@ -1,6 +1,7 @@
 package com.linestore.action;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.linestore.service.BusinessService;
 import com.linestore.service.CateLineService;
+import com.linestore.service.ThinkUserService;
 import com.linestore.util.ReturnSelectHql;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Business;
@@ -26,10 +28,16 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	HttpServletRequest request = ServletActionContext.getRequest ();
 	private List<Business> businessList;
 	private Business businessResult;
+	private List<ThinkUser> thinkUserList = new ArrayList<ThinkUser>();
+	
+	private Integer thuId;
 	
 	private List<CateLine> cateLineList;
 	private CateLineService cateLineService;
 	private ThinkUser thinkUser = new ThinkUser();
+	private ThinkUser think = new ThinkUser();
+	private ThinkUserService thinkUserService;
+	private ThinkUserAction thinkUserAction= new ThinkUserAction();
 	
 	public void setCateLineService(CateLineService cateLineService) {
 		this.cateLineService = cateLineService;
@@ -57,6 +65,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		String str = business.getBaProvince();
 		String strs[] = str.split(" ");
+		System.out.println(cus.getCusId());
 		business.setCustomer(cus);
 		business.setBaProvince(strs[0]);
 		business.setBaCity(strs[1]);
@@ -85,6 +94,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 				hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, id);
 //				System.out.println(business.getBusStatus());
 				businessService.update(hql);
+				ActionContext.getContext().getSession().put("store", businessService.select(id));
 				
 				
 			} catch (NoSuchMethodException e) {
@@ -104,8 +114,51 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 				e.printStackTrace();
 			}
 			
+			
 		
 		return "select";
+	}
+	
+public String updateBus(){
+		
+//		if(business.getBusStatus().equals("on")){
+//			business.setBusStatus(1);
+//		} else {
+//			business.setBusStatus(0);
+//		}
+		
+			int id = business.getBusId();
+//			business.setBusId(null);
+			
+			String hql;
+			try {
+				
+				hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, id);
+//				System.out.println(business.getBusStatus());
+				businessService.update(hql);
+				ActionContext.getContext().getSession().put("store", businessService.select(id));
+				
+				
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		
+		return "gotoStore";
 	}
 	
 	public String delete(){
@@ -117,9 +170,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	}
 	
 	public String selectAll(){
-		ThinkUser think = new ThinkUser();
-		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		System.out.println("thinkUser:"+think.getThuArea());
+		getId();
 		
 		if(think.getThuPid() == 0){
 			businessList = businessService.selectAll();
@@ -167,14 +218,19 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	
 	
 	public String read(){
+		getId();
 		businessResult = selectById();
 		cateLineList = cateLineService.selectAll();
+		
+		List<ThinkUser> list = new ArrayList<ThinkUser>();
+		thinkUserService.queryFormat(list, thuId, 0);
 		
 		if(businessResult == null){
 			return ERROR;
 		}else{
 			request.setAttribute("roots", cateLineList);
 			request.setAttribute("businessResult", businessResult);
+			request.setAttribute("list", list);
 			return "read";
 		}
 	}
@@ -182,6 +238,15 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	public String edit(){
 		read();
 		return "edit";
+	}
+	
+	public String store() {
+		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
+		List<Business> bus = (List<Business>) businessService.queryByCusId(cus.getCusId());
+		if (bus.size() > 0) {
+			ActionContext.getContext().getSession().put("store", bus.get(0));
+		}
+		return "gotoStore";
 	}
 	
 	public String select(){
@@ -205,6 +270,25 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		return "gotoCustomer";
 	}
 	
+	public Integer getId(){
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		thuId = think.getThuId();
+		return thuId;
+	}
+	
+	public String[] inList(Integer id){
+		//判断当前操作的id是否为当前用户可操作id
+		List<ThinkUser> userList = new ArrayList<ThinkUser>();
+		thinkUserService.queryFormat(userList, id, 1);
+		//当前管理员所能管理的管理员集合
+		String arr[] = new String[userList.size()+1];
+		
+		arr[0] = id.toString();
+		for(int j = 0; j < userList.size(); j++){
+			arr[j+1] = userList.get(j).getThuId().toString();
+		}
+		return arr;
+	}
 
 	public List<Business> getBusinessList() {
 		return businessList;
@@ -221,4 +305,14 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	public void setBusinessResult(Business businessResult) {
 		this.businessResult = businessResult;
 	}
+
+	public void setThinkUserService(ThinkUserService thinkUserService) {
+		this.thinkUserService = thinkUserService;
+	}
+
+	public void setThinkUser(ThinkUser thinkUser) {
+		this.thinkUser = thinkUser;
+	}
+	
+	
 }

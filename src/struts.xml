@@ -44,6 +44,7 @@
 			<result name="success" type="redirectAction">business_jump</result>
 			<result name="selectAll">admin/business.jsp</result>
 			<result name="error">admin/index.jsp</result>
+			<result name="gotoStore">home/myStore.jsp</result>
 		</action>
 
 		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
@@ -133,6 +134,12 @@
 			<result name="gotoBusiness">/home/busDetails.jsp</result>
 			<result name="gotoSeach">/home/seach.jsp</result>
 			<result name="gotoStoreCate">/home/storeCate.jsp</result>
+		</action>
+		
+		<action name="busTrading_*" class="com.linestore.action.BusTradingAction"
+			method="{1}">
+			<result name="gotoIncom">/home/busGetMoney.jsp</result>
+			<result name="gotoWithdraw">/home/busWithdraw.jsp</result>
 		</action>
 
 		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
@@ -244,8 +251,8 @@
 			method="{1}">
 			<result name="selectAll">business.jsp</result>
 			<result name="select" type="redirectAction">business_selectAll</result>
-			<result name="read">readBusiness.jsp</result>
-			<result name="edit">editBusiness.jsp</result>
+			<result name="read">businessRead.jsp</result>
+			<result name="edit">businessEdit.jsp</result>
 			<result name="error">index.jsp</result>
 		</action>
 		<action name="thinkUser_*" class="com.linestore.action.ThinkUserAction"
@@ -298,6 +305,12 @@
 			<result name="selectAll">customer.jsp</result>
 			<result name="select" type="redirectAction">customer_selectAll</result>
 			<result name="edit">catelineEdit.jsp</result>
+		</action>
+		<action name="bill_*" class="com.linestore.action.BillAction"
+			method="{1}">
+			<result name="selectAll">bill.jsp</result>
+			<result name="select" type="redirectAction">bill_selectAll</result>
+			<result name="read">billRead.jsp</result>
 		</action>
 	</package>
 

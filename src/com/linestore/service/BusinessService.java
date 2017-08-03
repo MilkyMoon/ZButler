@@ -25,5 +25,7 @@ public interface BusinessService {
 	public List<Business> querySmall(String city, int small);
 	
 	public Business CreateTd(Business business);
+	
+	public List<Business> queryByCusId(int cusId);
 
 }

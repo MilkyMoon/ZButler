@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>Gentelella Alela! |</title>
+<title>代理商管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -64,7 +64,7 @@
 							<h3>Form Elements</h3>
 						</div>
 
-						<div class="title_right">
+						<%-- <div class="title_right">
 							<div
 								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
@@ -75,7 +75,7 @@
 									</span>
 								</div>
 							</div>
-						</div>
+						</div> --%>
 					</div>
 					<div class="clearfix"></div>
 					<div class="row">
@@ -86,14 +86,12 @@
 									<div class="x_title">
 										<h2>
 											<s:property value="busShopName" />
-											<small style="color:red">
-												<s:if test="%{#businessList.busStatus == 0}">
-                       								带审核
-                      							</s:if> 
-                      							<s:if test="%{#businessList.busStatus == 1}">
-													已通过
-                      							</s:if>
-                      						</small>
+											<s:if test="%{#businessList.busStatus == 0}">
+												<small style="color:red">待审核</small>
+               								</s:if> 
+              								<s:if test="%{#businessList.busStatus == 1}">
+												<small style="color:red">审核通过</small>
+                      						</s:if>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -112,35 +110,37 @@
 									</div>
 									<div class="x_content">
 										<br />
-										<s:form action="#"
+										<s:form action="business_update"
 											class="form-horizontal form-label-left">
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">店铺名称</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="busShopName"
-														value="<s:property value='busShopName'/>" disabled="disabled"/>
+														value="<s:property value='busShopName'/>">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">店主姓名</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<input type="text" class="form-control" name="busOwnerName"
-														value="<s:property value='busOwnerName'/>" disabled="disabled"/>
+													<input type="text" class="form-control"
+														name="busOwnerName"
+														value="<s:property value="busOwnerName"/>">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">身份证号</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="busIdcardUrl"
-														value="<s:property value='busIdcardUrl'/>" disabled="disabled"/>
+														value="<s:property value="busIdcardUrl"/>">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">营业执照</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<input type="text" class="form-control" name="busLicenseUrl"
-														value="<s:property value='busLicenseUrl'/>" disabled="disabled"/>
+													<input type="text" class="form-control"
+														name="busLicenseUrl"
+														value="<s:property value="busLicenseUrl"/>">
 												</div>
 											</div>
 
@@ -150,7 +150,7 @@
 												</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<textarea class="form-control" rows="3" name="busTaxUrl"
-														placeholder='<s:property value="busTaxUrl"/>' disabled="disabled"><s:property value="busTaxUrl"/></textarea>
+														placeholder='<s:property value="busTaxUrl"/>'><s:property value="busTaxUrl"/></textarea>
 												</div>
 											</div>
 											<div class="form-group">
@@ -159,14 +159,14 @@
 												</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<textarea class="form-control" rows="3" name="busOrgUrl"
-														placeholder='<s:property value="busOrgUrl"/>' disabled="disabled"><s:property value="busOrgUrl"/></textarea>
+														placeholder='<s:property value="busOrgUrl"/>'><s:property value="busOrgUrl"/></textarea>
 												</div>
 											</div>
 
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">商圈</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" disabled="disabled"
+													<select class="form-control" display="display"
 														name="busDistrict">
 														<s:if test="%{#businessList.busDistrict == 1}">
 															<option value="1" selected="selected">商业区</option>
@@ -211,7 +211,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营类别</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control" name="cateLine.calId"
-														id="busCateId" disabled="disabled">
+														id="busCateId">
 
 														<c:forEach var="root" items="${roots}">
 
@@ -228,28 +228,46 @@
 													</select>
 												</div>
 											</div>
-
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">审核状态</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<div class="radio">
-														<label> <s:if test="%{#businessList.busStatus == 0}">
-			                          								<input type="radio" class="flat" checked
-																		name="busStatus" value="0" disabled="disabled"> 未通过
-		                          								</s:if> 
-		                          								<s:if test="%{#businessList.busStatus == 1}">
-																	<input type="radio" class="flat" checked
-																		name="busStatus" value="1" disabled="disabled"> 通过
-		                          								</s:if>
-
+														<label> 
+															<s:if test="%{#businessList.busStatus == 0}">
+																<input type="radio" class="flat" name="busStatus" value="1"> 通过
+		                          								<input type="radio" class="flat" checked name="busStatus" value="0"> 未通过
+	                          								</s:if> 
+	                          								<s:if test="%{#businessList.busStatus == 1}">
+																<input type="radio" class="flat" checked name="busStatus" value="1"> 通过
+		                          								<input type="radio" class="flat" name="busStatus" value="0"> 未通过
+	                          								</s:if>
 														</label>
 													</div>
 												</div>
 											</div>
 											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12" style="color:#d9534f">指定物业*</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<select class="form-control" name="busThuId">
+														<option value="0" selected="selected">请指定物业</option>
+														<c:forEach var="list" items="${list}">
+															<c:if test="${list.thuId ==  businessList.busThuId}">
+																<option value="${list.thuId}" selected="selected">${list.thuArea}</option>
+															</c:if>
+															<c:if test="${list.thuId !=  businessList.busThuId}">
+																<option value="${list.thuId}">${list.thuArea}</option>
+															</c:if>
+														</c:forEach>
+													</select>
+													<p style="margin-top:10px;"><code>注意：</code>审核通过时请为商家指定一个该地区的物业,当没有该地区时请先进入代理商管理界面添加相应地区的账户</p>
+												</div>
+												
+											</div>
+											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">商家类别</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" name="busLevel" disabled="disabled">
+													<select class="form-control" name="busLevel">
 														<s:if test="%{#businessList.busLevel == 0}">
 															<option value="0" selected="selected">商家</option>
 														</s:if>
@@ -281,66 +299,73 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">银行卡号</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="bbBankCard"
-														value="<s:property value="bbBankCard"/>" disabled="disabled">
+														value="<s:property value="bbBankCard"/>">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">银行卡所属人</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="bbBankPerson"
-														value="<s:property value="bbBankPerson"/>" disabled="disabled">
+														value="<s:property value="bbBankPerson"/>">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">国家</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baCountry"
-														value="中国" disabled="disabled">
+														value="中国">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baProvince"
-														value="<s:property value="baProvince"/>" id="baProvince" disabled="disabled">
+														value="<s:property value="baProvince"/>" id="baProvince">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baCity"
-														value="<s:property value="baCity"/>" id="baCity" disabled="disabled">
+														value="<s:property value="baCity"/>" id="baCity">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baCounty"
-														value="<s:property value="baCounty"/>" id="baCounty" disabled="disabled">
+														value="<s:property value="baCounty"/>" id="baCounty">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">详细地址</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baAddress"
-														value="<s:property value="baAddress"/>" id="baAddress" disabled="disabled">
+														value="<s:property value="baAddress"/>" id="baAddress">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">经度</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baLongitude"
-														value="${businessList.baLongitude}" id="baLongitude" disabled="disabled">
+														value="${businessList.baLongitude}" id="baLongitude">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">纬度</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baLatitude"
-														value="${businessList.baLatitude}" id="baLatitude" disabled="disabled">
+														value="${businessList.baLatitude}" id="baLatitude">
 												</div>
 											</div>
 											<div class="ln_solid"></div>
+											<div class="form-group">
+												<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+													<input type="hidden" name="busId"
+														value="<s:property value="busId"/>" />
+													<button type="submit" class="btn btn-success">提交</button>
+												</div>
+											</div>
 										</s:form>
 									</div>
 								</div>
@@ -349,7 +374,8 @@
 								<div class="x_panel">
 									<div class="x_title">
 										<h2>
-											<s:property value="busShopName" />
+											商家地址
+											<small style="color:red"><s:property value="busShopName" /></small>
 										</h2>
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
@@ -440,7 +466,12 @@
 		
 		// 百度地图API功能
 		var map = new BMap.Map("allmap");
-		var point = new BMap.Point(${businessList.baLongitude}, ${businessList.baLatitude});
+		if(${empty businessList.baLongitude} || ${empty businessList.baLatitude}){
+			var point = new BMap.Point(116.404, 39.915);
+		} else {
+			var point = new BMap.Point(${businessList.baLongitude}, ${businessList.baLatitude});
+		}
+		
 		var marker = new BMap.Marker(point);  // 创建标注
 		map.addOverlay(marker);              // 将标注添加到地图中
 		map.centerAndZoom(point, 15);
@@ -451,7 +482,20 @@
 		showAddress();
 		
 		//            鼠标点击拾取ip坐标 更新图标位置
-		
+		function showInfo(e) {
+			var allOverlay = map.getOverlays();
+			point = new BMap.Point(e.point.lng, e.point.lat);
+			mk = new BMap.Marker(e.point);
+			map.removeOverlay(allOverlay[0]);
+			map.removeOverlay(allOverlay[1]);
+			map.addOverlay(mk);
+			map.panTo(e.point);
+			$("#baLatitude").val(e.point.lat);
+			$("#baLongitude").val(e.point.lng);
+			
+			showAddress();
+		}
+		map.addEventListener("click", showInfo); 
 		
 		function showAddress(){
 			var gc = new BMap.Geocoder();  //初始化，Geocoder类

@@ -99,4 +99,8 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
 	public void update(Business business) {
 		this.getHibernateTemplate().update(business);
 	}
+	
+	public List<Business> queryByCusId(int cusId) {
+		return (List<Business>) this.getHibernateTemplate().find("from Business where customer.cusId=?", cusId);
+	}
 }
