@@ -44,10 +44,12 @@
 			</div>
 			<div class="login_button">
 				<button type="submit" class="btn-block btn-primary login_button_now">立即登陆</button>
-				<a  id="wxlogin"href=""><button type="button" class="btn-block btn-primary login_button_wei">微信登陆</button></a>
+				<a id="wxlogin" href=""><button type="button"
+						class="btn-block btn-primary login_button_wei">微信登陆</button></a>
 			</div>
 			<div class="login_question">
-				<a href="<%=basePath%>home/register.jsp">免费注册</a> <a href="<%=basePath%>home/forgetPasswordOne.jsp">忘记密码</a>
+				<a href="<%=basePath%>home/register.jsp">免费注册</a> <a
+					href="<%=basePath%>home/forgetPasswordOne.jsp">忘记密码</a>
 			</div>
 		</form>
 
@@ -64,53 +66,35 @@
 ${js}
 <script>
 
-    //    表单验证
+	//    表单验证
 
-/*     $.validator.setDefaults({
-        submitHandler: function () {
-            alert("提交事件!");
-        }
-    }); */
+	/*     $.validator.setDefaults({
+	        submitHandler: function () {
+	            alert("提交事件!");
+	        }
+	    }); */
 
-    $().ready(function () {
-    	
-    	if (window.localStorage.getItem("user")) {
-    		$("#username").val(window.localStorage.getItem("user"));
-    		$("#password").val(window.localStorage.getItem("pass"));
-    		$("#che").attr("checked", true);
-    	}
-    	// 微信登陆
-    	$.ajax({
-		type : "get",
-		dataType : "json",
-		url : "<%=basePath%>/ZButler/WxOauthRedirect!WeXinLogin.action",
-		success : function(result) {
-			console.log(result)
-			$(".login_button").find("a").attr("href",JSON.parse(result).LoginUrl);
-		}
-	});
-    	
-    	
-    	
-// 在键盘按下并释放及提交后验证提交表单
-        $("#signupForm").validate({
-            rules: {
-                cusPhone: {
-                    required: true,
-                    rangelength: [11,11]
-                },
-                cusPassword: "required"
-            },
-            messages: {
-                cusPhone: {
-                    required: "请输入用户名",
-                    rangelength: "用户名无效"
-                },
-                cusPassword: "请输入密码"
-            }
-        });
-        
-        $("#signupForm").submit(function(e) {
+	$().ready(function() {
+		init();
+		// 在键盘按下并释放及提交后验证提交表单
+		$("#signupForm").validate({
+			rules : {
+				cusPhone : {
+					required : true,
+					rangelength : [ 11, 11 ]
+				},
+				cusPassword : "required"
+			},
+			messages : {
+				cusPhone : {
+					required : "请输入用户名",
+					rangelength : "用户名无效"
+				},
+				cusPassword : "请输入密码"
+			}
+		});
+
+		$("#signupForm").submit(function(e) {
 			if ($("#che").is(":checked")) {
 				window.localStorage.setItem("user", $("#username").val());
 				window.localStorage.setItem("pass", $("#password").val());
@@ -118,6 +102,29 @@ ${js}
 				window.localStorage.clear();
 			}
 		});
-    });
+
+		function init() {
+			// 数据加载
+			window.YDUI.dialog.loading.open('数据加载中');
+			if (window.localStorage.getItem("user")) {
+				$("#username").val(window.localStorage.getItem("user"));
+				$("#password").val(window.localStorage.getItem("pass"));
+				$("#che").attr("checked", true);
+			}
+			// before
+			$("#wxlogin").attr("disabled", false);
+			// 微信登陆
+			$.ajax({
+				type : "get",
+				dataType : "json",
+				url : "<%=basePath%>/ZButler/WxOauthRedirect!WeXinLogin.action",
+				success : function(result) {
+					$(".login_button").find("a").attr("href", JSON.parse(result).LoginUrl);
+					window.YDUI.dialog.loading.close(); /* 移除loading */
+					$("#wxlogin").attr("disabled", true);
+				}
+			});
+		}
+	});
 </script>
 </html>

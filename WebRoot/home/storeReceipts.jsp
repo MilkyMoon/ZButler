@@ -22,7 +22,7 @@
 </head>
 
 <body>
-	<div class="storeReceipts" style="padding-top:53px;">
+	<div class="storeReceipts">
 		<div class="integral2_top">
 			<div class="integral2_top_left">
 				<i class="fa fa-angle-left"></i> <a

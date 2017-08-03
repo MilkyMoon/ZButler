@@ -1,5 +1,7 @@
 package com.linestore.action;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything;
+
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javax.net.ssl.SSLContext;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -155,7 +158,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						// 获取业务类型 R-充值/P-支付商品
 						case "P":
 							// 转账
-
+							//
 							break;
 						case "R":
 							CtaTrading cta = new CtaTrading();
@@ -199,29 +202,70 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	}
 	// 企业付款到个人
 
-	public void payToIndividual() throws WxPayException {
+	// public void payToIndividual() throws WxPayException {
+	//
+	//
+	// // 转出
+	// // 查询余额
+	// String partner_trade_no = new java.util.Date().getTime() + "";
+	// WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
+	// wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
+	// wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
+	// wxEntPayRequest.setCheckName("NO_CHECK");
+	// wxEntPayRequest.setAmount(10);
+	// wxEntPayRequest.setDescription("test");
+	// wxEntPayRequest.setSpbillCreateIp("10.10.10.10");
+	//
+	//// this.wxPayService.queryEntPay(arg0);
+	//
+	// try {
+	// WxEntPayResult wxEntPayResult =
+	// this.wxPayService.entPay(wxEntPayRequest);
+	// if ("SUCCESS".equals(wxEntPayResult.getResultCode().toUpperCase())
+	// && "SUCCESS".equals(wxEntPayResult.getReturnCode().toUpperCase())) {
+	// System.out.println("企业对个人付款成功！\n付款信息：\n" + wxEntPayResult.toString());
+	// } else {
+	//
+	// System.out.println("err_code: " + wxEntPayResult.getErrCode() + "
+	// err_code_des: "
+	// + wxEntPayResult.getErrCodeDes());
+	// }
+	// } catch (Exception e) {
+	//// e.printStackTrace();
+	//
+	// System.out.println(e.toString());
+	// }
+	// }
+
+	public void paymentToMerchant() throws WxPayException {
+		// 构建WxEntPayRequest
+		WxEntPayRequest request = new WxEntPayRequest();
 		String partner_trade_no = new java.util.Date().getTime() + "";
 		WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
 		wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
 		wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
-		wxEntPayRequest.setCheckName("NO_CHECK");
 		wxEntPayRequest.setAmount(10);
 		wxEntPayRequest.setDescription("test");
-		wxEntPayRequest.setSpbillCreateIp("10.10.10.10");
+		String resutl = payToIndividual(wxEntPayRequest, this.wxPayService);
 
-		try {
-			WxEntPayResult wxEntPayResult = this.wxPayService.entPay(wxEntPayRequest);
-			if ("SUCCESS".equals(wxEntPayResult.getResultCode().toUpperCase())
-					&& "SUCCESS".equals(wxEntPayResult.getReturnCode().toUpperCase())) {
-				System.out.println("企业对个人付款成功！\n付款信息：\n" + wxEntPayResult.toString());
-			} else {
-
-				System.out.println("err_code: " + wxEntPayResult.getErrCode() + "  err_code_des: "
-						+ wxEntPayResult.getErrCodeDes());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (resutl.equals("SUCCESS")) {
+			System.out.println("SUCCESS");
+		} else {
+			System.out.println(resutl);
 		}
+
+	}
+
+	public String payToIndividual(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) throws WxPayException {
+		wxEntPayRequest.setCheckName("NO_CHECK");
+		wxEntPayRequest.setSpbillCreateIp(this.request.getRemoteAddr());
+		WxEntPayResult wxEntPayResult = wxPayService.entPay(wxEntPayRequest);
+		if ("SUCCESS".equals(wxEntPayResult.getResultCode().toUpperCase())
+				&& "SUCCESS".equals(wxEntPayResult.getReturnCode().toUpperCase())) {
+			return "SUCCESS";
+		}
+
+		return "err_code: " + wxEntPayResult.getErrCode() + "err_code_des: " + wxEntPayResult.getErrCodeDes();
 	}
 
 	public String getResult() {
@@ -231,7 +275,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	public void setResult(String result) {
 		this.result = result;
 	}
-	
+
 	private String RandomStr() {
 		Random random = new Random();
 		String radnString = "";

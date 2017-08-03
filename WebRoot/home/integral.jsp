@@ -27,7 +27,8 @@
 	-->
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 
 <body>
@@ -162,7 +163,7 @@
 				},
 				success : function(result) {
 					var config = JSON.parse(result);
-					console.log(config.timeStamp)
+
 					wx.chooseWXPay(
 						{
 							timestamp : config.timeStamp,
