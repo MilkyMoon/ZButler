@@ -28,7 +28,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 	private String result;
 
 	private int busId;
-	private BusinessService bus;
+	private BusinessService businessService;
 
 	public int getBusId() {
 		return busId;
@@ -38,12 +38,14 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		this.busId = busId;
 	}
 
-	public BusinessService getBus() {
-		return bus;
+	
+
+	public BusinessService getBusinessService() {
+		return businessService;
 	}
 
-	public void setBus(BusinessService bus) {
-		this.bus = bus;
+	public void setBusinessService(BusinessService businessService) {
+		this.businessService = businessService;
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		// 获取商户id
 //		ActionContext.getContext().getSession().put("busId", request.getParameter("busId"));
 		System.out.println(Integer.parseInt(request.getParameter("busId")));
-		Business business = bus.select(Integer.parseInt(request.getParameter("busId")));
+		Business business = businessService.select(Integer.parseInt(request.getParameter("busId")));
 		
 		ActionContext.getContext().getSession().put("pay_business", business);
 		// 微信授权

@@ -75,26 +75,7 @@ ${js}
 	    }); */
 
 	$().ready(function() {
-
-		if (window.localStorage.getItem("user")) {
-			$("#username").val(window.localStorage.getItem("user"));
-			$("#password").val(window.localStorage.getItem("pass"));
-			$("#che").attr("checked", true);
-		}
-		window.YDUI.dialog.loading.open('数据加载中');
-		// 微信登陆
-		$.ajax({
-			type : "get",
-			dataType : "json",
-			url : "<%=basePath%>/ZButler/WxOauthRedirect!WeXinLogin.action",
-			success : function(result) {
-				$(".login_button").find("a").attr("href", JSON.parse(result).LoginUrl);
-				window.YDUI.dialog.loading.close(); /* 移除loading */
-			}
-		});
-
-
-
+		init();
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
@@ -121,6 +102,29 @@ ${js}
 				window.localStorage.clear();
 			}
 		});
+
+		function init() {
+			// 数据加载
+			window.YDUI.dialog.loading.open('数据加载中');
+			if (window.localStorage.getItem("user")) {
+				$("#username").val(window.localStorage.getItem("user"));
+				$("#password").val(window.localStorage.getItem("pass"));
+				$("#che").attr("checked", true);
+			}
+			// before
+			$("#wxlogin").attr("disabled", false);
+			// 微信登陆
+			$.ajax({
+				type : "get",
+				dataType : "json",
+				url : "<%=basePath%>/ZButler/WxOauthRedirect!WeXinLogin.action",
+				success : function(result) {
+					$(".login_button").find("a").attr("href", JSON.parse(result).LoginUrl);
+					window.YDUI.dialog.loading.close(); /* 移除loading */
+					$("#wxlogin").attr("disabled", true);
+				}
+			});
+		}
 	});
 </script>
 </html>

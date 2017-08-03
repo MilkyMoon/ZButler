@@ -15,7 +15,9 @@
 			<interceptor name="loginInterceptor"
 				class="com.linestore.inteceptor.LoginInteceptor">
 				<param name="excludeMethods">
-  login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu</param>
+					login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,
+					wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu,IntoPayPage
+				</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
 			<interceptor-stack name="defaultinter">
@@ -133,17 +135,11 @@
 			<result name="gotoStoreCate">/home/storeCate.jsp</result>
 		</action>
 
-		<!-- 微信入口配置 -->
-		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
-			method="{1}">
-		</action>
-		<action name="WxMenu_*" class="com.linestore.action.WxMenuAction"
-			method="{1}">
-		</action>
-
-
-		<action name="WeXinConfig_*" class="com.linestore.action.WeXinConfigAction"
-			method="{1}">
+		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
+			<result name="gotoBind" type="redirectAction">Customer_update</result>
+			<result name="gotoPay">home/Pay.jsp</result>
+			<result name="gotoRecharge">home/integral.jsp</result>
 		</action>
 
 		<!-- 模板消息 -->
@@ -153,16 +149,6 @@
 
 		</action>
 
-		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
-			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
-			<result name="gotoBind" type="redirectAction">Customer_update</result>
-			<result name="gotoPay">home/Pay.jsp</result>
-			<result name="gotoRecharge">home/integral.jsp</result>
-		</action>
-
-		<action name="WxPay" class="com.linestore.action.WxPayAction"
-			method="payNotify">
-		</action>
 	</package>
 
 	<package name="strutsJson" extends="json-default">
@@ -231,7 +217,7 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-	
+
 	</package>
 
 	<package name="struts3" extends="struts-default" namespace="/admin">
@@ -312,6 +298,31 @@
 			<result name="selectAll">customer.jsp</result>
 			<result name="select" type="redirectAction">customer_selectAll</result>
 			<result name="edit">catelineEdit.jsp</result>
+		</action>
+	</package>
+
+	<package name="strutsWeiXin" extends="struts-default"
+		namespace="/weixin">
+		<!-- 微信入口配置 -->
+		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
+			method="{1}">
+		</action>
+		<action name="WxMenu_*" class="com.linestore.action.WxMenuAction"
+			method="{1}">
+		</action>
+
+
+		<action name="WeXinConfig_*" class="com.linestore.action.WeXinConfigAction"
+			method="{1}">
+		</action>
+
+
+
+		<action name="WxPay" class="com.linestore.action.WxPayAction"
+			method="payNotify">
+		</action>
+		<action name="paymentToMerchant" class="com.linestore.action.WxPayAction"
+			method="paymentToMerchant">
 		</action>
 	</package>
 
