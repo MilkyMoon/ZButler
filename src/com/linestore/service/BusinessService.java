@@ -27,5 +27,7 @@ public interface BusinessService {
 	public Business CreateTd(Business business);
 	
 	public List<Business> queryByCusId(int cusId);
+	
+	public void update(Business business);
 
 }

@@ -70,7 +70,7 @@
 			} else {
 				if (parseFloat(point) < parseFloat(input)) {
 					e.preventDefault();
-					window.YDUI.dialog.alert('可用最大的数字为：${cac.cacPoints}');
+					window.YDUI.dialog.alert('可用最大的积分为：${cac.cacPoints}');
 				}
 			}
 

@@ -39,7 +39,7 @@ public class BusTradingDaoImpl extends HibernateDaoSupport implements BusTrading
 	public List<BusTrading> queryIncome(int busId) {
 		System.out.println("exec queryIncome");
 		try {
-			List<BusTrading> busTradings = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where business.busId=? and btaType<10 order by btaTime desc", busId);
+			List<BusTrading> busTradings = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where business.busId=? and btaType<10 order by btaStatus, btaTime desc", busId);
 			System.out.println("queryIncome successful!");
 			return busTradings;
 		} catch (RuntimeException e) {
@@ -52,7 +52,7 @@ public class BusTradingDaoImpl extends HibernateDaoSupport implements BusTrading
 	public List<BusTrading> queryWithdraw(int busId) {
 		System.out.println("exec queryWithdraw");
 		try {
-			List<BusTrading> busTradings = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where business.busId=? and btaType > 10 order by btaTime desc", busId);
+			List<BusTrading> busTradings = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where business.busId=? and btaType > 10 order by btaStatus, btaTime desc", busId);
 			System.out.println("queryWithdraw successful!");
 			return busTradings;
 		} catch (RuntimeException e) {

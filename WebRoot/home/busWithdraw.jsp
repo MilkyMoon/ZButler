@@ -24,8 +24,10 @@
 	<div class="takeMoneyRecord">
 		<c:forEach var="item" items="${Withdraw}">
 			<div class="takeMoneyItem">
-				<div class="takeMoney_num">${item.btaMoney}</div>
-				<div class="takeMoney_type">零钱</div>
+				<div class="takeMoney_num">${item.btaMoney}¥</div>
+				<div class="takeMoney_type">提现零钱</div>
+				<c:if test="${item.btaStatus == 0}"><div style="color:red">待审核</div> </c:if>
+				<c:if test="${item.btaStatus == 1}"><div>已审核</div></c:if>
 				<div class="takeMoney_time"><fmt:formatDate value="${item.btaTime}" type="both" /> </div>
 			</div>
 		</c:forEach>

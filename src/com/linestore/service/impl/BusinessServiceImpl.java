@@ -115,5 +115,10 @@ public class BusinessServiceImpl implements BusinessService{
 	public List<Business> queryByCusId(int cusId) {
 		return businessDao.queryByCusId(cusId);
 	}
+
+	@Override
+	public void update(Business business) {
+		businessDao.update(business);
+	}
 	
 }

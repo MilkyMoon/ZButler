@@ -16,6 +16,9 @@
         <property name="btaType" type="java.lang.Integer">
             <column name="bta_type" />
         </property>
+        <property name="btaStatus" type="java.lang.Integer">
+            <column name="bta_status" />
+        </property>
         <property name="btaAddress" type="java.lang.String">
             <column name="bta_address" length="255"/>
         </property>

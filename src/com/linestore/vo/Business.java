@@ -33,6 +33,7 @@ public class Business implements java.io.Serializable {
 	private String baAddress;
 	private Float baLatitude;
 	private Float baLongitude;
+	private Float busChange;
 	private String bbBankCard;
 	private String bbBank;
 	private String bbBankPerson;
@@ -50,12 +51,22 @@ public class Business implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Business(Supplier supplier, CateLine cateLine, Customer customer, String busShopName, String busOwnerName,
-			String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl, Integer busDistrict,
-			Integer busSmallCate, Integer busStatus, Integer busThuId, Integer busLevel, String baCountry,
-			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
-			String bbBankCard, String bbBank, String bbBankPerson, String busIdcardUrl, String busPhone,
-			String busTdCode, String busShareUrl, Set busCoupons, Set bills) {
+	
+
+	// Property accessors
+
+	public Integer getBusId() {
+		return this.busId;
+	}
+
+	public Business(Integer busId, Supplier supplier, CateLine cateLine, Customer customer, String busShopName,
+			String busOwnerName, String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
+			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busThuId, Integer busLevel,
+			String baCountry, String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude,
+			Float baLongitude, Float busChange, String bbBankCard, String bbBank, String bbBankPerson,
+			String busIdcardUrl, String busPhone, String busTdCode, String busShareUrl, Set busCoupons, Set bills) {
+		super();
+		this.busId = busId;
 		this.supplier = supplier;
 		this.cateLine = cateLine;
 		this.customer = customer;
@@ -77,6 +88,7 @@ public class Business implements java.io.Serializable {
 		this.baAddress = baAddress;
 		this.baLatitude = baLatitude;
 		this.baLongitude = baLongitude;
+		this.busChange = busChange;
 		this.bbBankCard = bbBankCard;
 		this.bbBank = bbBank;
 		this.bbBankPerson = bbBankPerson;
@@ -87,11 +99,14 @@ public class Business implements java.io.Serializable {
 		this.busCoupons = busCoupons;
 		this.bills = bills;
 	}
+	
 
-	// Property accessors
+	public Float getBusChange() {
+		return busChange;
+	}
 
-	public Integer getBusId() {
-		return this.busId;
+	public void setBusChange(Float busChange) {
+		this.busChange = busChange;
 	}
 
 	public void setBusId(Integer busId) {
