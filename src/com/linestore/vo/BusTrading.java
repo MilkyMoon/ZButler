@@ -13,6 +13,7 @@ public class BusTrading implements java.io.Serializable {
 	private String btaId;
 	private Business business;
 	private Integer btaType;
+	private Integer btaStatus;
 	private Float btaMoney;
 	private Timestamp btaTime;
 	private String btaAddress;
@@ -28,18 +29,32 @@ public class BusTrading implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public BusTrading(String btaId, Business business, Integer btaType, Float btaMoney, Timestamp btaTime) {
-		this.btaId = btaId;
-		this.business = business;
-		this.btaType = btaType;
-		this.btaMoney = btaMoney;
-		this.btaTime = btaTime;
-	}
+	
 
 	// Property accessors
 
 	public String getBtaId() {
 		return this.btaId;
+	}
+
+	public BusTrading(String btaId, Business business, Integer btaType, Integer btaStatus, Float btaMoney,
+			Timestamp btaTime, String btaAddress) {
+		super();
+		this.btaId = btaId;
+		this.business = business;
+		this.btaType = btaType;
+		this.btaStatus = btaStatus;
+		this.btaMoney = btaMoney;
+		this.btaTime = btaTime;
+		this.btaAddress = btaAddress;
+	}
+
+	public Integer getBtaStatus() {
+		return btaStatus;
+	}
+
+	public void setBtaStatus(Integer btaStatus) {
+		this.btaStatus = btaStatus;
 	}
 
 	public void setBtaId(String btaId) {

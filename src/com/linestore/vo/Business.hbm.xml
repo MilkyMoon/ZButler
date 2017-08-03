@@ -73,6 +73,9 @@
         <property name="baLongitude" type="java.lang.Float">
             <column name="ba_longitude" precision="12" scale="0" />
         </property>
+        <property name="busChange" type="java.lang.Float">
+            <column name="bus_change" precision="12" scale="0" />
+        </property>
         <property name="bbBankCard" type="java.lang.String">
             <column name="bb_bank_card" length="25" />
         </property>

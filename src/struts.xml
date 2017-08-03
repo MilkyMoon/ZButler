@@ -140,6 +140,7 @@
 			method="{1}">
 			<result name="gotoIncom">/home/busGetMoney.jsp</result>
 			<result name="gotoWithdraw">/home/busWithdraw.jsp</result>
+			<result name="gotoSamllMoney" type="redirectAction">busTrading_queryWithdraw</result>
 		</action>
 
 		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">

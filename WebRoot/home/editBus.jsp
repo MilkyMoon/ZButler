@@ -34,7 +34,7 @@
 				<div class="cell-item">
 					<div class="cell-left">店主姓名*：</div>
 					<div class="cell-right">
-						<input type="text" name="busOwnerName" class="cell-input" value="${store.busOwnerName}" disabled="disabled" 
+						<input type="text" name="busOwnerName" class="cell-input" value="${store.busOwnerName}" disabled="true" value="${store.busOwnerName}"
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
@@ -48,7 +48,7 @@
 				<div class="cell-item">
 					<div class="cell-left">身份证号码*：</div>
 					<div class="cell-right">
-						<input type="text" name="busIdcardUrl" class="cell-input" value="${store.busIdcardUrl}"
+						<input type="text" name="busIdcardUrl" class="cell-input" value="${store.busIdcardUrl}" disabled="true"
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
