@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <div class="rebateProportion">
-    <div><span></span>10%</div>
+    <div><span>10%</span></div>
     <div>您的返点比例</div>
 </div>
   </body>

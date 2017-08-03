@@ -45,9 +45,9 @@
                             <li><a href="business.jsp">黑名单管理</a></li>
                         </ul>
                     </li> --%>
-                    <li><a><i class="fa fa-edit"></i> 代理商管理 <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-edit"></i> 线下商家管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/business_selectAll">代理商基本信息</a></li>
+                            <li><a href="<%=basePath%>admin/business_selectAll">商家基本信息</a></li>
                             <li><a href="<%=basePath%>admin/cateLine_selectAll">店铺分类</a></li>
                             <li><a href="form_validation.html">收款账号管理</a></li>
                             <li><a href="form_wizards.html">账期管理</a></li>
@@ -67,12 +67,12 @@
                     </li>
                     <li><a><i class="fa fa-clone"></i>账单管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="fixed_sidebar.html">账单管理</a></li>
+                            <li><a href="<%=basePath%>admin/bill_selectAll">账单管理</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/thinkUser_select">平台用户管理</a></li>
+                            <li><a href="<%=basePath%>admin/thinkUser_select">平台代理商</a></li>
                             <li><a href="<%=basePath%>admin/group_select">角色管理</a></li>
                             <li><a href="#">权限管理</a></li>
                         </ul>

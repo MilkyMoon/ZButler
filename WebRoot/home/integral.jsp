@@ -27,7 +27,8 @@
 	-->
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 
 <body>
@@ -35,7 +36,7 @@
 		<div class="integral2_top">
 			<div class="integral2_top_left">
 				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/customer.jsp">返回</a>
+					href="<%=basePath%>CusAccount!change.action">返回</a>
 			</div>
 			<div class="integral2_top_center"></div>
 			<div class="integral2_top_right">
@@ -162,7 +163,7 @@
 				},
 				success : function(result) {
 					var config = JSON.parse(result);
-					console.log(config.timeStamp)
+
 					wx.chooseWXPay(
 						{
 							timestamp : config.timeStamp,

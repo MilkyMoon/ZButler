@@ -10,56 +10,56 @@
             <column name="bil_id" />
             <generator class="identity" />
         </id>
-        <property name="cusId" type="java.lang.Integer">
-            <column name="cus_id">
-                <comment>用户</comment>
-            </column>
-        </property>
-        <property name="bilCusMoney" type="java.lang.Float">
-            <column name="bil_cus_money" precision="12" scale="0" />
-        </property>
-        <property name="busId" type="java.lang.Integer">
+        <many-to-one name="business" class="com.linestore.vo.Business" fetch="select" lazy="false">
             <column name="bus_id">
                 <comment>店铺</comment>
             </column>
+        </many-to-one>
+        <many-to-one name="thinkUserByThuProvinceId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
+            <column name="thu_province_id">
+                <comment>省</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="thinkUserByThuCityId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
+            <column name="thu_city_id">
+                <comment>市</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
+            <column name="cus_id">
+                <comment>用户</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="thinkUserByThuCountyId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
+            <column name="thu_county_id">
+                <comment>县</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="thinkUserByThuPropertyId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
+            <column name="thu_property_id">
+                <comment>物业</comment>
+            </column>
+        </many-to-one>
+        <property name="bilCusMoney" type="java.lang.Float">
+            <column name="bil_cus_money" precision="12" scale="0" />
         </property>
         <property name="bilBusMoney" type="java.lang.Float">
             <column name="bil_bus_money" precision="12" scale="0" />
         </property>
-        <property name="thuPropertyId" type="java.lang.Integer">
-            <column name="thu_property_id">
-                <comment>物业</comment>
-            </column>
-        </property>
         <property name="bilPropertyMoney" type="java.lang.Float">
             <column name="bil_property_money" precision="12" scale="0" />
-        </property>
-        <property name="thuCountyId" type="java.lang.Integer">
-            <column name="thu_county_id">
-                <comment>县</comment>
-            </column>
         </property>
         <property name="bilCountyMoney" type="java.lang.Float">
             <column name="bil_county_money" precision="12" scale="0" />
         </property>
-        <property name="thuCityId" type="java.lang.Integer">
-            <column name="thu_city_id">
-                <comment>市</comment>
-            </column>
-        </property>
         <property name="bilCityMoney" type="java.lang.Float">
             <column name="bil_city_money" precision="12" scale="0" />
-        </property>
-        <property name="thuProvinceId" type="java.lang.Integer">
-            <column name="thu_province_id">
-                <comment>省</comment>
-            </column>
         </property>
         <property name="bilProvinceMoney" type="java.lang.Float">
             <column name="bil_province_money" precision="12" scale="0" />
         </property>
-        <property name="bilDate" type="java.util.Date">
-            <column name="bil_date" length="10">
+        <property name="bilDate" type="java.sql.Timestamp">
+            <column name="bil_date" length="19">
                 <comment>创建时间</comment>
             </column>
         </property>

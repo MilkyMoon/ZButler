@@ -1722,7 +1722,7 @@ px
 .takeMoneyAccount a {
 	margin-top: 30px;
 	font-size: 14px;
-	color: #1C1C20;
+	color: #fff;
 }
 
 .takeMoneyAccountItem_del {
@@ -2153,12 +2153,12 @@ px
 	font-weight: bold;
 }
 
-.storeReceipts a {
+/* .storeReceipts a {
 	position: absolute;
 	font-size: 18px;
 	color: #1C1C20;
 	bottom: 50px;
-}
+} */
 
 /*我的朋友圈*/
 .myFriendO_myMessage {
