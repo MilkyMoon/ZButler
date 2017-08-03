@@ -134,6 +134,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			friendsService.save(friends);
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			String js = "<script>YDUI.dialog.alert('注册成功！');</script>";
+			
 			request.put("js", js);
 			return "gotoCustomer";
 		}
@@ -202,20 +203,15 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customer = customerService.findById(customer.getCusId());
 		ActionContext.getContext().getSession().put("user", customer);
 		if ("111".equals(customer.getCusPassword())) {
-
-			// * @example:{{first.DATA}} 帐号：{{keyword1.DATA}}
-			// 备注：{{keyword2.DATA}}
-			// * {{remark.DATA}}
-			// *
 			Template template = new Template();
-			template.setFirst("手机账号绑定成功");
+			template.setFirst("手机账号绑定成功,但账号存在风险，请及时修改密码");
 			Map<String, String> keywordMap = new HashMap<String, String>();
 			keywordMap.put("keyword1", customer.getCusPhone());
-			keywordMap.put("keyword2", "密码已经发送至手机" + customer.getCusPhone() + "请注意查收");
+			keywordMap.put("keyword2", "初始密码为111，请及时修改");
 
 			template.setKeyword(keywordMap);
 			template.setOpenId(customer.getCusOpenId());
-			template.setRemark("账号："+ customer.getCusPhone() + "初始密码为111，请及时修改");
+			template.setRemark("请登录账号，修改密码");
 			template.setUrl(ServletActionContext.getRequest().getRequestURL());
 
 			ActionContext.getContext().getSession().put("template", template);
