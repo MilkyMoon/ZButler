@@ -5,6 +5,7 @@
 			+ path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -25,18 +26,21 @@
 		<div class="integral2_top">
 			<div class="integral2_top_left">
 				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/customer.jsp">返回</a>
+					href="<%=basePath%>CusAccount!change.action">返回</a>
 			</div>
 			<div class="integral2_top_center"></div>
 		</div>
 		<c:forEach var="cta" items="${ctas}">
 			<div class="takeMoneyItem">
-				<div class="takeMoney_num">${cta.ctaMoney}</div>
+				<div class="takeMoney_num">	
+					<c:if test="${cta.ctaType == 1}">${cta.ctaMoney}￥</c:if>
+					<c:if test="${cta.ctaType == 11}">${cta.ctaMoney * 10}积分</c:if>
+				</div>
 				<div class="takeMoney_type">
 					<c:if test="${cta.ctaType == 1}">充值零钱</c:if>
 					<c:if test="${cta.ctaType == 11}">积分转零钱</c:if>
 				</div>
-				<div class="takeMoney_time"><fmt:formatDate value="${cta.ctaTime}" pattern="yyyy-MM-dd" /></div>
+				<div class="takeMoney_time"><fmt:formatDate value="${cta.ctaTime}" type="both"  /></div>
 			</div>
 		</c:forEach>
 		<!-- <div class="takeMoneyItem">
