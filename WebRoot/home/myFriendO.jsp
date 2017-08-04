@@ -56,7 +56,7 @@
 					</s:iterator>
 				</div>
 			</div>
-			<div class="myFriendO_myFriendItem">
+			<%-- <div class="myFriendO_myFriendItem">
 				我的朋友B<span>0</span>
 				<div class="myFriendO_myFriendItem_down">
 					
@@ -67,7 +67,7 @@
 				<div class="myFriendO_myFriendItem_down">
 					
 				</div>
-			</div>
+			</div> --%>
 		</div>
 	</div>
 </body>

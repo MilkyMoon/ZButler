@@ -135,12 +135,13 @@
 			<result name="gotoSeach">/home/seach.jsp</result>
 			<result name="gotoStoreCate">/home/storeCate.jsp</result>
 		</action>
-		
+
 		<action name="busTrading_*" class="com.linestore.action.BusTradingAction"
 			method="{1}">
 			<result name="gotoIncom">/home/busGetMoney.jsp</result>
 			<result name="gotoWithdraw">/home/busWithdraw.jsp</result>
-			<result name="gotoSamllMoney" type="redirectAction">busTrading_queryWithdraw</result>
+			<result name="gotoSamllMoney" type="redirectAction">busTrading_queryWithdraw
+			</result>
 		</action>
 
 		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
@@ -208,6 +209,28 @@
 			<result type="json">
 				<param name="root">result</param>
 			</result>
+
+		</action>
+
+		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
+			method="{1}">
+		</action>
+		<action name="WxMenu_*" class="com.linestore.action.WxMenuAction"
+			method="{1}">
+		</action>
+
+
+		<action name="WeXinConfig_*" class="com.linestore.action.WeXinConfigAction"
+			method="{1}">
+		</action>
+
+
+
+		<action name="WxPay" class="com.linestore.action.WxPayAction"
+			method="payNotify">
+		</action>
+		<action name="paymentToMerchant" class="com.linestore.action.WxPayAction"
+			method="paymentToMerchant">
 		</action>
 
 		<!-- 图片上传 -->
@@ -315,29 +338,7 @@
 		</action>
 	</package>
 
-	<package name="strutsWeiXin" extends="struts-default"
-		namespace="/weixin">
-		<!-- 微信入口配置 -->
-		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
-			method="{1}">
-		</action>
-		<action name="WxMenu_*" class="com.linestore.action.WxMenuAction"
-			method="{1}">
-		</action>
-
-
-		<action name="WeXinConfig_*" class="com.linestore.action.WeXinConfigAction"
-			method="{1}">
-		</action>
-
-
-
-		<action name="WxPay" class="com.linestore.action.WxPayAction"
-			method="payNotify">
-		</action>
-		<action name="paymentToMerchant" class="com.linestore.action.WxPayAction"
-			method="paymentToMerchant">
-		</action>
-	</package>
+	<!-- <package name="strutsWeiXin" extends="struts-default" namespace="/weixin"> 
+		微信入口配置 </package> -->
 
 </struts>

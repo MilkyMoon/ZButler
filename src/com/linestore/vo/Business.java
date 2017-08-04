@@ -43,6 +43,7 @@ public class Business implements java.io.Serializable {
 	private String busShareUrl;
 	private String busEphone;
 	private Set busCoupons = new HashSet(0);
+	private Set busTradings = new HashSet(0);
 	private Set bills = new HashSet(0);
 
 	// Constructors
@@ -59,6 +60,8 @@ public class Business implements java.io.Serializable {
 	public Integer getBusId() {
 		return this.busId;
 	}
+
+	
 
 	public Business(Integer busId, Supplier supplier, CateLine cateLine, Customer customer, String busShopName,
 			String busOwnerName, String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
@@ -98,6 +101,7 @@ public class Business implements java.io.Serializable {
 		this.busTdCode = busTdCode;
 		this.busShareUrl = busShareUrl;
 		this.busCoupons = busCoupons;
+		this.busTradings = busTradings;
 		this.bills = bills;
 		this.busEphone = busEphone;
 	}
@@ -364,5 +368,15 @@ public class Business implements java.io.Serializable {
 	public void setBills(Set bills) {
 		this.bills = bills;
 	}
+
+	public Set getBusTradings() {
+		return busTradings;
+	}
+
+	public void setBusTradings(Set busTradings) {
+		this.busTradings = busTradings;
+	}
+	
+	
 
 }

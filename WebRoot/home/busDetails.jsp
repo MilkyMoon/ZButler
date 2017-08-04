@@ -17,13 +17,21 @@
 <title>商家详情</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
 
 <body>
-	<div class="businessMessage">
+	<div class="businessMessage" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>business_store.action">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<div class="businessMessage_bigImg">
 			<img src="${business.busOrgUrl}" />
 		</div>

@@ -17,18 +17,32 @@
 <title>提现记录</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
+<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 
 </head>
 
 <body>
-	<div class="takeMoneyRecord">
+	<div class="takeMoneyRecord" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>business_store.action">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<c:forEach var="item" items="${Withdraw}">
 			<div class="takeMoneyItem">
 				<div class="takeMoney_num">${item.btaMoney}¥</div>
 				<div class="takeMoney_type">提现零钱</div>
-				<c:if test="${item.btaStatus == 0}"><div style="color:red">待审核</div> </c:if>
-				<c:if test="${item.btaStatus == 1}"><div>已审核</div></c:if>
-				<div class="takeMoney_time"><fmt:formatDate value="${item.btaTime}" type="both" /> </div>
+				<c:if test="${item.btaStatus == 0}">
+					<div style="color:red">待审核</div>
+				</c:if>
+				<c:if test="${item.btaStatus == 1}">
+					<div>已审核</div>
+				</c:if>
+				<div class="takeMoney_time">
+					<fmt:formatDate value="${item.btaTime}" type="both" />
+				</div>
 			</div>
 		</c:forEach>
 

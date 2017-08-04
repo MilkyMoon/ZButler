@@ -45,16 +45,40 @@
 			</div>
 		</div>
 		<div class="integral2_content">
-			<a href="javascript:;" class="active"> <span>￥<span>1</span></span>
-				</span>
-			</a> <a href="javascript:;"> <span>￥<span>2</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>5</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>10</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>20</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>30</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>50</span></span> </span>
-			</a> <a href="javascript:;"> <span>￥<span>100</span></span> </span>
-			</a>
+			<div>
+				<a href="javascript:;" class="active"> <span>￥<span>1</span>
+					</span>
+				</a>
+			</div>
+			<div>
+				<a href="javascript:;"> <span>￥<span>2</span></span>
+				</a>
+			</div>
+			<div>
+				<a href="javascript:;"> <span>￥<span>5</span></span>
+				</a>
+			</div>
+			<div>
+				<a href="javascript:;"> <span>￥<span>10</span></span>
+				</a>
+			</div>
+			<div>
+				<a href="javascript:;"> <span>￥<span>20</span></span>
+				</a>
+			</div>
+			<div>
+				<a href="javascript:;"> <span>￥<span>30</span></span>
+				</a>
+			</div>
+			<div>
+				<a href="javascript:;"> <span>￥<span>50</span></span>
+				</a>
+			</div>
+			<div>
+				<a href="javascript:;"> <span>￥<span>100</span></span>
+				</a>
+			</div>
+
 		</div>
 		<div class="m-celltitle">其它金额:</div>
 		<div class="cell-item">

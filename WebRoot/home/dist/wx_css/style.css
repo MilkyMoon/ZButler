@@ -66,7 +66,13 @@ body {
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -83,13 +89,25 @@ body {
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -102,7 +120,13 @@ body {
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -121,13 +145,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -139,7 +175,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -152,13 +194,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -268,7 +322,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -285,13 +345,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -304,7 +376,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -323,13 +401,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -341,7 +431,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -354,13 +450,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -869,7 +977,6 @@ px
 .bindCard {
 	margin: 8px;
 }
-
 
 .bindCard .m-cell, .bindCard .cell-item {
 	border-radius: 4px;
@@ -1432,11 +1539,18 @@ px
 .integral2_content {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	width: 100%;
 	height: 200px;
 	padding: 10px;
+}
+
+.integral2_content div {
+	width: 33.3%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .integral2_content a {
@@ -1631,10 +1745,10 @@ px
 }
 
 .rebateProportion div {
-	height: 70px;
-	line-height: 100px;
-	font-size: 12px;
-	color: #1C1C20;
+    height: 45px;
+    line-height: 45px;
+    font-size: 12px;
+    color: #f7f7f7;
 }
 
 .rebateProportion div span {
@@ -1705,13 +1819,14 @@ px
 }
 
 .takeMoneyAccount .btn-primary {
-    height: 44px;
-    margin-top: 60px;
-    font-size: 14px;
-    line-height: 44px;
-    border-radius: 4px;
-    background-color: rgb(183, 39, 18)
+	height: 44px;
+	margin-top: 60px;
+	font-size: 14px;
+	line-height: 44px;
+	border-radius: 4px;
+	background-color: rgb(183, 39, 18)
 }
+
 .takeMoneyAccountItem {
 	position: relative;
 	width: 100%;
@@ -1922,7 +2037,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -1939,13 +2060,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -1958,7 +2091,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -1977,13 +2116,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -1995,7 +2146,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2008,13 +2165,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -2535,7 +2704,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2552,13 +2727,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2571,7 +2758,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2590,13 +2783,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2608,7 +2813,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2621,13 +2832,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -2729,7 +2952,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2746,13 +2975,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2765,7 +3006,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2784,13 +3031,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2802,7 +3061,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2815,13 +3080,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -2932,7 +3209,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2949,13 +3232,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2968,7 +3263,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -2987,13 +3288,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -3005,7 +3318,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -3018,13 +3337,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -3885,7 +4216,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -3902,13 +4239,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -3921,7 +4270,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -3940,13 +4295,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -3958,7 +4325,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -3971,13 +4344,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -4044,7 +4429,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4061,13 +4452,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4080,7 +4483,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4099,13 +4508,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4117,7 +4538,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4130,13 +4557,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -4203,7 +4642,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4220,13 +4665,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4239,7 +4696,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4258,13 +4721,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4276,7 +4751,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4289,13 +4770,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -4370,7 +4863,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4387,13 +4886,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4406,7 +4917,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4425,13 +4942,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4443,7 +4972,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4456,13 +4991,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -4529,7 +5076,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4546,13 +5099,25 @@ px
 
 
 
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4565,7 +5130,13 @@ px
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4584,13 +5155,25 @@ border-bottom
 
 
 
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4602,7 +5185,13 @@ solid
 
 
 
+
+
+
  
+
+
+
 
 
 
@@ -4615,13 +5204,25 @@ px
 
 
 
+
+
+
  
 
 
 
 
 
+
+
+
 #e1e1ee
+
+
+
+
+
+
 
 
 
@@ -4808,16 +5409,6 @@ px
 	padding-top: 53px;
 }
 
-.integral2_content {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	width: 100%;
-	height: 200px;
-	padding: 10px;
-}
-
 .integral2_content a {
 	display: flex;
 	flex-direction: column;
@@ -4971,128 +5562,134 @@ px
 }
 
 /*饭呢类*/
-.fenlei{
+.fenlei {
+	
+}
 
+.fenlei .m-cell {
+	height: 40px;
+	background-color: #fff;
+	color: #A3A3B5;
+	padding: 0;
 }
-.fenlei .m-cell{
-    height: 40px;
-    background-color: #fff;
-    color: #A3A3B5;
-    padding: 0;
+
+.fenlei .cell-item {
+	color: #A3A3B5;
+	padding-top: 0;
 }
-.fenlei .cell-item{
-    color: #A3A3B5;
-    padding-top: 0;
-}
-.fenlei .cell-item .cell-right{
-    height: 40px;
+
+.fenlei .cell-item .cell-right {
+	height: 40px;
 }
 
 .fenleiList {
-    width: 100%;
-    margin-top: -16px;
-    background-color: #ffffff;
-    padding-left: 9px;
+	width: 100%;
+	margin-top: -16px;
+	background-color: #ffffff;
+	padding-left: 9px;
 }
 
 .fenleiItem {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    width: 100%;
-    height: 80px;
-    padding: 8px 0;
-    border-bottom: solid 2px #EFEFF4;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: stretch;
+	width: 100%;
+	height: 80px;
+	padding: 8px 0;
+	border-bottom: solid 2px #EFEFF4;
 }
 
 .fenleiItem img {
-    width: 106px;
-    height: 100%;
+	width: 106px;
+	height: 100%;
 }
 
 .fenleiItem_content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    margin: 0 10px;
-    color: #A3A3B5;
-    flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	margin: 0 10px;
+	color: #A3A3B5;
+	flex-grow: 1;
 }
+
 .fenleiItem_content_title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 24px;
-    line-height: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 24px;
+	line-height: 20px;
 }
 
 .fenleiItem_content span {
-    font-size: 12px;
+	font-size: 12px;
 }
 
 .fenleiItem_content .fenleiItem_name {
-    font-size: 14px;
-    color: #1C1C20;
+	font-size: 14px;
+	color: #1C1C20;
 }
 
 .fenleiItem_content .fenleiItem_mark {
-    color: #FF2100;
+	color: #FF2100;
 }
+
 .fenleiItem_content .businessCommend_title_starNum {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
 }
 
 .fenleiItem_content .businessCommend_title_starNum img {
-    width: 12px;
-    height: 12px;
-    margin-right: 4px;
+	width: 12px;
+	height: 12px;
+	margin-right: 4px;
 }
 
 .fenleiItem_content .businessCommend_title_starNum span {
-    font-size: 12px;
-    color: #DB412A;
+	font-size: 12px;
+	color: #DB412A;
 }
 
 /*上传头像*/
-.addHeadImg{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgb(239, 239, 244);
+.addHeadImg {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgb(239, 239, 244);
 }
-.addHeadImg_button{
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.addHeadImg_button {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
+
 .addHeadImg_button #image {
-    position: absolute;
-    width: 70%;
-    height: 40px;
-    top: 60px;
-    left: 15%;
-    opacity:0;
-    cursor: pointer;
-    outline: medium none;
-    filter:alpha(opacity=0);
-    -moz-opacity:0;
-}
-.addHeadImg_button .my_input{
-    width: 70%;
-    height: 40px;
-    margin-top: 60px;
-    color: #fff;
-    line-height: 40px;
-    font-size:16px;
-    text-align: center;
-    border-radius: 4px;
-    background-color: rgb(183, 39, 18);
+	position: absolute;
+	width: 70%;
+	height: 40px;
+	top: 60px;
+	left: 15%;
+	opacity: 0;
+	cursor: pointer;
+	outline: medium none;
+	filter: alpha(opacity = 0);
+	-moz-opacity: 0;
 }
 
-
+.addHeadImg_button .my_input {
+	width: 70%;
+	height: 40px;
+	margin-top: 60px;
+	color: #fff;
+	line-height: 40px;
+	font-size: 16px;
+	text-align: center;
+	border-radius: 4px;
+	background-color: rgb(183, 39, 18);
+}
