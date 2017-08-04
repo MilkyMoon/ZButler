@@ -192,10 +192,10 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							//
 							BusTrading bta = new BusTrading();
 							String openIdbus = kvm.get("openid");
-							Business bus = (Business) businessService.queryByCusId(subString(kvm.get("out_trade_no")));
+							Business bus = (Business) businessService.queryByCusId(subString(kvm.get("out_trade_no"))); //通过商家ID获取商家
 							bta.setBtaId(kvm.get("out_trade_no"));
 							bta.setBtaAddress(bus.getBaCity());
-							bta.setBtaMoney();
+							bta.setBtaMoney(Float.valueOf(kvm.get("total_fee")));
 							bta.setBtaStatus(1);
 							bta.setBtaTime(new Timestamp(new Date().getTime()));
 							bta.setBtaType(1);

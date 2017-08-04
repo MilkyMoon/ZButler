@@ -38,4 +38,9 @@ public class BillServiceImpl implements BillService {
 		// TODO Auto-generated method stub
 		return billDao.queryAll(hql);
 	}
+
+	@Override
+	public void addBill(Bill bill) {
+		billDao.addBill(bill);
+	}
 }

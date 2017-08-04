@@ -49,5 +49,9 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		
 		return count;
 	}
+	
+	public void addBill(Bill bill) {
+		this.getHibernateTemplate().save(bill);
+	}
 
 }
