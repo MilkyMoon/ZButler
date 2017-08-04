@@ -167,7 +167,8 @@
 															</c:if>
 															<a href="customer_read?cusId=${root.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															<a href="#" class="btn btn-info btn-xs" disabled="disabled"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="#" class="btn btn-danger btn-xs" disabled="disabled"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+															<a href="#" class="btn btn-danger btn-xs" disabled="disabled"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="customer_reset?cusId=${root.cusId}" class="btn btn-info btn-xs"><i class="fa fa-refresh"></i>&nbsp;&nbsp;密码重置</a>
 														</td>
 													</tr>
 												</c:forEach>

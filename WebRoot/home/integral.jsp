@@ -40,7 +40,7 @@
 			</div>
 			<div class="integral2_top_center"></div>
 			<div class="integral2_top_right">
-				<i class="fa fa-angle-left"></i> <a
+				<i class="icon-refresh"></i> <a
 					href="<%=basePath%>WxOauthRedirect!IntoRechage.action">刷新</a>
 			</div>
 		</div>
