@@ -37,6 +37,12 @@
         <property name="thuScale" type="java.lang.Float">
             <column name="thu_scale" precision="12" scale="0" />
         </property>
+        <property name="thuOpenid" type="java.lang.String">
+            <column name="thu_openid" length="50" />
+        </property>
+        <property name="thuBill" type="java.lang.String">
+            <column name="thu_bill" length="16" />
+        </property>
         <set name="billsForThuCountyId" inverse="true" lazy="false">
             <key>
                 <column name="thu_county_id">

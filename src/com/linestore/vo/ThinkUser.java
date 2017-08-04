@@ -21,6 +21,8 @@ public class ThinkUser implements java.io.Serializable {
 	private String thuPhone;
 	private String thuName;
 	private Float thuScale;
+	private String thuOpenid;
+	private String thuBill;
 	private Set billsForThuCountyId = new HashSet(0);
 	private Set billsForThuProvinceId = new HashSet(0);
 	private Set groupAccesses = new HashSet(0);
@@ -55,8 +57,9 @@ public class ThinkUser implements java.io.Serializable {
 
 	/** full constructor */
 	public ThinkUser(String thuUsername, String thuPassword, String thuStatus, Integer thuPid, String thuArea,
-			String thuEmail, String thuPhone, String thuName, Float thuScale, Set billsForThuCountyId,
-			Set billsForThuProvinceId, Set groupAccesses, Set billsForThuPropertyId, Set billsForThuCityId) {
+			String thuEmail, String thuPhone, String thuName, Float thuScale, String thuOpenid, String thuBill,
+			Set billsForThuCountyId, Set billsForThuProvinceId, Set groupAccesses, Set billsForThuPropertyId,
+			Set billsForThuCityId) {
 		this.thuUsername = thuUsername;
 		this.thuPassword = thuPassword;
 		this.thuStatus = thuStatus;
@@ -66,6 +69,8 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuPhone = thuPhone;
 		this.thuName = thuName;
 		this.thuScale = thuScale;
+		this.thuOpenid = thuOpenid;
+		this.thuBill = thuBill;
 		this.billsForThuCountyId = billsForThuCountyId;
 		this.billsForThuProvinceId = billsForThuProvinceId;
 		this.groupAccesses = groupAccesses;
@@ -153,6 +158,22 @@ public class ThinkUser implements java.io.Serializable {
 
 	public void setThuScale(Float thuScale) {
 		this.thuScale = thuScale;
+	}
+
+	public String getThuOpenid() {
+		return this.thuOpenid;
+	}
+
+	public void setThuOpenid(String thuOpenid) {
+		this.thuOpenid = thuOpenid;
+	}
+
+	public String getThuBill() {
+		return this.thuBill;
+	}
+
+	public void setThuBill(String thuBill) {
+		this.thuBill = thuBill;
 	}
 
 	public Set getBillsForThuCountyId() {

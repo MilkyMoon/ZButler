@@ -337,6 +337,10 @@
 			<result name="select" type="redirectAction">bill_selectAll</result>
 			<result name="read">billRead.jsp</result>
 		</action>
+		<action name="bangdin_*" class="com.linestore.action.ThinkUserAction"
+			method="{1}">
+			<result name="select" type="redirectAction">thinkUser_selectAll</result>
+		</action>
 	</package>
 
 	<!-- <package name="strutsWeiXin" extends="struts-default" namespace="/weixin"> 
