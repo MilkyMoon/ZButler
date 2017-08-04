@@ -169,6 +169,7 @@
 												</c:forEach>
 											</tbody>
 										</table>
+										<img alt="显示图片" src="<s:url action='thinkUser_viewImages'><s:param name='thuId' value='1'></s:param></s:url>"></img>
 									</div>
 								</div>
 							</div>

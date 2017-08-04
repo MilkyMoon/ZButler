@@ -1,5 +1,6 @@
 package com.linestore.action;
 
+import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.linestore.service.CatetoryService;
 import com.linestore.service.ThinkUserService;
@@ -316,5 +321,36 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		}
 		return arr;
 	}
+	
+//	public String viewImages() {  
+//        HttpServletResponse response = null;  
+//        ServletOutputStream out = null;  
+//        try {  
+//            response = ServletActionContext.getResponse();  
+//            response.setContentType("multipart/form-data");  
+//            out = response.getOutputStream();  
+//            Object file;
+//			out.write(((Object) file).getContent());
+//            out.flush();  
+//        } catch (Exception e) {  
+//            e.printStackTrace();  
+//        } finally {
+//            if (out != null) {  
+//                try {  
+//                    out.close();  
+//                } catch (Exception e) {  
+//                    e.printStackTrace();  
+//                }  
+//            }  
+//            if (response != null) {  
+//                try {  
+//                    ((OutputStream) response).close();  
+//                } catch (Exception e) {  
+//                    e.printStackTrace();  
+//                }  
+//            }  
+//        }  
+//        return null;  
+//    }
 
 }
