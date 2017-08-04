@@ -37,19 +37,22 @@
 		</div>
 		<div class="businessMessage_businessCommend">
 			<div class="businessCommend_title">
-				<h5>${business.busShopName}</h5>
-				<div class="businessCommend_title_mark">
-					<div class="businessCommend_title_starNum" data="4.2">
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<span>5.0</span>-->
+				<div class="businessCommend_title_content">
+					<h5>${business.busShopName}</h5>
+					<div class="businessCommend_title_mark">
+						<div class="businessCommend_title_starNum" data="4.2">
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<span>5.0</span>-->
+						</div>
+						<div class="businessCommend_title_buyNum">
+							消费次数: <span>${fn:length(business.busTradings)}</span>
+						</div>
 					</div>
-					<div class="businessCommend_title_buyNum">
-						消费次数: <span>${fn:length(business.busTradings)}</span>
-					</div>
+					<button type="button" class="btn btn-primary">去付款</button>
 				</div>
 			</div>
 			<div class="businessCommend_detail">

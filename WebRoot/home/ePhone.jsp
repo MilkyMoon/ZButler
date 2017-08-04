@@ -30,21 +30,13 @@
 			<div class="integral2_top_center"></div>
 		</div>
 		<form id="signupForm" method="post"
-			action="<%=basePath%>Customer!update.action">
+			action="<%=basePath%>business_updateBus.action">
 			<input type="hidden" name="busId" value="${store.busId}">
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right" id="telDiv">
-						<input type="number" class="cell-input" name="cusPhone" id="tel"
-							placeholder="请输入手机号" autocomplete="off" /> <input type="hidden"
-							value="cusPhone" name="field">
-					</div>
-				</div>
-				<div class="cell-item cell-item-last">
-					<div class="cell-right">
-						<input type="number" pattern="[0-9]*" class="cell-input" id="code"
-							placeholder="请输入验证码" autocomplete="off" />
-						<button type="button" class="btn btn-primary" id="get">获取验证码</button>
+						<input type="number" class="cell-input" name="busEphone" id="tel" value="${store.busEphone}"
+							placeholder="请输入手机号" autocomplete="off" /> 
 					</div>
 				</div>
 			</div>
@@ -70,76 +62,24 @@
 		}); */
 
 	$().ready(function() {
-		var $getCode = $('#get');
-
-		/* 定义参数 */
-		$getCode.sendCode({
-			disClass : 'btn-disabled',
-			secs : 60,
-			run : false,
-			runStr : '{%s}秒后重新获取',
-			resetStr : '重新获取验证码'
-		});
+		
 		// 在键盘按下并释放及提交后验证提交表单
 		$("#signupForm").validate({
 			rules : {
-				cusPhone : {
+				busEphone : {
 					required : true,
+					rangelength : [ 23, 23 ]
 				}
 			},
 			messages : {
-				cusPhone : {
+				busEphone : {
 					required : "请输入手机号",
+					rangelength : "手机号长度为11位"
 				}
 			}
 		});
 
-		$('#get').click(function() {
-			if ($('#tel').val().length !== 11) {
-				$('#telDiv').find("label").remove();
-				var telError = '<label style="width:50%;color:red;font-size:12px">手机号无效</label>';
-				$('#telDiv').append(telError);
-			} else {
-				var tel = $("#tel").val();
-				$.post("<%=basePath%>BindPhoneJson",
-					{
-						cusPhone : tel,
-					},
-					function(data) {
-						data = $.parseJSON(data);
-						if (data.isError === "true") {
-							window.YDUI.dialog.alert(data.ErrorMessage);
-						} else {
-							$("#data").val(hex_md5(data.code));
-							YDUI.dialog.loading.open('发送中');
-							setTimeout(function() {
-
-								YDUI.dialog.loading.close();
-
-								$getCode.sendCode('start');
-
-
-							}, 1500);
-						}
-					});
-			}
-		});
-
-		$('#tel').focus(function() {
-			$('#telDiv').find("label").remove();
-		});
-
-		$("#signupForm").submit(function(e) {
-			if ($("#data").val() != "empty") {
-				if ($("#data").val() != hex_md5($("#code").val())) {
-					e.preventDefault();
-					window.YDUI.dialog.alert('验证码错误！');
-				}
-			} else {
-				e.preventDefault();
-				window.YDUI.dialog.alert('请获取验证码！');
-			}
-		});
+		
 	});
 </script>
 </html>

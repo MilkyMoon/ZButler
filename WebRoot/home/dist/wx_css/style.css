@@ -817,30 +817,37 @@ px
 }
 
 .businessCommend_title {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 100%;
-	height: 50px;
-	padding-right: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    padding-right: 8px;
 }
 
 .businessCommend_title h5 {
-	font-size: 14px;
-	color: #1C1C20;
+    font-size: 14px;
+    color: #1C1C20;
 }
-
+.businessCommend_title button{
+    height: 34px;
+    line-height: 34px;
+    padding: 0 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: rgb(183, 39, 18);
+}
 .businessCommend_title_mark {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    margin-top: 6px;
 }
 
 .businessCommend_title_starNum, .businessMessage_evaluateItem_starNum {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: 20px;
 }
 
 .businessCommend_title_starNum img,
@@ -885,6 +892,16 @@ px
 	padding: 10px 8px 10px 0;
 }
 
+.businessCommend_address .address{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+.businessCommend_address .address i{
+    width: 40px;
+    flex-shrink: 0;
+}
+
 .businessCommend_address .icon-location {
 	width: 40px;
 	font-size: 16px;
@@ -898,9 +915,10 @@ px
 }
 
 .businessCommend_address_phone {
-	width: 60px;
+	width: 50px;
 	height: 30px;
 	border-left: solid 1px #EFEFF4;
+	flex-shrink: 0;
 }
 
 .businessCommend_address_phone img {
@@ -913,6 +931,7 @@ px
 	width: 100%;
 	margin-top: 8px;
 	padding: 10px 0 0 8px;
+	min-height: 30px;
 	background-color: #fff;
 }
 
