@@ -112,7 +112,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		// 产生订单号（订单号重复）
 		// 获取业务类型 R-充值/P-支付商品
 		String service = request.getParameter("service").toUpperCase();
-		String out_trade_no = new java.util.Date().getTime() + service + this.RandomStr();
+		String out_trade_no = null;
 		// 获取金额
 		String payNum = request.getParameter("payNum");
 
@@ -120,10 +120,15 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		String orderTitle;
 		if (service.equals("R")) {
 			orderTitle = "众邦管家-零钱充值";
+			out_trade_no = new java.util.Date().getTime() + service + this.RandomStr();
 		} else if (service.equals("P")) {
 			orderTitle = "众邦管家-商品支付";
+			out_trade_no = new java.util.Date().getTime() + service + this.RandomStr() + "D"
+					+ request.getParameter("busId");
+
 		} else {
 			orderTitle = "其他业务";
+			out_trade_no = new java.util.Date().getTime() + this.RandomStr();
 		}
 
 		Map<String, String> payInfo = this.wxPayService.getPayInfo(

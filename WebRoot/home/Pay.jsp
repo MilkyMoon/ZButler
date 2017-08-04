@@ -25,14 +25,15 @@
 <title>支付</title>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 <div class="pay">
 	<form id="signupForm">
 		<div class="m-cell">
 			<div class="pay_store">
 				<div class="pay_storeImg">
-					<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
+					<img src="${pay_business.busOrgUrl}" />
 				</div>
 				<div class="pay_storeName">
 					<div>${pay_business.busShopName}</div>
@@ -103,7 +104,9 @@
 				async : true,
 				data : {
 					payNum : payNum,
-					service : "P"
+					service : "P",
+					busId:${pay_business.busId}
+					
 				},
 				success : function(result) {
 					var config = JSON.parse(result);
