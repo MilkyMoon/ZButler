@@ -17,7 +17,8 @@
 <title>商家详情</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
 
@@ -28,19 +29,22 @@
 		</div>
 		<div class="businessMessage_businessCommend">
 			<div class="businessCommend_title">
-				<h5>${business.busShopName}</h5>
-				<div class="businessCommend_title_mark">
-					<div class="businessCommend_title_starNum" data="4.2">
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<img src="image/star.png"/>-->
-						<!--<span>5.0</span>-->
+				<div class="businessCommend_title_content">
+					<h5>${business.busShopName}</h5>
+					<div class="businessCommend_title_mark">
+						<div class="businessCommend_title_starNum" data="4.2">
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<img src="image/star.png"/>-->
+							<!--<span>5.0</span>-->
+						</div>
+						<div class="businessCommend_title_buyNum">
+							消费次数: <span>${fn:length(business.busTradings)}</span>
+						</div>
 					</div>
-					<div class="businessCommend_title_buyNum">
-						消费次数: <span>${fn:length(business.busTradings)}</span>
-					</div>
+					<button type="button" class="btn btn-primary">去付款</button>
 				</div>
 			</div>
 			<div class="businessCommend_detail">
@@ -54,7 +58,8 @@
 				</div>
 
 				<div class="businessCommend_address_phone">
-					<a href="tel:${business.busPhone}"><img src="<%=basePath%>home/dist/wx_image/ic_phone.png" /></a>
+					<a href="tel:${business.busPhone}"><img
+						src="<%=basePath%>home/dist/wx_image/ic_phone.png" /></a>
 				</div>
 			</div>
 		</div>
@@ -67,7 +72,8 @@
 		<div class="businessMessage_hotBusiness">
 			<h5>热门商家</h5>
 			<c:forEach items="${hots}" var="bus">
-				<a href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
+				<a
+					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
 					<div class="index_guessItem">
 						<img src="${bus.busOrgUrl}" />
 						<div class="guess_content">

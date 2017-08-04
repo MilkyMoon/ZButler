@@ -91,6 +91,9 @@
         <property name="busPhone" type="java.lang.String">
             <column name="bus_phone" length="15" />
         </property>
+        <property name="busEphone" type="java.lang.String">
+            <column name="bus_ephone" length="15" />
+        </property>
         <property name="busTdCode" type="java.lang.String">
             <column name="bus_TdCode" />
         </property>
