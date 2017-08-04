@@ -33,7 +33,6 @@ public class Business implements java.io.Serializable {
 	private String baAddress;
 	private Float baLatitude;
 	private Float baLongitude;
-	private Float busChange;
 	private String bbBankCard;
 	private String bbBank;
 	private String bbBankPerson;
@@ -41,7 +40,9 @@ public class Business implements java.io.Serializable {
 	private String busPhone;
 	private String busTdCode;
 	private String busShareUrl;
+	private Float busChange;
 	private String busEphone;
+	private Set busMembers = new HashSet(0);
 	private Set busCoupons = new HashSet(0);
 	private Set busTradings = new HashSet(0);
 	private Set bills = new HashSet(0);
@@ -53,24 +54,13 @@ public class Business implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	
-
-	// Property accessors
-
-	public Integer getBusId() {
-		return this.busId;
-	}
-
-	
-
-	public Business(Integer busId, Supplier supplier, CateLine cateLine, Customer customer, String busShopName,
-			String busOwnerName, String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl,
-			Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busThuId, Integer busLevel,
-			String baCountry, String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude,
-			Float baLongitude, Float busChange, String bbBankCard, String bbBank, String bbBankPerson,
-			String busIdcardUrl, String busPhone, String busTdCode, String busShareUrl, Set busCoupons, Set bills, String busEphone) {
-		super();
-		this.busId = busId;
+	public Business(Supplier supplier, CateLine cateLine, Customer customer, String busShopName, String busOwnerName,
+			String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl, Integer busDistrict,
+			Integer busSmallCate, Integer busStatus, Integer busThuId, Integer busLevel, String baCountry,
+			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
+			String bbBankCard, String bbBank, String bbBankPerson, String busIdcardUrl, String busPhone,
+			String busTdCode, String busShareUrl, Float busChange, String busEphone, Set busMembers, Set busCoupons,
+			Set busTradings, Set bills) {
 		this.supplier = supplier;
 		this.cateLine = cateLine;
 		this.customer = customer;
@@ -92,7 +82,6 @@ public class Business implements java.io.Serializable {
 		this.baAddress = baAddress;
 		this.baLatitude = baLatitude;
 		this.baLongitude = baLongitude;
-		this.busChange = busChange;
 		this.bbBankCard = bbBankCard;
 		this.bbBank = bbBank;
 		this.bbBankPerson = bbBankPerson;
@@ -100,29 +89,18 @@ public class Business implements java.io.Serializable {
 		this.busPhone = busPhone;
 		this.busTdCode = busTdCode;
 		this.busShareUrl = busShareUrl;
+		this.busChange = busChange;
+		this.busEphone = busEphone;
+		this.busMembers = busMembers;
 		this.busCoupons = busCoupons;
 		this.busTradings = busTradings;
 		this.bills = bills;
-		this.busEphone = busEphone;
-	}
-	
-	
-	
-
-	public String getBusEphone() {
-		return busEphone;
 	}
 
-	public void setBusEphone(String busEphone) {
-		this.busEphone = busEphone;
-	}
+	// Property accessors
 
-	public Float getBusChange() {
-		return busChange;
-	}
-
-	public void setBusChange(Float busChange) {
-		this.busChange = busChange;
+	public Integer getBusId() {
+		return this.busId;
 	}
 
 	public void setBusId(Integer busId) {
@@ -353,12 +331,44 @@ public class Business implements java.io.Serializable {
 		this.busShareUrl = busShareUrl;
 	}
 
+	public Float getBusChange() {
+		return this.busChange;
+	}
+
+	public void setBusChange(Float busChange) {
+		this.busChange = busChange;
+	}
+
+	public String getBusEphone() {
+		return this.busEphone;
+	}
+
+	public void setBusEphone(String busEphone) {
+		this.busEphone = busEphone;
+	}
+
+	public Set getBusMembers() {
+		return this.busMembers;
+	}
+
+	public void setBusMembers(Set busMembers) {
+		this.busMembers = busMembers;
+	}
+
 	public Set getBusCoupons() {
 		return this.busCoupons;
 	}
 
 	public void setBusCoupons(Set busCoupons) {
 		this.busCoupons = busCoupons;
+	}
+
+	public Set getBusTradings() {
+		return this.busTradings;
+	}
+
+	public void setBusTradings(Set busTradings) {
+		this.busTradings = busTradings;
 	}
 
 	public Set getBills() {
@@ -368,15 +378,5 @@ public class Business implements java.io.Serializable {
 	public void setBills(Set bills) {
 		this.bills = bills;
 	}
-
-	public Set getBusTradings() {
-		return busTradings;
-	}
-
-	public void setBusTradings(Set busTradings) {
-		this.busTradings = busTradings;
-	}
-	
-	
 
 }

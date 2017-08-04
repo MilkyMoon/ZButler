@@ -73,9 +73,6 @@
         <property name="baLongitude" type="java.lang.Float">
             <column name="ba_longitude" precision="12" scale="0" />
         </property>
-        <property name="busChange" type="java.lang.Float">
-            <column name="bus_change" precision="12" scale="0" />
-        </property>
         <property name="bbBankCard" type="java.lang.String">
             <column name="bb_bank_card" length="25" />
         </property>
@@ -91,20 +88,35 @@
         <property name="busPhone" type="java.lang.String">
             <column name="bus_phone" length="15" />
         </property>
-        <property name="busEphone" type="java.lang.String">
-            <column name="bus_ephone" length="15" />
-        </property>
         <property name="busTdCode" type="java.lang.String">
             <column name="bus_TdCode" />
         </property>
         <property name="busShareUrl" type="java.lang.String">
             <column name="bus_share_url" length="200" />
         </property>
+        <property name="busChange" type="java.lang.Float">
+            <column name="bus_change" precision="12" scale="0" />
+        </property>
+        <property name="busEphone" type="java.lang.String">
+            <column name="bus_ephone" length="15" />
+        </property>
+        <set name="busMembers" inverse="true" lazy="false">
+            <key>
+                <column name="bme_id" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.linestore.vo.BusMember" />
+        </set>
         <set name="busCoupons" inverse="true" lazy="false">
             <key>
                 <column name="bc_bus_id" />
             </key>
             <one-to-many class="com.linestore.vo.BusCoupon" />
+        </set>
+        <set name="busTradings" inverse="true" lazy="false">
+            <key>
+                <column name="bta_bus_id" />
+            </key>
+            <one-to-many class="com.linestore.vo.BusTrading" />
         </set>
         <set name="bills" inverse="true" lazy="false">
             <key>
@@ -113,12 +125,6 @@
                 </column>
             </key>
             <one-to-many class="com.linestore.vo.Bill" />
-        </set>
-        <set name="busTradings" inverse="true" lazy="false">
-            <key>
-                <column name="bta_bus_id" />
-            </key>
-            <one-to-many class="com.linestore.vo.BusTrading" />
         </set>
     </class>
 </hibernate-mapping>

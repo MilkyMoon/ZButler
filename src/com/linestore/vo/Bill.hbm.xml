@@ -40,31 +40,31 @@
                 <comment>物业</comment>
             </column>
         </many-to-one>
-        <property name="bilCusMoney" type="java.lang.Float">
-            <column name="bil_cus_money" precision="12" scale="0" />
+        <property name="bilCusMoney" type="java.lang.Double">
+            <column name="bil_cus_money" precision="20" scale="12" />
         </property>
-        <property name="bilBusMoney" type="java.lang.Float">
-            <column name="bil_bus_money" precision="12" scale="0" />
+        <property name="bilBusMoney" type="java.lang.Double">
+            <column name="bil_bus_money" precision="20" scale="12" />
         </property>
-        <property name="bilPropertyMoney" type="java.lang.Float">
-            <column name="bil_property_money" precision="12" scale="0" />
+        <property name="bilPropertyMoney" type="java.lang.Double">
+            <column name="bil_property_money" precision="20" scale="12" />
         </property>
-        <property name="bilCountyMoney" type="java.lang.Float">
-            <column name="bil_county_money" precision="12" scale="0" />
+        <property name="bilCountyMoney" type="java.lang.Double">
+            <column name="bil_county_money" precision="20" scale="12" />
         </property>
-        <property name="bilCityMoney" type="java.lang.Float">
-            <column name="bil_city_money" precision="12" scale="0" />
+        <property name="bilCityMoney" type="java.lang.Double">
+            <column name="bil_city_money" precision="20" scale="12" />
         </property>
-        <property name="bilProvinceMoney" type="java.lang.Float">
-            <column name="bil_province_money" precision="12" scale="0" />
+        <property name="bilProvinceMoney" type="java.lang.Double">
+            <column name="bil_province_money" precision="20" scale="12" />
         </property>
         <property name="bilDate" type="java.sql.Timestamp">
             <column name="bil_date" length="19">
                 <comment>创建时间</comment>
             </column>
         </property>
-        <property name="bilZongMoney" type="java.lang.Float">
-            <column name="bil_zong_money" precision="12" scale="0" />
+        <property name="bilZongMoney" type="java.lang.Double">
+            <column name="bil_zong_money" precision="20" scale="12" />
         </property>
     </class>
 </hibernate-mapping>
