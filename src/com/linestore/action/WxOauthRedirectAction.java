@@ -38,8 +38,6 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		this.busId = busId;
 	}
 
-	
-
 	public BusinessService getBusinessService() {
 		return businessService;
 	}
@@ -78,10 +76,11 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 
 	public void IntoPayPage() throws IOException {
 		// 获取商户id
-//		ActionContext.getContext().getSession().put("busId", request.getParameter("busId"));
+		// ActionContext.getContext().getSession().put("busId",
+		// request.getParameter("busId"));
 		System.out.println(Integer.parseInt(request.getParameter("busId")));
 		Business business = businessService.select(Integer.parseInt(request.getParameter("busId")));
-		
+
 		ActionContext.getContext().getSession().put("pay_business", business);
 		// 微信授权
 		String oauthUrl = this.wxService.oauth2buildAuthorizationUrl(
@@ -102,6 +101,14 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 				this.wxService.oauth2buildAuthorizationUrl(this.wxService.getWxMpConfigStorage().getOauth2redirectUri(),
 						WxConsts.OAUTH2_SCOPE_USER_INFO, "bindWeChat"));
 		this.result = JSONObject.fromObject(map).toString();
+		return SUCCESS;
+	}
+
+	public String adminBindWeChat() throws IOException {
+		String oauthUrl = this.wxService.oauth2buildAuthorizationUrl(
+				this.wxService.getWxMpConfigStorage().getOauth2redirectUri(), WxConsts.OAUTH2_SCOPE_USER_INFO,
+				"adminBindWeChat");
+		response.sendRedirect(oauthUrl);
 		return SUCCESS;
 	}
 
@@ -139,6 +146,11 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 			ActionContext.getContext().getSession().put("openId", wxMpUserBind.getOpenId());
 			ActionContext.getContext().getSession().put("Bind", "cusOpenId");
 			returnString = "gotoBind";
+			break;
+		case "adminBindWeChat":
+			WxMpUser thuOpenid= this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
+			ActionContext.getContext().getSession().put("thuOpenid", thuOpenid.getOpenId());
+			returnString = "goAdminBindWechat";
 			break;
 		default:
 			returnString = "login";
