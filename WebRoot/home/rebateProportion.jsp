@@ -30,8 +30,9 @@
 		</div>
 		<div style="padding-top:53px;">
 			<span>10%</span>
+			<div style="padding-top:53px;">您的返点比例</div>
 		</div>
-		<div style="padding-top:53px;">您的返点比例</div>
+		
 	</div>
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>

@@ -36,9 +36,13 @@ import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.github.binarywang.wxpay.util.SignUtils;
 import com.linestore.WxUtils.Sha1Util;
 import com.linestore.WxUtils.XMLUtil;
+import com.linestore.service.BusTradingService;
+import com.linestore.service.BusinessService;
 import com.linestore.service.CtaTradingService;
 import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
+import com.linestore.vo.BusTrading;
+import com.linestore.vo.Business;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
@@ -60,6 +64,26 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	private CtaTradingService ctaTradingService;
 	private CusAccountService cusAccountService;
+	private BusTradingService busTradingService;
+	private BusinessService businessService;
+	
+	
+
+	public BusinessService getBusinessService() {
+		return businessService;
+	}
+
+	public void setBusinessService(BusinessService businessService) {
+		this.businessService = businessService;
+	}
+
+	public BusTradingService getBusTradingService() {
+		return busTradingService;
+	}
+
+	public void setBusTradingService(BusTradingService busTradingService) {
+		this.busTradingService = busTradingService;
+	}
 
 	public CusAccountService getCusAccountService() {
 		return cusAccountService;
@@ -160,6 +184,18 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						case "P":
 							// 转账
 							//
+							BusTrading bta = new BusTrading();
+							String openIdbus = kvm.get("openid");
+							Business bus = (Business) businessService.queryByCusId(subString(kvm.get("out_trade_no")));
+							bta.setBtaId(kvm.get("out_trade_no"));
+							bta.setBtaAddress(bus.getBaCity());
+							bta.setBtaMoney();
+							bta.setBtaStatus(1);
+							bta.setBtaTime(new Timestamp(new Date().getTime()));
+							bta.setBtaType(1);
+							bta.setBusiness(bus);
+							
+							busTradingService.addBusTrading(bta);
 							break;
 						case "R":
 							CtaTrading cta = new CtaTrading();
@@ -291,6 +327,16 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		}
 
 		return radnString;
+	}
+	
+	public  int subString(String a) {
+		int index = a.length();
+		for (int i = 0; i < index; i++) {
+			if (a.charAt(i) == 'D') {
+				index = i;
+			}
+		}
+		return Integer.parseInt(a.substring(index + 1));
 	}
 
 }
