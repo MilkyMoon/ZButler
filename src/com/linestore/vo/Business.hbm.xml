@@ -111,5 +111,11 @@
             </key>
             <one-to-many class="com.linestore.vo.Bill" />
         </set>
+        <set name="busTradings" inverse="true" lazy="false">
+            <key>
+                <column name="bta_bus_id" />
+            </key>
+            <one-to-many class="com.linestore.vo.BusTrading" />
+        </set>
     </class>
 </hibernate-mapping>

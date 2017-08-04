@@ -142,6 +142,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		try {
 			synchronized (this) {
 				Map<String, String> kvm = XMLUtil.parseRequestXmlToMap(request);
+				System.out.println(123);
 				if (SignUtils.checkSign(kvm, this.payConfig.getMchKey())) {
 					if (kvm.get("result_code").equals("SUCCESS")) {
 						// 应答微信
@@ -237,10 +238,10 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	// }
 	// }
 
-	public void paymentToMerchant() throws WxPayException {
+	public void paymentToMerchant() {
 		// 构建WxEntPayRequest
 		WxEntPayRequest request = new WxEntPayRequest();
-		String partner_trade_no = new java.util.Date().getTime() + ""+"";
+		String partner_trade_no = new java.util.Date().getTime() + "" + "";
 		WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
 		wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
 		wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
@@ -256,13 +257,19 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	}
 
-	public String payToIndividual(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) throws WxPayException {
+	public String payToIndividual(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) {
 		wxEntPayRequest.setCheckName("NO_CHECK");
 		wxEntPayRequest.setSpbillCreateIp(this.request.getRemoteAddr());
-		WxEntPayResult wxEntPayResult = wxPayService.entPay(wxEntPayRequest);
-		if ("SUCCESS".equals(wxEntPayResult.getResultCode().toUpperCase())
-				&& "SUCCESS".equals(wxEntPayResult.getReturnCode().toUpperCase())) {
-			return "SUCCESS";
+		WxEntPayResult wxEntPayResult = null;
+		try {
+			wxEntPayResult = wxPayService.entPay(wxEntPayRequest);
+			if ("SUCCESS".equals(wxEntPayResult.getResultCode().toUpperCase())
+					&& "SUCCESS".equals(wxEntPayResult.getReturnCode().toUpperCase())) {
+				return "SUCCESS";
+			}
+		} catch (WxPayException e) {
+			// TODO Auto-generated catch block
+			System.out.println("错误异常代码"+e);
 		}
 
 		return "err_code: " + wxEntPayResult.getErrCode() + "err_code_des: " + wxEntPayResult.getErrCodeDes();
