@@ -27,7 +27,7 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
-<div class="pay" style="padding-top:53px;">
+<div class="pay">
 	<form id="signupForm">
 		<div class="m-cell">
 			<div class="pay_store">
@@ -36,9 +36,9 @@
 				</div>
 				<div class="pay_storeName">
 					<div>${pay_business.busShopName}</div>
-					<span>海油大街店</span>
+					<span>${pay_business.baAddress}</span>
 				</div>
-				<div class="pay_storeTel">15732684596</div>
+				<div class="pay_storeTel">${pay_business.busPhone}</div>
 			</div>
 			<input type="number" pattern="[0-9]*" name="num" class="cell-input"
 				placeholder="消费金额" autocomplete="off" id="payNum" />

@@ -66,7 +66,7 @@ public class QrExistsUtil {
 		// 生成用户邀请注册链接，并构造对应二维码图片，将图片url存入数据库
 		// 邀请注册链接,含邀请人id参数
 		HttpServletRequest request = ServletActionContext.getRequest();
-		REG_PATH = "http://" + request.getServerName() +":" + request.getServerPort() + "/ZButler/WxOauthRedirect!IntoRechage.action?busId=";
+		REG_PATH = "http://" + request.getServerName() +":" + request.getServerPort() + "/ZButler/WxOauthRedirect!IntoPayPage?busId=";
 		String url = REG_PATH + business.getBusId();
 
 		// 二维码图片存放路径

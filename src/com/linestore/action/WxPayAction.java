@@ -26,6 +26,7 @@ import com.github.binarywang.wxpay.bean.request.WxEntPayQueryRequest;
 import com.github.binarywang.wxpay.bean.request.WxEntPayRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayBaseRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
+import com.github.binarywang.wxpay.bean.result.WxEntPayQueryResult;
 import com.github.binarywang.wxpay.bean.result.WxEntPayResult;
 import com.github.binarywang.wxpay.bean.result.WxPayBaseResult;
 import com.github.binarywang.wxpay.bean.result.WxPayOrderNotifyResult;
@@ -158,8 +159,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						switch (service) {
 						// 获取业务类型 R-充值/P-支付商品
 						case "P":
-							// 转账
-							//
+							// 存数据库+转账
+
 							break;
 						case "R":
 							CtaTrading cta = new CtaTrading();
@@ -257,6 +258,24 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	}
 
+	public void postal() {
+		// 构建提现 WxEntPayRequest
+		WxEntPayRequest request = new WxEntPayRequest();
+		String partner_trade_no = new java.util.Date().getTime() + "" + "";
+		WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
+		wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
+		wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
+		wxEntPayRequest.setAmount(10);
+		wxEntPayRequest.setDescription("test");
+		String resutl = payToIndividual(wxEntPayRequest, this.wxPayService);
+
+		if (resutl.equals("SUCCESS")) {
+			System.out.println("SUCCESS");
+		} else {
+			System.out.println(resutl);
+		}
+	}
+
 	public String payToIndividual(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) {
 		wxEntPayRequest.setCheckName("NO_CHECK");
 		wxEntPayRequest.setSpbillCreateIp(this.request.getRemoteAddr());
@@ -269,10 +288,20 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 			}
 		} catch (WxPayException e) {
 			// TODO Auto-generated catch block
-			System.out.println("错误异常代码"+e);
+			System.out.println("错误异常代码" + e);
 		}
 
 		return "err_code: " + wxEntPayResult.getErrCode() + "err_code_des: " + wxEntPayResult.getErrCodeDes();
+	}
+
+	public void queryResult() throws WxPayException {
+		// 构建查询体
+		String partner_trade_no = "";
+		WxEntPayQueryResult wxEntPayQueryResult = this.wxPayService.queryEntPay(partner_trade_no);
+		if ("SUCCESS".equals(wxEntPayQueryResult.getResultCode().toUpperCase())
+				&& "SUCCESS".equals(wxEntPayQueryResult.getReturnCode().toUpperCase())) {
+			// 构建返回结果
+		}
 	}
 
 	public String getResult() {
