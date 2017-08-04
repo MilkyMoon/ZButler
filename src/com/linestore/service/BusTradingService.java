@@ -13,5 +13,7 @@ public interface BusTradingService {
 	public List<BusTrading> queryIncome(int busId);
 
 	public List<BusTrading> queryWithdraw(int busId);
+	
+	public BusTrading queryById(String btaId);
 
 }

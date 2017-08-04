@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+[ ]	消费者第一次消费要自动成为会员并记录账单<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -52,15 +52,15 @@
 							消费次数: <span>${fn:length(business.busTradings)}</span>
 						</div>
 					</div>
-					<button type="button" class="btn btn-primary">去付款</button>
 				</div>
+				<button type="button" class="btn btn-primary" id="gotoPay">去付款</button>
 			</div>
 			<div class="businessCommend_detail">
 				<h5>商家介绍</h5>
 				<p>${business.busDesc}</p>
 			</div>
 			<div class="businessCommend_address">
-				<div id="address">
+				<div id="address" class="address">
 					<i class="icon-location"></i>
 					<p>${business.baProvince}${business.baCity}${business.baCounty}${business.baAddress}</p>
 				</div>
@@ -71,11 +71,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="businessMessage_evaluate">
+<!-- 		<div class="businessMessage_evaluate">
 			<h5>
 				评价（<span>0</span>）
 			</h5>
-		</div>
+		</div> -->
 
 		<div class="businessMessage_hotBusiness">
 			<h5>热门商家</h5>
@@ -156,6 +156,10 @@
 			];
 			wx.config(config)
 		}
+	});
+	
+	$("#gotoPay").click(function(){
+		window.location.href = "<%=basePath%>WxOauthRedirect!IntoPayPage.action?busId=${business.busId}"
 	});
 
 	$("#address").click(function() {
