@@ -169,7 +169,8 @@
 												</c:forEach>
 											</tbody>
 										</table>
-										<img alt="显示图片" src="<s:url action='thinkUser_viewImages'><s:param name='thuId' value='1'></s:param></s:url>"></img>
+										<img src="http://qrcoder.sinaapp.com?t=http://www.gbtags.com">
+										<%-- <img alt="显示图片" src="<s:url action='thinkUser_viewImages'><s:param name='thuId' value='1'></s:param></s:url>"></img> --%>
 									</div>
 								</div>
 							</div>
@@ -200,5 +201,14 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>
+	
+	<script type="text/javascript" src="./build/js/qrcode.min.js"></script>
+
+	<script type="text/javascript">
+		/* btn.onclick=function(){
+			alert('hello world');
+			} */
+		new QRCode(document.getElementById("qrcode"), "你好，极客标签");
+    </script>
 </body>
 </html>

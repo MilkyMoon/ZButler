@@ -1,10 +1,13 @@
 package com.linestore.vo;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
  * Bill entity. @author MyEclipse Persistence Tools
  */
+
+import java.math.BigDecimal;
 
 public class Bill implements java.io.Serializable {
 
@@ -17,14 +20,14 @@ public class Bill implements java.io.Serializable {
 	private Customer customer;
 	private ThinkUser thinkUserByThuCountyId;
 	private ThinkUser thinkUserByThuPropertyId;
-	private Float bilCusMoney;
-	private Float bilBusMoney;
-	private Float bilPropertyMoney;
-	private Float bilCountyMoney;
-	private Float bilCityMoney;
-	private Float bilProvinceMoney;
+	private BigDecimal bilCusMoney;
+	private BigDecimal bilBusMoney;
+	private BigDecimal bilPropertyMoney;
+	private BigDecimal bilCountyMoney;
+	private BigDecimal bilCityMoney;
+	private BigDecimal bilProvinceMoney;
 	private Timestamp bilDate;
-	private Float bilZongMoney;
+	private BigDecimal bilZongMoney;
 
 	// Constructors
 
@@ -34,9 +37,9 @@ public class Bill implements java.io.Serializable {
 
 	/** full constructor */
 	public Bill(Business business, ThinkUser thinkUserByThuProvinceId, ThinkUser thinkUserByThuCityId,
-			Customer customer, ThinkUser thinkUserByThuCountyId, ThinkUser thinkUserByThuPropertyId, Float bilCusMoney,
-			Float bilBusMoney, Float bilPropertyMoney, Float bilCountyMoney, Float bilCityMoney, Float bilProvinceMoney,
-			Timestamp bilDate, Float bilZongMoney) {
+			Customer customer, ThinkUser thinkUserByThuCountyId, ThinkUser thinkUserByThuPropertyId, BigDecimal bilCusMoney,
+			BigDecimal bilBusMoney, BigDecimal bilPropertyMoney, BigDecimal bilCountyMoney, BigDecimal bilCityMoney,
+			BigDecimal bilProvinceMoney, Timestamp bilDate, BigDecimal bilZongMoney) {
 		this.business = business;
 		this.thinkUserByThuProvinceId = thinkUserByThuProvinceId;
 		this.thinkUserByThuCityId = thinkUserByThuCityId;
@@ -111,51 +114,51 @@ public class Bill implements java.io.Serializable {
 		this.thinkUserByThuPropertyId = thinkUserByThuPropertyId;
 	}
 
-	public Float getBilCusMoney() {
+	public BigDecimal getBilCusMoney() {
 		return this.bilCusMoney;
 	}
 
-	public void setBilCusMoney(Float bilCusMoney) {
+	public void setBilCusMoney(BigDecimal bilCusMoney) {
 		this.bilCusMoney = bilCusMoney;
 	}
 
-	public Float getBilBusMoney() {
+	public BigDecimal getBilBusMoney() {
 		return this.bilBusMoney;
 	}
 
-	public void setBilBusMoney(Float bilBusMoney) {
+	public void setBilBusMoney(BigDecimal bilBusMoney) {
 		this.bilBusMoney = bilBusMoney;
 	}
 
-	public Float getBilPropertyMoney() {
+	public BigDecimal getBilPropertyMoney() {
 		return this.bilPropertyMoney;
 	}
 
-	public void setBilPropertyMoney(Float bilPropertyMoney) {
+	public void setBilPropertyMoney(BigDecimal bilPropertyMoney) {
 		this.bilPropertyMoney = bilPropertyMoney;
 	}
 
-	public Float getBilCountyMoney() {
+	public BigDecimal getBilCountyMoney() {
 		return this.bilCountyMoney;
 	}
 
-	public void setBilCountyMoney(Float bilCountyMoney) {
+	public void setBilCountyMoney(BigDecimal bilCountyMoney) {
 		this.bilCountyMoney = bilCountyMoney;
 	}
 
-	public Float getBilCityMoney() {
+	public BigDecimal getBilCityMoney() {
 		return this.bilCityMoney;
 	}
 
-	public void setBilCityMoney(Float bilCityMoney) {
+	public void setBilCityMoney(BigDecimal bilCityMoney) {
 		this.bilCityMoney = bilCityMoney;
 	}
 
-	public Float getBilProvinceMoney() {
+	public BigDecimal getBilProvinceMoney() {
 		return this.bilProvinceMoney;
 	}
 
-	public void setBilProvinceMoney(Float bilProvinceMoney) {
+	public void setBilProvinceMoney(BigDecimal bilProvinceMoney) {
 		this.bilProvinceMoney = bilProvinceMoney;
 	}
 
@@ -167,11 +170,11 @@ public class Bill implements java.io.Serializable {
 		this.bilDate = bilDate;
 	}
 
-	public Float getBilZongMoney() {
+	public BigDecimal getBilZongMoney() {
 		return this.bilZongMoney;
 	}
 
-	public void setBilZongMoney(Float bilZongMoney) {
+	public void setBilZongMoney(BigDecimal bilZongMoney) {
 		this.bilZongMoney = bilZongMoney;
 	}
 
