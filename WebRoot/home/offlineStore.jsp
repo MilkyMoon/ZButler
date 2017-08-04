@@ -100,21 +100,21 @@
 		</div>
 
 		<div class="index_recommends">
-			<div class="index_recommend_left">
+			<a class="index_recommend_left" href="#">
 				<img src="<%=basePath%>home/dist/wx_image/Trval.png" /> <span>我们旅行</span>
 				<strong>恋人爱人好朋友</strong>
-			</div>
+			</a>
 			<div class="index_recommend_right">
-				<div class="recommend_right">
+				<a class="recommend_right" href="#">
 					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span>
 						底价超值 <strong>十元惠生活</strong>
 					</span>
-				</div>
-				<div class="recommend_right">
+				</a>
+				<a class="recommend_right" href="#">
 					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span>
 						底价超值 <strong>十元惠生活</strong>
 					</span>
-				</div>
+				</a>
 			</div>
 		</div>
 
