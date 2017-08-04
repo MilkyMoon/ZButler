@@ -147,6 +147,7 @@
 		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
 			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
 			<result name="gotoBind" type="redirectAction">Customer_update</result>
+		<!-- 	<result name="goAdminBindWechat" type="redirectAction">bangdin_update</result> -->
 			<result name="gotoPay">home/Pay.jsp</result>
 			<result name="gotoRecharge">home/integral.jsp</result>
 		</action>
