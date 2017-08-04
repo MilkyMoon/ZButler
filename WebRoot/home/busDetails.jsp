@@ -18,11 +18,20 @@
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 </head>
 
 <body>
-	<div class="businessMessage">
+	<div class="businessMessage" style="padding-top:53px;">
+		<div class="integral2_top">
+			<div class="integral2_top_left">
+				<i class="fa fa-angle-left"></i> <a
+					href="<%=basePath%>business_store.action">返回</a>
+			</div>
+			<div class="integral2_top_center"></div>
+		</div>
 		<div class="businessMessage_bigImg">
 			<img src="${business.busOrgUrl}" />
 		</div>
@@ -54,7 +63,8 @@
 				</div>
 
 				<div class="businessCommend_address_phone">
-					<a href="tel:${business.busPhone}"><img src="<%=basePath%>home/dist/wx_image/ic_phone.png" /></a>
+					<a href="tel:${business.busPhone}"><img
+						src="<%=basePath%>home/dist/wx_image/ic_phone.png" /></a>
 				</div>
 			</div>
 		</div>
@@ -67,7 +77,8 @@
 		<div class="businessMessage_hotBusiness">
 			<h5>热门商家</h5>
 			<c:forEach items="${hots}" var="bus">
-				<a href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
+				<a
+					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
 					<div class="index_guessItem">
 						<img src="${bus.busOrgUrl}" />
 						<div class="guess_content">
