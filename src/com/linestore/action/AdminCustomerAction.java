@@ -61,6 +61,12 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 		return "read";
 	}
 	
+	public String reset(){
+		customer.setCusPassword("111");
+		update();
+		return "select";
+	}
+	
 	public String selectAll(){
 		int totalCount = customerService.queryAll();
 		if(everyPage.equals("") || everyPage == null){
