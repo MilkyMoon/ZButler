@@ -113,6 +113,18 @@
 												</div>
 												
 												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">父分类</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<select class="form-control" name="calPid" id="busCateId">
+															<option value="0">选择父分类</option>
+															<c:forEach var="root" items="${roots}">
+																<option value="${root.calId}">${root.calName}</option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+												
+												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">启&nbsp;&nbsp;&nbsp;&nbsp;用</label>
 													<div class="col-md-9 col-sm-9 col-xs-12">
 														<div class="radio">
@@ -203,59 +215,6 @@
 	<script src="./vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>
-	<script type="text/javascript"
-		src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
-		
-	<script type="text/javascript">
-		//绑定了`submit`事件。    
-	    $('#fileupload-form').on('submit',(function(e) {
-	    alert("asdfad");
-	        e.preventDefault();
-	        //序列化表单   
-	       var serializeData = $(this).serialize();
 	
-	       // var formData = new FormData(this);
-	       $.ajax({
-	            type:'POST',
-	            url: '<%=basePath%>saveImg',
-	            dataType: 'json',
-	            data: serializeData,            
-	            // data: formData,
-	
-	            //attention!!!   
-	            contentType: false,      
-	            cache: false,             
-	            processData:false,      
-	
-	            beforeSubmit: function() {
-	                    //上传图片之前的处理   
-	            },
-	            uploadProgress: function (event, position, total, percentComplete){ 
-	                //在这里控制进度条   
-	            },
-	            success:function(){
-	
-	            },
-	            error:function(data){
-	                alert('上传图片出错');
-	            }
-	        });
-	    }));
-	
-	    //绑定文件选择事件，一选择了图片，就让`form`提交。   
-	
-	    $("#fileupload").on("change", function() {
-	    	
-	        if (this.files && this.files[0]) {
-		       var reader = new FileReader();            
-		       reader.onload = function (e) {
-		            $('#theImg').attr('src', e.target.result);
-		        }
-		       reader.readAsDataURL(this.files[0]);
-		   }
-		   $(this).parent().submit();
-		  
-	    });
-	</script>
 </body>
 </html>

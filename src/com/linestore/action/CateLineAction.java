@@ -66,12 +66,14 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 	}
 
 	public String add(){
-		
+		selectAll();
 		return "add";
 	}
 	
 	public String edit(){
 		selectById();
+		selectAll();
+		System.out.println(cateLineResult);
 		request.setAttribute("root", cateLineResult);
 		return "edit";
 	}
@@ -117,15 +119,20 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 	}
 	
 	public String delete(){
+		
+		
 		cateLineService.delete(cateLine);
 		
 		return "select";
 	}
 	
 	public String selectAll(){
-		cateLineList = cateLineService.selectChildren(0);
+		List<CateLine> list = new ArrayList<CateLine>();
 		
-		request.setAttribute("roots", cateLineList);
+		cateLineService.queryFormat(list, 0, 0);
+//		cateLineList = cateLineService.selectChildren(0);
+		
+		request.setAttribute("roots", list);
 		return "selectAll";
 	}
 	

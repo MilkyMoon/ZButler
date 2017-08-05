@@ -67,5 +67,11 @@ public class CateLineServiceImpl implements CateLineService{
 	public List<CateLine> selectChildren(int pid) {
 		return cateLineDao.selectChildren(pid);
 	}
+
+	@Override
+	public List<CateLine> queryFormat(List<CateLine> list, int pid, int level) {
+		// TODO Auto-generated method stub
+		return cateLineDao.queryFormat(list, pid, level);
+	}
 	
 }

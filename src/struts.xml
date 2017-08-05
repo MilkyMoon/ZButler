@@ -345,7 +345,7 @@
 			method="{1}">
 			<result name="selectAll">customer.jsp</result>
 			<result name="select" type="redirectAction">customer_selectAll</result>
-			<result name="edit">catelineEdit.jsp</result>
+			<result name="read">customerRead.jsp</result>
 		</action>
 		<action name="bill_*" class="com.linestore.action.BillAction"
 			method="{1}">
@@ -357,6 +357,11 @@
 		<action name="bangdin_*" class="com.linestore.action.ThinkUserAction"
 			method="{1}">
 			<result name="select">Success.jsp</result>
+		</action>
+		<action name="trading_*" class="com.linestore.action.AdminTradingAction"
+			method="{1}">
+			<result name="selectAll">trading.jsp</result>
+			<result name="select" type="redirectAction">trading_selectAll</result>
 		</action>
 	</package>
 

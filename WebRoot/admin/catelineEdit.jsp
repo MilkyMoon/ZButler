@@ -113,6 +113,22 @@
 												</div>
 												
 												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">父分类</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<select class="form-control" name="calPid" id="busCateId">
+															<c:forEach var="roots" items="${roots}">
+																<c:if test="${roots.calId == root.calPid}">
+																	<option value="${root.calId}" selected="selected">${roots.calName}</option>
+																</c:if>
+																<c:if test="${roots.calId != root.calPid}">
+																	<option value="${root.calId}">${roots.calName}</option>
+																</c:if>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+												
+												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">启&nbsp;&nbsp;&nbsp;&nbsp;用</label>
 													<div class="col-md-9 col-sm-9 col-xs-12">
 														<div class="radio">

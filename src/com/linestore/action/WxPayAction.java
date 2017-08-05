@@ -403,7 +403,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								}
 							}
 
-							// 构建模板消息
 							Template template = new Template();
 							template.setFirst("众邦管家---零钱充值");
 							Map<String, String> map = new HashMap<String, String>();

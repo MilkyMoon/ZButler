@@ -17,4 +17,5 @@ public interface CateLineDao {
 	public CateLine queryByName(String seach);
 	
 	public List<CateLine> selectChildren(int pid);
+	public List<CateLine> queryFormat(List<CateLine> list, int pid, int level);
 }
