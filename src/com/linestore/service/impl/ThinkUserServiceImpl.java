@@ -55,4 +55,9 @@ public class ThinkUserServiceImpl implements ThinkUserService{
 	public ThinkUser checkThinkUser(ThinkUser thinkUser) {
 		return thinkUserDao.checkThinkUser(thinkUser);
 	}
+
+	@Override
+	public ThinkUser queryById(int thuId) {
+		return thinkUserDao.queryById(thuId);
+	}
 }
