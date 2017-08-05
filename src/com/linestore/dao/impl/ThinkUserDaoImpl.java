@@ -109,4 +109,12 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 			throw e;
 		}
 	}
+	
+	public ThinkUser queryById(int thuId) {
+		List<ThinkUser> thus = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where thuId=?", thuId);
+		if (thus.size() > 0) {
+			return thus.get(0);
+		}
+		return null;
+	}
 }
