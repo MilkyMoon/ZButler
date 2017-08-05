@@ -101,4 +101,12 @@ public class BusTradingDaoImpl extends HibernateDaoSupport implements BusTrading
 		session.clear();
 	}
 
+	@Override
+	public List<BusTrading> search(String keywords) {
+		// TODO Auto-generated method stub
+		String hql = "from BusTrading where business.busShopName like '%"+keywords+"%' or business.busOwnerName like '%"+keywords+"%' or btaAddress like '%"+keywords+"%'";
+		List<BusTrading> list = (List<BusTrading>) this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
 }

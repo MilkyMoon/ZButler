@@ -65,6 +65,12 @@ public class BusTradingServiceImpl implements BusTradingService {
 		// TODO Auto-generated method stub
 		busTradingDao.update(hql);
 	}
+
+	@Override
+	public List<BusTrading> search(String keywords) {
+		// TODO Auto-generated method stub
+		return busTradingDao.search(keywords);
+	}
 	
 
 }

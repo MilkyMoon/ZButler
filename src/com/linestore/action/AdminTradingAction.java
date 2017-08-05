@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.github.binarywang.wxpay.bean.request.WxEntPayRequest;
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
 import com.linestore.service.CustomerService;
@@ -71,8 +72,28 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 			bustradingResult = busTradingService.queryById(busTrading.getBtaId());
 			bustradingResult.getBtaMoney();
 			
+			WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
+			wxEntPayRequest.setAmount(11);
+			wxEntPayRequest.setDescription("描述");
+			wxEntPayRequest.setOpenid("openid");
+			wxEntPayRequest.setPartnerTradeNo("订单号");
+			request = (Map<String, Object>) ActionContext.getContext().get("request");
+			request.put("wxEntPayRequest", wxEntPayRequest);
+			request.put("busTrading", busTrading);
+			// 写session 
+			return "gotoPostal";
+			// 数据更新
 			
 		}		
+		return "selectAll";
+	}
+	
+	public String search(){
+		if(keywords.equals("") || keywords == null){
+			return "select";
+		}
+		busTradingList = busTradingService.search(keywords);
+		
 		return "selectAll";
 	}
 	

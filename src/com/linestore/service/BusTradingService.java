@@ -22,5 +22,7 @@ public interface BusTradingService {
 	public int queryAll();
 	
 	public void update(String hql);
+	
+	public List<BusTrading> search(String keywords);
 
 }

@@ -1,5 +1,6 @@
 package com.linestore.action;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,6 +34,7 @@ import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.service.FriendsService;
 import com.linestore.service.SettingService;
+import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.BusMember;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
@@ -68,6 +70,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	private BusMemberService busMemberService;
 	private SettingService settingService;
 	private FriendsService friendsService;
+	private Map<String,Object> req;
+	private BusTrading busTrading = new BusTrading();
 
 	public FriendsService getFriendsService() {
 		return friendsService;
@@ -420,24 +424,41 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	}
 
-	public void postal() {
+	public String postal() {
 		// 构建提现 WxEntPayRequest
-		WxEntPayRequest request = new WxEntPayRequest();
-		String partner_trade_no = new java.util.Date().getTime() + "" + "";
-		WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-		wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
-		wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
-		wxEntPayRequest.setAmount(10);
-		wxEntPayRequest.setDescription("test");
-		String resutl = payToIndividual(wxEntPayRequest, this.wxPayService);
+		req = (Map<String, Object>) ActionContext.getContext().get("request");
+		String resutl = payToIndividual((WxEntPayRequest) req.get("wxEntPayRequest"), this.wxPayService);
 
 		if (resutl.equals("SUCCESS")) {
-			// System.out.println("SUCCESS");
-
+			busTrading = (BusTrading) req.get("busTrading");
+			String hql;
+			try {
+				hql = ReturnUpdateHql.ReturnHql(busTrading.getClass(), busTrading, busTrading.getBtaId());
+				System.out.println("hql:"+hql);
+				busTradingService.update(hql);
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return "paySuccess";
 		} else {
-			System.out.println(resutl);
+			return "paySuccess";
 		}
 	}
+
 
 	public String payToIndividual(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) {
 		wxEntPayRequest.setCheckName("NO_CHECK");
@@ -495,4 +516,12 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		return Integer.parseInt(a.substring(index + 1));
 	}
 
+	public BusTrading getBusTrading() {
+		return busTrading;
+	}
+
+	public void setBusTrading(BusTrading busTrading) {
+		this.busTrading = busTrading;
+	}
+	
 }

@@ -227,10 +227,10 @@
 									<ul class="pagination">
 										<c:if test="${page.hasPrePage}">
 											<li class="paginate_button previous" id="datatable-checkbox_previous">
-												<a href="customer_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
+												<a href="bill_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="bill_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasPrePage}">
@@ -238,21 +238,21 @@
 												<a href="#" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="bill_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										
 										<c:if test="${page.hasNextPage}">
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="bill_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next" id="datatable-checkbox_next">
-												<a href="customer_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
+												<a href="bill_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasNextPage}">
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="bill_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next disabled" id="datatable-checkbox_next">
 												<a href="#" data-dt-idx="4" tabindex="0">下一页</a>

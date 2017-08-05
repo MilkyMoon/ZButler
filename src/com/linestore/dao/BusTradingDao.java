@@ -22,5 +22,7 @@ public interface BusTradingDao {
 	public int queryAll();
 	
 	public void update(String hql);
+	
+	public List<BusTrading> search(String keywords);
 
 }
