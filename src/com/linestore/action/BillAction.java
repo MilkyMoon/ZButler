@@ -1,7 +1,12 @@
 package com.linestore.action;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.linestore.service.BillService;
 import com.linestore.util.Page;
@@ -12,6 +17,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import net.sf.json.JSONObject;
+
 public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	Map<String, Object> request;
 	private Bill bill = new Bill();
@@ -19,6 +26,12 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private List<Bill> billList;
 	ThinkUser think;
 	
+//	private static final long serialVersionUID = -5452039838295753607L;
+	private String data;
+	private static final long serialVersionUID = 1L;
+    //此变量必须有setter与getter方法
+    private String result;
+    
 	private String pageNow = "1";
 	private String everyPage = "10";
 	private String keywords = "";
@@ -66,6 +79,35 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		return thuId;
 	}
 	
+	public String chinaMap(){
+		data = billService.mkData();
+		return "map";
+	}
+	
+	public String mapInfo(){
+		try {
+            //获取数据
+			HttpServletRequest req = ServletActionContext.getRequest();
+			req.setCharacterEncoding("utf-8");
+        	String name = req.getParameter("userName");
+            String pass = req.getParameter("passWord");
+            
+            System.out.println(name);
+            //将数据存储在map里，再转换成json类型数据，也可以自己手动构造json类型数据
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("name", name);
+            map.put("pass","哈哈哈哈哈");
+             
+            JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+
+            this.result = json.toString();//给result赋值，传递给页面
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return SUCCESS;
+	}
+	
 	public void setBillService(BillService billService) {
 		this.billService = billService;
 	}
@@ -94,6 +136,19 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		this.keywords = keywords;
 	}
 	
-	
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 	
 }

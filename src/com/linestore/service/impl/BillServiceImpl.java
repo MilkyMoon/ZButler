@@ -40,6 +40,11 @@ public class BillServiceImpl implements BillService {
 	}
 
 	@Override
+	public String mkData() {
+		// TODO Auto-generated method stub
+		return billDao.mkData();
+    }
+    
 	public void addBill(Bill bill) {
 		billDao.addBill(bill);
 	}
