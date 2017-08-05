@@ -306,32 +306,9 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							Date Rdate = new Date();
 							cta.setCtaTime(new Timestamp(Rdate.getTime()));
 							ctaTradingService.addCtaTrading(cta);
-<<<<<<< HEAD
-
-							// // 构建模板消息
-							 Template template = new Template();
-							 template.setFirst("众邦管家---零钱充值");
-							 Map<String, String> map = new HashMap<String,
-							 String>();
-							 map.put("keyword1", cus.getCusNickname());
-							 map.put("keyword2", kvm.get("out_trade_no"));
-							 map.put("keyword3",
-							 (Float.toString(Float.valueOf(kvm.get("total_fee"))
-							 / 100)));
-							 map.put("keyword4", "零钱充值");
-							 template.setKeyword(map);
-							 template.setOpenId(kvm.get("openid"));
-							 template.setRemark("零钱已经到账，请注意查收");
-							 TemplateMessage.RechargeMoneyNotify(template,
-							 this.wxService);
-
-							System.out.println(cus.getCusPhone());
-							if (cus.getCusPhone() != null && !"".equals(cus.getCusPhone())) {
-=======
 							
 
 							if (cus.getCusPhone() != null && "".equals(cus.getCusPhone())) {
->>>>>>> origin/master
 								// 充值零钱返积分
 								System.out.println("***************");
 								Friends fris = friendsService.queryByPhone(cus.getCusPhone());
@@ -356,9 +333,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									ctaTradingService.addCtaTrading(addPointCta);
 								}
 							}
-<<<<<<< HEAD
-
-=======
                 
                 	// 构建模板消息
 							Template template = new Template();
@@ -372,7 +346,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							template.setOpenId(kvm.get("openid"));
 							template.setRemark("零钱已经到账，请注意查收");
 							TemplateMessage.RechargeMoneyNotify(template, this.wxService);
->>>>>>> origin/master
 							break;
 						default:
 							break;
