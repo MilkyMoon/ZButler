@@ -234,44 +234,75 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bta.setBtaType(1);
 							bta.setBusiness(bus);
 							busTradingService.addBusTrading(bta);
-							
+
 							Bill bill = new Bill();
 							BigDecimal bigMoney = new BigDecimal(kvm.get("total_fee"));
 							bill.setBilCusMoney(bigMoney);
-							//商家收款
+							// 商家收款
 							BigDecimal city = new BigDecimal(bus.getBusScale());
 							city = bigMoney.subtract(bigMoney).multiply(city);
 							bill.setBusiness(bus);
 							bill.setBilBusMoney(city);
-							//物业收款
+							bigMoney = bigMoney.subtract(city);
+
+							// 物业收款
 							ThinkUser thu = thinkUserService.queryById(bus.getBusThuId());
-							BigDecimal dailishang = new BigDecimal(thu.getThuScale());
-							dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-							bill.setThinkUserByThuPropertyId(thu);
-							bill.setBilPropertyMoney(dailishang);
-							//县收款
-							thu = thinkUserService.queryById(thu.getThuPid());
-							dailishang = new BigDecimal(thu.getThuScale());
-							dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-							bill.setThinkUserByThuCountyId(thu);
-							bill.setBilCountyMoney(dailishang);
-							//市收款
-							thu = thinkUserService.queryById(thu.getThuPid());
-							dailishang = new BigDecimal(thu.getThuScale());
-							dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-							bill.setThinkUserByThuCityId(thu);
-							bill.setBilCityMoney(dailishang);
-							//省收款
-							thu = thinkUserService.queryById(thu.getThuPid());
-							dailishang = new BigDecimal(thu.getThuScale());
-							dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-							bill.setBilProvinceMoney(dailishang);
-							bill.setThinkUserByThuProvinceId(thu);
-							//众邦收款
-							bill.setBilZongMoney(bigMoney);
+							if (thu.getThuWay() == 1) {
+								BigDecimal dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuPropertyId(thu);
+								bill.setBilPropertyMoney(dailishang);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 县收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCountyId(thu);
+								bill.setBilCountyMoney(dailishang);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 市收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCityId(thu);
+								bill.setBilCityMoney(dailishang);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 省收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setBilProvinceMoney(dailishang);
+								bill.setThinkUserByThuProvinceId(thu);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 众邦收款
+								bill.setBilZongMoney(bigMoney);
+							} else {
+								BigDecimal dailishang = new BigDecimal(thu.getThuScaleTwo());
+								bill.setThinkUserByThuPropertyId(thu);
+								bill.setBilPropertyMoney(bigMoney.multiply(dailishang));
+								// 县收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCountyId(thu);
+								bill.setBilCountyMoney(bigMoney.multiply(dailishang));
+								// 市收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCityId(thu);
+								bill.setBilCityMoney(bigMoney.multiply(dailishang));
+								// 省收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setBilProvinceMoney(bigMoney.multiply(dailishang));
+								bill.setThinkUserByThuProvinceId(thu);
+								// 众邦收款
+								bill.setBilZongMoney(bigMoney.multiply(dailishang));
+							}
 							billService.addBill(bill);
-							
-							
+
 							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
 							System.out.println("$$$$$$$$$$$$");
 							if (Pcus != null && Pcus.size() > 0) {
