@@ -117,7 +117,7 @@
                     checkImageOrigin: true,
                     background: false,
                     minContainerHeight: 400,
-                    minContainerWidth: 300
+                    minContainerWidth: 220
                 });
             }
 
@@ -138,7 +138,7 @@
                 var that = this;
                 lrz(this.files[0], {
                     width: 800,
-                    height: 800,
+                    height: 440,
                     quality: 0.7
                 })
                     .then(function (rst) {

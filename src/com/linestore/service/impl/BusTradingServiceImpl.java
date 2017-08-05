@@ -40,6 +40,12 @@ public class BusTradingServiceImpl implements BusTradingService {
 	public void setBusTradingDao(BusTradingDao busTradingDao) {
 		this.busTradingDao = busTradingDao;
 	}
+
+	@Override
+	public BusTrading queryById(String btaId) {
+		
+		return busTradingDao.queryById(btaId);
+	}
 	
 
 }

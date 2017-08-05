@@ -4,22 +4,25 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.linestore.service.BusinessService;
 import com.linestore.service.CatetoryService;
+import com.linestore.service.CtaTradingService;
 
 //import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.service.FriendsService;
+import com.linestore.service.SettingService;
 import com.linestore.util.SendMessage;
+import com.linestore.vo.Business;
+import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Friends;
@@ -27,7 +30,6 @@ import com.linestore.vo.Template;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.thoughtworks.xstream.mapper.Mapper.Null;
 
 import net.sf.json.JSONObject;
 
@@ -54,6 +56,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private CusAccountService cusAccountService;
 
 	private CatetoryService catetoryService;
+
+	private SettingService settingService;
+
+	private BusinessService businessService;
+
+	private CtaTradingService ctaTradingService;
 
 	public String weChat() {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
@@ -130,11 +138,34 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			friends.setCustomer(cus);
 			friends.setFriDate(new Timestamp(new Date().getTime()));
 			friends.setFriPhone(customer.getCusPhone());
-			friends.setFriType(Integer.valueOf(ReType));
+			Business bus = businessService.select(cus.getCusId());
+			if (bus == null) {
+				friends.setFriType(Integer.valueOf(1));
+			} else {
+				if (bus.getBusLevel() == 0) {
+					friends.setFriType(Integer.valueOf(2));
+				} else if (bus.getBusLevel() == 2) {
+					friends.setFriType(Integer.valueOf(3));
+				}
+				if (bus.getBusLevel() == 0 || bus.getBusLevel() == 2) {
+					CusAccount cac = cusAccountService.findByCusId(cus.getCusId());
+					if (cac != null) {
+						Date date = new Date();
+						CtaTrading cta = new CtaTrading();
+						cta.setCtaMoney(Float.valueOf(settingService.queryById(7).getSetValue()));
+						cta.setCtaTime(new Timestamp(date.getTime()));
+						cta.setCtaType(3);
+						cta.setCustomer(cus);
+						cta.setCtaId(date.getTime() + "Y" + RandomStr());
+						ctaTradingService.addCtaTrading(cta);
+						cac.setCacChange(cac.getCacChange() + Float.valueOf(settingService.queryById(7).getSetValue()));
+						cusAccountService.updateCusAccount(cac);
+					}
+				}
+			}
 			friendsService.save(friends);
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			String js = "<script>YDUI.dialog.alert('注册成功！');</script>";
-			
 			request.put("js", js);
 			return "gotoCustomer";
 		}
@@ -157,6 +188,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			Customer cus = customerService.findByPhone(customer.getCusPhone()).get(0);
 			ActionContext.getContext().getSession().put("user", cus);
 			ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
+			System.out.println(cus.getCusId());
 			return "gotoCustomer";
 		}
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
@@ -286,6 +318,16 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "myQRCode";
 	}
 
+	private String RandomStr() {
+		Random random = new Random();
+		String radnString = "";
+		for (int i = 0; i < 4; i++) {
+			radnString += (int) (Math.random() * 10);
+		}
+
+		return radnString;
+	}
+
 	public String toForgetTwo() {
 		return "gotoForgetTwo";
 	}
@@ -365,6 +407,30 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public void setCatetoryService(CatetoryService catetoryService) {
 		this.catetoryService = catetoryService;
+	}
+
+	public BusinessService getBusinessService() {
+		return businessService;
+	}
+
+	public void setBusinessService(BusinessService businessService) {
+		this.businessService = businessService;
+	}
+
+	public SettingService getSettingService() {
+		return settingService;
+	}
+
+	public void setSettingService(SettingService settingService) {
+		this.settingService = settingService;
+	}
+
+	public CtaTradingService getCtaTradingService() {
+		return ctaTradingService;
+	}
+
+	public void setCtaTradingService(CtaTradingService ctaTradingService) {
+		this.ctaTradingService = ctaTradingService;
 	}
 
 }

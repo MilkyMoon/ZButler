@@ -76,6 +76,9 @@
                     <div class="count">7,325</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                 </div>
+                
+                <div id="qrcode"></div>
+                
             </div>
             <!-- /top tiles -->
 
@@ -806,6 +809,5 @@
 
 <!-- Custom Theme Scripts -->
 <script src="./build/js/custom.min.js"></script>
-
 </body>
 </html>
