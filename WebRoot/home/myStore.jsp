@@ -39,6 +39,7 @@
 						<a href="<%=basePath%>home/storeImg.jsp"><div style="background-color: #7ED321">店铺图片</div></a>
 						<a href="<%=basePath%>home/rebateProportion.jsp"><div style="background-color: #417505">返点比例</div></a>
 						<a href="<%=basePath%>home/ePhone.jsp"><div style="background-color: #663399">店员手机</div></a>
+						<a href="<%=basePath%>home/PayByCash.jsp"><div style="background-color: #006600">现金支付</div></a>
 						<c:if test="${store.busLevel == 3}">
 							<a href="<%=basePath%>home/busSmallMoney.jsp">
 								<div style="background-color: #4A90E2">零钱提现</div>

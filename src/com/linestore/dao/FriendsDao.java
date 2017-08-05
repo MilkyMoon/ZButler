@@ -17,5 +17,9 @@ public interface FriendsDao {
 
 	// 获取指定朋友资料
 	Friends select(Friends friends);
+	
+	public Friends queryByPhone(String phone);
+	
+	public List<Friends> queryType(int cusId, int type);
 
 }

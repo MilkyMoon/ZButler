@@ -65,7 +65,8 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao{
     }
 
 	public Business select(int busId) {
-		return (Business) this.getHibernateTemplate().find("from Business where busId=?", busId).get(0);
+		List<Business> buss = (List<Business>) this.getHibernateTemplate().find("from Business where busId=?", busId);
+		return buss.get(0);
 	}
 	
 	public List<Business> queryByCity(String city, int count) {

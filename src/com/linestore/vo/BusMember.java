@@ -12,8 +12,7 @@ public class BusMember implements java.io.Serializable {
 
 	private Integer bmeId;
 	private Business business;
-	private Integer bmeBusId;
-	private Integer bmeOpenId;
+	private String bmeOpenId;
 	private Timestamp bmeDate;
 	private Integer bmeType;
 
@@ -23,15 +22,9 @@ public class BusMember implements java.io.Serializable {
 	public BusMember() {
 	}
 
-	/** minimal constructor */
-	public BusMember(Business business) {
-		this.business = business;
-	}
-
 	/** full constructor */
-	public BusMember(Business business, Integer bmeBusId, Integer bmeOpenId, Timestamp bmeDate, Integer bmeType) {
+	public BusMember(Business business, String bmeOpenId, Timestamp bmeDate, Integer bmeType) {
 		this.business = business;
-		this.bmeBusId = bmeBusId;
 		this.bmeOpenId = bmeOpenId;
 		this.bmeDate = bmeDate;
 		this.bmeType = bmeType;
@@ -55,19 +48,11 @@ public class BusMember implements java.io.Serializable {
 		this.business = business;
 	}
 
-	public Integer getBmeBusId() {
-		return this.bmeBusId;
-	}
-
-	public void setBmeBusId(Integer bmeBusId) {
-		this.bmeBusId = bmeBusId;
-	}
-
-	public Integer getBmeOpenId() {
+	public String getBmeOpenId() {
 		return this.bmeOpenId;
 	}
 
-	public void setBmeOpenId(Integer bmeOpenId) {
+	public void setBmeOpenId(String bmeOpenId) {
 		this.bmeOpenId = bmeOpenId;
 	}
 

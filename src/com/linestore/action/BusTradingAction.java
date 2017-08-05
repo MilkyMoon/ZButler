@@ -2,13 +2,16 @@ package com.linestore.action;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
+import com.linestore.service.CustomerService;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
+import com.linestore.vo.Customer;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -20,6 +23,12 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	private BusTradingService busTradingService;
 	
 	private BusinessService businessService;
+	
+	private CustomerService customerService;
+	
+	private float money;
+	
+	private String tel;
 	
 	Map<String, Object> request;
 
@@ -62,6 +71,22 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 		request.put("Withdraw", busTradingService.queryWithdraw(bus.getBusId()));
 		return "gotoWithdraw";
 	}
+	
+	public String payByCash() {
+		Business bus = (Business) ActionContext.getContext().getSession().get("store");
+		BusTrading bta = new BusTrading();
+		bta.setBtaAddress(bus.getBaCity());
+		bta.setBtaMoney(money);
+		bta.setBtaStatus(1);
+		Date date = new Date();
+		bta.setBtaTime(new Timestamp(date.getTime()));
+		bta.setBtaId(date.getTime() + "M" + RandomStr());
+		bta.setBtaType(4);
+		bta.setBusiness(bus);
+		busTradingService.addBusTrading(bta);
+		
+		return "gotoSamllMoney";
+	}
 
 	public BusTradingService getBusTradingService() {
 		return busTradingService;
@@ -88,6 +113,40 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 
 		return radnString;
 	}
+
+	public BusTrading getBusTrading() {
+		return busTrading;
+	}
+
+	public void setBusTrading(BusTrading busTrading) {
+		this.busTrading = busTrading;
+	}
+
+	public float getMoney() {
+		return money;
+	}
+
+	public void setMoney(float money) {
+		this.money = money;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public CustomerService getCustomerService() {
+		return customerService;
+	}
+
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+	
+	
 	
 	
 }
