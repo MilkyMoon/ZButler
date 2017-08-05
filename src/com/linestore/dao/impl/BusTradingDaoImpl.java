@@ -61,4 +61,10 @@ public class BusTradingDaoImpl extends HibernateDaoSupport implements BusTrading
 		}
 	}
 
+	@Override
+	public BusTrading queryById(String btaId) {
+		List<BusTrading> btas = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where btaId='" + btaId + "'");
+		return btas.get(0);
+	}
+
 }

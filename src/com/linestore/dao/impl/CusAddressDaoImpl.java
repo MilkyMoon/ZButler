@@ -37,10 +37,7 @@ public class CusAddressDaoImpl extends HibernateDaoSupport implements CusAddress
 		String hql = "from CusAddress where caId = ?";
 		List<CusAddress> list = (List<CusAddress>) this.getHibernateTemplate().find(hql,
 				cusAddress.getCaId());
-		if (list.size() > 0) {
-			cusAddress = list.get(0);
-		}
-		return cusAddress;
+		return list.get(0);
 	}
 	@Override
 	public void update(CusAddress cusAddress) {

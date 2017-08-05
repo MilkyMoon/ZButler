@@ -34,7 +34,7 @@
 			<div class="m-cell">
 				<div class="cell-item takeSmallMoney_canUse">
 					<div class="cell-left">
-						可用的零钱：<span id="change">${store.busChange}</span>元
+						可用的零钱：<span id="change">${cac.cacChange}</span>元
 					</div>
 					<div class="cell-right"></div>
 				</div>
@@ -124,7 +124,7 @@
 					} else {
 						if (parseFloat(point) < parseFloat(input)) {
 							e.preventDefault();
-							window.YDUI.dialog.alert('可用最大的金额为：${store.busChange}元');
+							window.YDUI.dialog.alert('可用最大的金额为：${cac.cacChange}元');
 						}
 					}
 	

@@ -23,6 +23,8 @@ public class ThinkUser implements java.io.Serializable {
 	private Float thuScale;
 	private String thuOpenid;
 	private String thuBill;
+	private Integer thuWay;
+	private Float thuScaleTwo;
 	private Set billsForThuCountyId = new HashSet(0);
 	private Set billsForThuProvinceId = new HashSet(0);
 	private Set groupAccesses = new HashSet(0);
@@ -34,7 +36,7 @@ public class ThinkUser implements java.io.Serializable {
 	/** default constructor */
 	public ThinkUser() {
 	}
-	
+
 	public ThinkUser(ThinkUser thu) {
 		this.thuId = thu.getThuId();
 		this.thuUsername = thu.getThuUsername();
@@ -47,7 +49,7 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuName = thu.getThuName();
 		this.thuScale = thu.getThuScale();
 	}
-
+	
 	/** minimal constructor */
 	public ThinkUser(String thuUsername, String thuPassword, String thuStatus) {
 		this.thuUsername = thuUsername;
@@ -58,8 +60,8 @@ public class ThinkUser implements java.io.Serializable {
 	/** full constructor */
 	public ThinkUser(String thuUsername, String thuPassword, String thuStatus, Integer thuPid, String thuArea,
 			String thuEmail, String thuPhone, String thuName, Float thuScale, String thuOpenid, String thuBill,
-			Set billsForThuCountyId, Set billsForThuProvinceId, Set groupAccesses, Set billsForThuPropertyId,
-			Set billsForThuCityId) {
+			Integer thuWay, Float thuScaleTwo, Set billsForThuCountyId, Set billsForThuProvinceId, Set groupAccesses,
+			Set billsForThuPropertyId, Set billsForThuCityId) {
 		this.thuUsername = thuUsername;
 		this.thuPassword = thuPassword;
 		this.thuStatus = thuStatus;
@@ -71,6 +73,8 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuScale = thuScale;
 		this.thuOpenid = thuOpenid;
 		this.thuBill = thuBill;
+		this.thuWay = thuWay;
+		this.thuScaleTwo = thuScaleTwo;
 		this.billsForThuCountyId = billsForThuCountyId;
 		this.billsForThuProvinceId = billsForThuProvinceId;
 		this.groupAccesses = groupAccesses;
@@ -174,6 +178,22 @@ public class ThinkUser implements java.io.Serializable {
 
 	public void setThuBill(String thuBill) {
 		this.thuBill = thuBill;
+	}
+
+	public Integer getThuWay() {
+		return this.thuWay;
+	}
+
+	public void setThuWay(Integer thuWay) {
+		this.thuWay = thuWay;
+	}
+
+	public Float getThuScaleTwo() {
+		return this.thuScaleTwo;
+	}
+
+	public void setThuScaleTwo(Float thuScaleTwo) {
+		this.thuScaleTwo = thuScaleTwo;
 	}
 
 	public Set getBillsForThuCountyId() {

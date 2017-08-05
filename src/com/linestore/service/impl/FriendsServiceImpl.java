@@ -44,4 +44,14 @@ public class FriendsServiceImpl implements FriendsService {
 		return friendsDao.selectType(friends);
 	}
 
+	@Override
+	public Friends queryByPhone(String phone) {
+		return friendsDao.queryByPhone(phone);
+	}
+
+	@Override
+	public List<Friends> queryType(int cusId, int type) {
+		return friendsDao.queryType(cusId, type);
+	}
+
 }

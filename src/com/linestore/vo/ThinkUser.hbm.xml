@@ -43,6 +43,12 @@
         <property name="thuBill" type="java.lang.String">
             <column name="thu_bill" length="16" />
         </property>
+        <property name="thuWay" type="java.lang.Integer">
+            <column name="thu_way" />
+        </property>
+        <property name="thuScaleTwo" type="java.lang.Float">
+            <column name="thu_scale_two" precision="12" scale="0" />
+        </property>
         <set name="billsForThuCountyId" inverse="true" lazy="false">
             <key>
                 <column name="thu_county_id">
@@ -65,7 +71,7 @@
             </key>
             <one-to-many class="com.linestore.vo.GroupAccess" />
         </set>
-        <set name="billsForThuPropertyId" inverse="true" lazy="false">
+        <set name="billsForThuPropertyId" inverse="true">
             <key>
                 <column name="thu_property_id">
                     <comment>物业</comment>

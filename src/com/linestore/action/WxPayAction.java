@@ -1,47 +1,41 @@
 package com.linestore.action;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything;
-
-import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
-import javax.net.ssl.SSLContext;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
-import com.github.binarywang.wxpay.bean.WxPayOrderNotifyResponse;
-import com.github.binarywang.wxpay.bean.request.WxEntPayQueryRequest;
 import com.github.binarywang.wxpay.bean.request.WxEntPayRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayBaseRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxEntPayQueryResult;
 import com.github.binarywang.wxpay.bean.result.WxEntPayResult;
-import com.github.binarywang.wxpay.bean.result.WxPayBaseResult;
-import com.github.binarywang.wxpay.bean.result.WxPayOrderNotifyResult;
-import com.github.binarywang.wxpay.config.WxPayConfig;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
-import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.github.binarywang.wxpay.util.SignUtils;
 import com.linestore.WxUtils.Sha1Util;
 import com.linestore.WxUtils.TemplateMessage;
 import com.linestore.WxUtils.XMLUtil;
+import com.linestore.service.BusMemberService;
+import com.linestore.service.BusTradingService;
+import com.linestore.service.BusinessService;
 import com.linestore.service.CtaTradingService;
 import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
+import com.linestore.service.FriendsService;
+import com.linestore.service.SettingService;
+import com.linestore.vo.BusMember;
+import com.linestore.vo.BusTrading;
+import com.linestore.vo.Business;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
@@ -49,8 +43,8 @@ import com.linestore.vo.Template;
 
 import org.apache.commons.lang3.CharEncoding;
 import org.apache.commons.lang3.StringUtils;
+import com.linestore.vo.Friends;
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
 import jodd.http.HttpResponse;
 import jodd.http.net.SSLSocketHttpConnectionProvider;
@@ -69,6 +63,51 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	private CtaTradingService ctaTradingService;
 	private CusAccountService cusAccountService;
+	private BusTradingService busTradingService;
+	private BusinessService businessService;
+	private BusMemberService busMemberService;
+	private SettingService settingService;
+	private FriendsService friendsService;
+
+	public FriendsService getFriendsService() {
+		return friendsService;
+	}
+
+	public void setFriendsService(FriendsService friendsService) {
+		this.friendsService = friendsService;
+	}
+
+	public SettingService getSettingService() {
+		return settingService;
+	}
+
+	public void setSettingService(SettingService settingService) {
+		this.settingService = settingService;
+	}
+
+	public BusMemberService getBusMemberService() {
+		return busMemberService;
+	}
+
+	public void setBusMemberService(BusMemberService busMemberService) {
+		this.busMemberService = busMemberService;
+	}
+
+	public BusinessService getBusinessService() {
+		return businessService;
+	}
+
+	public void setBusinessService(BusinessService businessService) {
+		this.businessService = businessService;
+	}
+
+	public BusTradingService getBusTradingService() {
+		return busTradingService;
+	}
+
+	public void setBusTradingService(BusTradingService busTradingService) {
+		this.busTradingService = busTradingService;
+	}
 
 	public CusAccountService getCusAccountService() {
 		return cusAccountService;
@@ -180,13 +219,69 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						switch (service) {
 						// 获取业务类型 R-充值/P-支付商品
 						case "P":
+							// 转账
+							//
+							// 存数据库+转账
+							Date Pdate = new Date();
+							String openIdbus = kvm.get("openid");
+							Business bus = businessService.select(subString(kvm.get("out_trade_no"))); // 通过商家ID获取商家
+							// 付款订单
+							BusTrading bta = new BusTrading();
+							bta.setBtaId(kvm.get("out_trade_no"));
+							bta.setBtaAddress(bus.getBaCity());
+							bta.setBtaMoney(Float.valueOf(kvm.get("total_fee")));
+							bta.setBtaStatus(1);
+							bta.setBtaTime(new Timestamp(Pdate.getTime()));
+							bta.setBtaType(1);
+							bta.setBusiness(bus);
+							busTradingService.addBusTrading(bta);
+							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
+							if (Pcus != null && Pcus.size() > 0) {
+								if (Pcus.get(0).getCusPhone() != null && "".equals(Pcus.get(0).getCusPhone())) {
+									Friends fri = friendsService.queryByPhone(Pcus.get(0).getCusPhone());
+									if (fri != null) {
+										if (fri.getFriType() == 2) {
+											CusAccount addChangeCac = cusAccountService
+													.findByCusId(fri.getCustomer().getCusId());
+											float addChange = Float.valueOf(kvm.get("total_fee"))
+													* Float.valueOf(settingService.queryById(3).getSetValue());
+											addChangeCac.setCacChange(addChangeCac.getCacChange() + addChange);
+											CtaTrading addChangeCta = new CtaTrading();
+											addChangeCta.setCtaMoney(addChange);
+											addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
+											addChangeCta.setCtaType(2);
+											addChangeCta.setCustomer(fri.getCustomer());
+											addChangeCta.setCtaId(Pdate.getTime() + "F" + this.RandomStr()); // 付款返零钱
+											ctaTradingService.addCtaTrading(addChangeCta);
+											cusAccountService.updateCusAccount(addChangeCac);
+
+										}
+									}
+								}
+								Business addBus = businessService.select(Pcus.get(0).getCusId());
+								if (addBus != null) {
+									if (addBus.getBusLevel() != 1) {
+										CusAccount addCac = cusAccountService.findByCusId(Pcus.get(0).getCusId());
+										float addChange = Float.valueOf(kvm.get("total_fee"))
+												* Float.valueOf(settingService.queryById(5).getSetValue());
+										addCac.setCacPoints(addCac.getCacPoints() + addChange);
+										CtaTrading addChangeCta = new CtaTrading();
+										addChangeCta.setCtaMoney(addChange);
+										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
+										addChangeCta.setCtaType(12);
+										addChangeCta.setCustomer(Pcus.get(0));
+										addChangeCta.setCtaId(Pdate.getTime() + "J" + this.RandomStr()); // 付款返积分
+										ctaTradingService.addCtaTrading(addChangeCta);
+										cusAccountService.updateCusAccount(addCac);
+									}
+								}
+							}
 							// 存数据库+转账
 							WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
 							wxEntPayRequest.setAmount(Integer.parseInt(kvm.get("total_fee")));
 							wxEntPayRequest.setDescription("");
 							wxEntPayRequest.setOpenid("");
 							this.payToIndividual(wxEntPayRequest, wxPayService);
-
 							break;
 						case "R":
 							CtaTrading cta = new CtaTrading();
@@ -199,11 +294,32 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							cta.setCtaMoney(Float.valueOf(kvm.get("total_fee")) / 100);
 							cta.setCtaId(kvm.get("out_trade_no"));
 							cta.setCtaType(1);
-							Date date = new Date();
-							cta.setCtaTime(new Timestamp(date.getTime()));
+							Date Rdate = new Date();
+							cta.setCtaTime(new Timestamp(Rdate.getTime()));
 							ctaTradingService.addCtaTrading(cta);
+							
 
-							// 构建模板消息
+							if (cus.getCusPhone() != null && "".equals(cus.getCusPhone())) {
+								// 充值零钱返积分
+								Friends fris = friendsService.queryByPhone(cus.getCusPhone());
+								if (fris != null) {
+									CusAccount addPointAcc = cusAccountService
+											.findByCusId(fris.getCustomer().getCusId());
+									CtaTrading addPointCta = new CtaTrading();
+									addPointAcc.setCacPoints(addPointAcc.getCacPoints()
+											+ money * Float.valueOf(settingService.queryById(1).getSetValue()));
+									cusAccountService.updateCusAccount(addPointAcc);
+									addPointCta.setCtaMoney(
+											money * Float.valueOf(settingService.queryById(1).getSetValue()));
+									addPointCta.setCtaTime(new Timestamp(Rdate.getTime()));
+									addPointCta.setCtaType(11);
+									addPointCta.setCustomer(fris.getCustomer());
+									addPointCta.setCtaId(Rdate.getTime() + "Z" + this.RandomStr());
+									ctaTradingService.addCtaTrading(addPointCta);
+								}
+							}
+                
+                	// 构建模板消息
 							Template template = new Template();
 							template.setFirst("众邦管家---零钱充值");
 							Map<String, String> map = new HashMap<String, String>();
@@ -215,8 +331,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							template.setOpenId(kvm.get("openid"));
 							template.setRemark("零钱已经到账，请注意查收");
 							TemplateMessage.RechargeMoneyNotify(template, this.wxService);
-							
-
 							break;
 						default:
 							break;
@@ -353,6 +467,16 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		}
 
 		return radnString;
+	}
+
+	public int subString(String a) {
+		int index = a.length();
+		for (int i = 0; i < index; i++) {
+			if (a.charAt(i) == 'D') {
+				index = i;
+			}
+		}
+		return Integer.parseInt(a.substring(index + 1));
 	}
 
 }

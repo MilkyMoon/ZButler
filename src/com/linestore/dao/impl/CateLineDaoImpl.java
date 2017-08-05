@@ -49,7 +49,10 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 		// TODO Auto-generated method stub
 		String hql = "from CateLine where calId = ?";
 		List<CateLine> list = (List<CateLine>)this.getHibernateTemplate().find(hql, cateLine.getCalId());
-		return list.get(0);
+		if (list != null && list.size() > 0) {
+			list.get(0);
+		}
+		return null;
 	}
 	
 	public List<CateLine> selectEight(int pid) {
@@ -62,10 +65,8 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 	@Override
 	public CateLine queryByName(String seach) {
 		List<CateLine> cate = (List<CateLine>) this.getHibernateTemplate().find("from CateLine where calName='"+seach+"' and calStatus=1");
-		if (cate.size() > 0) {
-			return cate.get(0);
-		}
-		return null;
+			
+		return cate.get(0);
 	}
 	
 	public List<CateLine> selectChildren(int pid) {

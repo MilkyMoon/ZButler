@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -39,7 +42,7 @@
 		</div>
 		<div class="myFriendO_myFriends">
 			<div class="myFriendO_myFriends_num">
-				我的朋友：<span><s:property value="%{friendsList.size()}" /></span>
+				我的朋友：<span>${fn:length(friA) + fn:length(friB) + fn:length(friC)}</span>
 			</div>
 			<%-- <s:iterator id="friends" value="friendsList" status="">
 				<div class="myFriendO_myFriendItem">
@@ -48,26 +51,29 @@
 			</s:iterator> --%>
 
 			<div class="myFriendO_myFriendItem">
-				我的朋友A<span><s:property
-							value="%{friendsList.size()}" /></span>
+				我的朋友A<span>${fn:length(friA)}</span>
 				<div class="myFriendO_myFriendItem_down">
-					<s:iterator id="friends" value="friendsList" status="">
-						<div><s:property value="friPhone" /></div>
-					</s:iterator>
-				</div>
-			</div>
-			<%-- <div class="myFriendO_myFriendItem">
-				我的朋友B<span>0</span>
-				<div class="myFriendO_myFriendItem_down">
-					
+					<c:forEach var="A" items="${friA}">
+						${A.friPhone}
+					</c:forEach>
 				</div>
 			</div>
 			<div class="myFriendO_myFriendItem">
-				我的朋友C<span>0</span>
+				我的朋友B<span>${fn:length(friB)}</span>
 				<div class="myFriendO_myFriendItem_down">
-					
+					<c:forEach var="C" items="${friB}">
+						${C.friPhone}
+					</c:forEach>
 				</div>
-			</div> --%>
+			</div>
+			<div class="myFriendO_myFriendItem">
+				我的朋友C<span>${fn:length(friC)}</span>
+				<div class="myFriendO_myFriendItem_down">
+					<c:forEach var="C" items="${friC}">
+						${C.friPhone}
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
