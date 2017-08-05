@@ -10,14 +10,11 @@
             <column name="bme_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="business" class="com.linestore.vo.Business" update="false" insert="false" fetch="select" lazy="false">
-            <column name="bme_id" not-null="true" unique="true" />
-        </many-to-one>
-        <property name="bmeBusId" type="java.lang.Integer">
+        <many-to-one name="business" class="com.linestore.vo.Business" fetch="select" lazy="false">
             <column name="bme_bus_id" />
-        </property>
-        <property name="bmeOpenId" type="java.lang.Integer">
-            <column name="bme_open_id" />
+        </many-to-one>
+        <property name="bmeOpenId" type="java.lang.String">
+            <column name="bme_open_id" length="50" />
         </property>
         <property name="bmeDate" type="java.sql.Timestamp">
             <column name="bme_date" length="19" />

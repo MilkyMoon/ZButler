@@ -31,7 +31,7 @@
 				</div>
 				<div class="cell-item cell-item-last">
 					<div class="cell-right">
-						<input type="number" class="cell-input"
+						<input type="number" class="cell-input" id="number" name="money"
 							placeholder="会员消费金额，需大于10元" autocomplete="off" />
 					</div>
 				</div>
@@ -47,23 +47,30 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
 <script>
-    //    表单验证
-    $().ready(function () {
-// 在键盘按下并释放及提交后验证提交表单
-        $("#signupForm").validate({
-            rules: {
-                tel: {
-                    required: true,
-                    rangelength: [11,11]
-                }
-            },
-            messages: {
-                tel: {
-                    required: "请输入手机号",
-                    rangelength: "手机号无效"
-                }
-            }
-        });
-    });
+	//    表单验证
+	$().ready(function() {
+		// 在键盘按下并释放及提交后验证提交表单
+		$("#signupForm").validate({
+			rules : {
+				tel : {
+					required : true,
+					rangelength : [ 11, 11 ]
+				}
+			},
+			messages : {
+				tel : {
+					required : "请输入手机号",
+					rangelength : "手机号无效"
+				}
+			}
+		});
+
+		$("#signupForm").submit(function(e) {
+			if ($("#number").val() < 10) {
+				e.preventDefault();
+				window.YDUI.dialog.alert('输入金额必须大于10！');
+			}
+		});
+	});
 </script>
 </html>
