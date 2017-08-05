@@ -38,4 +38,10 @@ public class BillServiceImpl implements BillService {
 		// TODO Auto-generated method stub
 		return billDao.queryAll(hql);
 	}
+
+	@Override
+	public String mkData() {
+		// TODO Auto-generated method stub
+		return billDao.mkData();
+	}
 }

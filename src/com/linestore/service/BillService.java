@@ -10,4 +10,5 @@ public interface BillService {
 	public List<Bill> selectAll(Page page);
 	public List<Bill> search(String keywords);
 	public int queryAll(String hql);
+	public String mkData();
 }
