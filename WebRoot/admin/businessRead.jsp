@@ -154,12 +154,11 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">组织机构<span
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">商家图片<span
 													class="required">*</span>
 												</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<textarea class="form-control" rows="3" name="busOrgUrl"
-														placeholder='<s:property value="busOrgUrl"/>' disabled="disabled"><s:property value="busOrgUrl"/></textarea>
+													<img src="<s:property value="busOrgUrl"/>" style="max-width:100%"/>
 												</div>
 											</div>
 

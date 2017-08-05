@@ -33,6 +33,16 @@ public class CateLine implements java.io.Serializable {
 	public Integer getCalId() {
 		return this.calId;
 	}
+	
+	public CateLine(CateLine cal) {
+		super();
+		this.calId = cal.getCalId();
+		this.calName = cal.getCalName();
+		this.calImg = cal.getCalImg();
+		this.calStatus = cal.getCalStatus();
+		this.calAuth = cal.getCalAuth();
+		this.calPid = cal.getCalPid();
+	}
 
 
 	public CateLine(Integer calId, String calName, String calImg, Integer calStatus, Integer calAuth, Integer calPid,

@@ -30,7 +30,7 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 //		List<Bill> list = (List<Bill>) this.getHibernateTemplate().find(hql);
 		
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query= session.createQuery("from Bill");
+		Query query= session.createQuery("from Bill order by bilId desc");
 		query.setMaxResults(page.getEveryPage());
 		query.setFirstResult(page.getBeginIndex());
 		

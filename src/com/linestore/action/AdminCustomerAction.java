@@ -23,6 +23,7 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 	private CustomerService customerService;
 	private List<Customer> customerList = new ArrayList<Customer>();
 	private CusAccountService cusAccountService;
+	private Customer customerListReslut;
 	
 	private String pageNow = "1";
 	private String everyPage = "10";
@@ -57,6 +58,10 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 	
 	public String read(){
 		
+		selectById();
+		
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", customerListReslut);
 		
 		return "read";
 	}
@@ -114,6 +119,13 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 			e.printStackTrace();
 		}
 		return "select";
+	}
+	
+	public String selectById(){
+		System.out.println("cusId:"+customer.getCusId());
+		customerListReslut = customerService.findById(customer.getCusId());
+		
+		return "selectAll";
 	}
 	
 	public String delete(){

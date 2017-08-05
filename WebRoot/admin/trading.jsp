@@ -4,7 +4,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -16,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>账单管理 | 众帮管家</title>
+<title>商家账单申请管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -60,15 +59,15 @@
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
-								账单管理 <small>只可查询与自己相关的账单</small>
+								账单管理 <small></small>
 							</h3>
 						</div>
 
-						<form action="bill_select" method="get">
+						<form action="customer_select" method="get">
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="keywords" placeholder="输入姓名、昵称或电话 ..."> 	
+										<input type="text" class="form-control" name="keywords" placeholder="输入昵称、电话 ..."> 	
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>
@@ -115,22 +114,11 @@
 													<th>
 														<th><input type="checkbox" id="check-all" class="flat" /></th>
 													</th>
-													<th class="column-title">用户</th>
-													<th class="column-title">用户付款</th>
-													<th class="column-title">商家</th>
-													<th class="column-title">商家收款</th>
-													<th class="column-title">物业</th>
-													<th class="column-title">物业收款</th>
-													<th class="column-title">县级代理</th>
-													<th class="column-title">县级收款</th>
-													<th class="column-title">市级代理</th>
-													<th class="column-title">市级收款</th>
-													<th class="column-title">省级代理</th>
-													<th class="column-title">省级收款</th>
-													<c:if test="${sessionScope.admin.thuPid == 0}">
-														<th class="column-title">众帮收款</th>
-													</c:if>
-													
+													<th class="column-title">商家名称</th>
+													<th class="column-title">店主姓名</th>
+													<th class="column-title">申请金额</th>
+													<th class="column-title">商家地址</th>
+													<th class="column-title">申请时间</th>
 													<th class="column-title no-link last">操作</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
 														style="color:#fff; font-weight:500;">Bulk Actions ( <span
@@ -145,55 +133,20 @@
 														<td class="a-center ">
 															<th><input type="checkbox" class="flat" name="table_records" /></th>
 														</td>
-														<td>${root.customer.cusNickname}</td>
-														<td>${root.bilCusMoney}</td>
 														<td>${root.business.busShopName}</td>
-														<td>${root.bilBusMoney}</td>
-														<td>${root.thinkUserByThuPropertyId.thuName}</td>
-														<td>${root.bilPropertyMoney}</td>
-														<!-- 判断当前用户是否显示县级代理 -->					
-														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId}">
-															<td>${root.thinkUserByThuCountyId.thuName}</td>
-															<td>${root.bilCountyMoney}</td>
-														</c:if>
-														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId}">
-															<td></td>
-															<td></td>
-														</c:if>
-														<!-- 判断当前用户是否显示市级代理 -->	
-														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
-															<td>${root.thinkUserByThuCityId.thuName}</td>
-															<td>${root.bilCityMoney}</td>
-														</c:if>
-														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
-															<td></td>
-															<td></td>
-														</c:if>
-														<!-- 判断当前用户是否显示省级代理 -->	
-														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuCityId.thuId && sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
-															<td>${root.thinkUserByThuProvinceId.thuName}</td>
-															<td>${root.bilProvinceMoney}</td>
-														</c:if>
-														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuCityId.thuId || sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
-															<td></td>
-															<td></td>
-														</c:if>
-														<c:if test="${sessionScope.admin.thuPid == 0}">
-															<td>${root.bilZongMoney}</td>
-														</c:if>
-														
+														<td>${root.business.busOwnerName}</td>
+														<td>${root.btaMoney}</td>
+														<td>${root.btaAddress}</td>
+														<td>${root.btaTime}</td>
 														<td>
-															<%-- <c:if test="${root.cusStatus == 1}">
-																<a href="customer_update?cusStatus=0&cusId=${root.cusId}" class="btn btn-primary btn-xs">
-																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
-																</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															</c:if>
-															<c:if test="${root.cusStatus == 0}">
-																<a href="customer_update?cusStatus=1&cusId=${root.cusId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
-																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
-																</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															</c:if> --%>
-															<a href="#" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="trading_status?btaId=${root.btaId}&btaStatus=1" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
+																<i class="fa fa-folder"></i>&nbsp;&nbsp;允许
+															</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															
+															<a href="trading_status?btaId=${root.btaId}&btaStatus=2" class="btn btn-primary btn-xs">
+																<i class="fa fa-folder"></i>&nbsp;&nbsp;不允许
+															</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="business_read?busId=${root.business.busId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看商家</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>
@@ -206,7 +159,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<form action="bill_selectAll">
+						<form action="trading_selectAll">
 							<div class="col-sm-5">
 								<div class="dataTables_info" id="datatable-checkbox_info" role="status" aria-live="polite" style="margin: 20px 0;height: 32px;line-height: 32px;">
 									当前显示${(page.currentPage-1)*page.everyPage+1} ~  
@@ -227,10 +180,10 @@
 									<ul class="pagination">
 										<c:if test="${page.hasPrePage}">
 											<li class="paginate_button previous" id="datatable-checkbox_previous">
-												<a href="customer_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
+												<a href="trading_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="trading_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasPrePage}">
@@ -238,21 +191,21 @@
 												<a href="#" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="trading_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										
 										<c:if test="${page.hasNextPage}">
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="trading_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next" id="datatable-checkbox_next">
-												<a href="customer_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
+												<a href="trading_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasNextPage}">
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="trading_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next disabled" id="datatable-checkbox_next">
 												<a href="#" data-dt-idx="4" tabindex="0">下一页</a>

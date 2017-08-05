@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-					<div id="mainb" style="height:350px;"></div>
+					<!-- <div id="mainb" style="height:350px;"></div> -->
                     
                     <div id="container"></div>
 
