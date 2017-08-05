@@ -105,6 +105,8 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 	}
 
 	public String adminBindWeChat() throws IOException {
+		// 获取adminId
+		ActionContext.getContext().getSession().put("thuId", Integer.parseInt(request.getParameter("thuId")));
 		String oauthUrl = this.wxService.oauth2buildAuthorizationUrl(
 				this.wxService.getWxMpConfigStorage().getOauth2redirectUri(), WxConsts.OAUTH2_SCOPE_USER_INFO,
 				"adminBindWeChat");
@@ -148,8 +150,10 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 			returnString = "gotoBind";
 			break;
 		case "adminBindWeChat":
-			WxMpUser thuOpenid= this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
+			WxMpUser thuOpenid = this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
+			int thuId = (int) ActionContext.getContext().getSession().get("thuId");
 			ActionContext.getContext().getSession().put("thuOpenid", thuOpenid.getOpenId());
+			ActionContext.getContext().getSession().put("thuId", thuId);
 			returnString = "goAdminBindWechat";
 			break;
 		default:
