@@ -8,9 +8,11 @@ import java.util.Random;
 
 import com.linestore.service.CtaTradingService;
 import com.linestore.service.CusAccountService;
+import com.linestore.service.SettingService;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
+import com.linestore.vo.Setting;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -27,6 +29,8 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 
 	private Map<String, Object> request;
 
+	private SettingService settingService;
+
 	private String point;
 
 	@Override
@@ -40,6 +44,8 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 			List<CtaTrading> ctaTradings = ctaTradingService.queryByCusid(cus.getCusId());
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			request.put("ctas", ctaTradings);
+			// 积分转换比 jfzhb
+			request.put("jfzhb", settingService.queryById(5).getSetValue());
 		}
 		return "gotoRecord";
 	}
@@ -50,13 +56,14 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		CusAccount cac = (CusAccount) ActionContext.getContext().getSession().get("cac");
 		System.out.println(cac);
 		System.out.println(cac.getCacChange());
-		cac.setCacChange(cac.getCacChange() + Float.valueOf(point) / 10);
+		cac.setCacChange(
+				cac.getCacChange() + Float.valueOf(point) * Float.valueOf(settingService.queryById(8).getSetValue()));
 		cac.setCacPoints(cac.getCacPoints() - Float.valueOf(point));
 		cusAccountService.updateCusAccount(cac);
 		Date date = new Date();
 		CtaTrading cta = new CtaTrading();
 		cta.setCtaId(getOrd(date));
-		cta.setCtaMoney(Float.valueOf(point));
+		cta.setCtaMoney(Float.valueOf(point) * Float.valueOf(settingService.queryById(8).getSetValue()));
 		cta.setCtaTime(new Timestamp(date.getTime()));
 		cta.setCtaType(11);
 		cta.setCustomer(cus);
@@ -71,6 +78,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 			List<CtaTrading> ctaTradings = ctaTradingService.queryPoint(cus.getCusId());
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			request.put("ctas", ctaTradings);
+			request.put("jfzhb", settingService.queryById(5).getSetValue());
 		}
 		return "gotoRecord";
 	}
@@ -105,6 +113,14 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 
 	public void setCusAccountService(CusAccountService cusAccountService) {
 		this.cusAccountService = cusAccountService;
+	}
+
+	public SettingService getSettingService() {
+		return settingService;
+	}
+
+	public void setSettingService(SettingService settingService) {
+		this.settingService = settingService;
 	}
 
 }

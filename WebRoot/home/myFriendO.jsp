@@ -54,15 +54,19 @@
 				我的朋友A<span>${fn:length(friA)}</span>
 				<div class="myFriendO_myFriendItem_down">
 					<c:forEach var="A" items="${friA}">
-						${A.friPhone}
+						<div>
+							${A.friPhone}
+						</div>
 					</c:forEach>
 				</div>
 			</div>
 			<div class="myFriendO_myFriendItem">
 				我的朋友B<span>${fn:length(friB)}</span>
 				<div class="myFriendO_myFriendItem_down">
-					<c:forEach var="C" items="${friB}">
-						${C.friPhone}
+					<c:forEach var="B" items="${friB}">
+					<div>
+						${B.friPhone}
+					</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -70,7 +74,9 @@
 				我的朋友C<span>${fn:length(friC)}</span>
 				<div class="myFriendO_myFriendItem_down">
 					<c:forEach var="C" items="${friC}">
+					<div>
 						${C.friPhone}
+					</div>
 					</c:forEach>
 				</div>
 			</div>

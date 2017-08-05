@@ -32,15 +32,25 @@
 		</div>
 		<c:forEach var="cta" items="${ctas}">
 			<div class="takeMoneyItem">
-				<div class="takeMoney_num">	
-					<c:if test="${cta.ctaType == 1}">${cta.ctaMoney}￥</c:if>
-					<c:if test="${cta.ctaType == 11}">${cta.ctaMoney * 10}积分</c:if>
-				</div>
+				<div class="takeMoney_time"><fmt:formatDate value="${cta.ctaTime}" type="both"  /></div>
 				<div class="takeMoney_type">
 					<c:if test="${cta.ctaType == 1}">充值零钱</c:if>
+					<c:if test="${cta.ctaType == 2}">朋友消费</c:if>
+					<c:if test="${cta.ctaType == 3}">推荐注册</c:if>
 					<c:if test="${cta.ctaType == 11}">积分转零钱</c:if>
+					<c:if test="${cta.ctaType == 12}">朋友充值</c:if>
+					<c:if test="${cta.ctaType == 13}">消费返积分</c:if>
 				</div>
-				<div class="takeMoney_time"><fmt:formatDate value="${cta.ctaTime}" type="both"  /></div>
+				<div class="takeMoney_num">	
+					<c:if test="${cta.ctaType == 1}"><fmt:formatNumber type="number" maxFractionDigits="2" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if>
+					<c:if test="${cta.ctaType == 2}"><fmt:formatNumber type="number" maxFractionDigits="2" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if>
+					<c:if test="${cta.ctaType == 3}"><fmt:formatNumber type="number" maxFractionDigits="2" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if>
+					<c:if test="${cta.ctaType == 11}"><fmt:formatNumber type="number" maxFractionDigits="2" value="${cta.ctaMoney * 10}" /><i class="fa fa-database"></i></c:if>
+					<c:if test="${cta.ctaType == 12}"><fmt:formatNumber type="number" maxFractionDigits="2" value="${cta.ctaMoney * 10}" /><i class="fa fa-database"></i></c:if>
+					<c:if test="${cta.ctaType == 13}"><fmt:formatNumber type="number" maxFractionDigits="2" value="${cta.ctaMoney * 10}" /><i class="fa fa-database"></i></c:if>
+				</div>
+				
+				
 			</div>
 		</c:forEach>
 		<!-- <div class="takeMoneyItem">
