@@ -58,7 +58,10 @@ public class FriendsDaoImpl extends HibernateDaoSupport implements FriendsDao {
 	
 	public Friends queryByPhone(String phone) {
 		List<Friends> fris = (List<Friends>) this.getHibernateTemplate().find("from Friends where friPhone='" + phone + "'");
-		return fris.get(0);
+		if (fris != null&&fris.size()>0) {
+			return fris.get(0);
+		}
+		return null;
 	}
 	
 	public List<Friends> queryType(int cusId, int type) {

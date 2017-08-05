@@ -142,9 +142,12 @@
 			<result name="gotoWithdraw">/home/busWithdraw.jsp</result>
 			<result name="gotoSamllMoney" type="redirectAction">busTrading_queryWithdraw
 			</result>
+			<result name="payBgyCash" type="redirectAction">WxOauthRedirect_IntoPayPage
+			</result>
+			
 		</action>
 
-		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction" method="{1}">
 			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
 			<result name="gotoBind" type="redirectAction">Customer_update</result>
 

@@ -78,8 +78,16 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		// 获取商户id
 		// ActionContext.getContext().getSession().put("busId",
 		// request.getParameter("busId"));
-		System.out.println(Integer.parseInt(request.getParameter("busId")));
-		Business business = businessService.select(Integer.parseInt(request.getParameter("busId")));
+		int busId;
+		if (request.getParameter("busId") == null) {
+			System.out.println("---->进来了");
+			busId = (int) ActionContext.getContext().getSession().get("payByCashCusID");
+		} else {
+			busId = Integer.parseInt(request.getParameter("busId"));
+		}
+
+		System.out.println(busId);
+		Business business = businessService.select(busId);
 
 		ActionContext.getContext().getSession().put("pay_business", business);
 		// 微信授权

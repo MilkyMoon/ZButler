@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -41,8 +41,15 @@
 				</div>
 				<div class="pay_storeTel">${pay_business.busPhone}</div>
 			</div>
-			<input type="number" pattern="[0-9]*" name="num" class="cell-input"
-				placeholder="消费金额" autocomplete="off" id="payNum" />
+ 			<c:if test="${empty sessionScope.payByCashMoney}">
+				<input type="number" pattern="[0-9]*" name="num" class="cell-input"
+					placeholder="消费金额" autocomplete="off" id="payNum" value="" />
+			</c:if>
+			<c:if test="${!empty sessionScope.payByCashMoney}">
+				<input type="number" pattern="[0-9]*" name="num" class="cell-input"
+					placeholder="消费金额" autocomplete="off" id="payNum" value="${sessionScope.payByCashMoney}" />
+			</c:if>
+			
 			<div class="pay_button">
 				<button type="button" class="btn-block btn-primary" id="pay">确认支付</button>
 			</div>

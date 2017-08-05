@@ -1350,15 +1350,20 @@ px
 }
 
 .takeMoneyRecord .takeMoney_num {
-	font-size: 18px;
+	font-size: 16px;
 	color: #B72712;
 	text-align: left;
+}
+
+.takeMoney_num i{
+	margin-left:5px;
 }
 
 .takeMoneyRecord .takeMoney_type {
 	font-size: 14px;
 	color: #1C1C20;
-	text-align: center;
+	self-items:baseline;
+	
 }
 
 .takeMoneyRecord .takeMoney_time {
