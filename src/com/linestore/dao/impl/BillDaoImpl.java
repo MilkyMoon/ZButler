@@ -103,9 +103,13 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 			append(value).
 			append("},").append("\n");
 			;
-			}
+        }
 		
 		return  sb.deleteCharAt(sb.length()-1)+"";
+    }
+    
+	public void addBill(Bill bill) {
+		this.getHibernateTemplate().save(bill);
 	}
 
 }

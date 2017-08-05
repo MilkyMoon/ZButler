@@ -2,37 +2,48 @@ package com.linestore.action;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
+import com.linestore.service.CustomerService;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
+import com.linestore.vo.Customer;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class BusTradingAction extends ActionSupport implements ModelDriven<BusTrading> {
-	
+
 	private BusTrading busTrading = new BusTrading();
-	
+
 	private BusTradingService busTradingService;
-	
+
 	private BusinessService businessService;
-	
+
+	private CustomerService customerService;
+
+	private float money;
+
+	private int busId;
+
+	private String tel;
+
 	Map<String, Object> request;
 
 	@Override
 	public BusTrading getModel() {
 		return busTrading;
 	}
-	
+
 	public String add() {
 		busTrading.setBtaTime(new Timestamp(new Date().getTime()));
 		busTrading.setBtaType(11);
 		Business bus = (Business) ActionContext.getContext().getSession().get("store");
-		
+
 		String btaId = new java.util.Date().getTime() + "T" + this.RandomStr();
 		busTrading.setBtaId(btaId);
 		busTrading.setBusiness(bus);
@@ -46,7 +57,7 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 		request.put("js", "<script>YDUI.dialog.alert('申请成功！');</script>");
 		return "gotoSamllMoney";
 	}
-	
+
 	public String queryIncome() {
 		Business bus = (Business) ActionContext.getContext().getSession().get("store");
 		busTradingService.queryWithdraw(bus.getBusId());
@@ -54,13 +65,19 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 		request.put("Income", busTradingService.queryIncome(bus.getBusId()));
 		return "gotoIncom";
 	}
-	
+
 	public String queryWithdraw() {
 		Business bus = (Business) ActionContext.getContext().getSession().get("store");
 		busTradingService.queryWithdraw(bus.getBusId());
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("Withdraw", busTradingService.queryWithdraw(bus.getBusId()));
 		return "gotoWithdraw";
+	}
+
+	public String payByCash() {
+		ActionContext.getContext().getSession().put("payByCashMoney", money);
+		ActionContext.getContext().getSession().put("payByCashCusID", busId);
+		return "payBgyCash";
 	}
 
 	public BusTradingService getBusTradingService() {
@@ -78,7 +95,7 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	public void setBusinessService(BusinessService businessService) {
 		this.businessService = businessService;
 	}
-	
+
 	private String RandomStr() {
 		Random random = new Random();
 		String radnString = "";
@@ -88,6 +105,45 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 
 		return radnString;
 	}
-	
-	
+
+	public BusTrading getBusTrading() {
+		return busTrading;
+	}
+
+	public void setBusTrading(BusTrading busTrading) {
+		this.busTrading = busTrading;
+	}
+
+	public float getMoney() {
+		return money;
+	}
+
+	public void setMoney(float money) {
+		this.money = money;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public CustomerService getCustomerService() {
+		return customerService;
+	}
+
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
+	public int getBusId() {
+		return busId;
+	}
+
+	public void setBusId(int busId) {
+		this.busId = busId;
+	}
+
 }

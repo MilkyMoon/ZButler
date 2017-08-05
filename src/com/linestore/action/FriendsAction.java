@@ -35,8 +35,14 @@ public class FriendsAction extends ActionSupport implements ModelDriven<Friends>
 //		Customer customer = new Customer();
 //		customer.setCusId(1);
 		Customer customer = (Customer) ActionContext.getContext().getSession().get("user");
+		System.out.println(customer.getCusId());
 //		System.out.println(customer.getCusNickname() + " : " + customer.getCusId());
-		friendsList = friendsService.selectAll(customer);
+		List<Friends> friA = friendsService.queryType(customer.getCusId(), 1);
+		ActionContext.getContext().getSession().put("friA", friA);
+		List<Friends> friB = friendsService.queryType(customer.getCusId(), 2);
+		ActionContext.getContext().getSession().put("friB", friB);
+		List<Friends> friC = friendsService.queryType(customer.getCusId(), 3);
+		ActionContext.getContext().getSession().put("friC", friC);
 //		System.out.println(customerResult.getCusNickname() + " : " + customerResult.getCusId());
 		return "selectAll";
 	}

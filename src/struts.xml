@@ -16,7 +16,7 @@
 				class="com.linestore.inteceptor.LoginInteceptor">
 				<param name="excludeMethods">
 					login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,
-					wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu,IntoPayPage
+					wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu,IntoPayPage,adminBindWeChat
 				</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
@@ -142,12 +142,19 @@
 			<result name="gotoWithdraw">/home/busWithdraw.jsp</result>
 			<result name="gotoSamllMoney" type="redirectAction">busTrading_queryWithdraw
 			</result>
+			<result name="payBgyCash" type="redirectAction">WxOauthRedirect_IntoPayPage
+			</result>
+			
 		</action>
 
-		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction" method="{1}">
 			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
 			<result name="gotoBind" type="redirectAction">Customer_update</result>
-		<!-- 	<result name="goAdminBindWechat" type="redirectAction">bangdin_update</result> -->
+
+			<result name="goAdminBindWechat" type="redirectAction">
+				<param name="namespace">/admin</param>
+				<param name="actionName">bangdin_updateThuOpenid</param>
+			</result>
 			<result name="gotoPay">home/Pay.jsp</result>
 			<result name="gotoRecharge">home/integral.jsp</result>
 		</action>
@@ -265,7 +272,7 @@
 		<interceptors>
 			<interceptor name="loginInterceptor"
 				class="com.linestore.inteceptor.LoginInteceptor">
-				<param name="excludeMethods">login,code</param>
+				<param name="excludeMethods">login,code,updateThuOpenid</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->
 			<interceptor-stack name="defaultinter">
@@ -349,7 +356,7 @@
 		</action>
 		<action name="bangdin_*" class="com.linestore.action.ThinkUserAction"
 			method="{1}">
-			<result name="select" type="redirectAction">thinkUser_selectAll</result>
+			<result name="select">Success.jsp</result>
 		</action>
 	</package>
 

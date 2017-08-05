@@ -53,7 +53,7 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 		String hql = "from ThinkUser where thuId = ?";
 		List<ThinkUser> list = (List<ThinkUser>) this.getHibernateTemplate().find(hql, thinkUser.getThuId());
 		
-		if(list.size() > 0){
+		if(list!= null && list.size() > 0){
 			return list.get(0);
 		}
 		

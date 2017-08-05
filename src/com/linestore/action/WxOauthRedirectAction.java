@@ -78,8 +78,16 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		// 获取商户id
 		// ActionContext.getContext().getSession().put("busId",
 		// request.getParameter("busId"));
-		System.out.println(Integer.parseInt(request.getParameter("busId")));
-		Business business = businessService.select(Integer.parseInt(request.getParameter("busId")));
+		int busId;
+		if (request.getParameter("busId") == null) {
+			System.out.println("---->进来了");
+			busId = (int) ActionContext.getContext().getSession().get("payByCashCusID");
+		} else {
+			busId = Integer.parseInt(request.getParameter("busId"));
+		}
+
+		System.out.println(busId);
+		Business business = businessService.select(busId);
 
 		ActionContext.getContext().getSession().put("pay_business", business);
 		// 微信授权
@@ -105,6 +113,8 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 	}
 
 	public String adminBindWeChat() throws IOException {
+		// 获取adminId
+		ActionContext.getContext().getSession().put("thuId", Integer.parseInt(request.getParameter("thuId")));
 		String oauthUrl = this.wxService.oauth2buildAuthorizationUrl(
 				this.wxService.getWxMpConfigStorage().getOauth2redirectUri(), WxConsts.OAUTH2_SCOPE_USER_INFO,
 				"adminBindWeChat");
@@ -148,8 +158,10 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 			returnString = "gotoBind";
 			break;
 		case "adminBindWeChat":
-			WxMpUser thuOpenid= this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
+			WxMpUser thuOpenid = this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
+			int thuId = (int) ActionContext.getContext().getSession().get("thuId");
 			ActionContext.getContext().getSession().put("thuOpenid", thuOpenid.getOpenId());
+			ActionContext.getContext().getSession().put("thuId", thuId);
 			returnString = "goAdminBindWechat";
 			break;
 		default:

@@ -245,6 +245,7 @@ public String updateBus(){
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		List<Business> bus = (List<Business>) businessService.queryByCusId(cus.getCusId());
 		if (bus.size() > 0) {
+			System.out.println(bus.get(0));
 			ActionContext.getContext().getSession().put("store", bus.get(0));
 		}
 		return "gotoStore";
