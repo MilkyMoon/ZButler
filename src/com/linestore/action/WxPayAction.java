@@ -1,6 +1,10 @@
 package com.linestore.action;
 
+<<<<<<< HEAD
 import java.lang.reflect.InvocationTargetException;
+=======
+import java.math.BigDecimal;
+>>>>>>> origin/master
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,9 +27,9 @@ import com.github.binarywang.wxpay.bean.result.WxEntPayResult;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.github.binarywang.wxpay.util.SignUtils;
-import com.linestore.WxUtils.Sha1Util;
 import com.linestore.WxUtils.TemplateMessage;
 import com.linestore.WxUtils.XMLUtil;
+import com.linestore.service.BillService;
 import com.linestore.service.BusMemberService;
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
@@ -34,23 +38,23 @@ import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.service.FriendsService;
 import com.linestore.service.SettingService;
+<<<<<<< HEAD
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.BusMember;
+=======
+import com.linestore.service.ThinkUserService;
+import com.linestore.vo.Bill;
+>>>>>>> origin/master
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
-import com.linestore.vo.Template;
-
-import org.apache.commons.lang3.CharEncoding;
-import org.apache.commons.lang3.StringUtils;
 import com.linestore.vo.Friends;
+import com.linestore.vo.Template;
+import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
 
-import jodd.http.HttpResponse;
-import jodd.http.net.SSLSocketHttpConnectionProvider;
-import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
@@ -72,6 +76,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	private FriendsService friendsService;
 	private Map<String,Object> req;
 	private BusTrading busTrading = new BusTrading();
+	private ThinkUserService thinkUserService;
+	private BillService billService;
 
 	public FriendsService getFriendsService() {
 		return friendsService;
@@ -239,6 +245,75 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bta.setBtaType(1);
 							bta.setBusiness(bus);
 							busTradingService.addBusTrading(bta);
+
+							Bill bill = new Bill();
+							BigDecimal bigMoney = new BigDecimal(kvm.get("total_fee"));
+							bill.setBilCusMoney(bigMoney);
+							// 商家收款
+							BigDecimal city = new BigDecimal(bus.getBusScale());
+							city = bigMoney.subtract(bigMoney).multiply(city);
+							bill.setBusiness(bus);
+							bill.setBilBusMoney(city);
+							bigMoney = bigMoney.subtract(city);
+
+							// 物业收款
+							ThinkUser thu = thinkUserService.queryById(bus.getBusThuId());
+							if (thu.getThuWay() == 1) {
+								BigDecimal dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuPropertyId(thu);
+								bill.setBilPropertyMoney(dailishang);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 县收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCountyId(thu);
+								bill.setBilCountyMoney(dailishang);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 市收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCityId(thu);
+								bill.setBilCityMoney(dailishang);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 省收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScale());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setBilProvinceMoney(dailishang);
+								bill.setThinkUserByThuProvinceId(thu);
+								bigMoney = bigMoney.subtract(dailishang);
+								// 众邦收款
+								bill.setBilZongMoney(bigMoney);
+							} else {
+								BigDecimal dailishang = new BigDecimal(thu.getThuScaleTwo());
+								bill.setThinkUserByThuPropertyId(thu);
+								bill.setBilPropertyMoney(bigMoney.multiply(dailishang));
+								// 县收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCountyId(thu);
+								bill.setBilCountyMoney(bigMoney.multiply(dailishang));
+								// 市收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setThinkUserByThuCityId(thu);
+								bill.setBilCityMoney(bigMoney.multiply(dailishang));
+								// 省收款
+								thu = thinkUserService.queryById(thu.getThuPid());
+								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setBilProvinceMoney(bigMoney.multiply(dailishang));
+								bill.setThinkUserByThuProvinceId(thu);
+								// 众邦收款
+								bill.setBilZongMoney(bigMoney.multiply(dailishang));
+							}
+							billService.addBill(bill);
+
 							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
 							System.out.println("$$$$$$$$$$$$");
 							if (Pcus != null && Pcus.size() > 0) {
@@ -310,7 +385,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							Date Rdate = new Date();
 							cta.setCtaTime(new Timestamp(Rdate.getTime()));
 							ctaTradingService.addCtaTrading(cta);
-
 
 							System.out.println(cus.getCusPhone());
 							if (cus.getCusPhone() != null && !"".equals(cus.getCusPhone())) {

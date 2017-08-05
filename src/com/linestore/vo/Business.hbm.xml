@@ -10,9 +10,6 @@
             <column name="bus_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="supplier" class="com.linestore.vo.Supplier" fetch="select" lazy="false">
-            <column name="bus_sup_id" />
-        </many-to-one>
         <many-to-one name="cateLine" class="com.linestore.vo.CateLine" fetch="select" lazy="false">
             <column name="bus_cal_id" />
         </many-to-one>
@@ -48,6 +45,9 @@
         </property>
         <property name="busThuId" type="java.lang.Integer">
             <column name="bus_thu_id" />
+        </property>
+        <property name="busScale" type="java.lang.Float">
+            <column name="bus_scale" precision="12" scale="0" />
         </property>
         <property name="busLevel" type="java.lang.Integer">
             <column name="bus_level" />
@@ -102,7 +102,7 @@
         </property>
         <set name="busMembers" inverse="true" lazy="false">
             <key>
-                <column name="bme_id" not-null="true" unique="true" />
+                <column name="bme_bus_id" />
             </key>
             <one-to-many class="com.linestore.vo.BusMember" />
         </set>

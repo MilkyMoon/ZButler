@@ -12,7 +12,6 @@ public class Business implements java.io.Serializable {
 	// Fields
 
 	private Integer busId;
-	private Supplier supplier;
 	private CateLine cateLine;
 	private Customer customer;
 	private String busShopName;
@@ -25,6 +24,7 @@ public class Business implements java.io.Serializable {
 	private Integer busSmallCate;
 	private Integer busStatus;
 	private Integer busThuId;
+	private Float busScale;
 	private Integer busLevel;
 	private String baCountry;
 	private String baProvince;
@@ -54,14 +54,13 @@ public class Business implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Business(Supplier supplier, CateLine cateLine, Customer customer, String busShopName, String busOwnerName,
-			String busDesc, String busLicenseUrl, String busTaxUrl, String busOrgUrl, Integer busDistrict,
-			Integer busSmallCate, Integer busStatus, Integer busThuId, Integer busLevel, String baCountry,
-			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
-			String bbBankCard, String bbBank, String bbBankPerson, String busIdcardUrl, String busPhone,
-			String busTdCode, String busShareUrl, Float busChange, String busEphone, Set busMembers, Set busCoupons,
-			Set busTradings, Set bills) {
-		this.supplier = supplier;
+	public Business(CateLine cateLine, Customer customer, String busShopName, String busOwnerName, String busDesc,
+			String busLicenseUrl, String busTaxUrl, String busOrgUrl, Integer busDistrict, Integer busSmallCate,
+			Integer busStatus, Integer busThuId, Float busScale, Integer busLevel, String baCountry, String baProvince,
+			String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude, String bbBankCard,
+			String bbBank, String bbBankPerson, String busIdcardUrl, String busPhone, String busTdCode,
+			String busShareUrl, Float busChange, String busEphone, Set busMembers, Set busCoupons, Set busTradings,
+			Set bills) {
 		this.cateLine = cateLine;
 		this.customer = customer;
 		this.busShopName = busShopName;
@@ -74,6 +73,7 @@ public class Business implements java.io.Serializable {
 		this.busSmallCate = busSmallCate;
 		this.busStatus = busStatus;
 		this.busThuId = busThuId;
+		this.busScale = busScale;
 		this.busLevel = busLevel;
 		this.baCountry = baCountry;
 		this.baProvince = baProvince;
@@ -105,14 +105,6 @@ public class Business implements java.io.Serializable {
 
 	public void setBusId(Integer busId) {
 		this.busId = busId;
-	}
-
-	public Supplier getSupplier() {
-		return this.supplier;
-	}
-
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
 	}
 
 	public CateLine getCateLine() {
@@ -209,6 +201,14 @@ public class Business implements java.io.Serializable {
 
 	public void setBusThuId(Integer busThuId) {
 		this.busThuId = busThuId;
+	}
+
+	public Float getBusScale() {
+		return this.busScale;
+	}
+
+	public void setBusScale(Float busScale) {
+		this.busScale = busScale;
 	}
 
 	public Integer getBusLevel() {
