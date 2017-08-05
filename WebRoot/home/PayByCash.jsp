@@ -18,15 +18,15 @@
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 
 </head>
-
 <body>
 	<div class="xianjinfukuan">
-		<form id="signupForm">
+		<form id="signupForm" method="post" action="<%=basePath%>busTrading_payByCash">
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right">
 						<input type="number" class="cell-input" name="tel"
-							placeholder="请输入手机号码" autocomplete="off" />
+							placeholder="请输入手机号码" autocomplete="off" /> <input type="hidden"
+							name="busId" value="${store.busId }" />
 					</div>
 				</div>
 				<div class="cell-item cell-item-last">

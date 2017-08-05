@@ -138,18 +138,21 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			friends.setCustomer(cus);
 			friends.setFriDate(new Timestamp(new Date().getTime()));
 			friends.setFriPhone(customer.getCusPhone());
-			Business bus = businessService.select(cus.getCusId());
-			if (bus == null) {
+			List<Business> bus = businessService.queryByCusId(cus.getCusId());
+			System.out.println("bus: " + bus);
+			if (bus == null || bus.size() < 1) {
 				friends.setFriType(Integer.valueOf(1));
 			} else {
-				if (bus.getBusLevel() == 0) {
+				if (bus.get(0).getBusLevel() == 0) {
 					friends.setFriType(Integer.valueOf(2));
-				} else if (bus.getBusLevel() == 2) {
+				} else if (bus.get(0).getBusLevel() == 2) {
 					friends.setFriType(Integer.valueOf(3));
 				}
-				if (bus.getBusLevel() == 0 || bus.getBusLevel() == 2) {
+				if (bus.get(0).getBusLevel() == 0 || bus.get(0).getBusLevel() == 2) {
 					CusAccount cac = cusAccountService.findByCusId(cus.getCusId());
+					System.out.println(cus.getCusId());
 					if (cac != null) {
+						System.out.println("111111111111111");
 						Date date = new Date();
 						CtaTrading cta = new CtaTrading();
 						cta.setCtaMoney(Float.valueOf(settingService.queryById(7).getSetValue()));
