@@ -211,6 +211,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bta.setBtaType(1);
 							bta.setBusiness(bus);
 							busTradingService.addBusTrading(bta);
+							
 							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
 							if (Pcus != null && Pcus.size() > 0) {
 								if (Pcus.get(0).getCusPhone() != null && "".equals(Pcus.get(0).getCusPhone())) {
