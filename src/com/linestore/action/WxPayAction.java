@@ -5,6 +5,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.SortedMap;
@@ -36,6 +37,7 @@ import com.github.binarywang.wxpay.service.WxPayService;
 import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.github.binarywang.wxpay.util.SignUtils;
 import com.linestore.WxUtils.Sha1Util;
+import com.linestore.WxUtils.TemplateMessage;
 import com.linestore.WxUtils.XMLUtil;
 import com.linestore.service.CtaTradingService;
 import com.linestore.service.CusAccountService;
@@ -43,6 +45,7 @@ import com.linestore.service.CustomerService;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
+import com.linestore.vo.Template;
 
 import org.apache.commons.lang3.CharEncoding;
 import org.apache.commons.lang3.StringUtils;
@@ -51,12 +54,17 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import jodd.http.HttpResponse;
 import jodd.http.net.SSLSocketHttpConnectionProvider;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import net.sf.json.JSONObject;
 
 public class WxPayAction extends WeiXinPayConfigAction implements ServletRequestAware, ServletResponseAware {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	protected WxMpService wxService;
+	protected WxMpInMemoryConfigStorage config;
 	private String result;
 
 	private CtaTradingService ctaTradingService;
@@ -91,6 +99,15 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	public WxPayAction() {
 		super();
 		// TODO Auto-generated constructor stub
+		config = new WxMpInMemoryConfigStorage();
+		config.setAppId("wx5b69c56ac01ed858"); // 设置微信公众号的appid
+		config.setSecret("4ad3ebbd02e8f82aede3a22d1a3335a6"); // 设置微信公众号的
+																// appsecret
+		config.setToken("wxdev"); // 设置微信公众号的token
+
+		config.setOauth2redirectUri("http://yanglan520.com/ZButler/WxOauthRedirect!oauth.action");
+		this.wxService = new WxMpServiceImpl();
+		wxService.setWxMpConfigStorage(config);
 	}
 
 	@Override
@@ -185,6 +202,21 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							Date date = new Date();
 							cta.setCtaTime(new Timestamp(date.getTime()));
 							ctaTradingService.addCtaTrading(cta);
+
+							// 构建模板消息
+							Template template = new Template();
+							template.setFirst("众邦管家---零钱充值");
+							Map<String, String> map = new HashMap<String, String>();
+							map.put("keyword1", cus.getCusNickname());
+							map.put("keyword2", kvm.get("out_trade_no"));
+							map.put("keyword3", (Float.toString(Float.valueOf(kvm.get("total_fee")) / 100)));
+							map.put("keyword4", "零钱充值");
+							template.setKeyword(map);
+							template.setOpenId(kvm.get("openid"));
+							template.setRemark("零钱已经到账，请注意查收");
+							TemplateMessage.RechargeMoneyNotify(template, this.wxService);
+							
+
 							break;
 						default:
 							break;
@@ -271,7 +303,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 		if (resutl.equals("SUCCESS")) {
 			// System.out.println("SUCCESS");
-			
+
 		} else {
 			System.out.println(resutl);
 		}
