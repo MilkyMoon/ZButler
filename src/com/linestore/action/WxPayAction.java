@@ -148,7 +148,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		try {
 			synchronized (this) {
 				Map<String, String> kvm = XMLUtil.parseRequestXmlToMap(request);
-				System.out.println(123);
 				if (SignUtils.checkSign(kvm, this.payConfig.getMchKey())) {
 					if (kvm.get("result_code").equals("SUCCESS")) {
 						// 应答微信
@@ -165,6 +164,11 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						// 获取业务类型 R-充值/P-支付商品
 						case "P":
 							// 存数据库+转账
+							WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
+							wxEntPayRequest.setAmount(Integer.parseInt(kvm.get("total_fee")));
+							wxEntPayRequest.setDescription("");
+							wxEntPayRequest.setOpenid("");
+							this.payToIndividual(wxEntPayRequest, wxPayService);
 
 							break;
 						case "R":
@@ -244,17 +248,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	// }
 	// }
 
-	public void paymentToMerchant() {
-		// 构建WxEntPayRequest
-		WxEntPayRequest request = new WxEntPayRequest();
-		String partner_trade_no = new java.util.Date().getTime() + "" + "";
-		WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-		wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
-		wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
-		wxEntPayRequest.setAmount(10);
-		wxEntPayRequest.setDescription("test");
-		String resutl = payToIndividual(wxEntPayRequest, this.wxPayService);
-
+	public void paymentToMerchant(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) {
+		String resutl = payToIndividual(wxEntPayRequest, wxPayService);
 		if (resutl.equals("SUCCESS")) {
 			System.out.println("SUCCESS");
 		} else {
@@ -275,7 +270,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		String resutl = payToIndividual(wxEntPayRequest, this.wxPayService);
 
 		if (resutl.equals("SUCCESS")) {
-			System.out.println("SUCCESS");
+			// System.out.println("SUCCESS");
+			
 		} else {
 			System.out.println(resutl);
 		}
