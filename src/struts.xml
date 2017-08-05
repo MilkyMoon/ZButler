@@ -201,6 +201,15 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		
+		<!-- MapJson -->
+		<action name="billMapInfo" method="mapInfo" class="com.linestore.action.BillAction">
+            <!-- 返回json类型数据 -->
+            <result type="json">
+                <param name="root">result<!-- result是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法 -->
+                </param>
+            </result>
+        </action>
 
 
 		<!-- 微信相关配置 -->
@@ -343,6 +352,7 @@
 			<result name="selectAll">bill.jsp</result>
 			<result name="select" type="redirectAction">bill_selectAll</result>
 			<result name="read">billRead.jsp</result>
+			<result name="map">earning.jsp</result>
 		</action>
 		<action name="bangdin_*" class="com.linestore.action.ThinkUserAction"
 			method="{1}">

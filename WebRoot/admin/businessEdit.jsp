@@ -275,22 +275,16 @@
 															<option value="0">商家</option>
 														</s:if>
 														<s:if test="%{#businessList.busLevel == 1}">
-															<option value="1" selected="selected">一级</option>
+															<option value="1" selected="selected">会员</option>
 														</s:if>
 														<s:if test="%{#businessList.busLevel != 1}">
-															<option value="1">一级</option>
+															<option value="1">会员</option>
 														</s:if>
 														<s:if test="%{#businessList.busLevel == 2}">
-															<option value="2" selected="selected">二级</option>
+															<option value="2" selected="selected">合伙人</option>
 														</s:if>
 														<s:if test="%{#businessList.busLevel != 2}">
-															<option value="2">二级</option>
-														</s:if>
-														<s:if test="%{#businessList.busLevel == 3}">
-															<option value="3" selected="selected">三级</option>
-														</s:if>
-														<s:if test="%{#businessList.busLevel != 3}">
-															<option value="3">三级</option>
+															<option value="2">合伙人</option>
 														</s:if>
 													</select>
 												</div>

@@ -68,7 +68,7 @@
                     <li><a><i class="fa fa-clone"></i>账单管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/bill_selectAll">账单管理</a></li>
-                            <li><a href="<%=basePath%>admin/bill_selectAll">我的收益</a></li>
+                            <li><a href="<%=basePath%>admin/bill_chinaMap">我的收益</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>

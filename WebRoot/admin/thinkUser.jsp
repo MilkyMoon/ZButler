@@ -32,6 +32,27 @@
 
 <!-- Custom Theme Style -->
 <link href="./build/css/custom.min.css" rel="stylesheet">
+<style type="text/css">
+	#qrcode{
+		position: fixed;
+	    top: 22%;
+	    left: 50%;
+	    background-color: #fff;
+	    padding: 42px 42px 58px 42px;
+	    border: 1px solid #dedede;
+	    border-radius: 5px;
+	    display: none;
+	}
+	
+	#qrcode i{
+        float: right;
+	    padding-bottom: 10px;
+	    font-size: 16px;
+	    position: absolute;
+	    right: 10px;
+	    top: 10px;
+	}
+</style>
 </head>
 
 <body class="nav-md">
@@ -164,12 +185,29 @@
 															<a href="thinkUser_delete?thuId=${root.thuId}" class="btn btn-danger btn-xs">
 																<i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除
 															</a>
+															<a href="#" class="btn btn-danger btn-xs" onclick="javascript:return (function () { 
+																$('#qrcode').css('display','block');
+																<%-- var url = '<%=basePath %>'+'WxOauthRedirect!adminBindWeChat?thuId=${root.thuId}'; --%>
+																var url = 'http://yanglan520.com/ZButler/WxOauthRedirect!adminBindWeChat.action?thuId=${root.thuId}';
+																new QRCode(document.getElementById('qrcode'), url);
+																if ($('#qrcode').children('img').length > 1) {
+																	$('#qrcode img:first').remove();
+																	$('#qrcode canvas:first').remove();
+																}
+																}())" style="background-color: #13ce33;border-color:#22dc29">绑定微信</a>
 														</td>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
-										<img src="http://qrcoder.sinaapp.com?t=http://www.gbtags.com">
+										<div id="qrcode">
+											<a onclick="javascript:return (function () { 
+																$('#qrcode').css('display','none');
+															}())">
+												<i class="fa fa-close"></i>
+											</a>
+											<a href="thinkUser_select" class="btn btn-primary btn-xs" style="position: absolute;bottom: 0;margin: 18px 0;left:40%">已成功绑定!</a>	
+										</div>
 										<%-- <img alt="显示图片" src="<s:url action='thinkUser_viewImages'><s:param name='thuId' value='1'></s:param></s:url>"></img> --%>
 									</div>
 								</div>
@@ -204,11 +242,5 @@
 	
 	<script type="text/javascript" src="./build/js/qrcode.min.js"></script>
 
-	<script type="text/javascript">
-		/* btn.onclick=function(){
-			alert('hello world');
-			} */
-		new QRCode(document.getElementById("qrcode"), "你好，极客标签");
-    </script>
 </body>
 </html>
