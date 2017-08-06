@@ -22,5 +22,8 @@
         <property name="ctaTime" type="java.sql.Timestamp">
             <column name="cta_time" length="19" />
         </property>
+        <property name="ctaStatus" type="java.lang.Integer">
+            <column name="cta_status" />
+        </property>
     </class>
 </hibernate-mapping>

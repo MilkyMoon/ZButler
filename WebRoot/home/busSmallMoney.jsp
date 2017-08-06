@@ -30,7 +30,7 @@
 			<div class="integral2_top_center"></div>
 		</div>
 		<form id="signupForm" method="post"
-			action="<%=basePath%>busTrading_add.action">
+			action="<%=basePath%>ctaTrading_add.action">
 			<div class="m-cell">
 				<div class="cell-item takeSmallMoney_canUse">
 					<div class="cell-left">
@@ -41,7 +41,7 @@
 				<div class="cell-item">
 					<div class="cell-left">提现金额：</div>
 					<div class="cell-right">
-						<input type="test" name="btaMoney" class="cell-input"
+						<input type="test" name="ctaMoney" class="cell-input"
 							placeholder="0.00" id="input" autocomplete="off" />
 					</div>
 				</div>
