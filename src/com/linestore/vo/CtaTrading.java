@@ -15,6 +15,7 @@ public class CtaTrading implements java.io.Serializable {
 	private Integer ctaType;
 	private Float ctaMoney;
 	private Timestamp ctaTime;
+	private Integer ctaStatus;
 
 	// Constructors
 
@@ -28,12 +29,15 @@ public class CtaTrading implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public CtaTrading(String ctaId, Customer customer, Integer ctaType, Float ctaMoney, Timestamp ctaTime) {
+	public CtaTrading(String ctaId, Customer customer, Integer ctaType, Float ctaMoney, Timestamp ctaTime,
+			Integer ctaStatus) {
+		super();
 		this.ctaId = ctaId;
 		this.customer = customer;
 		this.ctaType = ctaType;
 		this.ctaMoney = ctaMoney;
 		this.ctaTime = ctaTime;
+		this.ctaStatus = ctaStatus;
 	}
 
 	// Property accessors
@@ -41,6 +45,7 @@ public class CtaTrading implements java.io.Serializable {
 	public String getCtaId() {
 		return this.ctaId;
 	}
+
 
 	public void setCtaId(String ctaId) {
 		this.ctaId = ctaId;
@@ -77,5 +82,15 @@ public class CtaTrading implements java.io.Serializable {
 	public void setCtaTime(Timestamp ctaTime) {
 		this.ctaTime = ctaTime;
 	}
+
+	public Integer getCtaStatus() {
+		return ctaStatus;
+	}
+
+	public void setCtaStatus(Integer ctaStatus) {
+		this.ctaStatus = ctaStatus;
+	}
+	
+	
 
 }

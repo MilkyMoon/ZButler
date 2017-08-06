@@ -87,7 +87,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		int max = 1000;
 		int min = 9999;
 		Random random = new Random();
-		String out_trade_no = date.getTime() + "T" + random.nextInt(max) % (max - min + 1);
+		String out_trade_no = date.getTime() + "G" + random.nextInt(max) % (max - min + 1);
 		return out_trade_no;
 	}
 
