@@ -31,7 +31,7 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a href="index.jsp"><i class="fa fa-home"></i> Home </a>
+                    <li><a href="<%=basePath%>admin/index"><i class="fa fa-home"></i> Home </a>
                         <!-- <ul class="nav child_menu">
                             <li><a href="index.html">Dashboard</a></li>
                             <li><a href="index2.html">Dashboard2</a></li>
@@ -49,17 +49,17 @@
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/business_selectAll">商家基本信息</a></li>
                             <li><a href="<%=basePath%>admin/cateLine_selectAll">店铺分类</a></li>
-                            <li><a href="form_validation.html">收款账号管理</a></li>
-                            <li><a href="form_wizards.html">账期管理</a></li>
+                           <!--  <li><a href="form_validation.html">收款账号管理</a></li> -->
+                            <li><a href="<%=basePath%>admin/trading_selectAll">账单管理</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
+                    <%-- <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/category_select">分类管理</a></li>
                             <li><a href="media_gallery.html">品牌管理</a></li>
                             <li><a href="typography.html">商品属性模板管理</a></li>
                         </ul>
-                    </li>
+                    </li> --%>
                     <li><a><i class="fa fa-bar-chart-o"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/customer_selectAll">用户管理</a></li>
@@ -74,8 +74,8 @@
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/thinkUser_select">平台代理商</a></li>
-                            <li><a href="<%=basePath%>admin/group_select">角色管理</a></li>
-                            <li><a href="#">权限管理</a></li>
+                            <%-- <li><a href="<%=basePath%>admin/group_select">角色管理</a></li> --%>
+                            <!-- <li><a href="#">权限管理</a></li> -->
                         </ul>
                     </li>
                 </ul>

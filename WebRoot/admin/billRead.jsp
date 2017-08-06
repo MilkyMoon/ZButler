@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>平台管理员添加 | 众帮管家</title>
+<title>账单查看 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -60,21 +60,21 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>平台用户管理</h3>
+							<h3>账单管理</h3>
 						</div>
 
-						<div class="title_right">
-							<div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Search for..."> <span
-										class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+						<<form action="bill_select" method="get">
+							<div class="title_right">
+								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+									<div class="input-group">
+										<input type="text" class="form-control" name="keywords" placeholder="输入姓名、昵称或电话 ..."> 	
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Go!</button>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 					<div class="clearfix"></div>
 					<div class="row">
@@ -82,7 +82,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										添加管理员
+										账单详情查看
 										<!-- <small style="color:red">待审核</small> -->
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
@@ -102,83 +102,125 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form action="thinkUser_save" method="post" class="form-horizontal form-label-left">
+									<form action="thinkUser_update" method="post" class="form-horizontal form-label-left">
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">用户昵称:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuName" placeholder="请输入管理员姓名(如果不确定请放空)">
+												<div class="form-control">${roots.customer.cusNickname}</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">用户名</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">交付金额:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuUsername" placeholder="请输入管理员用户名">
+												<div class="form-control">${roots.bilCusMoney}</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">物业名称:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="password" class="form-control" name="thuPassword" placeholder="请输入管理员密码">
+												<div class="form-control">${roots.thinkUserByThuPropertyId.thuArea}</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">地&nbsp;&nbsp;&nbsp;&nbsp;区</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">业主姓名:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuArea" placeholder="请输入管理员所属地区">
+												<div class="form-control">${roots.thinkUserByThuPropertyId.thuName}</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">收取金额:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<select class="form-control" name="thuPid" id="busCateId">
-													<c:forEach var="root" items="${list}">
-														<option value="${root.thuId}">${root.thuArea}</option>
-													</c:forEach>
-												</select>
+												<div class="form-control">${roots.bilPropertyMoney}</div>
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuEmail" placeholder="请输入管理员邮箱">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">电&nbsp;&nbsp;&nbsp;&nbsp;话</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuPhone" placeholder="请输入管理员电话">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例(方式一)</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuScale" placeholder="请输入抽成比例">
-												<p style="margin-top:10px;"><code>注意：</code>此比例为上级用户向当前用户所抽取的比例，取值为0~1。当用户未设置或未启用时请将比例设置为1。关闭时会自动将值设置为1</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例(方式二)</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuScale" placeholder="请输入抽成比例">
-												<p style="margin-top:10px;"><code>注意：</code>此比例为当前账号向用户抽取交付金额的比例，取值为0~1。当用户未设置或未启用时请将比例设置为0。关闭时会自动将值设置为0</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">启&nbsp;&nbsp;&nbsp;&nbsp;用</label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												<div class="radio">
-													<label> 
-															<input type="radio" class="flat" name="thuStatus" value="1"> 启用
-	                          								<input type="radio" class="flat" checked name="thuStatus" value="-1"> 不启用
-													</label>
+										
+										<!-- 判断当前用户是否显示县级代理 -->					
+										<c:if test="${sessionScope.admin.thuId != roots.thinkUserByThuPropertyId.thuId}">
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">县名称:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.thinkUserByThuCountyId.thuArea}</div>
 												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">县代理:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.thinkUserByThuCountyId.thuName}</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">县收取金额:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.bilCountyMoney}</div>
+												</div>
+											</div>
+										</c:if>
+										<!-- 判断当前用户是否显示市级代理 -->	
+										<c:if test="${sessionScope.admin.thuId != roots.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != roots.thinkUserByThuCountyId.thuId}">
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">市名称:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.thinkUserByThuCityId.thuArea}</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">市代理:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.thinkUserByThuCityId.thuName}</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">市收取金额:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.bilCityMoney}</div>
+												</div>
+											</div>
+										</c:if>
+										
+										<!-- 判断当前用户是否显示省级代理 -->	
+										<c:if test="${sessionScope.admin.thuId != roots.thinkUserByThuCityId.thuId && sessionScope.admin.thuId != roots.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != roots.thinkUserByThuCountyId.thuId}">
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">省名称:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.thinkUserByThuProvinceId.thuArea}</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">省代理:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.thinkUserByThuProvinceId.thuName}</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">省收取金额:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.bilProvinceMoney}</div>
+												</div>
+											</div>
+										</c:if>
+										<c:if test="${sessionScope.admin.thuPid == 0}">
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">众帮收取金额:</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<div class="form-control">${roots.bilZongMoney}</div>
+												</div>
+											</div>
+										</c:if>
+														
+														
+										
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">账单日期:</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<div class="form-control">${roots.bilDate}</div>
 											</div>
 										</div>
 										
 										<div class="ln_solid"></div>
 										<div class="form-group">
 											<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-												<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
+												<input type="hidden" name="thuId" value="${listInfo.thuId}"></input>
+												<a href="bill_selectAll" class="btn btn-success" style="float:right;margin-right:0;">返回</a>
 											</div>
 										</div>
 									</form>

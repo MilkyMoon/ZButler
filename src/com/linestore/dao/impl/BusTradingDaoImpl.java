@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.BusTradingDao;
+import com.linestore.util.Page;
 import com.linestore.vo.BusTrading;
 
 
@@ -65,6 +66,75 @@ public class BusTradingDaoImpl extends HibernateDaoSupport implements BusTrading
 	public BusTrading queryById(String btaId) {
 		List<BusTrading> btas = (List<BusTrading>) this.getHibernateTemplate().find("from BusTrading where btaId='" + btaId + "'");
 		return btas.get(0);
+	}
+
+	@Override
+	public List<BusTrading> selectAll(Page page) {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from BusTrading where btaStatus = 0");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
+	}
+
+	@Override
+	public int queryAll() {
+		// TODO Auto-generated method stub
+		
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("select count(*) from BusTrading where btaStatus = 0");
+		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+		session.clear();
+        System.out.println(count);
+		
+		System.out.println("query successful");
+		return count;
+	}
+
+	@Override
+	public void update(String hql) {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+		session.clear();
+	}
+
+	@Override
+	public List<BusTrading> search(String keywords, String area) {
+		// TODO Auto-generated method stub
+		String hql = "from BusTrading where btaStatus = 0 and (business.baProvince like '%"+area+"%' or business.baCity like '%"+area+"%') and (business.baCounty like '%"+area+"%' or business.busShopName like '%"+keywords+"%' or business.busOwnerName like '%"+keywords+"%' or btaAddress like '%"+keywords+"%')";
+		List<BusTrading> list = (List<BusTrading>) this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	@Override
+	public List<BusTrading> selectByArea(Page page, String area) {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from BusTrading where btaStatus = 0 and (business.baProvince like '%"+area+"%' or business.baCity like '%"+area+"%' or business.baCounty like '%"+area+"%')");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
+	}
+	
+	public int queryByAreaAll(String area){
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from BusTrading where btaStatus = 0 and (business.baProvince like '%"+area+"%' or business.baCity like '%"+area+"%' or business.baCounty like '%"+area+"%')");
+		int count = Integer.parseInt(String.valueOf(query.list().size()));
+		session.clear();
+		return count;
+	}
+
+	@Override
+	public List<BusTrading> searchAll(String keywords) {
+		// TODO Auto-generated method stub
+		String hql = "from BusTrading where btaStatus = 0 and (business.busShopName like '%"+keywords+"%' or business.busOwnerName like '%"+keywords+"%' or btaAddress like '%"+keywords+"%')";
+		List<BusTrading> list = (List<BusTrading>) this.getHibernateTemplate().find(hql);
+		return list;
 	}
 
 }

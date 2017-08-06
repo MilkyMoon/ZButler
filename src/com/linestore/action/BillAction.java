@@ -25,6 +25,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private BillService billService;
 	private List<Bill> billList;
 	ThinkUser think;
+	private Bill billResult;
 	
 //	private static final long serialVersionUID = -5452039838295753607L;
 	private String data;
@@ -106,6 +107,29 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
         }
 
         return SUCCESS;
+	}
+	
+	public String read(){
+		selectById();
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots",billResult);
+		return "read";
+	}
+	
+	public String search(){
+		if(keywords.equals("") || keywords == null){
+			return "select";
+		}
+		billList = billService.search(keywords);
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots",billList);
+		
+		return "selectAll";
+	}
+	
+	public String selectById(){
+		billResult = billService.selectById(bill.getBilId());
+		return "selectAll";
 	}
 	
 	public void setBillService(BillService billService) {

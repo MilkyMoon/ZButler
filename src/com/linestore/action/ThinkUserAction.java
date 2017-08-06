@@ -109,6 +109,10 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 				|| thinkUser.getThuScale() < 0) {
 			thinkUser.setThuScale((float) 1);
 		}
+		if (thinkUser.getThuStatus().equals("-1") || thinkUser.getThuScaleTwo() == null || thinkUser.getThuScaleTwo() > 1
+				|| thinkUser.getThuScale() < 0) {
+			thinkUser.setThuScaleTwo((float) 0);
+		}
 		thinkUserService.add(thinkUser);
 		return "select";
 	}
@@ -297,6 +301,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		selectById();
 		thinkUserResult.setThuStatus(thinkUser.getThuStatus());
 		thinkUserResult.setThuScale((float) 1);
+		thinkUserResult.setThuScaleTwo((float) 0);
 		thinkUserService.status(thinkUserResult);
 
 		return "select";

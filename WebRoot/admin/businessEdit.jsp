@@ -154,12 +154,11 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">组织机构<span
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">商家图片<span
 													class="required">*</span>
 												</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<textarea class="form-control" rows="3" name="busOrgUrl"
-														placeholder='<s:property value="busOrgUrl"/>'><s:property value="busOrgUrl"/></textarea>
+													<img src="<s:property value="busOrgUrl"/>" style="max-width:100%"/>
 												</div>
 											</div>
 
@@ -294,6 +293,13 @@
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="bbBankCard"
 														value="<s:property value="bbBankCard"/>">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" name="thuScale" placeholder="请输入抽成比例">
+													<p style="margin-top:10px;"><code>注意：</code>此比例为上级用户向当前用户所抽取的比例，取值为0~1。当用户未设置或未启用时请将比例设置为0。关闭时会自动将值设置为0</p>
 												</div>
 											</div>
 											<div class="form-group">

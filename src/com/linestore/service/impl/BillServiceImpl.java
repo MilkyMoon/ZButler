@@ -48,4 +48,10 @@ public class BillServiceImpl implements BillService {
 	public void addBill(Bill bill) {
 		billDao.addBill(bill);
 	}
+
+	@Override
+	public Bill selectById(Integer id) {
+		// TODO Auto-generated method stub
+		return billDao.selectById(id);
+	}
 }

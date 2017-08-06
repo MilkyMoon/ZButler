@@ -14,4 +14,6 @@ public interface ThinkUserDao {
 	public void update(String hql);
 	
 	public ThinkUser checkThinkUser(ThinkUser thinkUser);
+	
+	public ThinkUser queryById(int thuId);
 }
