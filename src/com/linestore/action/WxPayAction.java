@@ -236,11 +236,9 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bta.setBusiness(bus);
 							busTradingService.addBusTrading(bta);
 							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
-							System.out.println("$$$$$$$$$$$$");
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
 								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {
-									System.out.println("@@@@@@@@@@@@");
 									Friends fri = friendsService.queryByPhone(Pcus.get(0).getCusPhone());
 									if (fri != null) {
 										System.out.println("------>friend find;type->" + fri.getFriType());
@@ -420,22 +418,21 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	}
 
-	public void postal() {
+	public boolean postal() {
 		// 构建提现 WxEntPayRequest
-		WxEntPayRequest request = new WxEntPayRequest();
-		String partner_trade_no = new java.util.Date().getTime() + "" + "";
 		WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-		wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
-		wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
-		wxEntPayRequest.setAmount(10);
-		wxEntPayRequest.setDescription("test");
+		wxEntPayRequest.setPartnerTradeNo(request.getParameter(""));
+		wxEntPayRequest.setOpenid(request.getParameter(""));
+		wxEntPayRequest.setAmount(12);
+		wxEntPayRequest.setDescription(request.getParameter(""));
 		String resutl = payToIndividual(wxEntPayRequest, this.wxPayService);
 
 		if (resutl.equals("SUCCESS")) {
 			// System.out.println("SUCCESS");
+			return true;
 
 		} else {
-			System.out.println(resutl);
+			return false;
 		}
 	}
 
