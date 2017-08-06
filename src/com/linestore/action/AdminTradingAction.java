@@ -90,12 +90,13 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 		if(busTrading.getBtaStatus() == 1){
 			bustradingResult = busTradingService.queryById(busTrading.getBtaId());
 			bustradingResult.getBtaMoney();
+			String openid = busTrading.getBusiness().getCustomer().getCusOpenId();
 			
 			WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
 			wxEntPayRequest.setAmount(11);
-			wxEntPayRequest.setDescription("描述");
-			wxEntPayRequest.setOpenid("openid");
-			wxEntPayRequest.setPartnerTradeNo("订单号");
+			wxEntPayRequest.setDescription(busTrading.getBtaType().toString());
+			wxEntPayRequest.setOpenid(openid);
+			wxEntPayRequest.setPartnerTradeNo(busTrading.getBtaId());
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			request.put("wxEntPayRequest", wxEntPayRequest);
 			request.put("busTrading", busTrading);

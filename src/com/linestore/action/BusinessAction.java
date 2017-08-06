@@ -62,7 +62,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //		
 //		busAddressService.add(busAddress);
 //		busBankService.add(busBank);
-		if(business.getBusScale().equals("-1") || business.getBusScale() == null || business.getBusScale() > 1
+		if(business.getBusStatus() == 0 || business.getBusScale() == null || business.getBusScale() > 1
 				|| business.getBusScale() < 0){
 			business.setBusScale((float) 0);
 		}
@@ -91,7 +91,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //			business.setBusStatus(0);
 //		}
 		
-		if(business.getBusScale().equals("-1") || business.getBusScale() == null || business.getBusScale() > 1
+		if(business.getBusStatus() == 0 || business.getBusScale() == null || business.getBusScale() > 1
 				|| business.getBusScale() < 0){
 			business.setBusScale((float) 0);
 		}
