@@ -322,6 +322,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 											addChangeCta.setCtaMoney(addChange);
 											addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
 											addChangeCta.setCtaType(2);
+											addChangeCta.setCtaStatus(1);
 											addChangeCta.setCustomer(fri.getCustomer());
 											addChangeCta.setCtaId(Pdate.getTime() + "F" + this.RandomStr()); // 付款返零钱
 											ctaTradingService.addCtaTrading(addChangeCta);
@@ -345,6 +346,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
 										addChangeCta.setCtaType(13);
 										addChangeCta.setCustomer(Pcus.get(0));
+										addChangeCta.setCtaStatus(1);
 										addChangeCta.setCtaId(Pdate.getTime() + "J" + this.RandomStr()); // 付款返积分
 										ctaTradingService.addCtaTrading(addChangeCta);
 										cusAccountService.updateCusAccount(addCac);
@@ -371,6 +373,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							cta.setCtaMoney(Float.valueOf(kvm.get("total_fee")) / 100);
 							cta.setCtaId(kvm.get("out_trade_no"));
 							cta.setCtaType(1);
+							cta.setCtaStatus(1);
 							Date Rdate = new Date();
 							cta.setCtaTime(new Timestamp(Rdate.getTime()));
 							ctaTradingService.addCtaTrading(cta);
@@ -397,6 +400,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 											* Float.valueOf(settingService.queryById(1).getSetValue()));
 									addPointCta.setCtaTime(new Timestamp(Rdate.getTime()));
 									addPointCta.setCtaType(12);
+									addPointCta.setCtaStatus(1);
 									addPointCta.setCustomer(fris.getCustomer());
 									addPointCta.setCtaId(Rdate.getTime() + "Z" + this.RandomStr());
 									ctaTradingService.addCtaTrading(addPointCta);

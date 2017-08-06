@@ -103,6 +103,7 @@
 		<action name="CusAccount" class="com.linestore.action.CusAccountAction">
 			<result name="gotoChangeOne">home/changeOne.jsp</result>
 			<result name="gotoPointsOne">home/pointsOne.jsp</result>
+			<result name="smallMoney" type="redirect">home/busSmallMoney.jsp</result>
 		</action>
 
 		<action name="Tag" class="com.linestore.action.TagAction">

@@ -30,7 +30,7 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 		System.out.println("exec updateField");
 		try {
 			Session session = this.getSessionFactory().getCurrentSession();
-			String hql = "update CusAccount ca set ca."+field+"='"+value+"' where id="+id;
+			String hql = "update CusAccount ca set ca."+field+"="+value+" where id="+id;
 			Query query = session.createQuery(hql);
 			query.executeUpdate();
 			System.out.println("updateField successful!");
