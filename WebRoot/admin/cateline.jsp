@@ -106,8 +106,8 @@
 													<c:if test="${root.calStatus == 1}">
 														<td>是</td>
 													</c:if>
-													<c:if test="${root.calStatus == 0}">
-														<td>否</td>
+													<c:if test="${root.calStatus == -1}">
+														<td style="color:#d9534f">否</td>
 													</c:if>
 													<td>
 														<a href="cateLine_edit?calId=${root.calId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
