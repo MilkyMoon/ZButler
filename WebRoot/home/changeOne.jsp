@@ -33,7 +33,7 @@
 		<div class="smallMoney_content">
 			<div class="smallMoney_content_left">
 				<div class="smallMoney_content_canUse">
-					可用零钱&nbsp;&nbsp;<span>${cac.cacChange}</span>元
+					可用零钱&nbsp;&nbsp;<span><fmt:formatNumber type="number" maxFractionDigits="2" value="${cac.cacChange}" /></span>元
 				</div>
 				<div class="smallMoney_content_cantUse">
 					冻结零钱：&nbsp;&nbsp;<span>0.00</span>

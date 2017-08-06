@@ -148,7 +148,7 @@
 															<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=2" class="btn btn-primary btn-xs">
 																<i class="fa fa-folder"></i>&nbsp;&nbsp;不允许
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="customer_read?cusId=${root.customer.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看商家</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="customer_read?cusId=${root.customer.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看用户</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>
