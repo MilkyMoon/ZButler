@@ -9,6 +9,7 @@ import java.util.Random;
 import com.linestore.service.CtaTradingService;
 import com.linestore.service.CusAccountService;
 import com.linestore.service.SettingService;
+import com.linestore.vo.Business;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
@@ -66,6 +67,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		cta.setCtaMoney(Float.valueOf(point) * Float.valueOf(settingService.queryById(8).getSetValue()));
 		cta.setCtaTime(new Timestamp(date.getTime()));
 		cta.setCtaType(11);
+		cta.setCtaStatus(1);
 		cta.setCustomer(cus);
 		ctaTradingService.addCtaTrading(cta);
 		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
@@ -82,12 +84,34 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		}
 		return "gotoRecord";
 	}
+	
+	public String add() {
+		ctaTrading.setCtaTime(new Timestamp(new Date().getTime()));
+		ctaTrading.setCtaType(4);
+		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
+		CusAccount cac = (CusAccount) ActionContext.getContext().getSession().get("cac");
+
+		String btaId = new java.util.Date().getTime() + "T" + this.RandomStr();
+		ctaTrading.setCtaId(btaId);
+		ctaTrading.setCustomer(cus);
+		ctaTrading.setCtaStatus(0);
+		ctaTradingService.addCtaTrading(ctaTrading);
+		Float money = cac.getCacChange() - ctaTrading.getCtaMoney();
+		cac.setCacChange(money);
+		cusAccountService.updateField("cacChange", String.valueOf(money), cac.getCacId());
+//		bus.setBusChange(bus.getBusChange() - ctaTrading.getCtaMoney());
+//		businessService.update(bus);
+		ActionContext.getContext().getSession().put("cac", cac);
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("js", "<script>YDUI.dialog.alert('申请成功！');</script>");
+		return "smallMoney";
+	}
 
 	private String getOrd(Date date) {
 		int max = 1000;
 		int min = 9999;
 		Random random = new Random();
-		String out_trade_no = date.getTime() + "T" + random.nextInt(max) % (max - min + 1);
+		String out_trade_no = date.getTime() + "G" + random.nextInt(max) % (max - min + 1);
 		return out_trade_no;
 	}
 
@@ -121,6 +145,16 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 
 	public void setSettingService(SettingService settingService) {
 		this.settingService = settingService;
+	}
+	
+	private String RandomStr() {
+		Random random = new Random();
+		String radnString = "";
+		for (int i = 0; i < 4; i++) {
+			radnString += (int) (Math.random() * 10);
+		}
+
+		return radnString;
 	}
 
 }

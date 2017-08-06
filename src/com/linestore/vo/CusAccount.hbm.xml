@@ -12,12 +12,12 @@
             <column name="cac_cus_id" />
         </many-to-one>
         <property name="cacChange" type="java.lang.Float">
-            <column name="cac_change" precision="12" scale="0">
+            <column name="cac_change" precision="12" scale="3">
                 <comment>零钱</comment>
             </column>
         </property>
         <property name="cacPoints" type="java.lang.Float">
-            <column name="cac_points" precision="12" scale="0">
+            <column name="cac_points" precision="12" scale="3">
                 <comment>积分</comment>
             </column>
         </property>

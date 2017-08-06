@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.CtaTradingDao;
 import com.linestore.service.CtaTradingService;
+import com.linestore.util.Page;
 import com.linestore.vo.CtaTrading;
 
 @Transactional
@@ -36,4 +37,34 @@ public class CtaTradingServiceImpl implements CtaTradingService {
 		return ctaTradingDao.queryPoint(cusId);
 	}
 
+	@Override
+	public CtaTrading queryById(String btaId) {
+		// TODO Auto-generated method stub
+		return ctaTradingDao.queryById(btaId);
+	}
+
+	@Override
+	public List<CtaTrading> selectAll(Page page) {
+		// TODO Auto-generated method stub
+		return ctaTradingDao.selectAll(page);
+	}
+
+	@Override
+	public int queryAll() {
+		// TODO Auto-generated method stub
+		return ctaTradingDao.queryAll();
+	}
+
+	@Override
+	public void update(String hql) {
+		// TODO Auto-generated method stub
+		ctaTradingDao.update(hql);
+	}
+
+	@Override
+	public List<CtaTrading> search(String keywords) {
+		// TODO Auto-generated method stub
+		return ctaTradingDao.search(keywords);
+	}
+	
 }

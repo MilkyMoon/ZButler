@@ -11,27 +11,34 @@ import java.util.Random;
 import com.github.binarywang.wxpay.bean.request.WxEntPayRequest;
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
+import com.linestore.service.CtaTradingService;
+import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.util.Page;
 import com.linestore.util.PageUtil;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
+import com.linestore.vo.CtaTrading;
+import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class AdminTradingAction extends ActionSupport implements ModelDriven<BusTrading> {
+public class AdminTradingAction extends ActionSupport implements ModelDriven<CtaTrading> {
 
-	private BusTrading busTrading = new BusTrading();
+	private CtaTrading ctaTrading = new CtaTrading();
 
-	private BusTradingService busTradingService;
-	private List<BusTrading> busTradingList = new ArrayList<BusTrading>();
+	private CtaTradingService ctaTradingService;
+	private List<CtaTrading> ctaTradingList = new ArrayList<CtaTrading>();
 	Map<String, Object> request;
-	private BusTrading bustradingResult;
+	private CtaTrading ctatradingResult;
 	private ThinkUser think = new ThinkUser();
+	private CusAccount cusAccount = new CusAccount();
+	private CusAccountService cusAccountService;
+	private CusAccount cusAccountReslut;
 	
 	private Integer thuId;
 	
@@ -40,8 +47,8 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 	private String keywords = "";
 
 	@Override
-	public BusTrading getModel() {
-		return busTrading;
+	public CtaTrading getModel() {
+		return ctaTrading;
 	}
 
 	public String selectAll(){
@@ -53,24 +60,15 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 			pageNow = "1";
 		}
 		
-		getId();
-		System.out.println("thuArea:"+think.getThuArea());
-		System.out.println("thuId:"+think.getThuId());
 		int totalCount = 0;
 		Page page = null;
-		if(think.getThuPid() == 0){
-			totalCount = busTradingService.queryAll();
-			page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
-			busTradingList = busTradingService.selectAll(page);
-		} else {
-			totalCount = busTradingService.queryByAreaAll(think.getThuArea());
-			page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
-			String area = think.getThuArea();
-			busTradingList = busTradingService.selectByArea(page,area);
-		}
 		
+		totalCount = ctaTradingService.queryAll();
+		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
+		ctaTradingList = ctaTradingService.selectAll(page);
+	
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
-		request.put("roots", busTradingList);
+		request.put("roots", ctaTradingList);
 		request.put("page", page);
 		
 		return "selectAll";
@@ -82,24 +80,37 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 	}
 	
 	public String status(){
-		if(busTrading.getBtaStatus() == 2){
+		if(ctaTrading.getCtaStatus() == 2){
+			ctatradingResult = ctaTradingService.queryById(ctaTrading.getCtaId());
+			cusAccountReslut = cusAccountService.findByCusId(ctatradingResult.getCustomer().getCusId());
+			System.out.println("ctaMoney:"+ctatradingResult.getCtaMoney());
+			System.out.println("cacMoney:"+cusAccountReslut.getCacChange());
+			Float cacChange = cusAccountReslut.getCacChange() + ctatradingResult.getCtaMoney();
+			cusAccountReslut.setCacChange(cacChange);
+			
+			System.out.println("cacChange:"+cusAccountReslut.getCacChange());
+			cusAccountService.updateField("cacChange", String.valueOf(cacChange), cusAccountReslut.getCacId());
+			
 			update();
 			return "select";
 		}
 		
-		if(busTrading.getBtaStatus() == 1){
-			bustradingResult = busTradingService.queryById(busTrading.getBtaId());
-			bustradingResult.getBtaMoney();
-			String openid = bustradingResult.getBusiness().getCustomer().getCusOpenId();
+		if(ctaTrading.getCtaStatus() == 1){
+			ctatradingResult = ctaTradingService.queryById(ctaTrading.getCtaId());
+			ctatradingResult.getCtaMoney();
+			String openid = ctatradingResult.getCustomer().getCusOpenId();
+			
+			//修改状态值
+			ctatradingResult.setCtaStatus(1);
 			
 			WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-			wxEntPayRequest.setAmount(11);
-			wxEntPayRequest.setDescription(bustradingResult.getBtaType().toString());
+			wxEntPayRequest.setAmount(wxEntPayRequest.yuanToFee(ctatradingResult.getCtaMoney().toString()));
+			wxEntPayRequest.setDescription(ctatradingResult.getCtaType().toString());
 			wxEntPayRequest.setOpenid(openid);
-			wxEntPayRequest.setPartnerTradeNo(busTrading.getBtaId());
+			wxEntPayRequest.setPartnerTradeNo(ctatradingResult.getCtaId());
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			request.put("wxEntPayRequest", wxEntPayRequest);
-			request.put("busTrading", bustradingResult);
+			request.put("busTrading", ctatradingResult);
 			// 写session 
 			return "gotoPostal";
 			// 数据更新
@@ -113,22 +124,19 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 			return "select";
 		}
 		getId();
-		if(think.getThuPid() == 0){
-			busTradingList = busTradingService.searchAll(keywords);
-		} else {
-			busTradingList = busTradingService.search(keywords,think.getThuArea());
-		}
+
+		ctaTradingList = ctaTradingService.search(keywords);
 		
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
-		request.put("roots", busTradingList);
+		request.put("roots", ctaTradingList);
 		return "selectAll";
 	}
 	
 	public String update(){
 		try {
-			String hql = ReturnUpdateHql.ReturnHql(busTrading.getClass(), busTrading, busTrading.getBtaId());
+			String hql = ReturnUpdateHql.ReturnHql(ctaTrading.getClass(), ctaTrading, ctaTrading.getCtaId());
 			
-			busTradingService.update(hql);
+			ctaTradingService.update(hql);
 			
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
@@ -156,12 +164,12 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 		return thuId;
 	}
 
-	public BusTrading getBusTrading() {
-		return busTrading;
+	public CtaTrading getCtaTrading() {
+		return ctaTrading;
 	}
 
-	public void setBusTrading(BusTrading busTrading) {
-		this.busTrading = busTrading;
+	public void setCtaTrading(CtaTrading ctaTrading) {
+		this.ctaTrading = ctaTrading;
 	}
 
 	public String getPageNow() {
@@ -188,8 +196,8 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 		this.keywords = keywords;
 	}
 
-	public void setBusTradingService(BusTradingService busTradingService) {
-		this.busTradingService = busTradingService;
+	public void setCtaTradingService(CtaTradingService ctaTradingService) {
+		this.ctaTradingService = ctaTradingService;
 	}
 
 	public ThinkUser getThink() {
@@ -200,4 +208,19 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 		this.think = think;
 	}
 
+	public CusAccount getCusAccount() {
+		return cusAccount;
+	}
+
+	public void setCusAccount(CusAccount cusAccount) {
+		this.cusAccount = cusAccount;
+	}
+
+	public CusAccountService getCusAccountService() {
+		return cusAccountService;
+	}
+
+	public void setCusAccountService(CusAccountService cusAccountService) {
+		this.cusAccountService = cusAccountService;
+	}
 }

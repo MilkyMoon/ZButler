@@ -106,6 +106,7 @@
 		<action name="CusAccount" class="com.linestore.action.CusAccountAction">
 			<result name="gotoChangeOne">home/changeOne.jsp</result>
 			<result name="gotoPointsOne">home/pointsOne.jsp</result>
+			<result name="smallMoney" type="redirect">home/busSmallMoney.jsp</result>
 		</action>
 
 		<action name="Tag" class="com.linestore.action.TagAction">
@@ -375,6 +376,9 @@
 		</action>
 		<action name="index" method="index" class="com.linestore.action.AdminIndexAction">
 			<result name="success">index.jsp</result>
+		</action>
+		<action name="logout" method="logout" class="com.linestore.action.AdminLoginAction">
+			<result name="success">login.jsp</result>
 		</action>
 	</package>
 

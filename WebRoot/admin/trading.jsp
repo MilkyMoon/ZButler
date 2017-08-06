@@ -67,7 +67,7 @@
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="keywords" placeholder="输入商家名称、店主姓名、商家地址 ..."> 	
+										<input type="text" class="form-control" name="keywords" placeholder="输入用户昵称、用户电话 ..."> 	
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>
@@ -114,10 +114,10 @@
 													<th>
 														<th><input type="checkbox" id="check-all" class="flat" /></th>
 													</th>
-													<th class="column-title">商家名称</th>
-													<th class="column-title">店主姓名</th>
+													<th class="column-title">用户头像</th>
+													<th class="column-title">用户昵称</th>
+													<th class="column-title">用户电话</th>
 													<th class="column-title">申请金额</th>
-													<th class="column-title">商家地址</th>
 													<th class="column-title">申请时间</th>
 													<th class="column-title no-link last">操作</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
@@ -133,20 +133,22 @@
 														<td class="a-center ">
 															<th><input type="checkbox" class="flat" name="table_records" /></th>
 														</td>
-														<td>${root.business.busShopName}</td>
-														<td>${root.business.busOwnerName}</td>
-														<td>${root.btaMoney}</td>
-														<td>${root.btaAddress}</td>
-														<td>${root.btaTime}</td>
 														<td>
-															<a href="trading_status?btaId=${root.btaId}&btaStatus=1" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
+															<img src="${root.customer.cusImgUrl}" style="width: 36px;max-height: 36px;border-radius: 5px;"/>
+														</td>
+														<td>${root.customer.cusNickname}</td>
+														<td>${root.customer.cusPhone}</td>
+														<td>${root.ctaMoney}</td>
+														<td>${root.ctaTime}</td>
+														<td>
+															<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=1" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
 																<i class="fa fa-folder"></i>&nbsp;&nbsp;允许
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															
-															<a href="trading_status?btaId=${root.btaId}&btaStatus=2" class="btn btn-primary btn-xs">
+															<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=2" class="btn btn-primary btn-xs">
 																<i class="fa fa-folder"></i>&nbsp;&nbsp;不允许
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="business_read?busId=${root.business.busId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看商家</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="customer_read?cusId=${root.customer.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看商家</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>
