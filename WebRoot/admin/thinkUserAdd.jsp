@@ -159,7 +159,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例(方式二)</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuScale" placeholder="请输入抽成比例">
+												<input type="text" class="form-control" name="thuScaleTwo" placeholder="请输入抽成比例">
 												<p style="margin-top:10px;"><code>注意：</code>此比例为当前账号向用户抽取交付金额的比例，取值为0~1。当用户未设置或未启用时请将比例设置为0。关闭时会自动将值设置为0</p>
 											</div>
 										</div>

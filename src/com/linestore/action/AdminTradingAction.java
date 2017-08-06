@@ -90,16 +90,19 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 		if(busTrading.getBtaStatus() == 1){
 			bustradingResult = busTradingService.queryById(busTrading.getBtaId());
 			bustradingResult.getBtaMoney();
-			String openid = busTrading.getBusiness().getCustomer().getCusOpenId();
+			String openid = bustradingResult.getBusiness().getCustomer().getCusOpenId();
+			
+			//修改状态值
+			bustradingResult.setBtaStatus(1);
 			
 			WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-			wxEntPayRequest.setAmount(11);
-			wxEntPayRequest.setDescription(busTrading.getBtaType().toString());
+			wxEntPayRequest.setAmount(wxEntPayRequest.yuanToFee(bustradingResult.getBtaMoney().toString()));
+			wxEntPayRequest.setDescription(bustradingResult.getBtaType().toString());
 			wxEntPayRequest.setOpenid(openid);
-			wxEntPayRequest.setPartnerTradeNo(busTrading.getBtaId());
+			wxEntPayRequest.setPartnerTradeNo(bustradingResult.getBtaId());
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			request.put("wxEntPayRequest", wxEntPayRequest);
-			request.put("busTrading", busTrading);
+			request.put("busTrading", bustradingResult);
 			// 写session 
 			return "gotoPostal";
 			// 数据更新

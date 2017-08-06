@@ -151,6 +151,36 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		}
 		return "select";
 	}
+	
+	public String update() {
+		int id = thinkUser.getThuId();
+
+		String hql;
+		try {
+
+			hql = ReturnUpdateHql.ReturnHql(thinkUser.getClass(), thinkUser, id);
+			// System.out.println(business.getBusStatus());
+			thinkUserService.update(hql);
+
+			thinkUser.setThuName(null);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "select";
+	}
 
 	public String delete() {
 		ThinkUser think = new ThinkUser();
