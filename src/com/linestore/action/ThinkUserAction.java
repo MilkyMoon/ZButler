@@ -302,6 +302,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		}
 
 		ActionContext.getContext().getSession().put("list", listResault);
+		
+		System.out.println();
 
 		return "selectAll";
 	}
