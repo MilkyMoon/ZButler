@@ -146,15 +146,15 @@
 															<th><input type="checkbox" class="flat" name="table_records" /></th>
 														</td>
 														<td>${root.customer.cusNickname}</td>
-														<td>${root.bilCusMoney}</td>
+														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCusMoney}" /></td>
 														<td>${root.business.busShopName}</td>
-														<td>${root.bilBusMoney}</td>
+														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilBusMoney}" /></td>
 														<td>${root.thinkUserByThuPropertyId.thuName}</td>
-														<td>${root.bilPropertyMoney}</td>
+														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilPropertyMoney}" /></td>
 														<!-- 判断当前用户是否显示县级代理 -->					
 														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId}">
 															<td>${root.thinkUserByThuCountyId.thuName}</td>
-															<td>${root.bilCountyMoney}</td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCountyMoney}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId}">
 															<td></td>
@@ -163,7 +163,7 @@
 														<!-- 判断当前用户是否显示市级代理 -->	
 														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
 															<td>${root.thinkUserByThuCityId.thuName}</td>
-															<td>${root.bilCityMoney}</td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCityMoney}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
 															<td></td>
@@ -172,14 +172,14 @@
 														<!-- 判断当前用户是否显示省级代理 -->	
 														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuCityId.thuId && sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
 															<td>${root.thinkUserByThuProvinceId.thuName}</td>
-															<td>${root.bilProvinceMoney}</td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilProvinceMoney}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuCityId.thuId || sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
 															<td></td>
 															<td></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.thuPid == 0}">
-															<td>${root.bilZongMoney}</td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilZongMoney}" /></td>
 														</c:if>
 														
 														<td>

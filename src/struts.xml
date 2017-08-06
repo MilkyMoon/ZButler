@@ -106,7 +106,7 @@
 		<action name="CusAccount" class="com.linestore.action.CusAccountAction">
 			<result name="gotoChangeOne">home/changeOne.jsp</result>
 			<result name="gotoPointsOne">home/pointsOne.jsp</result>
-			<result name="smallMoney" type="redirect">home/busSmallMoney.jsp</result>
+			
 		</action>
 
 		<action name="Tag" class="com.linestore.action.TagAction">
@@ -125,6 +125,7 @@
 		<action name="CtaTrading" class="com.linestore.action.CtaTradingAction">
 			<result name="gotoRecord">/home/rechargeRecord.jsp</result>
 			<result name="update" type="redirect">/home/pointToChange.jsp</result>
+			<result name="smallMoney" type="redirect">home/busSmallMoney.jsp</result>
 		</action>
 
 		<action name="cateLine_*" class="com.linestore.action.CateLineAction"
