@@ -44,7 +44,7 @@
 				<div class="smallMoney2_exchange_canUse">
 					可转零钱的消费积分：<span id="point">${cac.cacPoints}</span>
 				</div>
-				<input type="number" pattern="[0-9]*" class="cell-input" id="input"
+				<input type="text"  class="cell-input" id="input"
 					name="point" placeholder="" autocomplete="off" /> <span>转换比例：10积分=1元零钱,输入至少为0.1</span>
 				<button type="submit" class="btn-block btn-primary">提交</button>
 			</form>
