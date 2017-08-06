@@ -34,7 +34,10 @@
 
 		<action name="user_*" class="com.linestore.action.UserAction"
 			method="{1}">
-			<result name="success" type="redirect">admin/index.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="namespace">/admin</param>
+				<param name="actionName">index</param>
+			</result>
 			<result name="error">admin/login.jsp</result>
 		</action>
 
@@ -326,7 +329,7 @@
 
 		<action name="adminLogin" class="com.linestore.action.AdminLoginAction"
 			method="login">
-			<result name="gotoIndex" type="redirect">index.jsp</result>
+			<result name="gotoIndex" type="redirectAction">index</result>
 			<result name="gotoLogin">login.jsp</result>
 		</action>
 		<action name="code" class="com.linestore.action.AdminLoginAction"
@@ -369,6 +372,9 @@
 				<param name="actionName">postal</param>
 			</result>
 			<result name="select" type="redirectAction">trading_selectAll</result>
+		</action>
+		<action name="index" method="index" class="com.linestore.action.AdminIndexAction">
+			<result name="success">index.jsp</result>
 		</action>
 	</package>
 

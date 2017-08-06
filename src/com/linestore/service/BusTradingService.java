@@ -23,6 +23,12 @@ public interface BusTradingService {
 	
 	public void update(String hql);
 	
-	public List<BusTrading> search(String keywords);
+	public List<BusTrading> searchAll(String keywords);
+	
+	public List<BusTrading> search(String keywords, String area);
+	
+	public List<BusTrading> selectByArea(Page page, String area);
+	
+	public int queryByAreaAll(String area);
 
 }

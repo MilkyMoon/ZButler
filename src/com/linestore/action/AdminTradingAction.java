@@ -18,6 +18,7 @@ import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
 import com.linestore.vo.Customer;
+import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -30,6 +31,9 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 	private List<BusTrading> busTradingList = new ArrayList<BusTrading>();
 	Map<String, Object> request;
 	private BusTrading bustradingResult;
+	private ThinkUser think = new ThinkUser();
+	
+	private Integer thuId;
 	
 	private String pageNow = "1";
 	private String everyPage = "10";
@@ -41,15 +45,30 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 	}
 
 	public String selectAll(){
-		int totalCount = busTradingService.queryAll();
+		
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
 		if(pageNow.equals("") || pageNow == null){
 			pageNow = "1";
 		}
-		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
-		busTradingList = busTradingService.selectAll(page);
+		
+		getId();
+		System.out.println("thuArea:"+think.getThuArea());
+		System.out.println("thuId:"+think.getThuId());
+		int totalCount = 0;
+		Page page = null;
+		if(think.getThuPid() == 0){
+			totalCount = busTradingService.queryAll();
+			page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
+			busTradingList = busTradingService.selectAll(page);
+		} else {
+			totalCount = busTradingService.queryByAreaAll(think.getThuArea());
+			page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
+			String area = think.getThuArea();
+			busTradingList = busTradingService.selectByArea(page,area);
+		}
+		
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", busTradingList);
 		request.put("page", page);
@@ -92,8 +111,15 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 		if(keywords.equals("") || keywords == null){
 			return "select";
 		}
-		busTradingList = busTradingService.search(keywords);
+		getId();
+		if(think.getThuPid() == 0){
+			busTradingList = busTradingService.searchAll(keywords);
+		} else {
+			busTradingList = busTradingService.search(keywords,think.getThuArea());
+		}
 		
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", busTradingList);
 		return "selectAll";
 	}
 	
@@ -121,6 +147,12 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 		}
 		
 		return "selectAll";
+	}
+	
+	public Integer getId(){
+		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		thuId = think.getThuId();
+		return thuId;
 	}
 
 	public BusTrading getBusTrading() {
@@ -158,7 +190,13 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Bus
 	public void setBusTradingService(BusTradingService busTradingService) {
 		this.busTradingService = busTradingService;
 	}
-	
-	
+
+	public ThinkUser getThink() {
+		return think;
+	}
+
+	public void setThink(ThinkUser think) {
+		this.think = think;
+	}
 
 }

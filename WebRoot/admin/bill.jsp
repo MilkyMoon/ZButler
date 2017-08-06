@@ -193,7 +193,7 @@
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															</c:if> --%>
-															<a href="#" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="bill_read?bilId=${root.bilId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>

@@ -67,7 +67,7 @@
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="keywords" placeholder="输入昵称、电话 ..."> 	
+										<input type="text" class="form-control" name="keywords" placeholder="输入商家名称、店主姓名、商家地址 ..."> 	
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>
@@ -88,7 +88,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										用户管理列表 <small>用户信息管理</small>
+										账单管理列表 <small>账单信息管理</small>
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i

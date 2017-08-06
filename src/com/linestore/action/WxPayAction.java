@@ -1,10 +1,7 @@
 package com.linestore.action;
 
-<<<<<<< HEAD
 import java.lang.reflect.InvocationTargetException;
-=======
 import java.math.BigDecimal;
->>>>>>> origin/master
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -38,13 +35,10 @@ import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.service.FriendsService;
 import com.linestore.service.SettingService;
-<<<<<<< HEAD
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.BusMember;
-=======
 import com.linestore.service.ThinkUserService;
 import com.linestore.vo.Bill;
->>>>>>> origin/master
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
 import com.linestore.vo.CtaTrading;

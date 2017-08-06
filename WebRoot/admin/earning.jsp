@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>ECharts Chart Bootstrap Examples | Gentelella Alela! by Colorlib</title>
+    <title>收益统计 | 众帮管家</title>
 
     <!-- Bootstrap -->
     <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Echarts <small>Some examples to get you started</small></h3>
+                <h3>众帮平台收益详情<small>个人收益提现</small></h3>
               </div>
 
               <div class="title_right">
@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
 			
 			  <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                 <div class="tile-stats">
+                 <div class="tile-stats" onclick="tikuan()">
                    <div class="tx-icon"><a href="#"><small>提现</small><i class="fa fa-check-square-o"></a></i>
                    </div>
                    <div class="count">￥179</div>
@@ -258,8 +258,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
     
     <script type="text/javascript">
+    	function tikuan(){
+	  		layer.open({
+				  	title: "提现金额",
+				  	content: "<form class='layui-form' action='#' method='post'>"+
+					  			 "<div class='input-group' style='width:100%'>"+
+	                             	"<input type='text' class='form-control' name='money' style='width:100%'>"+
+	                            		"<p>"+
+	                                    	"<code>注意：</code>最高可提￥179"+
+	                                    "</p>"+
+	                                     "<button type='submit' class='btn btn-success' style='float:right'>立即提交</button>"+
+	                             "</div>"+
+                             "</form>",
+				  	closeBtn: 2,
+				  	btn: false,
+				  	area: ['640px', 'auto']
+				});
+    	}
+    
 	  $(function () {
-		  
 		    Highcharts.setOptions({
 		        lang:{
 		            drillUpText:"返回 > {series.name}"

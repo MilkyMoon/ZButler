@@ -12,4 +12,5 @@ public interface BillDao {
 	public int queryAll(String hql);
 	public String mkData();
 	public void addBill(Bill bill);
+	public Bill selectById(Integer id);
 }

@@ -31,7 +31,7 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a href="index.jsp"><i class="fa fa-home"></i> Home </a>
+                    <li><a href="<%=basePath%>admin/index"><i class="fa fa-home"></i> Home </a>
                         <!-- <ul class="nav child_menu">
                             <li><a href="index.html">Dashboard</a></li>
                             <li><a href="index2.html">Dashboard2</a></li>
@@ -74,7 +74,7 @@
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/thinkUser_select">平台代理商</a></li>
-                            <li><a href="<%=basePath%>admin/group_select">角色管理</a></li>
+                            <%-- <li><a href="<%=basePath%>admin/group_select">角色管理</a></li> --%>
                             <!-- <li><a href="#">权限管理</a></li> -->
                         </ul>
                     </li>
