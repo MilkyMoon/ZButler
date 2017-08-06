@@ -543,7 +543,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 			// TODO Auto-generated catch block
 			System.out.println("错误异常代码" + e);
 		}
-
 		return "err_code: " + wxEntPayResult.getErrCode() + "err_code_des: " + wxEntPayResult.getErrCodeDes();
 	}
 
