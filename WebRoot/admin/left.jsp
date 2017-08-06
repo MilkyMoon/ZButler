@@ -4,6 +4,7 @@
 			+ path + "/";
 %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="col-md-3 left_col menu_fixed">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
@@ -50,7 +51,6 @@
                             <li><a href="<%=basePath%>admin/business_selectAll">商家基本信息</a></li>
                             <li><a href="<%=basePath%>admin/cateLine_selectAll">店铺分类</a></li>
                            <!--  <li><a href="form_validation.html">收款账号管理</a></li> -->
-                            <li><a href="<%=basePath%>admin/trading_selectAll">账单管理</a></li>
                         </ul>
                     </li>
                     <%-- <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
@@ -63,6 +63,9 @@
                     <li><a><i class="fa fa-bar-chart-o"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/customer_selectAll">用户管理</a></li>
+                            <c:if test="${sessionScope.admin.thuPid == 0}">
+                            	<li><a href="<%=basePath%>admin/trading_selectAll">账单管理</a></li>
+                            </c:if>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>账单管理 <span class="fa fa-chevron-down"></span></a>
