@@ -5,14 +5,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.persistence.Table;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.BillDao;
 import com.linestore.util.Page;
 import com.linestore.vo.Bill;
 
+@Transactional
 public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 
 	@Override
@@ -40,7 +44,9 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	@Override
 	public List<Bill> search(String keywords) {
 		// TODO Auto-generated method stub
-		return null;
+		String hql = "from Bill where business.busShopName like '%"+keywords+"%' or customer.cusNickname like '%"+keywords+"%' or thinkUserByThuPropertyId.thuName like '%"+keywords+"%' or thinkUserByThuPropertyId.thuArea like '%"+keywords+"%' or thinkUserByThuCountyId.thuName like '%"+keywords+"%' or thinkUserByThuCountyId.thuArea like '%"+keywords+"%' or thinkUserByThuCityId.thuName like '%"+keywords+"%' or thinkUserByThuCityId.thuArea like '%"+keywords+"%' or thinkUserByThuProvinceId.thuName like '%"+keywords+"%' or thinkUserByThuProvinceId.thuArea like '%"+keywords+"%'";
+		List<Bill> list = (List<Bill>) this.getHibernateTemplate().find(hql);
+		return list;
 	}
 
 	@Override
@@ -110,6 +116,13 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
     
 	public void addBill(Bill bill) {
 		this.getHibernateTemplate().save(bill);
+	}
+
+	@Override
+	public Bill selectById(Integer id) {
+		// TODO Auto-generated method stub
+		List<Bill> btas = (List<Bill>) this.getHibernateTemplate().find("from Bill where bilId=" + id);
+		return btas.get(0);
 	}
 
 }

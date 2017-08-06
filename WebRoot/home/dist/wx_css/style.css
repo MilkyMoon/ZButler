@@ -1178,10 +1178,11 @@ px
 	align-self: center;
 }
 
-.smallMoney_content .fa-angle-right {
+.fa-angle-right {
 	font-size: 35px;
-	color: #EFEFF4;
+	color: #666;
 }
+
 
 .smallMoney_operation {
 	display: flex;
@@ -1232,10 +1233,6 @@ px
 	align-self: center;
 }
 
-.smallMoney2_content .fa-angle-right {
-	font-size: 35px;
-	color: #EFEFF4;
-}
 
 .smallMoney2_exchange {
 	width: 100%;
@@ -1493,10 +1490,7 @@ px
 	align-self: center;
 }
 
-.bonus_content .fa-angle-right {
-	font-size: 35px;
-	color: #EFEFF4;
-}
+
 
 .bonus_operation {
 	display: flex;
@@ -1584,10 +1578,7 @@ px
 	align-self: center;
 }
 
-.integral_content .fa-angle-right {
-	font-size: 35px;
-	color: #EFEFF4;
-}
+
 
 .integral_operation {
 	display: flex;

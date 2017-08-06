@@ -48,6 +48,7 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuPhone = thu.getThuPhone();
 		this.thuName = thu.getThuName();
 		this.thuScale = thu.getThuScale();
+		this.thuScaleTwo = thu.getThuScaleTwo();
 	}
 	
 	/** minimal constructor */

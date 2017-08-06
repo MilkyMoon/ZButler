@@ -65,6 +65,30 @@ public class BusTradingServiceImpl implements BusTradingService {
 		// TODO Auto-generated method stub
 		busTradingDao.update(hql);
 	}
+
+	@Override
+	public List<BusTrading> search(String keywords, String area) {
+		// TODO Auto-generated method stub
+		return busTradingDao.search(keywords,area);
+	}
+
+	@Override
+	public List<BusTrading> selectByArea(Page page, String area) {
+		// TODO Auto-generated method stub
+		return busTradingDao.selectByArea(page, area);
+	}
+
+	@Override
+	public int queryByAreaAll(String area) {
+		// TODO Auto-generated method stub
+		return busTradingDao.queryByAreaAll(area);
+	}
+
+	@Override
+	public List<BusTrading> searchAll(String keywords) {
+		// TODO Auto-generated method stub
+		return busTradingDao.searchAll(keywords);
+	}
 	
 
 }

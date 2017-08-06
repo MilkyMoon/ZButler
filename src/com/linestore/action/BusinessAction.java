@@ -62,6 +62,11 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //		
 //		busAddressService.add(busAddress);
 //		busBankService.add(busBank);
+		if(business.getBusStatus() == 0 || business.getBusScale() == null || business.getBusScale() > 1
+				|| business.getBusScale() < 0){
+			business.setBusScale((float) 0);
+		}
+		
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		String str = business.getBaProvince();
 		String strs[] = str.split(" ");
@@ -85,6 +90,11 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //		} else {
 //			business.setBusStatus(0);
 //		}
+		
+		if(business.getBusStatus() == 0 || business.getBusScale() == null || business.getBusScale() > 1
+				|| business.getBusScale() < 0){
+			business.setBusScale((float) 0);
+		}
 		
 			int id = business.getBusId();
 //			business.setBusId(null);

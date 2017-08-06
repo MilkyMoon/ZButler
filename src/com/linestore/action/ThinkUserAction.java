@@ -109,6 +109,10 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 				|| thinkUser.getThuScale() < 0) {
 			thinkUser.setThuScale((float) 1);
 		}
+		if (thinkUser.getThuStatus().equals("-1") || thinkUser.getThuScaleTwo() == null || thinkUser.getThuScaleTwo() > 1
+				|| thinkUser.getThuScale() < 0) {
+			thinkUser.setThuScaleTwo((float) 0);
+		}
 		thinkUserService.add(thinkUser);
 		return "select";
 	}
@@ -120,6 +124,36 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		int id = (int) ActionContext.getContext().getSession().get("thuId");
 		thinkUser.setThuOpenid(thuOpenid);
 		System.out.println(thuOpenid + "-----" + id);
+
+		String hql;
+		try {
+
+			hql = ReturnUpdateHql.ReturnHql(thinkUser.getClass(), thinkUser, id);
+			// System.out.println(business.getBusStatus());
+			thinkUserService.update(hql);
+
+			thinkUser.setThuName(null);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "select";
+	}
+	
+	public String update() {
+		int id = thinkUser.getThuId();
 
 		String hql;
 		try {
@@ -268,6 +302,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		}
 
 		ActionContext.getContext().getSession().put("list", listResault);
+		
+		System.out.println();
 
 		return "selectAll";
 	}
@@ -297,6 +333,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		selectById();
 		thinkUserResult.setThuStatus(thinkUser.getThuStatus());
 		thinkUserResult.setThuScale((float) 1);
+		thinkUserResult.setThuScaleTwo((float) 0);
 		thinkUserService.status(thinkUserResult);
 
 		return "select";

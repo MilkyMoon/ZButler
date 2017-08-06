@@ -48,6 +48,11 @@ public class AdminLoginAction extends ActionSupport implements ModelDriven<Think
 		req.put("test", "1");
 		return "gotoLogin";
 	}
+	
+	public String logout(){
+		ServletActionContext.getRequest().getSession().invalidate();
+		return SUCCESS;
+	}
 
 	public String code() {
 		CodeUtil cu = CodeUtil.Instance();

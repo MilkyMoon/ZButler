@@ -193,7 +193,7 @@
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															</c:if> --%>
-															<a href="#" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<a href="bill_read?bilId=${root.bilId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>
@@ -227,10 +227,10 @@
 									<ul class="pagination">
 										<c:if test="${page.hasPrePage}">
 											<li class="paginate_button previous" id="datatable-checkbox_previous">
-												<a href="customer_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
+												<a href="bill_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="bill_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasPrePage}">
@@ -238,21 +238,21 @@
 												<a href="#" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="bill_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										
 										<c:if test="${page.hasNextPage}">
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="bill_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next" id="datatable-checkbox_next">
-												<a href="customer_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
+												<a href="bill_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasNextPage}">
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="bill_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next disabled" id="datatable-checkbox_next">
 												<a href="#" data-dt-idx="4" tabindex="0">下一页</a>

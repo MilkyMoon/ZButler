@@ -118,10 +118,10 @@
 														<select class="form-control" name="calPid" id="busCateId">
 															<c:forEach var="roots" items="${roots}">
 																<c:if test="${roots.calId == root.calPid}">
-																	<option value="${root.calId}" selected="selected">${roots.calName}</option>
+																	<option value="${roots.calId}" selected="selected">${roots.calName}</option>
 																</c:if>
 																<c:if test="${roots.calId != root.calPid}">
-																	<option value="${root.calId}">${roots.calName}</option>
+																	<option value="${roots.calId}">${roots.calName}</option>
 																</c:if>
 															</c:forEach>
 														</select>
@@ -137,7 +137,7 @@
 																	<input type="radio" class="flat" checked name="calStatus" value="1"> 启用
 			                          								<input type="radio" class="flat" name="calStatus" value="-1"> 不启用
 																</c:if>
-																<c:if test="${root.calStatus == 0}">
+																<c:if test="${root.calStatus == -1}">
 																	<input type="radio" class="flat" name="calStatus" value="1"> 启用
 			                          								<input type="radio" class="flat" checked name="calStatus" value="-1"> 不启用
 																</c:if>
