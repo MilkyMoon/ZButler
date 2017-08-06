@@ -242,6 +242,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 							Bill bill = new Bill();
 							BigDecimal bigMoney = new BigDecimal(kvm.get("total_fee"));
+							bigMoney = bigMoney.multiply(new BigDecimal(0.01));
 							bill.setBilCusMoney(bigMoney);
 							// 商家收款
 							BigDecimal city = new BigDecimal(bus.getBusScale());
@@ -251,6 +252,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bigMoney = bigMoney.subtract(city);
 
 							// 物业收款
+							System.out.println("----thuId: " + bus.getBusThuId());
 							ThinkUser thu = thinkUserService.queryById(bus.getBusThuId());
 							if (thu.getThuWay() == 1) {
 								BigDecimal dailishang = new BigDecimal(thu.getThuScale());
@@ -309,11 +311,9 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							billService.addBill(bill);
 
 							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
-							System.out.println("$$$$$$$$$$$$");
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
 								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {
-									System.out.println("@@@@@@@@@@@@");
 									Friends fri = friendsService.queryByPhone(Pcus.get(0).getCusPhone());
 									if (fri != null) {
 										System.out.println("------>friend find;type->" + fri.getFriType());
@@ -492,6 +492,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	}
 
+
 	public String postal() {
 		// 构建提现 WxEntPayRequest
 		req = (Map<String, Object>) ActionContext.getContext().get("request");
@@ -591,5 +592,30 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	public void setBusTrading(BusTrading busTrading) {
 		this.busTrading = busTrading;
 	}
+
+	public ThinkUserService getThinkUserService() {
+		return thinkUserService;
+	}
+
+	public void setThinkUserService(ThinkUserService thinkUserService) {
+		this.thinkUserService = thinkUserService;
+	}
+
+	public WxMpService getWxService() {
+		return wxService;
+	}
+
+	public void setWxService(WxMpService wxService) {
+		this.wxService = wxService;
+	}
+
+	public BillService getBillService() {
+		return billService;
+	}
+
+	public void setBillService(BillService billService) {
+		this.billService = billService;
+	}
+	
 	
 }
