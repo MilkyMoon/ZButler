@@ -242,6 +242,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 							Bill bill = new Bill();
 							BigDecimal bigMoney = new BigDecimal(kvm.get("total_fee"));
+							bigMoney = bigMoney.multiply(new BigDecimal(0.01));
 							bill.setBilCusMoney(bigMoney);
 							// 商家收款
 							BigDecimal city = new BigDecimal(bus.getBusScale());
@@ -251,6 +252,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bigMoney = bigMoney.subtract(city);
 
 							// 物业收款
+							System.out.println("----thuId: " + bus.getBusThuId());
 							ThinkUser thu = thinkUserService.queryById(bus.getBusThuId());
 							if (thu.getThuWay() == 1) {
 								BigDecimal dailishang = new BigDecimal(thu.getThuScale());
@@ -590,5 +592,30 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	public void setBusTrading(BusTrading busTrading) {
 		this.busTrading = busTrading;
 	}
+
+	public ThinkUserService getThinkUserService() {
+		return thinkUserService;
+	}
+
+	public void setThinkUserService(ThinkUserService thinkUserService) {
+		this.thinkUserService = thinkUserService;
+	}
+
+	public WxMpService getWxService() {
+		return wxService;
+	}
+
+	public void setWxService(WxMpService wxService) {
+		this.wxService = wxService;
+	}
+
+	public BillService getBillService() {
+		return billService;
+	}
+
+	public void setBillService(BillService billService) {
+		this.billService = billService;
+	}
+	
 	
 }

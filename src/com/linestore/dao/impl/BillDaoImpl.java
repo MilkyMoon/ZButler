@@ -5,14 +5,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.persistence.Table;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.BillDao;
 import com.linestore.util.Page;
 import com.linestore.vo.Bill;
 
+@Transactional
 public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 
 	@Override

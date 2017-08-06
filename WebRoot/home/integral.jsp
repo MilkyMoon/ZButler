@@ -80,7 +80,7 @@
 			</div>
 
 		</div>
-		<div class="m-celltitle">其它金额:</div>
+		<div class="m-celltitle" style="color:#1C1C20">其它金额:</div>
 		<div class="cell-item">
 			<input type="number" id="otherNum" pattern="[0-9]*"
 				class="cell-input" placeholder="请输入金额" autocomplete="off" />
