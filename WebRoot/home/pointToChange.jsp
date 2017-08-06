@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -33,7 +33,7 @@
 		<div class="smallMoney2_content">
 			<div class="smallMoney_content_left">
 				<div class="smallMoney_content_canUse">
-					我的零钱&nbsp;&nbsp;<span>${cac.cacChange}</span>元
+					我的零钱&nbsp;&nbsp;<span><fmt:formatNumber type="number" maxFractionDigits="2" value="${cac.cacChange}" /></span>元
 				</div>
 			</div>
 			<div class="smallMoney_content_right"></div>
