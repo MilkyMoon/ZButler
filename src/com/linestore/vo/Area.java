@@ -26,6 +26,17 @@ public class Area implements java.io.Serializable {
 	/** default constructor */
 	public Area() {
 	}
+	
+	public Area(Area areas) {
+		this.pid = areas.getId();
+		this.area = areas.getArea();
+		this.desc = areas.getDesc();
+		this.status = areas.getStatus();
+		this.areaScale = areas.getAreaScale();
+		this.areaScaleTwo = areas.getAreaScaleTwo();
+		this.areaWay = areas.getAreaWay();
+		this.thinkUsers = areas.getThinkUsers();
+	}
 
 	/** full constructor */
 	public Area(Integer pid, String area, String desc, Integer status, Float areaScale, Float areaScaleTwo,
