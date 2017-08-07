@@ -22,17 +22,17 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.PropertyFilter;
 
-public class CateLineAction extends ActionSupport implements ModelDriven<CateLine>{
-	HttpServletRequest request = ServletActionContext.getRequest ();
+public class CateLineAction extends ActionSupport implements ModelDriven<CateLine> {
+	HttpServletRequest request = ServletActionContext.getRequest();
 	private CateLine cateLine = new CateLine();
 	private CateLineService cateLineService;
 	private CateLine cateLineResult;
 	private List<CateLine> cateLineList;
-	
+
 	private int pid;
-	
+
 	private String result;
-	
+
 	public void setCateLineService(CateLineService cateLineService) {
 		this.cateLineService = cateLineService;
 	}
@@ -42,8 +42,6 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 		// TODO Auto-generated method stub
 		return cateLine;
 	}
-	
-	
 
 	public String getResult() {
 		return result;
@@ -65,39 +63,39 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 		this.cateLine = cateLine;
 	}
 
-	public String add(){
+	public String add() {
 		selectAll();
 		return "add";
 	}
-	
-	public String edit(){
+
+	public String edit() {
 		selectById();
 		selectAll();
 		System.out.println(cateLineResult);
 		request.setAttribute("root", cateLineResult);
 		return "edit";
 	}
-	
-	public void selectById(){
+
+	public void selectById() {
 		cateLineResult = cateLineService.selectById(cateLine);
 	}
-	
-	public String save(){
+
+	public String save() {
 		cateLineService.save(cateLine);
-		
+
 		return "select";
 	}
-	
-	public String update(){
+
+	public String update() {
 		int id = cateLine.getCalId();
-//		business.setBusId(null);
-		
+		// business.setBusId(null);
+
 		String hql;
 		try {
 			hql = ReturnUpdateHql.ReturnHql(cateLine.getClass(), cateLine, id);
-//			System.out.println(business.getBusStatus());
+			// System.out.println(business.getBusStatus());
 			cateLineService.update(hql);
-			
+
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,40 +112,47 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return "select";
 	}
-	
-	public String delete(){
-		
-		
+
+	public String delete() {
+
 		cateLineService.delete(cateLine);
-		
+
 		return "select";
 	}
-	
-	public String selectAll(){
+
+	public String selectAll() {
 		List<CateLine> list = new ArrayList<CateLine>();
-		
+
 		cateLineService.queryFormat(list, 0, 0);
-//		cateLineList = cateLineService.selectChildren(0);
-		
+		// cateLineList = cateLineService.selectChildren(0);
+
 		request.setAttribute("roots", list);
 		return "selectAll";
 	}
-	
+
+	public String queryRoot() {
+
+		List<CateLine> smalls = cateLineService.selectChildren(pid);
+		// cateLineList = cateLineService.selectChildren(0);
+
+		request.setAttribute("roots", smalls);
+		return "selectAll";
+	}
+
 	public String querySmall() {
 		List<CateLine> smalls = cateLineService.selectChildren(pid);
 		JsonConfig cfg = new JsonConfig();
-		cfg.setJsonPropertyFilter(new PropertyFilter()
-		{
-		         public boolean apply(Object source, String name, Object value) {
-		           if(name.equals("businesses")) {
-		             return true;
-		           } else {
-		             return false;
-		          }
-		}
+		cfg.setJsonPropertyFilter(new PropertyFilter() {
+			public boolean apply(Object source, String name, Object value) {
+				if (name.equals("businesses")) {
+					return true;
+				} else {
+					return false;
+				}
+			}
 		});
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("smalls", smalls);

@@ -106,7 +106,7 @@
 				class="mine_function_yhq">
 				<div></div> <span>我的优惠券</span>
 			</a> 
-			<a href="<c:if test="${fn:length(business.busTradings) > 0}"></c:if>javascript:return false;<c:if test="${fn:length(business.busTradings) eq 0}"><%=basePath%>cateLine_selectAll</c:if>" class="mine_function_sqrz">
+			<a href="<c:if test="${fn:length(business.busTradings) > 0}">javascript:return false;</c:if><c:if test="${fn:length(business.busTradings) eq 0}"><%=basePath%>cateLine_queryRoot</c:if>" class="mine_function_sqrz">
 				<div></div> <span>申请入驻</span>
 			</a> 
 			<a href="<%=basePath%>business_store.action" class="mine_function_wddp">

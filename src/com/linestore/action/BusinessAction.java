@@ -62,7 +62,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 //		
 //		busAddressService.add(busAddress);
 //		busBankService.add(busBank);
-		if(business.getBusStatus() == 0 || business.getBusScale() == null || business.getBusScale() > 1
+		if(business.getBusScale() == null || business.getBusStatus() == 0 ||  business.getBusScale() > 1
 				|| business.getBusScale() < 0){
 			business.setBusScale((float) 0);
 		}
