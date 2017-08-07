@@ -141,6 +141,10 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="businessTmpDao" class="com.linestore.dao.impl.BusinessTmpDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->
 	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
@@ -211,7 +215,10 @@
 	<bean id="busMemberService" class="com.linestore.service.impl.BusMemberServiceImpl">
 		<property name="busMemberDao" ref="busMemberDao"></property>
 	</bean>
-
+	
+	<bean id="businessTmpService" class="com.linestore.service.impl.BusinessTmpServiceImpl">
+		<property name="businessTmpDao" ref="businessTmpDao"></property>
+	</bean>
 	<!-- 配置一个业务逻辑组件 -->
 
 	<bean id="cusAccountService" class="com.linestore.service.impl.CusAccountServiceImpl">

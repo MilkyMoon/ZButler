@@ -22,11 +22,11 @@
         <property name="grpDesc" type="java.lang.String">
             <column name="`grp_ desc`" length="65535" />
         </property>
-        <set name="ruleGroups" inverse="true" lazy="false">
+        <set name="thinkUsers" inverse="true" lazy="false">
             <key>
-                <column name="gro_id" />
+                <column name="thu_group_id" />
             </key>
-            <one-to-many class="com.linestore.vo.RuleGroup" />
+            <one-to-many class="com.linestore.vo.ThinkUser" />
         </set>
     </class>
 </hibernate-mapping>
