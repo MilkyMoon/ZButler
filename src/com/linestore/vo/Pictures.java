@@ -11,8 +11,9 @@ public class Pictures implements java.io.Serializable {
 	private Integer picId;
 	private String picUrl;
 	private Integer picOtherId;
-	private Integer picType;
+	private Boolean picType;
 	private String picMd5;
+	private Integer picShareUrl;
 
 	// Constructors
 
@@ -21,11 +22,12 @@ public class Pictures implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Pictures(String picUrl, Integer picOtherId, Integer picType, String picMd5) {
+	public Pictures(String picUrl, Integer picOtherId, Boolean picType, String picMd5, Integer picShareUrl) {
 		this.picUrl = picUrl;
 		this.picOtherId = picOtherId;
 		this.picType = picType;
 		this.picMd5 = picMd5;
+		this.picShareUrl = picShareUrl;
 	}
 
 	// Property accessors
@@ -54,13 +56,11 @@ public class Pictures implements java.io.Serializable {
 		this.picOtherId = picOtherId;
 	}
 
-	
-
-	public Integer getPicType() {
-		return picType;
+	public Boolean getPicType() {
+		return this.picType;
 	}
 
-	public void setPicType(Integer picType) {
+	public void setPicType(Boolean picType) {
 		this.picType = picType;
 	}
 
@@ -70,6 +70,14 @@ public class Pictures implements java.io.Serializable {
 
 	public void setPicMd5(String picMd5) {
 		this.picMd5 = picMd5;
+	}
+
+	public Integer getPicShareUrl() {
+		return this.picShareUrl;
+	}
+
+	public void setPicShareUrl(Integer picShareUrl) {
+		this.picShareUrl = picShareUrl;
 	}
 
 }

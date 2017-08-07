@@ -16,11 +16,14 @@
         <property name="picOtherId" type="java.lang.Integer">
             <column name="pic_other_id" />
         </property>
-        <property name="picType" type="java.lang.Integer">
+        <property name="picType" type="java.lang.Boolean">
             <column name="pic_type" />
         </property>
         <property name="picMd5" type="java.lang.String">
             <column name="pic_md5" length="65535" />
+        </property>
+        <property name="picShareUrl" type="java.lang.Integer">
+            <column name="pic_share_url" />
         </property>
     </class>
 </hibernate-mapping>

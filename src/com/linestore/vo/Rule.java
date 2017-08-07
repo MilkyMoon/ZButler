@@ -1,6 +1,8 @@
 package com.linestore.vo;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Rule entity. @author MyEclipse Persistence Tools
@@ -10,14 +12,15 @@ public class Rule implements java.io.Serializable {
 
 	// Fields
 
-	private Short id;
+	private Integer rulId;
 	private String rules;
 	private String title;
-	private Boolean type;
-	private Boolean status;
+	private Integer type;
+	private Integer status;
 	private String condition;
 	private Timestamp createTime;
 	private Timestamp updateTime;
+	private Set ruleGroups = new HashSet(0);
 
 	// Constructors
 
@@ -25,8 +28,8 @@ public class Rule implements java.io.Serializable {
 	public Rule() {
 	}
 
-	/** full constructor */
-	public Rule(String rules, String title, Boolean type, Boolean status, String condition, Timestamp createTime,
+	/** minimal constructor */
+	public Rule(String rules, String title, Integer type, Integer status, String condition, Timestamp createTime,
 			Timestamp updateTime) {
 		this.rules = rules;
 		this.title = title;
@@ -37,14 +40,27 @@ public class Rule implements java.io.Serializable {
 		this.updateTime = updateTime;
 	}
 
-	// Property accessors
-
-	public Short getId() {
-		return this.id;
+	/** full constructor */
+	public Rule(String rules, String title, Integer type, Integer status, String condition, Timestamp createTime,
+			Timestamp updateTime, Set ruleGroups) {
+		this.rules = rules;
+		this.title = title;
+		this.type = type;
+		this.status = status;
+		this.condition = condition;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.ruleGroups = ruleGroups;
 	}
 
-	public void setId(Short id) {
-		this.id = id;
+	// Property accessors
+
+	public Integer getRulId() {
+		return this.rulId;
+	}
+
+	public void setRulId(Integer rulId) {
+		this.rulId = rulId;
 	}
 
 	public String getRules() {
@@ -63,19 +79,19 @@ public class Rule implements java.io.Serializable {
 		this.title = title;
 	}
 
-	public Boolean getType() {
+	public Integer getType() {
 		return this.type;
 	}
 
-	public void setType(Boolean type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 
-	public Boolean getStatus() {
+	public Integer getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
@@ -101,6 +117,14 @@ public class Rule implements java.io.Serializable {
 
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public Set getRuleGroups() {
+		return this.ruleGroups;
+	}
+
+	public void setRuleGroups(Set ruleGroups) {
+		this.ruleGroups = ruleGroups;
 	}
 
 }

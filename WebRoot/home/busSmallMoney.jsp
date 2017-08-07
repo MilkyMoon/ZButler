@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -30,11 +30,11 @@
 			<div class="integral2_top_center"></div>
 		</div>
 		<form id="signupForm" method="post"
-			action="<%=basePath%>ctaTrading_add.action">
+			action="<%=basePath%>CtaTrading!add.action">
 			<div class="m-cell">
 				<div class="cell-item takeSmallMoney_canUse">
 					<div class="cell-left">
-						可用的零钱：<span id="change">${cac.cacChange}</span>元
+						可用的零钱：<span id="change"><fmt:formatNumber type="number" maxFractionDigits="2" value="${cac.cacChange}" /></span>元
 					</div>
 					<div class="cell-right"></div>
 				</div>

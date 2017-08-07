@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -33,7 +33,7 @@
 		<div class="smallMoney2_content">
 			<div class="smallMoney_content_left">
 				<div class="smallMoney_content_canUse">
-					我的零钱&nbsp;&nbsp;<span>${cac.cacChange}</span>元
+					我的零钱&nbsp;&nbsp;<span><fmt:formatNumber type="number" maxFractionDigits="2" value="${cac.cacChange}" /></span>元
 				</div>
 			</div>
 			<div class="smallMoney_content_right"></div>
@@ -44,7 +44,7 @@
 				<div class="smallMoney2_exchange_canUse">
 					可转零钱的消费积分：<span id="point">${cac.cacPoints}</span>
 				</div>
-				<input type="number" pattern="[0-9]*" class="cell-input" id="input"
+				<input type="text"  class="cell-input" id="input"
 					name="point" placeholder="" autocomplete="off" /> <span>转换比例：10积分=1元零钱,输入至少为0.1</span>
 				<button type="submit" class="btn-block btn-primary">提交</button>
 			</form>

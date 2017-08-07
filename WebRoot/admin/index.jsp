@@ -132,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  </div>
                </div>
                
-               <div class="col-md-4 col-sm-6 col-xs-12">
+              <!--  <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
                   <h2>Daily active users <small>Sessions</small></h2>
@@ -218,7 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
             </div>
                
-               
+                -->
             </div>
           </div>
         </div>

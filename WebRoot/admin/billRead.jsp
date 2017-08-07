@@ -4,6 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +113,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">交付金额:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control">${roots.bilCusMoney}</div>
+												<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCusMoney}" /></div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -130,7 +131,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">收取金额:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control">${roots.bilPropertyMoney}</div>
+												<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilPropertyMoney}" /></div>
 											</div>
 										</div>
 										
@@ -151,7 +152,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.bilCountyMoney}</div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCountyMoney}" /></div>
 												</div>
 											</div>
 										</c:if>
@@ -172,7 +173,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.bilCityMoney}</div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCityMoney}" /></div>
 												</div>
 											</div>
 										</c:if>
@@ -194,7 +195,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.bilProvinceMoney}</div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilProvinceMoney}" /></div>
 												</div>
 											</div>
 										</c:if>
@@ -202,7 +203,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">众帮收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.bilZongMoney}</div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilZongMoney}" /></div>
 												</div>
 											</div>
 										</c:if>

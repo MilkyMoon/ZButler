@@ -31,22 +31,26 @@
 			</div>
 			<div class="integral2_top_center"></div>
 		</div>
-		<div class="integral_content">
-			<a href="<%=basePath%>home/pointToChange.jsp">
+		<a href="<%=basePath%>home/pointToChange.jsp">
+			<div class="integral_content">
+
 				<div class="integral_content_left">
 
 					<div class="integral_content_canUse">
-						我的积分&nbsp;&nbsp;<span>${cac.cacPoints}</span>
+						我的积分&nbsp;&nbsp;<span><fmt:formatNumber type="number"
+								maxFractionDigits="2" value="${cac.cacPoints}" /></span>
 					</div>
 					<!-- <div class="integral_content_cantUse">
 					<span>亲，您没有积分，会错过奖金哦！</span><br> <span>线下消费、淘宝天猫京东购物、零钱充值，都可以获得积分！</span>
 				</div> -->
 				</div>
-			</a>
-			<div class="integral_content_right">
-				<i class="fa fa-angle-right"></i>
+
+				<div class="integral_content_right">
+					<i class="fa fa-angle-right"></i>
+				</div>
+
 			</div>
-		</div>
+		</a>
 		<div class="integral_operation">
 			<a href="<%=basePath%>CtaTrading!queryPoint.action">交易记录</a>
 		</div>
