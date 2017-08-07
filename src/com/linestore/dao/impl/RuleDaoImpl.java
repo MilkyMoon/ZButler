@@ -26,7 +26,7 @@ public class RuleDaoImpl extends HibernateDaoSupport implements RuleDao {
 		String hql = "from Rule where rules = ? ";
 		System.out.println(rule.getRules());
 		List<Rule> list = (List<Rule>) this.getHibernateTemplate().find(hql, rule.getRules());
-		System.out.println(list.get(0).getId());
+		System.out.println(list.get(0).getRulId());
 		if (list.size() > 0) {
 			return list.get(0);
 		}
