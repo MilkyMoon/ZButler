@@ -1,5 +1,4 @@
 package com.linestore.vo;
-// default package
 
 /**
  * GroupAccess entity. @author MyEclipse Persistence Tools

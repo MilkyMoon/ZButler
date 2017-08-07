@@ -1,5 +1,8 @@
 package com.linestore.vo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Group entity. @author MyEclipse Persistence Tools
  */
@@ -13,6 +16,7 @@ public class Group implements java.io.Serializable {
 	private String grpStatus;
 	private String grpRules;
 	private String grpDesc;
+	private Set ruleGroups = new HashSet(0);
 
 	// Constructors
 
@@ -21,11 +25,12 @@ public class Group implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Group(String grpTitle, String grpStatus, String grpRules, String grpDesc) {
+	public Group(String grpTitle, String grpStatus, String grpRules, String grpDesc, Set ruleGroups) {
 		this.grpTitle = grpTitle;
 		this.grpStatus = grpStatus;
 		this.grpRules = grpRules;
 		this.grpDesc = grpDesc;
+		this.ruleGroups = ruleGroups;
 	}
 
 	// Property accessors
@@ -68,6 +73,14 @@ public class Group implements java.io.Serializable {
 
 	public void setGrpDesc(String grpDesc) {
 		this.grpDesc = grpDesc;
+	}
+
+	public Set getRuleGroups() {
+		return this.ruleGroups;
+	}
+
+	public void setRuleGroups(Set ruleGroups) {
+		this.ruleGroups = ruleGroups;
 	}
 
 }
