@@ -14,7 +14,7 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 	
 	public List<ThinkUser> queryFormat(List<ThinkUser> list, int pid, int level) {
 //		System.out.println(level);
-		List<ThinkUser> catetories = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where thuPid=?", pid);
+		List<ThinkUser> catetories = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where area.Pid=?", pid);
 		if (catetories != null) {
 			for (int i = 0; i < catetories.size(); i++) {
 				if (level != 0) {
@@ -23,12 +23,12 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 					for (int j = 0; j < level; j++) {
 						str += "|---";
 					}
-					cate.setThuArea(str + cate.getThuArea());
+					cate.getArea().setArea(str + cate.getArea().getArea());
 					list.add(cate);
 				} else {
 					list.add(catetories.get(i));
 				}
-				queryFormat(list, catetories.get(i).getThuId(), level+1);
+				queryFormat(list, catetories.get(i).getArea().getId(), level+1);
 			}
 		}
 		return catetories;

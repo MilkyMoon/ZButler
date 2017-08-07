@@ -32,7 +32,7 @@
             <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a href="<%=basePath%>admin/index"><i class="fa fa-home"></i> Home </a>
+                    <li><a href="<%=basePath%>admin/index"><i class="fa fa-home"></i> 首页 </a>
                         <!-- <ul class="nav child_menu">
                             <li><a href="index.html">Dashboard</a></li>
                             <li><a href="index2.html">Dashboard2</a></li>
@@ -48,54 +48,75 @@
                     </li> --%>
                     <li><a><i class="fa fa-edit"></i> 线下商家管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/business_selectAll">商家基本信息</a></li>
-                            <li><a href="<%=basePath%>admin/cateLine_selectAll">店铺分类</a></li>
+                            <li><a href="<%=basePath%>admin/business_selectAll">入驻管理</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">线下商家信息管理</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">收款账号管理</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">账期管理</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">黑名单管理</a></li>
                            <!--  <li><a href="form_validation.html">收款账号管理</a></li> -->
                         </ul>
                     </li>
-                    <%-- <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/category_select">分类管理</a></li>
-                            <li><a href="media_gallery.html">品牌管理</a></li>
-                            <li><a href="typography.html">商品属性模板管理</a></li>
-                        </ul>
-                    </li> --%>
-                    <li><a><i class="fa fa-bar-chart-o"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/customer_selectAll">用户管理</a></li>
-                            <c:if test="${sessionScope.admin.thuPid == 0}">
-                            	<li><a href="<%=basePath%>admin/trading_selectAll">账单管理</a></li>
-                            </c:if>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">线下分类管理</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">地区分类管理</a></li>
+                            <!-- <li><a href="media_gallery.html">品牌管理</a></li>
+                            <li><a href="typography.html">商品属性模板管理</a></li> -->
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-clone"></i>账单管理 <span class="fa fa-chevron-down"></span></a>
+					<li><a><i class="fa fa-clone"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/bill_selectAll">账单管理</a></li>
-                            <li><a href="<%=basePath%>admin/bill_chinaMap">我的收益</a></li>
+                        	<li><a href="<%=basePath%>admin/customer_selectAll">用户管理</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/thinkUser_select">平台代理商</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">角色管理</a></li>
                             <%-- <li><a href="<%=basePath%>admin/group_select">角色管理</a></li> --%>
                             <!-- <li><a href="#">权限管理</a></li> -->
                         </ul>
                     </li>
-                </ul>
-            </div>
-            <%-- <div class="menu_section">
-                <h3>Live On</h3>
-                <ul class="nav side-menu">
-                    <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-clone"></i> 订单管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="e_commerce.html">E-commerce</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            <li><a href="project_detail.html">Project Detail</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="<%=basePath%>admin/bill_selectAll">消费订单</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">提现订单</a></li>
+                            <li><a href="<%=basePath%>admin/group_select">充值订单</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-clone"></i> 报表统计 <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<%=basePath%>admin/thinkUser_select">订单报表</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">订单明细表</a></li>
+                            <li><a href="<%=basePath%>admin/group_select">业务日志</a></li>
+                            <!-- <li><a href="#">权限管理</a></li> -->
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-clone"></i> 利润分配 <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<%=basePath%>admin/thinkUser_select">三级代理商</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">线下商家</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-clone"></i> 消息管理 <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<%=basePath%>admin/thinkUser_select">消息推送</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">留言</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu_section">
+                <h3>站点配置</h3>
+                <ul class="nav side-menu">
+                    <li><a><i class="fa fa-bug"></i> 广告管理 <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="e_commerce.html">轮播图</a></li>
+                            <li><a href="projects.html">分类下广告</a></li>
+                            <li><a href="project_detail.html">友情链接</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-windows"></i> 友情链接 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="page_403.html">403 Error</a></li>
                             <li><a href="page_404.html">404 Error</a></li>
@@ -125,7 +146,7 @@
                     <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span
                             class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
-            </div> --%>
+            </div>
 
         </div>
         <!-- /sidebar menu -->
