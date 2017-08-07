@@ -19,7 +19,12 @@ public class Area implements java.io.Serializable {
 	private Float areaScale;
 	private Float areaScaleTwo;
 	private Integer areaWay;
+	private Set billsForThuCountyId = new HashSet(0);
 	private Set thinkUsers = new HashSet(0);
+	private Set billsForThuProvinceId = new HashSet(0);
+	private Set billsForThuPropertyId = new HashSet(0);
+	private Set businesses = new HashSet(0);
+	private Set billsForThuCityId = new HashSet(0);
 
 	// Constructors
 
@@ -27,20 +32,26 @@ public class Area implements java.io.Serializable {
 	public Area() {
 	}
 	
-	public Area(Area areas) {
-		this.pid = areas.getId();
-		this.area = areas.getArea();
-		this.desc = areas.getDesc();
-		this.status = areas.getStatus();
-		this.areaScale = areas.getAreaScale();
-		this.areaScaleTwo = areas.getAreaScaleTwo();
-		this.areaWay = areas.getAreaWay();
-		this.thinkUsers = areas.getThinkUsers();
+	public Area(Area are) {
+		this.pid = are.getPid();
+		this.area = are.getArea();
+		this.desc = are.getDesc();
+		this.status = are.getStatus();
+		this.areaScale = are.getAreaScale();
+		this.areaScaleTwo = are.getAreaScaleTwo();
+		this.areaWay = are.getAreaWay();
+		this.thinkUsers = are.getThinkUsers();
+		this.businesses = are.getBusinesses();
+		this.billsForThuCountyId = are.getBillsForThuCountyId();
+		this.billsForThuProvinceId = are.getBillsForThuProvinceId();
+		this.billsForThuPropertyId = are.getBillsForThuPropertyId();
+		this.billsForThuCityId = are.getBillsForThuCityId();
 	}
 
 	/** full constructor */
 	public Area(Integer pid, String area, String desc, Integer status, Float areaScale, Float areaScaleTwo,
-			Integer areaWay, Set thinkUsers) {
+			Integer areaWay, Set billsForThuCountyId, Set thinkUsers, Set billsForThuProvinceId,
+			Set billsForThuPropertyId, Set businesses, Set billsForThuCityId) {
 		this.pid = pid;
 		this.area = area;
 		this.desc = desc;
@@ -48,7 +59,12 @@ public class Area implements java.io.Serializable {
 		this.areaScale = areaScale;
 		this.areaScaleTwo = areaScaleTwo;
 		this.areaWay = areaWay;
+		this.billsForThuCountyId = billsForThuCountyId;
 		this.thinkUsers = thinkUsers;
+		this.billsForThuProvinceId = billsForThuProvinceId;
+		this.billsForThuPropertyId = billsForThuPropertyId;
+		this.businesses = businesses;
+		this.billsForThuCityId = billsForThuCityId;
 	}
 
 	// Property accessors
@@ -117,12 +133,52 @@ public class Area implements java.io.Serializable {
 		this.areaWay = areaWay;
 	}
 
+	public Set getBillsForThuCountyId() {
+		return this.billsForThuCountyId;
+	}
+
+	public void setBillsForThuCountyId(Set billsForThuCountyId) {
+		this.billsForThuCountyId = billsForThuCountyId;
+	}
+
 	public Set getThinkUsers() {
 		return this.thinkUsers;
 	}
 
 	public void setThinkUsers(Set thinkUsers) {
 		this.thinkUsers = thinkUsers;
+	}
+
+	public Set getBillsForThuProvinceId() {
+		return this.billsForThuProvinceId;
+	}
+
+	public void setBillsForThuProvinceId(Set billsForThuProvinceId) {
+		this.billsForThuProvinceId = billsForThuProvinceId;
+	}
+
+	public Set getBillsForThuPropertyId() {
+		return this.billsForThuPropertyId;
+	}
+
+	public void setBillsForThuPropertyId(Set billsForThuPropertyId) {
+		this.billsForThuPropertyId = billsForThuPropertyId;
+	}
+
+	public Set getBusinesses() {
+		return this.businesses;
+	}
+
+	public void setBusinesses(Set businesses) {
+		this.businesses = businesses;
+	}
+
+	public Set getBillsForThuCityId() {
+		return this.billsForThuCityId;
+	}
+
+	public void setBillsForThuCityId(Set billsForThuCityId) {
+		this.billsForThuCityId = billsForThuCityId;
 	}
 
 }

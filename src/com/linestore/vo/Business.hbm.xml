@@ -16,6 +16,9 @@
         <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
             <column name="bus_cus_id" />
         </many-to-one>
+        <many-to-one name="area" class="com.linestore.vo.Area" fetch="select" lazy="false">
+            <column name="bus_area_id" />
+        </many-to-one>
         <property name="busShopName" type="java.lang.String">
             <column name="bus_shop_name" length="50" />
         </property>
@@ -43,11 +46,11 @@
         <property name="busStatus" type="java.lang.Integer">
             <column name="bus_status" />
         </property>
-        <property name="busThuId" type="java.lang.Integer">
-            <column name="bus_thu_id" />
-        </property>
         <property name="busScale" type="java.lang.Float">
             <column name="bus_scale" precision="12" scale="0" />
+        </property>
+        <property name="busScalePoints" type="java.lang.Float">
+            <column name="bus_scale_points" precision="12" scale="0" />
         </property>
         <property name="busLevel" type="java.lang.Integer">
             <column name="bus_level" />

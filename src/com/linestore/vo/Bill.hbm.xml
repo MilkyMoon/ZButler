@@ -15,14 +15,19 @@
                 <comment>店铺</comment>
             </column>
         </many-to-one>
-        <many-to-one name="thinkUserByThuProvinceId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
+        <many-to-one name="areaByThuCityId" class="com.linestore.vo.Area" fetch="select" lazy="false">
+            <column name="thu_city_id">
+                <comment>市</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="areaByThuProvinceId" class="com.linestore.vo.Area" fetch="select" lazy="false">
             <column name="thu_province_id">
                 <comment>省</comment>
             </column>
         </many-to-one>
-        <many-to-one name="thinkUserByThuCityId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
-            <column name="thu_city_id">
-                <comment>市</comment>
+        <many-to-one name="areaByThuCountyId" class="com.linestore.vo.Area" fetch="select" lazy="false">
+            <column name="thu_county_id">
+                <comment>县</comment>
             </column>
         </many-to-one>
         <many-to-one name="customer" class="com.linestore.vo.Customer" fetch="select" lazy="false">
@@ -30,12 +35,7 @@
                 <comment>用户</comment>
             </column>
         </many-to-one>
-        <many-to-one name="thinkUserByThuCountyId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
-            <column name="thu_county_id">
-                <comment>县</comment>
-            </column>
-        </many-to-one>
-        <many-to-one name="thinkUserByThuPropertyId" class="com.linestore.vo.ThinkUser" fetch="select" lazy="false">
+        <many-to-one name="areaByThuPropertyId" class="com.linestore.vo.Area" fetch="select">
             <column name="thu_property_id">
                 <comment>物业</comment>
             </column>
