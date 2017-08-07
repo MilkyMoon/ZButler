@@ -1,5 +1,8 @@
 package com.linestore.vo;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * ThinkUser entity. @author MyEclipse Persistence Tools
  */
@@ -18,12 +21,14 @@ public class ThinkUser implements java.io.Serializable {
 	private String thuEmail;
 	private String thuPhone;
 	private String thuName;
-	private Float thuScale;
 	private String thuOpenid;
 	private String thuBill;
-	private Integer thuWay;
-	private Float thuScaleTwo;
 	private String thuBankCard;
+	private Set billsForThuCountyId = new HashSet(0);
+	private Set billsForThuProvinceId = new HashSet(0);
+	private Set groupAccesses = new HashSet(0);
+	private Set billsForThuPropertyId = new HashSet(0);
+	private Set billsForThuCityId = new HashSet(0);
 
 	// Constructors
 
@@ -41,8 +46,6 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuEmail = thu.getThuEmail();
 		this.thuPhone = thu.getThuPhone();
 		this.thuName = thu.getThuName();
-		this.thuScale = thu.getThuScale();
-		this.thuScaleTwo = thu.getThuScaleTwo();
 		this.thuBankCard = thu.getThuBankCard();
 		this.group = thu.getGroup();
 	}
@@ -55,8 +58,9 @@ public class ThinkUser implements java.io.Serializable {
 
 	/** full constructor */
 	public ThinkUser(Group group, Area area, String thuUsername, String thuPassword, Integer thuStatus, String thuDesc,
-			String thuEmail, String thuPhone, String thuName, Float thuScale, String thuOpenid, String thuBill,
-			Integer thuWay, Float thuScaleTwo, String thuBankCard) {
+			String thuEmail, String thuPhone, String thuName, String thuOpenid, String thuBill, String thuBankCard,
+			Set billsForThuCountyId, Set billsForThuProvinceId, Set groupAccesses, Set billsForThuPropertyId,
+			Set billsForThuCityId) {
 		this.group = group;
 		this.area = area;
 		this.thuUsername = thuUsername;
@@ -66,12 +70,14 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuEmail = thuEmail;
 		this.thuPhone = thuPhone;
 		this.thuName = thuName;
-		this.thuScale = thuScale;
 		this.thuOpenid = thuOpenid;
 		this.thuBill = thuBill;
-		this.thuWay = thuWay;
-		this.thuScaleTwo = thuScaleTwo;
 		this.thuBankCard = thuBankCard;
+		this.billsForThuCountyId = billsForThuCountyId;
+		this.billsForThuProvinceId = billsForThuProvinceId;
+		this.groupAccesses = groupAccesses;
+		this.billsForThuPropertyId = billsForThuPropertyId;
+		this.billsForThuCityId = billsForThuCityId;
 	}
 
 	// Property accessors
@@ -156,14 +162,6 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuName = thuName;
 	}
 
-	public Float getThuScale() {
-		return this.thuScale;
-	}
-
-	public void setThuScale(Float thuScale) {
-		this.thuScale = thuScale;
-	}
-
 	public String getThuOpenid() {
 		return this.thuOpenid;
 	}
@@ -180,28 +178,52 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuBill = thuBill;
 	}
 
-	public Integer getThuWay() {
-		return this.thuWay;
-	}
-
-	public void setThuWay(Integer thuWay) {
-		this.thuWay = thuWay;
-	}
-
-	public Float getThuScaleTwo() {
-		return this.thuScaleTwo;
-	}
-
-	public void setThuScaleTwo(Float thuScaleTwo) {
-		this.thuScaleTwo = thuScaleTwo;
-	}
-
 	public String getThuBankCard() {
 		return this.thuBankCard;
 	}
 
 	public void setThuBankCard(String thuBankCard) {
 		this.thuBankCard = thuBankCard;
+	}
+
+	public Set getBillsForThuCountyId() {
+		return this.billsForThuCountyId;
+	}
+
+	public void setBillsForThuCountyId(Set billsForThuCountyId) {
+		this.billsForThuCountyId = billsForThuCountyId;
+	}
+
+	public Set getBillsForThuProvinceId() {
+		return this.billsForThuProvinceId;
+	}
+
+	public void setBillsForThuProvinceId(Set billsForThuProvinceId) {
+		this.billsForThuProvinceId = billsForThuProvinceId;
+	}
+
+	public Set getGroupAccesses() {
+		return this.groupAccesses;
+	}
+
+	public void setGroupAccesses(Set groupAccesses) {
+		this.groupAccesses = groupAccesses;
+	}
+
+	public Set getBillsForThuPropertyId() {
+		return this.billsForThuPropertyId;
+	}
+
+	public void setBillsForThuPropertyId(Set billsForThuPropertyId) {
+		this.billsForThuPropertyId = billsForThuPropertyId;
+	}
+
+	public Set getBillsForThuCityId() {
+		return this.billsForThuCityId;
+	}
+
+	public void setBillsForThuCityId(Set billsForThuCityId) {
+		this.billsForThuCityId = billsForThuCityId;
 	}
 
 }

@@ -16,6 +16,9 @@ public class Area implements java.io.Serializable {
 	private String area;
 	private String desc;
 	private Integer status;
+	private Float areaScale;
+	private Float areaScaleTwo;
+	private Integer areaWay;
 	private Set thinkUsers = new HashSet(0);
 
 	// Constructors
@@ -25,11 +28,15 @@ public class Area implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Area(Integer pid, String area, String desc, Integer status, Set thinkUsers) {
+	public Area(Integer pid, String area, String desc, Integer status, Float areaScale, Float areaScaleTwo,
+			Integer areaWay, Set thinkUsers) {
 		this.pid = pid;
 		this.area = area;
 		this.desc = desc;
 		this.status = status;
+		this.areaScale = areaScale;
+		this.areaScaleTwo = areaScaleTwo;
+		this.areaWay = areaWay;
 		this.thinkUsers = thinkUsers;
 	}
 
@@ -73,6 +80,30 @@ public class Area implements java.io.Serializable {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public Float getAreaScale() {
+		return this.areaScale;
+	}
+
+	public void setAreaScale(Float areaScale) {
+		this.areaScale = areaScale;
+	}
+
+	public Float getAreaScaleTwo() {
+		return this.areaScaleTwo;
+	}
+
+	public void setAreaScaleTwo(Float areaScaleTwo) {
+		this.areaScaleTwo = areaScaleTwo;
+	}
+
+	public Integer getAreaWay() {
+		return this.areaWay;
+	}
+
+	public void setAreaWay(Integer areaWay) {
+		this.areaWay = areaWay;
 	}
 
 	public Set getThinkUsers() {

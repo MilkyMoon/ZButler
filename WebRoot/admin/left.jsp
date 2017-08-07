@@ -59,7 +59,7 @@
                     <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/cateLine_selectAll">线下分类管理</a></li>
-                            <li><a href="<%=basePath%>admin/cateLine_selectAll">地区分类管理</a></li>
+                            <li><a href="<%=basePath%>admin/cateLine_selectAll">地区管理</a></li>
                             <!-- <li><a href="media_gallery.html">品牌管理</a></li>
                             <li><a href="typography.html">商品属性模板管理</a></li> -->
                         </ul>
