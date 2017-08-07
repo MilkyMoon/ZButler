@@ -183,12 +183,12 @@ public String updateBus(){
 	public String selectAll(){
 		getId();
 		
-		if(think.getThuPid() == 0){
+		if(think.getArea().getPid() == 0){
 			businessList = businessService.selectAll();
 		}else{
-			business.setBaCounty(think.getThuArea());
-			business.setBaCity(think.getThuArea());
-			business.setBaProvince(think.getThuArea());
+			business.setBaCounty(think.getArea().getArea());
+			business.setBaCity(think.getArea().getArea());
+			business.setBaProvince(think.getArea().getArea());
 			
 			businessList = (List<Business>) businessService.selectByArea(business);
 		}

@@ -61,7 +61,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		}
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		
-		if(think.getThuPid() == 0){
+		if(think.getArea().getPid() == 0){
 			billList =  billService.selectAll(page);
 		} else {
 			billList =  billService.select(page,thuId);

@@ -91,8 +91,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		}
 		selectById();
 		ActionContext.getContext().getSession().put("listInfo", thinkUserResult);
-		if (thinkUserResult.getThuPid() != 0) {
-			thinkUser.setThuId(thinkUserResult.getThuPid());
+		if (thinkUserResult.getArea().getPid() != 0) {
+			thinkUser.setThuId(thinkUserResult.getArea().getId());
 			selectById();
 			ActionContext.getContext().getSession().put("listPinfo", thinkUserResult);
 		}
@@ -269,7 +269,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 			for (int i = 0; i < listNew.size(); i++) {
 				List<ThinkUser> list = new ArrayList<ThinkUser>();
 
-				System.out.println("listArea:" + listNew.get(i).getThuArea());
+				System.out.println("listArea:" + listNew.get(i).getArea().getArea());
 				System.out.println("listNewId:" + listNew.get(i).getThuId());
 
 				thinkUserService.queryFormat(list, listNew.get(i).getThuId(), 1);

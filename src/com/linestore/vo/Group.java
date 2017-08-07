@@ -16,7 +16,7 @@ public class Group implements java.io.Serializable {
 	private String grpStatus;
 	private String grpRules;
 	private String grpDesc;
-	private Set ruleGroups = new HashSet(0);
+	private Set thinkUsers = new HashSet(0);
 
 	// Constructors
 
@@ -25,12 +25,12 @@ public class Group implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Group(String grpTitle, String grpStatus, String grpRules, String grpDesc, Set ruleGroups) {
+	public Group(String grpTitle, String grpStatus, String grpRules, String grpDesc, Set thinkUsers) {
 		this.grpTitle = grpTitle;
 		this.grpStatus = grpStatus;
 		this.grpRules = grpRules;
 		this.grpDesc = grpDesc;
-		this.ruleGroups = ruleGroups;
+		this.thinkUsers = thinkUsers;
 	}
 
 	// Property accessors
@@ -75,12 +75,12 @@ public class Group implements java.io.Serializable {
 		this.grpDesc = grpDesc;
 	}
 
-	public Set getRuleGroups() {
-		return this.ruleGroups;
+	public Set getThinkUsers() {
+		return this.thinkUsers;
 	}
 
-	public void setRuleGroups(Set ruleGroups) {
-		this.ruleGroups = ruleGroups;
+	public void setThinkUsers(Set thinkUsers) {
+		this.thinkUsers = thinkUsers;
 	}
 
 }
