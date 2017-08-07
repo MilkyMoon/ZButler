@@ -42,7 +42,6 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		String hql = "from Notice where id = ?";
-
 		List<Notice> list = (List<Notice>) this.getHibernateTemplate().find(hql, id);
 		this.getHibernateTemplate().delete(list.get(0));
 
