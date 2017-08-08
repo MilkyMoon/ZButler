@@ -8,7 +8,7 @@
     <class name="com.linestore.vo.BusinessTmp" table="business_tmp" catalog="bdm262404465_db">
         <id name="busId" type="java.lang.Integer">
             <column name="bus_id" />
-            <generator class="identity" />
+            <generator class="assigned" />
         </id>
         <property name="busShopName" type="java.lang.String">
             <column name="bus_shop_name" length="50" />

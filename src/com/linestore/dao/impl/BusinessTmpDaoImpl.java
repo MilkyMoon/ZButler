@@ -1,5 +1,7 @@
 package com.linestore.dao.impl;
 
+import java.util.List;
+
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.linestore.dao.BusinessTmpDao;
@@ -29,6 +31,20 @@ public class BusinessTmpDaoImpl extends HibernateDaoSupport implements BusinessT
 			System.out.println("delBusinessTmp suceessful!");
 		} catch (RuntimeException e) {
 			System.out.println("delBusinessTmp failed!");
+			throw e;
+		}
+	}
+	
+	public BusinessTmp queryById(int bustId) {
+		System.out.println("exec queryById");
+		try {
+			List<BusinessTmp> bustmp = (List<BusinessTmp>) this.getHibernateTemplate().find("from BusinessTmp where busId=?", bustId);
+			if (bustmp.size() > 0) {
+				return bustmp.get(0);
+			}
+			return null;
+		} catch (RuntimeException e) {
+			System.out.println("queryById failed!");
 			throw e;
 		}
 	}

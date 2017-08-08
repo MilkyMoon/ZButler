@@ -137,9 +137,26 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		// } else {
 		// business.setBusStatus(0);
 		// }
-
+		System.out.println("BusId: " + business.getBusId());
+		if (businessTmpService.queryById(business.getBusId()) != null) {
+			Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			request.put("error", "<script>YDUI.dialog.alert('已经提交过啦！等待后台人员审核！');</script>");
+			return "gotoEdit";
+		}
+		String str = business.getBaProvince();
+		String strs[] = str.split(" ");
+		business.setBaProvince(strs[0]);
+		business.setBaCity(strs[1]);
+		business.setBaCounty(strs[2]);
 		BusinessTmp bust = new BusinessTmp(business);
+		System.out.println("----->" + bust.getBusId());
 		businessTmpService.addBusinessTmp(bust);
+		return "gotoStoreAction";
+	}
+	
+	public String gotoStore() {
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("successful", "<script>YDUI.dialog.alert('提交成功！请等待审核！');</script>");
 		return "gotoStore";
 	}
 
