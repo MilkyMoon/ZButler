@@ -251,11 +251,11 @@
 													<select class="form-control" name="busThuId">
 														<option value="0" selected="selected">请指定物业</option>
 														<c:forEach var="list" items="${list}">
-															<c:if test="${list.thuId ==  businessList.busThuId}">
-																<option value="${list.thuId}" selected="selected">${list.thuArea}</option>
+															<c:if test="${list.areId ==  businessList.area.areaId}">
+																<option value="${list.areId}" selected="selected">${list.area}</option>
 															</c:if>
-															<c:if test="${list.thuId !=  businessList.busThuId}">
-																<option value="${list.thuId}">${list.thuArea}</option>
+															<c:if test="${list.areId !=  businessList.area.areaId}">
+																<option value="${list.areId}">${list.area}</option>
 															</c:if>
 														</c:forEach>
 													</select>

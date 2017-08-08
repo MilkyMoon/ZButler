@@ -34,7 +34,7 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 		if(think.getArea().getPid() == 0){
 			areaService.queryArea(areaList, 0, 0);
 		} else {
-			areaService.queryArea(areaList, think.getArea().getAreId(), 0);
+			areaService.queryArea(areaList, think.getArea().getAreId(), 1);
 			areaListReslut.add(areaService.queryById(think.getArea().getAreId()));
 		}
 		areaListReslut.addAll(areaList);

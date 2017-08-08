@@ -306,7 +306,10 @@
 			<result name="select" type="redirectAction">business_selectAll</result>
 			<result name="read">businessRead.jsp</result>
 			<result name="edit">businessEdit.jsp</result>
-			<result name="error">index.jsp</result>
+			<result name="account">businessAccount.jsp</result>
+			<result name="profit">businessProfit.jsp</result>
+			<result name="enter" type="redirectAction">business_enter</result>
+			<result name="blacklist" type="redirectAction">business_blacklist</result>
 		</action>
 		<action name="thinkUser_*" class="com.linestore.action.ThinkUserAction"
 			method="{1}">
