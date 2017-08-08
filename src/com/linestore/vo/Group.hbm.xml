@@ -28,5 +28,11 @@
             </key>
             <one-to-many class="com.linestore.vo.ThinkUser" />
         </set>
+        <set name="ruleGroups" inverse="true" lazy="false">
+            <key>
+                <column name="gro_id" />
+            </key>
+            <one-to-many class="com.linestore.vo.RuleGroup" />
+        </set>
     </class>
 </hibernate-mapping>

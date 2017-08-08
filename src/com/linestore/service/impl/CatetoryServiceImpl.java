@@ -3,10 +3,13 @@ package com.linestore.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.linestore.dao.CatetoryDao;
 import com.linestore.service.CatetoryService;
 import com.linestore.vo.Catetory;
 
+@Transactional
 public class CatetoryServiceImpl implements CatetoryService {
 	
 	private CatetoryDao catetoryDao;

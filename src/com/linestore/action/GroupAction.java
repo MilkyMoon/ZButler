@@ -1,35 +1,39 @@
 package com.linestore.action;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.linestore.service.GroupService;
 import com.linestore.vo.Group;
-import com.linestore.vo.Rule;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class GroupAction extends ActionSupport implements ModelDriven<Group>{
 	private Group group = new Group();
-	private List<Rule> rule = new ArrayList<Rule>();
+	
+	private GroupService groupService;
 	
 	@Override
 	public Group getModel() {
 		// TODO Auto-generated method stub
 		return group;
 	}
+	
+	
+	public String selectAll() {
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		List<Group> gros = groupService.queryAll();
+		request.put("gros", gros);
+		return "gotoGroup";
+	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public GroupService getGroupService() {
+		return groupService;
 	}
-	
-	public String add(){
-		
-		return "add";
-	}
-	
-	public String selectAll(){
-		
-		return "selectAll";
+
+	public void setGroupService(GroupService groupService) {
+		this.groupService = groupService;
 	}
 	
 	
