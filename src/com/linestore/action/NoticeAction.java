@@ -29,5 +29,6 @@ public class NoticeAction extends ActionSupport implements ModelDriven<Notice> {
 
 	public void selectAll() {
 		System.out.println("select");
+		noticeService.customerNewNoticesCenter().toString();
 	}
 }
