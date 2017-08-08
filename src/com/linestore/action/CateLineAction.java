@@ -141,6 +141,15 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 		request.setAttribute("roots", smalls);
 		return "selectAll";
 	}
+	
+	public String editBus() {
+
+		List<CateLine> smalls = cateLineService.selectChildren(pid);
+		// cateLineList = cateLineService.selectChildren(0);
+
+		request.setAttribute("roots", smalls);
+		return "gotoEdit";
+	}
 
 	public String querySmall() {
 		List<CateLine> smalls = cateLineService.selectChildren(pid);
