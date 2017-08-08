@@ -31,6 +31,13 @@
 					</div>
 				</div>
 				<div class="cell-item">
+					<div class="cell-left">店铺描述*：</div>
+					<div class="cell-right">
+						<input type="text" name="busDesc" class="cell-input"
+							placeholder="" autocomplete="off" />
+					</div>
+				</div>
+				<div class="cell-item">
 					<div class="cell-left">店主姓名*：</div>
 					<div class="cell-right">
 						<input type="text" name="busOwnerName" class="cell-input"

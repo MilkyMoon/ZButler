@@ -5,6 +5,7 @@
 			+ path + "/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -53,7 +54,7 @@
 						<div class="guess_content">
 							<div>
 								<span class="guess_name">${bus.busShopName}</span> <span
-									class="guess_mark">10%</span>
+									class="guess_mark"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
 							</div>
 							<div>
 								<span>${bus.cateLine.calName}</span> <span>其他</span>

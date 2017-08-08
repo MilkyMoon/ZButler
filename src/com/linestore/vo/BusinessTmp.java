@@ -48,20 +48,21 @@ public class BusinessTmp implements java.io.Serializable {
 	}
 	
 	public BusinessTmp(Business bus) {
+		this.busId = bus.getBusId();
 		this.busShopName = bus.getBusShopName();
 		this.busOwnerName = bus.getBusOwnerName();
 		this.busDesc = bus.getBusDesc();
-		this.busLicenseUrl = bus.getBusLicenseUrl();
-		this.busTaxUrl = bus.getBusTaxUrl();
-		this.busOrgUrl = bus.getBusOrgUrl();
-		this.busDistrict = bus.getBusDistrict();
+		//this.busLicenseUrl = bus.getBusLicenseUrl();
+		//this.busTaxUrl = bus.getBusTaxUrl();
+		//this.busOrgUrl = bus.getBusOrgUrl();
+		//this.busDistrict = bus.getBusDistrict();
 		this.busSmallCate = bus.getBusSmallCate();
-		this.busStatus = bus.getBusStatus();
-		this.busAreaId = bus.getArea().getId();
-		this.busScale = bus.getBusScale();
-		this.busScalePoints = bus.getBusScalePoints();
-		this.busLevel = bus.getBusLevel();
-		this.busCusId = bus.getCustomer().getCusId();
+		//this.busStatus = bus.getBusStatus();
+		//this.busAreaId = bus.getArea().getAreId();
+		//this.busScale = bus.getBusScale();
+		//this.busScalePoints = bus.getBusScalePoints();
+		//this.busLevel = bus.getBusLevel();
+		//this.busCusId = bus.getCustomer().getCusId();
 		this.baCountry = bus.getBaCountry();
 		this.baProvince = bus.getBaProvince();
 		this.baCity = bus.getBaCity();
@@ -71,14 +72,14 @@ public class BusinessTmp implements java.io.Serializable {
 		this.baLongitude = bus.getBaLongitude();
 		this.bbBankCard = bus.getBbBankCard();
 		this.bbBank = bus.getBbBank();
-		this.bbBankPerson = bus.getBbBankPerson();
+		//this.bbBankPerson = bus.getBbBankPerson();
 		this.busCalId = bus.getCateLine().getCalId();
 		this.busIdcardUrl = bus.getBusIdcardUrl();
 		this.busPhone = bus.getBusPhone();
-		this.busTdCode = bus.getBusTdCode();
-		this.busShareUrl = bus.getBusShareUrl();
-		this.busChange = bus.getBusChange();
-		this.busEphone = bus.getBusEphone();
+		//this.busTdCode = bus.getBusTdCode();
+		//this.busShareUrl = bus.getBusShareUrl();
+		//this.busChange = bus.getBusChange();
+		//this.busEphone = bus.getBusEphone();
 	}
 
 	/** full constructor */

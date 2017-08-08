@@ -32,6 +32,13 @@
 					</div>
 				</div>
 				<div class="cell-item">
+					<div class="cell-left">店铺描述*：</div>
+					<div class="cell-right">
+						<input type="text" name="busDesc" class="cell-input" value="${store.busDesc}"
+							placeholder="" autocomplete="off" />
+					</div>
+				</div>
+				<div class="cell-item">
 					<div class="cell-left">店主姓名*：</div>
 					<div class="cell-right">
 						<input type="text" name="busOwnerName" class="cell-input" value="${store.busOwnerName}" disabled="true"
@@ -170,6 +177,7 @@
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
 <script type="text/javascript"
 	src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
+	${error}
 <script>
 
 	//    选择地址
