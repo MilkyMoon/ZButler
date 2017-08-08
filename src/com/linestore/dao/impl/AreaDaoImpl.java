@@ -11,7 +11,7 @@ import com.linestore.vo.Area;
 import com.linestore.vo.CateLine;
 
 public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
-
+	
 	@Override
 	public void addArea(Area area) {
 		System.out.println("ecex addArea");

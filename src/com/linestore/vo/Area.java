@@ -14,7 +14,7 @@ public class Area implements java.io.Serializable {
 	private Integer id;
 	private Integer pid;
 	private String area;
-	private String desc;
+	private String desction;
 	private Integer status;
 	private Float areaScale;
 	private Float areaScaleTwo;
@@ -33,9 +33,10 @@ public class Area implements java.io.Serializable {
 	}
 	
 	public Area(Area are) {
+		this.id = are.getId();
 		this.pid = are.getPid();
 		this.area = are.getArea();
-		this.desc = are.getDesc();
+		this.desction = are.getDesction();
 		this.status = are.getStatus();
 		this.areaScale = are.getAreaScale();
 		this.areaScaleTwo = are.getAreaScaleTwo();
@@ -49,12 +50,12 @@ public class Area implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Area(Integer pid, String area, String desc, Integer status, Float areaScale, Float areaScaleTwo,
+	public Area(Integer pid, String area, String desction, Integer status, Float areaScale, Float areaScaleTwo,
 			Integer areaWay, Set billsForThuCountyId, Set thinkUsers, Set billsForThuProvinceId,
 			Set billsForThuPropertyId, Set businesses, Set billsForThuCityId) {
 		this.pid = pid;
 		this.area = area;
-		this.desc = desc;
+		this.desction = desction;
 		this.status = status;
 		this.areaScale = areaScale;
 		this.areaScaleTwo = areaScaleTwo;
@@ -93,12 +94,12 @@ public class Area implements java.io.Serializable {
 		this.area = area;
 	}
 
-	public String getDesc() {
-		return this.desc;
+	public String getDesction() {
+		return this.desction;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDesction(String desction) {
+		this.desction = desction;
 	}
 
 	public Integer getStatus() {
