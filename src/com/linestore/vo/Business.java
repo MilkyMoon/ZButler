@@ -49,9 +49,43 @@ public class Business implements java.io.Serializable {
 	private Set bills = new HashSet(0);
 
 	// Constructors
-
 	/** default constructor */
 	public Business() {
+	}
+	
+	public Business(BusinessTmp bust) {
+		this.busId = bust.getBusId();
+		this.cateLine.setCalId(bust.getBusCalId());
+		this.customer.setCusId(bust.getBusCusId());
+		this.area.setId(bust.getBusAreaId());
+		this.busShopName = bust.getBusShopName();
+		this.busOwnerName = bust.getBusOwnerName();
+		this.busDesc = bust.getBusDesc();
+		this.busLicenseUrl = bust.getBusLicenseUrl();
+		this.busTaxUrl = bust.getBusTaxUrl();
+		this.busOrgUrl = bust.getBusOrgUrl();
+		this.busDistrict = bust.getBusDistrict();
+		this.busSmallCate = bust.getBusSmallCate();
+		this.busStatus = bust.getBusStatus();
+		this.busScale = bust.getBusScale();
+		this.busScalePoints = bust.getBusScalePoints();
+		this.busLevel = bust.getBusLevel();
+		this.baCountry = bust.getBaCountry();
+		this.baProvince = bust.getBaProvince();
+		this.baCity = bust.getBaCity();
+		this.baCounty = bust.getBaCounty();
+		this.baAddress = bust.getBaAddress();
+		this.baLatitude = bust.getBaLatitude();
+		this.baLongitude = bust.getBaLongitude();
+		this.bbBankCard = bust.getBbBankCard();
+		this.bbBank = bust.getBbBank();
+		this.bbBankPerson = bust.getBbBankPerson();
+		this.busIdcardUrl = bust.getBusIdcardUrl();
+		this.busPhone = bust.getBusPhone();
+		this.busTdCode = bust.getBusTdCode();
+		this.busShareUrl = bust.getBusShareUrl();
+		this.busChange = bust.getBusChange();
+		this.busEphone = bust.getBusEphone();
 	}
 
 	/** full constructor */

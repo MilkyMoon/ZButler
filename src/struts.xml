@@ -131,6 +131,7 @@
 		<action name="cateLine_*" class="com.linestore.action.CateLineAction"
 			method="{1}">
 			<result name="selectAll">/home/applyAdmission.jsp</result>
+			<result name="gotoEdit">/home/editBus.jsp</result>
 		</action>
 
 		<action name="offlineStore_*" class="com.linestore.action.OfflineStoreAction"

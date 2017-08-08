@@ -35,7 +35,7 @@
 						<a href="<%=basePath%>busTrading_queryIncome"><div style="background-color: #D0021B">收款明细</div></a>
 						<a href="<%=basePath%>busTrading_queryWithdraw"><div style="background-color: #F5A623">提现明细</div></a>
 						<!-- <div style="background-color: #C767DA">现金收款</div> -->
-						<a href="<%=basePath%>home/editBus.jsp"><div style="background-color: #8B572A">商户编辑</div></a>
+						<a href="<%=basePath%>cateLine_editBus"><div style="background-color: #8B572A">商户编辑</div></a>
 						<a href="<%=basePath%>home/storeImg.jsp"><div style="background-color: #7ED321">店铺图片</div></a>
 						<a href="<%=basePath%>home/rebateProportion.jsp"><div style="background-color: #417505">返点比例</div></a>
 						<a href="<%=basePath%>home/ePhone.jsp"><div style="background-color: #663399">店员手机</div></a>
