@@ -79,11 +79,9 @@
 					</div>
 
 					<div class="clearfix"></div>
-
+					
 					<div class="row">
-
-
-						<div class="clearfix"></div>
+						
 
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
@@ -105,6 +103,87 @@
 										</li>
 									</ul>
 									<div class="clearfix"></div>
+								</div>
+								
+								<div class="col-md-6 col-sm-12 col-xs-12">
+									<div class="x_content">
+										<form class="form-horizontal form-label-left">
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">订单类型</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<select class="form-control">
+														<option>Choose option</option>
+														<option>Option one</option>
+														<option>Option two</option>
+														<option>Option three</option>
+														<option>Option four</option>
+													</select>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">交易时间</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<fieldset>
+							                            <div class="control-group">
+							                              <div class="controls">
+							                                <div class="input-prepend input-group">
+							                                  <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+							                                  <input type="text" name="reservation-time" id="reservation-time" class="form-control" value="01/01/2016 - 01/25/2016" />
+							                                </div>
+							                              </div>
+							                            </div>
+							                          </fieldset>
+							                          <p><code>注意：</code>单次查询日期的最长跨度为两个月</p>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">支付场景</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<select class="form-control">
+														<option>Choose option</option>
+														<option>Option one</option>
+														<option>Option two</option>
+														<option>Option three</option>
+														<option>Option four</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">交易状态</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<select class="form-control">
+														<option>Choose option</option>
+														<option>Option one</option>
+														<option>Option two</option>
+														<option>Option three</option>
+														<option>Option four</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+						                        <label class="control-label col-md-3 col-sm-3 col-xs-12">交易金额</label>
+						                        <div class="col-md-4 col-sm-9 col-xs-12">
+						                          <input type="text" class="form-control">
+						                        </div>
+						                        <div class="col-md-1 col-sm-9 col-xs-12">
+						                          <label class="control-label">至</label>
+						                        </div>
+						                        <div class="col-md-4 col-sm-9 col-xs-12">
+						                          <input type="text" class="form-control">
+						                        </div>
+						                      </div>
+						                      
+						                      <div class="divider-dashed"></div>
+						                      
+						                      <div class="form-group">
+						                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+						                        <div class="col-md-9 col-sm-9 col-xs-12">
+						                          <button class="btn btn-success" type="submit">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
+						                        </div>
+						                      </div>						                      
+										</form>
+									</div>
 								</div>
 
 								<div class="x_content">

@@ -18,7 +18,7 @@ public class BusinessTmp implements java.io.Serializable {
 	private Integer busDistrict;
 	private Integer busSmallCate;
 	private Integer busStatus;
-	private Integer busThuId;
+	private Integer busAreaId;
 	private Float busScale;
 	private Float busScalePoints;
 	private Integer busLevel;
@@ -49,7 +49,7 @@ public class BusinessTmp implements java.io.Serializable {
 
 	/** full constructor */
 	public BusinessTmp(String busShopName, String busOwnerName, String busDesc, String busLicenseUrl, String busTaxUrl,
-			String busOrgUrl, Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busThuId,
+			String busOrgUrl, Integer busDistrict, Integer busSmallCate, Integer busStatus, Integer busAreaId,
 			Float busScale, Float busScalePoints, Integer busLevel, Integer busCusId, String baCountry,
 			String baProvince, String baCity, String baCounty, String baAddress, Float baLatitude, Float baLongitude,
 			String bbBankCard, String bbBank, String bbBankPerson, Integer busCalId, String busIdcardUrl,
@@ -63,7 +63,7 @@ public class BusinessTmp implements java.io.Serializable {
 		this.busDistrict = busDistrict;
 		this.busSmallCate = busSmallCate;
 		this.busStatus = busStatus;
-		this.busThuId = busThuId;
+		this.busAreaId = busAreaId;
 		this.busScale = busScale;
 		this.busScalePoints = busScalePoints;
 		this.busLevel = busLevel;
@@ -169,12 +169,12 @@ public class BusinessTmp implements java.io.Serializable {
 		this.busStatus = busStatus;
 	}
 
-	public Integer getBusThuId() {
-		return this.busThuId;
+	public Integer getBusAreaId() {
+		return busAreaId;
 	}
 
-	public void setBusThuId(Integer busThuId) {
-		this.busThuId = busThuId;
+	public void setBusAreaId(Integer busAreaId) {
+		this.busAreaId = busAreaId;
 	}
 
 	public Float getBusScale() {

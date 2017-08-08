@@ -56,7 +56,7 @@
 						<div class="fenleiItem_content">
 							<div class="fenleiItem_content_title">
 								<div class="fenleiItem_name">${bus.busShopName}</div>
-								<span class="fenleiItem_mark">10%</span>
+								<span class="fenleiItem_mark"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
 							</div>
 							<div>${name}</div>
 							<div>

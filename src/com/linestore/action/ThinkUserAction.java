@@ -105,13 +105,13 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	}
 
 	public String save() {
-		if (thinkUser.getThuStatus().equals("-1") || thinkUser.getThuScale() == null || thinkUser.getThuScale() > 1
-				|| thinkUser.getThuScale() < 0) {
-			thinkUser.setThuScale((float) 1);
+		if (thinkUser.getThuStatus().equals("-1") || thinkUser.getArea().getAreaScale() == null || thinkUser.getArea().getAreaScale() > 1
+				|| thinkUser.getArea().getAreaScale() < 0) {
+			thinkUser.getArea().setAreaScale((float) 1);
 		}
-		if (thinkUser.getThuStatus().equals("-1") || thinkUser.getThuScaleTwo() == null || thinkUser.getThuScaleTwo() > 1
-				|| thinkUser.getThuScale() < 0) {
-			thinkUser.setThuScaleTwo((float) 0);
+		if (thinkUser.getThuStatus().equals("-1") || thinkUser.getArea().getAreaScaleTwo() == null || thinkUser.getArea().getAreaScaleTwo() > 1
+				|| thinkUser.getArea().getAreaScaleTwo() < 0) {
+			thinkUser.getArea().setAreaScaleTwo((float) 0);
 		}
 		thinkUserService.add(thinkUser);
 		return "select";
@@ -332,8 +332,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 
 		selectById();
 		thinkUserResult.setThuStatus(thinkUser.getThuStatus());
-		thinkUserResult.setThuScale((float) 1);
-		thinkUserResult.setThuScaleTwo((float) 0);
+		thinkUserResult.getArea().setAreaScale((float) 1);
+		thinkUserResult.getArea().setAreaScaleTwo((float) 0);
 		thinkUserService.status(thinkUserResult);
 
 		return "select";

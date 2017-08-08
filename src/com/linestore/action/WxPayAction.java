@@ -26,6 +26,7 @@ import com.github.binarywang.wxpay.service.WxPayService;
 import com.github.binarywang.wxpay.util.SignUtils;
 import com.linestore.WxUtils.TemplateMessage;
 import com.linestore.WxUtils.XMLUtil;
+import com.linestore.service.AreaService;
 import com.linestore.service.BillService;
 import com.linestore.service.BusMemberService;
 import com.linestore.service.BusTradingService;
@@ -35,9 +36,9 @@ import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.service.FriendsService;
 import com.linestore.service.SettingService;
-import com.linestore.util.ReturnUpdateHql;
-import com.linestore.vo.BusMember;
 import com.linestore.service.ThinkUserService;
+import com.linestore.util.ReturnUpdateHql;
+import com.linestore.vo.Area;
 import com.linestore.vo.Bill;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
@@ -46,7 +47,6 @@ import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Friends;
 import com.linestore.vo.Template;
-import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
 
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
@@ -72,6 +72,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	private BusTrading busTrading = new BusTrading();
 	private ThinkUserService thinkUserService;
 	private BillService billService;
+	public AreaService areaService;
 
 	public FriendsService getFriendsService() {
 		return friendsService;
@@ -252,59 +253,59 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bigMoney = bigMoney.subtract(city);
 
 							// 物业收款
-							System.out.println("----thuId: " + bus.getBusThuId());
-							ThinkUser thu = thinkUserService.queryById(bus.getBusThuId());
-							if (thu.getThuWay() == 1) {
-								BigDecimal dailishang = new BigDecimal(thu.getThuScale());
+							//System.out.println("----thuId: " + bus.getBus());
+							Area area = bus.getArea();
+							if (area.getAreaWay() == 1) {
+								BigDecimal dailishang = new BigDecimal(area.getAreaScale());
 								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setThinkUserByThuPropertyId(thu);
+								bill.setAreaByThuPropertyId(area);
 								bill.setBilPropertyMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
 								// 县收款
-								thu = thinkUserService.queryById(thu.getThuPid());
-								dailishang = new BigDecimal(thu.getThuScale());
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScale());
 								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setThinkUserByThuCountyId(thu);
+								bill.setAreaByThuCountyId(area);
 								bill.setBilCountyMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
 								// 市收款
-								thu = thinkUserService.queryById(thu.getThuPid());
-								dailishang = new BigDecimal(thu.getThuScale());
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScale());
 								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setThinkUserByThuCityId(thu);
+								bill.setAreaByThuCityId(area);
 								bill.setBilCityMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
 								// 省收款
-								thu = thinkUserService.queryById(thu.getThuPid());
-								dailishang = new BigDecimal(thu.getThuScale());
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScale());
 								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
 								bill.setBilProvinceMoney(dailishang);
-								bill.setThinkUserByThuProvinceId(thu);
+								bill.setAreaByThuProvinceId(area);
 								bigMoney = bigMoney.subtract(dailishang);
 								// 众邦收款
 								bill.setBilZongMoney(bigMoney);
 							} else {
-								BigDecimal dailishang = new BigDecimal(thu.getThuScaleTwo());
-								bill.setThinkUserByThuPropertyId(thu);
+								BigDecimal dailishang = new BigDecimal(area.getAreaScaleTwo());
+								bill.setAreaByThuPropertyId(area);
 								bill.setBilPropertyMoney(bigMoney.multiply(dailishang));
 								// 县收款
-								thu = thinkUserService.queryById(thu.getThuPid());
-								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScaleTwo());
 								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setThinkUserByThuCountyId(thu);
+								bill.setAreaByThuCountyId(area);
 								bill.setBilCountyMoney(bigMoney.multiply(dailishang));
 								// 市收款
-								thu = thinkUserService.queryById(thu.getThuPid());
-								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScaleTwo());
 								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setThinkUserByThuCityId(thu);
+								bill.setAreaByThuCityId(area);
 								bill.setBilCityMoney(bigMoney.multiply(dailishang));
 								// 省收款
-								thu = thinkUserService.queryById(thu.getThuPid());
-								dailishang = new BigDecimal(thu.getThuScaleTwo());
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScaleTwo());
 								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
 								bill.setBilProvinceMoney(bigMoney.multiply(dailishang));
-								bill.setThinkUserByThuProvinceId(thu);
+								bill.setAreaByThuProvinceId(area);
 								// 众邦收款
 								bill.setBilZongMoney(bigMoney.multiply(dailishang));
 							}
@@ -619,6 +620,15 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	public void setBillService(BillService billService) {
 		this.billService = billService;
 	}
+
+	public AreaService getAreaService() {
+		return areaService;
+	}
+
+	public void setAreaService(AreaService areaService) {
+		this.areaService = areaService;
+	}
+	
 	
 	
 }

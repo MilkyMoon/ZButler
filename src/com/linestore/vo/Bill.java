@@ -7,19 +7,17 @@ import java.sql.Timestamp;
  * Bill entity. @author MyEclipse Persistence Tools
  */
 
-import java.math.BigDecimal;
-
 public class Bill implements java.io.Serializable {
 
 	// Fields
 
 	private Integer bilId;
 	private Business business;
-	private ThinkUser thinkUserByThuProvinceId;
-	private ThinkUser thinkUserByThuCityId;
+	private Area areaByThuCityId;
+	private Area areaByThuProvinceId;
+	private Area areaByThuCountyId;
 	private Customer customer;
-	private ThinkUser thinkUserByThuCountyId;
-	private ThinkUser thinkUserByThuPropertyId;
+	private Area areaByThuPropertyId;
 	private BigDecimal bilCusMoney;
 	private BigDecimal bilBusMoney;
 	private BigDecimal bilPropertyMoney;
@@ -36,16 +34,16 @@ public class Bill implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Bill(Business business, ThinkUser thinkUserByThuProvinceId, ThinkUser thinkUserByThuCityId,
-			Customer customer, ThinkUser thinkUserByThuCountyId, ThinkUser thinkUserByThuPropertyId, BigDecimal bilCusMoney,
-			BigDecimal bilBusMoney, BigDecimal bilPropertyMoney, BigDecimal bilCountyMoney, BigDecimal bilCityMoney,
-			BigDecimal bilProvinceMoney, Timestamp bilDate, BigDecimal bilZongMoney) {
+	public Bill(Business business, Area areaByThuCityId, Area areaByThuProvinceId, Area areaByThuCountyId,
+			Customer customer, Area areaByThuPropertyId, BigDecimal bilCusMoney, BigDecimal bilBusMoney,
+			BigDecimal bilPropertyMoney, BigDecimal bilCountyMoney, BigDecimal bilCityMoney, BigDecimal bilProvinceMoney,
+			Timestamp bilDate, BigDecimal bilZongMoney) {
 		this.business = business;
-		this.thinkUserByThuProvinceId = thinkUserByThuProvinceId;
-		this.thinkUserByThuCityId = thinkUserByThuCityId;
+		this.areaByThuCityId = areaByThuCityId;
+		this.areaByThuProvinceId = areaByThuProvinceId;
+		this.areaByThuCountyId = areaByThuCountyId;
 		this.customer = customer;
-		this.thinkUserByThuCountyId = thinkUserByThuCountyId;
-		this.thinkUserByThuPropertyId = thinkUserByThuPropertyId;
+		this.areaByThuPropertyId = areaByThuPropertyId;
 		this.bilCusMoney = bilCusMoney;
 		this.bilBusMoney = bilBusMoney;
 		this.bilPropertyMoney = bilPropertyMoney;
@@ -74,20 +72,28 @@ public class Bill implements java.io.Serializable {
 		this.business = business;
 	}
 
-	public ThinkUser getThinkUserByThuProvinceId() {
-		return this.thinkUserByThuProvinceId;
+	public Area getAreaByThuCityId() {
+		return this.areaByThuCityId;
 	}
 
-	public void setThinkUserByThuProvinceId(ThinkUser thinkUserByThuProvinceId) {
-		this.thinkUserByThuProvinceId = thinkUserByThuProvinceId;
+	public void setAreaByThuCityId(Area areaByThuCityId) {
+		this.areaByThuCityId = areaByThuCityId;
 	}
 
-	public ThinkUser getThinkUserByThuCityId() {
-		return this.thinkUserByThuCityId;
+	public Area getAreaByThuProvinceId() {
+		return this.areaByThuProvinceId;
 	}
 
-	public void setThinkUserByThuCityId(ThinkUser thinkUserByThuCityId) {
-		this.thinkUserByThuCityId = thinkUserByThuCityId;
+	public void setAreaByThuProvinceId(Area areaByThuProvinceId) {
+		this.areaByThuProvinceId = areaByThuProvinceId;
+	}
+
+	public Area getAreaByThuCountyId() {
+		return this.areaByThuCountyId;
+	}
+
+	public void setAreaByThuCountyId(Area areaByThuCountyId) {
+		this.areaByThuCountyId = areaByThuCountyId;
 	}
 
 	public Customer getCustomer() {
@@ -98,20 +104,12 @@ public class Bill implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	public ThinkUser getThinkUserByThuCountyId() {
-		return this.thinkUserByThuCountyId;
+	public Area getAreaByThuPropertyId() {
+		return this.areaByThuPropertyId;
 	}
 
-	public void setThinkUserByThuCountyId(ThinkUser thinkUserByThuCountyId) {
-		this.thinkUserByThuCountyId = thinkUserByThuCountyId;
-	}
-
-	public ThinkUser getThinkUserByThuPropertyId() {
-		return this.thinkUserByThuPropertyId;
-	}
-
-	public void setThinkUserByThuPropertyId(ThinkUser thinkUserByThuPropertyId) {
-		this.thinkUserByThuPropertyId = thinkUserByThuPropertyId;
+	public void setAreaByThuPropertyId(Area areaByThuPropertyId) {
+		this.areaByThuPropertyId = areaByThuPropertyId;
 	}
 
 	public BigDecimal getBilCusMoney() {

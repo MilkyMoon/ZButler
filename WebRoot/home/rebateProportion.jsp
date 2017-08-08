@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -29,7 +29,7 @@
 			<div class="integral2_top_center"></div>
 		</div>
 		<div style="padding-top:53px;">
-			<span>10%</span>
+			<span><fmt:formatNumber type="number" maxFractionDigits="0" value="${store.busScale * 100}" />%</span>
 			<div style="padding-top:53px;">您的返点比例</div>
 		</div>
 		

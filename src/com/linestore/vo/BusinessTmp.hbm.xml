@@ -37,8 +37,8 @@
         <property name="busStatus" type="java.lang.Integer">
             <column name="bus_status" />
         </property>
-        <property name="busThuId" type="java.lang.Integer">
-            <column name="bus_thu_id" />
+        <property name="busAreaId" type="java.lang.Integer">
+            <column name="bus_area_id" />
         </property>
         <property name="busScale" type="java.lang.Float">
             <column name="bus_scale" precision="12" scale="0" />
