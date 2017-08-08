@@ -28,9 +28,9 @@
 			</div>
 			<div class="integral2_top_center"></div>
 		</div>
-		<div style="padding-top:53px;">
+		<div style="padding-top:106px;">
 			<span><fmt:formatNumber type="number" maxFractionDigits="0" value="${store.busScale * 100}" />%</span>
-			<div style="padding-top:53px;">您的返点比例</div>
+			<div>您的返点比例</div>
 		</div>
 		
 	</div>
