@@ -149,6 +149,10 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="noticeDao" class="com.linestore.dao.impl.NoticeDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->
 	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
@@ -226,6 +230,9 @@
 	
 	<bean id="areaService" class="com.linestore.service.impl.AreaServiceImpl">
 		<property name="areaDao" ref="areaDao"></property>
+	</bean>
+	<bean id="noticeService" class="com.linestore.service.impl.NoticeServiceImpl">
+		<property name="noticeDao" ref="noticeDao"></property>
 	</bean>
 	<!-- 配置一个业务逻辑组件 -->
 
