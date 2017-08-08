@@ -375,6 +375,10 @@
 			</result>
 			<result name="select" type="redirectAction">trading_selectAll</result>
 		</action>
+		<action name="notice_*" class="com.linestore.action.NoticeAction"
+			method="{1}">
+		
+		</action>
 		<action name="index" method="index" class="com.linestore.action.AdminIndexAction">
 			<result name="success">index.jsp</result>
 		</action>
