@@ -124,29 +124,15 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">地&nbsp;&nbsp;&nbsp;&nbsp;区</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuArea" value="${listInfo.thuArea}" placeholder="请输入管理员所属地区">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<select class="form-control" name="thuPid" id="busCateId">
-														<c:if test="${list[0].thuId == listInfo.thuId && listInfo.thuPid != 0}">
-															<option value="${listPinfo.thuId}" selected="selected">${listPinfo.thuArea}</option>
+												<select class="form-control" name="area.areId" id="busCateId">
+													<c:forEach var="root" items="${list}" varStatus="i">
+														<c:if test="${root.areId == listInfo.area.areId}">
+															<option value="${root.areId}" selected="selected">${root.area}</option>
 														</c:if>
-														<c:if test="${list[0].thuId == listInfo.thuId && listInfo.thuPid == 0}">
-															<option value="0" selected="selected">${listInfo.thuArea}</option>
-														</c:if>
-														<c:if test="${list[0].thuId != listInfo.thuId}">
-															<c:forEach var="root" items="${list}" varStatus="i">
-																<c:if test="${root.thuId == listInfo.thuPid}">
-																	<option value="${root.thuId}" selected="selected">${root.thuArea}</option>
-																</c:if>
-																<c:if test="${root.thuId != listInfo.thuPid}">
-																	<option value="${root.thuId}">${root.thuArea}</option>
-																</c:if>			
-															</c:forEach>
-														</c:if>
+														<c:if test="${root.areId != listInfo.area.areId}">
+															<option value="${root.areId}">${root.area}</option>
+														</c:if>	
+													</c:forEach>
 												</select>
 											</div>
 										</div>
@@ -162,37 +148,19 @@
 												<input type="text" class="form-control" name="thuPhone" value="${listInfo.thuPhone}" placeholder="请输入管理员电话">
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例(方式一)</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<c:if test="${list[0].thuId == listInfo.thuId && listInfo.thuPid != 0}">
-													<input type="text" class="form-control" name="thuScale" value="${listInfo.thuScale}" disabled="disabled" placeholder="请输入抽成比例">
-												</c:if>
-												<c:if test="${list[0].thuId != listInfo.thuId || listInfo.thuPid == 0}">
-													<input type="text" class="form-control" name="thuScale" value="${listInfo.thuScale}" placeholder="请输入抽成比例">
-												</c:if>
-												<p style="margin-top:10px;"><code>注意：</code>此比例为上级用户向当前用户所抽取的比例，取值为0~1。当用户未设置或未启用时请将比例设置为1。关闭时会自动将值设置为1</p>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例(方式二)</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuScaleTwo" value="${listInfo.thuScaleTwo}" placeholder="请输入抽成比例">
-												<p style="margin-top:10px;"><code>注意：</code>此比例为当前账号向用户抽取交付金额的比例，取值为0~1。当用户未设置或未启用时请将比例设置为0。关闭时会自动将值设置为0</p>
-											</div>
-										</div>
+										
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">启&nbsp;&nbsp;&nbsp;&nbsp;用</label>
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												<div class="radio">
 													<label> 
-														<c:if test="${listInfo.thuStatus == '1'}">
+														<c:if test="${listInfo.thuStatus == 1}">
 															<input type="radio" class="flat" checked name="thuStatus" value="1"> 启用
 	                          								<input type="radio" class="flat" name="thuStatus" value="-1"> 不启用
 														</c:if>
-														<c:if test="${listInfo.thuStatus == '-1'}">
+														<c:if test="${listInfo.thuStatus == 0}">
 															<input type="radio" class="flat" name="thuStatus" value="1"> 启用
-	                          								<input type="radio" class="flat" checked name="thuStatus" value="-1"> 不启用
+	                          								<input type="radio" class="flat" checked name="thuStatus" value="0"> 不启用
 														</c:if>
 													</label>
 												</div>

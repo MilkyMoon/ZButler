@@ -39,8 +39,7 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 		}
 		areaListReslut.addAll(areaList);
 		
-		request = (Map<String, Object>) ActionContext.getContext().get("request");
-		request.put("list", areaListReslut);
+		ActionContext.getContext().getSession().put("list", areaListReslut);
 		
 		return "selectAll";
 	}
@@ -53,8 +52,7 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	public String edit(){
 		select();
 		areaReslut = areaService.queryById(area.getAreId());
-		request = (Map<String, Object>) ActionContext.getContext().get("request");
-		request.put("roots", areaReslut);
+		ActionContext.getContext().getSession().put("roots", areaReslut);
 		return "edit";
 	}
 	

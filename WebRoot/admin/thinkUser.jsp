@@ -159,19 +159,19 @@
 														<td class=" ">${root.area.area}</td>
 														<td class=" ">${root.thuPhone}</td>
 														<td class=" ">${root.thuEmail}</td>
-														<c:if test="${root.thuStatus == '1'}">
+														<c:if test="${root.thuStatus == 1}">
 															<td class=" ">是</td>
 														</c:if>
-														<c:if test="${root.thuStatus == '-1'}">
+														<c:if test="${root.thuStatus == 0}">
 															<td class=" " style="color:#d9534f">否</td>
 														</c:if>
 														<td>
-															<c:if test="${root.thuStatus == '1'}">
-																<a href="thinkUser_status?thuStatus=-1&thuId=${root.thuId}" class="btn btn-primary btn-xs">
+															<c:if test="${root.thuStatus == 1}">
+																<a href="thinkUser_status?thuStatus=0&thuId=${root.thuId}" class="btn btn-primary btn-xs">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															</c:if>
-															<c:if test="${root.thuStatus == '-1'}">
+															<c:if test="${root.thuStatus == 0}">
 																<a href="thinkUser_status?thuStatus=1&thuId=${root.thuId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;

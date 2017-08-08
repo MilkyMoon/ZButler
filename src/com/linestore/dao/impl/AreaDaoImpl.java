@@ -75,6 +75,8 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 					for (int j = 0; j < level; j++) {
 						str += "|---";
 					}
+					System.out.println(level);
+					System.out.println(str);
 					area.setArea(str + area.getArea());
 					list.add(area);
 				} else {

@@ -61,31 +61,32 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	public String add() {
 		ThinkUser think = new ThinkUser();
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = think.getThuId();
+		this.userId = think.getArea().getAreId();
+		
+		List<Area> list = new ArrayList<Area>();
+		Area areaResult;
+		List<Area> listResalut = new ArrayList<Area>();
+		
+		areaResult = areaService.queryById(userId);
+		areaService.queryArea(list, userId, 1);
 
-		List<ThinkUser> list = new ArrayList<ThinkUser>();
-		thinkUser.setThuId(userId);
-		selectById();
-		List<ThinkUser> listResault = new ArrayList<ThinkUser>();
+		listResalut.add(areaResult);
+		listResalut.addAll(list);
 
-		thinkUserService.queryFormat(list, userId, 1);
-
-		listResault.add(thinkUserResult);
-		listResault.addAll(list);
-
-		ActionContext.getContext().getSession().put("list", listResault);
+		ActionContext.getContext().getSession().put("list", listResalut);
 		return "add";
 	}
 
 	public String edit() {
 		ThinkUser think = new ThinkUser();
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = think.getThuId();
+		this.userId = think.getArea().getAreId();
 		String[] arr = inList(userId);
 
 		int i = 0;
 		// 判断当前搜索的管理员是否是其管理的下级
 		for (i = 0; i < arr.length; i++) {
+			System.out.println("arr:"+arr[i]);
 			if (arr[i].equals(thinkUser.getThuId().toString())) {// 循环查找字符串数组中的每个字符串中是否包含所有查找的内容
 				break;
 			}
@@ -95,11 +96,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		}
 		selectById();
 		ActionContext.getContext().getSession().put("listInfo", thinkUserResult);
-		if (thinkUserResult.getArea().getPid() != 0) {
-			thinkUser.setThuId(thinkUserResult.getArea().getAreId());
-			selectById();
-			ActionContext.getContext().getSession().put("listPinfo", thinkUserResult);
-		}
+
+		
 		add();
 		return "edit";
 	}
@@ -190,38 +188,14 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		ThinkUser think = new ThinkUser();
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 		this.userId = think.getThuId();
-
 		Integer thId = thinkUser.getThuId();
 		if (thId == userId) {
 			return "select";
 		}
 
-		// 删除其包含其下级所有管理员
-		String[] str = inList(userId);
-
-		int j = 0;
-		// 判断当前删除的管理员是否是其管理的下级
-		for (j = 0; j < str.length; j++) {
-			if (str[j].equals(thId.toString())) {// 循环查找字符串数组中的每个字符串中是否包含所有查找的内容
-				break;
-			}
-		}
-		if (j == str.length) {
-			return "select";
-		}
-
-		String[] arr = inList(thId);
-
 		System.out.println("-----------------------------------");
-		for (int i = 0; i < arr.length; i++) {
-			System.out.println("arr:" + arr[i]);
-			thinkUserService.delete(Integer.valueOf(arr[i]));
-		}
-
-		// ThinkUser thinkRes = new ThinkUser();
-		// thinkRes.setThuId(Integer.parseInt(arr[0]));
-		// thinkUserService.delete(thinkUser);
-
+		
+		thinkUserService.delete(thinkUser.getThuId());
 		return "select";
 	}
 
@@ -315,7 +289,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	public String status() {
 		ThinkUser think = new ThinkUser();
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = think.getThuId();
+		this.userId = think.getArea().getAreId();
 
 		System.out.println("status:" + thinkUser.getThuId());
 		if (thinkUser.getThuId() == userId) {
