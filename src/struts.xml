@@ -390,7 +390,7 @@
 			method="{1}">
 			<result name="selectAll">area.jsp</result>
 			<result name="add">areaAdd.jsp</result>
-			<result name="edit">area.jsp</result>
+			<result name="edit">areaEdit.jsp</result>
 			<result name="select" type="redirectAction">area_select</result>
 		</action>
 	</package>

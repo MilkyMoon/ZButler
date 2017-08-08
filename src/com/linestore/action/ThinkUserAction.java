@@ -14,9 +14,11 @@ import javax.websocket.Session;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.linestore.service.AreaService;
 import com.linestore.service.CatetoryService;
 import com.linestore.service.ThinkUserService;
 import com.linestore.util.ReturnUpdateHql;
+import com.linestore.vo.Area;
 import com.linestore.vo.Catetory;
 import com.linestore.vo.GroupAccess;
 import com.linestore.vo.ThinkUser;
@@ -29,6 +31,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	private List<ThinkUser> thinkUserList;
 	private ThinkUserService thinkUserService;
 	private ThinkUser thinkUserResult;
+	private Area area = new Area();
+	private AreaService areaService;
 	private Integer userId;
 
 	@Override
@@ -92,7 +96,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		selectById();
 		ActionContext.getContext().getSession().put("listInfo", thinkUserResult);
 		if (thinkUserResult.getArea().getPid() != 0) {
-			thinkUser.setThuId(thinkUserResult.getArea().getId());
+			thinkUser.setThuId(thinkUserResult.getArea().getAreId());
 			selectById();
 			ActionContext.getContext().getSession().put("listPinfo", thinkUserResult);
 		}
@@ -230,7 +234,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	public String select() {
 		ThinkUser think = new ThinkUser();
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		this.userId = think.getThuId();
+		this.userId = think.getArea().getAreId();
 
 		System.out.println("userId:" + userId);
 
@@ -272,11 +276,11 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 				System.out.println("listArea:" + listNew.get(i).getArea().getArea());
 				System.out.println("listNewId:" + listNew.get(i).getThuId());
 
-				thinkUserService.queryFormat(list, listNew.get(i).getThuId(), 1);
+				thinkUserService.queryFormat(list, listNew.get(i).getArea().getAreId(), 1);
 
 				// 判断当前集合是否存在于其他集合当中
 				for (int j = 0; j < listNew.size(); j++) {
-					thinkUserService.queryFormat(listFor, listNew.get(j).getThuId(), 1);
+					thinkUserService.queryFormat(listFor, listNew.get(j).getArea().getAreId(), 1);
 					for (int m = 0; m < listFor.size(); m++) {
 						System.out.println("listFor:" + listFor.get(m).getThuId());
 						if (listNew.get(i).getThuId() == listFor.get(m).getThuId()) {
@@ -352,6 +356,22 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		}
 		return arr;
 	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+	public AreaService getAreaService() {
+		return areaService;
+	}
+
+	public void setAreaService(AreaService areaService) {
+		this.areaService = areaService;
+	}
 	
 //	public String viewImages() {  
 //        HttpServletResponse response = null;  
@@ -383,5 +403,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 //        }  
 //        return null;  
 //    }
+	
+	
 
 }

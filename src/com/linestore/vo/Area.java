@@ -11,7 +11,7 @@ public class Area implements java.io.Serializable {
 
 	// Fields
 
-	private Integer id;
+	private Integer areId;
 	private Integer pid;
 	private String area;
 	private String desction;
@@ -33,7 +33,7 @@ public class Area implements java.io.Serializable {
 	}
 	
 	public Area(Area are) {
-		this.id = are.getId();
+		this.areId = are.getAreId();
 		this.pid = are.getPid();
 		this.area = are.getArea();
 		this.desction = are.getDesction();
@@ -70,16 +70,16 @@ public class Area implements java.io.Serializable {
 
 	// Property accessors
 
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public Integer getPid() {
 		return this.pid;
+	}
+
+	public Integer getAreId() {
+		return areId;
+	}
+
+	public void setAreId(Integer areId) {
+		this.areId = areId;
 	}
 
 	public void setPid(Integer pid) {

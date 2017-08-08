@@ -80,7 +80,7 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 				} else {
 					list.add(areas.get(i));
 				}
-				queryArea(list, areas.get(i).getId(), level+1);
+				queryArea(list, areas.get(i).getAreId(), level+1);
 			}
 		}
 		return areas;

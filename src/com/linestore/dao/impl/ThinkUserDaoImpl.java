@@ -14,7 +14,7 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 	
 	public List<ThinkUser> queryFormat(List<ThinkUser> list, int pid, int level) {
 //		System.out.println(level);
-		List<ThinkUser> catetories = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where area.Pid=?", pid);
+		List<ThinkUser> catetories = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where area.pid=?", pid);
 		if (catetories != null) {
 			for (int i = 0; i < catetories.size(); i++) {
 				if (level != 0) {
@@ -24,11 +24,12 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 						str += "|---";
 					}
 					cate.getArea().setArea(str + cate.getArea().getArea());
+					System.out.println(cate.getArea().getArea());
 					list.add(cate);
 				} else {
 					list.add(catetories.get(i));
 				}
-				queryFormat(list, catetories.get(i).getArea().getId(), level+1);
+				queryFormat(list, catetories.get(i).getArea().getAreId(), level+1);
 			}
 		}
 		return catetories;
@@ -63,7 +64,7 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 	@Override
 	public List<ThinkUser> select(ThinkUser thinkUser) {
 		// TODO Auto-generated method stub
-		String hql = "from ThinkUser where thuArea like '%"+thinkUser.getThuName()+"%' or thuName like '%"+thinkUser.getThuName()+"%' or thuEmail like '%"+thinkUser.getThuName()+"%' or thuPhone like '%"+thinkUser.getThuName()+"%'";
+		String hql = "from ThinkUser where area.area like '%"+thinkUser.getThuName()+"%' or thuName like '%"+thinkUser.getThuName()+"%' or thuEmail like '%"+thinkUser.getThuName()+"%' or thuPhone like '%"+thinkUser.getThuName()+"%'";
 		
 		List<ThinkUser> list = (List<ThinkUser>) this.getHibernateTemplate().find(hql);
 		
