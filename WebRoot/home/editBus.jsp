@@ -34,7 +34,7 @@
 				<div class="cell-item">
 					<div class="cell-left">店主姓名*：</div>
 					<div class="cell-right">
-						<input type="text" name="busOwnerName" class="cell-input" value="${store.busOwnerName}" disabled="true" value="${store.busOwnerName}"
+						<input type="text" name="busOwnerName" class="cell-input" value="${store.busOwnerName}" disabled="true"
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
-				<!-- <div class="cell-item">
+				<div class="cell-item">
 					<div class="cell-left">所在地址*：</div>
 					<div class="cell-right">
 						<input type="text" name="baProvince" class="cell-input" readonly
@@ -86,14 +86,14 @@
 					</label>
 				</div>
 
-				<!-- <div class="cell-item">
+				<div class="cell-item">
 					<div class="cell-left">营业执照号*：</div>
 					<div class="cell-right">
-						<input type="text" name="busLicenseUrl" class="cell-input"
+						<input type="text" name="busLicenseUrl" class="cell-input" value="${store.busLicenseUrl}"
 							placeholder="" autocomplete="off" />
 					</div>
-				</div> -->
-				<%-- <div class="cell-item">
+				</div>
+				<div class="cell-item">
 					<div class="cell-left">经营类别*：</div>
 					<label class="cell-right cell-arrow"> <select
 						class="cell-select" name="cateLine.calId" id="busCateId">
@@ -111,7 +111,7 @@
 							<option value="">请选择小类别</option>
 					</select>
 					</label>
-				</div> --%>
+				</div>
 				<!--<div class="cell-item">
                 <div class="cell-left">商家返利*：</div>
                 <label class="cell-right cell-arrow">
