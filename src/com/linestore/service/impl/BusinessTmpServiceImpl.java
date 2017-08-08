@@ -21,6 +21,11 @@ public class BusinessTmpServiceImpl implements BusinessTmpService  {
 		businessTmpDao.delBusinessTmp(busTid);
 	}
 
+	@Override
+	public BusinessTmp queryById(int bustId) {
+		return businessTmpDao.queryById(bustId);
+	}
+	
 	public BusinessTmpDao getBusinessTmpDao() {
 		return businessTmpDao;
 	}
@@ -28,7 +33,5 @@ public class BusinessTmpServiceImpl implements BusinessTmpService  {
 	public void setBusinessTmpDao(BusinessTmpDao businessTmpDao) {
 		this.businessTmpDao = businessTmpDao;
 	}
-
-	
 
 }
