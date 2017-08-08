@@ -87,7 +87,7 @@
                 $("#basetxt").val(imgurl);
                 console.log(imgurl);
                 $('#showResult').fadeIn();
-                $.post("<%=basePath%>business!update.action", 
+                $.post("<%=basePath%>business!updateBus.action", 
                 {
                 	busOrgUrl: imgurl,
                 	busId: ${store.busId}
@@ -117,7 +117,7 @@
                     checkImageOrigin: true,
                     background: false,
                     minContainerHeight: 400,
-                    minContainerWidth: 220
+                    minContainerWidth: 300
                 });
             }
 
@@ -138,7 +138,7 @@
                 var that = this;
                 lrz(this.files[0], {
                     width: 800,
-                    height: 440,
+                    height: 800,
                     quality: 0.7
                 })
                     .then(function (rst) {
