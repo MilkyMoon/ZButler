@@ -1,10 +1,12 @@
 package com.linestore.action;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.linestore.service.AreaService;
+import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Area;
 import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
@@ -17,6 +19,7 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	private AreaService areaService;
 	private List<Area> areaList = new ArrayList<Area>();
 	private List<Area> areaListReslut = new ArrayList<Area>();
+	private Area areaReslut;
 	
 	private ThinkUser think;
 	
@@ -31,8 +34,8 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 		if(think.getArea().getPid() == 0){
 			areaService.queryArea(areaList, 0, 0);
 		} else {
-			areaService.queryArea(areaList, think.getArea().getId(), 0);
-			areaListReslut.add(areaService.queryById(think.getArea().getId()));
+			areaService.queryArea(areaList, think.getArea().getAreId(), 0);
+			areaListReslut.add(areaService.queryById(think.getArea().getAreId()));
 		}
 		areaListReslut.addAll(areaList);
 		
@@ -47,13 +50,48 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 		return "add";
 	}
 	
+	public String edit(){
+		select();
+		areaReslut = areaService.queryById(area.getAreId());
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", areaReslut);
+		return "edit";
+	}
+	
 	public String save(){
 		areaService.addArea(area);
 		return "select";
 	}
 	
-	public String status(){
+	public String delete(){
+		areaService.queryArea(areaList, area.getAreId(), 0);
+		if(areaList.size() < 1){
+			areaService.delArea(area.getAreId());
+		}
 		
+		return "select";
+	}
+	
+	public String status(){
+		try {
+			String hql = ReturnUpdateHql.ReturnHql(area.getClass(), area, area.getAreId());
+			areaService.upadteArea(hql);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "select";
 	}
 	

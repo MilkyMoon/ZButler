@@ -101,24 +101,29 @@
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">名&nbsp;&nbsp;&nbsp;&nbsp;称</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<input type="text" class="form-control" name="area" placeholder="请输入地区名称">
+														<input type="text" class="form-control" name="area" value="${roots.area}" placeholder="请输入地区名称">
 													</div>
 												</div>
 												
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">描&nbsp;&nbsp;&nbsp;&nbsp;述</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<textarea id="message" class="form-control" name="desc"></textarea>
+														<textarea id="message" class="form-control" value="${roots.desction}" name="desc"></textarea>
 													</div>
 												</div>
 												
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<select class="form-control" name="pid" id="busCateId">
+														<select class="form-control" name="pid">
 															<option value="0">选择上级</option>
 															<c:forEach var="root" items="${list}">
-																<option value="${root.areId}">${root.area}</option>
+																<c:if test="${root.areId == roots.pid}">
+																	<option value="${root.areId}" selected="selected">${root.area}</option>
+																</c:if>
+																<c:if test="${root.areId != roots.pid}">
+																	<option value="${root.areId}">${root.area}</option>
+																</c:if>
 															</c:forEach>
 														</select>
 													</div>
@@ -129,8 +134,14 @@
 													<div class="col-md-9 col-sm-9 col-xs-12">
 														<div class="radio">
 															<label> 
+																<c:if test="${roots.status == 1}">
+																	<input type="radio" class="flat" checked name="status" value="1"> 启用
+			                          								<input type="radio" class="flat" name="status" value="0"> 不启用
+																</c:if>
+																<c:if test="${roots.status == 0}">
 																	<input type="radio" class="flat" name="status" value="1"> 启用
 			                          								<input type="radio" class="flat" checked name="status" value="0"> 不启用
+																</c:if>
 															</label>
 														</div>
 													</div>

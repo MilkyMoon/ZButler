@@ -120,7 +120,7 @@
 								<div class="x_content">
 									<p>
 										<code>注意：</code>
-										1.删除上级管理员会删除所有下级管理员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										1.有上级时将不能删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										2.搜索时会将其下级都显示出来
 									</p>
 									<div class="table-responsive">
@@ -147,7 +147,7 @@
 														<td class="a-center ">
 															<input type="checkbox" class="flat" name="table_records">
 														</td>
-														<td class=" ">${root.id}</td>
+														<td class=" ">${root.areId}</td>
 														<td class=" ">${root.area}</td>
 														<td class=" ">
 															<c:if test="${root.status == 1}">
@@ -159,20 +159,20 @@
 														</td>
 														<td>
 															<c:if test="${root.status == 1}">
-																<a href="area_status?status=0&id=${root.id}" class="btn btn-primary btn-xs">
+																<a href="area_status?status=0&areId=${root.areId}" class="btn btn-primary btn-xs">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															</c:if>
 															<c:if test="${root.status == 0}">
-																<a href="area_status?status=1&id=${root.id}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
+																<a href="area_status?status=1&areId=${root.areId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
 																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															</c:if>
 															
-															<a href="area_edit?id=${root.id}" class="btn btn-info btn-xs">
+															<a href="area_edit?areId=${root.areId}" class="btn btn-info btn-xs">
 															    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="area_delete?id=${root.id}" class="btn btn-danger btn-xs">
+															<a href="area_delete?areId=${root.areId}" class="btn btn-danger btn-xs">
 																<i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除
 															</a>
 														</td>

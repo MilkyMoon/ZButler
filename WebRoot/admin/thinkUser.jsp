@@ -133,8 +133,6 @@
 													<th class="column-title">地区</th>
 													<th class="column-title">电话</th>
 													<th class="column-title">邮箱</th>
-													<th class="column-title">抽成比例(方式一)</th>
-													<th class="column-title">抽成比例(方式二)</th>
 													<th class="column-title">是否启用</th>
 													<th class="column-title no-link last">操作</th>
 													</th>
@@ -158,11 +156,9 @@
 														<c:if test="${!empty root.thuName}">
 															<td class=" ">${root.thuName }</td>
 														</c:if>
-														<td class=" ">${root.thuArea}</td>
+														<td class=" ">${root.area.area}</td>
 														<td class=" ">${root.thuPhone}</td>
 														<td class=" ">${root.thuEmail}</td>
-														<td class=" ">${root.thuScale}</td>
-														<td class=" ">${root.thuScaleTwo}</td>
 														<c:if test="${root.thuStatus == '1'}">
 															<td class=" ">是</td>
 														</c:if>
