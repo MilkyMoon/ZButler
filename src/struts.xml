@@ -381,6 +381,13 @@
 		<action name="logout" method="logout" class="com.linestore.action.AdminLoginAction">
 			<result name="success">login.jsp</result>
 		</action>
+		<action name="area_*" class="com.linestore.action.AreaAction"
+			method="{1}">
+			<result name="selectAll">area.jsp</result>
+			<result name="add">areaAdd.jsp</result>
+			<result name="edit">area.jsp</result>
+			<result name="select" type="redirectAction">area_select</result>
+		</action>
 	</package>
 
 

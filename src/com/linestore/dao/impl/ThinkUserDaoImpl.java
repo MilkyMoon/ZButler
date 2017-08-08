@@ -93,14 +93,20 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 	public ThinkUser checkThinkUser(ThinkUser thinkUser) {
 		System.out.println("exec checkThinkuser");
 		try {
+			System.out.println("thinkuser: " + thinkUser.getThuUsername());
+			System.out.println("thinkuser: " + thinkUser.getThuPassword());
 			List<ThinkUser> thus = (List<ThinkUser>) this.getHibernateTemplate().findByExample(thinkUser);
 			
 			if (thus.size() < 1) {
+				System.out.println("******");
 				return null;
 			} else {
-				if (thus.get(0).getThuStatus().equals("1")) {
+				if (thus.get(0).getThuStatus() == 1) {
+					System.out.println("---------");
 					return thus.get(0);
+					
 				} else {
+					System.out.println("@@@@@@@@@");
 					return null;
 				}
 			}
