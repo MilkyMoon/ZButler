@@ -10,10 +10,10 @@
             <column name="thu_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="group" class="com.linestore.vo.Group" fetch="select">
+        <many-to-one name="group" class="com.linestore.vo.Group" fetch="select" lazy="false">
             <column name="thu_group_id" />
         </many-to-one>
-        <many-to-one name="area" class="com.linestore.vo.Area" fetch="select">
+        <many-to-one name="area" class="com.linestore.vo.Area" fetch="select" lazy="false">
             <column name="thu_area_id" />
         </many-to-one>
         <property name="thuUsername" type="java.lang.String">

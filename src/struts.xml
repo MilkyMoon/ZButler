@@ -376,11 +376,22 @@
 			</result>
 			<result name="select" type="redirectAction">trading_selectAll</result>
 		</action>
+		<action name="notice_*" class="com.linestore.action.NoticeAction"
+			method="{1}">
+		
+		</action>
 		<action name="index" method="index" class="com.linestore.action.AdminIndexAction">
 			<result name="success">index.jsp</result>
 		</action>
 		<action name="logout" method="logout" class="com.linestore.action.AdminLoginAction">
 			<result name="success">login.jsp</result>
+		</action>
+		<action name="area_*" class="com.linestore.action.AreaAction"
+			method="{1}">
+			<result name="selectAll">area.jsp</result>
+			<result name="add">areaAdd.jsp</result>
+			<result name="edit">area.jsp</result>
+			<result name="select" type="redirectAction">area_select</result>
 		</action>
 	</package>
 

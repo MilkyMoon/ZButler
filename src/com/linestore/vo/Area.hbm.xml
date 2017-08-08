@@ -16,8 +16,8 @@
         <property name="area" type="java.lang.String">
             <column name="area" length="50" />
         </property>
-        <property name="desc" type="java.lang.String">
-            <column name="desc" length="65535" />
+        <property name="desction" type="java.lang.String">
+            <column name="desction" length="65535" />
         </property>
         <property name="status" type="java.lang.Integer">
             <column name="status" />
