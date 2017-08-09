@@ -16,7 +16,7 @@ public class SiteConfigDaoImpl extends HibernateDaoSupport implements SiteConfig
 	@Override
 	public List<SiteConfig> selectByConfigName(String configName) {
 		// TODO Auto-generated method stub
-		String hql = "from site_config where config_name = ?";
+		String hql = "from SiteConfig where configName = ?";
 		List<SiteConfig> list = (List<SiteConfig>) this.getHibernateTemplate().find(hql, configName);
 		return list;
 	}
@@ -24,17 +24,16 @@ public class SiteConfigDaoImpl extends HibernateDaoSupport implements SiteConfig
 	@Override
 	public void delConfig(int id) {
 		// TODO Auto-generated method stub
-		String hql = "from site_config where id = ?";
+		String hql = "from SiteConfig where id = ?";
 		List<SiteConfig> list = (List<SiteConfig>) this.getHibernateTemplate().find(hql, id);
 		this.getHibernateTemplate().delete(list.get(0));
 
 	}
 
 	@Override
-	public void updateConfig(String hql) {
-		Session session = this.getSessionFactory().getCurrentSession();
-		Query query = session.createQuery(hql);
-		query.executeUpdate();
+	
+	public void updateConfig(SiteConfig sc) {
+		this.getHibernateTemplate().update(sc);
 	}
 
 	@Override

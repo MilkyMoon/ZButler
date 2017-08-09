@@ -333,7 +333,7 @@
 		<action name="group_*" class="com.linestore.action.GroupAction"
 			method="{1}">
 			<result name="gotoGroup">grouplist.jsp</result>
-			
+
 		</action>
 		<action name="category_*" class="com.linestore.action.CatetoryAction"
 			method="{1}">
@@ -413,9 +413,13 @@
 			<result name="edit">areaEdit.jsp</result>
 			<result name="select" type="redirectAction">area_select</result>
 		</action>
-		
+
 		<action name="siteConfig_*" class="com.linestore.action.SiteConfigAction"
 			method="{1}">
+			<result name="selectAll">advertisement.jsp</result>
+			<result name="CustConfig">websiteConfig.jsp</result>
+			<result name="SUCCESS" type="redirectAction">siteConfig_SelectCustAdv</result>
+			<result name="saveCusConfig" type="redirectAction">siteConfig_selectCustoemrConfig</result>
 		</action>
 	</package>
 
