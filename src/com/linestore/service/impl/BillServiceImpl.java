@@ -38,13 +38,11 @@ public class BillServiceImpl implements BillService {
 
 	@Override
 	public int queryAll(String hql) {
-		// TODO Auto-generated method stub
 		return billDao.queryAll(hql);
 	}
 
 	@Override
 	public String mkData() {
-		// TODO Auto-generated method stub
 		return billDao.mkData();
     }
     
@@ -54,7 +52,6 @@ public class BillServiceImpl implements BillService {
 
 	@Override
 	public Bill selectById(Integer id) {
-		// TODO Auto-generated method stub
 		return billDao.selectById(id);
 	}
 
@@ -69,5 +66,9 @@ public class BillServiceImpl implements BillService {
 	public List<Bill> selectAllByTime(Page page, String timeMin, String timeMax, Float amountMin, Float amountMax) {
 		// TODO Auto-generated method stub
 		return billDao.selectAllByTime(page, timeMin, timeMax, amountMin, amountMax);
+    }
+    
+	public List<Bill> queryByCusId(int cusId) {
+		return billDao.queryByCusId(cusId);
 	}
 }

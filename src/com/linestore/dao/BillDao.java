@@ -15,4 +15,6 @@ public interface BillDao {
 	public void addBill(Bill bill);
 	public Bill selectById(Integer id);
 	public List<Bill> selectByTime(Page page,Integer id,String timeMin, String timeMax,Float amountMin, Float amountMax);
+	
+	public List<Bill> queryByCusId(int cusId);
 }

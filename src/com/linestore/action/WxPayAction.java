@@ -240,8 +240,13 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bta.setBtaType(1);
 							bta.setBusiness(bus);
 							busTradingService.addBusTrading(bta);
+							
+							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
 
 							Bill bill = new Bill();
+							if (Pcus != null && Pcus.size() > 0) {
+								bill.setCustomer(Pcus.get(0));
+							}
 							BigDecimal bigMoney = new BigDecimal(kvm.get("total_fee"));
 							bigMoney = bigMoney.multiply(new BigDecimal(0.01));
 							bill.setBilCusMoney(bigMoney);
@@ -314,7 +319,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							
 							
 
-							List<Customer> Pcus = customerService.findByOpenId(openIdbus);
+							
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
 								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {

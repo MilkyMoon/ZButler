@@ -112,30 +112,42 @@
 										<form class="form-horizontal form-label-left">
 											<div class="form-group">
 						                        <!-- <label class="control-label col-md-3" style="width:100px;">交易时间</label> -->
-						                        <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
+						                        <%-- <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
 													<select class="form-control">
 														<option>北京</option>
 														<option>河北</option>
 													</select>
-												</div>
-						                        <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
-						                          <input type="text" class="form-control">
-						                        </div>
-						                        <div class="col-md-1 col-sm-9 col-xs-12" style="width:50px;">
-						                          <label class="control-label">年</label>
-						                        </div>
-						                        <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
-						                          <input type="text" class="form-control">
-						                        </div>
-						                        <div class="col-md-1 col-sm-9 col-xs-12" style="width:50px;">
-						                          <label class="control-label">月</label>
-						                        </div>
-						                        <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
-						                          <input type="text" class="form-control">
-						                        </div>
-						                        <div class="col-md-1 col-sm-9 col-xs-12" style="width:50px;">
-						                          <label class="control-label">日</label>
-						                        </div>
+												</div> --%>
+						                        
+						                        <div class="form-group">
+							                        <label class="control-label col-md-3" style="width:100px;">交易时间</label>
+							                        <fieldset class="col-md-3 col-sm-9 col-xs-12">
+							                          <div class="control-group">
+							                            <div class="controls">
+							                              <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+							                                <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+							                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+							                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
+							                              </div>
+							                            </div>
+							                          </div>
+							                        </fieldset>
+							                     </div>
+						                        
+						                        <div class="form-group">
+							                        <label class="control-label col-md-3" style="width:100px;">交易时间</label>
+							                        <fieldset class="col-md-3 col-sm-9 col-xs-12">
+							                          <div class="control-group">
+							                            <div class="controls">
+							                              <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+							                                <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+							                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+							                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
+							                              </div>
+							                            </div>
+							                          </div>
+							                        </fieldset>
+							                     </div>
 						                        
 						                        <div class="col-md-1 col-sm-9 col-xs-12">
 						                          <button class="btn btn-success" type="submit">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
@@ -143,6 +155,7 @@
 						                      </div>
 						                      
 						                      <div class="divider-dashed"></div>
+						                      
 						                      
 						                 			                      
 										</form>

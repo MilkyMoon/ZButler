@@ -149,6 +149,12 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		query.setFirstResult(page.getBeginIndex());
 		
 		return query.list();
+    
+    }
+    
+	public List<Bill> queryByCusId(int cusId) {
+		List<Bill> bills = (List<Bill>) this.getHibernateTemplate().find("from Bill where customer.cusId=?", cusId);
+		return bills;
 	}
 
 }
