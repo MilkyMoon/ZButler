@@ -47,22 +47,23 @@
                             <li><a href="business.jsp">黑名单管理</a></li>
                         </ul>
                     </li> --%>
-          
-                    <li><a><i class="fa fa-edit"></i> 线下商家管理 <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="business_enter">入驻管理</a></li>
-                            <li><a href="business_selectAll">线下商家信息管理</a></li>
-                            <li><a href="business_account">收款账号管理</a></li>
-                            <!-- <li><a href="business_period">账期管理</a></li> -->
-                            <li><a href="business_blacklist">黑名单管理</a></li>
-                           <!--  <li><a href="form_validation.html">收款账号管理</a></li> -->
-                        </ul>
-                    </li>
-                    <li><a><i class="fa fa-desktop"></i> 基础数据管理 <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/cateLine_selectAll">线下分类管理</a></li>
-                            <li><a href="<%=basePath%>admin/area_select">地区管理</a></li>
-                            <!-- <li><a href="media_gallery.html">品牌管理</a></li>
+
+					<li><a><i class="fa fa-edit"></i> 线下商家管理 <span
+							class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li><a href="business_enter">入驻管理</a></li>
+							<li><a href="business_selectAll">线下商家信息管理</a></li>
+							<li><a href="business_account">收款账号管理</a></li>
+							<!-- <li><a href="business_period">账期管理</a></li> -->
+							<li><a href="business_blacklist">黑名单管理</a></li>
+							<!--  <li><a href="form_validation.html">收款账号管理</a></li> -->
+						</ul></li>
+					<li><a><i class="fa fa-desktop"></i> 基础数据管理 <span
+							class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li><a href="<%=basePath%>admin/cateLine_selectAll">线下分类管理</a></li>
+							<li><a href="<%=basePath%>admin/area_select">地区管理</a></li>
+							<!-- <li><a href="media_gallery.html">品牌管理</a></li>
                             <li><a href="typography.html">商品属性模板管理</a></li> -->
                         </ul>
                     </li>
@@ -105,8 +106,7 @@
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/notice_selectAll.action">消息推送</a></li>
 							<%-- <li><a href="<%=basePath%>admin/cateLine_selectAll">留言</a></li> --%>
-						</ul>
-					</li>
+						</ul></li>
 				</ul>
 			</div>
 			<div class="menu_section">
@@ -115,12 +115,12 @@
 					<li><a><i class="fa fa-bug"></i> 广告管理 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<!-- <li><a href="e_commerce.html">轮播图</a></li> -->
+							<li><a href="siteConfig_selectBannerString">轮播图</a></li>
 							<li><a href="siteConfig_SelectCustAdv">分类下广告</a></li>
 							<li><a href="siteConfig_selectCustoemrConfig">客户端站点配置</a></li>
- 							<!-- <li><a href="project_detail.html">友情链接</a></li> -->
+							<li><a href="siteConfig_SelectFriendUrl">友情链接</a></li>
 						</ul></li>
-					
+
 					<%-- <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>
 							Landing Page <span class="label label-success pull-right">Coming
 								Soon</span></a></li> --%>

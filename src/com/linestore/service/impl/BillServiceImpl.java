@@ -58,6 +58,18 @@ public class BillServiceImpl implements BillService {
 	}
 
 	@Override
+	public List<Bill> selectByTime(Page page, Integer id, String timeMin, String timeMax, Float amountMin,
+			Float amountMax) {
+		// TODO Auto-generated method stub
+		return billDao.selectByTime(page, id, timeMin, timeMax, amountMin, amountMax);
+	}
+
+	@Override
+	public List<Bill> selectAllByTime(Page page, String timeMin, String timeMax, Float amountMin, Float amountMax) {
+		// TODO Auto-generated method stub
+		return billDao.selectAllByTime(page, timeMin, timeMax, amountMin, amountMax);
+    }
+    
 	public List<Bill> queryByCusId(int cusId) {
 		return billDao.queryByCusId(cusId);
 	}

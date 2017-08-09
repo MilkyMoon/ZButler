@@ -2,6 +2,7 @@ package com.linestore.service;
 
 import java.util.List;
 
+import com.linestore.util.Page;
 import com.linestore.vo.ThinkUser;
 
 public interface ThinkUserService {
@@ -16,4 +17,10 @@ public interface ThinkUserService {
 	public ThinkUser checkThinkUser(ThinkUser thinkUser);
 	
 	public ThinkUser queryById(int thuId);
+	
+	public List<ThinkUser> selectAllByArea(Page page,Integer list[]);
+	public int selectAllByAreaCount(Integer[] list);
+	
+	public List<ThinkUser> selectAllByKey(Page page,String keywords);
+	public int selectAllByKeyCount(String keywords);
 }

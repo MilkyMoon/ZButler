@@ -67,7 +67,8 @@
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="keywords" placeholder="输入用户昵称、用户电话 ..."> 	
+										<input type="text" class="form-control" name="keywords" placeholder="输入用户昵称、用户电话 ...">
+										<input type="hidden" name="type" value="${type}">
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>

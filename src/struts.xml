@@ -421,9 +421,14 @@
 		<action name="siteConfig_*" class="com.linestore.action.SiteConfigAction"
 			method="{1}">
 			<result name="selectAll">advertisement.jsp</result>
+			<result name="SelectUrl">friendUrl.jsp</result>
+			<result name="AddFriendUrl">addFriendUrl.jsp</result>
 			<result name="CustConfig">websiteConfig.jsp</result>
+			<result name="SelectBanner">banner.jsp</result>
 			<result name="SUCCESS" type="redirectAction">siteConfig_SelectCustAdv</result>
 			<result name="saveCusConfig" type="redirectAction">siteConfig_selectCustoemrConfig</result>
+			<result name="selectFriendUrl" type="redirectAction">siteConfig_SelectFriendUrl</result>
+			<result name="selectBanner" type="redirectAction">siteConfig_selectBannerString</result>
 		</action>
 	</package>
 

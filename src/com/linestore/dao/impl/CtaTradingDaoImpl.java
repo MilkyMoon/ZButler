@@ -117,9 +117,9 @@ public class CtaTradingDaoImpl extends HibernateDaoSupport implements CtaTrading
 	}
 
 	@Override
-	public List<CtaTrading> search(String keywords) {
+	public List<CtaTrading> search(String keywords,int type) {
 		// TODO Auto-generated method stub
-		String hql = "from CtaTrading where ctaStatus = 0 and (customer.cusNickname like '%"+keywords+"%' or customer.cusPhone like '%"+keywords+"%')";
+		String hql = "from CtaTrading where ctaType = "+type+" and (customer.cusNickname like '%"+keywords+"%' or customer.cusPhone like '%"+keywords+"%') order by ctaTime desc";
 		List<CtaTrading> list = (List<CtaTrading>) this.getHibernateTemplate().find(hql);
 		return list;
 	}

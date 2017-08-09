@@ -19,5 +19,7 @@ public void addArea(Area area);
 	public List<Area> queryByPid(int pid);
 	
 	public Area queryById(int id);
+	
+	public List<Area> selectByKey(String keywords);
 
 }

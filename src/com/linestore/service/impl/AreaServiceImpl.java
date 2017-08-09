@@ -56,4 +56,10 @@ public class AreaServiceImpl implements AreaService {
 		this.areaDao = areaDao;
 	}
 
+	@Override
+	public List<Area> selectByKey(String keywords) {
+		// TODO Auto-generated method stub
+		return areaDao.selectByKey(keywords);
+	}
+
 }

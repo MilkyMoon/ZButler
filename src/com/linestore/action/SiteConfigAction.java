@@ -61,6 +61,7 @@ public class SiteConfigAction extends ActionSupport
 
 	}
 
+	// 广告位
 	public String SelectCustAdv() {
 		// 左侧位置
 		List<SiteConfig> leftAdvConfigs = siteConfigService.selectCusConfig("shop_adv_left");
@@ -78,35 +79,56 @@ public class SiteConfigAction extends ActionSupport
 
 	}
 
+	public String displayAddUrl() {
+		return "AddFriendUrl";
+	}
+
+	// 获取友情链接
+	public String SelectFriendUrl() {
+		List<SiteConfig> friendSiteConfigs = siteConfigService.selectCusConfig("friend_url");
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", friendSiteConfigs);
+		return "SelectUrl";
+	}
+
+	public String addFriendUrl() {
+		siteConfigService.addCusConfig(siteConfig);
+		return "selectFriendUrl";
+	}
+	
+
+	public String delFriendUrl() {
+		siteConfigService.delCusConfig(siteConfig.getId());
+		return "selectFriendUrl";
+	}
+
+	// 获取所有banner
+	public String selectBannerString() {
+		List<SiteConfig> bannerSiteConfigs = siteConfigService.selectCusConfig("banner");
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", bannerSiteConfigs);
+		return "SelectBanner";
+	}
+
+	public String addBanner() {
+		siteConfigService.addCusConfig(siteConfig);
+		return "selectBanner";
+	}
+
+	public String delBanner() {
+		siteConfigService.delCusConfig(siteConfig.getId());
+		return "selectBanner";
+	}
+
+	// 分类广告保存
 	public String save() {
-		String[] configValues = Request.getParameterValues("configValue");
-		String[] configIds = Request.getParameterValues("Sid");
-		String[] configKeys = Request.getParameterValues("configKey");
-		String[] configNames = Request.getParameterValues("configName");
-		for (int i = 0; i < configNames.length; i++) {
-			SiteConfig siteConfig = new SiteConfig();
-			siteConfig.setId(Integer.parseInt(configIds[i]));
-			siteConfig.setConfigName(configNames[i]);
-			siteConfig.setConfigKey(configKeys[i]);
-			siteConfig.setConfigValue(configValues[i]);
-			siteConfigService.updateCusConfig(siteConfig);
-		}
+		this.UtillsSave();
 		return "SUCCESS";
 	}
 
+	// 客户端站点配置保存
 	public String saveCusConfig() {
-		String[] configValues = Request.getParameterValues("configValue");
-		String[] configIds = Request.getParameterValues("Sid");
-		String[] configKeys = Request.getParameterValues("configKey");
-		String[] configNames = Request.getParameterValues("configName");
-		for (int i = 0; i < configNames.length; i++) {
-			SiteConfig siteConfig = new SiteConfig();
-			siteConfig.setId(Integer.parseInt(configIds[i]));
-			siteConfig.setConfigName(configNames[i]);
-			siteConfig.setConfigKey(configKeys[i]);
-			siteConfig.setConfigValue(configValues[i]);
-			siteConfigService.updateCusConfig(siteConfig);
-		}
+		this.UtillsSave();
 		return "saveCusConfig";
 	}
 
@@ -116,6 +138,22 @@ public class SiteConfigAction extends ActionSupport
 
 	public void setSiteConfigService(SiteConfigService siteConfigService) {
 		this.siteConfigService = siteConfigService;
+	}
+
+	public void UtillsSave() {
+		String[] configValues = Request.getParameterValues("configValue");
+		String[] configIds = Request.getParameterValues("Sid");
+		String[] configKeys = Request.getParameterValues("configKey");
+		String[] configNames = Request.getParameterValues("configName");
+		for (int i = 0; i < configNames.length; i++) {
+			SiteConfig siteConfig = new SiteConfig();
+			siteConfig.setId(Integer.parseInt(configIds[i]));
+			siteConfig.setConfigName(configNames[i]);
+			siteConfig.setConfigKey(configKeys[i]);
+			siteConfig.setConfigValue(configValues[i]);
+			System.out.println(configValues[i]);
+			siteConfigService.updateCusConfig(siteConfig);
+		}
 	}
 
 }

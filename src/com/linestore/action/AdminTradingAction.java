@@ -45,6 +45,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 	private String pageNow = "1";
 	private String everyPage = "10";
 	private String keywords = "";
+	private int type;
 
 	@Override
 	public CtaTrading getModel() {
@@ -93,6 +94,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", ctaTradingList);
 		request.put("page", page);
+		request.put("type", 1);
 		
 		return "selectAll";
 	}
@@ -116,6 +118,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", ctaTradingList);
 		request.put("page", page);
+		request.put("type", 4);
 		
 		return "selectAll";
 	}
@@ -171,7 +174,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		}
 		getId();
 
-		ctaTradingList = ctaTradingService.search(keywords);
+		ctaTradingList = ctaTradingService.search(keywords,type);
 		
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", ctaTradingList);
@@ -269,4 +272,14 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 	public void setCusAccountService(CusAccountService cusAccountService) {
 		this.cusAccountService = cusAccountService;
 	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+	
+	
 }
