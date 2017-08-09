@@ -100,7 +100,7 @@
                     </li>
                     <li><a><i class="fa fa-clone"></i> 消息管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/thinkUser_select">消息推送</a></li>
+                            <li><a href="<%=basePath%>admin/notice_selectAll.action">消息推送</a></li>
                             <li><a href="<%=basePath%>admin/cateLine_selectAll">留言</a></li>
                         </ul>
                     </li>

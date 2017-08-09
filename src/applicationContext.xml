@@ -153,6 +153,10 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="siteConfigDao" class="com.linestore.dao.impl.SiteConfigDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->
 	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
@@ -233,6 +237,9 @@
 	</bean>
 	<bean id="noticeService" class="com.linestore.service.impl.NoticeServiceImpl">
 		<property name="noticeDao" ref="noticeDao"></property>
+	</bean>
+	<bean id="siteConfigService" class="com.linestore.service.impl.SiteConfigServiceImpl">
+		<property name="siteConfigDao" ref="siteConfigDao"></property>
 	</bean>
 	<!-- 配置一个业务逻辑组件 -->
 

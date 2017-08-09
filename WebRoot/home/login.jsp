@@ -44,7 +44,7 @@
 			</div>
 			<div class="login_button">
 				<button type="submit" class="btn-block btn-primary login_button_now">立即登陆</button>
-				<a id="wxlogin" href=""><button type="button"
+				<a id="wxlogin" href="<%=basePath%>home/login.jsp"><button type="button"
 						class="btn-block btn-primary login_button_wei">微信登陆</button></a>
 			</div>
 			<div class="login_question">

@@ -59,24 +59,12 @@
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
-								消息管理 <small></small>
+								<a href="notice_add">
+									<button type="button" class="btn btn-success btn-lg">推送消息</button>
+								</a>
 							</h3>
 						</div>
-
-						<form action="customer_select" method="get">
-							<div class="title_right">
-								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-									<div class="input-group">
-										<input type="text" class="form-control" name="keywords" placeholder="输入昵称、电话 ..."> 	
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Go!</button>
-										</span>
-									</div>
-								</div>
-							</div>
-						</form>
 					</div>
-
 					<div class="clearfix"></div>
 
 					<div class="row">
@@ -133,13 +121,19 @@
 															<th><input type="checkbox" class="flat" name="table_records" /></th>
 														</td>
 														<td>
-														
+														${root.title}
 														</td>
 														<td>
-															<a href="customer_read?cusId=${root.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="#" class="btn btn-info btn-xs" disabled="disabled"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="#" class="btn btn-danger btn-xs" disabled="disabled"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="customer_reset?cusId=${root.cusId}" class="btn btn-info btn-xs"><i class="fa fa-refresh"></i>&nbsp;&nbsp;密码重置</a>
+														${root.content}
+														</td>
+														<td>
+														${root.publisher}
+														</td>
+														<td>
+														${root.time}
+														</td>
+														<td>
+															<a href="notice_del?id=${root.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>
@@ -152,7 +146,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<form action="customer_selectAll">
+						<form action="notice_selectAll">
 							<div class="col-sm-5">
 								<div class="dataTables_info" id="datatable-checkbox_info" role="status" aria-live="polite" style="margin: 20px 0;height: 32px;line-height: 32px;">
 									当前显示${(page.currentPage-1)*page.everyPage+1} ~  
@@ -173,10 +167,10 @@
 									<ul class="pagination">
 										<c:if test="${page.hasPrePage}">
 											<li class="paginate_button previous" id="datatable-checkbox_previous">
-												<a href="customer_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
+												<a href="notice_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="notice_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasPrePage}">
@@ -184,21 +178,21 @@
 												<a href="#" data-dt-idx="0" tabindex="0">上一页</a>
 											</li>
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
+												<a href="notice_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
 											</li>
 										</c:if>
 										
 										<c:if test="${page.hasNextPage}">
 											<li class="paginate_button">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="notice_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next" id="datatable-checkbox_next">
-												<a href="customer_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
+												<a href="notice_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasNextPage}">
 											<li class="paginate_button active">
-												<a href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
+												<a href="notice_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
 											</li>
 											<li class="paginate_button next disabled" id="datatable-checkbox_next">
 												<a href="#" data-dt-idx="4" tabindex="0">下一页</a>

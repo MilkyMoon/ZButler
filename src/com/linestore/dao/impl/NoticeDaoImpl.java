@@ -33,7 +33,7 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 	@Override
 	public List<Notice> selectNew() {
 		// TODO Auto-generated method stub
-		String hql = "from Notice order by time desc limit 5";
+		String hql = "from Notice order by time desc";
 		List<Notice> list = (List<Notice>) this.getHibernateTemplate().find(hql);
 		return list;
 	}
@@ -45,6 +45,23 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 		List<Notice> list = (List<Notice>) this.getHibernateTemplate().find(hql, id);
 		this.getHibernateTemplate().delete(list.get(0));
 
+	}
+
+	@Override
+	public int queryAll() {
+		System.out.println("exec queryAll");
+		try {
+			Session session = this.getSessionFactory().getCurrentSession();
+			Query query = session.createQuery("select count(*) from Notice");
+			int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+			System.out.println(count);
+
+			System.out.println("query successful");
+			return count;
+		} catch (RuntimeException e) {
+			System.out.println("query failed!\n" + e);
+			throw e;
+		}
 	}
 
 }
