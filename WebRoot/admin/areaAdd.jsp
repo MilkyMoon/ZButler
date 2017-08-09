@@ -102,6 +102,7 @@
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">名&nbsp;&nbsp;&nbsp;&nbsp;称</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
 														<input type="text" class="form-control" name="area" required="required" placeholder="请输入地区名称">
+														
 													</div>
 												</div>
 												
@@ -116,7 +117,6 @@
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
 														<select class="form-control" name="pid" id="busCateId">
-															<option value="0">选择上级</option>
 															<c:forEach var="root" items="${list}">
 																<option value="${root.areId}">${root.area}</option>
 															</c:forEach>

@@ -74,11 +74,11 @@
 							</h3>
 						</div>
 
-						<form action="thinkUser_select" method="get">
+						<form action="area_search" method="get">
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="thuName" placeholder="输入地区、姓名、电话或邮箱 ..."> 	
+										<input type="text" class="form-control" name="keywords" placeholder="输入地区 ..."> 	
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>

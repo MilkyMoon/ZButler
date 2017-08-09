@@ -63,18 +63,18 @@
 							<h3>平台用户管理</h3>
 						</div>
 
-						<div class="title_right">
-							<div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Search for..."> <span
-										class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+						<form action="thinkUser_select" method="get">
+							<div class="title_right">
+								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+									<div class="input-group">
+										<input type="text" class="form-control" name="keywords" placeholder="输入地区、姓名、电话或邮箱 ..."> 	
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="submit">Go!</button>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 					<div class="clearfix"></div>
 					<div class="row">

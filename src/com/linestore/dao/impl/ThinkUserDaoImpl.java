@@ -1,5 +1,7 @@
 package com.linestore.dao.impl;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,6 +10,7 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.ThinkUserDao;
+import com.linestore.util.Page;
 import com.linestore.vo.Area;
 import com.linestore.vo.ThinkUser;
 @Transactional
@@ -27,7 +30,7 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 					Area area = new Area(thinkusers.get(i).getArea());
 					area.setArea(str + area.getArea());
 					thinkuser.setArea(area);
-					//System.out.println(cate.getArea().getArea());
+					System.out.println(area.getArea());
 					list.add(thinkuser);
 				} else {
 					list.add(thinkusers.get(i));
@@ -126,5 +129,53 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 			return thus.get(0);
 		}
 		return null;
+	}
+
+	@Override
+	public List<ThinkUser> selectAllByArea(Page page, Integer[] list) {
+		// TODO Auto-generated method stub
+		String hql = "from ThinkUser where area.areId in (:list)";
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery(hql);
+		query.setParameterList("list", Arrays.asList(list));
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
+	}
+	
+	@Override
+	public int selectAllByAreaCount(Integer[] list) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from ThinkUser where area.areId in (:list)";
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery(hql);
+		query.setParameterList("list", Arrays.asList(list));
+		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+		
+		return count;
+	}
+
+	@Override
+	public List<ThinkUser> selectAllByKey(Page page, String keywords) {
+		// TODO Auto-generated method stub
+		String hql = "from ThinkUser where area.area like '%"+keywords+"%' or thuName like '%"+keywords+"%' or thuEmail like '%"+keywords+"%' or thuPhone like '%"+keywords+"%'";
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery(hql);
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
+	}
+
+	@Override
+	public int selectAllByKeyCount(String keywords) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from ThinkUser where area.area like '%"+keywords+"%' or thuName like '%"+keywords+"%' or thuEmail like '%"+keywords+"%' or thuPhone like '%"+keywords+"%'";
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery(hql);
+		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+		
+		return count;
 	}
 }

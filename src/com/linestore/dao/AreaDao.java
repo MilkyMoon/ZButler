@@ -20,4 +20,5 @@ public interface AreaDao {
 	
 	public Area queryById(int id);
 
+	public List<Area> selectByKey(String keywords);
 }

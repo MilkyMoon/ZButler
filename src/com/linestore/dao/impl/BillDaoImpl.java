@@ -22,7 +22,7 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	@Override
 	public List<Bill> select(Page page, Integer id) {
 		// TODO Auto-generated method stub
-		String hql = "from Bill where thinkUserByThuPropertyId.thuId = ? or thinkUserByThuCityId.thuId = ? or thinkUserByThuProvinceId.thuId = ?";
+		String hql = "from Bill where areaByThuPropertyId.areId = ? or areaByThuCityId.areId = ? or areaByThuProvinceId.areId = ?";
 		List<Bill> list = (List<Bill>) this.getHibernateTemplate().find(hql, id, id, id);
 		return list;
 	}
@@ -44,7 +44,7 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	@Override
 	public List<Bill> search(String keywords) {
 		// TODO Auto-generated method stub
-		String hql = "from Bill where business.busShopName like '%"+keywords+"%' or customer.cusNickname like '%"+keywords+"%' or thinkUserByThuPropertyId.thuName like '%"+keywords+"%' or thinkUserByThuPropertyId.thuArea like '%"+keywords+"%' or thinkUserByThuCountyId.thuName like '%"+keywords+"%' or thinkUserByThuCountyId.thuArea like '%"+keywords+"%' or thinkUserByThuCityId.thuName like '%"+keywords+"%' or thinkUserByThuCityId.thuArea like '%"+keywords+"%' or thinkUserByThuProvinceId.thuName like '%"+keywords+"%' or thinkUserByThuProvinceId.thuArea like '%"+keywords+"%'";
+		String hql = "from Bill where business.busShopName like '%"+keywords+"%' or customer.cusNickname like '%"+keywords+"%' or areaByThuPropertyId.area like '%"+keywords+"%' or areaByThuPropertyId.thuArea like '%"+keywords+"%' or areaByThuCountyId.area like '%"+keywords+"%' or areaByThuCountyId.thuArea like '%"+keywords+"%' or areaByThuCityId.area like '%"+keywords+"%' or areaByThuCityId.thuArea like '%"+keywords+"%' or areaByThuProvinceId.area like '%"+keywords+"%' or areaByThuProvinceId.thuArea like '%"+keywords+"%'";
 		List<Bill> list = (List<Bill>) this.getHibernateTemplate().find(hql);
 		return list;
 	}
@@ -123,6 +123,32 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		// TODO Auto-generated method stub
 		List<Bill> btas = (List<Bill>) this.getHibernateTemplate().find("from Bill where bilId=" + id);
 		return btas.get(0);
+	}
+
+	@Override
+	public List<Bill> selectByTime(Page page, Integer id, String timeMin, String timeMax, Float amountMin,
+			Float amountMax) {
+		// TODO Auto-generated method stub
+		
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from Bill where (areaByThuPropertyId.areId = "+id+" or areaByThuCityId.areId = "+id+" or areaByThuProvinceId.areId = "+id+") and bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney >= "+amountMin+" and bilCusMoney <= "+amountMax+" order by bilId desc");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		
+		return query.list();
+	}
+
+	@Override
+	public List<Bill> selectAllByTime(Page page, String timeMin, String timeMax, Float amountMin, Float amountMax) {
+		// TODO Auto-generated method stub
+		
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from Bill where bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney >= "+amountMin+" and bilCusMoney <= "+amountMax+" order by bilId desc");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
 	}
 
 }

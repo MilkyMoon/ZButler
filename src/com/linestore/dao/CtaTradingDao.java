@@ -21,7 +21,7 @@ public interface CtaTradingDao {
 	
 	public void update(String hql);
 	
-	public List<CtaTrading> search(String keywords);
+	public List<CtaTrading> search(String keywords,int type);
 
 	int queryAllType(int type);
 

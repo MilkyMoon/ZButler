@@ -62,26 +62,38 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		System.out.println(timeMin);
 		System.out.println(timeMax);
 		System.out.println("amountMax:"+amountMax);
+		String hql;
 		
-		String hql ="select count(*) from Bill";
+		if(think.getArea().getPid() == 0){
+			hql = "select count(*) from Bill where bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney <= "+amountMax+" and bilCusMoney >= "+amountMin;
+		} else {
+			hql = "from Bill where (thinkUserByThuPropertyId.thuId = "+thuId+" or thinkUserByThuCityId.thuId = "+thuId+" or thinkUserByThuProvinceId.thuId = "+thuId+") and bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney >= "+amountMin+" and bilCusMoney <= "+amountMax;
+		}
+		
+		System.out.println(hql);
+
 		int totalCount = billService.queryAll(hql);
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
-		if(pageNow.equals("") || pageNow == null){
+		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 			pageNow = "1";
 		}
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		
 		if(think.getArea().getPid() == 0){
-			billList =  billService.selectAll(page);
+			billList =  billService.selectAllByTime(page,timeMin,timeMax,amountMin,amountMax);
 		} else {
-			billList =  billService.select(page,thuId);
+			billList =  billService.selectByTime(page,thuId,timeMin,timeMax,amountMin,amountMax);
 		}
 		
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", billList);
 		request.put("page", page);
+		
+		request.put("tranTime", tranTime);
+		request.put("amountMin", amountMin);
+		request.put("amountMax", amountMax);
 		
 		return "selectAll";
 		
@@ -114,7 +126,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	
 	public Integer getId(){
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
-		thuId = think.getThuId();
+		thuId = think.getArea().getAreId();
 		return thuId;
 	}
 	
