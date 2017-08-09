@@ -62,18 +62,18 @@
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
-								<a href="thinkUser_add"><button type="button"
+								<a href="group_add"><button type="button"
 										class="btn btn-success btn-lg">添加角色</button></a> <small>只能添加自己权限以下的管理员</small>
 							</h3>
 						</div>
 
-						<form action="thinkUser_select" method="get">
+						<form action="group_select" method="get">
 							<div class="title_right">
 								<div
 									class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="thuName"
-											placeholder="输入地区、姓名、电话或邮箱 ..."> <span
+										<input type="text" class="form-control" name="grpTitle"
+											placeholder="请输入角色名称"> <span
 											class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>
@@ -146,14 +146,11 @@
 														<c:if test="${gro.grpStatus == 1}">
 															<td>是</td>
 														</c:if>
-														<td><a href="group_read?grpId=${gro.grpId}"
-															class="btn btn-primary btn-xs"><i
-																class="fa fa-folder"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="group_edit?grpId=${gro.grpId}"
-															class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="group_delete?grpId=${gro.grpId}"
-															class="btn btn-danger btn-xs"><i
-																class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a></td>
+														<td>
+															<a href="group_read?grpId=${gro.grpId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<%-- <a href="group_edit?grpId=${gro.grpId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp; --%>
+															<a href="group_delete?grpId=${gro.grpId}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+														</td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -193,10 +190,10 @@
 										<c:if test="${page.hasPrePage}">
 											<li class="paginate_button previous"
 												id="datatable-checkbox_previous"><a
-												href="customer_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}"
+												href="group_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}"
 												data-dt-idx="0" tabindex="0">上一页</a></li>
 											<li class="paginate_button"><a
-												href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}"
+												href="group_selectAll?pageNow=1&everyPage=${page.everyPage}"
 												data-dt-idx="1" tabindex="0">首页</a></li>
 										</c:if>
 										<c:if test="${!page.hasPrePage}">
@@ -204,23 +201,23 @@
 												id="datatable-checkbox_previous"><a href="#"
 												data-dt-idx="0" tabindex="0">上一页</a></li>
 											<li class="paginate_button active"><a
-												href="customer_selectAll?pageNow=1&everyPage=${page.everyPage}"
+												href="group_selectAll?pageNow=1&everyPage=${page.everyPage}"
 												data-dt-idx="1" tabindex="0">首页</a></li>
 										</c:if>
 
 										<c:if test="${page.hasNextPage}">
 											<li class="paginate_button"><a
-												href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}"
+												href="group_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}"
 												data-dt-idx="3" tabindex="0">尾页</a></li>
 											<li class="paginate_button next" id="datatable-checkbox_next">
 												<a
-												href="customer_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}"
+												href="group_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}"
 												data-dt-idx="4" tabindex="0">下一页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasNextPage}">
 											<li class="paginate_button active"><a
-												href="customer_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}"
+												href="group_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}"
 												data-dt-idx="3" tabindex="0">尾页</a></li>
 											<li class="paginate_button next disabled"
 												id="datatable-checkbox_next"><a href="#"

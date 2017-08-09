@@ -30,15 +30,25 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public List<Group> queryAll() {
-		return groupDao.queryAll();
+	public List<Group> queryAll(int id) {
+		return groupDao.queryAll(id);
 	}
 	
 	@Override
-	public List<Group> queryAll(Page page) {
-		return groupDao.queryAll(page);
+	public List<Group> queryAll(Page page, int id) {
+		return groupDao.queryAll(page, id);
 	}
 
+	@Override
+	public Group queryById(int id) {
+		return groupDao.queryById(id);
+	}
+
+	@Override
+	public List<Group> queryByTitle(String title, int id) {
+		return groupDao.queryByTitle(title, id);
+	}
+	
 	public GroupDao getGroupDao() {
 		return groupDao;
 	}
@@ -46,5 +56,12 @@ public class GroupServiceImpl implements GroupService {
 	public void setGroupDao(GroupDao groupDao) {
 		this.groupDao = groupDao;
 	}
+
+	@Override
+	public List<Group> queryByTitle(Page page, String title, int id) {
+		
+		return groupDao.queryByTitle(page, title, id);
+	}
+	
 
 }

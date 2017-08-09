@@ -60,19 +60,19 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>平台用户管理</h3>
+							<h3>平台角色管理</h3>
 						</div>
 
 						<div class="title_right">
 							<div
 								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
+								<!-- <div class="input-group">
 									<input type="text" class="form-control"
 										placeholder="Search for..."> <span
 										class="input-group-btn">
 										<button class="btn btn-default" type="button">Go!</button>
 									</span>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -102,11 +102,17 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form action="thinkUser_save" method="post" class="form-horizontal form-label-left">
+									<form action="group_save" method="post" class="form-horizontal form-label-left">
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">角色名称</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuName" placeholder="请输入管理员姓名(如果不确定请放空)">
+												<input type="text" class="form-control" name="grpTitle" required="required" placeholder="请输入角色名称">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">角色描述</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<textarea class="form-control" name="grpDesc" required="required" placeholder="请输入角色描述"></textarea>
 											</div>
 										</div>
 										<div class="form-group">
@@ -115,7 +121,10 @@
 												<div class="checkbox">
 													<c:forEach var="rule" items="${admin.group.ruleGroups}">
 							                            <label>
-							                              <input type="checkbox" class="flat" checked="checked"> ${rule.rule.title}
+							                            	<c:if test="${rule.rule.status == 1}">
+							                            		<input type="checkbox" class="flat" name="rules" value="${rule.rule.rulId}"> ${rule.rule.title}
+							                            	</c:if>
+							                              
 							                            </label>
 						                            </c:forEach>
 						                            
@@ -127,19 +136,20 @@
 											<div class="col-md-9 col-sm-9 col-xs-12">
 												<div class="radio">
 													<label> 
-															<input type="radio" class="flat" name="thuStatus" value="1"> 启用
-	                          								<input type="radio" class="flat" checked name="thuStatus" value="-1"> 不启用
+															<input type="radio" class="flat" name="grpStatus" value="1"> 启用
+	                          								<input type="radio" class="flat" checked name="grpStatus" value="-1"> 不启用
 													</label>
 												</div>
 											</div>
 										</div>
-										
+										<input type="hidden" name="grpAdmin" value="${admin.thuId}">
 										<div class="ln_solid"></div>
 										<div class="form-group">
 											<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
 												<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
 											</div>
 										</div>
+										
 									</form>
 								</div>
 							</div>

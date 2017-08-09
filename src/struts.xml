@@ -333,7 +333,9 @@
 		<action name="group_*" class="com.linestore.action.GroupAction"
 			method="{1}">
 			<result name="gotoGroup">grouplist.jsp</result>
-			
+			<result name="gotoAdd">groupAdd.jsp</result>
+			<result name="selectAll" type="redirectAction">group_selectAll</result>
+			<result name="read">groupRead.jsp</result>
 		</action>
 		<action name="category_*" class="com.linestore.action.CatetoryAction"
 			method="{1}">
