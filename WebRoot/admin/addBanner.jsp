@@ -14,7 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>广告管理 | 分类下广告</title>
+<title>广告管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -78,7 +78,7 @@
 						<div class="col-md-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>分类下部广告</h2>
+									<h2>添加轮播图</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -96,100 +96,43 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<div class="col-md-4">
-										<form action="siteConfig_save"
+									<div class="col-md-8">
+										<form action="siteConfig_addBanner"
 											class="form-horizontal form-label-left" method="post">
 											<div class="">
-												<c:forEach var="root" items="${leftAdvConfigs}">
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
-														<div class="col-md-6 col-sm-9 col-xs-12">
-															<input type="hidden" class="form-control"
-																name="configKey" value="${root.configKey}"> <input
-																type="hidden" class="form-control" name="Sid"
-																value="${root.id}"> <input type="hidden"
-																class="form-control" name="configName"
-																value="${root.configName}"> <input
-																type="${root.id ==5 ?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
-														</div>
+												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">轮播图</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<input type="file" class="form-control" id="file">
+														<input type="hidden" class="form-control"
+															name="configValue">
+															 <input type="hidden"
+															class="form-control" name="configName" value="banner">
 													</div>
-												</c:forEach>
+												</div>
+
+
+												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">广告链接</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<input type="text" class="form-control" name="configKey"
+															placeholder="请输入内容">
+
+													</div>
+												</div>
+
+
 											</div>
 
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
 													<button type="submit" class="btn btn-success"
-														style="float:right;margin-right:0;">更新</button>
+														style="float:right;margin-right:0;">添加</button>
 												</div>
 											</div>
 										</form>
 									</div>
-									<div class="col-md-4">
-										<form action="siteConfig_save"
-											class="form-horizontal form-label-left" method="post">
-											<div class="">
-												<c:forEach var="root" items="${rightTopAdvConfigs}">
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
-														<div class="col-md-6 col-sm-9 col-xs-12">
-															<input type="hidden" class="form-control"
-																name="configKey" value="${root.configKey}"> <input
-																type="hidden" class="form-control" name="Sid"
-																value="${root.id}"> <input type="hidden"
-																class="form-control" name="configName"
-																value="${root.configName}"> <input
-																type="${root.id ==8 ?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
-														</div>
-
-													</div>
-												</c:forEach>
-											</div>
-
-											<div class="ln_solid"></div>
-											<div class="form-group">
-												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-													<button type="submit" class="btn btn-success"
-														style="float:right;margin-right:0;">更新</button>
-												</div>
-											</div>
-										</form>
-									</div>
-
-									<div class="col-md-4">
-										<form action="siteConfig_save"
-											class="form-horizontal form-label-left" method="post">
-											<div class="">
-												<c:forEach var="root" items="${rightBottomConfigs}">
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
-														<div class="col-md-6 col-sm-9 col-xs-12">
-															<input type="hidden" class="form-control"
-																name="configKey" value="${root.configKey}"> <input
-																type="hidden" class="form-control" name="Sid"
-																value="${root.id}"> <input type="hidden"
-																class="form-control" name="configName"
-																value="${root.configName}"> <input
-																type="${root.id ==11?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
-														</div>
-
-													</div>
-												</c:forEach>
-											</div>
-
-											<div class="ln_solid"></div>
-											<div class="form-group">
-												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-													<button type="submit" class="btn btn-success"
-														style="float:right;margin-right:0;">更新</button>
-												</div>
-											</div>
-										</form>
-									</div>
-
 								</div>
 							</div>
 						</div>
@@ -252,16 +195,25 @@
 </body>
 </html>
 <script>
-$('input[name="configValue"]').each(function () {
-        var that = $(this);
-        that.change(function () {
-            var imgFile = new FileReader();
-            imgFile.readAsDataURL(that[0].files[0]);
-            imgFile.onload = function () {
-                var imgData = this.result; //base64数据
-                that.attr("type", "hidden");
-                that.val(imgData);
-            }
-        })
-    }) 
+	/* $('input[name="configValue"]').each(function() {
+		var that = $(this);
+		that.change(function() {
+			var imgFile = new FileReader();
+			imgFile.readAsDataURL(that[0].files[0]);
+			imgFile.onload = function() {
+				var imgData = this.result; //base64数据
+				that.attr("type", "hidden");
+				that.val(imgData);
+			}
+		})
+	}) */
+	$("#file").change(function() {
+		var img = $("#file");
+		var imgFile = new FileReader();
+		imgFile.readAsDataURL(img[0].files[0]);
+		imgFile.onload = function() {
+			var imgData = this.result; //base64数据
+			$('input[name="configValue"]').val(imgData);
+		}
+	})
 </script>

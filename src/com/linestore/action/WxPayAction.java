@@ -255,6 +255,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							city = bigMoney.subtract(bigMoney).multiply(city);
 							bill.setBusiness(bus);
 							bill.setBilBusMoney(city);
+							bill.setBilDate(new Timestamp(Pdate.getTime()));
 							bigMoney = bigMoney.subtract(city);
 
 							// 物业收款

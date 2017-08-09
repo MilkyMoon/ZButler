@@ -39,4 +39,17 @@ public class SiteConfigServiceImpl implements SiteConfigService {
 		this.siteConfigDao.updateConfig(sc);
 	}
 
+	@Override
+	public void addCusConfig(SiteConfig siteConfig) {
+		// TODO Auto-generated method stub
+		this.siteConfigDao.addConfig(siteConfig);
+	}
+
+	@Override
+	public void delCusConfig(int id) {
+		// TODO Auto-generated method stub
+		this.siteConfigDao.delConfig(id);
+		
+	}
+
 }
