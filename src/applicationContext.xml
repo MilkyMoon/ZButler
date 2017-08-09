@@ -161,6 +161,10 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="ruleGroupDao" class="com.linestore.dao.impl.RuleGroupDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 	<!-- 配置一个业务逻辑组件 -->
 	<bean id="userService" class="com.linestore.service.impl.UserServiceImpl">
@@ -252,6 +256,9 @@
 
 	<bean id="cusAccountService" class="com.linestore.service.impl.CusAccountServiceImpl">
 		<property name="cusAccountDao" ref="cusAccountDao"></property>
+	</bean>
+	<bean id="ruleGroupService" class="com.linestore.service.impl.RuleGroupServiceImpl">
+		<property name="ruleGroupDao" ref="ruleGroupDao"></property>
 	</bean>
 
 	<!-- 配置一个事务管理器 -->
