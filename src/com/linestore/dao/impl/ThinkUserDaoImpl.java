@@ -8,31 +8,34 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.ThinkUserDao;
+import com.linestore.vo.Area;
 import com.linestore.vo.ThinkUser;
 @Transactional
 public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDao{
 	
 	public List<ThinkUser> queryFormat(List<ThinkUser> list, int pid, int level) {
 //		System.out.println(level);
-		List<ThinkUser> catetories = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where area.pid=?", pid);
-		if (catetories != null) {
-			for (int i = 0; i < catetories.size(); i++) {
+		List<ThinkUser> thinkusers = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where area.pid=?", pid);
+		if (thinkusers != null) {
+			for (int i = 0; i < thinkusers.size(); i++) {
 				if (level != 0) {
-					ThinkUser cate = new ThinkUser(catetories.get(i));
+					ThinkUser thinkuser = new ThinkUser(thinkusers.get(i));
 					String str = "";
 					for (int j = 0; j < level; j++) {
 						str += "|---";
 					}
-					cate.getArea().setArea(str + cate.getArea().getArea());
-					System.out.println(cate.getArea().getArea());
-					list.add(cate);
+					Area area = new Area(thinkusers.get(i).getArea());
+					area.setArea(str + area.getArea());
+					thinkuser.setArea(area);
+					//System.out.println(cate.getArea().getArea());
+					list.add(thinkuser);
 				} else {
-					list.add(catetories.get(i));
+					list.add(thinkusers.get(i));
 				}
-				queryFormat(list, catetories.get(i).getArea().getAreId(), level+1);
+				queryFormat(list, thinkusers.get(i).getArea().getAreId(), level+1);
 			}
 		}
-		return catetories;
+		return thinkusers;
 	}
 
 	@Override
@@ -96,7 +99,7 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 		try {
 			System.out.println("thinkuser: " + thinkUser.getThuUsername());
 			System.out.println("thinkuser: " + thinkUser.getThuPassword());
-			List<ThinkUser> thus = (List<ThinkUser>) this.getHibernateTemplate().findByExample(thinkUser);
+			List<ThinkUser> thus = (List<ThinkUser>) this.getHibernateTemplate().find("from ThinkUser where thuUsername='"+thinkUser.getThuUsername()+"' and thuPassword='"+thinkUser.getThuPassword()+"'");
 			
 			if (thus.size() < 1) {
 				System.out.println("******");

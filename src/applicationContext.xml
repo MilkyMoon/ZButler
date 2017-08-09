@@ -154,6 +154,14 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="siteConfigDao" class="com.linestore.dao.impl.SiteConfigDaoImpl">
+        <!-- 注入持久化操作所需的SessionFactory -->
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+	<bean id="groupDao" class="com.linestore.dao.impl.GroupDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="groupAccessDao" class="com.linestore.dao.impl.GroupAccessDaoImpl">
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -240,6 +248,12 @@
 	</bean>
 	<bean id="siteConfigService" class="com.linestore.service.impl.SiteConfigServiceImpl">
 		<property name="siteConfigDao" ref="siteConfigDao"></property>
+    </bean>
+	<bean id="groupService" class="com.linestore.service.impl.GroupServiceImpl">
+		<property name="groupDao" ref="groupDao"></property>
+	</bean>
+	<bean id="groupAccessService" class="com.linestore.service.impl.GroupAccessServiceImpl">
+		<property name="groupAccessDao" ref="groupAccessDao"></property>
 	</bean>
 	<!-- 配置一个业务逻辑组件 -->
 

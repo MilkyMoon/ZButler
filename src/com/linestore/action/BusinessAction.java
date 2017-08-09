@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.linestore.service.AreaService;
 import com.linestore.service.BusinessService;
 import com.linestore.service.BusinessTmpService;
 import com.linestore.service.CateLineService;
 import com.linestore.service.ThinkUserService;
 import com.linestore.util.ReturnSelectHql;
 import com.linestore.util.ReturnUpdateHql;
+import com.linestore.vo.Area;
 import com.linestore.vo.Business;
 import com.linestore.vo.BusinessTmp;
 import com.linestore.vo.CateLine;
@@ -41,6 +43,8 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	private ThinkUserService thinkUserService;
 	private ThinkUserAction thinkUserAction = new ThinkUserAction();
 	private BusinessTmpService businessTmpService;
+	private int pagewhere;
+	private AreaService areaService;
 
 	public void setCateLineService(CateLineService cateLineService) {
 		this.cateLineService = cateLineService;
@@ -93,9 +97,9 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		// } else {
 		// business.setBusStatus(0);
 		// }
+		System.out.println("busScale:"+business.getBusStatus());
 
-		if (business.getBusStatus() == 0 || business.getBusScale() == null || business.getBusScale() > 1
-				|| business.getBusScale() < 0) {
+		if ((business.getBusStatus() != null && business.getBusStatus() == 0) || business.getBusScale() == null || business.getBusScale() > 1 || business.getBusScale() < 0) {
 			business.setBusScale((float) 0);
 		}
 
@@ -127,6 +131,10 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 			e.printStackTrace();
 		}
 
+		if(pagewhere == 3){
+			return "scale";
+		}
+		
 		return "select";
 	}
 
@@ -163,7 +171,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	public String delete() {
 		businessService.delete(business);
 		businessList = businessService.selectAll();
-		ActionContext.getContext().getValueStack().set("list", businessList);
+		ActionContext.getContext().getSession().put("list", businessList);
 
 		return "selectAll";
 	}
@@ -172,22 +180,75 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		getId();
 
 		if (think.getArea().getPid() == 0) {
-			businessList = businessService.selectAll();
+			businessList = businessService.selectStatusTwo(1,2);
 		} else {
 			business.setBaCounty(think.getArea().getArea());
 			business.setBaCity(think.getArea().getArea());
 			business.setBaProvince(think.getArea().getArea());
 
-			businessList = (List<Business>) businessService.selectByArea(business);
+			businessList = (List<Business>) businessService.selectByAreaStatusTwo(business,1,2);
 		}
-
-		// System.out.println("list:"+businessList);
-		// HttpServletRequest request = ServletActionContext.getRequest ();
-		// request.setAttribute("businessList", businessList);
-		// System.out.println(businessList.get(0).getBusDistrict());
-		// request.setAttribute("list", businessList);
-		ActionContext.getContext().getValueStack().set("list", businessList);
+		ActionContext.getContext().getSession().put("opt", 1);
+		ActionContext.getContext().getSession().put("list", businessList);
 		return "selectAll";
+	}
+	
+	public String enter(){
+		getId();
+
+		if (think.getArea().getPid() == 0) {
+			businessList = businessService.selectStatus(0);
+		} else {
+			business.setBaCounty(think.getArea().getArea());
+			business.setBaCity(think.getArea().getArea());
+			business.setBaProvince(think.getArea().getArea());
+
+			businessList = (List<Business>) businessService.selectByAreaStatus(business,0);
+		}
+		ActionContext.getContext().getSession().put("opt", 0);
+		ActionContext.getContext().getSession().put("list", businessList);
+		return "selectAll";
+	}
+	
+	public String blacklist(){
+		getId();
+
+		if (think.getArea().getPid() == 0) {
+			businessList = businessService.selectStatus(3);
+		} else {
+			business.setBaCounty(think.getArea().getArea());
+			business.setBaCity(think.getArea().getArea());
+			business.setBaProvince(think.getArea().getArea());
+
+			businessList = (List<Business>) businessService.selectByAreaStatus(business,3);
+		}
+		ActionContext.getContext().getSession().put("opt", 2);
+		ActionContext.getContext().getSession().put("list", businessList);
+		return "selectAll";
+	}
+	
+	public String account(){
+		getId();
+
+		if (think.getArea().getPid() == 0) {
+			businessList = businessService.selectStatus(1);
+		} else {
+			business.setBaCounty(think.getArea().getArea());
+			business.setBaCity(think.getArea().getArea());
+			business.setBaProvince(think.getArea().getArea());
+
+			businessList = (List<Business>) businessService.selectByAreaStatus(business,1);
+		}
+		ActionContext.getContext().getSession().put("opt", 0);
+		ActionContext.getContext().getSession().put("list", businessList);
+		
+		return "account";
+	}
+	
+	public String profit(){
+		account();
+		
+		return "profit";
 	}
 
 	public Business selectById() {
@@ -220,8 +281,8 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		businessResult = selectById();
 		cateLineList = cateLineService.selectAll();
 
-		List<ThinkUser> list = new ArrayList<ThinkUser>();
-		thinkUserService.queryFormat(list, thuId, 0);
+		List<Area> list = new ArrayList<Area>();
+		areaService.queryArea(list, think.getArea().getAreId(), 0);
 
 		if (businessResult == null) {
 			return ERROR;
@@ -235,6 +296,11 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 
 	public String edit() {
 		read();
+		
+		if(pagewhere == 3){
+			return "scaleEdit";
+		}
+		
 		return "edit";
 	}
 
@@ -260,6 +326,41 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		} else {
 			return "select";
 		}
+	}
+	
+	public String status(){
+		String hql;
+		try {
+			hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, business.getBusId());
+			businessService.update(hql);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(pagewhere == 0){
+			return "enter";
+		}
+		if(pagewhere == 1){
+			return "select";
+		}
+		if(pagewhere == 2){
+			return "blacklist";
+		}
+		
+		return "select";
 	}
 
 	public String jump() {
@@ -319,6 +420,18 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 
 	public void setBusinessTmpService(BusinessTmpService businessTmpService) {
 		this.businessTmpService = businessTmpService;
+	}
+
+	public int getPagewhere() {
+		return pagewhere;
+	}
+
+	public void setPagewhere(int pagewhere) {
+		this.pagewhere = pagewhere;
+	}
+
+	public void setAreaService(AreaService areaService) {
+		this.areaService = areaService;
 	}
 	
 	

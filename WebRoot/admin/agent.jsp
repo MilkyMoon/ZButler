@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>平台管理员管理 | 众帮管家</title>
+<title>地区管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -70,7 +70,7 @@
 					<div class="page-title">
 						<div class="title_left">
 							<h3>
-								<a href="thinkUser_add"><button type="button" class="btn btn-success btn-lg">添加管理员</button></a> <small>只能添加自己权限以下的管理员</small>
+								<a href="area_add"><button type="button" class="btn btn-success btn-lg">添加地区</button></a> <small>只能添加自己管理地区之下的地区</small>
 							</h3>
 						</div>
 
@@ -120,7 +120,7 @@
 								<div class="x_content">
 									<p>
 										<code>注意：</code>
-										1.删除上级管理员会删除所有下级管理员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										1.有上级时将不能删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										2.搜索时会将其下级都显示出来
 									</p>
 									<div class="table-responsive">
@@ -129,11 +129,10 @@
 												<tr class="headings">
 													<th><input type="checkbox" id="check-all" class="flat">
 													</th>
-													<th class="column-title">姓名</th>
-													<th class="column-title">地区</th>
-													<th class="column-title">电话</th>
-													<th class="column-title">邮箱</th>
-													<th class="column-title">是否启用</th>
+													<th class="column-title">编号</th>
+													<th class="column-title">名称</th>
+													<th class="column-title">抽成比例(方式一)</th>
+													<th class="column-title">抽成比例(方式二)</th>
 													<th class="column-title no-link last">操作</th>
 													</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
@@ -149,50 +148,14 @@
 														<td class="a-center ">
 															<input type="checkbox" class="flat" name="table_records">
 														</td>
-														
-														<c:if test="${empty root.thuName}">
-															<td class=" " style="color:red">未指定</td>
-														</c:if>
-														<c:if test="${!empty root.thuName}">
-															<td class=" ">${root.thuName }</td>
-														</c:if>
-														<td class=" ">${root.area.area}</td>
-														<td class=" ">${root.thuPhone}</td>
-														<td class=" ">${root.thuEmail}</td>
-														<c:if test="${root.thuStatus == 1}">
-															<td class=" ">是</td>
-														</c:if>
-														<c:if test="${root.thuStatus == 0}">
-															<td class=" " style="color:#d9534f">否</td>
-														</c:if>
+														<td class=" ">${root.areId}</td>
+														<td class=" ">${root.area}</td>
+														<td class=" ">${root.areaScale}</td>
+														<td class=" ">${root.areaScaleTwo}</td>
 														<td>
-															<c:if test="${root.thuStatus == 1}">
-																<a href="thinkUser_status?thuStatus=0&thuId=${root.thuId}" class="btn btn-primary btn-xs">
-																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
-																</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															</c:if>
-															<c:if test="${root.thuStatus == 0}">
-																<a href="thinkUser_status?thuStatus=1&thuId=${root.thuId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
-																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
-																</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															</c:if>
-															
-															<a href="thinkUser_edit?thuId=${root.thuId}" class="btn btn-info btn-xs">
+															<a href="area_edit?areId=${root.areId}&pagewhere=2" class="btn btn-info btn-xs">
 															    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="thinkUser_delete?thuId=${root.thuId}" class="btn btn-danger btn-xs">
-																<i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除
-															</a>
-															<a href="#" class="btn btn-danger btn-xs" onclick="javascript:return (function () { 
-																$('#qrcode').css('display','block');
-																<%-- var url = '<%=basePath %>'+'WxOauthRedirect!adminBindWeChat?thuId=${root.thuId}'; --%>
-																var url = 'http://yanglan520.com/ZButler/WxOauthRedirect!adminBindWeChat.action?thuId=${root.thuId}';
-																new QRCode(document.getElementById('qrcode'), url);
-																if ($('#qrcode').children('img').length > 1) {
-																	$('#qrcode img:first').remove();
-																	$('#qrcode canvas:first').remove();
-																}
-																}())" style="background-color: #13ce33;border-color:#22dc29">绑定微信</a>
 														</td>
 													</tr>
 												</c:forEach>

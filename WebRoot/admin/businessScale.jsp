@@ -14,7 +14,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<title>地区添加 | 众帮管家</title>
+	<title>商家比例设置 | 众帮管家</title>
 
 	<!-- Bootstrap -->
 	<link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -67,7 +67,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>店铺分类管理</h3>
+							<h3>商家积分比管理</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -96,65 +96,61 @@
 								<div class="x_content">
 									<br />
 									<div class="col-md-8">
-										<form action="area_save" method="post" class="form-horizontal form-label-left">
+										<form action="business_update" method="post" class="form-horizontal form-label-left">
 											<div class="">
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">名&nbsp;&nbsp;&nbsp;&nbsp;称</label>
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">店铺名称</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<input type="text" class="form-control" name="area" value="${roots.area}" placeholder="请输入地区名称">
+														<input type="text" class="form-control" disabled="disabled" name="busShopName" value="${businessResult.busShopName}">
 													</div>
 												</div>
 												
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">描&nbsp;&nbsp;&nbsp;&nbsp;述</label>
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">店主姓名</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<textarea id="message" class="form-control" value="${roots.desction}" name="desc"></textarea>
+														<input type="text" class="form-control" disabled="disabled" name="busOwnerName"value="${businessResult.busOwnerName}">
 													</div>
 												</div>
 												
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">商家返点比</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<select class="form-control" name="pid">
-															<option value="0">选择上级</option>
-															<c:forEach var="root" items="${list}">
-																<c:if test="${root.areId == roots.pid}">
-																	<option value="${root.areId}" selected="selected">${root.area}</option>
-																</c:if>
-																<c:if test="${root.areId != roots.pid}">
-																	<option value="${root.areId}">${root.area}</option>
-																</c:if>
-															</c:forEach>
-														</select>
+														<input type="text" class="form-control" name="busScale" value="${businessResult.busScale}">
 													</div>
 												</div>
 												
 												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">客户返积分比</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<input type="text" class="form-control" name="busScalePoints" value="${businessResult.busScalePoints}">
+													</div>
+												</div>
+												
+												
+												<%-- <div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">启&nbsp;&nbsp;&nbsp;&nbsp;用</label>
 													<div class="col-md-9 col-sm-9 col-xs-12">
 														<div class="radio">
 															<label> 
 																<c:if test="${roots.status == 1}">
-																	<input type="radio" class="flat" checked name="status" value="1"> 启用
-			                          								<input type="radio" class="flat" name="status" value="0"> 不启用
+																	<input type="radio" class="flat" checked name="status" value="1"> 方式一
+			                          								<input type="radio" class="flat" name="status" value="2"> 方式二
 																</c:if>
 																<c:if test="${roots.status == 0}">
-																	<input type="radio" class="flat" name="status" value="1"> 启用
-			                          								<input type="radio" class="flat" checked name="status" value="0"> 不启用
-																</c:if>
-																<c:if test="${empty roots.status}">
-																	<input type="radio" class="flat" name="status" value="1"> 启用
-			                          								<input type="radio" class="flat" name="status" value="0"> 不启用
+																	<input type="radio" class="flat" name="status" value="1"> 方式一
+			                          								<input type="radio" class="flat" checked name="status" value="2"> 方式二
 																</c:if>
 															</label>
 														</div>
 													</div>
-												</div>
+												</div> --%>
 											</div>
 											
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+													<input type="hidden" name="pagewhere" value="3">
+													<input type="hidden" name="busId" value="${businessResult.busId}">
 													<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
 												</div>
 											</div>

@@ -41,12 +41,6 @@ public class Area implements java.io.Serializable {
 		this.areaScale = are.getAreaScale();
 		this.areaScaleTwo = are.getAreaScaleTwo();
 		this.areaWay = are.getAreaWay();
-		this.thinkUsers = are.getThinkUsers();
-		this.businesses = are.getBusinesses();
-		this.billsForThuCountyId = are.getBillsForThuCountyId();
-		this.billsForThuProvinceId = are.getBillsForThuProvinceId();
-		this.billsForThuPropertyId = are.getBillsForThuPropertyId();
-		this.billsForThuCityId = are.getBillsForThuCityId();
 	}
 
 	/** full constructor */

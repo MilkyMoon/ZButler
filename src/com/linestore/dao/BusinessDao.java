@@ -9,8 +9,12 @@ public interface BusinessDao {
 	void add(Business business);
 	void update(String hql);
 	List<Business> selectAll();
+	List<Business> selectStatus(int status);
+	List<Business> selectStatusTwo(int status,int statustwo);
 	List<Business> select(Business business);
 	List<Business> selectByArea(Business business);
+	List<Business> selectByAreaStatus(Business business,int status);
+	List<Business> selectByAreaStatusTwo(Business business,int status, int statustwo);
 	void delete(Business business);
 
 	List<Business> select(String sql);

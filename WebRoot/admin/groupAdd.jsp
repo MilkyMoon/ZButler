@@ -110,43 +110,16 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">用户名</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">权限</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuUsername" placeholder="请输入管理员用户名">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="password" class="form-control" name="thuPassword" placeholder="请输入管理员密码">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">地&nbsp;&nbsp;&nbsp;&nbsp;区</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuArea" placeholder="请输入管理员所属地区">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<select class="form-control" name="area.areId" id="busCateId">
-													<c:forEach var="root" items="${list}">
-														<option value="${root.areId}">${root.area}</option>
-													</c:forEach>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuEmail" placeholder="请输入管理员邮箱">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">电&nbsp;&nbsp;&nbsp;&nbsp;话</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuPhone" placeholder="请输入管理员电话">
+												<div class="checkbox">
+													<c:forEach var="rule" items="${admin.group.ruleGroups}">
+							                            <label>
+							                              <input type="checkbox" class="flat" checked="checked"> ${rule.rule.title}
+							                            </label>
+						                            </c:forEach>
+						                            
+						                          </div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -155,7 +128,7 @@
 												<div class="radio">
 													<label> 
 															<input type="radio" class="flat" name="thuStatus" value="1"> 启用
-	                          								<input type="radio" class="flat" checked name="thuStatus" value="0"> 不启用
+	                          								<input type="radio" class="flat" checked name="thuStatus" value="-1"> 不启用
 													</label>
 												</div>
 											</div>

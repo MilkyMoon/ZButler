@@ -20,6 +20,7 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	private List<Area> areaList = new ArrayList<Area>();
 	private List<Area> areaListReslut = new ArrayList<Area>();
 	private Area areaReslut;
+	private int pagewhere;
 	
 	private ThinkUser think;
 	
@@ -34,15 +35,20 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 		if(think.getArea().getPid() == 0){
 			areaService.queryArea(areaList, 0, 0);
 		} else {
-			areaService.queryArea(areaList, think.getArea().getAreId(), 0);
+			areaService.queryArea(areaList, think.getArea().getAreId(), 1);
 			areaListReslut.add(areaService.queryById(think.getArea().getAreId()));
 		}
 		areaListReslut.addAll(areaList);
 		
-		request = (Map<String, Object>) ActionContext.getContext().get("request");
-		request.put("list", areaListReslut);
+		ActionContext.getContext().getSession().put("list", areaListReslut);
 		
 		return "selectAll";
+	}
+	
+	public String agent(){
+		select();
+		
+		return "agent";
 	}
 	
 	public String add(){
@@ -53,11 +59,18 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	public String edit(){
 		select();
 		areaReslut = areaService.queryById(area.getAreId());
-		request = (Map<String, Object>) ActionContext.getContext().get("request");
-		request.put("roots", areaReslut);
+		ActionContext.getContext().getSession().put("roots", areaReslut);
+		
+		if(pagewhere == 2){
+			System.out.println("agentEdit");
+			return "agentEdit";
+		}
+		
+		System.out.println("edit");
+		
 		return "edit";
 	}
-	
+
 	public String save(){
 		areaService.addArea(area);
 		return "select";
@@ -119,4 +132,13 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 		this.areaService = areaService;
 	}
 
+	public int getPagewhere() {
+		return pagewhere;
+	}
+
+	public void setPagewhere(int pagewhere) {
+		this.pagewhere = pagewhere;
+	}
+
+	
 }
