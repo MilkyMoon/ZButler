@@ -96,36 +96,26 @@
 								<div class="x_content">
 									<br />
 									<div class="col-md-8">
-										<form action="area_save" method="post" class="form-horizontal form-label-left">
+										<form action="area_update" method="post" class="form-horizontal form-label-left">
 											<div class="">
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">名&nbsp;&nbsp;&nbsp;&nbsp;称</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<input type="text" class="form-control" name="area" value="${roots.area}" placeholder="请输入地区名称">
+														<input type="text" class="form-control" name="area" value="${roots.area}">
 													</div>
 												</div>
 												
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">描&nbsp;&nbsp;&nbsp;&nbsp;述</label>
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例(方式一)</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<textarea id="message" class="form-control" value="${roots.desction}" name="desc"></textarea>
+														<input type="text" class="form-control" name="areaScale" value="${roots.areaScale}">
 													</div>
 												</div>
 												
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">抽成比例(方式二)</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<select class="form-control" name="pid">
-															<option value="0">选择上级</option>
-															<c:forEach var="root" items="${list}">
-																<c:if test="${root.areId == roots.pid}">
-																	<option value="${root.areId}" selected="selected">${root.area}</option>
-																</c:if>
-																<c:if test="${root.areId != roots.pid}">
-																	<option value="${root.areId}">${root.area}</option>
-																</c:if>
-															</c:forEach>
-														</select>
+														<input type="text" class="form-control" name="areaScaleTwo" value="${roots.areaScaleTwo}">
 													</div>
 												</div>
 												
@@ -134,13 +124,17 @@
 													<div class="col-md-9 col-sm-9 col-xs-12">
 														<div class="radio">
 															<label> 
-																<c:if test="${roots.status == 1}">
-																	<input type="radio" class="flat" checked name="status" value="1"> 启用
-			                          								<input type="radio" class="flat" name="status" value="0"> 不启用
+																<c:if test="${roots.areaWay == 1}">
+																	<input type="radio" class="flat" checked name="areaWay" value="1"> 方式一
+			                          								<input type="radio" class="flat" name="areaWay" value="2"> 方式二
 																</c:if>
-																<c:if test="${roots.status == 0}">
-																	<input type="radio" class="flat" name="status" value="1"> 启用
-			                          								<input type="radio" class="flat" checked name="status" value="0"> 不启用
+																<c:if test="${roots.areaWay == 2}">
+																	<input type="radio" class="flat" name="areaWay" value="1"> 方式一
+			                          								<input type="radio" class="flat" checked name="areaWay" value="2"> 方式二
+																</c:if>
+																<c:if test="${empty roots.areaWay}">
+																	<input type="radio" class="flat" name="areaWay" value="1"> 方式一
+			                          								<input type="radio" class="flat" name="areaWay" value="2"> 方式二
 																</c:if>
 															</label>
 														</div>
@@ -151,6 +145,8 @@
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+													<input type="hidden" name="pagewhere" value="2"/>
+													<input type="hidden" name="areId" value="${roots.areId}"/>
 													<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
 												</div>
 											</div>

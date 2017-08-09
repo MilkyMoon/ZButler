@@ -56,6 +56,49 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 		return "add";
 	}
 	
+	public String update(){
+		if ((area.getStatus() != null && area.getStatus() == 0) || area.getAreaScale() == null || area.getAreaScale() > 1 || area.getAreaScale() < 0) {
+			area.setAreaScale((float) 1);
+		}
+		
+		if ((area.getStatus() != null && area.getStatus() == 0) || area.getAreaScaleTwo() == null || area.getAreaScaleTwo() > 1 || area.getAreaScaleTwo() < 0) {
+			area.setAreaScaleTwo((float) 0);
+		}
+
+		int id = area.getAreId();
+		// business.setBusId(null);
+
+		String hql;
+		try {
+
+			hql = ReturnUpdateHql.ReturnHql(area.getClass(), area, id);
+			// System.out.println(business.getBusStatus());
+			areaService.upadteArea(hql);
+
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(pagewhere == 2){
+			return "agentSelect";
+		}
+		
+		return "select";
+	}
+	
 	public String edit(){
 		select();
 		areaReslut = areaService.queryById(area.getAreId());
