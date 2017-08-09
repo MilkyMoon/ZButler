@@ -15,4 +15,6 @@ public interface BillDao {
 	public Bill selectById(Integer id);
 	
 	public List<Bill> queryByCusId(int cusId);
+	
+	public List<Bill> queryByArea(int areaId);
 }

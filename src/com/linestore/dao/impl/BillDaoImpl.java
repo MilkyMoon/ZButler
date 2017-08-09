@@ -131,4 +131,10 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		return bills;
 	}
 
+	@Override
+	public List<Bill> queryByArea(int AreaId) {
+		List<Bill> bills = (List<Bill>) this.getHibernateTemplate().find("from Bill where thinkUserByThuPropertyId.thuId = ? or thinkUserByThuCityId.thuId = ? or thinkUserByThuProvinceId.thuId = ? or areaByThuCountyId = ?", AreaId, AreaId, AreaId,AreaId);
+		return bills;
+	}
+
 }

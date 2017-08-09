@@ -120,7 +120,7 @@
 												</div> --%>
 						                        
 						                        <div class="form-group">
-							                        <label class="control-label col-md-3" style="width:100px;">交易时间</label>
+							                        <label class="control-label col-md-3" style="width:100px;">交易开始时间</label>
 							                        <fieldset class="col-md-3 col-sm-9 col-xs-12">
 							                          <div class="control-group">
 							                            <div class="controls">
@@ -135,7 +135,7 @@
 							                     </div>
 						                        
 						                        <div class="form-group">
-							                        <label class="control-label col-md-3" style="width:100px;">交易时间</label>
+							                        <label class="control-label col-md-3" style="width:100px;">交易结束时间</label>
 							                        <fieldset class="col-md-3 col-sm-9 col-xs-12">
 							                          <div class="control-group">
 							                            <div class="controls">

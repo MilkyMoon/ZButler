@@ -59,4 +59,9 @@ public class BillServiceImpl implements BillService {
 	public List<Bill> queryByCusId(int cusId) {
 		return billDao.queryByCusId(cusId);
 	}
+
+	@Override
+	public List<Bill> queryByArea(int areaId) {
+		return billDao.queryByArea(areaId);
+	}
 }

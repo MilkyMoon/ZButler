@@ -1,6 +1,5 @@
 package com.linestore.action;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import com.linestore.service.BillService;
 import com.linestore.util.Page;
 import com.linestore.util.PageUtil;
+import com.linestore.vo.Area;
 import com.linestore.vo.Bill;
 import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
@@ -163,6 +163,19 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		request.put("roots",billList);
 		
 		return "selectAll";
+	}
+	
+	public String report() {
+		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		Area area = thu.getArea();
+		List<Bill> bills = billService.queryByArea(area.getAreId());
+		Float day = new Float(0f);
+		Float month = new Float(0f);
+		Float year = new Float(0f);
+		for (int i = 0; i < bills.size(); i++) {
+			
+		}
+		return "gotoReport";
 	}
 	
 	public String selectById(){
