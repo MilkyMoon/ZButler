@@ -9,7 +9,7 @@ public interface SiteConfigDao {
 
 	public void delConfig(int id);
 
-	public void updateConfig(String hql);
+	public void updateConfig(SiteConfig sc);
 
 	public void addConfig(SiteConfig config);
 
