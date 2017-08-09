@@ -47,10 +47,11 @@
 			<result name="success" type="redirectAction">business_jump</result>
 			<result name="selectAll">admin/business.jsp</result>
 			<result name="error">admin/index.jsp</result>
-			<result name="gotoStoreAction" type="redirectAction">business_gotoStore</result>
+			<result name="gotoStoreAction" type="redirectAction">business_gotoStore
+			</result>
 			<result name="gotoStore">home/myStore.jsp</result>
 			<result name="gotoEdit">home/editBus.jsp</result>
-			
+
 		</action>
 
 		<action name="CusAddress_*" class="com.linestore.action.CusAddressAction"
@@ -109,11 +110,16 @@
 		<action name="CusAccount" class="com.linestore.action.CusAccountAction">
 			<result name="gotoChangeOne">home/changeOne.jsp</result>
 			<result name="gotoPointsOne">home/pointsOne.jsp</result>
-			
+
 		</action>
 
 		<action name="Tag" class="com.linestore.action.TagAction">
 			<result name="gotoCusLabel">/home/cusLabel.jsp</result>
+		</action>
+
+		<action name="notice_*" class="com.linestore.action.NoticeAction"
+			method="{1}">
+			<result name="history">home/notice.jsp</result>
 		</action>
 
 		<action name="CusBank" class="com.linestore.action.CusBankAction">
@@ -153,10 +159,11 @@
 			</result>
 			<result name="payBgyCash" type="redirectAction">WxOauthRedirect_IntoPayPage
 			</result>
-			
+
 		</action>
 
-		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction" method="{1}">
+		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction"
+			method="{1}">
 			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
 			<result name="gotoBind" type="redirectAction">Customer_update</result>
 
@@ -167,7 +174,7 @@
 			<result name="gotoPay">home/Pay.jsp</result>
 			<result name="gotoRecharge">home/integral.jsp</result>
 		</action>
-		
+
 		<action name="WeXinConfig_*" class="com.linestore.action.WeXinConfigAction"
 			method="{1}">
 		</action>
@@ -227,15 +234,16 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-		
+
 		<!-- MapJson -->
-		<action name="billMapInfo" method="mapInfo" class="com.linestore.action.BillAction">
-            <!-- 返回json类型数据 -->
-            <result type="json">
-                <param name="root">result<!-- result是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法 -->
-                </param>
-            </result>
-        </action>
+		<action name="billMapInfo" method="mapInfo"
+			class="com.linestore.action.BillAction">
+			<!-- 返回json类型数据 -->
+			<result type="json">
+				<param name="root">result<!-- result是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法 -->
+				</param>
+			</result>
+		</action>
 
 
 		<!-- 微信相关配置 -->
@@ -386,12 +394,16 @@
 		</action>
 		<action name="notice_*" class="com.linestore.action.NoticeAction"
 			method="{1}">
-		
+			<result name="selectAll">notice.jsp</result>
+			<result name="add">addNotice.jsp</result>
+			<result name="select" type="redirectAction">notice_selectAll</result>
 		</action>
-		<action name="index" method="index" class="com.linestore.action.AdminIndexAction">
+		<action name="index" method="index"
+			class="com.linestore.action.AdminIndexAction">
 			<result name="success">index.jsp</result>
 		</action>
-		<action name="logout" method="logout" class="com.linestore.action.AdminLoginAction">
+		<action name="logout" method="logout"
+			class="com.linestore.action.AdminLoginAction">
 			<result name="success">login.jsp</result>
 		</action>
 		<action name="area_*" class="com.linestore.action.AreaAction"
@@ -402,6 +414,10 @@
 			<result name="agentEdit">agentEdit.jsp</result>
 			<result name="edit">areaEdit.jsp</result>
 			<result name="select" type="redirectAction">area_select</result>
+		</action>
+		
+		<action name="siteConfig_*" class="com.linestore.action.SiteConfigAction"
+			method="{1}">
 		</action>
 	</package>
 

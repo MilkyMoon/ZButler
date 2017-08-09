@@ -253,7 +253,7 @@
 				busSmallCate : "required",
 				bbBankCard : {
 					required : true,
-					rangelength : [ 23, 23 ]
+					
 				}
 			},
 			messages : {
@@ -269,7 +269,6 @@
 				bbBank : "请输入开户行",
 				bbBankCard : {
 					required : "请输入银行卡号",
-					rangelength : "卡号为23位"
 				}
 			}
 		});
