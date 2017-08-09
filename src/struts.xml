@@ -307,7 +307,12 @@
 			<result name="select" type="redirectAction">business_selectAll</result>
 			<result name="read">businessRead.jsp</result>
 			<result name="edit">businessEdit.jsp</result>
-			<result name="error">index.jsp</result>
+			<result name="account">businessAccount.jsp</result>
+			<result name="profit">businessProfit.jsp</result>
+			<result name="scaleEdit">businessScale.jsp</result>
+			<result name="scale" type="redirectAction">business_profit</result>
+			<result name="enter" type="redirectAction">business_enter</result>
+			<result name="blacklist" type="redirectAction">business_blacklist</result>
 		</action>
 		<action name="thinkUser_*" class="com.linestore.action.ThinkUserAction"
 			method="{1}">
@@ -391,6 +396,8 @@
 			method="{1}">
 			<result name="selectAll">area.jsp</result>
 			<result name="add">areaAdd.jsp</result>
+			<result name="agent">agent.jsp</result>
+			<result name="agentEdit">agentEdit.jsp</result>
 			<result name="edit">areaEdit.jsp</result>
 			<result name="select" type="redirectAction">area_select</result>
 		</action>

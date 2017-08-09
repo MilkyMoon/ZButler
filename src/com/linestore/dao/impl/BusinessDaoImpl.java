@@ -34,6 +34,24 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao 
 
 		return list;
 	}
+	
+	@Override
+	public List<Business> selectStatus(int status) {
+		// TODO Auto-generated method stub
+		String hql = "from Business where busStatus = "+status;
+		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
+
+		return list;
+	}
+	
+	@Override
+	public List<Business> selectStatusTwo(int status,int statustwo) {
+		// TODO Auto-generated method stub
+		String hql = "from Business where busStatus = "+status+" or busStatus = "+statustwo;
+		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
+
+		return list;
+	}
 
 	public List<Business> select(String sql) {
 		return (List<Business>) this.getHibernateTemplate().find(sql);
@@ -61,6 +79,26 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao 
 		// TODO Auto-generated method stub
 		String hql = "from Business where baProvince like '%" + business.getBaProvince() + "%' or baCity like '%"
 				+ business.getBaCity() + "%' or baCounty like '%" + business.getBaCounty() + "%'";
+		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
+		return list;
+	}
+	
+	@Override
+	public List<Business> selectByAreaStatus(Business business,int status) {
+		// TODO Auto-generated method stub
+		String hql = "from Business where busStatus = "+status+" and (baProvince like '%" + business.getBaProvince() + "%' or baCity like '%"
+				+ business.getBaCity() + "%' or baCounty like '%" + business.getBaCounty() + "%')";
+		System.out.println(hql);
+		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
+		return list;
+	}
+	
+	@Override
+	public List<Business> selectByAreaStatusTwo(Business business,int status, int statustwo) {
+		// TODO Auto-generated method stub
+		String hql = "from Business where (busStatus = "+status+" or busStatus = "+statustwo+") and (baProvince like '%" + business.getBaProvince() + "%' or baCity like '%"
+				+ business.getBaCity() + "%' or baCounty like '%" + business.getBaCounty() + "%')";
+		System.out.println(hql);
 		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
 		return list;
 	}

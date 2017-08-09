@@ -87,7 +87,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										用户管理列表 <small>用户信息管理</small>
+										用户账单列表 <small>用户账单管理</small>
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
@@ -112,7 +112,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">订单类型</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control">
-														<option>Choose option</option>
+														<option>选择类型</option>
 														<option>Option one</option>
 														<option>Option two</option>
 														<option>Option three</option>
@@ -141,7 +141,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">支付场景</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control">
-														<option>Choose option</option>
+														<option>选择场景</option>
 														<option>Option one</option>
 														<option>Option two</option>
 														<option>Option three</option>
@@ -153,7 +153,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">交易状态</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control">
-														<option>Choose option</option>
+														<option>选择状态</option>
 														<option>Option one</option>
 														<option>Option two</option>
 														<option>Option three</option>
@@ -206,7 +206,7 @@
 													<th class="column-title">市级收款</th>
 													<th class="column-title">省级代理</th>
 													<th class="column-title">省级收款</th>
-													<c:if test="${sessionScope.admin.thuPid == 0}">
+													<c:if test="${sessionScope.admin.area.pid == 0}">
 														<th class="column-title">众帮收款</th>
 													</c:if>
 													
@@ -228,36 +228,36 @@
 														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCusMoney}" /></td>
 														<td>${root.business.busShopName}</td>
 														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilBusMoney}" /></td>
-														<td>${root.thinkUserByThuPropertyId.thuName}</td>
+														<td>${root.areaByThuPropertyId.thuName}</td>
 														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilPropertyMoney}" /></td>
 														<!-- 判断当前用户是否显示县级代理 -->					
-														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId}">
-															<td>${root.thinkUserByThuCountyId.thuName}</td>
+														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId}">
+															<td>${root.areaByThuCountyId.thuName}</td>
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCountyMoney}" /></td>
 														</c:if>
-														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId}">
+														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId}">
 															<td></td>
 															<td></td>
 														</c:if>
 														<!-- 判断当前用户是否显示市级代理 -->	
-														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
-															<td>${root.thinkUserByThuCityId.thuName}</td>
+														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
+															<td>${root.areaByThuCityId.thuName}</td>
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCityMoney}" /></td>
 														</c:if>
-														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
+														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
 															<td></td>
 															<td></td>
 														</c:if>
 														<!-- 判断当前用户是否显示省级代理 -->	
-														<c:if test="${sessionScope.admin.thuId != root.thinkUserByThuCityId.thuId && sessionScope.admin.thuId != root.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != root.thinkUserByThuCountyId.thuId}">
-															<td>${root.thinkUserByThuProvinceId.thuName}</td>
+														<c:if test="${sessionScope.admin.area.areId != root.areaByThuCityId.areId && sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
+															<td>${root.areaByThuProvinceId.thuName}</td>
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilProvinceMoney}" /></td>
 														</c:if>
-														<c:if test="${sessionScope.admin.thuId == root.thinkUserByThuCityId.thuId || sessionScope.admin.thuId == root.thinkUserByThuPropertyId.thuId || sessionScope.admin.thuId == root.thinkUserByThuCountyId.thuId}">
+														<c:if test="${sessionScope.admin.area.areId == root.areaByThuCityId.areId || sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
 															<td></td>
 															<td></td>
 														</c:if>
-														<c:if test="${sessionScope.admin.thuPid == 0}">
+														<c:if test="${sessionScope.admin.area.pid == 0}">
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilZongMoney}" /></td>
 														</c:if>
 														

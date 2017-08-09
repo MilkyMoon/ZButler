@@ -96,18 +96,9 @@
 							 <th><input type="checkbox" id="check-all" class="flat"/></th>
 						  </th>
                           <th>店铺名称</th>
-                          <th>商家类别</th>
-                          <th>商圈</th>
                           <th>店主姓名</th>
-                       	  <c:if test="${opt == 0}">
-                              <th>是否审核</th>
-                       	  </c:if>
-                       	  <c:if test="${opt == 1}">
-                       		  <th>是否启用</th>
-                       	  </c:if>
-                       	  <c:if test="${opt == 2}">
-                       		  <th>是否黑名单</th>
-                       	  </c:if>
+                          <th>商家返点比</th>
+                          <th>客户返积分比</th>
                           <th>操作</th>
                         </tr>
                       </thead>
@@ -119,67 +110,11 @@
 								 <th><input type="checkbox" class="flat" name="table_records"/></th>
 							  </td>
 	                          <td>${roots.busShopName}</td>
-	                          <td>
-		                          <c:if test="${roots.busLevel == 0}">
-		                          	商家
-		                          </c:if>
-		                          <c:if test="${roots.busLevel == 1}">
-		                          	一级
-		                          </c:if>
-		                          <c:if test="${roots.busLevel == 2}">
-		                          	二级
-		                          </c:if>
-		                          <c:if test="${roots.busLevel == 3}">
-		                          	三级
-		                          </c:if>
-	                          </td>
-	                          
-	                          <td>
-		                          <c:if test="${roots.busDistrict == 1}">
-		                          	商业区
-		                          </c:if>
-		                          <c:if test="${roots.busDistrict == 2}">
-		                          	住宅区
-		                          </c:if>
-		                          <c:if test="${roots.busDistrict == 3}">
-		                          	文教区
-		                          </c:if>
-		                          <c:if test="${roots.busDistrict == 4}">
-		                          	办公区
-		                          </c:if>
-		                          <c:if test="${roots.busDistrict == 5}">
-		                          	工业区
-		                          </c:if>
-		                          <c:if test="${roots.busDistrict == 6}">
-		                          	混合区
-		                          </c:if>
-	                          </td>
 	                          <td>${roots.busOwnerName}</td>
-	                          <%-- <td><s:property value="busStatus"></s:property></td> --%>
-	                          <c:if test="${roots.busStatus == 0 || roots.busStatus == 2}">
-	                          	<td style="color:red">否</td>
-	                          </c:if>
-	                          <c:if test="${roots.busStatus == 1 || roots.busStatus == 3}">
-	                          	<td>是</td>
-	                          </c:if>
+	                          <td>${roots.busScale}</td>
+	                          <td>${roots.busScalePoints}</td>
 	                          <td>
-	                          	<c:if test="${roots.busStatus == 0}">
-	                          		<a href="business_status?busId=${roots.busId}&busStatus=1&pagewhere=0" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;通过</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                          	</c:if>
-	                          	<c:if test="${roots.busStatus == 1}">
-	                          		<a href="business_status?busId=${roots.busId}&busStatus=2&pagewhere=1" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;关闭</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                          		<a href="business_status?busId=${roots.busId}&busStatus=3&pagewhere=1" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;加入黑名单</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                          	</c:if>
-	                          	<c:if test="${roots.busStatus == 2}">
-	                          		<a href="business_status?busId=${roots.busId}&busStatus=1&pagewhere=1" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;开启</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                          		<a href="business_status?busId=${roots.busId}&busStatus=3&pagewhere=1" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;加入黑名单</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                          	</c:if>
-	                          	<c:if test="${roots.busStatus == 3}">
-	                          		<a href="business_status?busId=${roots.busId}&busStatus=1&pagewhere=2" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;恢复</a>&nbsp;&nbsp;&nbsp;&nbsp;
-	                          	</c:if>
-		                          <a href="business_read?busId=${roots.busId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		                          <a href="business_edit?busId=${roots.busId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		                          <a href="business_delete?busId=${roots.busId}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+		                          <a href="business_edit?busId=${roots.busId}&pagewhere=3" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	                          </td>
 	                        </tr>
                         </c:forEach>

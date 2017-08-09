@@ -142,10 +142,6 @@
 																	<input type="radio" class="flat" name="status" value="1"> 启用
 			                          								<input type="radio" class="flat" checked name="status" value="0"> 不启用
 																</c:if>
-																<c:if test="${empty roots.status}">
-																	<input type="radio" class="flat" name="status" value="1"> 启用
-			                          								<input type="radio" class="flat" name="status" value="0"> 不启用
-																</c:if>
 															</label>
 														</div>
 													</div>

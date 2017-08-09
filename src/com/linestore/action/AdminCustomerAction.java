@@ -77,7 +77,7 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
-		if(pageNow.equals("") || pageNow == null){
+		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 			pageNow = "1";
 		}
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));

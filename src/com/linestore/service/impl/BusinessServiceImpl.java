@@ -120,5 +120,29 @@ public class BusinessServiceImpl implements BusinessService{
 	public void update(Business business) {
 		businessDao.update(business);
 	}
+
+	@Override
+	public List<Business> selectByAreaStatus(Business business, int status) {
+		// TODO Auto-generated method stub
+		return businessDao.selectByAreaStatus(business, status);
+	}
+
+	@Override
+	public List<Business> selectStatus(int status) {
+		// TODO Auto-generated method stub
+		return businessDao.selectStatus(status);
+	}
+
+	@Override
+	public List<Business> selectByAreaStatusTwo(Business business, int status, int statustwo) {
+		// TODO Auto-generated method stub
+		return businessDao.selectByAreaStatusTwo(business, status, statustwo);
+	}
+
+	@Override
+	public List<Business> selectStatusTwo(int status, int statustwo) {
+		// TODO Auto-generated method stub
+		return businessDao.selectStatusTwo(status, statustwo);
+	}
 	
 }
