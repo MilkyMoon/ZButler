@@ -97,9 +97,9 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		// } else {
 		// business.setBusStatus(0);
 		// }
+		System.out.println("busScale:"+business.getBusStatus());
 
-		if (business.getBusStatus() == 0 || business.getBusScale() == null || business.getBusScale() > 1
-				|| business.getBusScale() < 0) {
+		if ((business.getBusStatus() != null && business.getBusStatus() == 0) || business.getBusScale() == null || business.getBusScale() > 1 || business.getBusScale() < 0) {
 			business.setBusScale((float) 0);
 		}
 
@@ -131,6 +131,10 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 			e.printStackTrace();
 		}
 
+		if(pagewhere == 3){
+			return "scale";
+		}
+		
 		return "select";
 	}
 
@@ -292,6 +296,11 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 
 	public String edit() {
 		read();
+		
+		if(pagewhere == 3){
+			return "scaleEdit";
+		}
+		
 		return "edit";
 	}
 

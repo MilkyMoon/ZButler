@@ -114,7 +114,7 @@
 	                          <td>${roots.busScale}</td>
 	                          <td>${roots.busScalePoints}</td>
 	                          <td>
-		                          <a href="business_edit?busId=${roots.busId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		                          <a href="business_edit?busId=${roots.busId}&pagewhere=3" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	                          </td>
 	                        </tr>
                         </c:forEach>

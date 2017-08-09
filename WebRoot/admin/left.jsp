@@ -94,7 +94,7 @@
                     </li>
                     <li><a><i class="fa fa-clone"></i> 利润分配 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/thinkUser_select">三级代理商</a></li>
+                            <li><a href="<%=basePath%>admin/area_agent">三级代理商</a></li>
                             <li><a href="<%=basePath%>admin/business_profit">线下商家</a></li>
                         </ul>
                     </li>
