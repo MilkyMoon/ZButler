@@ -14,7 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>广告管理 | 分类下广告</title>
+<title>消息管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -70,7 +70,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>广告管理</h3>
+							<h3>消息管理</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -78,7 +78,7 @@
 						<div class="col-md-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>分类下部广告</h2>
+									<h2>推送消息</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -96,100 +96,41 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<div class="col-md-4">
-										<form action="siteConfig_save"
-											class="form-horizontal form-label-left" method="post">
+									<div class="col-md-8">
+										<form action="siteConfig_addFriendUrl"
+											class="form-horizontal form-label-left">
 											<div class="">
-												<c:forEach var="root" items="${leftAdvConfigs}">
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
-														<div class="col-md-6 col-sm-9 col-xs-12">
-															<input type="hidden" class="form-control"
-																name="configKey" value="${root.configKey}"> <input
-																type="hidden" class="form-control" name="Sid"
-																value="${root.id}"> <input type="hidden"
-																class="form-control" name="configName"
-																value="${root.configName}"> <input
-																type="${root.id ==5 ?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
-														</div>
+												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">标&nbsp;&nbsp;&nbsp;&nbsp;题</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<input type="text" class="form-control" name="configKey"
+															placeholder="请输消息标题">
 													</div>
-												</c:forEach>
+												</div>
+
+
+												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">内&nbsp;&nbsp;&nbsp;&nbsp;容</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<input type="text" class="form-control" name="configValue"
+															placeholder="请输入内容"> <input type="hidden"
+															class="form-control" name="configName" value="friend_url">
+
+													</div>
+												</div>
+
+
 											</div>
 
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
 													<button type="submit" class="btn btn-success"
-														style="float:right;margin-right:0;">更新</button>
+														style="float:right;margin-right:0;">添加</button>
 												</div>
 											</div>
 										</form>
 									</div>
-									<div class="col-md-4">
-										<form action="siteConfig_save"
-											class="form-horizontal form-label-left" method="post">
-											<div class="">
-												<c:forEach var="root" items="${rightTopAdvConfigs}">
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
-														<div class="col-md-6 col-sm-9 col-xs-12">
-															<input type="hidden" class="form-control"
-																name="configKey" value="${root.configKey}"> <input
-																type="hidden" class="form-control" name="Sid"
-																value="${root.id}"> <input type="hidden"
-																class="form-control" name="configName"
-																value="${root.configName}"> <input
-																type="${root.id ==8 ?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
-														</div>
-
-													</div>
-												</c:forEach>
-											</div>
-
-											<div class="ln_solid"></div>
-											<div class="form-group">
-												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-													<button type="submit" class="btn btn-success"
-														style="float:right;margin-right:0;">更新</button>
-												</div>
-											</div>
-										</form>
-									</div>
-
-									<div class="col-md-4">
-										<form action="siteConfig_save"
-											class="form-horizontal form-label-left" method="post">
-											<div class="">
-												<c:forEach var="root" items="${rightBottomConfigs}">
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
-														<div class="col-md-6 col-sm-9 col-xs-12">
-															<input type="hidden" class="form-control"
-																name="configKey" value="${root.configKey}"> <input
-																type="hidden" class="form-control" name="Sid"
-																value="${root.id}"> <input type="hidden"
-																class="form-control" name="configName"
-																value="${root.configName}"> <input
-																type="${root.id ==11?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
-														</div>
-
-													</div>
-												</c:forEach>
-											</div>
-
-											<div class="ln_solid"></div>
-											<div class="form-group">
-												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-													<button type="submit" class="btn btn-success"
-														style="float:right;margin-right:0;">更新</button>
-												</div>
-											</div>
-										</form>
-									</div>
-
 								</div>
 							</div>
 						</div>
@@ -251,17 +192,3 @@
 
 </body>
 </html>
-<script>
-$('input[name="configValue"]').each(function () {
-        var that = $(this);
-        that.change(function () {
-            var imgFile = new FileReader();
-            imgFile.readAsDataURL(that[0].files[0]);
-            imgFile.onload = function () {
-                var imgData = this.result; //base64数据
-                that.attr("type", "hidden");
-                that.val(imgData);
-            }
-        })
-    }) 
-</script>
