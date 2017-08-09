@@ -37,8 +37,8 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<Notice> customerNewNoticesCenter() {
 		// TODO Auto-generated method stub
-		noticeDao.selectNew();
-		return null;
+
+		return noticeDao.selectNew();
 	}
 
 	public NoticeDao getNoticeDao() {
@@ -48,5 +48,12 @@ public class NoticeServiceImpl implements NoticeService {
 	public void setNoticeDao(NoticeDao noticeDao) {
 		this.noticeDao = noticeDao;
 	}
+
+	@Override
+	public int queryAll() {
+		// TODO Auto-generated method stub
+		return noticeDao.queryAll();
+	}
+
 
 }

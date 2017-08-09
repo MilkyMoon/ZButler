@@ -13,7 +13,7 @@ public class Notice implements java.io.Serializable {
 	private Integer id;
 	private String title;
 	private String content;
-	private Time time;
+	private String time;
 	private String publisher;
 
 	// Constructors
@@ -23,7 +23,7 @@ public class Notice implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Notice(String title, String content, Time time, String publisher) {
+	public Notice(String title, String content, String time, String publisher) {
 		this.title = title;
 		this.content = content;
 		this.time = time;
@@ -56,12 +56,12 @@ public class Notice implements java.io.Serializable {
 		this.content = content;
 	}
 
-	public Time getTime() {
+	public String getTime() {
 		return this.time;
 	}
 
-	public void setTime(Time time) {
-		this.time = time;
+	public void setTime(String string) {
+		this.time = string;
 	}
 
 	public String getPublisher() {

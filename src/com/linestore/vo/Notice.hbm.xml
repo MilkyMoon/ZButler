@@ -16,8 +16,8 @@
         <property name="content" type="java.lang.String">
             <column name="content" length="65535" />
         </property>
-        <property name="time" type="java.sql.Time">
-            <column name="time" length="8" />
+        <property name="time" type="java.lang.String">
+            <column name="time" length="20" />
         </property>
         <property name="publisher" type="java.lang.String">
             <column name="publisher" length="20" />
