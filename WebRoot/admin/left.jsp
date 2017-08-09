@@ -72,7 +72,7 @@
                     <li><a><i class="fa fa-clone"></i>组织管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/thinkUser_select">平台代理商</a></li>
-                            <li><a href="<%=basePath%>admin/cateLine_selectAll">角色管理</a></li>
+                            <li><a href="<%=basePath%>admin/group_selectAll">角色管理</a></li>
                             <%-- <li><a href="<%=basePath%>admin/group_select">角色管理</a></li> --%>
                             <!-- <li><a href="#">权限管理</a></li> -->
                         </ul>

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.GroupDao;
 import com.linestore.service.GroupService;
+import com.linestore.util.Page;
 import com.linestore.vo.Group;
 
 @Transactional
@@ -32,6 +33,11 @@ public class GroupServiceImpl implements GroupService {
 	public List<Group> queryAll() {
 		return groupDao.queryAll();
 	}
+	
+	@Override
+	public List<Group> queryAll(Page page) {
+		return groupDao.queryAll(page);
+	}
 
 	public GroupDao getGroupDao() {
 		return groupDao;
@@ -40,7 +46,5 @@ public class GroupServiceImpl implements GroupService {
 	public void setGroupDao(GroupDao groupDao) {
 		this.groupDao = groupDao;
 	}
-	
-	
 
 }

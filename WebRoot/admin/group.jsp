@@ -109,7 +109,7 @@
 										</thead>
 										<tbody>
 											<tr>
-												<c:forEach var="gro" items="${gros}">
+												<%-- <c:forEach var="gro" items="${gros}">
 													<td>
 													<th><input type="checkbox" class="flat"
 														name="table_records" /></th>
@@ -125,7 +125,7 @@
 														<a href="group_delete?grpId=${gro.grpId}"
 														class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
 													</td>
-												</c:forEach>
+												</c:forEach> --%>
 											</tr>
 										</tbody>
 									</table>

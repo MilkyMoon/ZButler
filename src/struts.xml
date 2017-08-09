@@ -319,7 +319,7 @@
 		</action>
 		<action name="group_*" class="com.linestore.action.GroupAction"
 			method="{1}">
-			<result name="gotoGroup">thinkUser.jsp</result>
+			<result name="gotoGroup">grouplist.jsp</result>
 			
 		</action>
 		<action name="category_*" class="com.linestore.action.CatetoryAction"

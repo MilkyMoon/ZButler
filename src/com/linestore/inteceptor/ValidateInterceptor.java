@@ -32,19 +32,20 @@ public class ValidateInterceptor extends MethodFilterInterceptor {
 
 		if (thu != null) {
 
-			if (thu.getGroup() != null) {
-				System.out.println(thu.getGroup().getRuleGroups());
-				
-				 Set<RuleGroup> rgs = thu.getGroup().getRuleGroups();
-				 Iterator it = rgs.iterator();
-				while (it.hasNext()) {
-					RuleGroup rg = (RuleGroup) it.next();
-					if (rg.getRule().getRules().equals(arg0.getInvocationContext().getName())) {
-						return arg0.invoke();
-					}
-				}
-			}
-			return "Error";
+//			if (thu.getGroup() != null) {
+//				System.out.println(thu.getGroup().getRuleGroups());
+//				
+//				 Set<RuleGroup> rgs = thu.getGroup().getRuleGroups();
+//				 Iterator it = rgs.iterator();
+//				while (it.hasNext()) {
+//					RuleGroup rg = (RuleGroup) it.next();
+//					if (rg.getRule().getRules().equals(arg0.getInvocationContext().getName())) {
+//						return arg0.invoke();
+//					}
+//				}
+//			}
+//			return "Error";
+			return arg0.invoke();
 		}
 		return "Login";
 	}
