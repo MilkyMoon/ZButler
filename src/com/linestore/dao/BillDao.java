@@ -1,5 +1,7 @@
 package com.linestore.dao;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import com.linestore.util.Page;
@@ -16,5 +18,14 @@ public interface BillDao {
 	
 	public List<Bill> queryByCusId(int cusId);
 	
-	public List<Bill> queryByArea(int areaId);
+	public List<Bill> queryByArea(int AreaId);
+	
+	public BigDecimal todayMoney();
+	
+	public BigDecimal monthMoney();
+	
+	public BigDecimal yearMoney();
+	
+	public List<Bill> queryToDate(Date dateOne, Date dateTwo);
+	
 }

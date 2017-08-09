@@ -1,5 +1,9 @@
 package com.linestore.action;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +42,8 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private String everyPage = "10";
 	private String keywords = "";
 	private String tranTime;
+	private String startTime;
+	private String endTime;
 	private Float amountMin;
 	private Float amountMax;
 
@@ -166,16 +172,175 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	}
 	
 	public String report() {
+		BigDecimal day = new BigDecimal(0);
+		BigDecimal month = new BigDecimal(0);
+		BigDecimal year = new BigDecimal(0);
 		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 		Area area = thu.getArea();
-		List<Bill> bills = billService.queryByArea(area.getAreId());
-		Float day = new Float(0f);
-		Float month = new Float(0f);
-		Float year = new Float(0f);
-		for (int i = 0; i < bills.size(); i++) {
-			
+		if (area.getAreId() == 1) {
+			day = billService.todayMoney();
+			month = billService.monthMoney();
+			year = billService.yearMoney();
 		}
+		List<Bill> bills = billService.queryByArea(area.getAreId());
+		int type = -1;
+		if (bills.size() > 0 ) {
+			if ((int)area.getAreId() == (int)bills.get(0).getAreaByThuCityId().getAreId()) {
+				type = 0;
+			} else if((int)area.getAreId() == (int)bills.get(0).getAreaByThuCountyId().getAreId()) {
+				type = 1;
+			} else if ((int)area.getAreId() == (int)bills.get(0).getAreaByThuPropertyId().getAreId()) {
+				type = 2;
+			} else if ((int)area.getAreId() == (int)bills.get(0).getAreaByThuProvinceId().getAreId()) {
+				type = 3;
+			} else {
+				System.out.println("找不到");
+			}
+		}
+		System.out.println("type:" + type);
+		for (int i = 0; i < bills.size(); i++) {
+			Date date = bills.get(i).getBilDate();
+			switch (type) {
+			case 0:
+				if (isToday(date)) {
+					day = day.add(bills.get(i).getBilCityMoney());
+				}
+				if (isCurrMonth(date)) {
+					month = month.add(bills.get(i).getBilCityMoney());
+				}
+				if (isCurrYear(date)) {
+					year = year.add(bills.get(i).getBilCityMoney());
+				}
+				break;
+			case 1:
+				if (isToday(date)) {
+					day = day.add(bills.get(i).getBilCountyMoney());
+				}
+				if (isCurrMonth(date)) {
+					month = month.add(bills.get(i).getBilCountyMoney());
+				}
+				if (isCurrYear(date)) {
+					year = year.add(bills.get(i).getBilCountyMoney());
+				}
+				break;
+			case 2:
+				if (isToday(date)) {
+					day = day.add(bills.get(i).getBilPropertyMoney());
+				}
+				if (isCurrMonth(date)) {
+					month = month.add(bills.get(i).getBilPropertyMoney());
+				}
+				if (isCurrYear(date)) {
+					year = year.add(bills.get(i).getBilPropertyMoney());
+				}
+				break;
+			case 3:
+				if (isToday(date)) {
+					day = day.add(bills.get(i).getBilProvinceMoney());
+				}
+				if (isCurrMonth(date)) {
+					month = month.add(bills.get(i).getBilProvinceMoney());
+				}
+				if (isCurrYear(date)) {
+					year = year.add(bills.get(i).getBilProvinceMoney());
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		ActionContext.getContext().getSession().put("Year", year);
+		ActionContext.getContext().getSession().put("Month", month);
+		ActionContext.getContext().getSession().put("Today", day);
 		return "gotoReport";
+	}
+	
+	public String query() {
+		BigDecimal profit = new BigDecimal(0);
+		String[] sTime = startTime.split("/");
+		String[] eTime = endTime.split("/");
+		startTime = sTime[2] + "-" + sTime[0] + "-" + sTime[1];
+		endTime = eTime[2] + "-" + eTime[0] + "-" + eTime[1];
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateOne = new Date();
+		Date dateTwo = new Date();
+		try {
+			dateOne = sdf.parse(startTime);
+			dateTwo = sdf.parse(endTime);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<Bill> bills = billService.queryToDate(dateOne, dateTwo);
+		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		Area area = thu.getArea();
+		int type = -1;
+		if (bills.size() > 0 ) {
+			if ((int)area.getAreId() == (int)bills.get(0).getAreaByThuCityId().getAreId()) {
+				type = 0;
+			} else if((int)area.getAreId() == (int)bills.get(0).getAreaByThuCountyId().getAreId()) {
+				type = 1;
+			} else if ((int)area.getAreId() == (int)bills.get(0).getAreaByThuPropertyId().getAreId()) {
+				type = 2;
+			} else if ((int)area.getAreId() == (int)bills.get(0).getAreaByThuProvinceId().getAreId()) {
+				type = 3;
+			} else {
+				System.out.println("找不到");
+			}
+		}
+		
+		for (int i = 0; i < bills.size(); i++) {
+			Date date = bills.get(i).getBilDate();
+			switch (type) {
+			case 0:
+				profit = profit.add(bills.get(i).getBilCityMoney());
+				break;
+			case 1:
+				profit = profit.add(bills.get(i).getBilCountyMoney());
+				break;
+			case 2:
+				profit = profit.add(bills.get(i).getBilPropertyMoney());
+				break;
+			case 3:
+				profit = profit.add(bills.get(i).getBilProvinceMoney());
+				break;
+			case -1:
+				System.out.println(profit);
+				System.out.println(profit);
+				profit = profit.add(bills.get(i).getBilZongMoney());
+				break;
+			default:
+				System.out.println("---------------------");
+				break;
+			}
+		}
+		Map<String, Object> reu = (Map<String, Object>) ActionContext.getContext().get("request");
+		System.out.println(profit);
+		reu.put("profit", profit);
+		reu.put("dateOne", dateOne);
+		reu.put("dateTwo", dateTwo);
+		return "gotoReport";
+	}
+	
+	private boolean isToday(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String today = sdf.format(new Date());
+		String day = sdf.format(date);
+		return today.equals(day);
+	}
+	
+	private boolean isCurrMonth(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+		String today = sdf.format(new Date());
+		String day = sdf.format(date);
+		return today.equals(day);
+	}
+	
+	private boolean isCurrYear(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		String today = sdf.format(new Date());
+		String day = sdf.format(date);
+		return today.equals(day);
 	}
 	
 	public String selectById(){
@@ -249,5 +414,22 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	public void setAmountMax(Float amountMax) {
 		this.amountMax = amountMax;
 	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	
 	
 }

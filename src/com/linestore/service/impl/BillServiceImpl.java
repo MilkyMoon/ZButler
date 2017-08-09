@@ -1,5 +1,7 @@
 package com.linestore.service.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -63,5 +65,25 @@ public class BillServiceImpl implements BillService {
 	@Override
 	public List<Bill> queryByArea(int areaId) {
 		return billDao.queryByArea(areaId);
+	}
+
+	@Override
+	public BigDecimal todayMoney() {
+		return billDao.todayMoney();
+	}
+
+	@Override
+	public BigDecimal monthMoney() {
+		return billDao.monthMoney();
+	}
+
+	@Override
+	public BigDecimal yearMoney() {
+		return billDao.yearMoney();
+	}
+
+	@Override
+	public List<Bill> queryToDate(Date dateOne, Date dateTwo) {
+		return billDao.queryToDate(dateOne, dateTwo);
 	}
 }

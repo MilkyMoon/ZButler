@@ -86,14 +86,14 @@
                             <li><a href="<%=basePath%>admin/trading_selectRech">充值订单</a></li>
                         </ul>
                     </li>
-                     <%-- <li><a><i class="fa fa-clone"></i> 报表统计 <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-clone"></i> 报表统计 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<%=basePath%>admin/thinkUser_select">订单报表</a></li>
-                            <li><a href="<%=basePath%>admin/cateLine_selectAll">订单明细表</a></li>
-                            <li><a href="<%=basePath%>admin/group_select">业务日志</a></li>
+                            <li><a href="<%=basePath%>admin/bill_report">订单报表</a></li>
+                           <%--  <li><a href="<%=basePath%>admin/cateLine_selectAll">订单明细表</a></li>
+                            <li><a href="<%=basePath%>admin/group_select">业务日志</a></li> --%>
                             <!-- <li><a href="#">权限管理</a></li> -->
                         </ul>
-                    </li> --%>
+                    </li>
                     <li><a><i class="fa fa-clone"></i> 利润分配 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/area_agent">三级代理商</a></li>

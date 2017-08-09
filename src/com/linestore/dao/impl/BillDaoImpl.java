@@ -1,5 +1,7 @@
 package com.linestore.dao.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -133,8 +135,55 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 
 	@Override
 	public List<Bill> queryByArea(int AreaId) {
-		List<Bill> bills = (List<Bill>) this.getHibernateTemplate().find("from Bill where thinkUserByThuPropertyId.thuId = ? or thinkUserByThuCityId.thuId = ? or thinkUserByThuProvinceId.thuId = ? or areaByThuCountyId = ?", AreaId, AreaId, AreaId,AreaId);
+		List<Bill> bills = (List<Bill>) this.getHibernateTemplate().find("from Bill where areaByThuCountyId.areId = ? or areaByThuCityId.areId = ? or areaByThuProvinceId.areId = ? or areaByThuCountyId.areId = ?", AreaId, AreaId, AreaId,AreaId);
 		return bills;
+	}
+
+	@Override
+	public BigDecimal todayMoney() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Date date = new Date();
+		Query query = session.createQuery("select sum(bilZongMoney) from Bill where date_format(bilDate,'%Y-%m-%d') = date_format(?,'%Y-%m-%d')");
+		query.setDate(0, date);
+		List<BigDecimal> money = query.list();
+		if (money.size() > 0) {
+			return money.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public BigDecimal monthMoney() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("select sum(bilZongMoney) from Bill where date_format(bilDate,'%Y-%m') = date_format(?,'%Y-%m')");
+		Date date = new Date();
+		query.setDate(0, date);
+		List<BigDecimal> money = query.list();
+		if (money.size() > 0) {
+			return money.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public BigDecimal yearMoney() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("select sum(bilZongMoney) from Bill where date_format(bilDate,'%Y') = date_format(?,'%Y')");
+		Date date = new Date();
+		query.setDate(0, date);
+		List<BigDecimal> money = query.list();
+		if (money.size() > 0) {
+			return money.get(0);
+		}
+		return null;
+	}
+	
+	public List<Bill> queryToDate(Date dateOne, Date dateTwo) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from Bill where bilDate >= ? and bilDate <= ?");
+		query.setDate(0, dateOne);
+		query.setDate(1, dateTwo);
+		return query.list();
 	}
 
 }
