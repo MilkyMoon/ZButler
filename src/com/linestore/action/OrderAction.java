@@ -1,14 +1,13 @@
 package com.linestore.action;
 
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import com.linestore.service.FriendsService;
+import com.linestore.service.BillService;
 import com.linestore.service.OrderService;
+import com.linestore.vo.Bill;
 import com.linestore.vo.Customer;
-import com.linestore.vo.Friends;
-import com.linestore.vo.OrdDetails;
 import com.linestore.vo.Order;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -19,6 +18,8 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	private Order order = new Order();
 	// 返回数据注入值栈
 	private List<Order> orderList;
+	
+	private BillService billService;
 
 	@Override
 	public Order getModel() {
@@ -46,6 +47,9 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 			order.setOrdStartTimeStr(sdf.format(order.getOrdStartTime()));
 			//order.setOrdPayTimeStr(sdf.format(order.getOrdPayTimeStr()));
 		}
+		List<Bill> bills = billService.queryByCusId(customer.getCusId());
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("bills", bills);
 		return "selectAll";
 	}
 
@@ -68,5 +72,18 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
+
+	public BillService getBillService() {
+		return billService;
+	}
+
+	public void setBillService(BillService billService) {
+		this.billService = billService;
+	}
+
+	public OrderService getOrderService() {
+		return orderService;
+	}
+	
 
 }

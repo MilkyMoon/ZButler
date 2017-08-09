@@ -13,4 +13,6 @@ public interface BillService {
 	public String mkData();
 	public void addBill(Bill bill);
 	public Bill selectById(Integer id);
+	
+	public List<Bill> queryByCusId(int cusId);
 }
