@@ -68,14 +68,14 @@
 
 						<form action="bill_select" method="get">
 							<div class="title_right">
-								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+								<%-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
 										<input type="text" class="form-control" name="keywords" placeholder="输入姓名、昵称或电话 ..."> 	
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">Go!</button>
 										</span>
 									</div>
-								</div>
+								</div> --%>
 							</div>
 						</form>
 					</div>
@@ -107,9 +107,9 @@
 									<div class="clearfix"></div>
 								</div>
 								
-								<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="col-md-6 col-sm-12 col-xs-12">
 									<div class="x_content">
-										<form class="form-horizontal form-label-left">
+										<form class="form-horizontal form-label-left" method="post" action="bill_query">
 											<div class="form-group">
 						                        <!-- <label class="control-label col-md-3" style="width:100px;">交易时间</label> -->
 						                        <%-- <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
@@ -120,12 +120,12 @@
 												</div> --%>
 						                        
 						                        <div class="form-group">
-							                        <label class="control-label col-md-3" style="width:100px;">交易时间</label>
-							                        <fieldset class="col-md-3 col-sm-9 col-xs-12">
+							                        <label class="control-label col-md-3" style="width:100px;">交易开始时间</label>
+							                        <fieldset class="col-md-8 col-sm-9 col-xs-12">
 							                          <div class="control-group">
 							                            <div class="controls">
 							                              <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-							                                <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+							                                <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2" name="startTime">
 							                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 							                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
 							                              </div>
@@ -135,12 +135,12 @@
 							                     </div>
 						                        
 						                        <div class="form-group">
-							                        <label class="control-label col-md-3" style="width:100px;">交易时间</label>
-							                        <fieldset class="col-md-3 col-sm-9 col-xs-12">
+							                        <label class="control-label col-md-3" style="width:100px;">交易结束时间</label>
+							                        <fieldset class="col-md-8 col-sm-9 col-xs-12">
 							                          <div class="control-group">
 							                            <div class="controls">
 							                              <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-							                                <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+							                                <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="inputSuccess2Status2" name="endTime">
 							                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 							                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
 							                              </div>
@@ -161,28 +161,40 @@
 										</form>
 									</div>
 								</div>
-
+								<c:if test="${!empty profit}">
+									<div class="col-md-6 col-sm-12 col-xs-12">
+										<div class="x_content">
+											<div class="bs-example" data-example-id="simple-jumbotron">
+							                    <div class="jumbotron" style="padding: 5px 36px;">
+							                      <h1>¥<fmt:formatNumber type="number" maxFractionDigits="10" value="${profit}" /></h1>
+							                      <p><fmt:formatDate pattern="yyyy-MM-dd" value="${dateOne}" /> － <fmt:formatDate pattern="yyyy-MM-dd" value="${dateTwo}" />累计收益</p>
+							                    </div>
+							                  </div>
+										</div>
+									</div>
+								</c:if>
 								<div class="x_content">
 									<div class="table-responsive">
-										<p class="lead">收益详情 2/22/2014</p>
+										<c:set var="now" value="<%=new java.util.Date()%>" />
+										<p class="lead">收益详情 <fmt:formatDate pattern="MM/dd/yyyy" value="${now}" /></p>
 				                          <div class="table-responsive">
 				                            <table class="table">
 				                              <tbody>
 				                                <tr>
 				                                  <th style="width:50%">当日收益:</th>
-				                                  <td>￥250.30</td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Today}" /></td>
 				                                </tr>
 				                                <tr>
 				                                  <th>当月收益:</th>
-				                                  <td>￥10.34</td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Month}" /></td>
 				                                </tr>
 				                                <tr>
 				                                  <th>当年收益:</th>
-				                                  <td>￥5.80</td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
 				                                </tr>
 				                                <tr>
 				                                  <th>累计收益:</th>
-				                                  <td>￥265.24</td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
 				                                </tr>
 				                              </tbody>
 				                            </table>
