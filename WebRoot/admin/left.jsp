@@ -86,14 +86,14 @@
                             <li><a href="<%=basePath%>admin/trading_selectRech">充值订单</a></li>
                         </ul>
                     </li>
-<!--                     <li><a><i class="fa fa-clone"></i> 报表统计 <span class="fa fa-chevron-down"></span></a>
+                     <%-- <li><a><i class="fa fa-clone"></i> 报表统计 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/thinkUser_select">订单报表</a></li>
                             <li><a href="<%=basePath%>admin/cateLine_selectAll">订单明细表</a></li>
                             <li><a href="<%=basePath%>admin/group_select">业务日志</a></li>
                             <!-- <li><a href="#">权限管理</a></li> -->
-                        </ul> -->
-                    </li>
+                        </ul>
+                    </li> --%>
                     <li><a><i class="fa fa-clone"></i> 利润分配 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/area_agent">三级代理商</a></li>
@@ -104,8 +104,9 @@
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/notice_selectAll.action">消息推送</a></li>
-							<li><a href="<%=basePath%>admin/cateLine_selectAll">留言</a></li>
-						</ul></li>
+							<%-- <li><a href="<%=basePath%>admin/cateLine_selectAll">留言</a></li> --%>
+						</ul>
+					</li>
 				</ul>
 			</div>
 			<div class="menu_section">
@@ -114,15 +115,15 @@
 					<li><a><i class="fa fa-bug"></i> 广告管理 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-<!-- 							<li><a href="e_commerce.html">轮播图</a></li> -->
+							<!-- <li><a href="e_commerce.html">轮播图</a></li> -->
 							<li><a href="siteConfig_SelectCustAdv">分类下广告</a></li>
 							<li><a href="siteConfig_selectCustoemrConfig">客户端站点配置</a></li>
-<!-- 							<li><a href="project_detail.html">友情链接</a></li> -->
+ 							<!-- <li><a href="project_detail.html">友情链接</a></li> -->
 						</ul></li>
 					
-					<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>
+					<%-- <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>
 							Landing Page <span class="label label-success pull-right">Coming
-								Soon</span></a></li>
+								Soon</span></a></li> --%>
 				</ul>
 			</div>
 

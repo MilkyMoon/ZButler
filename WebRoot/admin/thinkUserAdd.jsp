@@ -128,7 +128,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">上&nbsp;&nbsp;&nbsp;&nbsp;级</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">地&nbsp;&nbsp;&nbsp;&nbsp;区</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
 												<select class="form-control" name="area.areId" id="busCateId">
 													<c:forEach var="root" items="${list}">
