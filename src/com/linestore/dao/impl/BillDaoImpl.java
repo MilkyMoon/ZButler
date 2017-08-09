@@ -125,4 +125,10 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		return btas.get(0);
 	}
 
+	@Override
+	public List<Bill> queryByCusId(int cusId) {
+		List<Bill> bills = (List<Bill>) this.getHibernateTemplate().find("from Bill where customer.cusId=?", cusId);
+		return bills;
+	}
+
 }
