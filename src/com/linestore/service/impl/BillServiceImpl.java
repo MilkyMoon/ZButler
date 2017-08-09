@@ -2,11 +2,14 @@ package com.linestore.service.impl;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.linestore.dao.BillDao;
 import com.linestore.service.BillService;
 import com.linestore.util.Page;
 import com.linestore.vo.Bill;
 
+@Transactional
 public class BillServiceImpl implements BillService {
 	private BillDao billDao;
 

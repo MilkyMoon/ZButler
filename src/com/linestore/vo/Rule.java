@@ -18,8 +18,6 @@ public class Rule implements java.io.Serializable {
 	private Integer type;
 	private Integer status;
 	private String condition;
-	private Timestamp createTime;
-	private Timestamp updateTime;
 	private Set ruleGroups = new HashSet(0);
 
 	// Constructors
@@ -29,27 +27,22 @@ public class Rule implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Rule(String rules, String title, Integer type, Integer status, String condition, Timestamp createTime,
-			Timestamp updateTime) {
+	public Rule(String rules, String title, Integer type, Integer status, String condition) {
 		this.rules = rules;
 		this.title = title;
 		this.type = type;
 		this.status = status;
 		this.condition = condition;
-		this.createTime = createTime;
-		this.updateTime = updateTime;
 	}
 
 	/** full constructor */
-	public Rule(String rules, String title, Integer type, Integer status, String condition, Timestamp createTime,
-			Timestamp updateTime, Set ruleGroups) {
+	public Rule(String rules, String title, Integer type, Integer status, String condition,
+			Set ruleGroups) {
 		this.rules = rules;
 		this.title = title;
 		this.type = type;
 		this.status = status;
 		this.condition = condition;
-		this.createTime = createTime;
-		this.updateTime = updateTime;
 		this.ruleGroups = ruleGroups;
 	}
 
@@ -103,21 +96,6 @@ public class Rule implements java.io.Serializable {
 		this.condition = condition;
 	}
 
-	public Timestamp getCreateTime() {
-		return this.createTime;
-	}
-
-	public void setCreateTime(Timestamp createTime) {
-		this.createTime = createTime;
-	}
-
-	public Timestamp getUpdateTime() {
-		return this.updateTime;
-	}
-
-	public void setUpdateTime(Timestamp updateTime) {
-		this.updateTime = updateTime;
-	}
 
 	public Set getRuleGroups() {
 		return this.ruleGroups;
