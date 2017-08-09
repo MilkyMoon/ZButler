@@ -119,13 +119,13 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">物业名称:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control">${roots.thinkUserByThuPropertyId.thuArea}</div>
+												<div class="form-control">${roots.areaByThuPropertyId.thuArea}</div>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">业主姓名:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control">${roots.thinkUserByThuPropertyId.thuName}</div>
+												<div class="form-control">${roots.areaByThuPropertyId.thuName}</div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -136,17 +136,17 @@
 										</div>
 										
 										<!-- 判断当前用户是否显示县级代理 -->					
-										<c:if test="${sessionScope.admin.thuId != roots.thinkUserByThuPropertyId.thuId}">
+										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuPropertyId.area.areId}">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县名称:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.thinkUserByThuCountyId.thuArea}</div>
+													<div class="form-control">${roots.areaByThuCountyId.thuArea}</div>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县代理:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.thinkUserByThuCountyId.thuName}</div>
+													<div class="form-control">${roots.areaByThuCountyId.thuName}</div>
 												</div>
 											</div>
 											<div class="form-group">
@@ -157,17 +157,17 @@
 											</div>
 										</c:if>
 										<!-- 判断当前用户是否显示市级代理 -->	
-										<c:if test="${sessionScope.admin.thuId != roots.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != roots.thinkUserByThuCountyId.thuId}">
+										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuPropertyId.area.areId && sessionScope.admin.area.areId != roots.areaByThuCountyId.area.areId}">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市名称:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.thinkUserByThuCityId.thuArea}</div>
+													<div class="form-control">${roots.areaByThuCityId.thuArea}</div>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市代理:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.thinkUserByThuCityId.thuName}</div>
+													<div class="form-control">${roots.areaByThuCityId.thuName}</div>
 												</div>
 											</div>
 											<div class="form-group">
@@ -179,17 +179,17 @@
 										</c:if>
 										
 										<!-- 判断当前用户是否显示省级代理 -->	
-										<c:if test="${sessionScope.admin.thuId != roots.thinkUserByThuCityId.thuId && sessionScope.admin.thuId != roots.thinkUserByThuPropertyId.thuId && sessionScope.admin.thuId != roots.thinkUserByThuCountyId.thuId}">
+										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuCityId.area.areId && sessionScope.admin.area.areId != roots.areaByThuPropertyId.area.areId && sessionScope.admin.area.areId != roots.areaByThuCountyId.area.areId}">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省名称:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.thinkUserByThuProvinceId.thuArea}</div>
+													<div class="form-control">${roots.areaByThuProvinceId.thuArea}</div>
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省代理:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.thinkUserByThuProvinceId.thuName}</div>
+													<div class="form-control">${roots.areaByThuProvinceId.thuName}</div>
 												</div>
 											</div>
 											<div class="form-group">
@@ -199,7 +199,7 @@
 												</div>
 											</div>
 										</c:if>
-										<c:if test="${sessionScope.admin.thuPid == 0}">
+										<c:if test="${sessionScope.admin.area.pid == 0}">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">众帮收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
@@ -220,7 +220,6 @@
 										<div class="ln_solid"></div>
 										<div class="form-group">
 											<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-												<input type="hidden" name="thuId" value="${listInfo.thuId}"></input>
 												<a href="bill_selectAll" class="btn btn-success" style="float:right;margin-right:0;">返回</a>
 											</div>
 										</div>

@@ -96,7 +96,7 @@
 								<div class="x_content">
 									<br />
 									<div class="col-md-8">
-										<form action="area_save" method="post" class="form-horizontal form-label-left">
+										<form action="area_update" method="post" class="form-horizontal form-label-left">
 											<div class="">
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">名&nbsp;&nbsp;&nbsp;&nbsp;称</label>
@@ -108,7 +108,7 @@
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">描&nbsp;&nbsp;&nbsp;&nbsp;述</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<textarea id="message" class="form-control" value="${roots.desction}" name="desc"></textarea>
+														<textarea id="message" class="form-control" value="${roots.desction}" name="desction"></textarea>
 													</div>
 												</div>
 												
@@ -155,6 +155,7 @@
 											<div class="ln_solid"></div>
 											<div class="form-group">
 												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+													<input type="hidden" name="areId" value="${roots.areId}"/>
 													<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
 												</div>
 											</div>

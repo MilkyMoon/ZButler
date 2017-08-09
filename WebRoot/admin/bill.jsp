@@ -26,6 +26,8 @@
 	rel="stylesheet">
 <!-- NProgress -->
 <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- bootstrap-daterangepicker -->
+<link href="./vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 <!-- jQuery custom content scroller -->
 <link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 <!-- iCheck -->
@@ -107,16 +109,12 @@
 								
 								<div class="col-md-6 col-sm-12 col-xs-12">
 									<div class="x_content">
-										<form class="form-horizontal form-label-left">
+										<form action="bill_select" method="post" class="form-horizontal form-label-left">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">订单类型</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control">
-														<option>选择类型</option>
-														<option>Option one</option>
-														<option>Option two</option>
-														<option>Option three</option>
-														<option>Option four</option>
+														<option>线下交易</option>
 													</select>
 												</div>
 											</div>
@@ -129,7 +127,7 @@
 							                              <div class="controls">
 							                                <div class="input-prepend input-group">
 							                                  <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-							                                  <input type="text" name="reservation-time" id="reservation-time" class="form-control" value="01/01/2016 - 01/25/2016" />
+							                                  <input type="text" style="width: 100%" name="tranTime" id="reservation" class="form-control"  required="required"/>
 							                                </div>
 							                              </div>
 							                            </div>
@@ -140,12 +138,8 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">支付场景</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control">
-														<option>选择场景</option>
-														<option>Option one</option>
-														<option>Option two</option>
-														<option>Option three</option>
-														<option>Option four</option>
+													<select class="form-control" name="">
+														<option value="">线下支付</option>
 													</select>
 												</div>
 											</div>
@@ -153,24 +147,20 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">交易状态</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control">
-														<option>选择状态</option>
-														<option>Option one</option>
-														<option>Option two</option>
-														<option>Option three</option>
-														<option>Option four</option>
+														<option>已完成</option>
 													</select>
 												</div>
 											</div>
 											<div class="form-group">
 						                        <label class="control-label col-md-3 col-sm-3 col-xs-12">交易金额</label>
 						                        <div class="col-md-4 col-sm-9 col-xs-12">
-						                          <input type="text" class="form-control">
+						                          <input type="text" name="amountMin" class="form-control" required="required">
 						                        </div>
 						                        <div class="col-md-1 col-sm-9 col-xs-12">
 						                          <label class="control-label">至</label>
 						                        </div>
 						                        <div class="col-md-4 col-sm-9 col-xs-12">
-						                          <input type="text" class="form-control">
+						                          <input type="text" name="amountMax" class="form-control"  required="required">
 						                        </div>
 						                      </div>
 						                      
@@ -206,9 +196,11 @@
 													<th class="column-title">市级收款</th>
 													<th class="column-title">省级代理</th>
 													<th class="column-title">省级收款</th>
+													
 													<c:if test="${sessionScope.admin.area.pid == 0}">
 														<th class="column-title">众帮收款</th>
 													</c:if>
+													<th class="column-title">订单时间</th>
 													
 													<th class="column-title no-link last">操作</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
@@ -260,7 +252,7 @@
 														<c:if test="${sessionScope.admin.area.pid == 0}">
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilZongMoney}" /></td>
 														</c:if>
-														
+														<td>${root.bilDate}</td>
 														<td>
 															<%-- <c:if test="${root.cusStatus == 1}">
 																<a href="customer_update?cusStatus=0&cusId=${root.cusId}" class="btn btn-primary btn-xs">
@@ -365,6 +357,9 @@
 	<script src="./vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
 	<script src="./vendors/nprogress/nprogress.js"></script>
+	<!-- bootstrap-daterangepicker -->
+    <script src="./vendors/moment/min/moment.min.js"></script>
+    <script src="./vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 	<!-- jQuery custom content scroller -->
 	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- iCheck -->

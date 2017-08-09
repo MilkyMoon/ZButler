@@ -13,8 +13,14 @@ public interface GroupService {
 
 	public void updateGroup(Group group);
 
-	public List<Group> queryAll();
+	public List<Group> queryAll(int id);
 	
-	public List<Group> queryAll(Page page);
+	public List<Group> queryAll(Page page, int id);
+	
+	public Group queryById(int id);
+	
+	public List<Group> queryByTitle(String title, int id);
+	
+	public List<Group> queryByTitle(Page page,String title, int id);
 
 }
