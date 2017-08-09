@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
-<title>您的收货地址</title>
+<title>收货地址</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">

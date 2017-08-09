@@ -71,10 +71,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>众帮平台收益详情<small>个人收益提现</small></h3>
+                <h3>众帮平台后台管理</h3>
               </div>
 
-              <div class="title_right">
+              <!-- <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             
             <div class="clearfix"></div>
@@ -91,134 +91,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
 
             <div class="row">
-              <div class="col-md-8 col-sm-8 col-xs-12">
+              <div class="col-md-12 col-sm-8 col-xs-12">
                 <div class="x_panel">
-                  <div class="x_title">
-                    <h2>全国收益分布</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-					<!-- <div id="mainb" style="height:350px;"></div> -->
-                    
-                    <div id="container"></div>
-
+                	<div class="bs-example" data-example-id="simple-jumbotron">
+                    <div class="jumbotron">
+                      <h1>众帮管家</h1>
+                      <p>欢迎使用众帮管家后台管理系统！</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-			
-			  <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12">
-                 <div class="tile-stats" onclick="tikuan()">
-                   <div class="tx-icon"><a href="#"><small>提现</small><i class="fa fa-check-square-o"></a></i>
-                   </div>
-                   <div class="count">￥179</div>
-
-                   <h3>可提现金额</h3>
-                   <p><code>提现钱请先绑定微信，提现后钱自动到账微信零钱.</code></p>
-                 </div>
                </div>
-               
-              <!--  <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Daily active users <small>Sessions</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <ul class="list-unstyled timeline">
-                    <li>
-                      <div class="block">
-                        <div class="tags">
-                          <a href="" class="tag">
-                            <span>Entertainment</span>
-                          </a>
-                        </div>
-                        <div class="block_content">
-                          <h2 class="title">
-                                          <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                      </h2>
-                          <div class="byline">
-                            <span>13 hours ago</span> by <a>Jane Smith</a>
-                          </div>
-                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="block">
-                        <div class="tags">
-                          <a href="" class="tag">
-                            <span>Entertainment</span>
-                          </a>
-                        </div>
-                        <div class="block_content">
-                          <h2 class="title">
-                                          <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                      </h2>
-                          <div class="byline">
-                            <span>13 hours ago</span> by <a>Jane Smith</a>
-                          </div>
-                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="block">
-                        <div class="tags">
-                          <a href="" class="tag">
-                            <span>Entertainment</span>
-                          </a>
-                        </div>
-                        <div class="block_content">
-                          <h2 class="title">
-                                          <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                      </h2>
-                          <div class="byline">
-                            <span>13 hours ago</span> by <a>Jane Smith</a>
-                          </div>
-                          <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-
-                </div>
-              </div>
-            </div>
-               
-                -->
             </div>
           </div>
         </div>

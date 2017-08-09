@@ -46,6 +46,16 @@ public class WxMenuAction extends WeXinConfigAction implements ServletRequestAwa
 		offlineButton.setType(WxConsts.BUTTON_VIEW);
 		offlineButton.setName("线下商城");
 		offlineButton.setUrl("http://yanglan520.com/ZButler/offlineStore!offline");
+		WxMenuButton settledMall = new WxMenuButton();
+		settledMall.setType(WxConsts.BUTTON_VIEW);
+		settledMall.setName("入驻商城");
+		settledMall.setUrl("http://yanglan520.com/ZButler/business_store.action");
+		WxMenuButton apply = new WxMenuButton();
+		apply.setType(WxConsts.BUTTON_VIEW);
+		apply.setName("申请入驻");
+		apply.setUrl("http://yanglan520.com/ZButler/cateLine_queryRoot");
+		shopButton.getSubButtons().add(apply);
+		shopButton.getSubButtons().add(settledMall);
 		shopButton.getSubButtons().add(offlineButton);
 		WxMenuButton personalButton = new WxMenuButton();
 		personalButton.setName("个人中心");

@@ -1,5 +1,6 @@
 package com.linestore.action;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,9 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private String pageNow = "1";
 	private String everyPage = "10";
 	private String keywords = "";
+	private String tranTime;
+	private Float amountMin;
+	private Float amountMax;
 
 	private Integer thuId;
 	@Override
@@ -45,8 +49,42 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	}
 	
 	public String select(){
+		getId();
+
+		String[] sTime=tranTime.split(" - ");
+		
+		String[] sTimeLeft = sTime[0].split("/");
+		String[] sTimeRigh = sTime[1].split("/");
+		
+		String timeMin = sTimeLeft[2] + "-" + sTimeLeft[0] + "-" + sTimeLeft[1];
+		String timeMax = sTimeRigh[2] + "-" + sTimeRigh[0] + "-" + sTimeRigh[1];
+		
+		System.out.println(timeMin);
+		System.out.println(timeMax);
+		System.out.println("amountMax:"+amountMax);
+		
+		String hql ="select count(*) from Bill";
+		int totalCount = billService.queryAll(hql);
+		if(everyPage.equals("") || everyPage == null){
+			everyPage = "10";
+		}
+		if(pageNow.equals("") || pageNow == null){
+			pageNow = "1";
+		}
+		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
+		
+		if(think.getArea().getPid() == 0){
+			billList =  billService.selectAll(page);
+		} else {
+			billList =  billService.select(page,thuId);
+		}
+		
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", billList);
+		request.put("page", page);
 		
 		return "selectAll";
+		
 	}
 	
 	public String selectAll(){
@@ -174,5 +212,29 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
     public void setResult(String result) {
         this.result = result;
     }
+
+	public String getTranTime() {
+		return tranTime;
+	}
+
+	public void setTranTime(String tranTime) {
+		this.tranTime = tranTime;
+	}
+
+	public Float getAmountMin() {
+		return amountMin;
+	}
+
+	public void setAmountMin(Float amountMin) {
+		this.amountMin = amountMin;
+	}
+
+	public Float getAmountMax() {
+		return amountMax;
+	}
+
+	public void setAmountMax(Float amountMax) {
+		this.amountMax = amountMax;
+	}
 	
 }
