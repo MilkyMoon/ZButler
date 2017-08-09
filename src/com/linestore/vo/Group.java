@@ -13,8 +13,8 @@ public class Group implements java.io.Serializable {
 
 	private Integer grpId;
 	private String grpTitle;
-	private String grpStatus;
-	private String grpRules;
+	private Integer grpStatus;
+	private Integer grpAdmin;
 	private String grpDesc;
 	private Set thinkUsers = new HashSet(0);
 	private Set ruleGroups = new HashSet(0);
@@ -26,19 +26,24 @@ public class Group implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Group(String grpTitle, String grpStatus, String grpRules, String grpDesc, Set thinkUsers, Set ruleGroups) {
-		this.grpTitle = grpTitle;
-		this.grpStatus = grpStatus;
-		this.grpRules = grpRules;
-		this.grpDesc = grpDesc;
-		this.thinkUsers = thinkUsers;
-		this.ruleGroups = ruleGroups;
-	}
+	
 
 	// Property accessors
 
 	public Integer getGrpId() {
 		return this.grpId;
+	}
+
+	public Group(Integer grpId, String grpTitle, Integer grpStatus, Integer grpAdmin, String grpDesc, Set thinkUsers,
+			Set ruleGroups) {
+		super();
+		this.grpId = grpId;
+		this.grpTitle = grpTitle;
+		this.grpStatus = grpStatus;
+		this.grpAdmin = grpAdmin;
+		this.grpDesc = grpDesc;
+		this.thinkUsers = thinkUsers;
+		this.ruleGroups = ruleGroups;
 	}
 
 	public void setGrpId(Integer grpId) {
@@ -53,20 +58,20 @@ public class Group implements java.io.Serializable {
 		this.grpTitle = grpTitle;
 	}
 
-	public String getGrpStatus() {
-		return this.grpStatus;
+	public Integer getGrpStatus() {
+		return grpStatus;
 	}
 
-	public void setGrpStatus(String grpStatus) {
+	public void setGrpStatus(Integer grpStatus) {
 		this.grpStatus = grpStatus;
 	}
 
-	public String getGrpRules() {
-		return this.grpRules;
+	public Integer getGrpAdmin() {
+		return grpAdmin;
 	}
 
-	public void setGrpRules(String grpRules) {
-		this.grpRules = grpRules;
+	public void setGrpAdmin(Integer grpAdmin) {
+		this.grpAdmin = grpAdmin;
 	}
 
 	public String getGrpDesc() {

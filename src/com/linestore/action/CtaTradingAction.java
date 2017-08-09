@@ -46,7 +46,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			request.put("ctas", ctaTradings);
 			// 积分转换比 jfzhb
-			request.put("jfzhb", settingService.queryById(5).getSetValue());
+			request.put("jfzhb", settingService.queryById(8).getSetValue());
 		}
 		return "gotoRecord";
 	}
@@ -80,7 +80,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 			List<CtaTrading> ctaTradings = ctaTradingService.queryPoint(cus.getCusId());
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			request.put("ctas", ctaTradings);
-			request.put("jfzhb", settingService.queryById(5).getSetValue());
+			request.put("jfzhb", settingService.queryById(8).getSetValue());
 		}
 		return "gotoRecord";
 	}

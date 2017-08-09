@@ -2,6 +2,7 @@ package com.linestore.dao;
 
 import java.util.List;
 
+import com.linestore.util.Page;
 import com.linestore.vo.Group;
 
 public interface GroupDao {
@@ -13,5 +14,7 @@ public interface GroupDao {
 	public void updateGroup(Group group);
 	
 	public List<Group> queryAll();
+	
+	public List<Group> queryAll(Page page);
 
 }

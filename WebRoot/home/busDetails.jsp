@@ -72,11 +72,43 @@
 				</div>
 			</div>
 		</div>
-<!-- 		<div class="businessMessage_evaluate">
-			<h5>
-				评价（<span>0</span>）
-			</h5>
-		</div> -->
+ 		<div class="businessMessage_evaluate">
+			<h5>评价（<span>62</span>）</h5>
+        <div class="businessMessage_evaluateItem">
+            <div class="businessMessage_evaluateItem_title">
+                <div>喵喵猫</div>
+                <span>6月5日</span>
+            </div>
+            <div class="businessMessage_evaluateItem_starNum" data="4">
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<span>5.0</span>-->
+            </div>
+            <p>感觉很好，下次还来</p>
+        </div>
+
+        <div class="businessMessage_evaluateItem">
+            <div class="businessMessage_evaluateItem_title">
+                <div>肖*****浪</div>
+                <span>6月5日</span>
+            </div>
+            <div class="businessMessage_evaluateItem_starNum" data="3.6">
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<img src="image/star.png"/>-->
+                <!--<span>5.0</span>-->
+            </div>
+            <p>服务态度很好，还是比较满意的</p>
+        </div>
+       <!--  <div class="businessMessage_evaluate_more">
+            <a href="#">加载更多+</a>
+        </div> -->
+		</div>
 
 		<div class="businessMessage_hotBusiness">
 			<h5>热门商家</h5>

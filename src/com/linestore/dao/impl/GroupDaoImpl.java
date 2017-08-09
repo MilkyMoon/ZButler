@@ -2,9 +2,12 @@ package com.linestore.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.linestore.dao.GroupDao;
+import com.linestore.util.Page;
 import com.linestore.vo.Group;
 
 public class GroupDaoImpl extends HibernateDaoSupport implements GroupDao {
@@ -57,6 +60,15 @@ public class GroupDaoImpl extends HibernateDaoSupport implements GroupDao {
 			System.out.println("queryAll failed!");
 			throw e;
 		}
+	}
+
+	@Override
+	public List<Group> queryAll(Page page) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from Group");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		return query.list();
 	}
 
 }

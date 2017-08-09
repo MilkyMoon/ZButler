@@ -13,11 +13,11 @@
         <property name="grpTitle" type="java.lang.String">
             <column name="grp_title" />
         </property>
-        <property name="grpStatus" type="java.lang.String">
-            <column name="grp_status" length="2" />
+        <property name="grpStatus" type="java.lang.Integer">
+            <column name="grp_status" length="11" />
         </property>
-        <property name="grpRules" type="java.lang.String">
-            <column name="grp_rules" />
+        <property name="grpAdmin" type="java.lang.Integer">
+            <column name="grp_admin" />
         </property>
         <property name="grpDesc" type="java.lang.String">
             <column name="`grp_ desc`" length="65535" />
