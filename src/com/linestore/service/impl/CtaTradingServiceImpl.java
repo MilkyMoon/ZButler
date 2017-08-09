@@ -66,5 +66,17 @@ public class CtaTradingServiceImpl implements CtaTradingService {
 		// TODO Auto-generated method stub
 		return ctaTradingDao.search(keywords);
 	}
+
+	@Override
+	public int queryAllType(int type) {
+		// TODO Auto-generated method stub
+		return ctaTradingDao.queryAllType(type);
+	}
+
+	@Override
+	public List<CtaTrading> selectAllType(Page page, int type) {
+		// TODO Auto-generated method stub
+		return ctaTradingDao.selectAllType(page, type);
+	}
 	
 }

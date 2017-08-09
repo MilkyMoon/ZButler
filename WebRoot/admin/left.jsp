@@ -51,7 +51,7 @@
                             <li><a href="business_enter">入驻管理</a></li>
                             <li><a href="business_selectAll">线下商家信息管理</a></li>
                             <li><a href="business_account">收款账号管理</a></li>
-                            <li><a href="business_period">账期管理</a></li>
+                            <!-- <li><a href="business_period">账期管理</a></li> -->
                             <li><a href="business_blacklist">黑名单管理</a></li>
                            <!--  <li><a href="form_validation.html">收款账号管理</a></li> -->
                         </ul>
@@ -80,8 +80,8 @@
                     <li><a><i class="fa fa-clone"></i> 订单管理 <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<%=basePath%>admin/bill_selectAll">消费订单</a></li>
-                            <li><a href="<%=basePath%>admin/cateLine_selectAll">提现订单</a></li>
-                            <li><a href="<%=basePath%>admin/group_select">充值订单</a></li>
+                            <li><a href="<%=basePath%>admin/trading_selectCash">提现订单</a></li>
+                            <li><a href="<%=basePath%>admin/trading_selectRech">充值订单</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i> 报表统计 <span class="fa fa-chevron-down"></span></a>

@@ -63,7 +63,18 @@ public class CtaTradingDaoImpl extends HibernateDaoSupport implements CtaTrading
 	public List<CtaTrading> selectAll(Page page) {
 		// TODO Auto-generated method stub
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query= session.createQuery("from CtaTrading where ctaStatus = 0");
+		Query query= session.createQuery("from CtaTrading order by ctaTime desc");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
+	}
+	
+	@Override
+	public List<CtaTrading> selectAllType(Page page,int type) {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from CtaTrading where ctaType = "+type+" order by ctaTime desc");
 		query.setMaxResults(page.getEveryPage());
 		query.setFirstResult(page.getBeginIndex());
 		
@@ -74,7 +85,20 @@ public class CtaTradingDaoImpl extends HibernateDaoSupport implements CtaTrading
 	public int queryAll() {
 		// TODO Auto-generated method stub
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query= session.createQuery("select count(*) from CtaTrading where ctaStatus = 0");
+		Query query= session.createQuery("select count(*) from CtaTrading");
+		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+		session.clear();
+        System.out.println(count);
+		
+		System.out.println("query successful");
+		return count;
+	}
+	
+	@Override
+	public int queryAllType(int type) {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("select count(*) from CtaTrading where ctaType = "+type);
 		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
 		session.clear();
         System.out.println(count);

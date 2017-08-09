@@ -26,6 +26,8 @@
 	rel="stylesheet">
 <!-- NProgress -->
 <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- bootstrap-daterangepicker -->
+<link href="./vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 <!-- jQuery custom content scroller -->
 <link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
 <!-- iCheck -->
@@ -112,11 +114,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">订单类型</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control">
-														<option>选择类型</option>
-														<option>Option one</option>
-														<option>Option two</option>
-														<option>Option three</option>
-														<option>Option four</option>
+														<option>线下交易</option>
 													</select>
 												</div>
 											</div>
@@ -140,12 +138,8 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">支付场景</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control">
-														<option>选择场景</option>
-														<option>Option one</option>
-														<option>Option two</option>
-														<option>Option three</option>
-														<option>Option four</option>
+													<select class="form-control" name="">
+														<option value="">线下支付</option>
 													</select>
 												</div>
 											</div>
@@ -153,11 +147,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">交易状态</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control">
-														<option>选择状态</option>
-														<option>Option one</option>
-														<option>Option two</option>
-														<option>Option three</option>
-														<option>Option four</option>
+														<option>已完成</option>
 													</select>
 												</div>
 											</div>
@@ -185,6 +175,32 @@
 										</form>
 									</div>
 								</div>
+								
+								<div class="col-xs-6">
+		                          <p class="lead">收益详情 2/22/2014</p>
+		                          <div class="table-responsive">
+		                            <table class="table">
+		                              <tbody>
+		                                <tr>
+		                                  <th style="width:50%">本日收益:</th>
+		                                  <td>￥250.30</td>
+		                                </tr>
+		                                <tr>
+		                                  <th>本月收益:</th>
+		                                  <td>￥10.34</td>
+		                                </tr>
+		                                <tr>
+		                                  <th>本年收益:</th>
+		                                  <td>￥5.80</td>
+		                                </tr>
+		                                <tr>
+		                                  <th>累计收益:</th>
+		                                  <td>￥265.24</td>
+		                                </tr>
+		                              </tbody>
+		                            </table>
+		                          </div>
+		                        </div>
 
 								<div class="x_content">
 									<div class="table-responsive">
@@ -365,6 +381,9 @@
 	<script src="./vendors/fastclick/lib/fastclick.js"></script>
 	<!-- NProgress -->
 	<script src="./vendors/nprogress/nprogress.js"></script>
+	<!-- bootstrap-daterangepicker -->
+    <script src="./vendors/moment/min/moment.min.js"></script>
+    <script src="./vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 	<!-- jQuery custom content scroller -->
 	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- iCheck -->

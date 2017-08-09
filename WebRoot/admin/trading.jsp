@@ -117,8 +117,8 @@
 													<th class="column-title">用户头像</th>
 													<th class="column-title">用户昵称</th>
 													<th class="column-title">用户电话</th>
-													<th class="column-title">申请金额</th>
-													<th class="column-title">申请时间</th>
+													<th class="column-title">金额</th>
+													<th class="column-title">时间</th>
 													<th class="column-title no-link last">操作</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
 														style="color:#fff; font-weight:500;">Bulk Actions ( <span
@@ -141,13 +141,25 @@
 														<td>${root.ctaMoney}</td>
 														<td>${root.ctaTime}</td>
 														<td>
-															<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=1" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
-																<i class="fa fa-folder"></i>&nbsp;&nbsp;允许
-															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															
-															<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=2" class="btn btn-primary btn-xs">
-																<i class="fa fa-folder"></i>&nbsp;&nbsp;不允许
-															</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<c:if test="${root.ctaType == 1 && root.ctaStatus == 0}">
+																<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=1" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
+																	<i class="fa fa-folder"></i>&nbsp;&nbsp;允许
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+																
+																<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=2" class="btn btn-primary btn-xs">
+																	<i class="fa fa-folder"></i>&nbsp;&nbsp;不允许
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															</c:if>
+															<c:if test="${root.ctaType == 1 && root.ctaStatus == 1}">
+																<a class="btn btn-primary btn-xs">
+																	<i class="fa fa-folder"></i>&nbsp;&nbsp;已允许
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															</c:if>
+															<c:if test="${root.ctaType == 4}">
+																<a class="btn btn-primary btn-xs">
+																	<i class="fa fa-folder"></i>&nbsp;&nbsp;已充值
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															</c:if>
 															<a href="customer_read?cusId=${root.customer.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看用户</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>

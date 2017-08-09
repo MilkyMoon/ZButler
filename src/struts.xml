@@ -411,6 +411,7 @@
 			<result name="selectAll">area.jsp</result>
 			<result name="add">areaAdd.jsp</result>
 			<result name="agent">agent.jsp</result>
+			<result name="agentSelect" type="redirectAction">area_agent</result>
 			<result name="agentEdit">agentEdit.jsp</result>
 			<result name="edit">areaEdit.jsp</result>
 			<result name="select" type="redirectAction">area_select</result>

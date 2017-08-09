@@ -74,6 +74,52 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		return "selectAll";
 	}
 	
+	public String selectCash(){
+		
+		if(everyPage.equals("") || everyPage == null){
+			everyPage = "10";
+		}
+		if(pageNow.equals("") || pageNow == null){
+			pageNow = "1";
+		}
+		
+		int totalCount = 0;
+		Page page = null;
+		
+		totalCount = ctaTradingService.queryAllType(1);
+		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
+		ctaTradingList = ctaTradingService.selectAllType(page,1);
+	
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", ctaTradingList);
+		request.put("page", page);
+		
+		return "selectAll";
+	}
+	
+	public String selectRech(){
+		
+		if(everyPage.equals("") || everyPage == null){
+			everyPage = "10";
+		}
+		if(pageNow.equals("") || pageNow == null){
+			pageNow = "1";
+		}
+		
+		int totalCount = 0;
+		Page page = null;
+		
+		totalCount = ctaTradingService.queryAllType(4);
+		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
+		ctaTradingList = ctaTradingService.selectAllType(page,4);
+	
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", ctaTradingList);
+		request.put("page", page);
+		
+		return "selectAll";
+	}
+	
 	public String selectById(){
 		
 		return "selectAll";
