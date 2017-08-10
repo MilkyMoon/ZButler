@@ -42,6 +42,7 @@
 	    border: 1px solid #dedede;
 	    border-radius: 5px;
 	    display: none;
+	    z-index:100;
 	}
 	
 	#qrcode i{

@@ -101,27 +101,14 @@
 									<h2>
 										平台用户管理 <small>管理员基本信息管理</small>
 									</h2>
-									<ul class="nav navbar-right panel_toolbox">
-										<li><a class="collapse-link"><i
-												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li>
-										<li><a class="close-link"><i class="fa fa-close"></i></a>
-										</li>
-									</ul>
+									
 									<div class="clearfix"></div>
 								</div>
 
 								<div class="x_content">
 									<p>
 										<code>注意：</code>
-										1.有上级时将不能删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										2.搜索时会将其下级都显示出来
+										1.有下级时将不能删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									</p>
 									<div class="table-responsive">
 										<table class="table table-striped jambo_table bulk_action">
