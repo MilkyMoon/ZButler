@@ -61,11 +61,7 @@ public class CtaTradingServiceImpl implements CtaTradingService {
 		ctaTradingDao.update(hql);
 	}
 
-	@Override
-	public List<CtaTrading> search(String keywords) {
-		// TODO Auto-generated method stub
-		return ctaTradingDao.search(keywords);
-	}
+	
 
 	@Override
 	public int queryAllType(int type) {
@@ -77,6 +73,12 @@ public class CtaTradingServiceImpl implements CtaTradingService {
 	public List<CtaTrading> selectAllType(Page page, int type) {
 		// TODO Auto-generated method stub
 		return ctaTradingDao.selectAllType(page, type);
+	}
+
+	@Override
+	public List<CtaTrading> search(String keywords, int type) {
+		// TODO Auto-generated method stub
+		return ctaTradingDao.search(keywords, type);
 	}
 	
 }

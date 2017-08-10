@@ -17,6 +17,8 @@ import org.apache.struts2.ServletActionContext;
 import com.linestore.service.AreaService;
 import com.linestore.service.CatetoryService;
 import com.linestore.service.ThinkUserService;
+import com.linestore.util.Page;
+import com.linestore.util.PageUtil;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Area;
 import com.linestore.vo.Catetory;
@@ -34,6 +36,11 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	private Area area = new Area();
 	private AreaService areaService;
 	private Integer userId;
+	List<Area> areaList = new ArrayList<Area>();
+	
+	private String pageNow = "1";
+	private String everyPage = "10";
+	private String keywords = "";
 
 	@Override
 	public ThinkUser getModel() {
@@ -81,20 +88,21 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		ThinkUser think = new ThinkUser();
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 		this.userId = think.getArea().getAreId();
-		String[] arr = inList(userId);
+		Integer[] arr = inList(userId);
 
+		selectById();
 		int i = 0;
 		// 判断当前搜索的管理员是否是其管理的下级
 		for (i = 0; i < arr.length; i++) {
 			System.out.println("arr:"+arr[i]);
-			if (arr[i].equals(thinkUser.getThuId().toString())) {// 循环查找字符串数组中的每个字符串中是否包含所有查找的内容
+			if (arr[i] == thinkUserResult.getArea().getAreId()) {// 循环查找字符串数组中的每个字符串中是否包含所有查找的内容
 				break;
 			}
 		}
 		if (i == arr.length) {
 			return "select";
 		}
-		selectById();
+		
 		ActionContext.getContext().getSession().put("listInfo", thinkUserResult);
 
 		
@@ -189,6 +197,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		think = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 		this.userId = think.getThuId();
 		Integer thId = thinkUser.getThuId();
+		
 		if (thId == userId) {
 			return "select";
 		}
@@ -211,77 +220,42 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		this.userId = think.getArea().getAreId();
 
 		System.out.println("userId:" + userId);
+		System.out.println("pid:"+think.getArea().getPid());
 
-		List<ThinkUser> listFor = new ArrayList<ThinkUser>();
 		List<ThinkUser> listNew = new ArrayList<ThinkUser>();
 		List<ThinkUser> listResault = new ArrayList<ThinkUser>();
-
-		if (thinkUser.getThuName() == null || thinkUser.getThuName().equals("")) {
-			thinkUser.setThuId(userId);
-			selectById();
-			if (userId == 0) {
-				thinkUserService.queryFormat(listNew, userId, 0); // userId为管理员id
-			} else {
-				thinkUserService.queryFormat(listNew, userId, 1); // userId为管理员id
-				listResault.add(thinkUserResult);
-			}
-			listResault.addAll(listNew);
-		} else {
-			System.out.println("---------" + thinkUser.getThuName());
-			thinkUserList = thinkUserService.select(thinkUser);
-
-			String[] arr = inList(userId);
-
-			// 判断当前搜索的管理员是否是其管理的下级
-			for (int k = 0; k < thinkUserList.size(); k++) {
-				for (int i = 0; i < arr.length; i++) {
-					if (arr[i].equals(thinkUserList.get(k).getThuId().toString())) {// 循环查找字符串数组中的每个字符串中是否包含所有查找的内容
-						listNew.add(thinkUserList.get(k));
-					}
-				}
-			}
-
-			System.out.println("-----------------------------------");
-
-			boolean inList = false;
-			for (int i = 0; i < listNew.size(); i++) {
-				List<ThinkUser> list = new ArrayList<ThinkUser>();
-
-				System.out.println("listArea:" + listNew.get(i).getArea().getArea());
-				System.out.println("listNewId:" + listNew.get(i).getThuId());
-
-				thinkUserService.queryFormat(list, listNew.get(i).getArea().getAreId(), 1);
-
-				// 判断当前集合是否存在于其他集合当中
-				for (int j = 0; j < listNew.size(); j++) {
-					thinkUserService.queryFormat(listFor, listNew.get(j).getArea().getAreId(), 1);
-					for (int m = 0; m < listFor.size(); m++) {
-						System.out.println("listFor:" + listFor.get(m).getThuId());
-						if (listNew.get(i).getThuId() == listFor.get(m).getThuId()) {
-							System.out.println("id:" + listNew.get(i).getThuId());
-							inList = true;
-							break;
-						}
-					}
-
-					if (inList) {
-						break;
-					}
-				}
-
-				if (inList) {
-					inList = false;
-					continue;
-				}
-
-				listResault.add(listNew.get(i));
-				listResault.addAll(list);
-			}
-		}
-
-		ActionContext.getContext().getSession().put("list", listResault);
 		
-		System.out.println();
+		Integer[] arr = inList(userId);
+		
+		int totalCount;
+		if(keywords == null || keywords.equals("")){
+			totalCount = thinkUserService.selectAllByAreaCount(arr);
+		} else {
+			totalCount = thinkUserService.selectAllByKeyCount(keywords);
+		}	
+		
+		if(everyPage.equals("") || everyPage == null){
+			everyPage = "10";
+		}
+		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
+			pageNow = "1";
+		}
+		
+		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
+
+		if (keywords == null || keywords.equals("")) {
+			
+			listNew = thinkUserService.selectAllByArea(page, arr);// userId为管理员id
+			
+		} else {
+
+			listNew = thinkUserService.selectAllByKey(page, keywords);
+		}
+		
+		listResault.addAll(listNew);
+		
+		ActionContext.getContext().getSession().put("page", page);
+		ActionContext.getContext().getSession().put("list", listResault);
 
 		return "selectAll";
 	}
@@ -292,23 +266,24 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		this.userId = think.getArea().getAreId();
 
 		System.out.println("status:" + thinkUser.getThuId());
-		if (thinkUser.getThuId() == userId) {
+		if (thinkUser.getThuId() == think.getThuId()) {
 			return "select";
 		}
-		String[] arr = inList(userId);
+		Integer[] arr = inList(userId);
+		
+		selectById();
 
 		int i = 0;
 		// 判断当前搜索的管理员是否是其管理的下级
 		for (i = 0; i < arr.length; i++) {
-			if (arr[i].equals(thinkUser.getThuId().toString())) {// 循环查找字符串数组中的每个字符串中是否包含所有查找的内容
+			if (arr[i] == thinkUserResult.getArea().getAreId()) {// 循环查找字符串数组中的每个字符串中是否包含所有查找的内容
 				break;
 			}
 		}
 		if (i == arr.length) {
 			return "select";
 		}
-
-		selectById();
+		
 		thinkUserResult.setThuStatus(thinkUser.getThuStatus());
 		thinkUserResult.getArea().setAreaScale((float) 1);
 		thinkUserResult.getArea().setAreaScaleTwo((float) 0);
@@ -317,16 +292,31 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		return "select";
 	}
 
-	public String[] inList(Integer id) {
+	public Integer[] inList(Integer id) {
 		// 判断当前操作的id是否为当前用户可操作id
-		List<ThinkUser> userList = new ArrayList<ThinkUser>();
-		thinkUserService.queryFormat(userList, id, 1);
+		areaService.queryArea(areaList, id, 1);
 		// 当前管理员所能管理的管理员集合
-		String arr[] = new String[userList.size() + 1];
+		Integer arr[] = new Integer[areaList.size() + 1];
 
-		arr[0] = id.toString();
-		for (int j = 0; j < userList.size(); j++) {
-			arr[j + 1] = userList.get(j).getThuId().toString();
+		arr[0] = id;
+		for (int j = 0; j < areaList.size(); j++) {
+			System.out.println("areId:"+areaList.get(j).getAreId());
+			arr[j + 1] = areaList.get(j).getAreId();
+		}
+		return arr;
+	}
+	
+	public Integer[] inListThink(Integer id) {
+		// 判断当前操作的id是否为当前用户可操作id
+		List<ThinkUser> thinkList = new ArrayList<ThinkUser>();
+		thinkUserService.queryFormat(thinkList, id, 1);
+		// 当前管理员所能管理的管理员集合
+		Integer arr[] = new Integer[thinkList.size() + 1];
+
+		arr[0] = id;
+		for (int j = 0; j < thinkList.size(); j++) {
+			System.out.println("areId:"+thinkList.get(j).getThuId());
+			arr[j + 1] = thinkList.get(j).getThuId();
 		}
 		return arr;
 	}
@@ -345,6 +335,30 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 
 	public void setAreaService(AreaService areaService) {
 		this.areaService = areaService;
+	}
+
+	public String getPageNow() {
+		return pageNow;
+	}
+
+	public void setPageNow(String pageNow) {
+		this.pageNow = pageNow;
+	}
+
+	public String getEveryPage() {
+		return everyPage;
+	}
+
+	public void setEveryPage(String everyPage) {
+		this.everyPage = everyPage;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 	
 //	public String viewImages() {  

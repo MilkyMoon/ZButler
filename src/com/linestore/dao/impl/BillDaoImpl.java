@@ -1,5 +1,7 @@
 package com.linestore.dao.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +24,7 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	@Override
 	public List<Bill> select(Page page, Integer id) {
 		// TODO Auto-generated method stub
-		String hql = "from Bill where thinkUserByThuPropertyId.thuId = ? or thinkUserByThuCityId.thuId = ? or thinkUserByThuProvinceId.thuId = ?";
+		String hql = "from Bill where areaByThuPropertyId.areId = ? or areaByThuCityId.areId = ? or areaByThuProvinceId.areId = ?";
 		List<Bill> list = (List<Bill>) this.getHibernateTemplate().find(hql, id, id, id);
 		return list;
 	}
@@ -44,7 +46,7 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	@Override
 	public List<Bill> search(String keywords) {
 		// TODO Auto-generated method stub
-		String hql = "from Bill where business.busShopName like '%"+keywords+"%' or customer.cusNickname like '%"+keywords+"%' or thinkUserByThuPropertyId.thuName like '%"+keywords+"%' or thinkUserByThuPropertyId.thuArea like '%"+keywords+"%' or thinkUserByThuCountyId.thuName like '%"+keywords+"%' or thinkUserByThuCountyId.thuArea like '%"+keywords+"%' or thinkUserByThuCityId.thuName like '%"+keywords+"%' or thinkUserByThuCityId.thuArea like '%"+keywords+"%' or thinkUserByThuProvinceId.thuName like '%"+keywords+"%' or thinkUserByThuProvinceId.thuArea like '%"+keywords+"%'";
+		String hql = "from Bill where business.busShopName like '%"+keywords+"%' or customer.cusNickname like '%"+keywords+"%' or areaByThuPropertyId.area like '%"+keywords+"%' or areaByThuPropertyId.thuArea like '%"+keywords+"%' or areaByThuCountyId.area like '%"+keywords+"%' or areaByThuCountyId.thuArea like '%"+keywords+"%' or areaByThuCityId.area like '%"+keywords+"%' or areaByThuCityId.thuArea like '%"+keywords+"%' or areaByThuProvinceId.area like '%"+keywords+"%' or areaByThuProvinceId.thuArea like '%"+keywords+"%'";
 		List<Bill> list = (List<Bill>) this.getHibernateTemplate().find(hql);
 		return list;
 	}
@@ -126,9 +128,88 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	}
 
 	@Override
+	public List<Bill> selectByTime(Page page, Integer id, String timeMin, String timeMax, Float amountMin,
+			Float amountMax) {
+		// TODO Auto-generated method stub
+		
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from Bill where (areaByThuPropertyId.areId = "+id+" or areaByThuCityId.areId = "+id+" or areaByThuProvinceId.areId = "+id+") and bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney >= "+amountMin+" and bilCusMoney <= "+amountMax+" order by bilId desc");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		
+		return query.list();
+	}
+
+	@Override
+	public List<Bill> selectAllByTime(Page page, String timeMin, String timeMax, Float amountMin, Float amountMax) {
+		// TODO Auto-generated method stub
+		
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("from Bill where bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney >= "+amountMin+" and bilCusMoney <= "+amountMax+" order by bilId desc");
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
+    
+    }
+    
 	public List<Bill> queryByCusId(int cusId) {
 		List<Bill> bills = (List<Bill>) this.getHibernateTemplate().find("from Bill where customer.cusId=?", cusId);
 		return bills;
+	}
+
+	@Override
+	public List<Bill> queryByArea(int AreaId) {
+		List<Bill> bills = (List<Bill>) this.getHibernateTemplate().find("from Bill where areaByThuCountyId.areId = ? or areaByThuCityId.areId = ? or areaByThuProvinceId.areId = ? or areaByThuCountyId.areId = ?", AreaId, AreaId, AreaId,AreaId);
+		return bills;
+	}
+
+	@Override
+	public BigDecimal todayMoney() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Date date = new Date();
+		Query query = session.createQuery("select sum(bilZongMoney) from Bill where date_format(bilDate,'%Y-%m-%d') = date_format(?,'%Y-%m-%d')");
+		query.setDate(0, date);
+		List<BigDecimal> money = query.list();
+		if (money.size() > 0) {
+			return money.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public BigDecimal monthMoney() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("select sum(bilZongMoney) from Bill where date_format(bilDate,'%Y-%m') = date_format(?,'%Y-%m')");
+		Date date = new Date();
+		query.setDate(0, date);
+		List<BigDecimal> money = query.list();
+		if (money.size() > 0) {
+			return money.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public BigDecimal yearMoney() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("select sum(bilZongMoney) from Bill where date_format(bilDate,'%Y') = date_format(?,'%Y')");
+		Date date = new Date();
+		query.setDate(0, date);
+		List<BigDecimal> money = query.list();
+		if (money.size() > 0) {
+			return money.get(0);
+		}
+		return null;
+	}
+	
+	public List<Bill> queryToDate(Date dateOne, Date dateTwo) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("from Bill where bilDate >= ? and bilDate <= ?");
+		query.setDate(0, dateOne);
+		query.setDate(1, dateTwo);
+		return query.list();
 	}
 
 }

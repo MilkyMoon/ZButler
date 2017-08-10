@@ -378,6 +378,7 @@
 			<result name="select" type="redirectAction">bill_selectAll</result>
 			<result name="read">billRead.jsp</result>
 			<result name="map">earning.jsp</result>
+			<result name="gotoReport">report.jsp</result>
 		</action>
 		<action name="bangdin_*" class="com.linestore.action.ThinkUserAction"
 			method="{1}">

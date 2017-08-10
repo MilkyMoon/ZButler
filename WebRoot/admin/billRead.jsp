@@ -119,13 +119,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">物业名称:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control">${roots.areaByThuPropertyId.thuArea}</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">业主姓名:</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control">${roots.areaByThuPropertyId.thuName}</div>
+												<div class="form-control">${roots.areaByThuPropertyId.area}</div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -136,19 +130,14 @@
 										</div>
 										
 										<!-- 判断当前用户是否显示县级代理 -->					
-										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuPropertyId.area.areId}">
+										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuPropertyId.areId}">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县名称:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.areaByThuCountyId.thuArea}</div>
+													<div class="form-control">${roots.areaByThuCountyId.area}</div>
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">县代理:</label>
-												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.areaByThuCountyId.thuName}</div>
-												</div>
-											</div>
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
@@ -157,19 +146,14 @@
 											</div>
 										</c:if>
 										<!-- 判断当前用户是否显示市级代理 -->	
-										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuPropertyId.area.areId && sessionScope.admin.area.areId != roots.areaByThuCountyId.area.areId}">
+										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuPropertyId.areId && sessionScope.admin.area.areId != roots.areaByThuCountyId.areId}">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市名称:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.areaByThuCityId.thuArea}</div>
+													<div class="form-control">${roots.areaByThuCityId.area}</div>
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">市代理:</label>
-												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.areaByThuCityId.thuName}</div>
-												</div>
-											</div>
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
@@ -179,19 +163,14 @@
 										</c:if>
 										
 										<!-- 判断当前用户是否显示省级代理 -->	
-										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuCityId.area.areId && sessionScope.admin.area.areId != roots.areaByThuPropertyId.area.areId && sessionScope.admin.area.areId != roots.areaByThuCountyId.area.areId}">
+										<c:if test="${sessionScope.admin.area.areId != roots.areaByThuCityId.areId && sessionScope.admin.area.areId != roots.areaByThuPropertyId.areId && sessionScope.admin.area.areId != roots.areaByThuCountyId.areId}">
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省名称:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.areaByThuProvinceId.thuArea}</div>
+													<div class="form-control">${roots.areaByThuProvinceId.area}</div>
 												</div>
 											</div>
-											<div class="form-group">
-												<label class="control-label col-md-3 col-sm-3 col-xs-12">省代理:</label>
-												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control">${roots.areaByThuProvinceId.thuName}</div>
-												</div>
-											</div>
+											
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">

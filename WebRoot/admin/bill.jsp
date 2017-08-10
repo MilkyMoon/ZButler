@@ -220,11 +220,11 @@
 														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCusMoney}" /></td>
 														<td>${root.business.busShopName}</td>
 														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilBusMoney}" /></td>
-														<td>${root.areaByThuPropertyId.thuName}</td>
+														<td>${root.areaByThuPropertyId.area}</td>
 														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilPropertyMoney}" /></td>
 														<!-- 判断当前用户是否显示县级代理 -->					
 														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId}">
-															<td>${root.areaByThuCountyId.thuName}</td>
+															<td>${root.areaByThuCountyId.area}</td>
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCountyMoney}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId}">
@@ -233,7 +233,7 @@
 														</c:if>
 														<!-- 判断当前用户是否显示市级代理 -->	
 														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
-															<td>${root.areaByThuCityId.thuName}</td>
+															<td>${root.areaByThuCityId.area}</td>
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCityMoney}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
@@ -242,7 +242,7 @@
 														</c:if>
 														<!-- 判断当前用户是否显示省级代理 -->	
 														<c:if test="${sessionScope.admin.area.areId != root.areaByThuCityId.areId && sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
-															<td>${root.areaByThuProvinceId.thuName}</td>
+															<td>${root.areaByThuProvinceId.area}</td>
 															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilProvinceMoney}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.area.areId == root.areaByThuCityId.areId || sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">

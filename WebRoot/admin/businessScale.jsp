@@ -116,6 +116,7 @@
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">商家返点比</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
 														<input type="text" class="form-control" name="busScale" value="${businessResult.busScale}">
+														<p style="margin-top:10px;"><code>注意：</code>取值为0~1。当用户未设置或未启用时请将比例设置为1。关闭时会自动将值设置为1</p>
 													</div>
 												</div>
 												

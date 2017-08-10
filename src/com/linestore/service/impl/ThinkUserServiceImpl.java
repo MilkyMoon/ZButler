@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.ThinkUserDao;
 import com.linestore.service.ThinkUserService;
+import com.linestore.util.Page;
 import com.linestore.vo.ThinkUser;
 
 @Transactional
@@ -60,4 +61,29 @@ public class ThinkUserServiceImpl implements ThinkUserService{
 	public ThinkUser queryById(int thuId) {
 		return thinkUserDao.queryById(thuId);
 	}
+
+	@Override
+	public List<ThinkUser> selectAllByArea(Page page, Integer[] list) {
+		// TODO Auto-generated method stub
+		return thinkUserDao.selectAllByArea(page, list);
+	}
+
+	@Override
+	public int selectAllByAreaCount(Integer[] list) {
+		// TODO Auto-generated method stub
+		return thinkUserDao.selectAllByAreaCount(list);
+	}
+
+	@Override
+	public List<ThinkUser> selectAllByKey(Page page, String keywords) {
+		// TODO Auto-generated method stub
+		return thinkUserDao.selectAllByKey(page, keywords);
+	}
+
+	@Override
+	public int selectAllByKeyCount(String keywords) {
+		// TODO Auto-generated method stub
+		return thinkUserDao.selectAllByKeyCount(keywords);
+	}
+
 }

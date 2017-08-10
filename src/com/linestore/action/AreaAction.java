@@ -23,6 +23,8 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	private int pagewhere;
 	
 	private ThinkUser think;
+
+	private String keywords = "";
 	
 	@Override
 	public Area getModel() {
@@ -32,6 +34,7 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	
 	public String select(){
 		getId();
+		
 		if(think.getArea().getPid() == 0){
 			areaService.queryArea(areaList, 0, 0);
 		} else {
@@ -39,6 +42,18 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 			areaListReslut.add(areaService.queryById(think.getArea().getAreId()));
 		}
 		areaListReslut.addAll(areaList);
+		
+		ActionContext.getContext().getSession().put("list", areaListReslut);
+		
+		return "selectAll";
+	}
+	
+	public String search(){
+		if(keywords == null || keywords.equals("")){
+			return "select";
+		}
+		
+		areaListReslut = areaService.selectByKey(keywords);
 		
 		ActionContext.getContext().getSession().put("list", areaListReslut);
 		
@@ -181,6 +196,14 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 
 	public void setPagewhere(int pagewhere) {
 		this.pagewhere = pagewhere;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 
 	

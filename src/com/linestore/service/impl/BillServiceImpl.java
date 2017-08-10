@@ -1,5 +1,7 @@
 package com.linestore.service.impl;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -56,7 +58,44 @@ public class BillServiceImpl implements BillService {
 	}
 
 	@Override
+	public List<Bill> selectByTime(Page page, Integer id, String timeMin, String timeMax, Float amountMin,
+			Float amountMax) {
+		// TODO Auto-generated method stub
+		return billDao.selectByTime(page, id, timeMin, timeMax, amountMin, amountMax);
+	}
+
+	@Override
+	public List<Bill> selectAllByTime(Page page, String timeMin, String timeMax, Float amountMin, Float amountMax) {
+		// TODO Auto-generated method stub
+		return billDao.selectAllByTime(page, timeMin, timeMax, amountMin, amountMax);
+    }
+    
 	public List<Bill> queryByCusId(int cusId) {
 		return billDao.queryByCusId(cusId);
+	}
+
+	@Override
+	public List<Bill> queryByArea(int areaId) {
+		return billDao.queryByArea(areaId);
+	}
+
+	@Override
+	public BigDecimal todayMoney() {
+		return billDao.todayMoney();
+	}
+
+	@Override
+	public BigDecimal monthMoney() {
+		return billDao.monthMoney();
+	}
+
+	@Override
+	public BigDecimal yearMoney() {
+		return billDao.yearMoney();
+	}
+
+	@Override
+	public List<Bill> queryToDate(Date dateOne, Date dateTwo) {
+		return billDao.queryToDate(dateOne, dateTwo);
 	}
 }
