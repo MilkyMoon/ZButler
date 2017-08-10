@@ -6345,96 +6345,135 @@ px
 	font-size: 14px;
 }
 
-/*饭呢类*/
-.fenlei {
-	
+/*分类*/
+.fenlei{
 }
-
-.fenlei .m-cell {
-	height: 40px;
-	background-color: #fff;
-	color: #A3A3B5;
-	padding: 0;
+.fenlei_button{
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border-bottom: solid 1px #D9D9D9;
 }
-
-.fenlei .cell-item {
-	color: #A3A3B5;
-	padding-top: 0;
+.fenlei_button div {
+    float: left;
+    width: 50%;
+    height: 40px;
+    color: #666;
+    font-size: 14px;
+    line-height: 40px;
+    text-align: center;
 }
-
-.fenlei .cell-item .cell-right {
-	height: 40px;
+.fenlei_dialog{
+    display: none;
+}
+.fenlei_dialog_content{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    background-color: #fff;
+}
+.fenlei_dialog_big{
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+}
+.fenlei_dialog_big span {
+    width: 100%;
+    padding: 8px;
+    height: 34px;
+    font-size: 12px;
+    background-color: #fff;
+}
+.fenlei_dialog_big span.active{
+    background-color: #e6e6e6;
+}
+.fenlei_dialog_small{
+    width: 74%;
+    display: flex;
+    background-color:#e6e6e6;
+    flex-direction: column;
+}
+.fenlei_dialog_small span {
+    width: 100%;
+    padding: 8px;
+    height: 34px;
+    font-size: 12px;
+    background-color: #e6e6e6;
+    border-left: solid 1px #D9D9D9;
+    border-bottom: solid 1px #D9D9D9;
 }
 
 .fenleiList {
-	width: 100%;
-	margin-top: -16px;
-	background-color: #ffffff;
-	padding-left: 9px;
+    width: 100%;
+    margin-top: -16px;
+    background-color: #ffffff;
+    padding-left: 9px;
 }
 
 .fenleiItem {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: stretch;
-	width: 100%;
-	height: 80px;
-	padding: 8px 0;
-	border-bottom: solid 2px #EFEFF4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 80px;
+    padding: 8px 0;
+    border-bottom: solid 2px #EFEFF4;
 }
 
 .fenleiItem img {
-	width: 106px;
-	height: 100%;
+    width: 106px;
+    height: 100%;
 }
 
 .fenleiItem_content {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	height: 100%;
-	margin: 0 10px;
-	color: #A3A3B5;
-	flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 10px;
+    color: #A3A3B5;
+    flex-grow: 1;
 }
-
 .fenleiItem_content_title {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	height: 24px;
-	line-height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 24px;
+    line-height: 20px;
 }
 
 .fenleiItem_content span {
-	font-size: 12px;
+    font-size: 12px;
 }
 
 .fenleiItem_content .fenleiItem_name {
-	font-size: 14px;
-	color: #1C1C20;
+    font-size: 14px;
+    color: #1C1C20;
 }
 
 .fenleiItem_content .fenleiItem_mark {
-	color: #FF2100;
+    color: #FF2100;
 }
-
 .fenleiItem_content .businessCommend_title_starNum {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 .fenleiItem_content .businessCommend_title_starNum img {
-	width: 12px;
-	height: 12px;
-	margin-right: 4px;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
 }
 
 .fenleiItem_content .businessCommend_title_starNum span {
-	font-size: 12px;
-	color: #DB412A;
+    font-size: 12px;
+    color: #DB412A;
 }
 
 /*上传头像*/

@@ -33,5 +33,7 @@ public interface BillService {
 
 	public BigDecimal yearMoney();
 	
+	public BigDecimal totalMoney();
+	
 	public List<Bill> queryToDate(Date dateOne, Date dateTwo);
 }

@@ -13,26 +13,22 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 
 	@Override
 	public List<CateLine> selectAll() {
-		// TODO Auto-generated method stub
 		List<CateLine> catetories = (List<CateLine>) this.getHibernateTemplate().find("from CateLine");
 		return catetories;
 	}
 
 	@Override
 	public void save(CateLine cateLine) {
-		// TODO Auto-generated method stub
 		this.getHibernateTemplate().save(cateLine);
 	}
 
 	@Override
 	public void delete(CateLine cateLine) {
-		// TODO Auto-generated method stub
 		this.getHibernateTemplate().delete(cateLine);
 	}
 
 	@Override
 	public void status(CateLine cateLine) {
-		// TODO Auto-generated method stub
 		this.getHibernateTemplate().update(cateLine);
 	}
 
@@ -65,12 +61,14 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 	@Override
 	public CateLine queryByName(String seach) {
 		List<CateLine> cate = (List<CateLine>) this.getHibernateTemplate().find("from CateLine where calName='"+seach+"' and calStatus=1");
-			
-		return cate.get(0);
+		if (cate.size() > 0) {
+			return cate.get(0);
+		}
+		return null;
 	}
 	
 	public List<CateLine> selectChildren(int pid) {
-		return (List<CateLine>) this.getHibernateTemplate().find("from CateLine where calPid="+pid);
+		return (List<CateLine>) this.getHibernateTemplate().find("from CateLine where calPid=? and calStatus=1", pid);
 	}
 	
 	public List<CateLine> queryFormat(List<CateLine> list, int pid, int level) {

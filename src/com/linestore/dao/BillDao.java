@@ -28,6 +28,8 @@ public interface BillDao {
 	
 	public BigDecimal yearMoney();
 	
+	public BigDecimal totalMoney();
+	
 	public List<Bill> queryToDate(Date dateOne, Date dateTwo);
 	
 }
