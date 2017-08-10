@@ -62,4 +62,9 @@ public class AreaServiceImpl implements AreaService {
 		return areaDao.selectByKey(keywords);
 	}
 
+	@Override
+	public void updateMoney(String money, int id) {
+		areaDao.updateMoney(money, id);
+	}
+
 }
