@@ -62,6 +62,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private BusinessService businessService;
 
 	private CtaTradingService ctaTradingService;
+	
+	public String protocol() {
+		return "gotoProtocol";
+	}
 
 	public String weChat() {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
