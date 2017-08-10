@@ -108,6 +108,7 @@
 									<p>
 										<code>注意：</code>
 										1.有下级时将不能删除&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										2.相应地区的平台代理商将一并删除。
 									</p>
 									<div class="table-responsive">
 										<table class="table table-striped jambo_table bulk_action">
@@ -158,7 +159,7 @@
 															<a href="area_edit?areId=${root.areId}" class="btn btn-info btn-xs">
 															    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="area_delete?areId=${root.areId}" class="btn btn-danger btn-xs">
+															<a href="area_delete?areId=${root.areId}" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？相应的代理商也将同时删除。\n\n删除后将不能恢复!');">
 																<i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除
 															</a>
 														</td>
@@ -207,6 +208,15 @@
 	<script src="./build/js/custom.min.js"></script>
 	
 	<script type="text/javascript" src="./build/js/qrcode.min.js"></script>
-
+	<script type="text/javascript">
+		function del(msg) { 
+		//    var msg = "您真的确定要删除吗？相应地区的平台代理商将一并删除。\n\n删除后将不能恢复!请确认！"; 
+		    if (confirm(msg)==true){ 
+		            return true; 
+		        }else{ 
+		            return false; 
+		    }
+		} 
+	</script>
 </body>
 </html>

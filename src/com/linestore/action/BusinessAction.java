@@ -73,6 +73,9 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 				|| business.getBusScale() < 0) {
 			business.setBusScale((float) 0);
 		}
+		
+		business.setBusScale((float) 1);
+		business.setBusScalePoints((float) 0);
 
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("user");
 		String str = business.getBaProvince();
@@ -100,7 +103,11 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		System.out.println("busScale:"+business.getBusStatus());
 
 		if ((business.getBusStatus() != null && business.getBusStatus() == 0) || business.getBusScale() == null || business.getBusScale() > 1 || business.getBusScale() < 0) {
-			business.setBusScale((float) 0);
+			business.setBusScale((float) 1);
+		}
+		
+		if ((business.getBusStatus() != null && business.getBusStatus() == 0) || business.getBusScalePoints() == null || business.getBusScalePoints() > 1 || business.getBusScalePoints() < 0) {
+			business.setBusScalePoints((float) 0);
 		}
 
 		int id = business.getBusId();
@@ -329,6 +336,10 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 	}
 	
 	public String status(){
+		if (business.getBusStatus() == 2 || business.getBusStatus() == 3) {
+			business.setBusScale((float) 1);
+			business.setBusScalePoints((float) 0);
+		}
 		String hql;
 		try {
 			hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, business.getBusId());

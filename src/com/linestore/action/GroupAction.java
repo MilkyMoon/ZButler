@@ -87,7 +87,12 @@ public class GroupAction extends ActionSupport implements ModelDriven<Group>{
 	}
 	
 	public String delete() {
-		groupService.delGroup(group.getGrpId());
+		try {
+			groupService.delGroup(group.getGrpId());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		return selectAll();
 	}
 	

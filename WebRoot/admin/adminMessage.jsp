@@ -141,7 +141,7 @@
 															</td>
 														<td>${root.mesTime}</td>
 														<td><a href="message_delMessage?mesId=${root.mesId}"
-															class="btn btn-danger btn-xs"><i
+															class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><i
 																class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
@@ -254,5 +254,16 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>
+	
+	<script type="text/javascript">
+		function del(msg) { 
+		//    var msg = "您真的确定要删除吗？\n\n删除后将不能恢复!请确认！"; 
+		    if (confirm(msg)==true){ 
+		            return true; 
+		        }else{ 
+		            return false; 
+		    }
+		} 
+	</script>
 </body>
 </html>

@@ -74,13 +74,14 @@
 							</h3>
 						</div>
 
-						<form action="thinkUser_select" method="get">
+						<form action="area_search" method="get">
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="thuName" placeholder="输入地区、姓名、电话或邮箱 ..."> 	
+										<input type="hidden" name="pagewhere" value="2"/>
+										<input type="text" class="form-control" name="keywords" placeholder="输入地区 ..."> 	
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Go!</button>
+											<button class="btn btn-default" type="submit">搜索</button>
 										</span>
 									</div>
 								</div>
@@ -133,12 +134,28 @@
 														</td>
 														<td class=" ">${root.areId}</td>
 														<td class=" ">${root.area}</td>
-														<td class=" ">${root.areaScale}</td>
-														<td class=" ">${root.areaScaleTwo}</td>
+														<td class=" ">
+															<c:if test="${root.pid != 0}">
+																${root.areaScale}
+															</c:if>
+														</td>
+														<td class=" ">
+															<c:if test="${root.pid != 0}">
+																${root.areaScaleTwo}
+															</c:if>
+														</td>
 														<td>
-															<a href="area_edit?areId=${root.areId}&pagewhere=2" class="btn btn-info btn-xs">
-															    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
-															</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<c:if test="${root.pid == 0}">
+																<a class="btn btn-info btn-xs" disabled="disabled">
+																    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															</c:if>
+															<c:if test="${root.pid != 0}">
+																<a href="area_edit?areId=${root.areId}&pagewhere=2" class="btn btn-info btn-xs">
+																    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
+																</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															</c:if>
+															
 														</td>
 													</tr>
 												</c:forEach>

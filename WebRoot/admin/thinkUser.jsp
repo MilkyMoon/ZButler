@@ -90,7 +90,7 @@
 									<div class="input-group">
 										<input type="text" class="form-control" name="keywords" placeholder="输入地区、姓名、电话或邮箱 ..."> 	
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Go!</button>
+											<button class="btn btn-default" type="submit">搜索</button>
 										</span>
 									</div>
 								</div>
@@ -185,7 +185,7 @@
 															<a href="thinkUser_edit?thuId=${root.thuId}" class="btn btn-info btn-xs">
 															    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="thinkUser_delete?thuId=${root.thuId}" class="btn btn-danger btn-xs">
+															<a href="thinkUser_delete?thuId=${root.thuId}" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">
 																<i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除
 															</a>
 															<a href="#" class="btn btn-danger btn-xs" onclick="javascript:return (function () { 
@@ -233,7 +233,7 @@
 									<input type="text" name="pageNow" value="${page.currentPage}" class="form-control" style="text-align:center;width:42px;padding:5px">
 									<span style="float:right;padding:0 5px">页</span>
 		                            <span class="input-group-btn">
-	                                    <button type="submit" class="btn btn-primary">Go!</button>
+	                                    <button type="submit" class="btn btn-primary">搜索</button>
 	                                </span>
 		                        </div>
 								<div class="dataTables_paginate paging_simple_numbers" id="datatable-checkbox_paginate">
@@ -308,6 +308,17 @@
 	<script src="./build/js/custom.min.js"></script>
 	
 	<script type="text/javascript" src="./build/js/qrcode.min.js"></script>
+	
+	<script type="text/javascript">
+		function del(msg) { 
+		//    var msg = "您真的确定要删除吗？\n\n删除后将不能恢复!请确认！"; 
+		    if (confirm(msg)==true){ 
+		            return true; 
+		        }else{ 
+		            return false; 
+		    }
+		} 
+	</script>
 
 </body>
 </html>

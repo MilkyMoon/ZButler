@@ -181,15 +181,15 @@
 				                            <table class="table">
 				                              <tbody>
 				                                <tr>
-				                                  <th style="width:50%">当日收益:</th>
+				                                  <th style="width:50%">本日收益:</th>
 				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Today}" /></td>
 				                                </tr>
 				                                <tr>
-				                                  <th>当月收益:</th>
+				                                  <th>本月收益:</th>
 				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Month}" /></td>
 				                                </tr>
 				                                <tr>
-				                                  <th>当年收益:</th>
+				                                  <th>本年收益:</th>
 				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
 				                                </tr>
 				                                <tr>
