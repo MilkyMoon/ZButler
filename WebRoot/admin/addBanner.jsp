@@ -14,8 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<title>平台管理员添加 | 众帮管家</title>
+<title>广告管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -26,7 +25,12 @@
 <!-- NProgress -->
 <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
 <!-- jQuery custom content scroller -->
-<link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+<link
+	href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+	rel="stylesheet" />
+<!-- Dropzone.js -->
+<link href="./vendors/dropzone/dist/min/dropzone.min.css"
+	rel="stylesheet">
 <!-- iCheck -->
 <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 <!-- bootstrap-wysiwyg -->
@@ -44,6 +48,12 @@
 
 <!-- Custom Theme Style -->
 <link href="./build/css/custom.min.css" rel="stylesheet">
+<style>
+.dropzone {
+	min-height: 194px;
+	width: 194px;
+}
+</style>
 </head>
 
 <body class="nav-md">
@@ -60,20 +70,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>平台角色管理</h3>
-						</div>
-
-						<div class="title_right">
-							<!-- <div
-								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Search for..."> <span
-										class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
-								</div>
-							</div> -->
+							<h3>广告管理</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -81,20 +78,17 @@
 						<div class="col-md-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>
-										查看管理员
-										<!-- <small style="color:red">待审核</small> -->
-									</h2>
+									<h2>添加轮播图</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-<!-- 										<li class="dropdown"><a href="#" class="dropdown-toggle"
+										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="#">Settings 1</a></li>
 												<li><a href="#">Settings 2</a></li>
-											</ul></li> -->
+											</ul></li>
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
@@ -102,52 +96,43 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form action="group_save" method="post" class="form-horizontal form-label-left">
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">角色名称</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="grpTitle" disabled="disabled" value="${group.grpTitle}">
+									<div class="col-md-8">
+										<form action="siteConfig_addBanner"
+											class="form-horizontal form-label-left" method="post">
+											<div class="">
+												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">轮播图</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<input type="file" class="form-control" id="file">
+														<input type="hidden" class="form-control"
+															name="configValue">
+															 <input type="hidden"
+															class="form-control" name="configName" value="banner">
+													</div>
+												</div>
+
+
+												<div class="form-group">
+													<label class="control-label col-md-3 col-sm-3 col-xs-12">广告链接</label>
+													<div class="col-md-6 col-sm-9 col-xs-12">
+														<input type="text" class="form-control" name="configKey"
+															placeholder="请输入内容">
+
+													</div>
+												</div>
+
+
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">角色描述</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<textarea class="form-control" name="grpDesc" disabled="disabled" value="${group.grpDesc}"></textarea>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">权限</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="checkbox">
-													<c:forEach var="rule" items="${group.ruleGroups}">
-							                            <label>
-							                            	<input type="checkbox" class="flat" disabled="disabled" checked="checked"> ${rule.rule.title}
-							                            </label>
-						                            </c:forEach>
-						                            
-						                          </div>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">启&nbsp;&nbsp;&nbsp;&nbsp;用</label>
-											<div class="col-md-9 col-sm-9 col-xs-12">
-												<div class="radio">
-													<label> 
-															<input type="radio" class="flat" disabled="disabled" name="grpStatus" value="1"> 启用
-	                          								<input type="radio" class="flat" disabled="disabled" checked name="grpStatus" value="-1"> 不启用
-													</label>
+
+											<div class="ln_solid"></div>
+											<div class="form-group">
+												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+													<button type="submit" class="btn btn-success"
+														style="float:right;margin-right:0;">添加</button>
 												</div>
 											</div>
-										</div>
-										<input type="hidden" name="grpAdmin" value="${admin.thuId}">
-										<div class="ln_solid"></div>
-										<!-- <div class="form-group">
-											<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-												<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
-											</div>
-										</div> -->
-										
-									</form>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -173,7 +158,10 @@
 	<!-- NProgress -->
 	<script src="./vendors/nprogress/nprogress.js"></script>
 	<!-- jQuery custom content scroller -->
-	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script
+		src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- Dropzone.js -->
+	<script src="./vendors/dropzone/dist/min/dropzone.min.js"></script>
 	<!-- bootstrap-progressbar -->
 	<script
 		src="./vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
@@ -203,7 +191,29 @@
 	<script src="./vendors/starrr/dist/starrr.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>
-	<script type="text/javascript"
-		src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
+
 </body>
 </html>
+<script>
+	/* $('input[name="configValue"]').each(function() {
+		var that = $(this);
+		that.change(function() {
+			var imgFile = new FileReader();
+			imgFile.readAsDataURL(that[0].files[0]);
+			imgFile.onload = function() {
+				var imgData = this.result; //base64数据
+				that.attr("type", "hidden");
+				that.val(imgData);
+			}
+		})
+	}) */
+	$("#file").change(function() {
+		var img = $("#file");
+		var imgFile = new FileReader();
+		imgFile.readAsDataURL(img[0].files[0]);
+		imgFile.onload = function() {
+			var imgData = this.result; //base64数据
+			$('input[name="configValue"]').val(imgData);
+		}
+	})
+</script>

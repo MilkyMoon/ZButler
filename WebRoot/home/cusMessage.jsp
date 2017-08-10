@@ -77,12 +77,15 @@
 					<div class="cell-left">个人标签</div>
 					<div class="cell-right cell-arrow"></div>
 				</div>
-			</a> <a href="<%=basePath%>home/forgetPasswordOne.jsp">
+			</a> 
+			
+			<a href="<%=basePath%>home/forgetPasswordOne.jsp">
 				<div class="cell-item" style="margin-top: 12px">
 					<div class="cell-left">忘记密码</div>
 					<div class="cell-right cell-arrow"></div>
 				</div>
-			</a> <a href="<%=basePath%>home/modifyPassword.jsp">
+			</a> 
+			<a href="<%=basePath%>home/modifyPassword.jsp">
 				<div class="cell-item">
 					<div class="cell-left">修改密码</div>
 					<div class="cell-right cell-arrow"></div>
@@ -105,6 +108,13 @@
 					<div class="cell-right cell-arrow"></div>
 				</div>
 			</a>
+			
+			<a href="<%=basePath%>notice!customerNotice.action">
+				<div class="cell-item" style="margin-top: 12px">
+					<div class="cell-left">系统消息</div>
+					<div class="cell-right cell-arrow"></div>
+				</div>
+			</a> 
 		</div>
 		<div class="dialog">
 			<div class="dialog_bg"></div>

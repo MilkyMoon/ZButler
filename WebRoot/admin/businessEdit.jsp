@@ -61,7 +61,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Form Elements</h3>
+							<h3>商家管理|商家信息编辑</h3>
 						</div>
 
 						<%-- <div class="title_right">
@@ -96,13 +96,13 @@
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
 													class="fa fa-chevron-up"></i></a></li>
-											<li class="dropdown"><a href="#" class="dropdown-toggle"
+							<!-- 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 												data-toggle="dropdown" role="button" aria-expanded="false"><i
 													class="fa fa-wrench"></i></a>
 												<ul class="dropdown-menu" role="menu">
 													<li><a href="#">Settings 1</a></li>
 													<li><a href="#">Settings 2</a></li>
-												</ul></li>
+												</ul></li> -->
 											<li><a class="close-link"><i class="fa fa-close"></i></a>
 											</li>
 										</ul>

@@ -26,21 +26,24 @@
 <!-- NProgress -->
 <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
 <!-- jQuery custom content scroller -->
-<link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+<link
+	href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+	rel="stylesheet" />
 <!-- iCheck -->
 <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
 <!-- Custom Theme Style -->
 <link href="./build/css/custom.min.css" rel="stylesheet">
 <style type="text/css">
-	.page-form{
-		width:172px;
-		margin:20px 0;
-		float:right;
-	}
-	.page-form span{
-		line-height:32px;
-	}
+.page-form {
+	width: 172px;
+	margin: 20px 0;
+	float: right;
+}
+
+.page-form span {
+	line-height: 32px;
+}
 </style>
 </head>
 
@@ -58,11 +61,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>
-								<a href="notice_add">
-									<button type="button" class="btn btn-success btn-lg">推送消息</button>
-								</a>
-							</h3>
+							<h3>推送消息</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -76,12 +75,12 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										消息管理 <small>消息推送</small>
+										消息管理 <small>留言管理</small>
 									</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-						<!-- 				<li class="dropdown"><a href="#" class="dropdown-toggle"
+										<!-- 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
@@ -100,12 +99,12 @@
 											<thead>
 												<tr class="headings">
 													<th>
-														<th><input type="checkbox" id="check-all" class="flat" /></th>
+													<th><input type="checkbox" id="check-all" class="flat" /></th>
 													</th>
 													<th class="column-title">标题</th>
 													<th class="column-title">详细内容</th>
-													<th class="column-title">发布者</th>
-													<th class="column-title">时间</th>
+													<th class="column-title">类型</th>
+													<th class="column-title">留言时间</th>
 													<th class="column-title no-link last">操作</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
 														style="color:#fff; font-weight:500;">Bulk Actions ( <span
@@ -118,28 +117,38 @@
 												<c:forEach var="root" items="${roots}">
 													<tr class="even pointer">
 														<td class="a-center ">
-															<th><input type="checkbox" class="flat" name="table_records" /></th>
+														<th><input type="checkbox" class="flat"
+															name="table_records" /></th>
 														</td>
+														<td>${root.mesTitle}</td>
+														<td>${root.mesContent}</td>
 														<td>
-														${root.title}
-														</td>
-														<td>
-														${root.content}
-														</td>
-														<td>
-														${root.publisher}
-														</td>
-														<td>
-														${root.time}
-														</td>
-														<td>
-															<a href="notice_del?id=${root.id}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+															<c:if test="${root.mesType==1}">
+															留言
+															</c:if>
+															<c:if test="${root.mesType==2}">
+															投诉
+															</c:if>
+															<c:if test="${root.mesType==3}">
+															询问
+															</c:if>
+															<c:if test="${root.mesType==4}">
+															售后
+															</c:if>
+															<c:if test="${root.mesType==5}">
+															求购
+															</c:if>
+															</td>
+														<td>${root.mesTime}</td>
+														<td><a href="message_delMessage?mesId=${root.mesId}"
+															class="btn btn-danger btn-xs"><i
+																class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
-										
+
 									</div>
 								</div>
 							</div>
@@ -148,63 +157,74 @@
 					<div class="row">
 						<form action="notice_selectAll">
 							<div class="col-sm-5">
-								<div class="dataTables_info" id="datatable-checkbox_info" role="status" aria-live="polite" style="margin: 20px 0;height: 32px;line-height: 32px;">
-									当前显示${(page.currentPage-1)*page.everyPage+1} ~  
+								<div class="dataTables_info" id="datatable-checkbox_info"
+									role="status" aria-live="polite"
+									style="margin: 20px 0;height: 32px;line-height: 32px;">
+									当前显示${(page.currentPage-1)*page.everyPage+1} ~
 									<c:if test="${page.hasNextPage}">${page.currentPage*page.everyPage}</c:if>
-									<c:if test="${!page.hasNextPage}">${page.totalCount}</c:if>条记录（&nbsp;&nbsp;共${page.totalCount}条记录,共${page.totalPage}页&nbsp;&nbsp;）
+									<c:if test="${!page.hasNextPage}">${page.totalCount}</c:if>
+									条记录（&nbsp;&nbsp;共${page.totalCount}条记录,共${page.totalPage}页&nbsp;&nbsp;）
 								</div>
 							</div>
 							<div class="col-sm-7">
 								<div class="input-group page-form" style="float: right;">
-									<span style="float:left;padding:0 5px">跳转到</span>
-									<input type="text" name="pageNow" value="${page.currentPage}" class="form-control" style="text-align:center;width:42px;padding:5px">
-									<span style="float:right;padding:0 5px">页</span>
-		                            <span class="input-group-btn">
-	                                    <button type="submit" class="btn btn-primary">Go!</button>
-	                                </span>
-		                        </div>
-								<div class="dataTables_paginate paging_simple_numbers" id="datatable-checkbox_paginate">
+									<span style="float:left;padding:0 5px">跳转到</span> <input
+										type="text" name="pageNow" value="${page.currentPage}"
+										class="form-control"
+										style="text-align:center;width:42px;padding:5px"> <span
+										style="float:right;padding:0 5px">页</span> <span
+										class="input-group-btn">
+										<button type="submit" class="btn btn-primary">Go!</button>
+									</span>
+								</div>
+								<div class="dataTables_paginate paging_simple_numbers"
+									id="datatable-checkbox_paginate">
 									<ul class="pagination">
 										<c:if test="${page.hasPrePage}">
-											<li class="paginate_button previous" id="datatable-checkbox_previous">
-												<a href="notice_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}" data-dt-idx="0" tabindex="0">上一页</a>
-											</li>
-											<li class="paginate_button">
-												<a href="notice_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
-											</li>
+											<li class="paginate_button previous"
+												id="datatable-checkbox_previous"><a
+												href="notice_selectAll?pageNow=${page.currentPage-1}&everyPage=${page.everyPage}"
+												data-dt-idx="0" tabindex="0">上一页</a></li>
+											<li class="paginate_button"><a
+												href="notice_selectAll?pageNow=1&everyPage=${page.everyPage}"
+												data-dt-idx="1" tabindex="0">首页</a></li>
 										</c:if>
 										<c:if test="${!page.hasPrePage}">
-											<li class="paginate_button previous disabled" id="datatable-checkbox_previous">
-												<a href="#" data-dt-idx="0" tabindex="0">上一页</a>
-											</li>
-											<li class="paginate_button active">
-												<a href="notice_selectAll?pageNow=1&everyPage=${page.everyPage}" data-dt-idx="1" tabindex="0">首页</a>
-											</li>
+											<li class="paginate_button previous disabled"
+												id="datatable-checkbox_previous"><a href="#"
+												data-dt-idx="0" tabindex="0">上一页</a></li>
+											<li class="paginate_button active"><a
+												href="notice_selectAll?pageNow=1&everyPage=${page.everyPage}"
+												data-dt-idx="1" tabindex="0">首页</a></li>
 										</c:if>
-										
+
 										<c:if test="${page.hasNextPage}">
-											<li class="paginate_button">
-												<a href="notice_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
-											</li>
+											<li class="paginate_button"><a
+												href="notice_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}"
+												data-dt-idx="3" tabindex="0">尾页</a></li>
 											<li class="paginate_button next" id="datatable-checkbox_next">
-												<a href="notice_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}" data-dt-idx="4" tabindex="0">下一页</a>
+												<a
+												href="notice_selectAll?pageNow=${page.currentPage+1}&everyPage=${page.everyPage}"
+												data-dt-idx="4" tabindex="0">下一页</a>
 											</li>
 										</c:if>
 										<c:if test="${!page.hasNextPage}">
-											<li class="paginate_button active">
-												<a href="notice_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}" data-dt-idx="3" tabindex="0">尾页</a>
-											</li>
-											<li class="paginate_button next disabled" id="datatable-checkbox_next">
-												<a href="#" data-dt-idx="4" tabindex="0">下一页</a>
-											</li>
+											<li class="paginate_button active"><a
+												href="notice_selectAll?pageNow=${page.totalPage}&everyPage=${page.everyPage}"
+												data-dt-idx="3" tabindex="0">尾页</a></li>
+											<li class="paginate_button next disabled"
+												id="datatable-checkbox_next"><a href="#"
+												data-dt-idx="4" tabindex="0">下一页</a></li>
 										</c:if>
 									</ul>
 								</div>
 								<div class="input-group page-form">
-									<span style="float:left;padding:0 5px">每页显示</span>
-									<input type="text" value="${page.everyPage}" name="everyPage" class="form-control" style="text-align:center;width:42px;padding:5px">
-									<span style="padding:0 5px">条数据</span>
-		                        </div>
+									<span style="float:left;padding:0 5px">每页显示</span> <input
+										type="text" value="${page.everyPage}" name="everyPage"
+										class="form-control"
+										style="text-align:center;width:42px;padding:5px"> <span
+										style="padding:0 5px">条数据</span>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -227,7 +247,8 @@
 	<!-- NProgress -->
 	<script src="./vendors/nprogress/nprogress.js"></script>
 	<!-- jQuery custom content scroller -->
-	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script
+		src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- iCheck -->
 	<script src="./vendors/iCheck/icheck.min.js"></script>
 

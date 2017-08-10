@@ -68,7 +68,6 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>代理商管理<small>代理商基本信息管理</small></h2>
-                    
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">

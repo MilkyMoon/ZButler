@@ -17,7 +17,7 @@
             <column name="config_key" length="20" />
         </property>
         <property name="configValue" type="java.lang.String">
-            <column name="config_value" length="65535" />
+            <column name="config_value" />
         </property>
     </class>
 </hibernate-mapping>

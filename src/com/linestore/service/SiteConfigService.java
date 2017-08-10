@@ -9,5 +9,9 @@ public interface SiteConfigService {
 
 	public void selectAdvConfig(String configName);
 
+	public void delCusConfig(int id);
+
 	public void updateCusConfig(SiteConfig sc);
+
+	public void addCusConfig(SiteConfig siteConfig);
 }

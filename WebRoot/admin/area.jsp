@@ -80,7 +80,7 @@
 									<div class="input-group">
 										<input type="text" class="form-control" name="keywords" placeholder="输入地区 ..."> 	
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="submit">Go!</button>
+											<button class="btn btn-default" type="submit">搜索</button>
 										</span>
 									</div>
 								</div>
@@ -101,7 +101,6 @@
 									<h2>
 										平台用户管理 <small>管理员基本信息管理</small>
 									</h2>
-									
 									<div class="clearfix"></div>
 								</div>
 
