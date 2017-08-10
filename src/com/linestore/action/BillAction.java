@@ -187,12 +187,14 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		BigDecimal day = new BigDecimal(0);
 		BigDecimal month = new BigDecimal(0);
 		BigDecimal year = new BigDecimal(0);
+		BigDecimal total = new BigDecimal(0);
 		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 		Area area = thu.getArea();
 		if (area.getAreId() == 1) {
 			day = billService.todayMoney();
 			month = billService.monthMoney();
 			year = billService.yearMoney();
+			total = billService.totalMoney();
 		}
 		List<Bill> bills = billService.queryByArea(area.getAreId());
 		int type = -1;
@@ -223,6 +225,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 				if (isCurrYear(date)) {
 					year = year.add(bills.get(i).getBilCityMoney());
 				}
+				total = total.add(bills.get(i).getBilCityMoney());
 				break;
 			case 1:
 				if (isToday(date)) {
@@ -234,6 +237,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 				if (isCurrYear(date)) {
 					year = year.add(bills.get(i).getBilCountyMoney());
 				}
+				total = total.add(bills.get(i).getBilCityMoney());
 				break;
 			case 2:
 				if (isToday(date)) {
@@ -245,6 +249,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 				if (isCurrYear(date)) {
 					year = year.add(bills.get(i).getBilPropertyMoney());
 				}
+				total = total.add(bills.get(i).getBilCityMoney());
 				break;
 			case 3:
 				if (isToday(date)) {
@@ -256,6 +261,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 				if (isCurrYear(date)) {
 					year = year.add(bills.get(i).getBilProvinceMoney());
 				}
+				total = total.add(bills.get(i).getBilCityMoney());
 				break;
 			default:
 				break;
@@ -264,13 +270,20 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		ActionContext.getContext().getSession().put("Year", year);
 		ActionContext.getContext().getSession().put("Month", month);
 		ActionContext.getContext().getSession().put("Today", day);
+		ActionContext.getContext().getSession().put("Total", total);
 		return "gotoReport";
 	}
 	
 	public String query() {
+		Map<String, Object> reu = (Map<String, Object>) ActionContext.getContext().get("request");
 		BigDecimal profit = new BigDecimal(0);
+		
 		String[] sTime = startTime.split("/");
 		String[] eTime = endTime.split("/");
+		int toInt = Integer.valueOf(eTime[1]);
+		reu.put("dateOne", sTime[2] + "-" + sTime[0] + "-" + sTime[1]);
+		reu.put("dateTwo", eTime[2] + "-" + eTime[0] + "-" + eTime[1]);
+		eTime[1] = String.valueOf(toInt + 1);
 		startTime = sTime[2] + "-" + sTime[0] + "-" + sTime[1];
 		endTime = eTime[2] + "-" + eTime[0] + "-" + eTime[1];
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -282,6 +295,9 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (!dateOne.before(dateTwo)) {
+			reu.put("seachError", "seachError");
 		}
 		List<Bill> bills = billService.queryToDate(dateOne, dateTwo);
 		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
@@ -317,8 +333,6 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 				profit = profit.add(bills.get(i).getBilProvinceMoney());
 				break;
 			case -1:
-				System.out.println(profit);
-				System.out.println(profit);
 				profit = profit.add(bills.get(i).getBilZongMoney());
 				break;
 			default:
@@ -326,11 +340,8 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 				break;
 			}
 		}
-		Map<String, Object> reu = (Map<String, Object>) ActionContext.getContext().get("request");
-		System.out.println(profit);
+		
 		reu.put("profit", profit);
-		reu.put("dateOne", dateOne);
-		reu.put("dateTwo", dateTwo);
 		return "gotoReport";
 	}
 	

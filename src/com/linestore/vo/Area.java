@@ -1,5 +1,6 @@
 package com.linestore.vo;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ public class Area implements java.io.Serializable {
 	private Float areaScale;
 	private Float areaScaleTwo;
 	private Integer areaWay;
+	private BigDecimal areaTotalMoney;
 	private Set billsForThuCountyId = new HashSet(0);
 	private Set thinkUsers = new HashSet(0);
 	private Set billsForThuProvinceId = new HashSet(0);
@@ -41,12 +43,23 @@ public class Area implements java.io.Serializable {
 		this.areaScale = are.getAreaScale();
 		this.areaScaleTwo = are.getAreaScaleTwo();
 		this.areaWay = are.getAreaWay();
+		this.areaTotalMoney = are.getAreaTotalMoney();
 	}
 
 	/** full constructor */
-	public Area(Integer pid, String area, String desction, Integer status, Float areaScale, Float areaScaleTwo,
-			Integer areaWay, Set billsForThuCountyId, Set thinkUsers, Set billsForThuProvinceId,
-			Set billsForThuPropertyId, Set businesses, Set billsForThuCityId) {
+	
+
+	// Property accessors
+
+	public Integer getPid() {
+		return this.pid;
+	}
+
+	public Area(Integer areId, Integer pid, String area, String desction, Integer status, Float areaScale,
+			Float areaScaleTwo, Integer areaWay, BigDecimal areaTotalMoney, Set billsForThuCountyId, Set thinkUsers,
+			Set billsForThuProvinceId, Set billsForThuPropertyId, Set businesses, Set billsForThuCityId) {
+		super();
+		this.areId = areId;
 		this.pid = pid;
 		this.area = area;
 		this.desction = desction;
@@ -54,6 +67,7 @@ public class Area implements java.io.Serializable {
 		this.areaScale = areaScale;
 		this.areaScaleTwo = areaScaleTwo;
 		this.areaWay = areaWay;
+		this.areaTotalMoney = areaTotalMoney;
 		this.billsForThuCountyId = billsForThuCountyId;
 		this.thinkUsers = thinkUsers;
 		this.billsForThuProvinceId = billsForThuProvinceId;
@@ -62,11 +76,19 @@ public class Area implements java.io.Serializable {
 		this.billsForThuCityId = billsForThuCityId;
 	}
 
-	// Property accessors
 
-	public Integer getPid() {
-		return this.pid;
+
+	public BigDecimal getAreaTotalMoney() {
+		return areaTotalMoney;
 	}
+
+
+
+	public void setAreaTotalMoney(BigDecimal areaTotalMoney) {
+		this.areaTotalMoney = areaTotalMoney;
+	}
+
+
 
 	public Integer getAreId() {
 		return areId;
