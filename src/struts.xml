@@ -163,6 +163,10 @@
 			</result>
 
 		</action>
+		
+		<action name="pictures_*" class="com.linestore.action.PicturesAction"
+			method="{1}">
+		</action>
 
 		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction"
 			method="{1}">
