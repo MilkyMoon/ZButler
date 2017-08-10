@@ -106,6 +106,10 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		request.put("js", "<script>YDUI.dialog.alert('申请成功！');</script>");
 		return "smallMoney";
 	}
+	
+	public String piontToChange() {
+		return "gotoptc";
+	}
 
 	private String getOrd(Date date) {
 		int max = 1000;
@@ -114,6 +118,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		String out_trade_no = date.getTime() + "G" + random.nextInt(max) % (max - min + 1);
 		return out_trade_no;
 	}
+	
 
 	public CtaTradingService getCtaTradingService() {
 		return ctaTradingService;
