@@ -204,6 +204,16 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		return null;
 	}
 	
+	public BigDecimal totalMoney() {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("select sum(bilZongMoney) from Bill");
+		List<BigDecimal> money = query.list();
+		if (money.size() > 0) {
+			return money.get(0);
+		}
+		return null;
+	}
+	
 	public List<Bill> queryToDate(Date dateOne, Date dateTwo) {
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("from Bill where bilDate >= ? and bilDate <= ?");

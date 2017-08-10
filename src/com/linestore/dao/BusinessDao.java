@@ -29,6 +29,8 @@ public interface BusinessDao {
 	
 	public List<Business> querySmall(String city, int small);
 	
+	public List<Business> queryCate(String city, int small);
+	
 	public void update(Business business);
 	
 	public List<Business> queryByCusId(int cusId);

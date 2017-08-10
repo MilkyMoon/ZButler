@@ -21,5 +21,7 @@ public void addArea(Area area);
 	public Area queryById(int id);
 	
 	public List<Area> selectByKey(String keywords);
+	
+	public void updateMoney(String money, int id);
 
 }

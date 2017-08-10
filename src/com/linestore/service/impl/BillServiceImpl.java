@@ -98,4 +98,9 @@ public class BillServiceImpl implements BillService {
 	public List<Bill> queryToDate(Date dateOne, Date dateTwo) {
 		return billDao.queryToDate(dateOne, dateTwo);
 	}
+
+	@Override
+	public BigDecimal totalMoney() {
+		return billDao.totalMoney();
+	}
 }

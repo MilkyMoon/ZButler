@@ -16,6 +16,9 @@
         <property name="area" type="java.lang.String">
             <column name="area" length="50" />
         </property>
+        <property name="areaTotalMoney" type="java.math.BigDecimal">
+            <column name="area_total_money" precision="20" scale="12"/>
+        </property>
         <property name="desction" type="java.lang.String">
             <column name="desction" length="65535" />
         </property>

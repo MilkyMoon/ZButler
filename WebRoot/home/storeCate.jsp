@@ -23,41 +23,62 @@
 
 <body>
 	<div class="fenlei">
-		<div class="m-cell">
-			<div class="cell-item">
-				<label class="cell-right"> <select class="cell-select"
-					id="selectCate">
-						<c:forEach var="cate" items="${cates}" varStatus="i">
-							<c:if test="${child eq -1}">
-								<c:if test="${i.index eq 0}">
-									<option value="${cate.calId}" selected="selected">${cate.calName}</option>
-								</c:if>
-								<c:if test="${i.index ne 0}">
-									<option value="${cate.calId}">${cate.calName}</option>
-								</c:if>
-							</c:if>
-							<c:if test="${child ne -1}">
-								<c:if test="${cate.calId eq child}">
-									<option value="${cate.calId}" selected="selected">${cate.calName}</option>
-								</c:if>
-								<c:if test="${cate.calId ne child}">
-									<option value="${cate.calId}">${cate.calName}</option>
-								</c:if>
-							</c:if>
-						</c:forEach>
-				</select>
-				</label>
+
+		<div class="fenlei_button">
+			<div class="fenlei_dialog_out">
+				<span>全部分类&nbsp;</span> <i class="fa fa-caret-down"></i>
+			</div>
+			<div>
+				<span>智能排序&nbsp;</span> <i class="fa fa-caret-down"></i>
 			</div>
 		</div>
-		<div class="fenleiList">
+		<div class="fenlei_dialog">
+			<div class="fenlei_dialog_content">
+				<div class="fenlei_dialog_big">
+					<c:forEach var="ca" items="${cateLines}" varStatus="i">
+						<c:if test="${i.index == 0}">
+							<span class="active" onclick="queryCate($(this))"
+								cate="${ca.calId}"> ${ca.calName}</span>
+						</c:if>
+						<c:if test="${i.index != 0}">
+							<span onclick="queryCate($(this))" cate="${ca.calId}">${ca.calName}</span>
+						</c:if>
+					</c:forEach>
+					<!-- <span class="active">全部</span>
+	                <span>没事</span>
+	                <span>购物</span>
+	                <span>医药</span>
+	                <span>没事</span>
+	                <span>医药</span> -->
+				</div>
+				<div class="fenlei_dialog_small" id="smallCate">
+					<c:forEach var="cas" items="${cateLine}" varStatus="i">
+
+						<span onclick="queryStore($(this))" cate="${cas.calId}">${cas.calName}</span>
+
+					</c:forEach>
+					<!-- <span>地方菜系</span>
+	                <span>咖啡酒吧</span>
+	                <span>甜点音频</span>
+	                <span>甜点音频</span>
+	                <span>其他没事</span>
+	                <span>甜点音频</span>
+	                <span>其他没事</span> -->
+				</div>
+			</div>
+		</div>
+		<div class="fenleiList" id="close">
 			<c:forEach var="bus" items="${buss}">
-				<a href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
+				<a
+					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}">
 					<div class="fenleiItem">
 						<img src="${bus.busOrgUrl}" />
 						<div class="fenleiItem_content">
 							<div class="fenleiItem_content_title">
 								<div class="fenleiItem_name">${bus.busShopName}</div>
-								<span class="fenleiItem_mark"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
+								<span class="fenleiItem_mark"><fmt:formatNumber
+										type="number" maxFractionDigits="0"
+										value="${bus.busScalePoints * 100}" />%</span>
 							</div>
 							<div>${name}</div>
 							<div>
@@ -85,8 +106,58 @@
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/score.js"></script>
 <script type="text/javascript">
-	$("#selectCate").change(function(){
-		window.location.href = "<%=basePath%>offlineStore!queryCate.action?cate=${cate}&child="+$(this).val();
+	$('.fenlei_button>div').click(function() {
+		if ($(this).find('i').attr('class') === 'fa fa-caret-down') {
+			$('.fenlei_button').find('i').attr('class', 'fa fa-caret-down');
+			$(this).find('i').attr('class', 'fa fa-caret-up');
+		} else {
+			$(this).find('i').attr('class', 'fa fa-caret-down')
+		}
 	});
+	$('.fenlei_dialog_out').click(function() {
+		if ($('.fenlei_dialog').css('display') === 'none') {
+			$('.fenlei_dialog').css('display', 'block');
+		} else {
+			$('.fenlei_dialog').css('display', 'none');
+		}
+	});
+	$('.fenlei_dialog_big>span').click(function() {
+		$('.fenlei_dialog_big').find('span').attr('class', '');
+		$(this).attr('class', 'active');
+	})
+
+	function queryCate(delLabel) {
+		console.log(delLabel.attr("cate"));
+		var pid = delLabel.attr("cate");
+		$.post("<%=basePath%>querySmallJson",
+			{
+				pid : pid,
+			},
+			function(data) {
+				var obj = JSON.parse(data);
+				opString = null;
+				$("#smallCate").children().remove();
+				for (var index = 0; index < obj.smalls.length; index++) {
+					var opString = '<span cate=' + obj.smalls[index].calId + ' onclick="queryStore($(this))">' + obj.smalls[index].calName + '</span>';
+					$("#smallCate").append(opString);
+				}
+
+			});
+	}
+	function queryStore(searchOne) {
+		console.log(searchOne.attr("cate"));
+		var queryStoreId = searchOne.attr("cate");
+		window.location.href = '<%=basePath%>offlineStore_queryCate?cate=${cate}&child=' + queryStoreId;
+	}
+
+
+	/* $('body').click(function(e){
+		console.log(e.target);
+		var MyTarget = e.target;
+		if (!MyTarget.is($('.fenlei_dialog_content'))) {
+			$('.fenlei_dialog').css('display', 'none');
+		}
+	}); */
+	
 </script>
 </html>

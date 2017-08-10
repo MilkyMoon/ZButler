@@ -144,5 +144,10 @@ public class BusinessServiceImpl implements BusinessService{
 		// TODO Auto-generated method stub
 		return businessDao.selectStatusTwo(status, statustwo);
 	}
+
+	@Override
+	public List<Business> queryCate(String city, int small) {
+		return businessDao.queryCate(city, small);
+	}
 	
 }
