@@ -81,13 +81,13 @@
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
+<!-- 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="#">Settings 1</a></li>
 												<li><a href="#">Settings 2</a></li>
-											</ul></li>
+											</ul></li> -->
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
@@ -126,6 +126,7 @@
 																</c:if>
 															</c:forEach>
 														</select>
+														<p style="margin-top:10px;"><code>注意：</code>添加<code>物业</code>时请确保物业为第四级(省--市--县--物业),直辖市尤其注意。</p>
 													</div>
 												</div>
 												

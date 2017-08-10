@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
+                      <button class="btn btn-default" type="button">搜索</button>
                     </span>
                   </div>
                 </div>

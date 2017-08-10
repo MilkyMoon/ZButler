@@ -88,13 +88,13 @@
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
+									<!-- 	<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="#">Settings 1</a></li>
 												<li><a href="#">Settings 2</a></li>
-											</ul></li>
+											</ul></li> -->
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
@@ -136,6 +136,23 @@
 												</select>
 											</div>
 										</div>
+										
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">角&nbsp;&nbsp;&nbsp;&nbsp;色</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<select class="form-control" name="group.grpId">
+													<c:forEach var="roots" items="${listgroup}" varStatus="i">
+														<c:if  test="${roots.grpId == listInfo.group.grpId}">
+															<option value="${roots.grpId}" selected="selected">${roots.grpTitle}</option>
+														</c:if>
+														<c:if  test="${roots.grpId != listInfo.group.grpId}">
+															<option value="${roots.grpId}">${roots.grpTitle}</option>
+														</c:if>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+										
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">

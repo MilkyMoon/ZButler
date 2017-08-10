@@ -15,7 +15,7 @@ public class ReturnUpdateHql {
 
 		String idString = null;
 
-		String hql = "update " + c.getSimpleName() + " set ";
+		String hql = "update " + c.getSimpleName() + " my set ";
 
 		Field[] fs = c.getDeclaredFields();
 
@@ -34,25 +34,25 @@ public class ReturnUpdateHql {
 					case "Integer":
 						if (flag) {
 							flag = false;
-							hql += fs[i].getName() + "=" + m.invoke(t);
+							hql += "my." + fs[i].getName() + "=" + m.invoke(t);
 						} else {
-							hql += ", " + fs[i].getName() + "=" + m.invoke(t);
+							hql += ", my." + fs[i].getName() + "=" + m.invoke(t);
 						}
 						break;
 					case "Float":
 						if (flag) {
 							flag = false;
-							hql += fs[i].getName() + "=" + m.invoke(t);
+							hql += "my." + fs[i].getName() + "=" + m.invoke(t);
 						} else {
-							hql += ", " + fs[i].getName() + "=" + m.invoke(t);
+							hql += ", my." + fs[i].getName() + "=" + m.invoke(t);
 						}
 						break;
 					case "String":
 						if (flag) {
 							flag = false;
-							hql += fs[i].getName() + "='" + (String) m.invoke(t) + "'";
+							hql += "my." + fs[i].getName() + "='" + (String) m.invoke(t) + "'";
 						} else {
-							hql += ", " + fs[i].getName() + "='" + (String) m.invoke(t) + "'";
+							hql += ", my." + fs[i].getName() + "='" + (String) m.invoke(t) + "'";
 						}
 						break;
 					case "Date":
@@ -60,9 +60,9 @@ public class ReturnUpdateHql {
 						String date = ft.format(m.invoke(t));
 						if (flag) {
 							flag = false;
-							hql += fs[i].getName() + "='" + date + "'";
+							hql += "my." +fs[i].getName() + "='" + date + "'";
 						} else {
-							hql += ", " + fs[i].getName() + "='" + date + "'";
+							hql += ", my." + fs[i].getName() + "='" + date + "'";
 						}
 						break;
 					default:
@@ -82,9 +82,9 @@ public class ReturnUpdateHql {
 						System.out.println(mOther.invoke(m.invoke(t)));
 						if (flag) {
 							flag = false;
-							hql += fs[i].getName() + "." + idStringOther + "=" + mOther.invoke(m.invoke(t)) + "";
+							hql += "my." +fs[i].getName() + "." + idStringOther + "=" + mOther.invoke(m.invoke(t)) + "";
 						} else {
-							hql += ", " + fs[i].getName() + "." + idStringOther + "=" + mOther.invoke(m.invoke(t)) + "";
+							hql += ", my." + fs[i].getName() + "." + idStringOther + "=" + mOther.invoke(m.invoke(t)) + "";
 						}
 					}
 				}

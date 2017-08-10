@@ -75,7 +75,7 @@
 										<input type="text" class="form-control" name="grpTitle"
 											placeholder="请输入角色名称"> <span
 											class="input-group-btn">
-											<button class="btn btn-default" type="submit">Go!</button>
+											<button class="btn btn-default" type="submit">搜索</button>
 										</span>
 									</div>
 								</div>
@@ -99,13 +99,13 @@
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
+<!-- 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="#">Settings 1</a></li>
 												<li><a href="#">Settings 2</a></li>
-											</ul></li>
+											</ul></li> -->
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
@@ -149,7 +149,7 @@
 														<td>
 															<a href="group_read?grpId=${gro.grpId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															<%-- <a href="group_edit?grpId=${gro.grpId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp; --%>
-															<a href="group_delete?grpId=${gro.grpId}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+															<a href="group_delete?grpId=${gro.grpId}" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
 														</td>
 													</tr>
 												</c:forEach>
@@ -181,7 +181,7 @@
 										style="text-align:center;width:42px;padding:5px"> <span
 										style="float:right;padding:0 5px">页</span> <span
 										class="input-group-btn">
-										<button type="submit" class="btn btn-primary">Go!</button>
+										<button type="submit" class="btn btn-primary">搜索</button>
 									</span>
 								</div>
 								<div class="dataTables_paginate paging_simple_numbers"
@@ -261,5 +261,16 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>
+	
+	<script type="text/javascript">
+		function del(msg) { 
+		//    var msg = "您真的确定要删除吗？\n\n删除后将不能恢复!请确认！"; 
+		    if (confirm(msg)==true){ 
+		            return true; 
+		        }else{ 
+		            return false; 
+		    }
+		} 
+	</script>
 </body>
 </html>

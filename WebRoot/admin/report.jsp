@@ -96,13 +96,13 @@
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
+<!-- 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="#">Settings 1</a></li>
 												<li><a href="#">Settings 2</a></li>
-											</ul></li>
+											</ul></li> -->
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
@@ -207,36 +207,29 @@
 								<div class="x_content">
 									<div class="table-responsive">
 										<c:set var="now" value="<%=new java.util.Date()%>" />
-										<p class="lead">
-											收益详情
-											<fmt:formatDate pattern="MM/dd/yyyy" value="${now}" />
-										</p>
-										<div class="table-responsive">
-											<table class="table">
-												<tbody>
-													<tr>
-														<th style="width:50%">当日收益:</th>
-														<td>￥<fmt:formatNumber type="number"
-																maxFractionDigits="10" value="${Today}" /></td>
-													</tr>
-													<tr>
-														<th>当月收益:</th>
-														<td>￥<fmt:formatNumber type="number"
-																maxFractionDigits="10" value="${Month}" /></td>
-													</tr>
-													<tr>
-														<th>当年收益:</th>
-														<td>￥<fmt:formatNumber type="number"
-																maxFractionDigits="10" value="${Year}" /></td>
-													</tr>
-													<tr>
-														<th>累计收益:</th>
-														<td>￥<fmt:formatNumber type="number"
-																maxFractionDigits="10" value="${Total}" /></td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
+										<p class="lead">收益详情 <fmt:formatDate pattern="MM/dd/yyyy" value="${now}" /></p>
+				                          <div class="table-responsive">
+				                            <table class="table">
+				                              <tbody>
+				                                <tr>
+				                                  <th style="width:50%">本日收益:</th>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Today}" /></td>
+				                                </tr>
+				                                <tr>
+				                                  <th>本月收益:</th>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Month}" /></td>
+				                                </tr>
+				                                <tr>
+				                                  <th>本年收益:</th>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
+				                                </tr>
+				                                <tr>
+				                                  <th>累计收益:</th>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
+				                                </tr>
+				                              </tbody>
+				                            </table>
+				                          </div>
 
 									</div>
 								</div>

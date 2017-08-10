@@ -88,13 +88,13 @@
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
+<!-- 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="#">Settings 1</a></li>
 												<li><a href="#">Settings 2</a></li>
-											</ul></li>
+											</ul></li> -->
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
@@ -102,7 +102,7 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form action="thinkUser_save" method="post" class="form-horizontal form-label-left">
+									<form action="thinkUser_save" method="post" class="form-horizontal form-label-left" autocomplete="off">
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">姓&nbsp;&nbsp;&nbsp;&nbsp;名</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
@@ -112,19 +112,35 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">用户名</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuUsername" placeholder="请输入管理员用户名">
+												<input type="text" class="form-control" name="thuUsername" value="请输入管理员用户名" placeholder="请输入管理员用户名" autocomplete="off">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="password" class="form-control" name="thuPassword" placeholder="请输入管理员密码">
+												<input type="password" class="form-control" name="thuPassword" placeholder="请输入管理员密码" autocomplete="off">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">地&nbsp;&nbsp;&nbsp;&nbsp;区</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control" name="thuArea" placeholder="请输入管理员所属地区">
+												<select class="form-control" name="area.areId" id="busCateId">
+													<c:forEach var="root" items="${list}" varStatus="i">
+															<option value="${root.areId}">${root.area}</option>
+													</c:forEach>
+												</select>
+												<p style="margin-top:10px;"><code>注意：</code>此地区请在<code>基础数据管理</code>下的<code>地区管理</code>中添加</p>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">角&nbsp;&nbsp;&nbsp;&nbsp;色</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<select class="form-control" name="group.grpId">
+													<c:forEach var="roots" items="${listgroup}" varStatus="i">
+															<option value="${roots.grpId}">${roots.grpTitle}</option>
+													</c:forEach>
+												</select>
 											</div>
 										</div>
 										

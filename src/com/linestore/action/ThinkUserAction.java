@@ -16,12 +16,14 @@ import org.apache.struts2.ServletActionContext;
 
 import com.linestore.service.AreaService;
 import com.linestore.service.CatetoryService;
+import com.linestore.service.GroupService;
 import com.linestore.service.ThinkUserService;
 import com.linestore.util.Page;
 import com.linestore.util.PageUtil;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Area;
 import com.linestore.vo.Catetory;
+import com.linestore.vo.Group;
 import com.linestore.vo.GroupAccess;
 import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
@@ -37,6 +39,8 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	private AreaService areaService;
 	private Integer userId;
 	List<Area> areaList = new ArrayList<Area>();
+	private Group group = new Group();
+	private GroupService groupService;
 	
 	private String pageNow = "1";
 	private String everyPage = "10";
@@ -76,11 +80,17 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		
 		areaResult = areaService.queryById(userId);
 		areaService.queryArea(list, userId, 1);
+		
+//		listgroup
+		
+		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		List<Group> listgroup = groupService.queryAll(thu.getThuId());
 
 		listResalut.add(areaResult);
 		listResalut.addAll(list);
 
 		ActionContext.getContext().getSession().put("list", listResalut);
+		ActionContext.getContext().getSession().put("listgroup", listgroup);
 		return "add";
 	}
 
@@ -123,6 +133,9 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 				|| thinkUser.getArea().getAreaScaleTwo() < 0) {
 			thinkUser.getArea().setAreaScaleTwo((float) 0);
 		}
+		
+		
+		
 		thinkUserService.add(thinkUser);
 		return "select";
 	}
@@ -257,6 +270,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		ActionContext.getContext().getSession().put("page", page);
 		ActionContext.getContext().getSession().put("list", listResault);
 
+		
 		return "selectAll";
 	}
 
@@ -360,7 +374,23 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
-	
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+	public GroupService getGroupService() {
+		return groupService;
+	}
+
+	public void setGroupService(GroupService groupService) {
+		this.groupService = groupService;
+	}
+
 //	public String viewImages() {  
 //        HttpServletResponse response = null;  
 //        ServletOutputStream out = null;  
@@ -391,7 +421,6 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 //        }  
 //        return null;  
 //    }
-	
 	
 
 }

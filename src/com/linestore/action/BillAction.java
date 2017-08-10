@@ -63,7 +63,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		String[] sTimeRigh = sTime[1].split("/");
 		
 		String timeMin = sTimeLeft[2] + "-" + sTimeLeft[0] + "-" + sTimeLeft[1];
-		String timeMax = sTimeRigh[2] + "-" + sTimeRigh[0] + "-" + sTimeRigh[1];
+		String timeMax = sTimeRigh[2] + "-" + sTimeRigh[0] + "-" + (Integer.parseInt(sTimeRigh[1])+1);
 		
 		System.out.println(timeMin);
 		System.out.println(timeMax);

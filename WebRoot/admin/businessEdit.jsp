@@ -61,7 +61,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Form Elements</h3>
+							<h3>商家管理|商家信息编辑</h3>
 						</div>
 
 						<%-- <div class="title_right">
@@ -96,13 +96,13 @@
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
 													class="fa fa-chevron-up"></i></a></li>
-											<li class="dropdown"><a href="#" class="dropdown-toggle"
+							<!-- 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 												data-toggle="dropdown" role="button" aria-expanded="false"><i
 													class="fa fa-wrench"></i></a>
 												<ul class="dropdown-menu" role="menu">
 													<li><a href="#">Settings 1</a></li>
 													<li><a href="#">Settings 2</a></li>
-												</ul></li>
+												</ul></li> -->
 											<li><a class="close-link"><i class="fa fa-close"></i></a>
 											</li>
 										</ul>
@@ -229,6 +229,25 @@
 											</div>
 											
 											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营小类别</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<select class="form-control" name="busSmallCate"
+														id="busSmallCate">
+														<c:forEach var="root" items="${roots}">
+															<c:if
+																test="${root.calId ==  businessList.busSmallCate}">
+																<option value="${root.calId}" selected="selected">${root.calName}</option>
+															</c:if>
+															<c:if
+																test="${root.calId !=  businessList.busSmallCate}">
+																<option value="${root.calId}">${root.calName}</option>
+															</c:if>
+														</c:forEach>
+													</select>
+												</div>
+											</div>
+											
+											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">审核状态</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<div class="radio">
@@ -251,10 +270,10 @@
 													<select class="form-control" name="busThuId">
 														<option value="0" selected="selected">请指定物业</option>
 														<c:forEach var="list" items="${list}">
-															<c:if test="${list.areId ==  businessList.area.areaId}">
+															<c:if test="${list.areId ==  businessList.area.areId}">
 																<option value="${list.areId}" selected="selected">${list.area}</option>
 															</c:if>
-															<c:if test="${list.areId !=  businessList.area.areaId}">
+															<c:if test="${list.areId !=  businessList.area.areId}">
 																<option value="${list.areId}">${list.area}</option>
 															</c:if>
 														</c:forEach>
@@ -455,6 +474,43 @@
 		src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
 
 	<script type="text/javascript">
+		var pid = $("#busCateId").val();
+		if (pid != '') {
+			$.post("<%=basePath%>querySmallJson",
+				{
+					pid : pid,
+				},
+				function(data) {
+					var obj = JSON.parse(data);
+					opString = null;
+					$("#busSmallCate").children().remove();
+					for (var i = 0; i < obj.smalls.length; i++) {
+						var opString = '<option value="' + obj.smalls[i].calId + '">' + obj.smalls[i].calName + '</option>';
+						$("#busSmallCate").append(opString);
+					}
+				});
+		}
+	
+		$("#busCateId").change(function() {
+			var pid = $(this).val();
+			if (pid != '') {
+				$.post("<%=basePath%>querySmallJson",
+					{
+						pid : pid,
+					},
+					function(data) {
+						var obj = JSON.parse(data);
+						opString = null;
+						$("#busSmallCate").children().remove();
+						for (var i = 0; i < obj.smalls.length; i++) {
+							var opString = '<option value="' + obj.smalls[i].calId + '">' + obj.smalls[i].calName + '</option>';
+							$("#busSmallCate").append(opString);
+						}
+					});
+			}
+
+		});
+	
 		// 百度地图API功能
 /* 		var map = new BMap.Map("allmap");
 		var point = new BMap.Point(${businessList.baLatitude}, ${businessList.baLongitude});

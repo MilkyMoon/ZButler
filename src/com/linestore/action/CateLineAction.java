@@ -117,8 +117,13 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 	}
 
 	public String delete() {
-
-		cateLineService.delete(cateLine);
+		
+		try {
+			cateLineService.delete(cateLine);
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
 
 		return "select";
 	}

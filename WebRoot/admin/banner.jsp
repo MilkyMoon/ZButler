@@ -84,13 +84,13 @@
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
+<!-- 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-expanded="false"><i
 												class="fa fa-wrench"></i></a>
 											<ul class="dropdown-menu" role="menu">
 												<li><a href="#">Settings 1</a></li>
 												<li><a href="#">Settings 2</a></li>
-											</ul></li>
+											</ul></li> -->
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>
@@ -125,7 +125,7 @@
 														<td><img src="${root.configValue}" width="100px;" height="100px;"></td>
 														<td>${root.configKey}</td>
 														<td><a href="siteConfig_delBanner?id=${root.id}"
-															class="btn btn-danger btn-xs"><i
+															class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><i
 																class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
 														</td>
 													</tr>
@@ -164,5 +164,16 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>
+	
+	<script type="text/javascript">
+		function del(msg) { 
+		//    var msg = "您真的确定要删除吗？\n\n删除后将不能恢复!请确认！"; 
+		    if (confirm(msg)==true){ 
+		            return true; 
+		        }else{ 
+		            return false; 
+		    }
+		} 
+	</script>
 </body>
 </html>

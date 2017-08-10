@@ -88,7 +88,7 @@
 											<s:property value="busShopName" />
 											<small style="color:red">
 												<s:if test="%{#businessList.busStatus == 0}">
-                       								带审核
+                       								待审核
                       							</s:if> 
                       							<s:if test="%{#businessList.busStatus == 1}">
 													已通过
@@ -98,13 +98,13 @@
 										<ul class="nav navbar-right panel_toolbox">
 											<li><a class="collapse-link"><i
 													class="fa fa-chevron-up"></i></a></li>
-											<li class="dropdown"><a href="#" class="dropdown-toggle"
+<!-- 											<li class="dropdown"><a href="#" class="dropdown-toggle"
 												data-toggle="dropdown" role="button" aria-expanded="false"><i
 													class="fa fa-wrench"></i></a>
 												<ul class="dropdown-menu" role="menu">
 													<li><a href="#">Settings 1</a></li>
 													<li><a href="#">Settings 2</a></li>
-												</ul></li>
+												</ul></li> -->
 											<li><a class="close-link"><i class="fa fa-close"></i></a>
 											</li>
 										</ul>
@@ -211,18 +211,25 @@
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control" name="cateLine.calId"
 														id="busCateId" disabled="disabled">
-
+														<option value="${businessList.cateLine.calId}">${businessList.cateLine.calName}</option>
+													</select>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营小类别</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<select class="form-control" name="cateLine.calId"
+														id="busCateId" disabled="disabled">
 														<c:forEach var="root" items="${roots}">
-
 															<c:if
-																test="${root.calId ==  businessList.cateLine.calId}">
+																test="${root.calId ==  businessList.busSmallCate}">
 																<option value="${root.calId}" selected="selected">${root.calName}</option>
 															</c:if>
 															<c:if
-																test="${root.calId !=  businessList.cateLine.calId}">
+																test="${root.calId !=  businessList.busSmallCate}">
 																<option value="${root.calId}">${root.calName}</option>
 															</c:if>
-
 														</c:forEach>
 													</select>
 												</div>

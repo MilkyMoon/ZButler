@@ -428,9 +428,19 @@
 			<result name="CustConfig">websiteConfig.jsp</result>
 			<result name="SelectBanner">banner.jsp</result>
 			<result name="SUCCESS" type="redirectAction">siteConfig_SelectCustAdv</result>
-			<result name="saveCusConfig" type="redirectAction">siteConfig_selectCustoemrConfig</result>
-			<result name="selectFriendUrl" type="redirectAction">siteConfig_SelectFriendUrl</result>
-			<result name="selectBanner" type="redirectAction">siteConfig_selectBannerString</result>
+			<result name="saveCusConfig" type="redirectAction">siteConfig_selectCustoemrConfig
+			</result>
+			<result name="selectFriendUrl" type="redirectAction">siteConfig_SelectFriendUrl
+			</result>
+			<result name="selectBanner" type="redirectAction">siteConfig_selectBannerString
+			</result>
+		</action>
+		<action name="message_*" class="com.linestore.action.MessageAction"
+			method="{1}">
+			<result name="selectAll">adminMessage.jsp
+			</result>
+			<result name="select" type="redirectAction">message_selectAllMessage
+			</result>
 		</action>
 	</package>
 
