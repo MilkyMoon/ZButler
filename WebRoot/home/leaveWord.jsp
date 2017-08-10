@@ -43,24 +43,6 @@
 				</div>
 			</div>
 		</s:iterator>
-		<%-- 	<div class="leaveWordItem">
-			<div class="leaveWord_title">
-				<div>
-					留言：<span>张三</span>-<span>2017.07.05 09:02:48</span>
-				</div>
-				<a href="#">删除</a>
-			</div>
-			<div class="leaveWord_content">张三去李四家偷了王五放在赵刘那里的一百块</div>
-		</div>
-		<div class="leaveWordItem">
-			<div class="leaveWord_title">
-				<div>
-					留言：<span>张三</span>-<span>2017.07.05 09:02:48</span>
-				</div>
-				<a href="#">删除</a>
-			</div>
-			<div class="leaveWord_content">张三去李四家偷了王五放在赵刘那里的一百块</div>
-		</div> --%>
 	</div>
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>

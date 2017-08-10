@@ -53,11 +53,11 @@
 					action="<%=basePath%>admin/adminLogin!login.action" id="signupForm">
 					<h1>后台管理系统</h1>
 					<div>
-						<input type="text" class="form-control" placeholder="Username"
+						<input type="text" class="form-control" placeholder="请输入用户名"
 							name="thuUsername" required="" />
 					</div>
 					<div>
-						<input type="password" class="form-control" placeholder="Password"
+						<input type="password" class="form-control" placeholder="请输入密码"
 							name="thuPassword" required="" />
 					</div>
 					<div>
@@ -88,7 +88,7 @@
 							<h1>
 								<i class="fa fa-paw"></i> 众邦管家
 							</h1>
-							<p>©2016</p>
+							<p>©2017</p>
 						</div>
 					</div>
 				</form>
