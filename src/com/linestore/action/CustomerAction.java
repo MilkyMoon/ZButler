@@ -78,6 +78,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private SiteConfigService siteConfigService;
 
 	public String protocol() {
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		SiteConfig siteConfig = siteConfigService.selectById(4);
+		request.put("sc", siteConfig);
 		return "gotoProtocol";
 	}
 
