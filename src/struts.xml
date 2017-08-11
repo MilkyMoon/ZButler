@@ -471,6 +471,12 @@
 			<result name="selectAll">setting.jsp</result>
 			<result name="update" type="redirectAction">setting_selectAll</result>
 		</action>
+		<action name="businessTmp_*" class="com.linestore.action.BusinessTmpAction"
+			method="{1}">
+			<result name="selectAll">businessAlter.jsp</result>
+			<result name="read">businessAlterRead.jsp</result>
+			<result name="select" type="redirectAction">businessTmp_selectAll</result>
+		</action>
 	</package>
 
 

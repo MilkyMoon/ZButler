@@ -54,8 +54,8 @@
 						<ul class="nav child_menu">
 							<li><a href="business_enter">入驻管理</a></li>
 							<li><a href="business_selectAll">线下商家信息管理</a></li>
+							<li><a href="businessTmp_selectAll">商家信息修改申请</a></li>
 							<li><a href="business_account">收款账号管理</a></li>
-							<!-- <li><a href="business_period">账期管理</a></li> -->
 							<li><a href="business_blacklist">黑名单管理</a></li>
 							<!--  <li><a href="form_validation.html">收款账号管理</a></li> -->
 						</ul></li>

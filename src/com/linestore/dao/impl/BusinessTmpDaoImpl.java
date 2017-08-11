@@ -21,6 +21,10 @@ public class BusinessTmpDaoImpl extends HibernateDaoSupport implements BusinessT
 		}
 		
 	}
+	
+	public void delete(BusinessTmp busT) {
+		this.getHibernateTemplate().delete(busT);
+	}
 
 	@Override
 	public void delBusinessTmp(int busTid) {
@@ -47,6 +51,19 @@ public class BusinessTmpDaoImpl extends HibernateDaoSupport implements BusinessT
 			System.out.println("queryById failed!");
 			throw e;
 		}
+	}
+
+	@Override
+	public List<BusinessTmp> selectAll() {
+		// TODO Auto-generated method stub
+		List<BusinessTmp> list = (List<BusinessTmp>) this.getHibernateTemplate().find("from BusinessTmp");
+		return list;
+	}
+
+	@Override
+	public void save(BusinessTmp businessTmp) {
+		// TODO Auto-generated method stub
+		this.getHibernateTemplate().save(businessTmp);
 	}
 
 }

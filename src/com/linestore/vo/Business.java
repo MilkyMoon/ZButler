@@ -55,9 +55,9 @@ public class Business implements java.io.Serializable {
 	
 	public Business(BusinessTmp bust) {
 		this.busId = bust.getBusId();
-		this.cateLine.setCalId(bust.getBusCalId());
-		this.customer.setCusId(bust.getBusCusId());
-		this.area.setAreId(bust.getBusAreaId());
+		this.cateLine = new CateLine(bust.getBusCalId());
+		this.customer = new Customer(bust.getBusCusId());
+		this.area = new Area(bust.getBusAreaId());
 		this.busShopName = bust.getBusShopName();
 		this.busOwnerName = bust.getBusOwnerName();
 		this.busDesc = bust.getBusDesc();
