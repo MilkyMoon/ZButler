@@ -1,6 +1,7 @@
 package com.linestore.action;
 
 import java.util.List;
+import java.util.Map;
 
 import com.linestore.service.PicturesService;
 import com.linestore.vo.Business;
@@ -20,9 +21,8 @@ public class PicturesAction extends ActionSupport implements ModelDriven<Picture
 		return pictures;
 	}
 	
-	public String add() {
+	public void add() {
 		picturesService.addPicture(pictures);
-		return "add";
 	}
 	
 //	public void update() {
@@ -48,14 +48,16 @@ public class PicturesAction extends ActionSupport implements ModelDriven<Picture
 //		
 //	}
 	
-	public String del() {
+	public void del() {
 		picturesService.delPicture(pictures.getPicId());
-		return "del";
 	}
 	
 	public String Img() {
 		Business bus = (Business) ActionContext.getContext().getSession().get("store");
 		List<Pictures> pics = picturesService.queryByOtherId(bus.getBusId());
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("pics", pics);
+		System.out.println(pics.size());
 		return "Img";
 	}
 	
