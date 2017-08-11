@@ -263,71 +263,63 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							Area area = bus.getArea();
 							if (area.getAreaWay() == 1) {
 								BigDecimal dailishang = new BigDecimal(area.getAreaScale());
-								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								dailishang = bigMoney.subtract(bigMoney.multiply(dailishang));
 								bill.setAreaByThuPropertyId(area);
 								bill.setBilPropertyMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
-								areaService.updateMoney(dailishang.toString(), area.getAreId());
 								// 县收款
 								area = areaService.queryById(area.getPid());
 								dailishang = new BigDecimal(area.getAreaScale());
-								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								dailishang = bigMoney.subtract(bigMoney.multiply(dailishang));
 								bill.setAreaByThuCountyId(area);
 								bill.setBilCountyMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
-								areaService.updateMoney(dailishang.toString(), area.getAreId());
 								// 市收款
 								area = areaService.queryById(area.getPid());
 								dailishang = new BigDecimal(area.getAreaScale());
-								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								dailishang = bigMoney.subtract(bigMoney.multiply(dailishang));
 								bill.setAreaByThuCityId(area);
 								bill.setBilCityMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
-								areaService.updateMoney(dailishang.toString(), area.getAreId());
 								// 省收款
 								area = areaService.queryById(area.getPid());
 								dailishang = new BigDecimal(area.getAreaScale());
-								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								dailishang = bigMoney.subtract(bigMoney.multiply(dailishang));
 								bill.setBilProvinceMoney(dailishang);
 								bill.setAreaByThuProvinceId(area);
 								bigMoney = bigMoney.subtract(dailishang);
-								areaService.updateMoney(dailishang.toString(), area.getAreId());
 								// 众邦收款
 								bill.setBilZongMoney(bigMoney);
-								areaService.updateMoney(bigMoney.toString(), 1);
 							} else {
-								float tRatio = 1;
-								//县
-								Area ThuCounty = areaService.queryById(area.getPid());
-								//市
-								Area ThuCity = areaService.queryById(ThuCounty.getPid());
-								//省
-								Area ThuProvince = areaService.queryById(ThuCity.getPid());
-								
-								tRatio = tRatio - area.getAreaScaleTwo() - ThuCounty.getAreaScaleTwo() - ThuCity.getAreaScaleTwo() - ThuProvince.getAreaScaleTwo();
-								
-								
+								BigDecimal dailishang = new BigDecimal(area.getAreaScaleTwo());
 								bill.setAreaByThuPropertyId(area);
-								bill.setBilPropertyMoney(bigMoney.multiply(new BigDecimal(tRatio)));
-								areaService.updateMoney(bigMoney.multiply(new BigDecimal(tRatio)).toString(), area.getAreId());
-//								// 县收款
-								bill.setAreaByThuCountyId(ThuCounty);
-								bill.setBilCountyMoney(bigMoney.multiply(new BigDecimal(area.getAreaScaleTwo())));
-								areaService.updateMoney(bigMoney.multiply(new BigDecimal(area.getAreaScaleTwo())).toString(), ThuCounty.getAreId());
-//								// 市收款
-								bill.setAreaByThuCityId(ThuCity);
-								bill.setBilCityMoney(bigMoney.multiply(new BigDecimal(ThuCounty.getAreaScaleTwo())));
-								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuCounty.getAreaScaleTwo())).toString(), ThuCity.getAreId());
-//								// 省收款
-								bill.setAreaByThuProvinceId(ThuProvince);
-								bill.setBilProvinceMoney(bigMoney.multiply(new BigDecimal(ThuCity.getAreaScaleTwo())));
-								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuCity.getAreaScaleTwo())).toString(), ThuProvince.getAreId());
-//								// 众邦收款
-								bill.setBilZongMoney(bigMoney.multiply(new BigDecimal(ThuProvince.getAreaScaleTwo())));
-								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuProvince.getAreaScaleTwo())).toString(), 1);
+								bill.setBilPropertyMoney(bigMoney.multiply(dailishang));
+								// 县收款
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setAreaByThuCountyId(area);
+								bill.setBilCountyMoney(bigMoney.multiply(dailishang));
+								// 市收款
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setAreaByThuCityId(area);
+								bill.setBilCityMoney(bigMoney.multiply(dailishang));
+								// 省收款
+								area = areaService.queryById(area.getPid());
+								dailishang = new BigDecimal(area.getAreaScaleTwo());
+								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
+								bill.setBilProvinceMoney(bigMoney.multiply(dailishang));
+								bill.setAreaByThuProvinceId(area);
+								// 众邦收款
+								bill.setBilZongMoney(bigMoney.multiply(dailishang));
 							}
 							billService.addBill(bill);
 							
+							
+							
+
 							
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());

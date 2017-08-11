@@ -9,8 +9,10 @@ import java.util.Map;
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
 import com.linestore.service.CateLineService;
+import com.linestore.service.SiteConfigService;
 import com.linestore.vo.Business;
 import com.linestore.vo.CateLine;
+import com.linestore.vo.SiteConfig;
 import com.linestore.vo.Catetory;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -37,6 +39,16 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	private BusTradingService busTradingService;
 	
 	private CateLineService cateLineService;
+	
+	private SiteConfigService siteConfigService;
+
+	public SiteConfigService getSiteConfigService() {
+		return siteConfigService;
+	}
+
+	public void setSiteConfigService(SiteConfigService siteConfigService) {
+		this.siteConfigService = siteConfigService;
+	}
 
 	@Override
 	public Business getModel() {
@@ -57,6 +69,8 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		ActionContext.getContext().getSession().put("city", city);
 		//System.out.println(cates.size());
 		ActionContext.getContext().getSession().put("cateLins", cates);
+		List<SiteConfig> siteConfigs = siteConfigService.selectCusConfig("banner");
+		ActionContext.getContext().getSession().put("banner", siteConfigs);
 		
 		return "gotoOfflineStore";
 		

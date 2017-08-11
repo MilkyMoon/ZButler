@@ -178,4 +178,13 @@ public class ThinkUserDaoImpl extends HibernateDaoSupport implements ThinkUserDa
 		
 		return count;
 	}
+
+	@Override
+	public List<ThinkUser> selectAllByKey(String keywords) {
+		// TODO Auto-generated method stub
+		String hql = "from ThinkUser where area.area like '%"+keywords+"%' or thuName like '%"+keywords+"%' or thuEmail like '%"+keywords+"%' or thuPhone like '%"+keywords+"%'";
+		List<ThinkUser> list = (List<ThinkUser>) this.getHibernateTemplate().find(hql);
+		
+		return list;
+	}
 }
