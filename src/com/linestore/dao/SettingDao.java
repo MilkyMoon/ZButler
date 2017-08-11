@@ -9,5 +9,7 @@ public interface SettingDao {
 	public Setting queryById(int setId);
 	
 	public void update(String hql);
+	
+	public List<Setting> queryAll();
 
 }
