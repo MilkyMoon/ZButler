@@ -24,6 +24,10 @@ public class CateLine implements java.io.Serializable {
 	/** default constructor */
 	public CateLine() {
 	}
+	
+	public CateLine(Integer id) {
+		this.calId = id;
+	}
 
 	/** full constructor */
 	

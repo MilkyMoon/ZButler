@@ -24,4 +24,10 @@ public class SettingDaoImpl extends HibernateDaoSupport implements SettingDao {
 		query.executeUpdate();
 	}
 
+	@Override
+	public List<Setting> queryAll() {
+		List<Setting> sets = (List<Setting>) this.getHibernateTemplate().find("from Setting");
+		return sets;
+	}
+
 }

@@ -243,6 +243,10 @@ public class Customer implements java.io.Serializable {
 	/** default constructor */
 	public Customer() {
 	}
+	
+	public Customer(Integer id) {
+		this.cusId = id;
+	}
 
 	/** full constructor */
 	public Customer(String cusNickname, String cusImgUrl, Integer cusSex, Date cusBirth, String cusHobby,

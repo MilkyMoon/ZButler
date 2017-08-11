@@ -118,17 +118,18 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">权限</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="checkbox">
-													<c:forEach var="rule" items="${admin.group.ruleGroups}">
-							                            <label>
-							                            	<c:if test="${rule.rule.status == 1}">
-							                            		<input type="checkbox" class="flat" name="rules" value="${rule.rule.rulId}"> ${rule.rule.title}
-							                            	</c:if>
-							                              
-							                            </label>
-						                            </c:forEach>
-						                            
-						                          </div>
+												<c:forEach var="rule" items="${rulelist}">
+													<div class="col-md-4">
+														<div class="checkbox">
+									                            <label>
+									                            	<c:if test="${rule.rule.status == 1}">
+									                            		<input type="checkbox" class="flat" name="rules" value="${rule.rule.rulId}"> ${rule.rule.title}
+									                            	</c:if>
+									                              
+									                            </label>
+								                          </div>  
+													</div>
+												</c:forEach>
 											</div>
 										</div>
 										<div class="form-group">
