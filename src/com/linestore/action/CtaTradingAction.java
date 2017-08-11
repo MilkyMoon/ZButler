@@ -9,11 +9,13 @@ import java.util.Random;
 import com.linestore.service.CtaTradingService;
 import com.linestore.service.CusAccountService;
 import com.linestore.service.SettingService;
+import com.linestore.service.SiteConfigService;
 import com.linestore.vo.Business;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Setting;
+import com.linestore.vo.SiteConfig;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -31,6 +33,8 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 	private Map<String, Object> request;
 
 	private SettingService settingService;
+	
+	private SiteConfigService siteConfigService;
 
 	private String point;
 
@@ -71,6 +75,8 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		cta.setCustomer(cus);
 		ctaTradingService.addCtaTrading(cta);
 		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
+		SiteConfig siteConfig = siteConfigService.selectById(3);
+		ActionContext.getContext().getSession().put("sc", siteConfig);
 		return "update";
 	}
 

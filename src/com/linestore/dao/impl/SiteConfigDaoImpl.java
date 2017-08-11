@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.linestore.dao.SiteConfigDao;
 import com.linestore.vo.SiteConfig;
 
-
 public class SiteConfigDaoImpl extends HibernateDaoSupport implements SiteConfigDao {
 
 	@Override
@@ -31,7 +30,7 @@ public class SiteConfigDaoImpl extends HibernateDaoSupport implements SiteConfig
 	}
 
 	@Override
-	
+
 	public void updateConfig(SiteConfig sc) {
 		this.getHibernateTemplate().update(sc);
 	}
@@ -40,6 +39,14 @@ public class SiteConfigDaoImpl extends HibernateDaoSupport implements SiteConfig
 	public void addConfig(SiteConfig config) {
 		// TODO Auto-generated method stub
 		this.getHibernateTemplate().save(config);
+	}
+
+	@Override
+	public SiteConfig selectById(int id) {
+		// TODO Auto-generated method stub
+		String hql = "from SiteConfig where id = ?";
+		List<SiteConfig> list = (List<SiteConfig>) this.getHibernateTemplate().find(hql, id);
+		return list.get(0);
 	}
 
 }

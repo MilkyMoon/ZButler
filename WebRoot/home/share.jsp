@@ -22,12 +22,9 @@
 	<div class="share">
 		<div class="share_register">
 			<div class="share_register_introduce">
-
-				众邦管家是国内首家消费养老平台， 全国有600多个县区服务中心，遍及西藏以外的所有省市。<br> <br>
-				众邦管家推出充值赚钱小游戏，是为了更好的锁定会员消费，积累会员数据！
+				${sc.configValue}
 			</div>
-			<form id="signupForm" method="post"
-				action="<%=basePath%>Customer!register.action">
+			<form id="signupForm" method="post" action="<%=basePath%>Customer!register.action">
 				<div class="m-cell">
 					<div class="cell-item cell-item-first" id="telDiv">
 						<div class="cell-right">
@@ -50,10 +47,10 @@
 		<div class="share_comment">
 			<div class="share_commentItem">
 				<div class="share_comment_head">
-					<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
+					<img src="${user.cusImgUrl}" />
 				</div>
 				<div class="share_comment_content">
-					<div>185 9832 8899</div>
+					<div>${user.cusPhone}</div>
 					<span>80后，处女座，程序员</span>
 					<p>"我第一次想着充了10元试试，没想到第二天真的赚回20元！我又充值了100元，这次得到200元奖金，哈
 						哈！充得多赚得多！爽！我现在准备充500块，准备赚回1500元呢！"</p>
@@ -64,7 +61,7 @@
 					<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
 				</div>
 				<div class="share_comment_content">
-					<div class="userName"></div>
+					<div class="userName">13885699969</div>
 					<span>80后，处女座，程序员</span>
 					<p>"我第一次想着充了10元试试，没想到第二天真的赚回20元！我又充值了100元，这次得到200元奖金，哈
 						哈！充得多赚得多！爽！我现在准备充500块，准备赚回1500元呢！"</p>

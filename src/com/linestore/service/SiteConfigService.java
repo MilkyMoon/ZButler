@@ -14,4 +14,6 @@ public interface SiteConfigService {
 	public void updateCusConfig(SiteConfig sc);
 
 	public void addCusConfig(SiteConfig siteConfig);
+	
+	public SiteConfig selectById(int id);
 }

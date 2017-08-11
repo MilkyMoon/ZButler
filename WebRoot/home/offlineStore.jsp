@@ -46,52 +46,19 @@
 
 		<div class="m-slider" id="J_Slider">
 			<div class="slider-wrapper">
+			<c:forEach items="${banner}" var="banner">
 				<div class="slider-item">
-					<a href="#"> <img
-						src="http://static.ydcss.com/uploads/ydui/1.jpg">
+					<a href="${banner.configKey}"> <img
+						src="${banner.configValue}">
 					</a>
 				</div>
-				<div class="slider-item">
-					<a href="#"> <img
-						src="http://static.ydcss.com/uploads/ydui/2.jpg">
-					</a>
-				</div>
-				<div class="slider-item">
-					<a href="#"> <img
-						src="http://static.ydcss.com/uploads/ydui/3.jpg">
-					</a>
-				</div>
+				</c:forEach>
 			</div>
 			<div class="slider-pagination"></div>
 			<!-- 分页标识 -->
 		</div>
 
 		<div class="index_classItems">
-			<%-- <div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/Food.png" /> <span>美食</span>
-			</div>
-			<div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/shopping.png" /> <span>购物</span>
-			</div>
-			<div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/Medicine.png" /> <span>医药</span>
-			</div>
-			<div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/Entertainment.png" /> <span>娱乐</span>
-			</div>
-			<div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/Tourism.png" /> <span>旅游</span>
-			</div>
-			<div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/Beautiful.png" /> <span>靓丽</span>
-			</div>
-			<div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/Car.png" /> <span>汽车</span>
-			</div>
-			<div class="index_classItem">
-				<img src="<%=basePath%>home/dist/wx_image/Life.png" /> <span>生活</span>
-			</div> --%>
-
 			<c:forEach items="${cateLins}" var="cate">
 				<div class="index_classItem">
 					<a href="<%=basePath%>offlineStore_queryCate?cate=${cate.calId}"><img src="${cate.calImg}" /></a> 
@@ -137,39 +104,6 @@
 						</div>
 					</div> </a>
 			</c:forEach>
-			<%-- <div class="index_guessItem">
-				<img src="image/111.jpg" />
-				<div class="guess_content">
-					<div>
-						<span class="guess_name">鲜乐多</span> <span class="guess_mark">10%</span>
-					</div>
-					<div>
-						<span>靓丽类</span> <span>其他</span>
-					</div>
-				</div>
-			</div>
-			<div class="index_guessItem">
-				<img src="image/111.jpg" />
-				<div class="guess_content">
-					<div>
-						<span class="guess_name">鲜乐多</span> <span class="guess_mark">10%</span>
-					</div>
-					<div>
-						<span>靓丽类</span> <span>其他</span>
-					</div>
-				</div>
-			</div>
-			<div class="index_guessItem">
-				<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
-				<div class="guess_content">
-					<div>
-						<span class="guess_name">鲜乐多</span> <span class="guess_mark">10%</span>
-					</div>
-					<div>
-						<span>靓丽类</span> <span>其他</span>
-					</div>
-				</div>
-			</div> --%>
 		</div>
 
 	</div>
@@ -254,7 +188,6 @@ geolocation.getCurrentPosition(function(r) {
 		ret.city = province(ret.city);
 
 		window.location.href = "<%=basePath%>offlineStore!offline.action?city=" + ret.city;
-		console.log(1111)
 	});
 </script>
 </html>
