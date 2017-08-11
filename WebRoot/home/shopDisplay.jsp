@@ -49,9 +49,17 @@
 			</div>
 			<div class="storeImg_img">
 				<div class="storeImg_img_content">
-					<img src="<%=basePath%>home/dist/wx_image/111.jpg" />
+					<img src="<%=basePath%>home/dist/wx_image/111.jpg" cid="1" />
 					<div class="storeImg_del">
-						<a href=""><img src="<%=basePath%>home/dist/wx_image/del.png" /></a>
+						<img src="<%=basePath%>home/dist/wx_image/del.png" />
+					</div>
+				</div>
+			</div>
+			<div class="storeImg_img">
+				<div class="storeImg_img_content">
+					<img src="<%=basePath%>home/dist/wx_image/111.jpg" Cid="2" />
+					<div class="storeImg_del">
+						<img src="<%=basePath%>home/dist/wx_image/del.png" />
 					</div>
 				</div>
 			</div>
@@ -72,9 +80,6 @@
 				$('.storeImg_del').css('display', 'none');
 				$(this).find('.storeImg_del').css('display', 'block');
 			});
-			//        $('.storeImg_del').click(function () {
-			//            $(this).parent().parent().remove();
-			//        });
 			$('.storeImg').click(function() {
 				$('.storeImg_del').css('display', 'none');
 			})
@@ -87,9 +92,15 @@
 					var imgData = this.result; //base64数据
 					// 创建img 对象
 					console.log(imgData)
+				// ajax
 				}
 			});
 	
+			$('.storeImg_del').click(function() {
+				 var img =$($(this).parent()[0]).find("img")[0];
+				$(this).parent().parent().remove();
+				
+			});
 	
 		})(jQuery);
 	</script>

@@ -2,6 +2,7 @@ package com.linestore.action;
 
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withUnauthorizedRequest;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +72,32 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		ActionContext.getContext().getSession().put("cateLins", cates);
 		List<SiteConfig> siteConfigs = siteConfigService.selectCusConfig("banner");
 		ActionContext.getContext().getSession().put("banner", siteConfigs);
+		List<SiteConfig> leftAdvConfigs = siteConfigService.selectCusConfig("shop_adv_left");
+		List<String> la= new ArrayList<String>();
+		for (SiteConfig siteConfig : leftAdvConfigs) {
+			System.out.println(siteConfig.getConfigValue());
+			la.add(siteConfig.getConfigValue());
+		}
+		ActionContext.getContext().getSession().put("leftAdvConfigs", la);
+		// 右上
+		List<SiteConfig> rightTopAdvConfigs = siteConfigService.selectCusConfig("shop_adv_rtop");
+		List<String> rt= new ArrayList<String>();
+		for (SiteConfig siteConfig : rightTopAdvConfigs) {
+			rt.add(siteConfig.getConfigValue());
+		}
+		ActionContext.getContext().getSession().put("rightTopAdvConfigs", rt);
+		// 右下
+		List<SiteConfig> rightBottomConfigs = siteConfigService.selectCusConfig("shop_adv_rbottom");
+		
+		List<String> rb= new ArrayList<String>();
+		for (SiteConfig siteConfig : rightTopAdvConfigs) {
+			rb.add(siteConfig.getConfigValue());
+		}
+		ActionContext.getContext().getSession().put("rightBottomConfigs", rb);
+
+	
+		
+		// 左侧 右侧 下面 
 		
 		return "gotoOfflineStore";
 		

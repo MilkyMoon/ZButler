@@ -79,27 +79,33 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>分类下部广告</h2>
-									
+
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
 									<br />
-									<div class="col-md-4">
+									<div class="col-md-12">
 										<form action="siteConfig_save"
 											class="form-horizontal form-label-left" method="post">
+
 											<div class="">
+
 												<c:forEach var="root" items="${leftAdvConfigs}">
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
 														<div class="col-md-6 col-sm-9 col-xs-12">
+															<c:if test="${root.id == 5}">
+																<img src="${root.configValue}" width="100px;height="100px">
+															</c:if>
 															<input type="hidden" class="form-control"
 																name="configKey" value="${root.configKey}"> <input
 																type="hidden" class="form-control" name="Sid"
 																value="${root.id}"> <input type="hidden"
 																class="form-control" name="configName"
 																value="${root.configName}"> <input
-																type="${root.id ==5 ?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
+																type="${root.id ==5 ?"file":"text"}" 
+																class="form-control"
+																name="configValue" value="${root.configValue}">
 														</div>
 													</div>
 												</c:forEach>
@@ -114,7 +120,7 @@
 											</div>
 										</form>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-12">
 										<form action="siteConfig_save"
 											class="form-horizontal form-label-left" method="post">
 											<div class="">
@@ -122,14 +128,18 @@
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
 														<div class="col-md-6 col-sm-9 col-xs-12">
+															<c:if test="${root.id == 8}">
+																<img src="${root.configValue}" width="100px;height="100px">
+															</c:if>
 															<input type="hidden" class="form-control"
 																name="configKey" value="${root.configKey}"> <input
 																type="hidden" class="form-control" name="Sid"
 																value="${root.id}"> <input type="hidden"
 																class="form-control" name="configName"
 																value="${root.configName}"> <input
-																type="${root.id ==8 ?"file":"text"}" class="form-control" name="configValue"
-																value="${root.configValue}">
+																type="${root.id ==8 ?"file":"text"}" 
+																class="form-control"
+																name="configValue" value="${root.configValue}">
 														</div>
 
 													</div>
@@ -146,7 +156,7 @@
 										</form>
 									</div>
 
-									<div class="col-md-4">
+									<div class="col-md-12">
 										<form action="siteConfig_save"
 											class="form-horizontal form-label-left" method="post">
 											<div class="">
@@ -154,6 +164,9 @@
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">${root.configKey}</label>
 														<div class="col-md-6 col-sm-9 col-xs-12">
+															<c:if test="${root.id == 11}">
+																<img src="${root.configValue}" width="100px;height="100px">
+															</c:if>
 															<input type="hidden" class="form-control"
 																name="configKey" value="${root.configKey}"> <input
 																type="hidden" class="form-control" name="Sid"
@@ -247,7 +260,9 @@ $('input[name="configValue"]').each(function () {
             imgFile.readAsDataURL(that[0].files[0]);
             imgFile.onload = function () {
                 var imgData = this.result; //base64数据
-                that.attr("type", "hidden");
+                
+                $($(that).siblings()[0]).attr("src",imgData)
+                 that.attr("type", "hidden"); 
                 that.val(imgData);
             }
         })
