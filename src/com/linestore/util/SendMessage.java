@@ -15,7 +15,7 @@ import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 public class SendMessage {
 	
 	private static TaobaoClient client = 
-			new DefaultTaobaoClient("http://gw.api.taobao.com/router/rest", "23705107", "314ab013d639b67cd218e3c7d8d75281");
+			new DefaultTaobaoClient("http://gw.api.taobao.com/router/rest", "LTAIosla1zggOn8N", "eKeJYVLxJVTIDCatWOXJLS2nsg5QvQ");
 	
 	private static AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
 	
@@ -24,10 +24,10 @@ public class SendMessage {
 	public static void send(String code, String phone) {
 		req.setExtend("");
 		req.setSmsType("normal");
-		req.setSmsFreeSignName("众邦管理");
+		req.setSmsFreeSignName("众邦管家");
 		req.setSmsParamString("{\"code\":\""+ code +"\"}");
 		req.setRecNum(phone);
-		req.setSmsTemplateCode("SMS_77505054");
+		req.setSmsTemplateCode("SMS_82150084");
 		try {
 			rsp = client.execute(req);
 		} catch (ApiException e) {
