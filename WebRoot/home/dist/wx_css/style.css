@@ -2802,7 +2802,7 @@ px
 .storeImg_addImg .addImg img {
 	width: 45px;
 	height: 45px;
-	margin: 35px auto;
+	margin: 35px 35px;
 }
 
 .storeImg_img {

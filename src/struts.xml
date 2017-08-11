@@ -134,7 +134,7 @@
 
 		<action name="CtaTrading" class="com.linestore.action.CtaTradingAction">
 			<result name="gotoRecord">/home/rechargeRecord.jsp</result>
-			<result name="update" type="redirect">/home/pointToChange.jsp</result>gotoptc
+			<result name="update" type="redirect">/home/pointToChange.jsp</result>
 			<result name="smallMoney" type="redirect">home/busSmallMoney.jsp</result>
 			<result name="gotoptc">/home/pointToChange.jsp</result>
 		</action>
@@ -166,6 +166,9 @@
 		
 		<action name="pictures_*" class="com.linestore.action.PicturesAction"
 			method="{1}">
+			<result name="add" type="redirectAction">pictures_Img</result>
+			<result name="del" type="redirectAction">pictures_Img</result>
+			<result name="Img"></result>
 		</action>
 
 		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction"
