@@ -53,7 +53,7 @@
 			</div>
 			<div class="register_readed">
 				<input name="rePassword" type="checkbox" value="" /> <span>我已看过并接受<a
-					href="<%=basePath%>">《用户协议》</a></span>
+					href="<%=basePath%>Customer!protocol.action">《用户协议》</a></span>
 			</div>
 			<div class="register_button">
 				<button type="submit" class="btn-block btn-primary" id="zhuce">注册</button>

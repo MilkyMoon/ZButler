@@ -201,6 +201,13 @@
 				<param name="actionName">trading_selectAll</param>
 			</result>
 		</action>
+		<action name="postalThu" class="com.linestore.action.WxPayAction"
+			method="postalThu">
+			<result name="paySuccess" type="redirectAction">
+				<param name="namespace">/admin</param>
+				<param name="actionName">thuTrading_selectAll</param>
+			</result>
+		</action>
 
 		<!-- 模板消息 -->
 		<action name="registerSuccessNotify" class="com.linestore.action.TemplateMessageAction"
@@ -452,9 +459,9 @@
 		<action name="thuTrading_*" class="com.linestore.action.ThuTradingAction"
 			method="{1}">
 			<result name="selectAll">thutrading.jsp</result>
-			<result name="gotoPostal" type="chain">
+			<result name="gotoPostalThu" type="chain">
 				<param name="namespace">/</param>
-				<param name="actionName">postal</param>
+				<param name="actionName">postalThu</param>
 			</result>
 			<result name="add" type="redirectAction">bill_selectAll</result>
 			<result name="select" type="redirectAction">thuTrading_selectAll</result>
