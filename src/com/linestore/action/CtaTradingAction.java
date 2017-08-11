@@ -36,6 +36,14 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 	
 	private SiteConfigService siteConfigService;
 
+	public SiteConfigService getSiteConfigService() {
+		return siteConfigService;
+	}
+
+	public void setSiteConfigService(SiteConfigService siteConfigService) {
+		this.siteConfigService = siteConfigService;
+	}
+
 	private String point;
 
 	@Override
