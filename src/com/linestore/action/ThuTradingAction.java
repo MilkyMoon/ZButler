@@ -155,10 +155,11 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			areaListTwo.add(areaService.queryById(thuTradingList.get(i).getThuId()));
 		}
 		
-		ActionContext.getContext().getSession().put("thinklist", thinkList);
-		ActionContext.getContext().getSession().put("arealist", areaListTwo);
-		ActionContext.getContext().getSession().put("list", thuTradingList);
-		ActionContext.getContext().getSession().put("page", page);
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("thinklist", thinkList);
+		request.put("arealist", areaListTwo);
+		request.put("list", thuTradingList);
+		request.put("page", page);
 		
 		return "selectAll";
 	}

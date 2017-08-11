@@ -122,9 +122,9 @@
 							<li><a href="siteConfig_SelectFriendUrl">友情链接</a></li>
 						</ul></li>
 
-					<%-- <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>
-							Landing Page <span class="label label-success pull-right">Coming
-								Soon</span></a></li> --%>
+					<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i>
+							站点设置 <span class="label label-success pull-right">Coming
+								Soon</span></a></li>
 				</ul>
 			</div>
 
