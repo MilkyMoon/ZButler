@@ -68,19 +68,18 @@
 		</div>
 
 		<div class="index_recommends">
-			<a class="index_recommend_left" href="#">
-				<img src="<%=basePath%>home/dist/wx_image/Trval.png" /> <span>我们旅行</span>
-				<strong>恋人爱人好朋友</strong>
+			<a class="index_recommend_left" href="${leftAdvConfigs[1]}">
+				<img src="${leftAdvConfigs[0]}" /> <span>${leftAdvConfigs[2]}</span>
 			</a>
 			<div class="index_recommend_right">
-				<a class="recommend_right" href="#">
-					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span>
-						底价超值 <strong>十元惠生活</strong>
+				<a class="recommend_right" href="${rightTopAdvConfigs[1]}">
+					<img src="${rightTopAdvConfigs[0]}" /> <span>
+						${rightTopAdvConfigs[2]}
 					</span>
 				</a>
-				<a class="recommend_right" href="#">
-					<img src="<%=basePath%>home/dist/wx_image/Food2.png" /> <span>
-						底价超值 <strong>十元惠生活</strong>
+				<a class="recommend_right" href="${rightBottomConfigs[1]}">
+					<img src="${rightBottomConfigs[0]}" /> <span>
+						${rightBottomConfigs[2]}
 					</span>
 				</a>
 			</div>
