@@ -98,7 +98,7 @@ ${js}
 	$.ajax({
 		type : "post",
 		dataType : "json",
-		url : "<%=basePath%>/ZButler/WxJsApi!JsApiParams.action",
+		url : "<%=basePath%>WxJsApi!JsApiParams.action",
 		async : false,
 		data : {
 			url : location.href.split("#")[0]

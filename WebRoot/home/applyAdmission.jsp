@@ -100,6 +100,13 @@
 					</div>
 				</div>
 				<div class="cell-item">
+					<div class="cell-left">税务登记证*：</div>
+					<div class="cell-right">
+						<input type="text" name="busTaxUrl" class="cell-input"
+							placeholder="" autocomplete="off" />
+					</div>
+				</div>
+				<div class="cell-item">
 					<div class="cell-left">经营类别*：</div>
 					<label class="cell-right cell-arrow"> <select
 						class="cell-select" name="cateLine.calId" id="busCateId">
@@ -248,6 +255,7 @@
 				busLicenseUrl : "required",
 				bbBank : "required",
 				busSmallCate : "required",
+				busTaxUrl : "required",
 				bbBankCard : {
 					required : true,
 				}
@@ -263,6 +271,7 @@
 				busLicenseUrl : "请输入执照号",
 				busSmallCate : "请选择经营小类别",
 				bbBank : "请输入开户行",
+				busTaxUrl: "请输入税务登记证",
 				bbBankCard : {
 					required : "请输入银行卡号",
 				}
