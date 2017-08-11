@@ -169,6 +169,32 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		return "gotoStoreAction";
 	}
 	
+	public void updateImg() {
+
+		String hql;
+		try {
+
+			hql = ReturnUpdateHql.ReturnHql(business.getClass(), business, business.getBusId());
+			// System.out.println(business.getBusStatus());
+			businessService.update(hql);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public String gotoStore() {
 		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("successful", "<script>YDUI.dialog.alert('提交成功！请等待审核！');</script>");

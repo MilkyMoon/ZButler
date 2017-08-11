@@ -87,14 +87,14 @@
                 $("#basetxt").val(imgurl);
                 console.log(imgurl);
                 $('#showResult').fadeIn();
-                $.post("<%=basePath%>business!updateBus.action", 
+                $.post("<%=basePath%>business!updateImg.action", 
                 {
                 	busOrgUrl: imgurl,
                 	busId: ${store.busId}
                 },
                 function(data){
                 	console.log("-------------");
-                	
+                	window.location.href = "<%=basePath%>business_store";
                 });
 
             });

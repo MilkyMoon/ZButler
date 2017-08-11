@@ -4,7 +4,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -47,22 +47,16 @@
 						src="<%=basePath%>home/dist/wx_image/addImg.png" />
 				</div>
 			</div>
-			<div class="storeImg_img">
-				<div class="storeImg_img_content">
-					<img src="<%=basePath%>home/dist/wx_image/111.jpg" cid="1" />
-					<div class="storeImg_del">
-						<img src="<%=basePath%>home/dist/wx_image/del.png" />
+			<c:forEach var="pic" items="${pics}">
+				<div class="storeImg_img">
+					<div class="storeImg_img_content">
+						<img src="${pic.picUrl}" cid="${pic.picId}" />
+						<div class="storeImg_del">
+							<img src="<%=basePath%>home/dist/wx_image/del.png" />
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="storeImg_img">
-				<div class="storeImg_img_content">
-					<img src="<%=basePath%>home/dist/wx_image/111.jpg" Cid="2" />
-					<div class="storeImg_del">
-						<img src="<%=basePath%>home/dist/wx_image/del.png" />
-					</div>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	<script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
@@ -92,14 +86,29 @@
 					var imgData = this.result; //base64数据
 					// 创建img 对象
 					console.log(imgData)
-				// ajax
+					$.post("<%=basePath%>pictures_add",
+					{
+						picUrl: imgData,
+						picOtherId: ${store.busId},
+						picType: 1
+					},
+					function(date){
+						window.location.href = "<%=basePath%>pictures_Img";
+					});
 				}
 			});
 	
 			$('.storeImg_del').click(function() {
 				 var img =$($(this).parent()[0]).find("img")[0];
-				$(this).parent().parent().remove();
 				
+				$.post("<%=basePath%>pictures_del",
+					{
+						picId: $(img).attr("cid")
+					},
+					function(date){
+						window.location.href = "<%=basePath%>pictures_Img";
+						$(this).parent().parent().remove();
+					});
 			});
 	
 		})(jQuery);
