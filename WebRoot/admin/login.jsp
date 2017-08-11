@@ -72,8 +72,7 @@
 
 					</div>
 					<div style="width:100%;float:left">
-						<button type="submit" class="btn btn-default submit">Log
-							in</button>
+						<button type="submit" class="btn btn-default submit">登录</button>
 						<p class="reset_pass">欢迎来到众帮管家!</p>
 					</div>
 

@@ -85,6 +85,7 @@
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/bill_selectAll">消费订单</a></li>
 							<li><a href="<%=basePath%>admin/trading_selectCash">提现订单</a></li>
+							<li><a href="<%=basePath%>admin/thuTrading_selectAll">代理提现</a></li>
 							<li><a href="<%=basePath%>admin/trading_selectRech">充值订单</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-clone"></i> 报表统计 <span

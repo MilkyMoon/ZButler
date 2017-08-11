@@ -86,4 +86,10 @@ public class ThinkUserServiceImpl implements ThinkUserService{
 		return thinkUserDao.selectAllByKeyCount(keywords);
 	}
 
+	@Override
+	public List<ThinkUser> selectAllByKey(String keywords) {
+		// TODO Auto-generated method stub
+		return thinkUserDao.selectAllByKey(keywords);
+	}
+
 }
