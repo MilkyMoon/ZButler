@@ -466,6 +466,11 @@
 			<result name="add" type="redirectAction">bill_selectAll</result>
 			<result name="select" type="redirectAction">thuTrading_selectAll</result>
 		</action>
+		<action name="setting_*" class="com.linestore.action.SettingAction"
+			method="{1}">
+			<result name="selectAll">setting.jsp</result>
+			<result name="update" type="redirectAction">setting_selectAll</result>
+		</action>
 	</package>
 
 

@@ -1,5 +1,7 @@
 package com.linestore.service.impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.SettingDao;
@@ -25,5 +27,10 @@ public class SettingServiceImpl implements SettingService {
 
 	public void setSettingDao(SettingDao settingDao) {
 		this.settingDao = settingDao;
+	}
+
+	@Override
+	public List<Setting> queryAll() {
+		return settingDao.queryAll();
 	}
 }

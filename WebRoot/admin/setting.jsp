@@ -89,21 +89,24 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form action="setting_save" method="post" class="form-horizontal form-label-left" autocomplete="off">
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">站点标题</label>
-											<div class="col-md-6 col-sm-9 col-xs-12">
-												<input type="text" class="form-control">
+									<c:forEach var="set" items="${sets}">
+										<form action="setting_update" method="post" class="col-md-4 form-horizontal form-label-left" autocomplete="off" style="margin:20px 0;">
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">${set.setField}</label>
+												<div class="col-md-6 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" name="setValue" value="${set.setValue}">
+													<input type="hidden" name="setId" value="${set.setId}">
+												</div>
 											</div>
-										</div>
-
-										<div class="ln_solid"></div>
-										<div class="form-group">
-											<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
-												<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
+	
+											<div class="ln_solid"></div>
+											<div class="form-group">
+												<div class="col-md-6 col-sm-9 col-xs-12 col-md-offset-3">
+													<button type="submit" class="btn btn-success" style="float:right;margin-right:0;">提交</button>
+												</div>
 											</div>
-										</div>
-									</form>
+										</form>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
