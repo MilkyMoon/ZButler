@@ -14,7 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>消息管理 | 众帮管家</title>
+<title>广告管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -70,7 +70,7 @@
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>消息管理</h3>
+							<h3>广告管理</h3>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -79,7 +79,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>推送消息</h2>
-									<ul class="nav navbar-right panel_toolbox">
+									<!-- <ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -91,7 +91,7 @@
 											</ul></li>
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
-									</ul>
+									</ul> -->
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">

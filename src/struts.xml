@@ -168,7 +168,7 @@
 			method="{1}">
 			<result name="add" type="redirectAction">pictures_Img</result>
 			<result name="del" type="redirectAction">pictures_Img</result>
-			<result name="Img"></result>
+			<result name="Img">index.jsp</result>
 		</action>
 
 		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction"

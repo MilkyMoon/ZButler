@@ -23,7 +23,7 @@ public class RuleDaoImpl extends HibernateDaoSupport implements RuleDao {
 	@Override
 	public Rule select(Rule rule) {
 		// 注意：HQL语句中表名应该是ORM映射的类名，而不是数据库中的表名
-		String hql = "from Rule where rules = ? ";
+		String hql = "from Rule where rules = ? order by rules";
 		System.out.println(rule.getRules());
 		List<Rule> list = (List<Rule>) this.getHibernateTemplate().find(hql, rule.getRules());
 		System.out.println(list.get(0).getRulId());

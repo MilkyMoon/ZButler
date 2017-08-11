@@ -1,5 +1,7 @@
 package com.linestore.service.impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.RuleGroupDao;
@@ -23,6 +25,12 @@ public class RuleGroupServiceImpl implements RuleGroupService {
 
 	public void setRuleGroupDao(RuleGroupDao ruleGroupDao) {
 		this.ruleGroupDao = ruleGroupDao;
+	}
+
+	@Override
+	public List<RuleGroup> selectAll(int id) {
+		// TODO Auto-generated method stub
+		return ruleGroupDao.selectAll(id);
 	}
 
 
