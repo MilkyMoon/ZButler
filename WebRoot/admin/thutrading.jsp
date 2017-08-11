@@ -132,14 +132,16 @@
 														<td class="a-center ">
 															<th><input type="checkbox" class="flat" name="table_records" /></th>
 														</td>
-														<c:forEach items="${thinklist}" var="root">
+														<c:forEach items="${thinklist}" var="root" end="${exitId}">
 															<c:if test="${list.thuId == root.thuId}">
 																<td>${root.thuName}</td>
+																<c:set var="exitId" value="0"></c:set>
 															</c:if>
 														</c:forEach>
-														<c:forEach items="${arealist}" var="roots">
+														<c:forEach items="${arealist}" var="roots" end="${exitId}">
 															<c:if test="${list.areId == roots.areId}">
 																<td>${roots.area}</td>
+																<c:set var="exitId" value="0"></c:set>
 															</c:if>
 														</c:forEach>
 														

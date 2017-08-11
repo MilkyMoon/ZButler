@@ -37,6 +37,7 @@ import com.linestore.service.CustomerService;
 import com.linestore.service.FriendsService;
 import com.linestore.service.SettingService;
 import com.linestore.service.ThinkUserService;
+import com.linestore.service.ThuTradingService;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.Area;
 import com.linestore.vo.Bill;
@@ -47,6 +48,7 @@ import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Friends;
 import com.linestore.vo.Template;
+import com.linestore.vo.ThuTrading;
 import com.opensymphony.xwork2.ActionContext;
 
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
@@ -73,6 +75,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	private ThinkUserService thinkUserService;
 	private BillService billService;
 	public AreaService areaService;
+	private ThuTrading thuTrading = new ThuTrading();
+	private ThuTradingService thuTradingService;
 
 	public FriendsService getFriendsService() {
 		return friendsService;
@@ -88,6 +92,14 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	public void setSettingService(SettingService settingService) {
 		this.settingService = settingService;
+	}
+
+	public ThuTradingService getThuTradingService() {
+		return thuTradingService;
+	}
+
+	public void setThuTradingService(ThuTradingService thuTradingService) {
+		this.thuTradingService = thuTradingService;
 	}
 
 	public BusMemberService getBusMemberService() {
@@ -535,6 +547,41 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 				hql = ReturnUpdateHql.ReturnHql(busTrading.getClass(), busTrading, busTrading.getBtaId());
 				System.out.println("hql:"+hql);
 				busTradingService.update(hql);
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return "paySuccess";
+		} else {
+			return "paySuccess";
+		}
+	}
+	
+	public String postalThu() {
+		// 构建提现 WxEntPayRequest
+		req = (Map<String, Object>) ActionContext.getContext().get("request");
+		String resutl = payToIndividual((WxEntPayRequest) req.get("wxEntPayRequest"), this.wxPayService);
+
+		if (resutl.equals("SUCCESS")) {
+			thuTrading = (ThuTrading) req.get("thuTrading");
+			String hql;
+			try {
+				hql = ReturnUpdateHql.ReturnHql(thuTrading.getClass(), thuTrading, thuTrading.getThtId());
+				System.out.println("hql:"+hql);
+				thuTradingService.update(hql);
 			} catch (NoSuchMethodException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
