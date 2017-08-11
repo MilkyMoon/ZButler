@@ -2772,77 +2772,118 @@ px
 }
 
 /*店铺图片*/
+
 .storeImg {
-	width: 100%;
-	padding: 10px 8px;
-	background-color: #fff;
+    width: 100%;
+    padding: 10px 8px;
+    background-color: #fff;
 }
 
 .storeImg_content {
-	width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .storeImg_addImg {
-	float: left;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	width: 33.3%;
-	height: 115px;
-	margin-bottom: 10px;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 33.3%;
+    height: 115px;
+    margin-bottom: 10px;
 }
 
 .storeImg_addImg .addImg {
-	width: 115px;
-	height: 115px;
-	background-color: #EFEFF4;
-	border-radius: 4px;
+    width: 115px;
+    height: 115px;
+    background-color: #EFEFF4;
+    border-radius: 4px;
 }
 
 .storeImg_addImg .addImg img {
-	width: 45px;
-	height: 45px;
-	margin: 35px auto;
+    width: 45px;
+    height: 45px;
+    margin: 35px 35px;
 }
 
 .storeImg_img {
-	float: left;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	width: 33.3%;
-	margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 33.3%;
+    margin-bottom: 10px;
 }
 
-.storeImg_img img {
-	width: 115px;
-	height: 115px;
+.storeImg_img_content{
+    width: 115px;
+    height: 115px;
 }
 
-@media ( max-width : 375px) {
-	.storeImg_addImg {
-		height: 96px;
-	}
-	.storeImg_addImg .addImg {
-		width: 96px;
-		height: 96px;
-	}
-	.storeImg_addImg .addImg img {
-		width: 40px;
-		height: 40px;
-		margin: 28px auto;
-	}
-	.storeImg_img img {
-		width: 96px;
-		height: 96px;
-	}
+.storeImg_img_content img{
+    position: absolute;
+    width: 115px;
+    height: 115px;
+}
+.storeImg_del{
+    display: none;
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    background-color: rgba(50,50,50,0.6);
+}
+.storeImg_del img{
+    width: 65px;
+    height: 65px;
+    left: 25px;
+    top: 25px;
+}
+@media (max-width: 375px) {
+    .storeImg_addImg {
+        height: 96px;
+    }
+
+    .storeImg_addImg .addImg {
+        width: 96px;
+        height: 96px;
+    }
+
+    .storeImg_addImg .addImg img {
+        width: 40px;
+        height: 40px;
+        margin: 28px 28px;
+    }
+
+    .storeImg_img_content{
+        width: 96px;
+        height: 96px;
+    }
+    .storeImg_img_content img{
+        width: 96px;
+        height: 96px;
+    }
+    .storeImg_del{
+        position: absolute;
+        width: 96px;
+        height: 96px;
+    }
+    .storeImg_del img{
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        left: 20px;
+        top: 20px;
+    }
 }
 
 .storeImg span {
-	height: 30px;
-	line-height: 30px;
-	font-size: 12px;
-	color: #3D3D56;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #3D3D56;
 }
 
 /*客服*/
