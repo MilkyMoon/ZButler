@@ -1,5 +1,6 @@
 package com.linestore.action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class GroupAction extends ActionSupport implements ModelDriven<Group>{
 	
 	private GroupService groupService;
 	private RuleGroupService ruleGroupService;
+	private List<RuleGroup> ruleGroupList = new ArrayList<RuleGroup>();
 	
 	private String[] rules;
 	
@@ -52,6 +54,12 @@ public class GroupAction extends ActionSupport implements ModelDriven<Group>{
 	}
 	
 	public String add() {
+		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
+		ruleGroupList = ruleGroupService.selectAll(thu.getGroup().getGrpId());
+		
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("rulelist", ruleGroupList);
+		
 		return "gotoAdd";
 	}
 	
