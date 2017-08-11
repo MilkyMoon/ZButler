@@ -52,4 +52,11 @@ public class SiteConfigServiceImpl implements SiteConfigService {
 		
 	}
 
+
+	@Override
+	public SiteConfig selectById(int id) {
+		// TODO Auto-generated method stub
+		return this.siteConfigDao.selectById(id);
+	}
+
 }

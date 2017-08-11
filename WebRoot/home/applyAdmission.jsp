@@ -129,10 +129,7 @@
                     </select>
                 </label>
             </div> -->
-				<p>
-					<span>1、商家返点可以为1、2、3、4......任意自然数</span><br> <span>2、选择比例为1的，付款超过500元的部分，需加收0.6%交易手续费</span><br>
-					<span>3、选择其他比例的，免收交易手续费</span><br> <span>4、变更返出比例需联系平台客服进行变更</span>
-				</p>
+				<p>${sc.configValue}</p>
 				<h5>
 					请输入银行卡信息<span>（营业款提到该银行卡）</span>
 				</h5>
@@ -253,7 +250,6 @@
 				busSmallCate : "required",
 				bbBankCard : {
 					required : true,
-					
 				}
 			},
 			messages : {

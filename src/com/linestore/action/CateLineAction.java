@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.linestore.service.CateLineService;
+import com.linestore.service.SiteConfigService;
 import com.linestore.util.ReturnUpdateHql;
 import com.linestore.vo.CateLine;
 import com.linestore.vo.Catetory;
+import com.linestore.vo.SiteConfig;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -26,6 +28,16 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 	HttpServletRequest request = ServletActionContext.getRequest();
 	private CateLine cateLine = new CateLine();
 	private CateLineService cateLineService;
+	private SiteConfigService siteConfigService;
+
+	public SiteConfigService getSiteConfigService() {
+		return siteConfigService;
+	}
+
+	public void setSiteConfigService(SiteConfigService siteConfigService) {
+		this.siteConfigService = siteConfigService;
+	}
+
 	private CateLine cateLineResult;
 	private List<CateLine> cateLineList;
 
@@ -137,11 +149,12 @@ public class CateLineAction extends ActionSupport implements ModelDriven<CateLin
 
 		List<CateLine> smalls = cateLineService.selectChildren(pid);
 		// cateLineList = cateLineService.selectChildren(0);
-
+		SiteConfig siteConfigs = siteConfigService.selectById(2);
 		request.setAttribute("roots", smalls);
+		request.setAttribute("sc", siteConfigs);
 		return "selectAll";
 	}
-	
+
 	public String editBus() {
 
 		List<CateLine> smalls = cateLineService.selectChildren(pid);

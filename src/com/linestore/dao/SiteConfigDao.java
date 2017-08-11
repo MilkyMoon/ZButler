@@ -12,5 +12,7 @@ public interface SiteConfigDao {
 	public void updateConfig(SiteConfig sc);
 
 	public void addConfig(SiteConfig config);
+	
+	public SiteConfig selectById(int id);
 
 }

@@ -20,12 +20,14 @@ import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.service.FriendsService;
 import com.linestore.service.SettingService;
+import com.linestore.service.SiteConfigService;
 import com.linestore.util.SendMessage;
 import com.linestore.vo.Business;
 import com.linestore.vo.CtaTrading;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.linestore.vo.Friends;
+import com.linestore.vo.SiteConfig;
 import com.linestore.vo.Template;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -49,6 +51,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	private String field;
 
+	public SiteConfigService getSiteConfigService() {
+		return siteConfigService;
+	}
+
+	public void setSiteConfigService(SiteConfigService siteConfigService) {
+		this.siteConfigService = siteConfigService;
+	}
+
 	private CustomerService customerService;
 
 	private FriendsService friendsService;
@@ -62,6 +72,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private BusinessService businessService;
 
 	private CtaTradingService ctaTradingService;
+	
+	private SiteConfigService siteConfigService;
 
 	public String weChat() {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
@@ -291,13 +303,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		System.out.println("Action中的askRegister方法！");
 		// 邀请人的cusId
 		// customer.getCusId();
-		System.out.println(customer);
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		SiteConfig siteConfig = siteConfigService.selectById(1);
 		if (customer.getCusId() != null) {
-			Customer cus = customerService.findById(customer.getCusId());
-			request = (Map<String, Object>) ActionContext.getContext().get("request");
+			Customer cus = customerService.findById(customer.getCusId());	
 			request.put("id", cus);
+			
 		}
-
+		request.put("sc", siteConfig);
 		// //补全邀请人的信息，传递到页面;注册者完成注册时还需要用到邀请人的信息
 		// customer=customerService.select(customer);
 
