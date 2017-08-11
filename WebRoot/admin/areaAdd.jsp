@@ -109,7 +109,7 @@
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">描&nbsp;&nbsp;&nbsp;&nbsp;述</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<textarea id="message" class="form-control" name="desc"></textarea>
+														<textarea id="message" class="form-control" name="desction"></textarea>
 													</div>
 												</div>
 												
@@ -121,6 +121,7 @@
 																<option value="${root.areId}">${root.area}</option>
 															</c:forEach>
 														</select>
+														<p style="margin-top:10px;"><code>注意：</code>添加<code>物业</code>时请确保物业为第四级(省--市--县--物业),直辖市尤其注意。</p>
 													</div>
 												</div>
 												

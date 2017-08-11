@@ -13,6 +13,7 @@ import com.linestore.service.SiteConfigService;
 import com.linestore.vo.Business;
 import com.linestore.vo.CateLine;
 import com.linestore.vo.SiteConfig;
+import com.linestore.vo.Catetory;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -92,14 +93,17 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	
 	public String queryCate() {
 		List<CateLine> cates = cateLineService.selectChildren(cate);
-		
+		List<CateLine> cateLines = cateLineService.selectChildren(0);
+		List<CateLine> cateLine = cateLineService.selectChildren(cateLines.get(0).getCalId());
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("cate", cate);
 		request.put("cates", cates);
+		request.put("cateLines", cateLines);
+		request.put("cateLine", cateLine);
 		List<Business> buss = null;
 		String city = (String) ActionContext.getContext().getSession().get("city");
 		if (child == -1) {
-			buss = businessService.querySmall(city, cates.get(0).getCalId());
+			buss = businessService.queryCate(city, cate);
 			request.put("name", cates.get(0).getCalName());
 		} else {
 			buss = businessService.querySmall(city, child);
@@ -112,7 +116,6 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		}
 		request.put("child", child);
 		request.put("buss", buss);
-		System.out.println(city);
 		return "gotoStoreCate";
 	}
 	
@@ -121,6 +124,7 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		System.out.println(seach);
 		
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		
 		CateLine cate = cateLineService.queryByName(seach);
 		System.out.println("------");
 		if (cate != null) {

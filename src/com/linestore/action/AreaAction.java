@@ -50,12 +50,19 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	
 	public String search(){
 		if(keywords == null || keywords.equals("")){
+			if(pagewhere == 2){
+				return "agent";
+			}
 			return "select";
 		}
 		
 		areaListReslut = areaService.selectByKey(keywords);
 		
 		ActionContext.getContext().getSession().put("list", areaListReslut);
+		
+		if(pagewhere == 2){
+			return "agent";
+		}
 		
 		return "selectAll";
 	}

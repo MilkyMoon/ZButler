@@ -75,6 +75,10 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	
 	private SiteConfigService siteConfigService;
 
+	public String protocol() {
+		return "gotoProtocol";
+	}
+
 	public String weChat() {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
 		System.out.println(cus.getCusOpenId());

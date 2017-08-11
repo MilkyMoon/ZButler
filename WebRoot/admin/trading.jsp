@@ -188,7 +188,7 @@
 									<input type="text" name="pageNow" value="${page.currentPage}" class="form-control" style="text-align:center;width:42px;padding:5px">
 									<span style="float:right;padding:0 5px">页</span>
 		                            <span class="input-group-btn">
-	                                    <button type="submit" class="btn btn-primary">Go!</button>
+	                                    <button type="submit" class="btn btn-primary">搜索</button>
 	                                </span>
 		                        </div>
 								<div class="dataTables_paginate paging_simple_numbers" id="datatable-checkbox_paginate">

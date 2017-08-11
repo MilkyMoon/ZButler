@@ -88,7 +88,7 @@
 											<s:property value="busShopName" />
 											<small style="color:red">
 												<s:if test="%{#businessList.busStatus == 0}">
-                       								带审核
+                       								待审核
                       							</s:if> 
                       							<s:if test="%{#businessList.busStatus == 1}">
 													已通过
@@ -211,18 +211,25 @@
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<select class="form-control" name="cateLine.calId"
 														id="busCateId" disabled="disabled">
-
+														<option value="${businessList.cateLine.calId}">${businessList.cateLine.calName}</option>
+													</select>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">经营小类别</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<select class="form-control" name="cateLine.calId"
+														id="busCateId" disabled="disabled">
 														<c:forEach var="root" items="${roots}">
-
 															<c:if
-																test="${root.calId ==  businessList.cateLine.calId}">
+																test="${root.calId ==  businessList.busSmallCate}">
 																<option value="${root.calId}" selected="selected">${root.calName}</option>
 															</c:if>
 															<c:if
-																test="${root.calId !=  businessList.cateLine.calId}">
+																test="${root.calId !=  businessList.busSmallCate}">
 																<option value="${root.calId}">${root.calName}</option>
 															</c:if>
-
 														</c:forEach>
 													</select>
 												</div>

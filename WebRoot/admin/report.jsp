@@ -27,23 +27,27 @@
 <!-- NProgress -->
 <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
 <!-- bootstrap-daterangepicker -->
-<link href="./vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<link href="./vendors/bootstrap-daterangepicker/daterangepicker.css"
+	rel="stylesheet">
 <!-- jQuery custom content scroller -->
-<link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+<link
+	href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+	rel="stylesheet" />
 <!-- iCheck -->
 <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
 <!-- Custom Theme Style -->
 <link href="./build/css/custom.min.css" rel="stylesheet">
 <style type="text/css">
-	.page-form{
-		width:172px;
-		margin:20px 0;
-		float:right;
-	}
-	.page-form span{
-		line-height:32px;
-	}
+.page-form {
+	width: 172px;
+	margin: 20px 0;
+	float: right;
+}
+
+.page-form span {
+	line-height: 32px;
+}
 </style>
 </head>
 
@@ -81,16 +85,14 @@
 					</div>
 
 					<div class="clearfix"></div>
-					
+
 					<div class="row">
-						
+
 
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>
-										账单收益查询
-									</h2>
+									<h2>账单收益查询</h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -106,58 +108,78 @@
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-								
+
 								<div class="col-md-6 col-sm-12 col-xs-12">
 									<div class="x_content">
-										<form class="form-horizontal form-label-left" method="post" action="bill_query">
+										<form class="form-horizontal form-label-left" method="post"
+											action="bill_query">
 											<div class="form-group">
-						                        <!-- <label class="control-label col-md-3" style="width:100px;">交易时间</label> -->
-						                        <%-- <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
+												<!-- <label class="control-label col-md-3" style="width:100px;">交易时间</label> -->
+												<%-- <div class="col-md-4 col-sm-9 col-xs-12" style="width:100px;">
 													<select class="form-control">
 														<option>北京</option>
 														<option>河北</option>
 													</select>
 												</div> --%>
-						                        
-						                        <div class="form-group">
-							                        <label class="control-label col-md-3" style="width:100px;">交易开始时间</label>
-							                        <fieldset class="col-md-8 col-sm-9 col-xs-12">
-							                          <div class="control-group">
-							                            <div class="controls">
-							                              <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-							                                <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2" name="startTime">
-							                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-							                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
-							                              </div>
-							                            </div>
-							                          </div>
-							                        </fieldset>
-							                     </div>
-						                        
-						                        <div class="form-group">
-							                        <label class="control-label col-md-3" style="width:100px;">交易结束时间</label>
-							                        <fieldset class="col-md-8 col-sm-9 col-xs-12">
-							                          <div class="control-group">
-							                            <div class="controls">
-							                              <div class="col-md-11 xdisplay_inputx form-group has-feedback">
-							                                <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="inputSuccess2Status2" name="endTime">
-							                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-							                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
-							                              </div>
-							                            </div>
-							                          </div>
-							                        </fieldset>
-							                     </div>
-						                        
-						                        <div class="col-md-1 col-sm-9 col-xs-12">
-						                          <button class="btn btn-success" type="submit">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
-						                        </div>
-						                      </div>
-						                      
-						                      <div class="divider-dashed"></div>
-						                      
-						                      
-						                 			                      
+
+												<div class="form-group">
+													<label class="control-label col-md-3" style="width:100px;">交易开始时间</label>
+													<fieldset class="col-md-8 col-sm-9 col-xs-12">
+														<div class="control-group">
+															<div class="controls">
+																<div
+																	class="col-md-11 xdisplay_inputx form-group has-feedback">
+																	<input type="text"
+																		class="form-control has-feedback-left"
+																		id="single_cal2" placeholder="First Name"
+																		aria-describedby="inputSuccess2Status2"
+																		name="startTime"> <span
+																		class="fa fa-calendar-o form-control-feedback left"
+																		aria-hidden="true"></span> <span
+																		id="inputSuccess2Status2" class="sr-only">(success)</span>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-md-3" style="width:100px;">交易结束时间</label>
+													<fieldset class="col-md-8 col-sm-9 col-xs-12">
+														<div class="control-group">
+															<div class="controls">
+																<div
+																	class="col-md-11 xdisplay_inputx form-group has-feedback">
+																	<input type="text"
+																		class="form-control has-feedback-left"
+																		id="single_cal3" placeholder="First Name"
+																		aria-describedby="inputSuccess2Status2" name="endTime">
+																	<span
+																		class="fa fa-calendar-o form-control-feedback left"
+																		aria-hidden="true"></span> <span
+																		id="inputSuccess2Status2" class="sr-only">(success)</span>
+																</div>
+
+															</div>
+														</div>
+													</fieldset>
+
+												</div>
+												<c:if test="${!empty seachError}">
+													<p>
+														<code>错误：查询开始时间必须小于结束时间</code>
+													</p>
+												</c:if>
+												<div class="col-md-1 col-sm-9 col-xs-12">
+													<button class="btn btn-success" type="submit">&nbsp;&nbsp;查询&nbsp;&nbsp;</button>
+
+												</div>
+											</div>
+
+											<div class="divider-dashed"></div>
+
+
+
 										</form>
 									</div>
 								</div>
@@ -165,11 +187,20 @@
 									<div class="col-md-6 col-sm-12 col-xs-12">
 										<div class="x_content">
 											<div class="bs-example" data-example-id="simple-jumbotron">
-							                    <div class="jumbotron" style="padding: 5px 36px;">
-							                      <h1>¥<fmt:formatNumber type="number" maxFractionDigits="10" value="${profit}" /></h1>
-							                      <p><fmt:formatDate pattern="yyyy-MM-dd" value="${dateOne}" /> － <fmt:formatDate pattern="yyyy-MM-dd" value="${dateTwo}" />累计收益</p>
-							                    </div>
-							                  </div>
+												<div class="jumbotron" style="padding: 5px 36px;">
+													<h1>
+														¥
+														<fmt:formatNumber type="number" maxFractionDigits="10"
+															value="${profit}" />
+													</h1>
+													<p>
+														${dateOne}
+														－
+														${dateTwo}
+														累计收益
+													</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</c:if>
@@ -181,15 +212,15 @@
 				                            <table class="table">
 				                              <tbody>
 				                                <tr>
-				                                  <th style="width:50%">当日收益:</th>
+				                                  <th style="width:50%">本日收益:</th>
 				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Today}" /></td>
 				                                </tr>
 				                                <tr>
-				                                  <th>当月收益:</th>
+				                                  <th>本月收益:</th>
 				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Month}" /></td>
 				                                </tr>
 				                                <tr>
-				                                  <th>当年收益:</th>
+				                                  <th>本年收益:</th>
 				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
 				                                </tr>
 				                                <tr>
@@ -199,13 +230,13 @@
 				                              </tbody>
 				                            </table>
 				                          </div>
-										
+
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 			<!-- /page content -->
@@ -225,10 +256,11 @@
 	<!-- NProgress -->
 	<script src="./vendors/nprogress/nprogress.js"></script>
 	<!-- bootstrap-daterangepicker -->
-    <script src="./vendors/moment/min/moment.min.js"></script>
-    <script src="./vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script src="./vendors/moment/min/moment.min.js"></script>
+	<script src="./vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 	<!-- jQuery custom content scroller -->
-	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script
+		src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- iCheck -->
 	<script src="./vendors/iCheck/icheck.min.js"></script>
 

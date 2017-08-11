@@ -105,7 +105,7 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 	public Area queryById(int id) {
 		System.out.println("exec queryById");
 		try {
-			List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where id=?", id);
+			List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where areId=?", id);
 			System.out.println("queryById successful!");
 			if (areas.size() > 0) {
 				return areas.get(0);
@@ -125,6 +125,10 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 		return areas;
 	}
 	
-	
+	public void updateMoney(String money, int id) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery("update Area set areaTotalMoney="+ money +" where areId=" + id);
+		query.executeUpdate();
+	}
 	
 }

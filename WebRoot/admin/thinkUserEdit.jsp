@@ -136,6 +136,23 @@
 												</select>
 											</div>
 										</div>
+										
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">角&nbsp;&nbsp;&nbsp;&nbsp;色</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<select class="form-control" name="group.grpId">
+													<c:forEach var="roots" items="${listgroup}" varStatus="i">
+														<c:if  test="${roots.grpId == listInfo.group.grpId}">
+															<option value="${roots.grpId}" selected="selected">${roots.grpTitle}</option>
+														</c:if>
+														<c:if  test="${roots.grpId != listInfo.group.grpId}">
+															<option value="${roots.grpId}">${roots.grpTitle}</option>
+														</c:if>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+										
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">

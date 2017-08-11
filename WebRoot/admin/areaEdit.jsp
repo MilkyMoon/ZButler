@@ -126,6 +126,7 @@
 																</c:if>
 															</c:forEach>
 														</select>
+														<p style="margin-top:10px;"><code>注意：</code>添加<code>物业</code>时请确保物业为第四级(省--市--县--物业),直辖市尤其注意。</p>
 													</div>
 												</div>
 												

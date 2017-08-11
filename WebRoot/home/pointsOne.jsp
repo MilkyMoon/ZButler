@@ -31,7 +31,7 @@
 			</div>
 			<div class="integral2_top_center"></div>
 		</div>
-		<a href="<%=basePath%>home/pointToChange.jsp">
+		<a href="<%=basePath%>CtaTrading!piontToChange.action">
 			<div class="integral_content">
 
 				<div class="integral_content_left">
