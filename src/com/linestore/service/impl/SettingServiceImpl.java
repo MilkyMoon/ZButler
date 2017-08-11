@@ -15,6 +15,10 @@ public class SettingServiceImpl implements SettingService {
 		return settingDao.queryById(setId);
 	}
 
+	public void update(String hql) {
+		settingDao.update(hql);
+	}
+	
 	public SettingDao getSettingDao() {
 		return settingDao;
 	}
@@ -22,6 +26,4 @@ public class SettingServiceImpl implements SettingService {
 	public void setSettingDao(SettingDao settingDao) {
 		this.settingDao = settingDao;
 	}
-	
-	
 }
