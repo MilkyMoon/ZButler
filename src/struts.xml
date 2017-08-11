@@ -15,7 +15,7 @@
 			<interceptor name="loginInterceptor"
 				class="com.linestore.inteceptor.LoginInteceptor">
 				<param name="excludeMethods">
-					login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLogin,
+					login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLoginJson,
 					wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu,IntoPayPage,adminBindWeChat
 				</param>
 			</interceptor>
@@ -163,19 +163,18 @@
 			</result>
 
 		</action>
-		
+
 		<action name="pictures_*" class="com.linestore.action.PicturesAction"
 			method="{1}">
 			<result name="add" type="redirectAction">pictures_Img</result>
 			<result name="del" type="redirectAction">pictures_Img</result>
-			<result name="Img"></result>
+			<!-- <result name="Img"></result> -->
 		</action>
 
 		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction"
 			method="{1}">
 			<result name="gotoWeChat" type="redirectAction">Customer_weChat</result>
 			<result name="gotoBind" type="redirectAction">Customer_update</result>
-
 			<result name="goAdminBindWechat" type="redirectAction">
 				<param name="namespace">/admin</param>
 				<param name="actionName">bangdin_updateThuOpenid</param>
@@ -272,13 +271,18 @@
 			</result>
 		</action>
 		<!-- 网页授权静默获取OpenId -->
-		<action name="WxOauthRedirect" class="com.linestore.action.WxOauthRedirectAction">
+		<action name="WeXinLoginJson" class="com.linestore.action.WxOauthRedirectAction"
+			method="WeXinLogin">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
-
 		</action>
-
+		<action name="bindWeChatJson" class="com.linestore.action.WxOauthRedirectAction"
+			method="bindWeChat">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 		<action name="WxIndex_*" class="com.linestore.action.WxIndexAction"
 			method="{1}">
 		</action>

@@ -168,7 +168,7 @@
 	    	$.ajax({
 			type : "get",
 			dataType : "json",
-			url : "<%=basePath%>/ZButler/WxOauthRedirect!bindWeChat.action",
+			url : "<%=basePath%>bindWeChatJson.action",
 			success : function(result) {
 				console.log(result)
 				$(".dialog_guide_content").find("a").attr("href",JSON.parse(result).LoginUrl);

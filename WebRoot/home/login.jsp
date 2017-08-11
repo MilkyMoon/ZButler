@@ -117,7 +117,7 @@ ${js}
 			$.ajax({
 				type : "get",
 				dataType : "json",
-				url : "<%=basePath%>/ZButler/WxOauthRedirect!WeXinLogin.action",
+				url : "<%=basePath%>WeXinLoginJson.action",
 				success : function(result) {
 					$(".login_button").find("a").attr("href", JSON.parse(result).LoginUrl);
 					window.YDUI.dialog.loading.close(); /* 移除loading */

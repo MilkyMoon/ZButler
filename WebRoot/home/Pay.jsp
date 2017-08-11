@@ -46,7 +46,7 @@
 					placeholder="消费金额" autocomplete="off" id="payNum" value="" />
 			</c:if>
 			<c:if test="${!empty sessionScope.payByCashMoney}">
-				<input type="number" pattern="[0-9]*" name="num" class="cell-input"
+				<input type="text" pattern="[0-9]*" name="num" class="cell-input"
 					placeholder="消费金额" autocomplete="off" id="payNum" value="${sessionScope.payByCashMoney}" />
 			</c:if>
 			
