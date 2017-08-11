@@ -166,6 +166,9 @@
 		
 		<action name="pictures_*" class="com.linestore.action.PicturesAction"
 			method="{1}">
+			<result name="add" type="redirectAction">pictures_Img</result>
+			<result name="del" type="redirectAction">pictures_Img</result>
+			<result name="Img"></result>
 		</action>
 
 		<action name="WxOauthRedirect_*" class="com.linestore.action.WxOauthRedirectAction"
@@ -445,6 +448,16 @@
 			</result>
 			<result name="select" type="redirectAction">message_selectAllMessage
 			</result>
+		</action>
+		<action name="thuTrading_*" class="com.linestore.action.ThuTradingAction"
+			method="{1}">
+			<result name="selectAll">thutrading.jsp</result>
+			<result name="gotoPostal" type="chain">
+				<param name="namespace">/</param>
+				<param name="actionName">postal</param>
+			</result>
+			<result name="add" type="redirectAction">bill_selectAll</result>
+			<result name="select" type="redirectAction">thuTrading_selectAll</result>
 		</action>
 	</package>
 

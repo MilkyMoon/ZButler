@@ -179,6 +179,34 @@
 										</form>
 									</div>
 								</div>
+								
+								<div class="col-md-6 col-sm-12 col-xs-12">
+										<div class="x_content">
+											<form action="thuTrading_add" method="post" id="submitForm">
+												<div class="bs-example" data-example-id="simple-jumbotron">
+													<div class="jumbotron" style="padding: 5px 36px;">
+														<h1>
+															¥
+															<fmt:formatNumber type="number" maxFractionDigits="10"
+																value="${area.areaTotalMoney}"/>
+														</h1>
+														<p>
+															可提现总额
+														</p>
+													</div>
+												</div>
+												
+												<div class="form-group">
+							                        <div class="col-md-9 col-sm-9 col-xs-12">
+							                          <input type="number" class="form-control" required="required" name="money" id="money" placeholder="请输入提现金额"/>
+							                        </div>
+							                        <div class="col-md-3 col-sm-9 col-xs-12">
+							                          <button class="btn btn-success" type="submit" style="float:right">&nbsp;&nbsp;提现&nbsp;&nbsp;</button>
+							                        </div>
+							                      </div>	
+											</form>
+										</div>
+									</div>
 
 								<div class="x_content">
 									<div class="table-responsive">
@@ -371,5 +399,30 @@
 
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>
+	
+	<script type="text/javascript">
+		$("#submitForm").on("submit", function (event) {
+			alert($("#money").val());
+			if ($("#money").val() > ${area.areaTotalMoney} || $("#money").val() <= 0 || checknumber($("#money").val())) {
+				alert("请输入正确的值！");
+				event.preventDefault();   //阻止表单提交
+			} else {
+				event.submit();  //提交表单
+			}
+		})
+		
+		function checknumber(String) { 
+	　　　　var Letters = "1234567890"; 
+	　　　　var i; 
+	　　　　var c; 
+	　　　　for( i = 0; i < Letters.length(); i ++ )   {   //Letters.length() ->>>>取字符长度
+	　　　　　　c = Letters.charAt( i ); 
+	　　　　　　if (Letters.indexOf( c ) ==-1)   { //在"Letters"中找不到"c"   见下面的此函数的返回值
+	　　　　　　　　return true; 
+	　　　   　　} 
+	　　　　} 
+	　　　　return false; 
+	　　}
+	</script>
 </body>
 </html>

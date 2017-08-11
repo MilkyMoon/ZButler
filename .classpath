@@ -133,5 +133,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xstream-1.4.9.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.3.32.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/aliyun-java-sdk-core-3.2.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/aliyun-java-sdk-dysmsapi-1.0.0-SANPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

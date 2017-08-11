@@ -10,6 +10,8 @@ import java.util.Random;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.exceptions.ServerException;
 import com.linestore.service.BusinessService;
 import com.linestore.service.CatetoryService;
 import com.linestore.service.CtaTradingService;
@@ -111,7 +113,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customerService.select(cus);
 	}
 
-	private String sendCode(String phone) {
+	private String sendCode(String phone) throws ServerException, ClientException {
 		int min = 1000;
 		int max = 9999;
 		Random random = new Random();
@@ -121,7 +123,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return String.valueOf(code);
 	}
 
-	public String sendMessage() {
+	public String sendMessage() throws ServerException, ClientException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (customerService.findByPhone(customer.getCusPhone()).size() >= 1) {
 			map.put("isError", "true");
@@ -276,7 +278,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "gotoCusMessage";
 	}
 
-	public String forgetPass() {
+	public String forgetPass() throws ServerException, ClientException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("isError", "false");
 		String code = sendCode(customer.getCusPhone());
@@ -285,7 +287,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return SUCCESS;
 	}
 
-	public String BindPhone() {
+	public String BindPhone() throws ServerException, ClientException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (customerService.findByPhone(customer.getCusPhone()).size() >= 1) {
 			map.put("isError", "true");

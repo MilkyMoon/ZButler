@@ -7,5 +7,7 @@ import com.linestore.vo.Setting;
 public interface SettingDao {
 	
 	public Setting queryById(int setId);
+	
+	public void update(String hql);
 
 }

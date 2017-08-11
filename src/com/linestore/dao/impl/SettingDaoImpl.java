@@ -2,6 +2,9 @@ package com.linestore.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import com.linestore.dao.SettingDao;
@@ -15,6 +18,10 @@ public class SettingDaoImpl extends HibernateDaoSupport implements SettingDao {
 		return sets.get(0);
 	}
 	
-	
+	public void update(String hql) {
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.executeUpdate();
+	}
 
 }

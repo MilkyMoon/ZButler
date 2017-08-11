@@ -12,12 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.linestore.service.AreaService;
 import com.linestore.service.BillService;
+import com.linestore.service.ThuTradingService;
 import com.linestore.util.Page;
 import com.linestore.util.PageUtil;
 import com.linestore.vo.Area;
 import com.linestore.vo.Bill;
 import com.linestore.vo.ThinkUser;
+import com.linestore.vo.ThuTrading;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -31,6 +34,11 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private List<Bill> billList;
 	ThinkUser think;
 	private Bill billResult;
+	private ThuTrading thuTradingResult;
+	private ThuTradingService thuTradingService;
+	
+	private Area areaResult;
+	private AreaService areaService;
 	
 //	private static final long serialVersionUID = -5452039838295753607L;
 	private String data;
@@ -123,9 +131,12 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 			billList =  billService.select(page,thuId);
 		}
 		
+		areaResult = areaService.queryById(think.getArea().getAreId());
+		
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", billList);
 		request.put("page", page);
+		request.put("area", areaResult);
 		
 		return "selectAll";
 	}
@@ -452,6 +463,22 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public ThuTradingService getThuTradingService() {
+		return thuTradingService;
+	}
+
+	public void setThuTradingService(ThuTradingService thuTradingService) {
+		this.thuTradingService = thuTradingService;
+	}
+
+	public AreaService getAreaService() {
+		return areaService;
+	}
+
+	public void setAreaService(AreaService areaService) {
+		this.areaService = areaService;
 	}
 	
 	

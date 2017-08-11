@@ -22,4 +22,5 @@ public interface ThinkUserDao {
 	
 	public List<ThinkUser> selectAllByKey(Page page,String keywords);
 	public int selectAllByKeyCount(String keywords);
+	public List<ThinkUser> selectAllByKey(String keywords);
 }
