@@ -1,5 +1,7 @@
 package com.linestore.service.impl;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.dao.BusinessTmpDao;
@@ -32,6 +34,23 @@ public class BusinessTmpServiceImpl implements BusinessTmpService  {
 
 	public void setBusinessTmpDao(BusinessTmpDao businessTmpDao) {
 		this.businessTmpDao = businessTmpDao;
+	}
+
+	@Override
+	public List<BusinessTmp> selectAll() {
+		// TODO Auto-generated method stub
+		return businessTmpDao.selectAll();
+	}
+
+	@Override
+	public void save(BusinessTmp businessTmp) {
+		// TODO Auto-generated method stub
+		businessTmpDao.save(businessTmp);
+	}
+
+	@Override
+	public void delete(BusinessTmp busT) {
+		businessTmpDao.delete(busT);
 	}
 
 }

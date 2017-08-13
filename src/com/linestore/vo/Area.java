@@ -34,6 +34,10 @@ public class Area implements java.io.Serializable {
 	public Area() {
 	}
 	
+	public Area(Integer id) {
+		this.areId = id;
+	}
+	
 	public Area(Area are) {
 		this.areId = are.getAreId();
 		this.pid = are.getPid();

@@ -40,7 +40,7 @@
 					<c:if test="${cta.ctaType == 4 and cta.ctaStatus == 0}">申请提现(未审核)</c:if>
 					<c:if test="${cta.ctaType == 4 and cta.ctaStatus == 1}">申请提现(已审核)</c:if>
 					<c:if test="${cta.ctaType == 4 and cta.ctaStatus == 2}">申请提现(未通过)</c:if>
-					<c:if test="${cta.ctaType == 11}">积分转零钱${jfzhb}</c:if>
+					<c:if test="${cta.ctaType == 11}">积分转零钱</c:if>
 					<c:if test="${cta.ctaType == 12}">朋友充值</c:if>
 					<c:if test="${cta.ctaType == 13}">朋友消费返积分</c:if>
 					<c:if test="${cta.ctaType == 14}">消费返积分</c:if>

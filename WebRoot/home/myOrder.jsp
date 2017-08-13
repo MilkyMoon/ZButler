@@ -74,7 +74,7 @@
 								</div>
 								<div class="myOrder_orderContent">
 									<div class="myOrder_food">线下付款</div>
-									<div class="myOrder_price">￥${bill.bilCusMoney}</div>
+									<div class="myOrder_price">￥<fmt:formatNumber type="number" maxFractionDigits="12" value="${bill.bilCusMoney}" /></div>
 								</div>
 							</div>
 						</div>
