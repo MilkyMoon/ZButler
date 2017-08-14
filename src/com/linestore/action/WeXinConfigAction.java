@@ -29,7 +29,7 @@ public class WeXinConfigAction extends ActionSupport {
 																// appsecret
 		config.setToken("wxdev"); // 设置微信公众号的token
 
-		config.setOauth2redirectUri("http://yanglan520.com/ZButler/WxOauthRedirect!oauth.action");
+		config.setOauth2redirectUri("http://www.codwiki.cn/ZButler/WxOauthRedirect!oauth.action");
 		this.wxService = new WxMpServiceImpl();
 		wxService.setWxMpConfigStorage(config);
 	}

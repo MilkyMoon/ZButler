@@ -39,6 +39,7 @@
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 生成数据表的策略 -->
 				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.autoReconnect">true</prop>
 			</props>
 		</property>
 		<property name="mappingLocations" value="classpath:com/linestore/vo/*.hbm.xml"></property>
