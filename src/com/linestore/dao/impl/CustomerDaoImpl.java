@@ -126,7 +126,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 					customer.getCusPhone(), 
 					customer.getCusPassword()
 					);
-			if (cus.size() == 1) {
+			if (cus.size() == 1 && cus.get(0).getCusStatus() == 1) {
 				System.out.println("登录成功！");
 				return true;
 			} else {
