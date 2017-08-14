@@ -46,13 +46,13 @@
 
 		<div class="m-slider" id="J_Slider">
 			<div class="slider-wrapper">
-			<c:forEach items="${banner}" var="banner">
+ 			<c:forEach items="${banner}" var="banner">
 				<div class="slider-item">
 					<a href="${banner.configKey}"> <img
 						src="${banner.configValue}">
 					</a>
 				</div>
-				</c:forEach>
+				</c:forEach> 
 			</div>
 			<div class="slider-pagination"></div>
 			<!-- 分页标识 -->
@@ -68,7 +68,7 @@
 		</div>
 
 		<div class="index_recommends">
-			<a class="index_recommend_left" href="${leftAdvConfigs[1]}">
+			 <a class="index_recommend_left" href="${leftAdvConfigs[1]}">
 				<img src="${leftAdvConfigs[0]}" /> <span>${leftAdvConfigs[2]}</span>
 			</a>
 			<div class="index_recommend_right">
@@ -82,17 +82,15 @@
 						${rightBottomConfigs[2]}
 					</span>
 				</a>
-			</div>
+			</div> 
 		</div>
 
 		<div class="index_guessYourLike">
 			<h5>猜你喜欢</h5>
 			<c:forEach items="${buss}" var="bus">
-				<a
-					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}"><div
-						class="index_guessItem">
+				<a href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}"><div class="index_guessItem">
 						<img src="${bus.busOrgUrl}" />
-						<div class="guess_content">
+						<div class="guess_content">ß
 							<div>
 								<span class="guess_name">${bus.busShopName}</span> <span
 									class="guess_mark"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
