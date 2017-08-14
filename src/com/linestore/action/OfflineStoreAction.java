@@ -70,6 +70,7 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		ActionContext.getContext().getSession().put("city", city);
 		//System.out.println(cates.size());
 		ActionContext.getContext().getSession().put("cateLins", cates);
+		
 		List<SiteConfig> siteConfigs = siteConfigService.selectCusConfig("banner");
 		ActionContext.getContext().getSession().put("banner", siteConfigs);
 		List<SiteConfig> leftAdvConfigs = siteConfigService.selectCusConfig("shop_adv_left");

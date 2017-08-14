@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="s" uri="/struts-tags"%> 
-<%  String path = request.getContextPath();
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
@@ -16,36 +17,45 @@
 <title>收货地址</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 <body>
-	<div class="deliveryAddress">
-	
-			<s:iterator id="cusAddress" value="cusAddressList" status="">
-    
-    	
-    	<div class="deliveryAddressItem">
-			<div class="deliveryAddressItem_content">
-				<div class="deliveryAddressItem_content_title">
-				<%-- <input type="hidden" name="caId" value="<s:property value='caId'></s:property>"/> --%>
-					<span><s:property value="caName"></s:property></span> <span><s:property value="caPhone"></s:property></span>
+	<div class="deliveryAddress" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
+		<s:iterator id="cusAddress" value="cusAddressList" status="">
+
+
+			<div class="deliveryAddressItem">
+				<div class="deliveryAddressItem_content">
+					<div class="deliveryAddressItem_content_title">
+						<%-- <input type="hidden" name="caId" value="<s:property value='caId'></s:property>"/> --%>
+						<span><s:property value="caName"></s:property></span> <span><s:property
+								value="caPhone"></s:property></span>
+					</div>
+					<div class="deliveryAddressItem_content_address">
+						<s:property value="caProvince"></s:property>
+						<s:property value="caCity"></s:property>
+						<s:property value="caAddress"></s:property>
+					</div>
 				</div>
-				<div class="deliveryAddressItem_content_address">
-					<s:property value="caProvince"></s:property><s:property value="caCity"></s:property><s:property value="caAddress"></s:property></div>
-			</div>
-			<div class="deliveryAddressItem_operation">
-				<a href="<%=basePath%>CusAddress_del?caId=<s:property value='caId'></s:property>" class="btn btn-primary">删除</a> <%-- <a
+				<div class="deliveryAddressItem_operation">
+					<a
+						href="<%=basePath%>CusAddress_del?caId=<s:property value='caId'></s:property>"
+						class="btn btn-primary">删除</a>
+					<%-- <a
 					href="javascript:editCusAddress(<s:property value='caId'></s:property>);" class="btn btn-primary">编辑</a>
 			 --%>
-			<a
-					href="<%=basePath%>CusAddress_select?caId=<s:property value='caId'></s:property>" class="btn btn-primary">编辑</a>
+					<a
+						href="<%=basePath%>CusAddress_select?caId=<s:property value='caId'></s:property>"
+						class="btn btn-primary">编辑</a>
+				</div>
 			</div>
-		</div>
-    	</s:iterator>	
-		
-	
-		
-		
+		</s:iterator>
+
+
+
+
 		<%-- <div class="deliveryAddressItem">
 			<div class="deliveryAddressItem_content">
 				<div class="deliveryAddressItem_content_title">
@@ -73,7 +83,7 @@
 			</div>
 		</div> --%>
 		<div class="deliveryAddress_addButton">
-				<button  type="button" class="btn-block btn-danger" onclick="goAdd();">添加</button>
+			<button type="button" class="btn-block btn-danger" onclick="goAdd();">添加</button>
 		</div>
 	</div>
 </body>
