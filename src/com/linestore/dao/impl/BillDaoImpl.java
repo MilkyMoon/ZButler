@@ -24,9 +24,13 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	@Override
 	public List<Bill> select(Page page, Integer id) {
 		// TODO Auto-generated method stub
-		String hql = "from Bill where areaByThuPropertyId.areId = ? or areaByThuCityId.areId = ? or areaByThuProvinceId.areId = ?";
-		List<Bill> list = (List<Bill>) this.getHibernateTemplate().find(hql, id, id, id);
-		return list;
+		String hql = "from Bill where areaByThuPropertyId.areId = "+id+" or areaByThuCityId.areId = "+id+" or areaByThuProvinceId.areId = "+id+" or areaByThuCountyId.areId = "+id+" order by bilDate desc";	
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery(hql);
+		query.setMaxResults(page.getEveryPage());
+		query.setFirstResult(page.getBeginIndex());
+		
+		return query.list();
 	}
 
 	@Override

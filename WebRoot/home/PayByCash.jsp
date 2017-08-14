@@ -66,7 +66,7 @@
 		});
 
 		$("#signupForm").submit(function(e) {
-			if ($("#number").val() < 10) {
+			if ($("#number").val() < 0) {
 				e.preventDefault();
 				window.YDUI.dialog.alert('输入金额必须大于10！');
 			}

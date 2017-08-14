@@ -74,9 +74,9 @@
 					<div class="mine_order_content_sh"></div> <span>待收货</span>
 				</a> <a href="<%=basePath%>Order_selectType?ordStatus=3">
 					<div class="mine_order_content_pj"></div> <span>待评价</span>
-				</a> <a href="#">
+				<!-- </a> <a href="#"> -->
 					<div class="mine_order_content_tk"></div> <span>退款/售后</span>
-				</a>
+				<!-- </a> -->
 			</div>
 		</div>
 		<div class="mine_function">

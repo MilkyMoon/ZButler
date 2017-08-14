@@ -124,6 +124,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="./vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="./vendors/nprogress/nprogress.js"></script>
+    <!-- jQuery custom content scroller -->
+	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- ECharts -->
     <script src="./vendors/echarts/dist/echarts.min.js"></script>
     <script src="./vendors/echarts/map/js/world.js"></script> 

@@ -1,6 +1,7 @@
 package com.linestore.action;
 
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -137,6 +138,9 @@ public class AreaAction extends ActionSupport implements ModelDriven<Area>{
 	}
 
 	public String save(){
+		area.setAreaScale((float) 1);
+		area.setAreaScaleTwo((float) 0);
+		area.setAreaTotalMoney(new BigDecimal(0));
 		areaService.addArea(area);
 		return "select";
 	}
