@@ -78,7 +78,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	private ThuTrading thuTrading = new ThuTrading();
 	private ThuTradingService thuTradingService;
 
-
 	public FriendsService getFriendsService() {
 		return friendsService;
 	}
@@ -93,14 +92,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	public void setSettingService(SettingService settingService) {
 		this.settingService = settingService;
-	}
-
-	public ThuTradingService getThuTradingService() {
-		return thuTradingService;
-	}
-
-	public void setThuTradingService(ThuTradingService thuTradingService) {
-		this.thuTradingService = thuTradingService;
 	}
 
 	public BusMemberService getBusMemberService() {
@@ -183,8 +174,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 
 	// 统一下单
 	public String getPayInfo() throws WxPayException {
-		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-		+ request.getContextPath() + "/";
 		// 产生订单号（订单号重复）
 		// 获取业务类型 R-充值/P-支付商品
 		String service = request.getParameter("service").toUpperCase();
@@ -210,7 +199,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		Map<String, String> payInfo = this.wxPayService.getPayInfo(
 				WxPayUnifiedOrderRequest.newBuilder().body(orderTitle).totalFee(WxPayBaseRequest.yuanToFee(payNum))
 						.spbillCreateIp(ServletActionContext.getRequest().getRemoteAddr())
-						.notifyURL(basePath+"WxPay!payNotify.action").tradeType("JSAPI") // 交易类型
+						.notifyURL("http://www.codwiki.cn/ZButler/WxPay!payNotify.action").tradeType("JSAPI") // 交易类型
 						.outTradeNo(out_trade_no) // 唯一订单
 						.openid((String) ActionContext.getContext().getSession().get("SCOPE_BASE_OPENID")).build());
 		this.result = JSONObject.fromObject(payInfo).toString();
@@ -267,12 +256,13 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bill.setBilCusMoney(bigMoney);
 							// 商家收款
 							BigDecimal city = new BigDecimal(bus.getBusScale());
-							city = bigMoney.subtract(bigMoney).multiply(city);
+							city = bigMoney.subtract(bigMoney.multiply(city).setScale(2, BigDecimal.ROUND_DOWN));
 							bill.setBusiness(bus);
-							bill.setBilBusMoney(city);
+							bill.setBilBusMoney(bigMoney.subtract(city));
 							bill.setBilDate(new Timestamp(Pdate.getTime()));
-							bigMoney = bigMoney.subtract(city);
-
+							
+							bigMoney = city;
+							System.out.println("1: " + bigMoney.toString());
 							// 物业收款
 							//System.out.println("----thuId: " + bus.getBus());
 							Area area = bus.getArea();
@@ -282,6 +272,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								bill.setAreaByThuPropertyId(area);
 								bill.setBilPropertyMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
+								System.out.println("2: " + bigMoney.toString());
+								areaService.updateMoney(dailishang.add(area.getAreaTotalMoney()).toString(), area.getAreId());
 								// 县收款
 								area = areaService.queryById(area.getPid());
 								dailishang = new BigDecimal(area.getAreaScale());
@@ -289,6 +281,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								bill.setAreaByThuCountyId(area);
 								bill.setBilCountyMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
+								System.out.println("3: " + bigMoney.toString());
+								areaService.updateMoney(dailishang.add(area.getAreaTotalMoney()).toString(), area.getAreId());
 								// 市收款
 								area = areaService.queryById(area.getPid());
 								dailishang = new BigDecimal(area.getAreaScale());
@@ -296,6 +290,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								bill.setAreaByThuCityId(area);
 								bill.setBilCityMoney(dailishang);
 								bigMoney = bigMoney.subtract(dailishang);
+								System.out.println("4: " + bigMoney.toString());
+								areaService.updateMoney(dailishang.add(area.getAreaTotalMoney()).toString(), area.getAreId());
 								// 省收款
 								area = areaService.queryById(area.getPid());
 								dailishang = new BigDecimal(area.getAreaScale());
@@ -303,38 +299,50 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								bill.setBilProvinceMoney(dailishang);
 								bill.setAreaByThuProvinceId(area);
 								bigMoney = bigMoney.subtract(dailishang);
+								System.out.println("5: " + bigMoney.toString());
+								areaService.updateMoney(dailishang.add(area.getAreaTotalMoney()).toString(), area.getAreId());
 								// 众邦收款
+								area = areaService.queryById(area.getPid());
 								bill.setBilZongMoney(bigMoney);
+								System.out.println("old: " + area.getAreaTotalMoney().toString());
+								System.out.println("new: " + dailishang.toString());
+								areaService.updateMoney(bigMoney.add(area.getAreaTotalMoney()).toString(), area.getAreId());
 							} else {
-								BigDecimal dailishang = new BigDecimal(area.getAreaScaleTwo());
+								float tRatio = 1;
+								//县
+								Area ThuCounty = areaService.queryById(area.getPid());
+								//市
+								Area ThuCity = areaService.queryById(ThuCounty.getPid());
+								//省
+								Area ThuProvince = areaService.queryById(ThuCity.getPid());
+								//众邦
+								Area zong = areaService.queryById(ThuProvince.getPid());
+								
+								
+								tRatio = tRatio - area.getAreaScaleTwo() - ThuCounty.getAreaScaleTwo() - ThuCity.getAreaScaleTwo() - ThuProvince.getAreaScaleTwo();
+								
+								
 								bill.setAreaByThuPropertyId(area);
-								bill.setBilPropertyMoney(bigMoney.multiply(dailishang));
-								// 县收款
-								area = areaService.queryById(area.getPid());
-								dailishang = new BigDecimal(area.getAreaScaleTwo());
-								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setAreaByThuCountyId(area);
-								bill.setBilCountyMoney(bigMoney.multiply(dailishang));
-								// 市收款
-								area = areaService.queryById(area.getPid());
-								dailishang = new BigDecimal(area.getAreaScaleTwo());
-								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setAreaByThuCityId(area);
-								bill.setBilCityMoney(bigMoney.multiply(dailishang));
-								// 省收款
-								area = areaService.queryById(area.getPid());
-								dailishang = new BigDecimal(area.getAreaScaleTwo());
-								dailishang = bigMoney.subtract(bigMoney).multiply(dailishang);
-								bill.setBilProvinceMoney(bigMoney.multiply(dailishang));
-								bill.setAreaByThuProvinceId(area);
-								// 众邦收款
-								bill.setBilZongMoney(bigMoney.multiply(dailishang));
+								bill.setBilPropertyMoney(bigMoney.multiply(new BigDecimal(tRatio).setScale(2, BigDecimal.ROUND_DOWN)));
+								areaService.updateMoney(bigMoney.multiply(new BigDecimal(tRatio).setScale(2, BigDecimal.ROUND_DOWN)).add(area.getAreaTotalMoney()).toString(), area.getAreId());
+//								// 县收款
+								bill.setAreaByThuCountyId(ThuCounty);
+								bill.setBilCountyMoney(bigMoney.multiply(new BigDecimal(area.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)));
+								areaService.updateMoney(bigMoney.multiply(new BigDecimal(area.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)).add(ThuCounty.getAreaTotalMoney()).toString(), ThuCounty.getAreId());
+//								// 市收款
+								bill.setAreaByThuCityId(ThuCity);
+								bill.setBilCityMoney(bigMoney.multiply(new BigDecimal(ThuCounty.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)));
+								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuCounty.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)).add(ThuCity.getAreaTotalMoney()).toString(), ThuCity.getAreId());
+//								// 省收款
+								bill.setAreaByThuProvinceId(ThuProvince);
+								bill.setBilProvinceMoney(bigMoney.multiply(new BigDecimal(ThuCity.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)));
+								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuCity.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)).add(ThuProvince.getAreaTotalMoney()).toString(), ThuProvince.getAreId());
+//								// 众邦收款
+								bill.setBilZongMoney(bigMoney.multiply(new BigDecimal(ThuProvince.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)));
+								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuProvince.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)).add(zong.getAreaTotalMoney()).toString(), 1);
 							}
 							billService.addBill(bill);
 							
-							
-							
-
 							
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
@@ -415,7 +423,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							Customer cus = (Customer) customerService.findByOpenId(openId).get(0);
 							CusAccount cusAccount = cusAccountService.findByCusId(cus.getCusId());
 							Float money = cusAccount.getCacChange() + Float.valueOf(kvm.get("total_fee")) / 100;
-							cusAccountService.updateField("cacChange", String.valueOf(money), cusAccount.getCacId());
+							
 							cta.setCustomer(cus);
 							cta.setCtaMoney(Float.valueOf(kvm.get("total_fee")) / 100);
 							cta.setCtaId(kvm.get("out_trade_no"));
@@ -424,6 +432,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							Date Rdate = new Date();
 							cta.setCtaTime(new Timestamp(Rdate.getTime()));
 							ctaTradingService.addCtaTrading(cta);
+							cusAccountService.updateField("cacChange", String.valueOf(money), cusAccount.getCacId());
 
 							System.out.println(cus.getCusPhone());
 							if (cus.getCusPhone() != null && !"".equals(cus.getCusPhone())) {
@@ -703,7 +712,14 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 	public void setAreaService(AreaService areaService) {
 		this.areaService = areaService;
 	}
-	
+
+	public ThuTradingService getThuTradingService() {
+		return thuTradingService;
+	}
+
+	public void setThuTradingService(ThuTradingService thuTradingService) {
+		this.thuTradingService = thuTradingService;
+	}
 	
 	
 }

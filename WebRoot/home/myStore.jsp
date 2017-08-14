@@ -33,7 +33,7 @@
 
 					<c:if test="${!empty store and store.busStatus != 0}">
 						<a href="<%=basePath%>busTrading_queryIncome"><div style="background-color: #D0021B">收款明细</div></a>
-						<a href="<%=basePath%>busTrading_queryWithdraw"><div style="background-color: #F5A623">提现明细</div></a>
+						<%-- <a href="<%=basePath%>busTrading_queryWithdraw"><div style="background-color: #F5A623">提现明细</div></a> --%>
 						<!-- <div style="background-color: #C767DA">现金收款</div> -->
 						<a href="<%=basePath%>cateLine_editBus"><div style="background-color: #8B572A">商户编辑</div></a>
 						<a href="<%=basePath%>home/storeImg.jsp"><div style="background-color: #7ED321">店铺图片</div></a>
@@ -61,6 +61,7 @@
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
+${js}
 <script>
 	$('.myStore').css('height', document.body.scrollHeight);
 </script>

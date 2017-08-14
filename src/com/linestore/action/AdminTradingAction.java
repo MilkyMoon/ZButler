@@ -94,7 +94,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", ctaTradingList);
 		request.put("page", page);
-		request.put("type", 1);
+		request.put("type", 4);
 		
 		return "selectAll";
 	}
@@ -118,7 +118,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", ctaTradingList);
 		request.put("page", page);
-		request.put("type", 4);
+		request.put("type", 1);
 		
 		return "selectAll";
 	}

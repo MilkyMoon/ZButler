@@ -34,7 +34,18 @@
 			<div class="integral2_top_center"></div>
 		</div>
 		<div class="businessMessage_bigImg">
-			<img src="${business.busOrgUrl}" />
+			<div class="m-slider" id="J_Slider">
+			<div class="slider-wrapper">
+			<c:forEach items="${pics}" var="pic" >
+				<div class="slider-item">
+					<img
+						src="${pic.picUrl}">
+				</div>
+				</c:forEach>
+			</div>
+			<div class="slider-pagination"></div>
+			<!-- 分页标识 -->
+		</div>
 		</div>
 		<div class="businessMessage_businessCommend">
 			<div class="businessCommend_title">
@@ -172,6 +183,12 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
 <%-- <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script> --%>
 <script type="text/javascript">
+	//    轮播图初始化
+	/* $('#J_Slider').slider({
+		speed : 200,
+		autoplay : 2000,
+		lazyLoad : true
+	}); */
 
 	$.ajax({
 		type : "post",

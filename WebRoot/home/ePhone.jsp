@@ -30,7 +30,7 @@
 			<div class="integral2_top_center"></div>
 		</div>
 		<form id="signupForm" method="post"
-			action="<%=basePath%>business_updateBus.action">
+			action="<%=basePath%>business_updateEPhone.action">
 			<input type="hidden" name="busId" value="${store.busId}">
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
@@ -68,7 +68,7 @@
 			rules : {
 				busEphone : {
 					required : true,
-					rangelength : [ 23, 23 ]
+					rangelength : [ 11, 11 ]
 				}
 			},
 			messages : {

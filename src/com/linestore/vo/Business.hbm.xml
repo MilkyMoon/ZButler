@@ -35,7 +35,7 @@
             <column name="bus_tax_url" length="65535" />
         </property>
         <property name="busOrgUrl" type="java.lang.String">
-            <column name="bus_org_url" length="65535" />
+            <column name="bus_org_url"/>
         </property>
         <property name="busDistrict" type="java.lang.Integer">
             <column name="bus_district" />
@@ -77,7 +77,7 @@
             <column name="ba_longitude" precision="12" scale="0" />
         </property>
         <property name="bbBankCard" type="java.lang.String">
-            <column name="bb_bank_card" length="25" />
+            <column name="bb_bank_card" length="75" />
         </property>
         <property name="bbBank" type="java.lang.String">
             <column name="bb_bank" length="20" />

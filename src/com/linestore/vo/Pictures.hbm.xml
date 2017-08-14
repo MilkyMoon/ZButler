@@ -11,7 +11,7 @@
             <generator class="identity" />
         </id>
         <property name="picUrl" type="java.lang.String">
-            <column name="pic_url" length="65535" />
+            <column name="pic_url" />
         </property>
         <property name="picOtherId" type="java.lang.Integer">
             <column name="pic_other_id" />

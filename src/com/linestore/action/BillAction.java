@@ -115,7 +115,13 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	
 	public String selectAll(){
 		getId();
-		String hql ="select count(*) from Bill";
+		String hql;
+		if(think.getArea().getPid() == 0){
+			hql ="select count(*) from Bill";
+		}else{
+			hql ="select count(*) from Bill where areaByThuPropertyId.areId = "+thuId+" or areaByThuCityId.areId = "+thuId+" or areaByThuProvinceId.areId = "+thuId+" or areaByThuCountyId.areId = "+thuId;
+		}
+		
 		int totalCount = billService.queryAll(hql);
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";

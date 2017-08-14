@@ -437,8 +437,6 @@
 		map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
 		map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
 		
-		showAddress();
-		
 		//            鼠标点击拾取ip坐标 更新图标位置
 		
 		
