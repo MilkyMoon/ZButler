@@ -55,5 +55,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.queryAll();
 	}
 
+	@Override
+	public int getNewNotice() {
+		// TODO Auto-generated method stub
+		return noticeDao.getNewNoticeCount();
+	}
+
 
 }

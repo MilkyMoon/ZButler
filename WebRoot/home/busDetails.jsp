@@ -18,7 +18,8 @@
 <title>商家详情</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
@@ -35,17 +36,19 @@
 		</div>
 		<div class="businessMessage_bigImg">
 			<div class="m-slider" id="J_Slider">
-			<div class="slider-wrapper">
-			<c:forEach items="${pics}" var="pic" >
-				<div class="slider-item">
-					<img
-						src="${pic.picUrl}">
+				<div class="slider-wrapper">
+					<%-- <c:forEach items="${banner}" var="banner"> --%>
+					<div class="slider-item">
+						<%-- <a href="${banner.configKey}"> <img
+								src="${banner.configValue}">
+							</a> --%>
+						<img src="<%=basePath%>home/dist/wx_image/QRCode.jpg" />
+					</div>
+					<%-- </c:forEach> --%>
 				</div>
-				</c:forEach>
+				<div class="slider-pagination"></div>
+				<!-- 分页标识 -->
 			</div>
-			<div class="slider-pagination"></div>
-			<!-- 分页标识 -->
-		</div>
 		</div>
 		<div class="businessMessage_businessCommend">
 			<div class="businessCommend_title">
@@ -83,40 +86,42 @@
 				</div>
 			</div>
 		</div>
- 		<div class="businessMessage_evaluate">
-			<h5>评价（<span>62</span>）</h5>
-        <div class="businessMessage_evaluateItem">
-            <div class="businessMessage_evaluateItem_title">
-                <div>喵喵猫</div>
-                <span>6月5日</span>
-            </div>
-            <div class="businessMessage_evaluateItem_starNum" data="4">
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<span>5.0</span>-->
-            </div>
-            <p>感觉很好，下次还来</p>
-        </div>
+		<div class="businessMessage_evaluate">
+			<h5>
+				评价（<span>62</span>）
+			</h5>
+			<div class="businessMessage_evaluateItem">
+				<div class="businessMessage_evaluateItem_title">
+					<div>喵喵猫</div>
+					<span>6月5日</span>
+				</div>
+				<div class="businessMessage_evaluateItem_starNum" data="4">
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<span>5.0</span>-->
+				</div>
+				<p>感觉很好，下次还来</p>
+			</div>
 
-        <div class="businessMessage_evaluateItem">
-            <div class="businessMessage_evaluateItem_title">
-                <div>肖*****浪</div>
-                <span>6月5日</span>
-            </div>
-            <div class="businessMessage_evaluateItem_starNum" data="3.6">
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<img src="image/star.png"/>-->
-                <!--<span>5.0</span>-->
-            </div>
-            <p>服务态度很好，还是比较满意的</p>
-        </div>
-       <!--  <div class="businessMessage_evaluate_more">
+			<div class="businessMessage_evaluateItem">
+				<div class="businessMessage_evaluateItem_title">
+					<div>肖*****浪</div>
+					<span>6月5日</span>
+				</div>
+				<div class="businessMessage_evaluateItem_starNum" data="3.6">
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<img src="image/star.png"/>-->
+					<!--<span>5.0</span>-->
+				</div>
+				<p>服务态度很好，还是比较满意的</p>
+			</div>
+			<!--  <div class="businessMessage_evaluate_more">
             <a href="#">加载更多+</a>
         </div> -->
 		</div>
@@ -131,7 +136,8 @@
 						<div class="guess_content">
 							<div>
 								<span class="guess_name">${bus.busShopName}</span> <span
-									class="guess_mark"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
+									class="guess_mark"><fmt:formatNumber type="number"
+										maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
 							</div>
 							<div>
 								<span>${bus.cateLine.calName}</span> <span>其他</span>
@@ -181,14 +187,14 @@
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
-<%-- <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script> --%>
+<script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script type="text/javascript">
 	//    轮播图初始化
-	/* $('#J_Slider').slider({
+	 $('#J_Slider').slider({
 		speed : 200,
 		autoplay : 2000,
 		lazyLoad : true
-	}); */
+	}); 
 
 	$.ajax({
 		type : "post",
