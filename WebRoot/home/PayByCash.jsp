@@ -24,7 +24,7 @@
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right">
-						<input type="number" class="cell-input" name="tel"
+						<input type="number" class="cell-input" name="tel" id="Phone"
 							placeholder="请输入手机号码" autocomplete="off" /> <input type="hidden"
 							name="busId" value="${store.busId }" />
 					</div>
@@ -66,9 +66,13 @@
 		});
 
 		$("#signupForm").submit(function(e) {
-			if ($("#number").val() < 10) {
+			if ($("#number").val() < 0) {
 				e.preventDefault();
 				window.YDUI.dialog.alert('输入金额必须大于10！');
+			}
+			if ($("#Phone").val() == ${user.cusPhone}) {
+				e.preventDefault();
+				window.YDUI.dialog.alert('不能输入自己的电话号码！');
 			}
 		});
 	});

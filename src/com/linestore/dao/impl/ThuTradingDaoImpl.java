@@ -28,7 +28,7 @@ public class ThuTradingDaoImpl extends HibernateDaoSupport implements ThuTrading
 	@Override
 	public List<ThuTrading> select(Page page) {
 		// TODO Auto-generated method stub
-		String hql = "from ThuTrading";
+		String hql = "from ThuTrading order by thtTime desc";
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query= session.createQuery(hql);
 		query.setMaxResults(page.getEveryPage());
@@ -68,7 +68,7 @@ public class ThuTradingDaoImpl extends HibernateDaoSupport implements ThuTrading
 	@Override
 	public List<ThuTrading> selectByKey(Page page, Integer[] thuList,Integer[] areList) {
 		// TODO Auto-generated method stub
-		String hql = "from ThuTrading where thuId in (:thuList) or areId in (areList)";
+		String hql = "from ThuTrading where thuId in (:thuList) or areId in (areList) order by thtTime desc";
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query= session.createQuery(hql);
 		query.setParameterList("thuList", Arrays.asList(thuList));
@@ -104,7 +104,7 @@ public class ThuTradingDaoImpl extends HibernateDaoSupport implements ThuTrading
 	@Override
 	public List<ThuTrading> selectByKeytoThu(Page page, Integer[] thuList) {
 		// TODO Auto-generated method stub
-		String hql = "from ThuTrading where thuId in (:thuList)";
+		String hql = "from ThuTrading where thuId in (:thuList) order by thtTime desc";
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query= session.createQuery(hql);
 		query.setParameterList("thuList", Arrays.asList(thuList));
@@ -117,7 +117,7 @@ public class ThuTradingDaoImpl extends HibernateDaoSupport implements ThuTrading
 	@Override
 	public List<ThuTrading> selectByKeytoAre(Page page, Integer[] areList) {
 		// TODO Auto-generated method stub
-		String hql = "from ThuTrading where areId in (areList)";
+		String hql = "from ThuTrading where areId in (areList) order by thtTime desc";
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query= session.createQuery(hql);
 		query.setParameterList("areList", Arrays.asList(areList));
@@ -142,7 +142,7 @@ public class ThuTradingDaoImpl extends HibernateDaoSupport implements ThuTrading
 	@Override
 	public int selectByKeyCountToAre(Integer[] areList) {
 		// TODO Auto-generated method stub
-		String hql = "select count(*) from ThuTrading where areId in (areList)";
+		String hql = "select count(*) from ThuTrading where areId in (areList) order by thtTime desc";
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query= session.createQuery(hql);
 		query.setParameterList("areList", Arrays.asList(areList));

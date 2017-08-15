@@ -47,7 +47,7 @@
 			<result name="success" type="redirectAction">business_jump</result>
 			<result name="selectAll">admin/business.jsp</result>
 			<result name="error">admin/index.jsp</result>
-			<result name="gotoStoreAction" type="redirectAction">business_gotoStore
+			<result name="gotoStoreAction" type="redirectAction">business_store
 			</result>
 			<result name="gotoStore">home/myStore.jsp</result>
 			<result name="gotoEdit">home/editBus.jsp</result>

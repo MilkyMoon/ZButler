@@ -74,9 +74,9 @@
 					<div class="mine_order_content_sh"></div> <span>待收货</span>
 				</a> <a href="<%=basePath%>Order_selectType?ordStatus=3">
 					<div class="mine_order_content_pj"></div> <span>待评价</span>
-				</a> <a href="#">
+				<%-- </a> <a href="javascript:return ;">
 					<div class="mine_order_content_tk"></div> <span>退款/售后</span>
-				</a>
+				</a> --%>
 			</div>
 		</div>
 		<div class="mine_function">
@@ -106,7 +106,7 @@
 				class="mine_function_yhq">
 				<div></div> <span>我的优惠券</span>
 			</a> 
-			<a href="<c:if test="${fn:length(business.busTradings) > 0}">javascript:return false;</c:if><c:if test="${fn:length(business.busTradings) eq 0}"><%=basePath%>cateLine_queryRoot</c:if>" class="mine_function_sqrz">
+			<a href="<c:if test="${fn:length(user.businesses) ne 0}">javascript:return false;</c:if><c:if test="${fn:length(user.businesses) eq 0}"><%=basePath%>cateLine_queryRoot</c:if>" class="mine_function_sqrz">
 				<div></div> <span>申请入驻</span>
 			</a> 
 			<a href="<%=basePath%>business_store.action" class="mine_function_wddp">

@@ -46,7 +46,7 @@
 
 		<div class="m-slider" id="J_Slider">
 			<div class="slider-wrapper">
-			<c:forEach items="${banner}" var="banner">
+			<c:forEach items="${banner}" var="banner" >
 				<div class="slider-item">
 					<a href="${banner.configKey}"> <img
 						src="${banner.configValue}">
@@ -57,6 +57,7 @@
 			<div class="slider-pagination"></div>
 			<!-- 分页标识 -->
 		</div>
+		
 
 		<div class="index_classItems">
 			<c:forEach items="${cateLins}" var="cate">

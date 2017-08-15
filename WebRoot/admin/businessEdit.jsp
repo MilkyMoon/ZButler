@@ -60,9 +60,6 @@
 			<div class="right_col" role="main">
 				<div class="">
 					<div class="page-title">
-						<div class="title_left">
-							<h3>商家管理|商家信息编辑</h3>
-						</div>
 
 						<%-- <div class="title_right">
 							<div
@@ -267,7 +264,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12" style="color:#d9534f">指定物业*</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
-													<select class="form-control" name="busThuId">
+													<select class="form-control" name="area.areId">
 														<option value="0" selected="selected">请指定物业</option>
 														<c:forEach var="list" items="${list}">
 															<c:if test="${list.areId ==  businessList.area.areId}">
@@ -329,6 +326,13 @@
 												</div>
 											</div>
 											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12">开户行</label>
+												<div class="col-md-9 col-sm-9 col-xs-12">
+													<input type="text" class="form-control" name="bbBank"
+														value="${businessList.bbBank}">
+												</div>
+											</div>
+											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">国家</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baCountry"
@@ -360,7 +364,7 @@
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">详细地址</label>
 												<div class="col-md-9 col-sm-9 col-xs-12">
 													<input type="text" class="form-control" name="baAddress"
-														value="<s:property value="baAddress"/>" id="baAddress">
+														value="${businessList.baAddress}" id="baAddress">
 												</div>
 											</div>
 											<div class="form-group">
@@ -535,7 +539,7 @@
 		map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
 		map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
 		
-		showAddress();
+		/* showAddress(); */
 		
 		//            鼠标点击拾取ip坐标 更新图标位置
 		function showInfo(e) {

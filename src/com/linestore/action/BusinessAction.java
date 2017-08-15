@@ -159,13 +159,22 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 			return "gotoEdit";
 		}
 		String str = business.getBaProvince();
-		String strs[] = str.split(" ");
-		business.setBaProvince(strs[0]);
-		business.setBaCity(strs[1]);
-		business.setBaCounty(strs[2]);
+		if (str != null) {
+			String strs[] = str.split(" ");
+			business.setBaProvince(strs[0]);
+			business.setBaCity(strs[1]);
+			business.setBaCounty(strs[2]);
+		}
 		BusinessTmp bust = new BusinessTmp(business);
-		System.out.println("----->" + bust.getBusId());
 		businessTmpService.addBusinessTmp(bust);
+		return "gotoStoreAction";
+	}
+	
+	public String updateEPhone() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		String hql = ReturnUpdateHql.ReturnHql(Business.class, business, business.getBusId());
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("error", "<script>YDUI.dialog.alert('提交成功！');</script>");
+		businessService.update(hql);
 		return "gotoStoreAction";
 	}
 	
@@ -343,6 +352,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		if (bus.size() > 0) {
 			System.out.println(bus.get(0));
 			ActionContext.getContext().getSession().put("store", bus.get(0));
+			System.out.println("-----------------");
 		}
 		return "gotoStore";
 	}

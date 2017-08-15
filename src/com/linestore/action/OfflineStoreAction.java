@@ -10,11 +10,13 @@ import java.util.Map;
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
 import com.linestore.service.CateLineService;
+import com.linestore.service.PicturesService;
 import com.linestore.service.SiteConfigService;
 import com.linestore.vo.Business;
 import com.linestore.vo.CateLine;
 import com.linestore.vo.SiteConfig;
 import com.linestore.vo.Catetory;
+import com.linestore.vo.Pictures;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -34,6 +36,8 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	private int cate;
 	
 	private int child = -1;
+	
+	private PicturesService picturesService;
 	
 	private BusinessService businessService;
 	
@@ -105,6 +109,8 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	
 	public String queryBusines() {
 		Business bus = businessService.select(busId);
+		List<Pictures> pics = picturesService.queryByOtherId(busId);
+		System.out.println("+++++-------------->" + pics.size());
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("business", bus);
 		List list = busTradingService.queryHot(city);
@@ -114,6 +120,7 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 			//System.out.println(arr[0]);
 			buss.add(businessService.select(Integer.valueOf(arr[1].toString())));
 		}
+		request.put("pics", pics);
 		request.put("hots", buss);
 		return "gotoBusiness";
 	}
@@ -238,5 +245,14 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	public void setChild(int child) {
 		this.child = child;
 	}
+
+	public PicturesService getPicturesService() {
+		return picturesService;
+	}
+
+	public void setPicturesService(PicturesService picturesService) {
+		this.picturesService = picturesService;
+	}
+	
 	
 }

@@ -46,9 +46,6 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-              <div class="title_left">
-                <h3>商家管理<small>商家信息修改申请列表</small></h3>
-              </div>
 
               <%-- <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">

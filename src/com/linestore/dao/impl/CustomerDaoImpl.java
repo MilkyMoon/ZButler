@@ -126,7 +126,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 					customer.getCusPhone(), 
 					customer.getCusPassword()
 					);
-			if (cus.size() == 1) {
+			if (cus.size() == 1 && cus.get(0).getCusStatus() == 1) {
 				System.out.println("登录成功！");
 				return true;
 			} else {
@@ -185,9 +185,14 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	}
 
 	@Override
-	public List<Customer> search(String keywords) {
+	public List<Customer> search(String keywords,int status) {
 		// TODO Auto-generated method stub
-		String hql = "from Customer where cusNickname like '%"+keywords+"%' or cusPhone like '%"+keywords+"%'";
+		String hql;
+		if(status == 2){
+			hql = "from Customer where cusNickname like '%"+keywords+"%' or cusPhone like '%"+keywords+"%'";
+		} else {
+			hql = "from Customer where cusNickname like '%"+keywords+"%' or cusPhone like '%"+keywords+"%' or cusStatus = "+status;
+		}
 		List<Customer> list = (List<Customer>) this.getHibernateTemplate().find(hql);
 		return list;
 	}
