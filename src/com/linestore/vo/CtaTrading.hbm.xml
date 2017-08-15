@@ -17,7 +17,7 @@
             <column name="cta_type" />
         </property>
         <property name="ctaMoney" type="java.lang.Float">
-            <column name="cta_money" precision="12" scale="0" />
+            <column name="cta_money" precision="12" scale="4" />
         </property>
         <property name="ctaTime" type="java.sql.Timestamp">
             <column name="cta_time" length="19" />

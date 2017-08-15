@@ -23,7 +23,7 @@
             <column name="bta_address" length="255"/>
         </property>
         <property name="btaMoney" type="java.lang.Float">
-            <column name="bta_money" precision="12" scale="0" />
+            <column name="bta_money" precision="12" scale="4" />
         </property>
         <property name="btaTime" type="java.sql.Timestamp">
             <column name="bta_time" length="19" />
