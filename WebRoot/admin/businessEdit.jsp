@@ -289,12 +289,12 @@
 														<s:if test="%{#businessList.busLevel != 0}">
 															<option value="0">商家</option>
 														</s:if>
-														<s:if test="%{#businessList.busLevel == 1}">
+														<%-- <s:if test="%{#businessList.busLevel == 1}">
 															<option value="1" selected="selected">会员</option>
 														</s:if>
 														<s:if test="%{#businessList.busLevel != 1}">
 															<option value="1">会员</option>
-														</s:if>
+														</s:if> --%>
 														<s:if test="%{#businessList.busLevel == 2}">
 															<option value="2" selected="selected">合伙人</option>
 														</s:if>

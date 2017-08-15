@@ -67,7 +67,7 @@
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
-										<input type="text" class="form-control" name="keywords" placeholder="输入昵称、电话 ..."> 	
+										<input type="text" class="form-control" name="keywords" placeholder="输入昵称、电话、是否启用(是、否) ..."> 	
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="submit">搜索</button>
 										</span>
@@ -166,8 +166,6 @@
 																</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															</c:if>
 															<a href="customer_read?cusId=${root.cusId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="#" class="btn btn-info btn-xs" disabled="disabled"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="#" class="btn btn-danger btn-xs" disabled="disabled"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
 															<a href="customer_reset?cusId=${root.cusId}" class="btn btn-info btn-xs"><i class="fa fa-refresh"></i>&nbsp;&nbsp;密码重置</a>
 														</td>
 													</tr>

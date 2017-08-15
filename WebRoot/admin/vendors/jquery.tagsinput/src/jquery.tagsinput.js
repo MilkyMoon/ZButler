@@ -103,6 +103,8 @@
                             title : 'Removing tag',
                             text  : 'x'
                         }).click(function () {
+                        	//删除操作
+                        	
                             return $('#' + id).removeTag(escape(value));
                         })
                     ).insertBefore('#' + id + '_addTag');
