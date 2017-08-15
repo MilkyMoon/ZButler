@@ -64,4 +64,21 @@ public class NoticeDaoImpl extends HibernateDaoSupport implements NoticeDao {
 		}
 	}
 
+	@Override
+	public int getNewNoticeCount() {
+		// TODO Auto-generated method stub
+		try {
+			Session session = this.getSessionFactory().getCurrentSession();
+			Query query = session.createQuery("select count(*) from Notice where TO_DAYS(time) = TO_DAYS(now())");
+			int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+			System.out.println(count);
+
+			System.out.println("query successful");
+			return count;
+		} catch (RuntimeException e) {
+			System.out.println("query failed!\n" + e);
+			throw e;
+		}
+	}
+
 }

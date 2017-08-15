@@ -33,7 +33,7 @@
 		<div class="integral2_top">
 			<div class="integral2_top_left">
 				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/cusMessage.jsp">返回</a>
+					href="<%=basePath%>home/customer.jsp">返回</a>
 			</div>
 			<div class="integral2_top_center"></div>
 		</div>
@@ -54,6 +54,7 @@
 	$('.leaveWordListItem').click(function() {
 		if ($(this).find('.leaveWordListItem_dialog').css('display') === 'none') {
 			$(this).find('.leaveWordListItem_dialog').css('display', 'block');
+			window.sessionStorage.notice=0;
 		} else {
 			$(this).find('.leaveWordListItem_dialog').css('display', 'none');
 		}

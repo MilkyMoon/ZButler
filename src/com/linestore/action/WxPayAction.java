@@ -229,8 +229,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						// 获取业务类型 R-充值/P-支付商品
 						case 'P':
 							// 转账
-							//
-							// 存数据库+转账
 							Date Pdate = new Date();
 							String openIdbus = kvm.get("openid");
 							Business bus = businessService.select(subString(kvm.get("out_trade_no"))); // 通过商家ID获取商家
@@ -342,8 +340,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuProvince.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)).add(zong.getAreaTotalMoney()).toString(), 1);
 							}
 							billService.addBill(bill);
-							
-							
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
 								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {
@@ -436,7 +432,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							System.out.println(cus.getCusPhone());
 							if (cus.getCusPhone() != null && !"".equals(cus.getCusPhone())) {
 								// 充值零钱返积分
-								System.out.println("***************");
 								Friends fris = friendsService.queryByPhone(cus.getCusPhone());
 								if (fris != null) {
 									CusAccount addPointAcc = cusAccountService
@@ -498,42 +493,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 			e.printStackTrace();
 		}
 	}
-	// 企业付款到个人
-
-	// public void payToIndividual() throws WxPayException {
-	//
-	//
-	// // 转出
-	// // 查询余额
-	// String partner_trade_no = new java.util.Date().getTime() + "";
-	// WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-	// wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
-	// wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
-	// wxEntPayRequest.setCheckName("NO_CHECK");
-	// wxEntPayRequest.setAmount(10);
-	// wxEntPayRequest.setDescription("test");
-	// wxEntPayRequest.setSpbillCreateIp("10.10.10.10");
-	//
-	//// this.wxPayService.queryEntPay(arg0);
-	//
-	// try {
-	// WxEntPayResult wxEntPayResult =
-	// this.wxPayService.entPay(wxEntPayRequest);
-	// if ("SUCCESS".equals(wxEntPayResult.getResultCode().toUpperCase())
-	// && "SUCCESS".equals(wxEntPayResult.getReturnCode().toUpperCase())) {
-	// System.out.println("企业对个人付款成功！\n付款信息：\n" + wxEntPayResult.toString());
-	// } else {
-	//
-	// System.out.println("err_code: " + wxEntPayResult.getErrCode() + "
-	// err_code_des: "
-	// + wxEntPayResult.getErrCodeDes());
-	// }
-	// } catch (Exception e) {
-	//// e.printStackTrace();
-	//
-	// System.out.println(e.toString());
-	// }
-	// }
 
 	public void paymentToMerchant(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) {
 		String resutl = payToIndividual(wxEntPayRequest, wxPayService);
