@@ -188,6 +188,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 				}
 			}
 			friendsService.save(friends);
+			ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
 			request = (Map<String, Object>) ActionContext.getContext().get("request");
 			String js = "<script>YDUI.dialog.alert('注册成功！');</script>";
 			request.put("js", js);
@@ -303,7 +304,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	}
 
 	public String logout() {
-		ActionContext.getContext().getSession().put("user", null);
+		ActionContext.getContext().getSession().clear();;
 		return "logout";
 	}
 

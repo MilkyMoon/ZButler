@@ -70,7 +70,7 @@
 			<a href="<%=basePath%>home/updateHobby.jsp">
 				<div class="cell-item">
 					<div class="cell-left">兴趣爱好</div>
-					<div class="cell-right cell-arrow">${user.cusHobby}</div>
+					<div class="cell-right cell-arrow" id="hobby">${user.cusHobby}</div>
 				</div>
 			</a> <a href="<%=basePath%>Tag!tag.action">
 				<div class="cell-item">
@@ -136,6 +136,10 @@
 <script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
 <script>
 	!(function($) {
+		console.log($('#hobby').html().length);
+		if ($('#hobby').html().length > 8) {
+			$('#hobby').html($('#hobby').html().slice(0, 7) + "...");
+		}
 	
 		
 		/* $('.dialog_guide_bg').css('height', document.body.scrollHeight); */

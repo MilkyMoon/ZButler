@@ -153,7 +153,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 																// appsecret
 		config.setToken("wxdev"); // 设置微信公众号的token
 
-		config.setOauth2redirectUri("http://www.codwiki.cn/ZButler/WxOauthRedirect!oauth.action");
+		config.setOauth2redirectUri("http://yanglan520.com/ZButler/WxOauthRedirect!oauth.action");
 		this.wxService = new WxMpServiceImpl();
 		wxService.setWxMpConfigStorage(config);
 	}
@@ -199,7 +199,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		Map<String, String> payInfo = this.wxPayService.getPayInfo(
 				WxPayUnifiedOrderRequest.newBuilder().body(orderTitle).totalFee(WxPayBaseRequest.yuanToFee(payNum))
 						.spbillCreateIp(ServletActionContext.getRequest().getRemoteAddr())
-						.notifyURL("http://www.codwiki.cn/ZButler/WxPay!payNotify.action").tradeType("JSAPI") // 交易类型
+						.notifyURL("http://yanglan520.com/ZButler/WxPay!payNotify.action").tradeType("JSAPI") // 交易类型
 						.outTradeNo(out_trade_no) // 唯一订单
 						.openid((String) ActionContext.getContext().getSession().get("SCOPE_BASE_OPENID")).build());
 		this.result = JSONObject.fromObject(payInfo).toString();
@@ -355,7 +355,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 													.findByCusId(fri.getCustomer().getCusId());
 											float addChange = Float.valueOf(kvm.get("total_fee")) / 100
 													* Float.valueOf(settingService.queryById(3).getSetValue());
-											addChangeCac.setCacChange(addChangeCac.getCacChange() + addChange);
+											Float addPoints = addChangeCac.getCacChange() + addChange;
 											CtaTrading addChangeCta = new CtaTrading();
 											addChangeCta.setCtaMoney(addChange);
 											addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
@@ -364,8 +364,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 											addChangeCta.setCustomer(fri.getCustomer());
 											addChangeCta.setCtaId(Pdate.getTime() + "F" + this.RandomStr()); // 付款返零钱
 											ctaTradingService.addCtaTrading(addChangeCta);
-											cusAccountService.updateCusAccount(addChangeCac);
-
+											cusAccountService.updateField("cacChange", String.valueOf(addPoints), addChangeCac.getCacId());
 										}
 									}
 								}
@@ -404,7 +403,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									addChangeCta.setCtaId(Pdate.getTime() + "Z" + this.RandomStr()); // 付款返用户积分
 									ctaTradingService.addCtaTrading(addChangeCta);
 									Addpiont += CAC.getCacPoints();
-									cusAccountService.updateField("cacChange", String.valueOf(Addpiont), CAC.getCacId());
+									cusAccountService.updateField("cacPoints", String.valueOf(Addpiont), CAC.getCacId());
 								}
 								
 							}
@@ -446,7 +445,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									Float moneyOne = addPointAcc.getCacPoints() + Float.valueOf(kvm.get("total_fee")) / 100 
 											* Float.valueOf(settingService.queryById(1).getSetValue())
 													/ Float.valueOf(settingService.queryById(8).getSetValue());
-									cusAccountService.updateField("cacChange", String.valueOf(moneyOne), cusAccount.getCacId());
+									cusAccountService.updateField("cacPoints", String.valueOf(moneyOne), addPointAcc.getCacId());
 									addPointCta.setCtaMoney(Float.valueOf(kvm.get("total_fee")) / 100
 											* Float.valueOf(settingService.queryById(1).getSetValue()));
 									System.out.println("money: " + kvm.get("total_fee"));
