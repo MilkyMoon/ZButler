@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
-<title>忘记密码2</title>
+<title>忘记密码</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">

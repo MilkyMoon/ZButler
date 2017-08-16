@@ -13,6 +13,9 @@ public interface NoticeDao {
 	public List<Notice> selectNew();
 
 	public void delete(int id);
+
 	public int queryAll();
+
+	public int getNewNoticeCount();
 
 }

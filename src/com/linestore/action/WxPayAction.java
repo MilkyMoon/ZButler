@@ -229,8 +229,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 						// 获取业务类型 R-充值/P-支付商品
 						case 'P':
 							// 转账
-							//
-							// 存数据库+转账
 							Date Pdate = new Date();
 							String openIdbus = kvm.get("openid");
 							Business bus = businessService.select(subString(kvm.get("out_trade_no"))); // 通过商家ID获取商家
@@ -342,15 +340,13 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								areaService.updateMoney(bigMoney.multiply(new BigDecimal(ThuProvince.getAreaScaleTwo()).setScale(5, BigDecimal.ROUND_DOWN)).add(zong.getAreaTotalMoney()).toString(), 1);
 							}
 							billService.addBill(bill);
-							
-							
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
 								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {
 									Friends fri = friendsService.queryByPhone(Pcus.get(0).getCusPhone());
 									if (fri != null) {
 										System.out.println("------>friend find;type->" + fri.getFriType());
-										if (fri.getFriType() == 2) {
+										if (fri.getFriType() == 3) {
 											CusAccount addChangeCac = cusAccountService
 													.findByCusId(fri.getCustomer().getCusId());
 											float addChange = Float.valueOf(kvm.get("total_fee")) / 100
@@ -368,16 +364,15 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										}
 									}
 								}
+								Float addChange = 0f;
+								System.out.println("77777777777777777");
 								List<Business> addBus = businessService.queryByCusId(Pcus.get(0).getCusId());
 								System.out.println("Pcus.get(0).getCusId()--->" + Pcus.get(0).getCusId());
 								System.out.println("----->business;addBus" + addBus);
 								if (addBus != null && addBus.size() > 0) {
 									if (addBus.get(0).getBusLevel() != 1) {
-										CusAccount addCac = cusAccountService.findByCusId(Pcus.get(0).getCusId());
-										float addChange = Float.valueOf(kvm.get("total_fee")) / 100
-												* Float.valueOf(settingService.queryById(5).getSetValue());
-										Float moneyTwo = addCac.getCacPoints()
-												+ addChange / Float.valueOf(settingService.queryById(8).getSetValue());
+										
+										addChange += Float.valueOf(kvm.get("total_fee")) / 100  * Float.valueOf(settingService.queryById(5).getSetValue());
 										CtaTrading addChangeCta = new CtaTrading();
 										addChangeCta.setCtaMoney(addChange);
 										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
@@ -386,14 +381,14 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										addChangeCta.setCtaStatus(1);
 										addChangeCta.setCtaId(Pdate.getTime() + "J" + this.RandomStr()); // 付款返商家积分
 										ctaTradingService.addCtaTrading(addChangeCta);
-										cusAccountService.updateField("cacChange", String.valueOf(moneyTwo), addCac.getCacId());
+										
 									}
 								}
 								CusAccount  CAC = (CusAccount) cusAccountService.findByCusId(Pcus.get(0).getCusId());
-								
+								System.out.println("%%%%%%%%%%%" + CAC.getCacPoints());
 								if (CAC != null) {
 									Float Addpiont =  Float.valueOf(kvm.get("total_fee")) / 100
-											* Float.valueOf(bus.getBusScalePoints());
+											* bus.getBusScalePoints();
 									CtaTrading addChangeCta = new CtaTrading();
 									addChangeCta.setCtaMoney(Addpiont);
 									addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
@@ -402,7 +397,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									addChangeCta.setCtaStatus(1);
 									addChangeCta.setCtaId(Pdate.getTime() + "Z" + this.RandomStr()); // 付款返用户积分
 									ctaTradingService.addCtaTrading(addChangeCta);
-									Addpiont += CAC.getCacPoints();
+									Addpiont += CAC.getCacPoints() + addChange;
+									System.out.println("&&&&&&&&&&"+Addpiont);
 									cusAccountService.updateField("cacPoints", String.valueOf(Addpiont), CAC.getCacId());
 								}
 								
@@ -436,15 +432,13 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							System.out.println(cus.getCusPhone());
 							if (cus.getCusPhone() != null && !"".equals(cus.getCusPhone())) {
 								// 充值零钱返积分
-								System.out.println("***************");
 								Friends fris = friendsService.queryByPhone(cus.getCusPhone());
 								if (fris != null) {
 									CusAccount addPointAcc = cusAccountService
 											.findByCusId(fris.getCustomer().getCusId());
 									CtaTrading addPointCta = new CtaTrading();
 									Float moneyOne = addPointAcc.getCacPoints() + Float.valueOf(kvm.get("total_fee")) / 100 
-											* Float.valueOf(settingService.queryById(1).getSetValue())
-													/ Float.valueOf(settingService.queryById(8).getSetValue());
+											* Float.valueOf(settingService.queryById(1).getSetValue());
 									cusAccountService.updateField("cacPoints", String.valueOf(moneyOne), addPointAcc.getCacId());
 									addPointCta.setCtaMoney(Float.valueOf(kvm.get("total_fee")) / 100
 											* Float.valueOf(settingService.queryById(1).getSetValue()));
@@ -498,42 +492,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 			e.printStackTrace();
 		}
 	}
-	// 企业付款到个人
-
-	// public void payToIndividual() throws WxPayException {
-	//
-	//
-	// // 转出
-	// // 查询余额
-	// String partner_trade_no = new java.util.Date().getTime() + "";
-	// WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-	// wxEntPayRequest.setPartnerTradeNo(partner_trade_no);
-	// wxEntPayRequest.setOpenid("ojOQA0y9o-Eb6Aep7uVTdbkJqrP4");
-	// wxEntPayRequest.setCheckName("NO_CHECK");
-	// wxEntPayRequest.setAmount(10);
-	// wxEntPayRequest.setDescription("test");
-	// wxEntPayRequest.setSpbillCreateIp("10.10.10.10");
-	//
-	//// this.wxPayService.queryEntPay(arg0);
-	//
-	// try {
-	// WxEntPayResult wxEntPayResult =
-	// this.wxPayService.entPay(wxEntPayRequest);
-	// if ("SUCCESS".equals(wxEntPayResult.getResultCode().toUpperCase())
-	// && "SUCCESS".equals(wxEntPayResult.getReturnCode().toUpperCase())) {
-	// System.out.println("企业对个人付款成功！\n付款信息：\n" + wxEntPayResult.toString());
-	// } else {
-	//
-	// System.out.println("err_code: " + wxEntPayResult.getErrCode() + "
-	// err_code_des: "
-	// + wxEntPayResult.getErrCodeDes());
-	// }
-	// } catch (Exception e) {
-	//// e.printStackTrace();
-	//
-	// System.out.println(e.toString());
-	// }
-	// }
 
 	public void paymentToMerchant(WxEntPayRequest wxEntPayRequest, WxPayService wxPayService) {
 		String resutl = payToIndividual(wxEntPayRequest, wxPayService);

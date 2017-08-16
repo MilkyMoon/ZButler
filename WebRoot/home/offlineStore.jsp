@@ -29,7 +29,7 @@
 		<header class="m-navbar">
 		<div class="navbar-item">
 			<input type="text" readonly id="J_Address"
-				placeholder='<c:if test="${empty city}">密云区</c:if><c:if test="${!empty city}">${city}</c:if>'
+				placeholder='<c:if test="${empty city}">朝阳区</c:if><c:if test="${!empty city}">${city}</c:if>'
 				class="choosePlace">
 		</div>
 		<div class="navbar-center">
@@ -37,14 +37,14 @@
 			<form action="javascript:seach()" method="post">
 				<input type="search" placeholder="输入商家/品类" id="seach"> <input
 					type="hidden" id="city"
-					value="<c:if test="${empty city}">密云区</c:if><c:if test="${!empty city}">${city}</c:if>">
+					value="<c:if test="${empty city}">朝阳区</c:if><c:if test="${!empty city}">${city}</c:if>">
 			</form>
 		</div>
 		<a href="<%=basePath%>home/login.jsp" class="navbar-item personIcon">
 			<img src="<%=basePath%>home/dist/wx_image/person.png" />
 		</a> </header>
 
-		<div class="m-slider" id="J_Slider">
+		<%-- <div class="m-slider" id="J_Slider">
 			<div class="slider-wrapper">
 			<c:forEach items="${banner}" var="banner" >
 				<div class="slider-item">
@@ -56,7 +56,7 @@
 			</div>
 			<div class="slider-pagination"></div>
 			<!-- 分页标识 -->
-		</div>
+		</div> --%>
 		
 
 		<div class="index_classItems">
@@ -90,8 +90,7 @@
 			<h5>猜你喜欢</h5>
 			<c:forEach items="${buss}" var="bus">
 				<a
-					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}"><div
-						class="index_guessItem">
+					href="<%=basePath%>offlineStore_queryBusines.action?city=${city}&busId=${bus.busId}"><div class="index_guessItem">
 						<img src="${bus.busOrgUrl}" />
 						<div class="guess_content">
 							<div>
