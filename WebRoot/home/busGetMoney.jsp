@@ -23,13 +23,7 @@
 
 <body>
 	<div class="collectMoneyRecord" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>business_store.action">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<c:forEach var="item" items="${Income}">
 			<div class="collectMoneyItem">
 				<div class="collectMoney_num">${item.btaMoney}</div>

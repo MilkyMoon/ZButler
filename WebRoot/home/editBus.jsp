@@ -19,44 +19,47 @@
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 </head>
 <body>
-	<div class="applyAdmission">
+	<div class="applyAdmission" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<s:form id="signupForm" action="business_updateBus" namespace="/">
-		<input type="hidden" name="busId" value="${store.busId}">
+			<input type="hidden" name="busId" value="${store.busId}">
 			<h5>基本资料填写（*为必填）</h5>
 			<div class="m-cell">
 				<div class="cell-item">
 					<div class="cell-left">店铺名称*：</div>
 					<div class="cell-right">
-						<input type="text" name="busShopName" class="cell-input" value="${store.busShopName}"
-							placeholder="" autocomplete="off" />
+						<input type="text" name="busShopName" class="cell-input"
+							value="${store.busShopName}" placeholder="" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">店铺描述*：</div>
 					<div class="cell-right">
-						<input type="text" name="busDesc" class="cell-input" value="${store.busDesc}"
-							placeholder="" autocomplete="off" />
+						<input type="text" name="busDesc" class="cell-input"
+							value="${store.busDesc}" placeholder="" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">店主姓名*：</div>
 					<div class="cell-right">
-						<input type="text" name="busOwnerName" class="cell-input" value="${store.busOwnerName}" disabled="true"
-							placeholder="" autocomplete="off" />
+						<input type="text" name="busOwnerName" class="cell-input"
+							value="${store.busOwnerName}" disabled="true" placeholder=""
+							autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">手机号码*：</div>
 					<div class="cell-right">
-						<input type="text" name="busPhone" class="cell-input" value="${store.busPhone}"
-							placeholder="" autocomplete="off" />
+						<input type="text" name="busPhone" class="cell-input"
+							value="${store.busPhone}" placeholder="" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">身份证号码*：</div>
 					<div class="cell-right">
-						<input type="text" name="busIdcardUrl" class="cell-input" value="${store.busIdcardUrl}" disabled="true"
-							placeholder="" autocomplete="off" />
+						<input type="text" name="busIdcardUrl" class="cell-input"
+							value="${store.busIdcardUrl}" disabled="true" placeholder=""
+							autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
@@ -77,7 +80,8 @@
 					<div id="allmap"></div>
 					<input type="hidden" name="baLatitude" id="baLatitude"> <input
 						type="hidden" name="baLongitude" id="baLongitude">
-				</div> -->
+				</div>
+				-->
 				<div class="cell-item">
 					<div class="cell-left">所在商圈*：</div>
 					<label class="cell-right cell-arrow"> <select
@@ -96,8 +100,8 @@
 				<div class="cell-item">
 					<div class="cell-left">营业执照号*：</div>
 					<div class="cell-right">
-						<input type="text" name="busLicenseUrl" class="cell-input" value="${store.busLicenseUrl}"
-							placeholder="" autocomplete="off" />
+						<input type="text" name="busLicenseUrl" class="cell-input"
+							value="${store.busLicenseUrl}" placeholder="" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
@@ -140,16 +144,16 @@
 				<div class="cell-item">
 					<div class="cell-left">开户行*：</div>
 					<div class="cell-right">
-						<input type="text" name="bbBank" class="cell-input" placeholder="" value="${store.bbBank}"
-							autocomplete="off" />
+						<input type="text" name="bbBank" class="cell-input" placeholder=""
+							value="${store.bbBank}" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
 					<div class="cell-left">银行卡号*：</div>
 					<div class="cell-right">
 						<input type="text" name="bbBankCard" pattern="[0-9]*"
-							class="cell-input" id="haorooms" placeholder="" value="${store.bbBankCard}"
-							autocomplete="off" />
+							class="cell-input" id="haorooms" placeholder=""
+							value="${store.bbBankCard}" autocomplete="off" />
 					</div>
 				</div>
 				<!-- <div class="cell-item">
@@ -177,7 +181,7 @@
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
 <script type="text/javascript"
 	src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
-	${error}
+${error}
 <script>
 
 	//    选择地址

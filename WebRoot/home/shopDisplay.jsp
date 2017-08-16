@@ -39,7 +39,8 @@
 </head>
 
 <body>
-	<div class="storeImg">
+	<div class="storeImg" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<div class="storeImg_content">
 			<div class="storeImg_addImg">
 				<div class="addImg">
