@@ -346,7 +346,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									Friends fri = friendsService.queryByPhone(Pcus.get(0).getCusPhone());
 									if (fri != null) {
 										System.out.println("------>friend find;type->" + fri.getFriType());
-										if (fri.getFriType() == 2) {
+										if (fri.getFriType() == 3) {
 											CusAccount addChangeCac = cusAccountService
 													.findByCusId(fri.getCustomer().getCusId());
 											float addChange = Float.valueOf(kvm.get("total_fee")) / 100
@@ -364,16 +364,15 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										}
 									}
 								}
+								Float addChange = 0f;
+								System.out.println("77777777777777777");
 								List<Business> addBus = businessService.queryByCusId(Pcus.get(0).getCusId());
 								System.out.println("Pcus.get(0).getCusId()--->" + Pcus.get(0).getCusId());
 								System.out.println("----->business;addBus" + addBus);
 								if (addBus != null && addBus.size() > 0) {
 									if (addBus.get(0).getBusLevel() != 1) {
-										CusAccount addCac = cusAccountService.findByCusId(Pcus.get(0).getCusId());
-										float addChange = Float.valueOf(kvm.get("total_fee")) / 100
-												* Float.valueOf(settingService.queryById(5).getSetValue());
-										Float moneyTwo = addCac.getCacPoints()
-												+ addChange / Float.valueOf(settingService.queryById(8).getSetValue());
+										
+										addChange += Float.valueOf(kvm.get("total_fee")) / 100  * Float.valueOf(settingService.queryById(5).getSetValue());
 										CtaTrading addChangeCta = new CtaTrading();
 										addChangeCta.setCtaMoney(addChange);
 										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
@@ -382,14 +381,14 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										addChangeCta.setCtaStatus(1);
 										addChangeCta.setCtaId(Pdate.getTime() + "J" + this.RandomStr()); // 付款返商家积分
 										ctaTradingService.addCtaTrading(addChangeCta);
-										cusAccountService.updateField("cacChange", String.valueOf(moneyTwo), addCac.getCacId());
+										
 									}
 								}
 								CusAccount  CAC = (CusAccount) cusAccountService.findByCusId(Pcus.get(0).getCusId());
-								
+								System.out.println("%%%%%%%%%%%" + CAC.getCacPoints());
 								if (CAC != null) {
 									Float Addpiont =  Float.valueOf(kvm.get("total_fee")) / 100
-											* Float.valueOf(bus.getBusScalePoints());
+											* bus.getBusScalePoints();
 									CtaTrading addChangeCta = new CtaTrading();
 									addChangeCta.setCtaMoney(Addpiont);
 									addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
@@ -398,7 +397,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									addChangeCta.setCtaStatus(1);
 									addChangeCta.setCtaId(Pdate.getTime() + "Z" + this.RandomStr()); // 付款返用户积分
 									ctaTradingService.addCtaTrading(addChangeCta);
-									Addpiont += CAC.getCacPoints();
+									Addpiont += CAC.getCacPoints() + addChange;
+									System.out.println("&&&&&&&&&&"+Addpiont);
 									cusAccountService.updateField("cacPoints", String.valueOf(Addpiont), CAC.getCacId());
 								}
 								
@@ -438,8 +438,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 											.findByCusId(fris.getCustomer().getCusId());
 									CtaTrading addPointCta = new CtaTrading();
 									Float moneyOne = addPointAcc.getCacPoints() + Float.valueOf(kvm.get("total_fee")) / 100 
-											* Float.valueOf(settingService.queryById(1).getSetValue())
-													/ Float.valueOf(settingService.queryById(8).getSetValue());
+											* Float.valueOf(settingService.queryById(1).getSetValue());
 									cusAccountService.updateField("cacPoints", String.valueOf(moneyOne), addPointAcc.getCacId());
 									addPointCta.setCtaMoney(Float.valueOf(kvm.get("total_fee")) / 100
 											* Float.valueOf(settingService.queryById(1).getSetValue()));
