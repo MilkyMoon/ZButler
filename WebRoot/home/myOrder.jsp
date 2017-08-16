@@ -22,6 +22,7 @@
 </head>
 <body>
 	<div class="myOrder" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 			<div class="integral2_top">
 				<div class="integral2_top_left">
 					<i class="fa fa-angle-left"></i> <a

@@ -20,14 +20,8 @@
 </head>
 
 <body>
-	<div class="rebateProportion">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>business_store.action">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+	<div class="rebateProportion" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<div style="padding-top:106px;">
 			<span><fmt:formatNumber type="number" maxFractionDigits="0" value="${store.busScale * 100}" />%</span>
 			<div>您的返点比例</div>

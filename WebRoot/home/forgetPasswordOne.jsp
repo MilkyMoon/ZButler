@@ -16,12 +16,14 @@
 <title>忘记密码</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 
 </head>
 
 <body>
-	<div class="forgetPassword">
+	<div class="forgetPassword" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<form id="signupForm"
 			action="<%=basePath%>Customer!toForgetTwo.action" method="post">
 			<div class="m-cell">
@@ -123,7 +125,7 @@
 								}, 1500);
 							}
 						});
-						console.log("-------");
+					console.log("-------");
 				}
 
 			}
