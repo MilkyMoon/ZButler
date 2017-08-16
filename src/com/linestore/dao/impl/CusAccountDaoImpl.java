@@ -47,10 +47,10 @@ public class CusAccountDaoImpl extends HibernateDaoSupport implements CusAccount
 		try {
 			List<CusAccount> customers = (List<CusAccount>) this.getHibernateTemplate().find("from CusAccount where customer.cusId=?", cusId);
 			System.out.println("find sucessful");
-			//if (customers != null && customers.size() > 0) {
-				
-			//}
-			return customers.get(0);
+			if (customers != null && customers.size() > 0) {
+				return customers.get(0);
+			}
+				return null;
 		} catch (RuntimeException e) {
 			System.out.println("find failed!\n" + e);
 			throw e;
