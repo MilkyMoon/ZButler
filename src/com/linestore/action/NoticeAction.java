@@ -3,9 +3,16 @@ package com.linestore.action;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.linestore.dao.NoticeDao;
 import com.linestore.service.NoticeService;
@@ -18,10 +25,23 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import javassist.expr.NewArray;
+import net.sf.json.JSONObject;
 
-public class NoticeAction extends ActionSupport implements ModelDriven<Notice> {
+public class NoticeAction extends ActionSupport
+		implements ModelDriven<Notice>, ServletRequestAware, ServletResponseAware {
 	private String pageNow = "1";
+	private HttpServletResponse res;
+	private String result;
+	public String getResult() {
+		return result;
+	}
 
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	private HttpServletRequest req;
+	
 	public String getPageNow() {
 		return pageNow;
 	}
@@ -81,7 +101,7 @@ public class NoticeAction extends ActionSupport implements ModelDriven<Notice> {
 		if (everyPage.equals("") || everyPage == null) {
 			everyPage = "10";
 		}
-		if (pageNow.equals("") || pageNow == null) {
+		if (pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))) {
 			pageNow = "1";
 		}
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
@@ -96,6 +116,13 @@ public class NoticeAction extends ActionSupport implements ModelDriven<Notice> {
 		request.put("page", page);
 		return "selectAll";
 
+	}
+
+	public String hasNewNotice() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("count", noticeService.getNewNotice());
+		this.result = JSONObject.fromObject(map).toString();
+		return SUCCESS;
 	}
 
 	public String add() {
@@ -128,6 +155,18 @@ public class NoticeAction extends ActionSupport implements ModelDriven<Notice> {
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", noticelist);
 		return "history";
+	}
+
+	@Override
+	public void setServletResponse(HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		this.res = response;
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		this.req = request;
 	}
 
 }

@@ -76,18 +76,18 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 	}
 	
 	public String selectCash(){
-		
-		if(everyPage.equals("") || everyPage == null){
-			everyPage = "10";
-		}
-		if(pageNow.equals("") || pageNow == null){
-			pageNow = "1";
-		}
-		
 		int totalCount = 0;
 		Page page = null;
 		
 		totalCount = ctaTradingService.queryAllType(1);
+		
+		if(everyPage.equals("") || everyPage == null){
+			everyPage = "10";
+		}
+		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))){
+			pageNow = "1";
+		}
+		
 		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		ctaTradingList = ctaTradingService.selectAllType(page,1);
 	

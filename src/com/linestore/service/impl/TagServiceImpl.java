@@ -29,4 +29,32 @@ public class TagServiceImpl implements TagService {
 		return tagDao.queryAll();
 	}
 
+
+	@Override
+	public void save(Tag tag) {
+		// TODO Auto-generated method stub
+		tagDao.save(tag);
+	}
+
+
+	@Override
+	public void update(Tag tag) {
+		// TODO Auto-generated method stub
+		tagDao.update(tag);
+	}
+
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		tagDao.delete(id);
+	}
+
+
+	@Override
+	public Tag selectById(int id) {
+		// TODO Auto-generated method stub
+		return tagDao.selectById(id);
+	}
+
 }

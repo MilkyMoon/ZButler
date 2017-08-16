@@ -22,4 +22,32 @@ public class TagDaoImpl extends HibernateDaoSupport implements TagDao {
 		}
 	}
 
+	@Override
+	public void save(Tag tag) {
+		// TODO Auto-generated method stub
+		this.getHibernateTemplate().save(tag);
+	}
+
+	@Override
+	public void update(Tag tag) {
+		// TODO Auto-generated method stub
+		this.getHibernateTemplate().update(tag);
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		String hql = "delete from Tag where tagId = ?";
+		Tag tag = this.getHibernateTemplate().load(Tag.class, id);
+		this.getHibernateTemplate().delete(tag);
+	}
+
+	@Override
+	public Tag selectById(int id) {
+		// TODO Auto-generated method stub
+		String hql = "from Tag where tagId = ?";
+		List<Tag> tag= (List<Tag>) this.getHibernateTemplate().find(hql, id);
+		return tag.get(0);
+	}
+
 }

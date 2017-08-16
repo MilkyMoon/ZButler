@@ -112,6 +112,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<Customer> search(String keywords) {
 		// TODO Auto-generated method stub
-		return customerDao.search(keywords);
+		int status;
+		if(keywords.equals("是")){
+			status = 1;
+		} else if(keywords.equals("否")){
+			status = 0;
+		} else {
+			status = 2;
+		}
+		return customerDao.search(keywords,status);
 	}
 }

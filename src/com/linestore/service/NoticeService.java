@@ -15,5 +15,7 @@ public interface NoticeService {
 	public List<Notice> customerNewNoticesCenter();
 	
 	public int queryAll();
+	
+	public int getNewNotice();
 
 }

@@ -32,18 +32,8 @@
 </head>
 
 <body>
-	<div class="integral2">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>CusAccount!change.action">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-			<div class="integral2_top_right">
-				<i class="icon-refresh"></i> <a
-					href="<%=basePath%>WxOauthRedirect!IntoRechage.action">刷新</a>
-			</div>
-		</div>
+	<div class="integral2" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<div class="integral2_content">
 			<div>
 				<a href="javascript:;" class="active"> <span>￥<span>1</span>

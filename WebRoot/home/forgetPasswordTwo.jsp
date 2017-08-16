@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
-<title>忘记密码2</title>
+<title>忘记密码</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
@@ -21,14 +21,8 @@
 </head>
 
 <body>
-	<div class="forgetPassword2" style="margin-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/customer.jsp">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+	<div class="forgetPassword2" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<form id="signupForm" method="post"
 			action="<%=basePath%>Customer!update.action">
 			<div class="m-cell">

@@ -41,7 +41,7 @@ public class GroupAction extends ActionSupport implements ModelDriven<Group>{
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
-		if(pageNow.equals("") || pageNow == null || Integer.parseInt(pageNow) > Math.ceil((double)totalNum / Integer.parseInt(everyPage)) ){
+		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalNum/Float.valueOf(everyPage)))){
 			pageNow = "1";
 		}
 		

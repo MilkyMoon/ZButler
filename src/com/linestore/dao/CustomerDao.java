@@ -32,5 +32,5 @@ public interface CustomerDao {
 	
 	void update(String hql);
 	
-	public List<Customer> search(String keywords);
+	public List<Customer> search(String keywords,int status);
 }

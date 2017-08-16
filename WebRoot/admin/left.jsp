@@ -71,6 +71,7 @@
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/customer_selectAll">用户管理</a></li>
+							<li><a href="<%=basePath%>admin/tag_selectAll">个性标签</a></li>
 						</ul></li>
 					<li><a><i class="fa fa-clone"></i>组织管理 <span
 							class="fa fa-chevron-down"></span></a>

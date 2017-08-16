@@ -10,6 +10,7 @@ import com.linestore.service.CustomerService;
 import com.linestore.util.Page;
 import com.linestore.util.PageUtil;
 import com.linestore.util.ReturnUpdateHql;
+import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -24,6 +25,7 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 	private List<Customer> customerList = new ArrayList<Customer>();
 	private CusAccountService cusAccountService;
 	private Customer customerListReslut;
+	private CusAccount cusAccount;
 	
 	private String pageNow = "1";
 	private String everyPage = "10";
@@ -62,6 +64,7 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 		
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", customerListReslut);
+		request.put("cusAcc", cusAccount);
 		
 		return "read";
 	}
@@ -77,7 +80,7 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
-		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
+		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))){
 			pageNow = "1";
 		}
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
@@ -124,6 +127,8 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 	public String selectById(){
 		System.out.println("cusId:"+customer.getCusId());
 		customerListReslut = customerService.findById(customer.getCusId());
+		
+		cusAccount = cusAccountService.findByCusId(customer.getCusId());
 		
 		return "selectAll";
 	}

@@ -125,6 +125,18 @@
 										</div>
 										
 										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">零&nbsp;&nbsp;&nbsp;&nbsp;钱:</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<div class="form-control">${cusAcc.cacChange}</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">积&nbsp;&nbsp;&nbsp;&nbsp;分:</label>
+											<div class="col-md-6 col-sm-9 col-xs-12">
+												<div class="form-control">${cusAcc.cacPoints}</div>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">电&nbsp;&nbsp;&nbsp;&nbsp;话:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
 												<div class="form-control">${roots.cusPhone}</div>

@@ -155,17 +155,13 @@
 							autocomplete="off" />
 					</div>
 				</div>
-				<!-- <div class="cell-item">
-                <div class="cell-left">开户银行*：</div>
-                <label class="cell-right cell-arrow">
-                    <select class="cell-select">
-                        <option value="">请选择</option>
-                        <option value="1">男</option>
-                        <option value="2">女</option>
-                        <option value="3">未知</option>
-                    </select>
-                </label>
-            </div> -->
+				<div class="cell-item">
+					<div class="cell-left">持卡人姓名：</div>
+					<div class="cell-right">
+						<input type="text" name="bbBankPerson" class="cell-input"
+							placeholder="" autocomplete="off" />
+					</div>
+				</div>
 			</div>
 			<button type="submit" class="btn-block btn-primary">马上申请</button>
 		</s:form>

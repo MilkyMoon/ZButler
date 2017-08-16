@@ -21,16 +21,18 @@
 <body>
 	<div class="share">
 		<div class="share_register">
-			<div class="share_register_introduce">
-				${sc.configValue}
-			</div>
-			<form id="signupForm" method="post" action="<%=basePath%>Customer!register.action">
+			<div class="share_register_introduce">${sc.configValue}</div>
+			<form id="signupForm" method="post"
+				action="<%=basePath%>Customer!register.action">
 				<div class="m-cell">
 					<div class="cell-item cell-item-first" id="telDiv">
 						<div class="cell-right">
-							<input type="number" name="cusPhone" pattern="[0-9]*" class="cell-input" placeholder="输入手机号，立即注册众邦管家" autocomplete="off" id="tel" /> 
-								<input type="hidden" value="1" name="ReType"> 
-								<input type="hidden" value="${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if>" name="valid">
+							<input type="number" name="cusPhone" pattern="[0-9]*"
+								class="cell-input" placeholder="输入手机号，立即注册众邦管家"
+								autocomplete="off" id="tel" /> <input type="hidden" value="1"
+								name="ReType"> <input type="hidden"
+								value="${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if>"
+								name="valid">
 						</div>
 					</div>
 					<div class="cell-item cell-item-last">
@@ -47,11 +49,10 @@
 		<div class="share_comment">
 			<div class="share_commentItem">
 				<div class="share_comment_head">
-					<img src="${user.cusImgUrl}" />
+					<img src="${user.cusImgUrl}<c:if test="${ empty user.cusImgUrl}">${id.cusImgUrl}</c:if>" />
 				</div>
 				<div class="share_comment_content">
-					<div>${user.cusPhone}</div>
-					<span>80后，处女座，程序员</span>
+					<div>${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if></div>
 					<p>"我第一次想着充了10元试试，没想到第二天真的赚回20元！我又充值了100元，这次得到200元奖金，哈
 						哈！充得多赚得多！爽！我现在准备充500块，准备赚回1500元呢！"</p>
 				</div>
@@ -62,14 +63,13 @@
 				</div>
 				<div class="share_comment_content">
 					<div class="userName">13885699969</div>
-					<span>80后，处女座，程序员</span>
 					<p>"我第一次想着充了10元试试，没想到第二天真的赚回20元！我又充值了100元，这次得到200元奖金，哈
 						哈！充得多赚得多！爽！我现在准备充500块，准备赚回1500元呢！"</p>
 				</div>
 			</div>
 		</div>
 		<div class="share_QRCode">
-			<img src="<%=basePath%>home/dist/wx_image/QRCode.png" />
+			<img src="<%=basePath%>home/dist/wx_image/QRCode.jpg" />
 			<div>
 				目前已经有100万用户加入众邦管家商城<br>微信扫一扫关注众邦管家
 			</div>
@@ -86,44 +86,36 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 ${js}
 <script>
-
-	//    表单验证
-
-	/*     $.validator.setDefaults({
-	        submitHandler: function () {
-	            alert("提交事件!");
-	        }
-	    }); */
-
 	$.ajax({
 		type : "post",
 		dataType : "json",
-		url : "<%=basePath%>WxJsApi!JsApiParams.action",
+		url : "<%=basePath%>JsApiParams.action",
 		async : false,
 		data : {
-			url : location.href.split("#")[0]
+			url : location.href.split('#')[0]
 		},
 		success : function(result) {
 			var config = JSON.parse(result);
 			config.debug = false;
 			config.jsApiList = [
 				'onMenuShareTimeline',
-				'onMenuShareAppMessage',
-				'uploadImage',
-				'chooseImage'
+				'onMenuShareAppMessage'
 			];
 			wx.config(config)
 		}
 	});
 
 	wx.ready(function() {
+		wx.checkJsApi({
+			jsApiList : [ 'onMenuShareTimeline' ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+		});
 		wx.onMenuShareTimeline({
 			title : '${user.cusNickname}<c:if test="${ empty user.cusNickname}">${id.cusNickname}</c:if>邀请你注册众帮管家', // 分享标题
 			link : '<%=basePath%>Customer_askRegister?cusId=${user.cusId}<c:if test="${ empty user.cusId}">${id.cusId}</c:if>', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-			imgUrl : '<%=basePath%>home/dist/wx_image/111.jpg', // 分享图标
-			success : function() {
+			imgUrl : '<%=basePath%>home/dist/wx_image/QRCode.jpg.jpg', // 分享图标
+			success : function(res) {
 				// 页面跳转
-				
+				console.log(res)
 			},
 			cancel : function() {
 				// 用户取消分享后执行的回调函数
@@ -131,7 +123,9 @@ ${js}
 				// 刷新
 			}
 		});
+
 	})
+
 
 	$().ready(function() {
 		var $getCode = $('#get');

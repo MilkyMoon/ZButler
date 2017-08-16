@@ -23,13 +23,7 @@
 
 <body>
 	<div class="takeMoneyRecord" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>CusAccount!change.action">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<c:forEach var="cta" items="${ctas}">
 			<div class="takeMoneyItem">
 				<div class="takeMoney_time"><fmt:formatDate value="${cta.ctaTime}" type="both"  /></div>

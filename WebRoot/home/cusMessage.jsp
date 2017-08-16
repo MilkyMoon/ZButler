@@ -23,13 +23,7 @@
 
 <body>
 	<div class="myMessage" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/customer.jsp">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<div class="dialog_guide">
 			<div class="dialog_guide_bg"></div>
 			<div class="dialog_guide_content">
@@ -108,13 +102,6 @@
 					<div class="cell-right cell-arrow"></div>
 				</div>
 			</a>
-			
-			<a href="<%=basePath%>notice!customerNotice.action">
-				<div class="cell-item" style="margin-top: 12px">
-					<div class="cell-left">系统消息</div>
-					<div class="cell-right cell-arrow"></div>
-				</div>
-			</a> 
 		</div>
 		<div class="dialog">
 			<div class="dialog_bg"></div>

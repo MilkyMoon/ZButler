@@ -31,13 +31,7 @@
 
 <body>
 	<div class="addHeadImg" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a style="color:#FFF"
-					href="<%=basePath%>home/myStore.jsp">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 	<div id="showResult">
 	    <div id="changeAvatar" style="margin-top: 60px;">
 	        <img src='${store.busOrgUrl}' style="width: 100px;display:block;">

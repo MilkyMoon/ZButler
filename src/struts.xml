@@ -208,6 +208,7 @@
 			</result>
 		</action>
 
+
 		<!-- 模板消息 -->
 		<action name="registerSuccessNotify" class="com.linestore.action.TemplateMessageAction"
 			method="registerSuccessNotify">
@@ -249,6 +250,8 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+
+
 
 		<!-- MapJson -->
 		<action name="billMapInfo" method="mapInfo"
@@ -293,6 +296,13 @@
 		<!-- 图片上传 -->
 		<action name="saveImg" class="com.linestore.util.FileUpload"
 			method="saveImg">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="hasNewNotice" class="com.linestore.action.NoticeAction"
+			method="hasNewNotice">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
@@ -480,6 +490,13 @@
 			<result name="selectAll">businessAlter.jsp</result>
 			<result name="read">businessAlterRead.jsp</result>
 			<result name="select" type="redirectAction">businessTmp_selectAll</result>
+		</action>
+		<action name="tag_*" class="com.linestore.action.TagAction"
+			method="{1}">
+			<result name="selectAll">tag.jsp</result>
+			<result name="add">tagAdd.jsp</result>
+			<result name="edit">tagEdit.jsp</result>
+			<result name="select" type="redirectAction">tag_selectAll</result>
 		</action>
 	</package>
 

@@ -250,7 +250,7 @@ public class ThinkUserAction extends ActionSupport implements ModelDriven<ThinkU
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
-		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
+		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))){
 			pageNow = "1";
 		}
 		
