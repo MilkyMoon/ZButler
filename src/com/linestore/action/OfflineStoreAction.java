@@ -138,7 +138,10 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 		String city = (String) ActionContext.getContext().getSession().get("city");
 		if (child == -1) {
 			buss = businessService.queryCate(city, cate);
-			request.put("name", cates.get(0).getCalName());
+			CateLine cal =cateLineService.selectById(cate);
+			if (cal != null) {
+				request.put("name", cal.getCalName());
+			}
 		} else {
 			buss = businessService.querySmall(city, child);
 			for (int i =0; i < cates.size(); i++) {
