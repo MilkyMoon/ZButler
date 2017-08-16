@@ -40,6 +40,7 @@ public class ValidateInterceptor extends MethodFilterInterceptor {
 				while (it.hasNext()) {
 					RuleGroup rg = (RuleGroup) it.next();
 					if (rg.getRule().getRules().equals(arg0.getInvocationContext().getName())) {
+						
 						return arg0.invoke();
 					}
 				}

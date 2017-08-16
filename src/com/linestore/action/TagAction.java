@@ -17,6 +17,8 @@ public class TagAction extends ActionSupport implements ModelDriven<Tag> {
 	private TagService tagService;
 	
 	private Map<String, Object> request;
+	
+	private Tag tagResalut;
 
 	@Override
 	public Tag getModel() {
@@ -29,7 +31,39 @@ public class TagAction extends ActionSupport implements ModelDriven<Tag> {
 		request.put("tags", tags);
 		return "gotoCusLabel";
 	}
+	
+	public String selectAll(){
+		tag();
+		return "selectAll";
+	}
+	
+	public String add(){
+		
+		return "add";
+	}
+	
+	public String save(){
+		tagService.save(tag);
+		return "select";
+	}
+	
+	public String edit(){
+		tagResalut = tagService.selectById(tag.getTagId());
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("tag", tagResalut);
+		return "edit";
+	}
+	
+	public String update(){
+		tagService.update(tag);
+		return "select";
+	}
 
+	public String delete(){
+		tagService.delete(tag.getTagId());
+		return "select";
+	}
+	
 	public TagService getTagService() {
 		return tagService;
 	}

@@ -81,7 +81,7 @@ public class NoticeAction extends ActionSupport implements ModelDriven<Notice> {
 		if (everyPage.equals("") || everyPage == null) {
 			everyPage = "10";
 		}
-		if (pageNow.equals("") || pageNow == null) {
+		if (pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))) {
 			pageNow = "1";
 		}
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
