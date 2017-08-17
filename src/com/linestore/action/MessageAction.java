@@ -1,5 +1,7 @@
 package com.linestore.action;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.anything;
+
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +23,17 @@ public class MessageAction extends ActionSupport implements ModelDriven<Message>
 	// 封装返回结果
 	private List<Message> messageList;
 	private Message messageResult;
+	private String type;
+
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	private String everyPage = "10";
 	private String pageNow = "1";
 	Map<String, Object> request;
@@ -111,7 +124,8 @@ public class MessageAction extends ActionSupport implements ModelDriven<Message>
 		if (everyPage.equals("") || everyPage == null) {
 			everyPage = "10";
 		}
-		if (pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))) {
+		if (pageNow.equals("") || pageNow == null
+				|| (Integer.parseInt(pageNow) > Math.ceil(totalCount / Float.valueOf(everyPage)))) {
 			pageNow = "1";
 		}
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
@@ -124,6 +138,24 @@ public class MessageAction extends ActionSupport implements ModelDriven<Message>
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", messageList);
 		request.put("page", page);
+		return "selectAll";
+	}
+
+	public String select() {
+		if (type.equals("") || type== null) {
+			return "select";
+		}
+
+		search();
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("roots", messageList);
+
+		return "selectAll";
+	}
+
+	public String search() {
+		System.out.println(type);
+		messageList = this.messageService.search(Integer.parseInt(type));
 		return "selectAll";
 	}
 

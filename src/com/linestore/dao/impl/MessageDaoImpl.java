@@ -4,6 +4,7 @@ import com.linestore.dao.CusAddressDao;
 import com.linestore.dao.MessageDao;
 import com.linestore.util.Page;
 import com.linestore.vo.CusAddress;
+import com.linestore.vo.Customer;
 import com.linestore.vo.Message;
 import com.linestore.vo.Notice;
 
@@ -69,7 +70,7 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 		List<Message> list = (List<Message>) this.getHibernateTemplate().find(hql, id);
 		this.getHibernateTemplate().delete(list.get(0));
 	}
-	
+
 	@Override
 	public int queryAll() {
 		System.out.println("exec queryAll");
@@ -85,6 +86,16 @@ public class MessageDaoImpl extends HibernateDaoSupport implements MessageDao {
 			System.out.println("query failed!\n" + e);
 			throw e;
 		}
+	}
+
+	@Override
+	public List<Message> search(int type) {
+		// TODO Auto-generated method stub
+		String hql;
+		hql = "from Message where mesType =" + type;
+
+		List<Message> list = (List<Message>) this.getHibernateTemplate().find(hql);
+		return list;
 	}
 
 }
