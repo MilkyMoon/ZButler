@@ -31,10 +31,10 @@
 		<div class="businessMessage_bigImg">
 			<div class="m-slider" id="J_Slider">
 				<div class="slider-wrapper">
-					<c:forEach items="${banner}" var="banner">
+					<c:forEach items="${pics}" var="pic">
 					<div class="slider-item">
 						  <img
-								src="${banner.configValue}">
+								src="${pic.picUrl}">
 					</div>
 					 </c:forEach>
 				</div>
