@@ -268,7 +268,7 @@
 		<!-- 微信相关配置 -->
 
 		<!-- 微信网页授权js参数 -->
-		<action name="WxJsApi" class="com.linestore.action.WxJsApiAction"
+		<action name="JsApiParams" class="com.linestore.action.WxJsApiAction"
 			method="JsApiParams">
 			<result type="json">
 				<param name="root">result</param>

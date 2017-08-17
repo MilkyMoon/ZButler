@@ -60,8 +60,7 @@
                                                autocomplete="off"/></div>
             </div> -->
 			</div>
-			<p>提现需为10的倍数，到账金额为扣除6%营业税后所得，最低扣除2元（因平台还须支付每笔2元的代付款成本），两小时内到账！
-				备注：提现时间为每天7:00-20:00,提现不支持信用卡</p>
+			<p>${lq.configValue}</p>
 			<div class="takeSmallMoney_button">
 				<button type="submit" class="btn-block btn-primary">提交</button>
 			</div>

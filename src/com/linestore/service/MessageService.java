@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.linestore.util.Page;
+import com.linestore.vo.Customer;
 import com.linestore.vo.Message;
 
 @Transactional
@@ -19,6 +20,8 @@ public interface MessageService {
 	void del(Message message);
 
 	List<Message> SelectAll(Page page);
+	
+	public List<Message> search(int type);
 
 	void del(int id);
 	

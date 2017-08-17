@@ -33,7 +33,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 	private Map<String, Object> request;
 
 	private SettingService settingService;
-	
+
 	private SiteConfigService siteConfigService;
 
 	public SiteConfigService getSiteConfigService() {
@@ -83,8 +83,6 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		cta.setCustomer(cus);
 		ctaTradingService.addCtaTrading(cta);
 		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
-		SiteConfig siteConfig = siteConfigService.selectById(3);
-		ActionContext.getContext().getSession().put("sc", siteConfig);
 		return "update";
 	}
 
@@ -98,7 +96,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		}
 		return "gotoRecord";
 	}
-	
+
 	public String add() {
 		ctaTrading.setCtaTime(new Timestamp(new Date().getTime()));
 		ctaTrading.setCtaType(4);
@@ -113,14 +111,14 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		Float money = cac.getCacChange() - ctaTrading.getCtaMoney();
 		cac.setCacChange(money);
 		cusAccountService.updateField("cacChange", String.valueOf(money), cac.getCacId());
-//		bus.setBusChange(bus.getBusChange() - ctaTrading.getCtaMoney());
-//		businessService.update(bus);
+		// bus.setBusChange(bus.getBusChange() - ctaTrading.getCtaMoney());
+		// businessService.update(bus);
 		ActionContext.getContext().getSession().put("cac", cac);
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("js", "<script>YDUI.dialog.alert('申请成功！');</script>");
 		return "smallMoney";
 	}
-	
+
 	public String piontToChange() {
 		return "gotoptc";
 	}
@@ -132,7 +130,6 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 		String out_trade_no = date.getTime() + "G" + random.nextInt(max) % (max - min + 1);
 		return out_trade_no;
 	}
-	
 
 	public CtaTradingService getCtaTradingService() {
 		return ctaTradingService;
@@ -165,7 +162,7 @@ public class CtaTradingAction extends ActionSupport implements ModelDriven<CtaTr
 	public void setSettingService(SettingService settingService) {
 		this.settingService = settingService;
 	}
-	
+
 	private String RandomStr() {
 		Random random = new Random();
 		String radnString = "";

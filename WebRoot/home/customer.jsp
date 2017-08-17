@@ -88,39 +88,49 @@
 			<a href="<%=basePath%>Friends!selectAll.action"
 				class="mine_function_pyq">
 				<div></div> <span>我的朋友圈</span>
-			</a> <a href="<%=basePath%>WxOauthRedirect!IntoRechage.action"
+			</a> 
+			<a href="<%=basePath%>WxOauthRedirect!IntoRechage.action"
 				class="mine_function_jfcz">
 				<div></div> <span>零钱充值</span>
-			</a> <a href="<%=basePath%>Customer!myQRCode.action"
+			</a> 
+			<a href="<%=basePath%>Customer!myQRCode.action"
 				class="mine_function_ewm">
 				<div></div> <span>二维码</span>
-			</a> <a href="<%=basePath%>Customer!askRegister.action"
+			</a> 
+			<a
+				href="<%=basePath%>Customer!askRegister.action?cusId=${user.cusId}"
 				class="mine_function_fx">
 				<div></div> <span>分享</span>
-			</a> <a href="<%=basePath%>CusAddress_selectAll.action"
+			</a> 
+			<a href="<%=basePath%>CusAddress_selectAll.action"
 				class="mine_function_shdz">
 				<div></div> <span>收货地址</span>
-			</a> <a href="<%=basePath%>home/modifyPassword.jsp"
+			</a> 
+			<a href="<%=basePath%>home/modifyPassword.jsp"
 				class="mine_function_xgmm">
 				<div></div> <span>修改密码</span>
-			</a> <a href="<%=basePath%>home/customerService.jsp"
+			</a> 
+			<a href="<%=basePath%>home/customerService.jsp"
 				class="mine_function_kffw">
 				<div></div> <span>客服服务</span>
-			</a> <a href="<%=basePath%>CusCoupon!grouping.action"
+			</a> 
+			<a href="<%=basePath%>CusCoupon!grouping.action"
 				class="mine_function_yhq">
 				<div></div> <span>我的优惠券</span>
-			</a> <a
+			</a><%--  <a
 				href="<c:if test="${fn:length(user.businesses) ne 0}">javascript:return false;</c:if><c:if test="${fn:length(user.businesses) eq 0}"><%=basePath%>cateLine_queryRoot</c:if>"
 				class="mine_function_sqrz">
 				<div></div> <span>申请入驻</span>
 			</a> <a href="<%=basePath%>business_store.action"
 				class="mine_function_wddp">
 				<div></div> <span>我的店铺</span>
-			</a> <a href="<%=basePath%>home/busSmallMoney.jsp"
-				class="mine_function_sjsk">
+			</a> --%> 
+			<a href="<%=basePath%>home/busSmallMoney.jsp"
+				class="mine_function_sqrz">
 				<div></div> <span>零钱提现</span>
-			</a> <a href="<%=basePath%>CusBank!queryAll.action"
-				class="mine_function_bdkh">
+			</a> 
+			<a href="<%=basePath%>CusBank!queryAll.action"
+				class="mine_function_wddp">
 				<div></div> <span>绑定卡号</span>
 			</a>
 		</div>
@@ -158,7 +168,7 @@ ${js}
 		url : "<%=basePath%>hasNewNotice.action",
 		async : false,
 		success : function(result) {	
-			if (window.sessionStorage.getItem("notice")==="0"){
+			if (window.sessionStorage.getItem("notice")==="0"||JSON.parse(result).count==="0"){
 				$("#notice").css("display","none");
 			}else{
 				window.sessionStorage.setItem("notice",JSON.parse(result).count);
