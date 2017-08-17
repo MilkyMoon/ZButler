@@ -61,8 +61,10 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		try {
 			List<Customer> customers = (List<Customer>) this.getHibernateTemplate().find("from Customer where cusId=?", cusId);
 			System.out.println("exec cusId");
-			
-			return customers.get(0);
+			if (customers.size() > 0) {
+				return customers.get(0);
+			}
+			return null;
 		} catch (RuntimeException e) {
 			System.out.println("find failed!\n" + e);
 			throw e;

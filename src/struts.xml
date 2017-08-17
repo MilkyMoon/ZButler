@@ -217,7 +217,7 @@
 
 	</package>
 
-	<package name="strutsJson" extends="json-default" namespace="">
+	<package name="strutsJson" extends="json-default">
 		<action name="CustomerJson" class="com.linestore.action.CustomerAction"
 			method="sendMessage">
 			<result type="json">

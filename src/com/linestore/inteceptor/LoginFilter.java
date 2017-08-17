@@ -25,7 +25,6 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;  
 	    HttpServletResponse res = (HttpServletResponse)response;  
 	    String path = req.getContextPath();
-	    System.out.println("123123123");
 	    String indexPath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+path+ "/home/login.jsp"; 
 //	    System.out.println(req.getRequestURI());
 	    if(req.getRequestURI().endsWith("login.jsp") 
