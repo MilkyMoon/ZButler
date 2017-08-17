@@ -62,4 +62,11 @@ public class MessageServiceImpl implements MessageService {
 		return this.messageDao.queryAll();
 	}
 
+	@Override
+	public List<Message> search(int type) {
+		// TODO Auto-generated method stub
+		
+		return this.messageDao.search(type);
+	}
+
 }

@@ -40,17 +40,6 @@
 			</div>
 		</c:forEach>
 
-		<!-- <div class="takeMoneyItem">
-			<div class="takeMoney_num">500.00</div>
-			<div class="takeMoney_type">零钱</div>
-			<div class="takeMoney_time">2017.06.30 &nbsp;12:35</div>
-		</div>
-		<div class="takeMoneyItem">
-			<div class="takeMoney_num">500.00</div>
-			<div class="takeMoney_type">零钱</div>
-			<div class="takeMoney_time">2017.06.30 &nbsp;12:35</div>
-		</div> -->
-
 	</div>
 </body>
 
