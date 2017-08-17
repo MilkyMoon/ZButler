@@ -293,14 +293,6 @@
 			method="{1}">
 		</action>
 
-		<!-- 图片上传 -->
-		<action name="saveImg" class="com.linestore.util.FileUpload"
-			method="saveImg">
-			<result type="json">
-				<param name="root">result</param>
-			</result>
-		</action>
-
 		<action name="hasNewNotice" class="com.linestore.action.NoticeAction"
 			method="hasNewNotice">
 			<result type="json">

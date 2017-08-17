@@ -16,10 +16,12 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 
 public class WeXinConfigAction extends ActionSupport {
 
-
 	protected WxMpService wxService;
 	protected WxMpInMemoryConfigStorage config;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	protected final String BASE_PATH = "http://yanglan520.com/ZButler/";
+	//protected final String BASE_PATH = "http://www.codwiki.cn/ZButler/";
 
 	public WeXinConfigAction() {
 		super();
@@ -31,7 +33,7 @@ public class WeXinConfigAction extends ActionSupport {
 																// appsecret
 		config.setToken("wxdev"); // 设置微信公众号的token
 
-		config.setOauth2redirectUri("http://yanglan520.com/ZButler/WxOauthRedirect!oauth.action");
+		config.setOauth2redirectUri(BASE_PATH + "WxOauthRedirect!oauth.action");
 		this.wxService = new WxMpServiceImpl();
 		wxService.setWxMpConfigStorage(config);
 	}
