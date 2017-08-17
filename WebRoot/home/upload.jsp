@@ -24,23 +24,43 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 
+
 </head>
 
 <body>
-	<div id="localImag" style="width: 300px; height: 200px">
-		<img id="preview" alt="预览图片" src="" width="300px" height="200px" />
-	</div>
-	<form action="fileUpload" method="post" enctype="multipart/form-data">
+	<!-- 	<form action="fileUpload" method="post" enctype="multipart/form-data">
 		uploader:<input type="text" name="uploader"> select file:<input
-			type="file" name="upload"  onchange="ImagePreview(this)"> <input type="submit"
-			value="Upload">
+			type="file" name="upload" onchange="ImagePreview(this)"> <input
+			type="submit" value="Upload">
+	</form> -->
+
+	<form id="uploadForm">
+			上传文件： <input type="file" name="upload" onchange="doUpload()"/>
 	</form>
+	<img id="imgPre">
 </body>
 </html>
-<script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
+<script src="<%=basePath%>home/dist/wx_js/jquery-3.1.1.min.js"></script>
+<script src="<%=basePath%>home/dist/wx_js/jquery.uploadify.min.js"></script>
 <script type="text/javascript">
-	function ImagePreview(docObj) {
-		console.log(window.webkitURL.createObjectURL(docObj.files[0]))
-		$("#preview").attr("src", window.webkitURL.createObjectURL(docObj.files[0]));
+	function doUpload() {
+		var formData = new FormData($("#uploadForm")[0]);
+		console.log(formData)
+		$.ajax({
+			url : '<%=basePath%>fileUpload', 
+			type : 'POST',
+			data : formData,
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function(data) {
+				$("#imgPre").attr("src",jQuery.parseJSON(data).filePath)
+				console.log(jQuery.parseJSON(data).filePath)
+			},
+			error : function(data) {
+				console.log(data)
+			}
+		});
 	}
 </script>

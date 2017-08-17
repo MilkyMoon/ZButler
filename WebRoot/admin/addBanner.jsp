@@ -25,7 +25,9 @@
 <!-- NProgress -->
 <link href="./vendors/nprogress/nprogress.css" rel="stylesheet">
 <!-- jQuery custom content scroller -->
-<link href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+<link
+	href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+	rel="stylesheet" />
 <!-- jQuery custom content scroller -->
 <link
 	href="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
@@ -99,21 +101,24 @@
 								<div class="x_content">
 									<br />
 									<div class="col-md-8">
-										<form action="siteConfig_addBanner"
-											class="form-horizontal form-label-left" method="post">
+										<form class="form-horizontal form-label-left" id="uploadForm">
 											<div class="">
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">轮播图</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
-														<input type="file" class="form-control" id="file">
-														<input type="hidden" class="form-control"
-															name="configValue">
-															 <input type="hidden"
-															class="form-control" name="configName" value="banner">
+														<input type="file" class="form-control" id="file"
+															name="upload" onchange="doUpload()">
 													</div>
 												</div>
-
-
+											</div>
+										</form>
+										<form action="siteConfig_addBanner"
+											class="form-horizontal form-label-left" method="post"
+											id="uploadForm">
+											<div class="">
+												<input type="hidden" class="form-control" name="configValue"
+													id="configValue"> <input type="hidden"
+													class="form-control" name="configName" value="banner">
 												<div class="form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">广告链接</label>
 													<div class="col-md-6 col-sm-9 col-xs-12">
@@ -197,19 +202,19 @@
 </body>
 </html>
 <script>
-	/* $('input[name="configValue"]').each(function() {
-		var that = $(this);
-		that.change(function() {
-			var imgFile = new FileReader();
-			imgFile.readAsDataURL(that[0].files[0]);
-			imgFile.onload = function() {
-				var imgData = this.result; //base64数据
-				that.attr("type", "hidden");
-				that.val(imgData);
-			}
-		})
-	}) */
-	$("#file").change(function() {
+/* $('input[name="configValue"]').each(function() {
+	var that = $(this);
+	that.change(function() {
+		var imgFile = new FileReader();
+		imgFile.readAsDataURL(that[0].files[0]);
+		imgFile.onload = function() {
+			var imgData = this.result; //base64数据
+			that.attr("type", "hidden");
+			that.val(imgData);
+		}
+	})
+}) */
+/* 	$("#file").change(function() {
 		var img = $("#file");
 		var imgFile = new FileReader();
 		imgFile.readAsDataURL(img[0].files[0]);
@@ -217,5 +222,24 @@
 			var imgData = this.result; //base64数据
 			$('input[name="configValue"]').val(imgData);
 		}
-	})
+	}) */
+
+	function doUpload() {
+		var formData = new FormData($("#uploadForm")[0]);
+		$.ajax({
+			url : '<%=basePath%>fileUpload',
+			type : 'POST',
+			data : formData,
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function(data) {
+			 $('#configValue').val(jQuery.parseJSON(data).filePath);
+			},
+			error : function(data) {
+				console.log(data)
+			}
+		});
+	}
 </script>
