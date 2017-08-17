@@ -230,7 +230,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			value = (String) ActionContext.getContext().getSession().get("openId");
 			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
 			if (check.size() > 0) {
-				customerService.delCustomer(check.get(0).getCusId());
+				Customer cusOpenId = check.get(0);
+				if (cusOpenId.getCusPhone() == null || "".equals(cusOpenId.getCusPhone())) {
+					customerService.delCustomer(check.get(0).getCusId());
+				} else {
+					Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+					request.put("doubleError", "<script>YDUI.dialog.alert('此微信你已绑定过其他手机号！');</script>");
+					return "gotoCusMessage";
+				}
 			}
 			ActionContext.getContext().getSession().put("Bind", null);
 		}
