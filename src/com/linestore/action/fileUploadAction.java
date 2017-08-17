@@ -6,16 +6,40 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import javassist.expr.NewArray;
+import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import net.sf.json.JSONObject;
 
-public class fileUploadAction extends ActionSupport {
+public class fileUploadAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	protected WxMpMessageRouter wxMpMessageRouter;
+
+	@Override
+	public void setServletResponse(HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		this.response = response;
+
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		this.request = request;
+
+	}
+
 	// 上传文件者
 	private String uploader;
 	// 上传的文件
@@ -38,10 +62,14 @@ public class fileUploadAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
+		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+				+ request.getContextPath() + "/";
 		String fileType;
 		fileType = getUploadFileName().substring(getUploadFileName().lastIndexOf(".") + 1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		setSavePath("/uploadFiles/" + sdf.format(new Date()));
+
+		String savePath = "uploadFiles/" + sdf.format(new Date());
+		setSavePath(savePath);
 		setUploadFileName(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "." + fileType);
 		// 设置上传文件保存路径
 		String realpath = getSavePath();
@@ -53,14 +81,12 @@ public class fileUploadAction extends ActionSupport {
 			// 判断此路径是否已经存在
 			if (!savefile.getParentFile().exists())
 				savefile.getParentFile().mkdirs();
+
 			// 把上传文件拷贝到新路径下，完成上传
 			FileUtils.copyFile(upload, savefile);
-
-			System.out.println(getSavePath());
-
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("fileName", getUploadFileName());
-			map.put("filePath", getSavePath()+"/"+getUploadFileName());
+			map.put("filePath", basePath + savePath + '/' + getUploadFileName());
 			map.put("msg", "success");
 
 			this.result = JSONObject.fromObject(map).toString();
@@ -72,9 +98,10 @@ public class fileUploadAction extends ActionSupport {
 		map.put("msg", "failed");
 		return SUCCESS;
 	}
-	
-	public void delFile (){
+
+	public void delFile() {
 	}
+
 	public String getUploader() {
 		return uploader;
 	}
@@ -108,8 +135,10 @@ public class fileUploadAction extends ActionSupport {
 	}
 
 	public String getSavePath() {
-
-		return ServletActionContext.getServletContext().getRealPath(savePath);
+		// String basePath = request.getScheme() + "://" +
+		// request.getServerName() + ":" + request.getServerPort()
+		// + request.getContextPath() + "/";
+		return ServletActionContext.getServletContext().getRealPath(savePath) + "/";
 	}
 
 	public void setSavePath(String savePath) {

@@ -70,6 +70,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		map.put("LoginUrl",
 				this.wxService.oauth2buildAuthorizationUrl(this.wxService.getWxMpConfigStorage().getOauth2redirectUri(),
 						WxConsts.OAUTH2_SCOPE_USER_INFO, "login"));
+		System.out.println("-------"+this.wxService.getWxMpConfigStorage().getOauth2redirectUri());
 		this.result = JSONObject.fromObject(map).toString();
 		return SUCCESS;
 	}
