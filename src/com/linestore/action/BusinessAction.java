@@ -409,6 +409,10 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		
 		return "select";
 	}
+	
+	public String storeReceipts() {
+		return "gotoStoreReceipts";
+	}
 
 	public String jump() {
 		String js = "<script>YDUI.dialog.alert('申请成功！');</script>";

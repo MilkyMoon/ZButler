@@ -1,5 +1,6 @@
 package com.linestore.action;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -84,7 +87,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "gotoProtocol";
 	}
 
-	public String weChat() {
+	public String weChat() throws IOException {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
 		System.out.println(cus.getCusOpenId());
 		System.out.println(customerService.findByOpenId(cus.getCusOpenId()).size());
@@ -100,6 +103,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}
 		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
 		ActionContext.getContext().getSession().put("user", cus);
+		String Iwant = (String) ActionContext.getContext().getSession().get("Iwant");
+		if (Iwant != null) {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			ActionContext.getContext().getSession().put("Iwant", null);
+			response.sendRedirect(Iwant);
+		}
 		return "gotoCustomer";
 	}
 
@@ -208,7 +217,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "gotoCustomer";
 	}
 
-	public String login() {
+	public String login() throws IOException {
 		if (customerService.checkCustomer(customer)) {
 			Customer cus = customerService.findByPhone(customer.getCusPhone()).get(0);
 			ActionContext.getContext().getSession().put("user", cus);
@@ -219,6 +228,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		String js = "<script>YDUI.dialog.alert('用户名或密码错误！');</script>";
 		request.put("js", js);
+		String Iwant = (String) ActionContext.getContext().getSession().get("Iwant");
+		if (Iwant != null) {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			ActionContext.getContext().getSession().put("Iwant", null);
+			response.sendRedirect(Iwant);
+		}
 		return "gotoLogin";
 	}
 
