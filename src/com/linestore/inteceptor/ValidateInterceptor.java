@@ -1,8 +1,19 @@
 package com.linestore.inteceptor;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.linestore.service.LogService;
+import com.linestore.vo.Log;
 import com.linestore.vo.RuleGroup;
 import com.linestore.vo.ThinkUser;
 import com.opensymphony.xwork2.ActionContext;
@@ -13,21 +24,16 @@ public class ValidateInterceptor extends MethodFilterInterceptor {
 
 	@Override
 	protected String doIntercept(ActionInvocation arg0) throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		ServletContext application = ServletActionContext.getServletContext();
+		WebApplicationContext ctx = 
+				WebApplicationContextUtils.getWebApplicationContext(application);
+		LogService logService = (LogService) ctx.getBean("logService");
 		System.out.println("===========>" + arg0.getInvocationContext().getName());
-		// if
-		// (!arg0.getInvocationContext().getName().equals("cateLine_selectAll"))
-		// {
-		//
-		// Map<String, Object> map =
-		// arg0.getInvocationContext().getContext().getSession();
-		// HttpServletRequest request = ServletActionContext.getRequest();
-		// HttpServletResponse response = ServletActionContext.getResponse();
-		// String path = request.getContextPath();
-		// String indexPath =
-		// request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/admin/cateLine_selectAll";
-		// System.out.println(indexPath);
-		// response.sendRedirect(indexPath);
-		// }
+		
+		System.out.println("--------->" + request.getSession().getServletContext().getRealPath(""));
+		
+		Date date = new Date();
 		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 
 		if (thu != null) {
@@ -40,7 +46,15 @@ public class ValidateInterceptor extends MethodFilterInterceptor {
 				while (it.hasNext()) {
 					RuleGroup rg = (RuleGroup) it.next();
 					if (rg.getRule().getRules().equals(arg0.getInvocationContext().getName())) {
-						
+						Log log = new Log();
+						log.setLogAreaId(thu.getArea().getAreId());
+						log.setLogAreaName(thu.getArea().getArea());
+						log.setLogThuId(thu.getThuId());
+						log.setLogThuName(thu.getThuUsername());
+						log.setLogContent(rg.getRule().getTitle());
+						log.setLogStatus(1);
+						log.setLogDate(new Timestamp(date.getTime()));
+						logService.addLog(log);
 						return arg0.invoke();
 					}
 				}
@@ -49,27 +63,5 @@ public class ValidateInterceptor extends MethodFilterInterceptor {
 		}
 		return "Login";
 	}
-
-	// @Override
-	// public String intercept(ActionInvocation arg0) throws Exception {
-	// ServletContext application = ServletActionContext.getServletContext();
-	//
-	// WebApplicationContext ctx =
-	// WebApplicationContextUtils.getWebApplicationContext(application);
-	//
-	// System.out.println("=+================>" + );
-	//
-	// ThinkUser thu = (ThinkUser)
-	// ActionContext.getContext().getSession().get("admin");
-	//
-	// if(thu!=null)
-	// {
-	// return arg0.invoke();
-	// }else
-	// {
-	// return "Login";
-	// }
-	//
-	// }
 
 }
