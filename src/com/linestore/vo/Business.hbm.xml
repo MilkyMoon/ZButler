@@ -35,7 +35,7 @@
             <column name="bus_tax_url" length="65535" />
         </property>
         <property name="busOrgUrl" type="java.lang.String">
-            <column name="bus_org_url"/>
+            <column name="bus_org_url" />
         </property>
         <property name="busDistrict" type="java.lang.Integer">
             <column name="bus_district" />
@@ -115,11 +115,17 @@
             </key>
             <one-to-many class="com.linestore.vo.BusCoupon" />
         </set>
-        <set name="busTradings" inverse="true" lazy="false">
+        <set name="busTradings" inverse="true">
             <key>
                 <column name="bta_bus_id" />
             </key>
             <one-to-many class="com.linestore.vo.BusTrading" />
+        </set>
+        <set name="transfers" inverse="true" lazy="false">
+            <key>
+                <column name="tra_bus_id" />
+            </key>
+            <one-to-many class="com.linestore.vo.Transfer" />
         </set>
         <set name="bills" inverse="true" lazy="false">
             <key>

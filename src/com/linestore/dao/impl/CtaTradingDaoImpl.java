@@ -85,7 +85,7 @@ public class CtaTradingDaoImpl extends HibernateDaoSupport implements CtaTrading
 	public int queryAll() {
 		// TODO Auto-generated method stub
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query= session.createQuery("select count(*) from CtaTrading");
+		Query query= session.createQuery("select count(*) from CtaTrading order by ctaTime desc");
 		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
 		session.clear();
         System.out.println(count);
@@ -98,7 +98,7 @@ public class CtaTradingDaoImpl extends HibernateDaoSupport implements CtaTrading
 	public int queryAllType(int type) {
 		// TODO Auto-generated method stub
 		Session session = this.getSessionFactory().getCurrentSession();
-		Query query= session.createQuery("select count(*) from CtaTrading where ctaType = "+type);
+		Query query= session.createQuery("select count(*) from CtaTrading where ctaType = "+type + " order by ctaTime desc");
 		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
 		session.clear();
         System.out.println(count);

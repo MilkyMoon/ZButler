@@ -44,6 +44,7 @@
 		<action name="business_*" class="com.linestore.action.BusinessAction"
 			method="{1}">
 			<result name="gotoCustomer">home/customer.jsp</result>
+			<result name="gotoStoreReceipts">home/storeReceipts.jsp</result>
 			<result name="success" type="redirectAction">business_jump</result>
 			<result name="selectAll">admin/business.jsp</result>
 			<result name="error">admin/index.jsp</result>
@@ -217,7 +218,7 @@
 
 	</package>
 
-	<package name="strutsJson" extends="json-default" namespace="">
+	<package name="strutsJson" extends="json-default">
 		<action name="CustomerJson" class="com.linestore.action.CustomerAction"
 			method="sendMessage">
 			<result type="json">
@@ -489,6 +490,14 @@
 			<result name="add">tagAdd.jsp</result>
 			<result name="edit">tagEdit.jsp</result>
 			<result name="select" type="redirectAction">tag_selectAll</result>
+		</action>
+		<action name="transfer_*" class="com.linestore.action.TransferAction"
+			method="{1}">
+			<result name="selectAll">transfer.jsp</result>
+			<result name="add">transferAdd.jsp</result>
+			<result name="save" type="redirectAction">business_account</result>
+			<result name="read">transferRead.jsp</result>
+			<result name="select" type="redirectAction">transfer_selectAll</result>
 		</action>
 	</package>
 

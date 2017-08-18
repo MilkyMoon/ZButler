@@ -32,7 +32,6 @@ public class WeXinConfigAction extends ActionSupport {
 		config.setSecret("4ad3ebbd02e8f82aede3a22d1a3335a6"); // 设置微信公众号的
 																// appsecret
 		config.setToken("wxdev"); // 设置微信公众号的token
-
 		config.setOauth2redirectUri(BASE_PATH + "WxOauthRedirect!oauth.action");
 		this.wxService = new WxMpServiceImpl();
 		wxService.setWxMpConfigStorage(config);

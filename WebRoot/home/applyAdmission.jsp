@@ -17,6 +17,8 @@
 <title>申请入驻</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
+<style type="text/css">
+</style>
 </head>
 <body>
 	<div class="applyAdmission">
@@ -74,6 +76,7 @@
 				</div>
 				<div class="applyAdmission_map">
 					<div id="allmap"></div>
+					<div id="mapContainer" style="display:none"></div>
 					<input type="hidden" name="baLatitude" id="baLatitude"> <input
 						type="hidden" name="baLongitude" id="baLongitude">
 				</div>
@@ -267,7 +270,7 @@
 				busLicenseUrl : "请输入执照号",
 				busSmallCate : "请选择经营小类别",
 				bbBank : "请输入开户行",
-				busTaxUrl: "请输入税务登记证",
+				busTaxUrl : "请输入税务登记证",
 				bbBankCard : {
 					required : "请输入银行卡号",
 				}

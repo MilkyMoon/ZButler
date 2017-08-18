@@ -113,6 +113,9 @@
 	                         
 	                          <td>
 		                          <a href="business_edit?busId=${roots.busId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		                          <c:if test="${sessionScope.admin.area.pid == 0}">
+		                          	<a href="transfer_add?id=${roots.busId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;转账记录</a>
+		                          </c:if>
 	                          </td>
 	                        </tr>
                         </c:forEach>
