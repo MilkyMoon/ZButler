@@ -491,6 +491,14 @@
 			<result name="edit">tagEdit.jsp</result>
 			<result name="select" type="redirectAction">tag_selectAll</result>
 		</action>
+		<action name="transfer_*" class="com.linestore.action.TransferAction"
+			method="{1}">
+			<result name="selectAll">transfer.jsp</result>
+			<result name="add">transferAdd.jsp</result>
+			<result name="save" type="redirectAction">business_account</result>
+			<result name="read">transferRead.jsp</result>
+			<result name="select" type="redirectAction">transfer_selectAll</result>
+		</action>
 	</package>
 
 

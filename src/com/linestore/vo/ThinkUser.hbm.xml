@@ -46,43 +46,17 @@
         <property name="thuBankCard" type="java.lang.String">
             <column name="thu_bank_card" length="20" />
         </property>
-        <set name="billsForThuCountyId" inverse="true" lazy="false">
+        <set name="transfers" inverse="true" lazy="false">
             <key>
-                <column name="thu_county_id">
-                    <comment>县</comment>
-                </column>
+                <column name="tra_thu_id" />
             </key>
-            <one-to-many class="com.linestore.vo.Bill" />
-        </set>
-        <set name="billsForThuProvinceId" inverse="true" lazy="false">
-            <key>
-                <column name="thu_province_id">
-                    <comment>省</comment>
-                </column>
-            </key>
-            <one-to-many class="com.linestore.vo.Bill" />
+            <one-to-many class="com.linestore.vo.Transfer" />
         </set>
         <set name="groupAccesses" inverse="true" lazy="false">
             <key>
                 <column name="uid" not-null="true" />
             </key>
             <one-to-many class="com.linestore.vo.GroupAccess" />
-        </set>
-        <set name="billsForThuPropertyId" inverse="true" lazy="false">
-            <key>
-                <column name="thu_property_id">
-                    <comment>物业</comment>
-                </column>
-            </key>
-            <one-to-many class="com.linestore.vo.Bill" />
-        </set>
-        <set name="billsForThuCityId" inverse="true" lazy="false">
-            <key>
-                <column name="thu_city_id">
-                    <comment>市</comment>
-                </column>
-            </key>
-            <one-to-many class="com.linestore.vo.Bill" />
         </set>
     </class>
 </hibernate-mapping>

@@ -404,7 +404,6 @@
 	
 	<script type="text/javascript">
 		$("#submitForm").on("submit", function (event) {
-			alert($("#money").val());
 			if ($("#money").val() > ${area.areaTotalMoney} || $("#money").val() <= 0 || checknumber($("#money").val())) {
 				alert("请输入正确的值！");
 				event.preventDefault();   //阻止表单提交

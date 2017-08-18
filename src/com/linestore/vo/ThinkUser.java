@@ -24,11 +24,8 @@ public class ThinkUser implements java.io.Serializable {
 	private String thuOpenid;
 	private String thuBill;
 	private String thuBankCard;
-	private Set billsForThuCountyId = new HashSet(0);
-	private Set billsForThuProvinceId = new HashSet(0);
+	private Set transfers = new HashSet(0);
 	private Set groupAccesses = new HashSet(0);
-	private Set billsForThuPropertyId = new HashSet(0);
-	private Set billsForThuCityId = new HashSet(0);
 
 	// Constructors
 
@@ -59,8 +56,7 @@ public class ThinkUser implements java.io.Serializable {
 	/** full constructor */
 	public ThinkUser(Group group, Area area, String thuUsername, String thuPassword, Integer thuStatus, String thuDesc,
 			String thuEmail, String thuPhone, String thuName, String thuOpenid, String thuBill, String thuBankCard,
-			Set billsForThuCountyId, Set billsForThuProvinceId, Set groupAccesses, Set billsForThuPropertyId,
-			Set billsForThuCityId) {
+			Set transfers, Set groupAccesses) {
 		this.group = group;
 		this.area = area;
 		this.thuUsername = thuUsername;
@@ -73,11 +69,8 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuOpenid = thuOpenid;
 		this.thuBill = thuBill;
 		this.thuBankCard = thuBankCard;
-		this.billsForThuCountyId = billsForThuCountyId;
-		this.billsForThuProvinceId = billsForThuProvinceId;
+		this.transfers = transfers;
 		this.groupAccesses = groupAccesses;
-		this.billsForThuPropertyId = billsForThuPropertyId;
-		this.billsForThuCityId = billsForThuCityId;
 	}
 
 	// Property accessors
@@ -186,20 +179,12 @@ public class ThinkUser implements java.io.Serializable {
 		this.thuBankCard = thuBankCard;
 	}
 
-	public Set getBillsForThuCountyId() {
-		return this.billsForThuCountyId;
+	public Set getTransfers() {
+		return this.transfers;
 	}
 
-	public void setBillsForThuCountyId(Set billsForThuCountyId) {
-		this.billsForThuCountyId = billsForThuCountyId;
-	}
-
-	public Set getBillsForThuProvinceId() {
-		return this.billsForThuProvinceId;
-	}
-
-	public void setBillsForThuProvinceId(Set billsForThuProvinceId) {
-		this.billsForThuProvinceId = billsForThuProvinceId;
+	public void setTransfers(Set transfers) {
+		this.transfers = transfers;
 	}
 
 	public Set getGroupAccesses() {
@@ -208,22 +193,6 @@ public class ThinkUser implements java.io.Serializable {
 
 	public void setGroupAccesses(Set groupAccesses) {
 		this.groupAccesses = groupAccesses;
-	}
-
-	public Set getBillsForThuPropertyId() {
-		return this.billsForThuPropertyId;
-	}
-
-	public void setBillsForThuPropertyId(Set billsForThuPropertyId) {
-		this.billsForThuPropertyId = billsForThuPropertyId;
-	}
-
-	public Set getBillsForThuCityId() {
-		return this.billsForThuCityId;
-	}
-
-	public void setBillsForThuCityId(Set billsForThuCityId) {
-		this.billsForThuCityId = billsForThuCityId;
 	}
 
 }
