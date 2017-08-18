@@ -133,8 +133,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Volumes/Mechanical HD/Tools/apache-tomcat-8.0.45/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="/Volumes/Mechanical HD/Tools/apache-tomcat-8.0.45/lib/servlet-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
