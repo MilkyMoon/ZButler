@@ -22,13 +22,7 @@
 
 <body>
 	<div class="takeSmallMoney" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>business_store.action">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<form id="signupForm" method="post"
 			action="<%=basePath%>CtaTrading!add.action">
 			<div class="m-cell">
@@ -66,8 +60,7 @@
                                                autocomplete="off"/></div>
             </div> -->
 			</div>
-			<p>提现需为10的倍数，到账金额为扣除6%营业税后所得，最低扣除2元（因平台还须支付每笔2元的代付款成本），两小时内到账！
-				备注：提现时间为每天7:00-20:00,提现不支持信用卡</p>
+			<p>${lq.configValue}</p>
 			<div class="takeSmallMoney_button">
 				<button type="submit" class="btn-block btn-primary">提交</button>
 			</div>

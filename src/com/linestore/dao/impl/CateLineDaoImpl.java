@@ -92,4 +92,13 @@ public class CateLineDaoImpl extends HibernateDaoSupport implements CateLineDao{
 		}
 		return catetories;
 	}
+
+	@Override
+	public CateLine selectById(int id) {
+		List<CateLine> cals =  (List<CateLine>) this.getHibernateTemplate().find("from CateLine where calId=? and calStatus=1", id);
+		if (cals.size() > 0) {
+			return cals.get(0);
+		}
+		return null;
+	}
 }

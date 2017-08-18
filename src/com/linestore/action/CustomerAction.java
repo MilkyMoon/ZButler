@@ -1,5 +1,6 @@
 package com.linestore.action;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -74,7 +77,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	private BusinessService businessService;
 
 	private CtaTradingService ctaTradingService;
-	
+
 	private SiteConfigService siteConfigService;
 
 	public String protocol() {
@@ -84,10 +87,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "gotoProtocol";
 	}
 
-	public String weChat() {
+	public String weChat() throws IOException {
 		Customer cus = (Customer) ActionContext.getContext().getSession().get("weChat");
-		System.out.println(cus.getCusOpenId());
-		System.out.println(customerService.findByOpenId(cus.getCusOpenId()).size());
+//		System.out.println(cus.getCusOpenId());
+//		System.out.println(customerService.findByOpenId(cus.getCusOpenId()).size());
+		SiteConfig siteConfig = siteConfigService.selectById(30);
+		ActionContext.getContext().getSession().put("lq", siteConfig);
 		if (customerService.findByOpenId(cus.getCusOpenId()).size() < 1) {
 			cus.setCusPassword("111");
 			cus.setCusStatus(1);
@@ -100,6 +105,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}
 		ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
 		ActionContext.getContext().getSession().put("user", cus);
+		String Iwant = (String) ActionContext.getContext().getSession().get("Iwant");
+		if (Iwant != null) {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			ActionContext.getContext().getSession().put("Iwant", null);
+			response.sendRedirect(Iwant);
+		}
 		return "gotoCustomer";
 	}
 
@@ -208,17 +219,27 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		return "gotoCustomer";
 	}
 
-	public String login() {
+	public String login() throws IOException {
+		SiteConfig siteConfig = siteConfigService.selectById(30);
+		ActionContext.getContext().getSession().put("lq", siteConfig);
+		System.out.println(siteConfig.getConfigValue());
 		if (customerService.checkCustomer(customer)) {
 			Customer cus = customerService.findByPhone(customer.getCusPhone()).get(0);
 			ActionContext.getContext().getSession().put("user", cus);
 			ActionContext.getContext().getSession().put("cac", cusAccountService.findByCusId(cus.getCusId()));
 			System.out.println(cus.getCusId());
+
 			return "gotoCustomer";
 		}
-		request = (Map<String, Object>) ActionContext.getContext().get("request");
+
 		String js = "<script>YDUI.dialog.alert('用户名或密码错误！');</script>";
 		request.put("js", js);
+		String Iwant = (String) ActionContext.getContext().getSession().get("Iwant");
+		if (Iwant != null) {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			ActionContext.getContext().getSession().put("Iwant", null);
+			response.sendRedirect(Iwant);
+		}
 		return "gotoLogin";
 	}
 
@@ -230,7 +251,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			value = (String) ActionContext.getContext().getSession().get("openId");
 			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
 			if (check.size() > 0) {
-				customerService.delCustomer(check.get(0).getCusId());
+				Customer cusOpenId = check.get(0);
+				if (cusOpenId.getCusPhone() == null || "".equals(cusOpenId.getCusPhone())) {
+					customerService.delCustomer(check.get(0).getCusId());
+				} else {
+					Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+					request.put("doubleError", "<script>YDUI.dialog.alert('此微信你已绑定过其他手机号！');</script>");
+					return "gotoCusMessage";
+				}
 			}
 			ActionContext.getContext().getSession().put("Bind", null);
 		}
@@ -304,7 +332,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	}
 
 	public String logout() {
-		ActionContext.getContext().getSession().clear();;
+		ActionContext.getContext().getSession().clear();
+		;
 		return "logout";
 	}
 
@@ -316,9 +345,9 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		SiteConfig siteConfig = siteConfigService.selectById(1);
 		if (customer.getCusId() != null) {
-			Customer cus = customerService.findById(customer.getCusId());	
+			Customer cus = customerService.findById(customer.getCusId());
 			request.put("id", cus);
-			
+
 		}
 		request.put("sc", siteConfig);
 		// //补全邀请人的信息，传递到页面;注册者完成注册时还需要用到邀请人的信息

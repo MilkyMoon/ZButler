@@ -4,7 +4,7 @@
 	<groupId>ZButler</groupId>
 	<artifactId>ZButler</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>

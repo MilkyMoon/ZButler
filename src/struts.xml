@@ -44,6 +44,7 @@
 		<action name="business_*" class="com.linestore.action.BusinessAction"
 			method="{1}">
 			<result name="gotoCustomer">home/customer.jsp</result>
+			<result name="gotoStoreReceipts">home/storeReceipts.jsp</result>
 			<result name="success" type="redirectAction">business_jump</result>
 			<result name="selectAll">admin/business.jsp</result>
 			<result name="error">admin/index.jsp</result>
@@ -217,7 +218,7 @@
 
 	</package>
 
-	<package name="strutsJson" extends="json-default" namespace="">
+	<package name="strutsJson" extends="json-default">
 		<action name="CustomerJson" class="com.linestore.action.CustomerAction"
 			method="sendMessage">
 			<result type="json">
@@ -267,7 +268,7 @@
 		<!-- 微信相关配置 -->
 
 		<!-- 微信网页授权js参数 -->
-		<action name="WxJsApi" class="com.linestore.action.WxJsApiAction"
+		<action name="JsApiParams" class="com.linestore.action.WxJsApiAction"
 			method="JsApiParams">
 			<result type="json">
 				<param name="root">result</param>
@@ -291,14 +292,6 @@
 		</action>
 		<action name="WxMenu_*" class="com.linestore.action.WxMenuAction"
 			method="{1}">
-		</action>
-
-		<!-- 图片上传 -->
-		<action name="saveImg" class="com.linestore.util.FileUpload"
-			method="saveImg">
-			<result type="json">
-				<param name="root">result</param>
-			</result>
 		</action>
 
 		<action name="hasNewNotice" class="com.linestore.action.NoticeAction"

@@ -39,12 +39,16 @@
 </head>
 
 <body>
-	<div class="storeImg">
+	<div class="storeImg" style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<div class="storeImg_content">
 			<div class="storeImg_addImg">
 				<div class="addImg">
-					<input type="file" class="file"> <img
-						src="<%=basePath%>home/dist/wx_image/addImg.png" />
+					<form id="uploadForm">
+						<input type="file" class="file" name="upload"
+							onchange="doUpload()"> <img
+							src="<%=basePath%>home/dist/wx_image/addImg.png" />
+					</form>
 				</div>
 			</div>
 			<c:forEach var="pic" items="${pics}">
@@ -78,7 +82,7 @@
 				$('.storeImg_del').css('display', 'none');
 			})
 	
-			var img = $('input[type="file"]');
+			<%-- var img = $('input[type="file"]');
 			img.change(function() {
 				var imgFile = new FileReader();
 				imgFile.readAsDataURL(img[0].files[0]);
@@ -96,7 +100,7 @@
 						window.location.href = "<%=basePath%>pictures_Img";
 					});
 				}
-			});
+			}); --%>
 	
 			$('.storeImg_del').click(function() {
 				 var img =$($(this).parent()[0]).find("img")[0];
@@ -110,8 +114,39 @@
 						$(this).parent().parent().remove();
 					});
 			});
+			
+			
 	
 		})(jQuery);
+		function doUpload() {
+				var formData = new FormData($("#uploadForm")[0]);
+				console.log(formData)
+				$.ajax({
+					url : '<%=basePath%>fileUpload', 
+					type : 'POST',
+					data : formData,
+					async : false,
+					cache : false,
+					contentType : false,
+					processData : false,
+					success : function(data) {
+						/* $("#imgPre").attr("src",jQuery.parseJSON(data).filePath);
+						console.log(jQuery.parseJSON(data).filePath); */
+						$.post("<%=basePath%>pictures_add",
+						{
+							picUrl: jQuery.parseJSON(data).filePath,
+							picOtherId: ${store.busId},
+							picType: 1
+						},
+						function(date){
+							window.location.href = "<%=basePath%>pictures_Img";
+						});
+					},
+					error : function(data) {
+						console.log(data)
+					}
+				});
+			}
 	</script>
 </body>
 </html>

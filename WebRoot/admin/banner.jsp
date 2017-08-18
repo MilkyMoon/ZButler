@@ -63,7 +63,7 @@
 						<div class="title_left">
 							<h3>
 								<a href="addBanner.jsp">
-									<button type="button" class="btn btn-success btn-lg">添加链接</button>
+									<button type="button" class="btn btn-success btn-lg">添加轮播图</button>
 								</a>
 							</h3>
 						</div>
@@ -84,13 +84,6 @@
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
-<!-- 										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-expanded="false"><i
-												class="fa fa-wrench"></i></a>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Settings 1</a></li>
-												<li><a href="#">Settings 2</a></li>
-											</ul></li> -->
 										<li><a class="close-link"><i class="fa fa-close"></i></a>
 										</li>
 									</ul>

@@ -3,6 +3,7 @@ package com.linestore.dao;
 import java.util.List;
 
 import com.linestore.util.Page;
+import com.linestore.vo.Customer;
 import com.linestore.vo.Message;
 
 public interface MessageDao {
@@ -20,5 +21,7 @@ public interface MessageDao {
 	void del(int id);
 
 	public int queryAll();
+	
+	public List<Message> search(int type);
 
 }

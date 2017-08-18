@@ -27,24 +27,16 @@
 
 <body>
 	<div class="businessMessage" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>business_store.action">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<div class="businessMessage_bigImg">
 			<div class="m-slider" id="J_Slider">
 				<div class="slider-wrapper">
-					<%-- <c:forEach items="${banner}" var="banner"> --%>
+					<c:forEach items="${pics}" var="pic">
 					<div class="slider-item">
-						<%-- <a href="${banner.configKey}"> <img
-								src="${banner.configValue}">
-							</a> --%>
-						<img src="<%=basePath%>home/dist/wx_image/QRCode.jpg" />
+						  <img
+								src="${pic.picUrl}">
 					</div>
-					<%-- </c:forEach> --%>
+					 </c:forEach>
 				</div>
 				<div class="slider-pagination"></div>
 				<!-- 分页标识 -->

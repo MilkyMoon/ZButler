@@ -44,7 +44,7 @@
 			<img src="<%=basePath%>home/dist/wx_image/person.png" />
 		</a> </header>
 
-		<%-- <div class="m-slider" id="J_Slider">
+		<div class="m-slider" id="J_Slider">
 			<div class="slider-wrapper">
 			<c:forEach items="${banner}" var="banner" >
 				<div class="slider-item">
@@ -56,7 +56,7 @@
 			</div>
 			<div class="slider-pagination"></div>
 			<!-- 分页标识 -->
-		</div> --%>
+		</div>
 		
 
 		<div class="index_classItems">

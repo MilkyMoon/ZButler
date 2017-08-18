@@ -17,10 +17,12 @@
 <title>收货地址-添加</title>
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/ydui.css">
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/style.css">
-<link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 </head>
 <body>
-	<div class="deliveryAddress2">
+	<div class="deliveryAddress2"  style="padding-top:53px;">
+		<jsp:include page="back.jsp" />
 		<!-- action="BusAddress_add" method="post" -->
 		<form id="CusAddressAdd" action="" method="post">
 			<div class="m-cell">
@@ -28,8 +30,8 @@
 					<div class="cell-left">收货人姓名：</div>
 					<div class="cell-right">
 
-						<input type="text" id="caName" class="cell-input" placeholder="必填" name="name"
-							autocomplete="off" />
+						<input type="text" id="caName" class="cell-input" placeholder="必填"
+							name="name" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item">
@@ -42,15 +44,16 @@
 				<div class="cell-item">
 					<div class="cell-left">收货地址：</div>
 					<div class="cell-right">
-						<input type="text" class="cell-input" id="J_Address" name="address"
-							placeholder="请选择" autocomplete="off" />
+						<input type="text" class="cell-input" id="J_Address"
+							name="address" placeholder="请选择" autocomplete="off" />
 
 					</div>
 				</div>
 				<div class="cell-item cell-item-last">
 					<div class="cell-left">详细地址：</div>
 					<div class="cell-right">
-						<textarea id="caAddress" class="cell-textarea" placeholder="必填" name="allAddress"></textarea>
+						<textarea id="caAddress" class="cell-textarea" placeholder="必填"
+							name="allAddress"></textarea>
 					</div>
 				</div>
 			</div>

@@ -178,7 +178,12 @@
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+
 	<bean id="transferDao" class="com.linestore.dao.impl.TransferDaoImpl">
+		<!-- 注入持久化操作所需的SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="logDao" class="com.linestore.dao.impl.LogDaoImpl">
 		<!-- 注入持久化操作所需的SessionFactory -->
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -288,6 +293,9 @@
 	</bean>
 	<bean id="transferService" class="com.linestore.service.impl.TransferServiceImpl">
 		<property name="transferDao" ref="transferDao"></property>
+	</bean>
+	<bean id="logService" class="com.linestore.service.impl.LogServiceImpl">
+		<property name="logDao" ref="logDao"></property>
 	</bean>
 
 	<!-- 配置一个事务管理器 -->

@@ -23,13 +23,7 @@
 
 <body>
 	<div class="takeMoneyRecord" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>business_store.action">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<c:forEach var="item" items="${Withdraw}">
 			<div class="takeMoneyItem">
 				<div class="takeMoney_num">${item.btaMoney}¥</div>
@@ -45,17 +39,6 @@
 				</div>
 			</div>
 		</c:forEach>
-
-		<!-- <div class="takeMoneyItem">
-			<div class="takeMoney_num">500.00</div>
-			<div class="takeMoney_type">零钱</div>
-			<div class="takeMoney_time">2017.06.30 &nbsp;12:35</div>
-		</div>
-		<div class="takeMoneyItem">
-			<div class="takeMoney_num">500.00</div>
-			<div class="takeMoney_type">零钱</div>
-			<div class="takeMoney_time">2017.06.30 &nbsp;12:35</div>
-		</div> -->
 
 	</div>
 </body>

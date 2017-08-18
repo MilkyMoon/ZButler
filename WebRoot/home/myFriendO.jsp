@@ -24,13 +24,7 @@
 </head>
 <body>
 	<div class="myFriendO" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/customer.jsp">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<div class="myFriendO_myMessage">
 			<div class="myFriendO_myMessage_head">
 				<img src="${user.cusImgUrl}" />
@@ -54,9 +48,7 @@
 				我的朋友A<span>${fn:length(friA)}</span>
 				<div class="myFriendO_myFriendItem_down">
 					<c:forEach var="A" items="${friA}">
-						<div>
-							${A.friPhone}
-						</div>
+						<div>${A.friPhone}</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -64,9 +56,7 @@
 				我的朋友B<span>${fn:length(friB)}</span>
 				<div class="myFriendO_myFriendItem_down">
 					<c:forEach var="B" items="${friB}">
-					<div>
-						${B.friPhone}
-					</div>
+						<div>${B.friPhone}</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -74,9 +64,7 @@
 				我的朋友C<span>${fn:length(friC)}</span>
 				<div class="myFriendO_myFriendItem_down">
 					<c:forEach var="C" items="${friC}">
-					<div>
-						${C.friPhone}
-					</div>
+						<div>${C.friPhone}</div>
 					</c:forEach>
 				</div>
 			</div>

@@ -22,13 +22,7 @@
 
 <body>
 	<div class="myStore" style="padding-top:53px;">
-		<div class="integral2_top">
-			<div class="integral2_top_left">
-				<i class="fa fa-angle-left"></i> <a
-					href="<%=basePath%>home/customer.jsp">返回</a>
-			</div>
-			<div class="integral2_top_center"></div>
-		</div>
+		<jsp:include page="back.jsp" />
 		<div class="myStore_content">
 
 					<c:if test="${!empty store and store.busStatus != 0}">
@@ -46,7 +40,7 @@
 								<div style="background-color: #4A90E2">零钱提现</div>
 							</a>
 						</c:if> --%>
-						<a href="<%=basePath%>home/storeReceipts.jsp"><div style="background-color: #4A90E2">商家收款</div></a>
+						<a href="<%=basePath%>business_storeReceipts"><div style="background-color: #4A90E2">商家收款</div></a>
 					</c:if>
 					<c:if test="${!empty store and store.busStatus == 0}">
 						<p style="color:red;font-size:18px;text-align: center;width:100%">申请尚未通过，如有疑问请留言或质询客服</p>

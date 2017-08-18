@@ -49,10 +49,12 @@
 		<div class="share_comment">
 			<div class="share_commentItem">
 				<div class="share_comment_head">
-					<img src="${user.cusImgUrl}<c:if test="${ empty user.cusImgUrl}">${id.cusImgUrl}</c:if>" />
+					<img
+						src="${user.cusImgUrl}<c:if test="${ empty user.cusImgUrl}">${id.cusImgUrl}</c:if>" />
 				</div>
 				<div class="share_comment_content">
-					<div>${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if></div>
+					<div>${user.cusPhone}<c:if test="${ empty user.cusPhone}">${id.cusPhone}</c:if>
+					</div>
 					<p>"我第一次想着充了10元试试，没想到第二天真的赚回20元！我又充值了100元，这次得到200元奖金，哈
 						哈！充得多赚得多！爽！我现在准备充500块，准备赚回1500元呢！"</p>
 				</div>
@@ -83,7 +85,7 @@
 <script src="<%=basePath%>home/dist/wx_js/jquery.validate.min.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/messages_zh.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/md5.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 ${js}
 <script>
 	$.ajax({
@@ -105,27 +107,26 @@ ${js}
 		}
 	});
 
+
 	wx.ready(function() {
 		wx.checkJsApi({
-			jsApiList : [ 'onMenuShareTimeline' ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+			jsApiList : [ 'onMenuShareTimeline', 'onMenuShareAppMessage' ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
 		});
-		wx.onMenuShareTimeline({
+
+		$("#share").click(function() {
+			wx.onMenuShareTimeline({
+				title : '${user.cusNickname}<c:if test="${ empty user.cusNickname}">${id.cusNickname}</c:if>邀请你注册众帮管家', // 分享标题
+				link : '<%=basePath%>Customer_askRegister?cusId=${user.cusId}<c:if test="${ empty user.cusId}">${id.cusId}</c:if>', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl : '<%=basePath%>home/dist/wx_image/QRCode.jpg' // 分享图标
+			});
+		})
+
+		wx.onMenuShareAppMessage({
 			title : '${user.cusNickname}<c:if test="${ empty user.cusNickname}">${id.cusNickname}</c:if>邀请你注册众帮管家', // 分享标题
 			link : '<%=basePath%>Customer_askRegister?cusId=${user.cusId}<c:if test="${ empty user.cusId}">${id.cusId}</c:if>', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-			imgUrl : '<%=basePath%>home/dist/wx_image/QRCode.jpg.jpg', // 分享图标
-			success : function(res) {
-				// 页面跳转
-				console.log(res)
-			},
-			cancel : function() {
-				// 用户取消分享后执行的回调函数
-				/* alert("分享失败"); */
-				// 刷新
-			}
+			imgUrl : '<%=basePath%>home/dist/wx_image/QRCode.jpg.jpg' // 分享图标
 		});
-
 	})
-
 
 	$().ready(function() {
 		var $getCode = $('#get');

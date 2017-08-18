@@ -70,8 +70,12 @@ public class CateLineServiceImpl implements CateLineService{
 
 	@Override
 	public List<CateLine> queryFormat(List<CateLine> list, int pid, int level) {
-		// TODO Auto-generated method stub
 		return cateLineDao.queryFormat(list, pid, level);
+	}
+
+	@Override
+	public CateLine selectById(int id) {
+		return cateLineDao.selectById(id);
 	}
 	
 }
