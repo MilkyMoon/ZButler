@@ -28,7 +28,7 @@
 			<div class="fenlei_dialog_out">
 				<span>全部分类&nbsp;</span> <i class="fa fa-caret-down"></i>
 			</div>
-			<div>
+			<div id="autoSort">
 				<span>智能排序&nbsp;</span> <i class="fa fa-caret-down"></i>
 			</div>
 		</div>
@@ -82,7 +82,7 @@
 							</div>
 							<div>${name}</div>
 							<div>
-								消费人数 <span>${fn:length(business.busTradings)}</span>人
+								消费人数 <span class="findMe">${fn:length(bus.busTradings)}</span>人
 							</div>
 							<div class="businessCommend_title_starNum" data="3.1">
 								<!--<img src="image/star.png"/>-->
@@ -158,6 +158,31 @@
 			$('.fenlei_dialog').css('display', 'none');
 		}
 	}); */
+	
+	$('#autoSort').click(function(){
+		var arr = [];
+		$('.fenleiList').children().map(function(index, value, array){
+			arr.push(value);
+		});
+		console.log(arr);
+		arr.sort(function(objOne, objTwo){
+			var valOne = $(objOne).find('.findMe').html();
+			var valTwo = $(objTwo).find('.findMe').html();
+			if (valOne < valTwo) {
+				return 1;
+			} else if (valOne > valTwo) {
+				return -1;
+			} else {
+				return 0;
+			}
+		});
+		$('.fenleiList').children().remove();
+		arr.map(function(index, value, array){
+			console.log(index);
+			$('.fenleiList').append(index);
+		});
+	});
+	
 	
 </script>
 </html>
