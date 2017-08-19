@@ -29,19 +29,19 @@
 				<div class="takeMoney_time"><fmt:formatDate value="${cta.ctaTime}" type="both"  /></div>
 				<div class="takeMoney_type">
 					<c:if test="${cta.ctaType == 1}">充值零钱</c:if>
-					<c:if test="${cta.ctaType == 2}">朋友消费</c:if>
+					<%-- <c:if test="${cta.ctaType == 2}">朋友消费</c:if> --%>
 					<c:if test="${cta.ctaType == 3}">推荐注册</c:if>
 					<c:if test="${cta.ctaType == 4 and cta.ctaStatus == 0}">申请提现(未审核)</c:if>
 					<c:if test="${cta.ctaType == 4 and cta.ctaStatus == 1}">申请提现(已审核)</c:if>
 					<c:if test="${cta.ctaType == 4 and cta.ctaStatus == 2}">申请提现(未通过)</c:if>
 					<c:if test="${cta.ctaType == 11}">积分转零钱</c:if>
 					<c:if test="${cta.ctaType == 12}">朋友充值</c:if>
-					<c:if test="${cta.ctaType == 13}">消费返积分</c:if>
+					<c:if test="${cta.ctaType == 13}">朋友消费返积分</c:if>
 					<c:if test="${cta.ctaType == 14}">商家返积分</c:if>
 				</div>
 				<div class="takeMoney_num">	
 					<c:if test="${cta.ctaType == 1}"><fmt:formatNumber type="number" maxFractionDigits="5" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if>
-					<c:if test="${cta.ctaType == 2}"><fmt:formatNumber type="number" maxFractionDigits="5" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if>
+					<%-- <c:if test="${cta.ctaType == 2}"><fmt:formatNumber type="number" maxFractionDigits="5" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if> --%>
 					<c:if test="${cta.ctaType == 3}"><fmt:formatNumber type="number" maxFractionDigits="5" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if>
 					<c:if test="${cta.ctaType == 4}"><fmt:formatNumber type="number" maxFractionDigits="5" value="${cta.ctaMoney}" /><i class="fa fa-cny"></i></c:if>
 					<c:if test="${cta.ctaType == 11}"><fmt:formatNumber type="number" maxFractionDigits="5" value="${cta.ctaMoney}" /><i class="fa fa-database"></i></c:if>
