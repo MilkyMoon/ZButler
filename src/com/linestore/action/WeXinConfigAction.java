@@ -20,8 +20,8 @@ public class WeXinConfigAction extends ActionSupport {
 	protected WxMpInMemoryConfigStorage config;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	protected final String BASE_PATH = "http://yanglan520.com/ZButler/";
-	//protected final String BASE_PATH = "http://www.codwiki.cn/ZButler/";
+	//protected final String BASE_PATH = "http://yanglan520.com/ZButler/";
+	protected final String BASE_PATH = "http://www.codwiki.cn/ZButler/";
 
 	public WeXinConfigAction() {
 		super();

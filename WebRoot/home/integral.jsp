@@ -105,7 +105,7 @@
 	$.ajax({
 		type : "post",
 		dataType : "json",
-		url : "<%=basePath%>WxJsApi",
+		url : "<%=basePath%>JsApiParams",
 		async : false,
 		data : {
 			url : location.href.split("#")[0]
