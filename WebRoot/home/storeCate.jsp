@@ -28,9 +28,16 @@
 			<div class="fenlei_dialog_out">
 				<span>全部分类&nbsp;</span> <i class="fa fa-caret-down"></i>
 			</div>
-			<div id="autoSort">
+			<div id="autoSort" class="zhineng_dialog_out">
 				<span>智能排序&nbsp;</span> <i class="fa fa-caret-down"></i>
 			</div>
+		</div>
+
+		<div class="choose">
+			<ul>
+				<li>按人气</li>
+				<li>按返利</li>
+			</ul>
 		</div>
 		<div class="fenlei_dialog">
 			<div class="fenlei_dialog_content">
@@ -115,6 +122,7 @@
 		}
 	});
 	$('.fenlei_dialog_out').click(function() {
+		$('.choose').css('display', 'none');
 		if ($('.fenlei_dialog').css('display') === 'none') {
 			$('.fenlei_dialog').css('display', 'block');
 		} else {
@@ -158,31 +166,67 @@
 			$('.fenlei_dialog').css('display', 'none');
 		}
 	}); */
-	
-	$('#autoSort').click(function(){
-		var arr = [];
-		$('.fenleiList').children().map(function(index, value, array){
-			arr.push(value);
-		});
-		console.log(arr);
-		arr.sort(function(objOne, objTwo){
-			var valOne = $(objOne).find('.findMe').html();
-			var valTwo = $(objTwo).find('.findMe').html();
-			if (valOne < valTwo) {
-				return 1;
-			} else if (valOne > valTwo) {
-				return -1;
-			} else {
-				return 0;
+
+	$(".zhineng_dialog_out").click(function() {
+		//干掉打开的 fenlie
+		$('.fenlei_dialog').css('display', 'none');
+		$(".choose").toggle()
+	});
+	$(".choose").find("ul>li").each(function() {
+		$(this).click(function() {
+			if ($(this).text() == '按人气') {
+			
+				console.log('按人气');
+				var arr = [];
+				$('.fenleiList').children().map(function(index, value, array) {
+					arr.push(value);
+				});
+				console.log(arr);
+				arr.sort(function(objOne, objTwo) {
+					var valOne = $(objOne).find('.findMe').html();
+					var valTwo = $(objTwo).find('.findMe').html();
+					if (valOne < valTwo) {
+						return 1;
+					} else if (valOne > valTwo) {
+						return -1;
+					} else {
+						return 0;
+					}
+				});
+				$('.fenleiList').children().remove();
+				arr.map(function(index, value, array) {
+					console.log(index);
+					$('.fenleiList').append(index);
+				});
 			}
-		});
-		$('.fenleiList').children().remove();
-		arr.map(function(index, value, array){
-			console.log(index);
-			$('.fenleiList').append(index);
+			if ($(this).text() == '按返利') {
+				console.log('按返利');
+				var arr = [];
+				$('.fenleiList').children().map(function(index, value, array) {
+					arr.push(value);
+				});
+				console.log(arr);
+				arr.sort(function(objOne, objTwo) {
+					var valOne = $(objOne).find('.fenleiItem_mark').html().slice(0,-1);
+					console.log(valOne);
+					var valTwo = $(objTwo).find('.fenleiItem_mark').html().slice(0,-1);
+					console.log(valTwo);
+					if (valOne < valTwo) {
+						return 1;
+					} else if (valOne > valTwo) {
+						return -1;
+					} else {
+						return 0;
+					}
+				});
+				$('.fenleiList').children().remove();
+				arr.map(function(index, value, array) {
+					console.log(index);
+					$('.fenleiList').append(index);
+				});
+			}
+			$(".choose").toggle()
 		});
 	});
-	
-	
 </script>
 </html>
