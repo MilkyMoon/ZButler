@@ -212,6 +212,7 @@
 
 								<div class="x_content">
 									<div class="table-responsive">
+										<!-- <div><a><i class="fa fa-excel"></i>导出为Excel</a></div> -->
 										<table class="table table-striped jambo_table bulk_action">
 											<thead>
 												<tr class="headings">

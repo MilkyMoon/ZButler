@@ -10,7 +10,7 @@
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title" style="border: 0;">
 			<a class="site_title"><i class="fa fa-paw"></i>
-				<span>众帮管家</span></a>
+				<span>${sessionScope.netName.setValue}</span></a>
 		</div>
 
 		<div class="clearfix"></div>

@@ -40,6 +40,7 @@ public class AdminLoginAction extends ActionSupport implements ModelDriven<Think
 		if (confire.equals(code) &&  thinkUser != null) {
 			ActionContext.getContext().getSession().put("admin", thinkUser);
 			ActionContext.getContext().getSession().put("netName", setting);
+			System.out.println("setting:"+setting);
 			return "gotoIndex";
 		}
 		Map<String, Object> req = (Map<String, Object>) ActionContext.getContext().get("request");
