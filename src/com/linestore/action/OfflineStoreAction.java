@@ -27,7 +27,7 @@ public class OfflineStoreAction extends ActionSupport implements ModelDriven<Bus
 	
 	private Map<String, Object> request;
 	
-	private String city = "密云";
+	private String city = "北京";
 	
 	private String seach;
 	
