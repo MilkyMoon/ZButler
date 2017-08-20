@@ -112,7 +112,7 @@
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
-<script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
+<script src="<%=basePath%>home/dist/wx_js/yduiOne.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.citys.js"></script>
 <!--百度地图定位-->
 <script type="text/javascript">
@@ -134,7 +134,7 @@ if ('${city}' == '北京') {
 				var addComp = rs.addressComponents;
 				function province(pro) {
 					var ans;
-					if (pro[pro.length - 1] == "市") {
+					if (pro[pro.length - 1] == "市" || pro[pro.length - 1] == "州") {
 						ans = pro.substring(0, pro.length - 1);
 					} else {
 						ans = pro;
@@ -166,7 +166,7 @@ if ('${city}' == '北京') {
 
 	function province(pro) {
 		var ans;
-		if (pro[pro.length - 1] == "市") {
+		if (pro[pro.length - 1] == "市" || pro[pro.length - 1] == "州") {
 			ans = pro.substring(0, pro.length - 1);
 		} else {
 			ans = pro;
@@ -194,7 +194,7 @@ if ('${city}' == '北京') {
 		/* 省：ret.provance */
 		/* 市：ret.city */
 		/* 县：ret.area */
-		$(this).val(ret.city);
+		//$(this).val(ret.city);
 
 		ret.city = province(ret.city);
 
