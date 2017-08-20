@@ -226,4 +226,10 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		return query.list();
 	}
 
+	@Override
+	public List<Bill> selectByExcel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -36,4 +36,6 @@ public interface BillService {
 	public BigDecimal totalMoney();
 	
 	public List<Bill> queryToDate(Date dateOne, Date dateTwo);
+	
+	public List<Bill> selectByExcel();
 }

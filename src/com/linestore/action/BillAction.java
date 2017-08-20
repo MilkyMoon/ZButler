@@ -1,24 +1,34 @@
 package com.linestore.action;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.linestore.service.AreaService;
 import com.linestore.service.BillService;
 import com.linestore.service.ThuTradingService;
+import com.linestore.util.ExportExcel;
 import com.linestore.util.Page;
 import com.linestore.util.PageUtil;
 import com.linestore.vo.Area;
 import com.linestore.vo.Bill;
+import com.linestore.vo.Customer;
 import com.linestore.vo.ThinkUser;
 import com.linestore.vo.ThuTrading;
 import com.opensymphony.xwork2.ActionContext;
@@ -90,6 +100,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 			pageNow = "1";
 		}
@@ -126,9 +137,14 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))){
 			pageNow = "1";
 		}
+		
+		System.out.println("totalCount:"+totalCount);
+		System.out.println("everyPage:"+everyPage);
+		
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		
 		if(think.getArea().getPid() == 0){
@@ -386,6 +402,51 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	public String selectById(){
 		billResult = billService.selectById(bill.getBilId());
 		return "selectAll";
+	}
+	
+	public String excel(){
+        // 测试学生  
+        ExportExcel<Bill> ex = new ExportExcel<Bill>();
+        String[] headers = { "用户", "用户付款", "商家", "商家收款", "物业", "物业收款", "县级代理", "县级收款", "市级代理", "市级收款", "省级代理", "省级收款", "众帮收款", "订单时间"};  
+        List<Bill> dataset = new ArrayList<Bill>();
+        
+        getId();
+		String hql;
+		if(think.getArea().getPid() == 0){
+			hql ="select count(*) from Bill";
+		}else{
+			hql ="select count(*) from Bill where areaByThuPropertyId.areId = "+thuId+" or areaByThuCityId.areId = "+thuId+" or areaByThuProvinceId.areId = "+thuId+" or areaByThuCountyId.areId = "+thuId;
+		}
+		
+		int totalCount = billService.queryAll(hql);
+		everyPage = String.valueOf(totalCount);
+		
+		selectAll();
+        
+        for(int i = 0; i < billList.size(); i++){
+        	
+//        	dataset.add((billList.get(0).getCustomer().getCusNickname()));
+        }
+        
+//        dataset.add();
+//        dataset.add(new Bill());  
+//        dataset.add(new Bill(30000003, "王五", 22, true, new Date()));  
+
+        try  
+        {  
+            OutputStream out = new FileOutputStream("a.xls");
+            ex.exportExcel(headers, billList, out);  
+            out.close();  
+            JOptionPane.showMessageDialog(null, "导出成功!");  
+            System.out.println("excel导出成功！");  
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        } 
+	
+		
+		return "excel";
 	}
 	
 	public void setBillService(BillService billService) {

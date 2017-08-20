@@ -32,4 +32,6 @@ public interface BillDao {
 	
 	public List<Bill> queryToDate(Date dateOne, Date dateTwo);
 	
+	public List<Bill> selectByExcel();
+	
 }

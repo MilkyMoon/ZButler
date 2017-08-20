@@ -109,6 +109,7 @@
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/notice_selectAll.action">消息推送</a></li>
 							<li><a href="<%=basePath%>admin/message_selectAllMessage">留言</a></li>
+							<li><a href="<%=basePath%>admin/log_selectAll.action">操作日志</a></li>
 						</ul></li>
 				</ul>
 			</div>

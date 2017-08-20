@@ -499,6 +499,10 @@
 			<result name="read">transferRead.jsp</result>
 			<result name="select" type="redirectAction">transfer_selectAll</result>
 		</action>
+		<action name="log_*" class="com.linestore.action.LogAction"
+			method="{1}">
+			<result name="selectAll">log.jsp</result>
+		</action>
 	</package>
 
 

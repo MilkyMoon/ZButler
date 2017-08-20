@@ -103,4 +103,10 @@ public class BillServiceImpl implements BillService {
 	public BigDecimal totalMoney() {
 		return billDao.totalMoney();
 	}
+
+	@Override
+	public List<Bill> selectByExcel() {
+		// TODO Auto-generated method stub
+		return billDao.selectByExcel();
+	}
 }
