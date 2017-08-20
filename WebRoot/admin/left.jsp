@@ -67,13 +67,13 @@
 							<!-- <li><a href="media_gallery.html">品牌管理</a></li>
                             <li><a href="typography.html">商品属性模板管理</a></li> -->
 						</ul></li>
-					<li><a><i class="fa fa-clone"></i> 用户管理 <span
+					<li><a><i class="fa fa-user"></i> 用户管理 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/customer_selectAll">用户管理</a></li>
 							<li><a href="<%=basePath%>admin/tag_selectAll">个性标签</a></li>
 						</ul></li>
-					<li><a><i class="fa fa-clone"></i>组织管理 <span
+					<li><a><i class="fa fa-users"></i>组织管理 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/thinkUser_select">平台代理商</a></li>
@@ -81,7 +81,7 @@
 							<%-- <li><a href="<%=basePath%>admin/group_select">角色管理</a></li> --%>
 							<!-- <li><a href="#">权限管理</a></li> -->
 						</ul></li>
-					<li><a><i class="fa fa-clone"></i> 订单管理 <span
+					<li><a><i class="fa fa-file-text-o"></i> 订单管理 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/bill_selectAll">消费订单</a></li>
@@ -90,7 +90,7 @@
 							<li><a href="<%=basePath%>admin/trading_selectRech">充值订单</a></li>
 							<li><a href="<%=basePath%>admin/transfer_selectAll">人工转账记录</a></li>
 						</ul></li>
-					<li><a><i class="fa fa-clone"></i> 报表统计 <span
+					<li><a><i class="fa fa-table"></i> 报表统计 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/bill_report">订单报表</a></li>
@@ -98,13 +98,13 @@
                             <li><a href="<%=basePath%>admin/group_select">业务日志</a></li> --%>
 							<!-- <li><a href="#">权限管理</a></li> -->
 						</ul></li>
-					<li><a><i class="fa fa-clone"></i> 利润分配 <span
+					<li><a><i class="fa fa-money"></i> 利润分配 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/area_agent">三级代理商</a></li>
 							<li><a href="<%=basePath%>admin/business_profit">线下商家</a></li>
 						</ul></li>
-					<li><a><i class="fa fa-clone"></i> 消息管理 <span
+					<li><a><i class="fa fa-commenting"></i> 消息管理 <span
 							class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=basePath%>admin/notice_selectAll.action">消息推送</a></li>
