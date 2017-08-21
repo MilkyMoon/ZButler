@@ -97,11 +97,11 @@
 						<img src="${bus.busOrgUrl}" />
 						<div class="guess_content">
 							<div>
-								<span class="guess_name">${bus.busShopName}</span> <span
-									class="guess_mark"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
+								<span class="guess_name">${bus.busShopName}</span>
 							</div>
+							<span class="guess_mark" style="text-align:right"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
 							<div>
-								<span>${bus.cateLine.calName}</span> <span>其他</span>
+								<span>${bus.cateLine.calName}</span>
 							</div>
 						</div>
 					</div> </a>

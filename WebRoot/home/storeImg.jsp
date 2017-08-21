@@ -44,9 +44,9 @@
 
 	<div id="showEdit" style="display: none;width:100%;height: 100%;position: absolute;top:0;left: 0;z-index: 9;">
 	    <div style="width:100%;position: absolute;top:10px;left:0px;">
-	        <button class="mui-btn" data-mui-style="fab" id='cancleBtn' style="margin-left: 10px;">取消</button>
+	        <button class="mui-btn" data-mui-style="fab" id='cancleBtn' style="margin-left: 10px;margin-top: 50px;">取消</button>
 	        <button class="mui-btn" data-mui-style="fab" data-mui-color="primary" id='confirmBtn'
-	                style="float:right;margin-right: 10px;">确定
+	                style="float:right;margin-right: 10px;margin-top: 50px;">确定
 	        </button>
 	    </div>
 	    <div id="report"></div>

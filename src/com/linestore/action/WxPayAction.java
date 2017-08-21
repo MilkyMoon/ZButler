@@ -249,11 +249,13 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								bill.setCustomer(Pcus.get(0));
 							}
 							BigDecimal bigMoney = new BigDecimal(kvm.get("total_fee"));
-							bigMoney = bigMoney.multiply(new BigDecimal(0.01));
+							bigMoney = bigMoney.multiply(new BigDecimal("10000000000"));
 							bill.setBilCusMoney(bigMoney);
 							// 商家收款
-							BigDecimal city = new BigDecimal(bus.getBusScale());
-							city = bigMoney.subtract(bigMoney.multiply(city).setScale(2, BigDecimal.ROUND_DOWN));
+							BigDecimal city = new BigDecimal(Float.toString(bus.getBusScale()));
+							System.out.println("!!!!!!!!!"+bus.getBusScale());
+							System.out.println("!!!!!!!!!"+city);
+							city = bigMoney.subtract(bigMoney.multiply(city));
 							bill.setBusiness(bus);
 							bill.setBilBusMoney(bigMoney.subtract(city));
 							bill.setBilDate(new Timestamp(Pdate.getTime()));
@@ -271,7 +273,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 													.findByCusId(fri.getCustomer().getCusId());
 											float addChange = Float.valueOf(kvm.get("total_fee")) / 100
 													* Float.valueOf(settingService.queryById(3).getSetValue());
-											city = city.subtract(new BigDecimal(addChange));
+											city = city.subtract(new BigDecimal(Float.toString(addChange)).multiply(new BigDecimal("1000000000000")));
 											Float addPoints = addChangeCac.getCacPoints() + addChange;
 											CtaTrading addChangeCta = new CtaTrading();
 											addChangeCta.setCtaMoney(addChange);
@@ -312,7 +314,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
 											* bus.getBusScalePoints();
 									CtaTrading addChangeCta = new CtaTrading();
-									city = city.subtract(new BigDecimal(Addpiont));
+									city = city.subtract(new BigDecimal(Float.toString(Addpiont)).multiply(new BigDecimal("1000000000000")));
 									addChangeCta.setCtaMoney(Addpiont);
 									addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
 									addChangeCta.setCtaType(14);
@@ -327,7 +329,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								}
 
 							}
-
+							System.out.println(">>>>>>>>>>>"+city);
 							bigMoney = city;
 							System.out.println("1: " + bigMoney.toString());
 							// 物业收款

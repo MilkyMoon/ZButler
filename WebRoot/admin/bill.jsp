@@ -1,3 +1,4 @@
+<%@page import="java.math.BigDecimal"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
@@ -57,6 +58,9 @@
 </head>
 
 <body class="nav-md">
+<%!
+	BigDecimal big;
+ %>
 	<div class="container body">
 		<div class="main_container">
 			<jsp:include page="left.jsp" />
@@ -197,7 +201,7 @@
 														<h1>
 															¥
 															<fmt:formatNumber type="number" maxFractionDigits="10"
-																value="${area.areaTotalMoney}"/>
+																value="${area.areaTotalMoney.divide(10000000000)}"/>
 														</h1>
 														<p>
 															可提现总额
@@ -262,15 +266,15 @@
 															<th><input type="checkbox" class="flat" name="table_records" /></th>
 														</td>
 														<td>${root.customer.cusNickname}</td>
-														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCusMoney}" /></td>
+														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCusMoney.divide(10000000000)}" /></td>
 														<td>${root.business.busShopName}</td>
-														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilBusMoney}" /></td>
+														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilBusMoney.divide(10000000000)}" /></td>
 														<td>${root.areaByThuPropertyId.area}</td>
-														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilPropertyMoney}" /></td>
+														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilPropertyMoney.divide(10000000000)}" /></td>
 														<!-- 判断当前用户是否显示县级代理 -->					
 														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId}">
 															<td>${root.areaByThuCountyId.area}</td>
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCountyMoney}" /></td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCountyMoney.divide(10000000000)}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId}">
 															<td></td>
@@ -279,7 +283,7 @@
 														<!-- 判断当前用户是否显示市级代理 -->	
 														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
 															<td>${root.areaByThuCityId.area}</td>
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCityMoney}" /></td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCityMoney.divide(10000000000)}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
 															<td></td>
@@ -288,14 +292,14 @@
 														<!-- 判断当前用户是否显示省级代理 -->	
 														<c:if test="${sessionScope.admin.area.areId != root.areaByThuCityId.areId && sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
 															<td>${root.areaByThuProvinceId.area}</td>
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilProvinceMoney}" /></td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilProvinceMoney.divide(10000000000)}" /></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.area.areId == root.areaByThuCityId.areId || sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
 															<td></td>
 															<td></td>
 														</c:if>
 														<c:if test="${sessionScope.admin.area.pid == 0}">
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilZongMoney}" /></td>
+															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilZongMoney.divide(10000000000)}" /></td>
 														</c:if>
 														<td>${root.bilDate}</td>
 														<td>

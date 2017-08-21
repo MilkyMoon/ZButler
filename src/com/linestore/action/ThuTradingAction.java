@@ -62,6 +62,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 			pageNow = "1";
 		}
@@ -115,6 +116,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			if(everyPage.equals("") || everyPage == null){
 				everyPage = "10";
 			}
+			everyPage = String.valueOf(totalCount);
 			if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 				pageNow = "1";
 			}
@@ -129,6 +131,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			if(everyPage.equals("") || everyPage == null){
 				everyPage = "10";
 			}
+			everyPage = String.valueOf(totalCount);
 			if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 				pageNow = "1";
 			}
@@ -142,6 +145,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			if(everyPage.equals("") || everyPage == null){
 				everyPage = "10";
 			}
+			everyPage = String.valueOf(totalCount);
 			if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 				pageNow = "1";
 			}

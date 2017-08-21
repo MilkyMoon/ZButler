@@ -31,7 +31,7 @@
 						<!-- <div style="background-color: #C767DA">现金收款</div> -->
 						<a href="<%=basePath%>cateLine_editBus"><div style="background-color: #8B572A">商户编辑</div></a>
 						<a href="<%=basePath%>home/storeImg.jsp"><div style="background-color: #7ED321">店铺图片</div></a>
-						<a href="<%=basePath%>pictures_Img"><div style="background-color: #B2EBF2">店铺轮播图</div></a>
+						<a href="<%=basePath%>pictures_Img"><div style="background-color: #B2EBF2;padding: 20px 10px;">店铺轮播图</div></a>
 						<a href="<%=basePath%>home/rebateProportion.jsp"><div style="background-color: #417505">返点比例</div></a>
 						<a href="<%=basePath%>home/ePhone.jsp"><div style="background-color: #663399">店员手机</div></a>
 						<a href="<%=basePath%>home/PayByCash.jsp"><div style="background-color: #006600">现金支付</div></a>

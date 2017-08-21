@@ -62,8 +62,8 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private String tranTime;
 	private String startTime;
 	private String endTime;
-	private Float amountMin;
-	private Float amountMax;
+	private BigDecimal amountMin;
+	private BigDecimal amountMax;
 
 	private Integer thuId;
 	@Override
@@ -87,6 +87,13 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		System.out.println(timeMax);
 		System.out.println("amountMax:"+amountMax);
 		String hql;
+		
+		BigDecimal amount = new BigDecimal("1000000000000");
+		
+		amountMin = amountMin.multiply(amount);
+		amountMax = amountMax.multiply(amount);
+		
+		System.out.println("amountMax:"+amountMax);
 		
 		if(think.getArea().getPid() == 0){
 			hql = "select count(*) from Bill where bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney <= "+amountMax+" and bilCusMoney >= "+amountMin;
@@ -224,10 +231,10 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 		Area area = thu.getArea();
 		if (area.getAreId() == 1) {
-			day = billService.todayMoney();
-			month = billService.monthMoney();
-			year = billService.yearMoney();
-			total = billService.totalMoney();
+			day = day.add(billService.todayMoney());
+			month = month.add(billService.monthMoney());
+			year = year.add(billService.yearMoney());
+			total = total.add(billService.totalMoney());
 		}
 		List<Bill> bills = billService.queryByArea(area.getAreId());
 		int type = -1;
@@ -500,19 +507,19 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		this.tranTime = tranTime;
 	}
 
-	public Float getAmountMin() {
+	public BigDecimal getAmountMin() {
 		return amountMin;
 	}
 
-	public void setAmountMin(Float amountMin) {
+	public void setAmountMin(BigDecimal amountMin) {
 		this.amountMin = amountMin;
 	}
 
-	public Float getAmountMax() {
+	public BigDecimal getAmountMax() {
 		return amountMax;
 	}
 
-	public void setAmountMax(Float amountMax) {
+	public void setAmountMax(BigDecimal amountMax) {
 		this.amountMax = amountMax;
 	}
 

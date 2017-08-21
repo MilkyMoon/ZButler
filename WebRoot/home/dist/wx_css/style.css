@@ -6636,7 +6636,7 @@ px
 }
 
 .fenlei_dialog_big span.active {
-	background-color: #e6e6e6;
+	background-color: #f0f0f0;
 }
 
 .fenlei_dialog_small {
@@ -6651,7 +6651,7 @@ px
 	padding: 8px;
 	height: 34px;
 	font-size: 12px;
-	background-color: #e6e6e6;
+	background-color: #f0f0f0;
 	border-left: solid 1px #D9D9D9;
 	border-bottom: solid 1px #D9D9D9;
 }
