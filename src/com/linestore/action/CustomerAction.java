@@ -160,9 +160,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customer.setCusNickname("ZB_" + customer.getCusPhone());
 		customer.setCusImgUrl("home/dist/wx_image/111.jpg");
 		customer.setCusStatus(1);
-
+		customer.setCusPassword("111");
 		if (ReType != null) {
-			customer.setCusPassword("111");
 			customerService.addCustomer(customer);
 			init(customer);
 			Friends friends = new Friends();

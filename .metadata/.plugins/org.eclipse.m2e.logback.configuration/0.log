@@ -1,0 +1,28 @@
+2017-08-20 23:52:50,813 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-08-20 23:52:54,844 [Worker-16] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|https://repo.maven.apache.org/maven2
+2017-08-20 23:53:35,797 [Worker-16] ERROR o.e.m.c.i.i.nexus.NexusIndexManager - Unable to update index for central|https://repo.maven.apache.org/maven2
+org.eclipse.core.runtime.OperationCanceledException: null
+	at org.eclipse.m2e.core.internal.index.nexus.AetherClientResourceFetcher.retrieve(AetherClientResourceFetcher.java:90) ~[org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.apache.maven.index.updater.AbstractResourceFetcher.retrieve(AbstractResourceFetcher.java:35) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater$LocalCacheIndexAdaptor.setIndexFile(DefaultIndexUpdater.java:700) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:829) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:135) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.updateRemoteIndex(NexusIndexManager.java:1238) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.updateIndex(NexusIndexManager.java:1193) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager$1.run(NexusIndexManager.java:703) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.IndexUpdaterJob.run(IndexUpdaterJob.java:72) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.8.0.v20160509-0411.jar:na]
+2017-08-20 23:53:43,801 [Worker-4] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2017-08-20 23:53:47,733 [Worker-12] INFO  o.e.m.c.i.i.nexus.NexusIndexManager - Updating index for repository: central|https://repo.maven.apache.org/maven2
+2017-08-20 23:54:34,216 [Worker-12] ERROR o.e.m.c.i.i.nexus.NexusIndexManager - Unable to update index for central|https://repo.maven.apache.org/maven2
+org.eclipse.core.runtime.OperationCanceledException: null
+	at org.eclipse.m2e.core.internal.index.nexus.AetherClientResourceFetcher.retrieve(AetherClientResourceFetcher.java:90) ~[org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.apache.maven.index.updater.AbstractResourceFetcher.retrieve(AbstractResourceFetcher.java:35) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater$LocalCacheIndexAdaptor.setIndexFile(DefaultIndexUpdater.java:700) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:829) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.apache.maven.index.updater.DefaultIndexUpdater.fetchAndUpdateIndex(DefaultIndexUpdater.java:135) ~[indexer-core-3.1.0.jar:3.1.0]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.updateRemoteIndex(NexusIndexManager.java:1238) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager.updateIndex(NexusIndexManager.java:1193) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.NexusIndexManager$1.run(NexusIndexManager.java:703) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.m2e.core.internal.index.nexus.IndexUpdaterJob.run(IndexUpdaterJob.java:72) [org.eclipse.m2e.core_1.7.0.me201611191457.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55) [org.eclipse.core.jobs_3.8.0.v20160509-0411.jar:na]
