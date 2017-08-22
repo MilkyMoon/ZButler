@@ -160,9 +160,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customer.setCusNickname("ZB_" + customer.getCusPhone());
 		customer.setCusImgUrl("home/dist/wx_image/111.jpg");
 		customer.setCusStatus(1);
-
+		customer.setCusPassword("111");
 		if (ReType != null) {
-			customer.setCusPassword("111");
 			customerService.addCustomer(customer);
 			init(customer);
 			Friends friends = new Friends();
@@ -233,7 +232,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}
 
 		String js = "<script>YDUI.dialog.alert('用户名或密码错误！');</script>";
-		request.put("js", js);
+
+
 		String Iwant = (String) ActionContext.getContext().getSession().get("Iwant");
 		if (Iwant != null) {
 			HttpServletResponse response = ServletActionContext.getResponse();
