@@ -200,8 +200,8 @@
 													<div class="jumbotron" style="padding: 5px 36px;">
 														<h1>
 															¥
-															<fmt:formatNumber type="number" maxFractionDigits="10"
-																value="${area.areaTotalMoney.divide(10000000000)}"/>
+															<fmt:formatNumber type="number" maxFractionDigits="1"
+																value="${area.areaTotalMoney.divide(10000000000) -0.1}"/>
 														</h1>
 														<p>
 															可提现总额

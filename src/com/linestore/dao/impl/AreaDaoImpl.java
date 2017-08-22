@@ -66,7 +66,7 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 
 	@Override
 	public List<Area> queryArea(List<Area> list, int pid, int level) {
-		List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where pid=?", pid);
+		List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where status !=2 and pid=?", pid);
 		if (areas != null) {
 			for (int i = 0; i < areas.size(); i++) {
 				if (level != 0) {
@@ -92,7 +92,7 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 	public List<Area> queryByPid(int pid) {
 		System.out.println("exec queryByPid");
 		try {
-			List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where pid=?", pid);
+			List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where status !=2 and pid=?", pid);
 			System.out.println("queryByPid successful!");
 			return areas;
 		} catch (RuntimeException e) {
@@ -120,7 +120,7 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 	@Override
 	public List<Area> selectByKey(String keywords) {
 		// TODO Auto-generated method stub
-		List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where area like '"+keywords+"'");
+		List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where status !=2 and area like '"+keywords+"'");
 		
 		return areas;
 	}

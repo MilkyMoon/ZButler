@@ -133,7 +133,7 @@
 												</div>
 											</div>
 
-											<div class="form-group">
+											<%-- <div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">税务登记<span
 													class="required">*</span>
 												</label>
@@ -141,7 +141,7 @@
 													<textarea class="form-control" rows="3" name="busTaxUrl"
 														placeholder='<s:property value="busTaxUrl"/>' disabled="disabled"><s:property value="busTaxUrl"/></textarea>
 												</div>
-											</div>
+											</div> --%>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">商家图片<span
 													class="required">*</span>

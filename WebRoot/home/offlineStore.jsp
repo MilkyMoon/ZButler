@@ -119,8 +119,8 @@
 // 百度地图API功能
 if ('${city}' == '北京') {
 	var map = new BMap.Map("allmap");
-	var point = new BMap.Point(116.331398, 39.897445);
-	map.centerAndZoom(point, 12);
+	/* var point = new BMap.Point(116.331398, 39.897445); */
+	/* map.centerAndZoom(point, 12); */
 	var geoc = new BMap.Geocoder();
 	var geolocation = new BMap.Geolocation();
 	geolocation.getCurrentPosition(function(r) {
@@ -154,7 +154,7 @@ if ('${city}' == '北京') {
 				
 			});
 		} else {
-			//$('#J_Address').attr('placeholder', province("北京"));
+			$('#J_Address').attr('placeholder', province("北京"));
 		}
 	}, {
 		enableHighAccuracy : true

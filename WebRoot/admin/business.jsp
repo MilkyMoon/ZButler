@@ -163,7 +163,13 @@
 	                          	</c:if>
 		                          <a href="business_read?busId=${roots.busId}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		                          <a href="business_edit?busId=${roots.busId}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		                          <a href="business_delete?busId=${roots.busId}" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+		                        <c:if test="${roots.busStatus == 3}">
+	                          		<a href="business_status?busId=${roots.busId}&busStatus=4&pagewhere=2" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+	                          	</c:if>
+	                          	<c:if test="${roots.busStatus != 3}">
+	                          		<a href="business_status?busId=${roots.busId}&busStatus=4&pagewhere=1" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</a>
+	                          	</c:if>
+		                          
 	                          </td>
 	                        </tr>
                         </c:forEach>
