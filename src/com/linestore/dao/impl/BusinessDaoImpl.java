@@ -29,7 +29,7 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao 
 	@Override
 	public List<Business> selectAll() {
 		// TODO Auto-generated method stub
-		String hql = "from Business";
+		String hql = "from Business where busStatus != 4";
 		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
 
 		return list;
@@ -77,8 +77,8 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao 
 	@Override
 	public List<Business> selectByArea(Business business) {
 		// TODO Auto-generated method stub
-		String hql = "from Business where baProvince like '%" + business.getBaProvince() + "%' or baCity like '%"
-				+ business.getBaCity() + "%' or baCounty like '%" + business.getBaCounty() + "%'";
+		String hql = "from Business where busStatus != 4 and (baProvince like '%" + business.getBaProvince() + "%' or baCity like '%"
+				+ business.getBaCity() + "%' or baCounty like '%" + business.getBaCounty() + "%')";
 		List<Business> list = (List<Business>) this.getHibernateTemplate().find(hql);
 		return list;
 	}
@@ -138,13 +138,13 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao 
 
 	public List<Business> querySmall(String city, int small) {
 		List<Business> buss = (List<Business>) this.getHibernateTemplate()
-				.find("from Business where baCity like '%" + city + "%' and busSmallCate=" + small);
+				.find("from Business where busStatus != 4 and baCity like '%" + city + "%' and busSmallCate=" + small);
 		return buss;
 	}
 	
 	public List<Business> queryCate(String city, int small) {
 		List<Business> buss = (List<Business>) this.getHibernateTemplate()
-				.find("from Business where baCity like '%" + city + "%' and cateLine.calId=" + small);
+				.find("from Business where busStatus != 4 and baCity like '%" + city + "%' and cateLine.calId=" + small);
 		return buss;
 	}
 

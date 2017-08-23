@@ -115,8 +115,8 @@
 													</th>
 													<th class="column-title">编号</th>
 													<th class="column-title">名称</th>
-													<th class="column-title">抽成比例(方式一)</th>
-													<th class="column-title">抽成比例(方式二)</th>
+													<!-- <th class="column-title">抽成比例(方式一)</th> -->
+													<th class="column-title">抽成比例</th>
 													<th class="column-title no-link last">操作</th>
 													</th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
@@ -134,11 +134,11 @@
 														</td>
 														<td class=" ">${root.areId}</td>
 														<td class=" ">${root.area}</td>
-														<td class=" ">
+														<%-- <td class=" ">
 															<c:if test="${root.pid != 0}">
 																${root.areaScale}
 															</c:if>
-														</td>
+														</td> --%>
 														<td class=" ">
 															<c:if test="${root.pid != 0}">
 																${root.areaScaleTwo}

@@ -29,5 +29,9 @@ public interface LogDao {
 	public List<Log> queryByDateAndArea(Date beginTime, Date endTime, int areId, Page page);
 	
 	public int queryByDateAndArea(Date beginTime, Date endTime, int areId);
+	
+	public int qureyAll();
+	
+	public List<Log> selectAll();
 
 }

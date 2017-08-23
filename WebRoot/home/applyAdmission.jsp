@@ -102,13 +102,13 @@
 							placeholder="" autocomplete="off" />
 					</div>
 				</div>
-				<div class="cell-item">
+				<!-- <div class="cell-item">
 					<div class="cell-left">税务登记证*：</div>
 					<div class="cell-right">
 						<input type="text" name="busTaxUrl" class="cell-input"
 							placeholder="" autocomplete="off" />
 					</div>
-				</div>
+				</div> -->
 				<div class="cell-item">
 					<div class="cell-left">经营类别*：</div>
 					<label class="cell-right cell-arrow"> <select

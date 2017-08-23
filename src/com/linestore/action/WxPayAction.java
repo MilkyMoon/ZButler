@@ -249,15 +249,87 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								bill.setCustomer(Pcus.get(0));
 							}
 							BigDecimal bigMoney = new BigDecimal(kvm.get("total_fee"));
-							bigMoney = bigMoney.multiply(new BigDecimal(0.01));
+							bigMoney = bigMoney.multiply(new BigDecimal("10000000000"));
 							bill.setBilCusMoney(bigMoney);
 							// 商家收款
-							BigDecimal city = new BigDecimal(bus.getBusScale());
-							city = bigMoney.subtract(bigMoney.multiply(city).setScale(2, BigDecimal.ROUND_DOWN));
+							BigDecimal city = new BigDecimal(Float.toString(bus.getBusScale()));
+							System.out.println("!!!!!!!!!"+bus.getBusScale());
+							System.out.println("!!!!!!!!!"+city);
+							city = bigMoney.subtract(bigMoney.multiply(city));
 							bill.setBusiness(bus);
 							bill.setBilBusMoney(bigMoney.subtract(city));
 							bill.setBilDate(new Timestamp(Pdate.getTime()));
+							
+							
+							
+							if (Pcus != null && Pcus.size() > 0) {
+								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
+								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {
+									Friends fri = friendsService.queryByPhone(Pcus.get(0).getCusPhone());
+									if (fri != null) {
+										System.out.println("------>friend find;type->" + fri.getFriType());
+										if (fri.getFriType() != 1) {
+											CusAccount addChangeCac = cusAccountService
+													.findByCusId(fri.getCustomer().getCusId());
+											float addChange = Float.valueOf(kvm.get("total_fee")) / 100
+													* Float.valueOf(settingService.queryById(3).getSetValue());
+											city = city.subtract(new BigDecimal(Float.toString(addChange)).multiply(new BigDecimal("1000000000000")));
+											Float addPoints = addChangeCac.getCacPoints() + addChange;
+											CtaTrading addChangeCta = new CtaTrading();
+											addChangeCta.setCtaMoney(addChange);
+											addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
+											addChangeCta.setCtaType(13);
+											addChangeCta.setCtaStatus(1);
+											addChangeCta.setCustomer(fri.getCustomer());
+											addChangeCta.setCtaId(Pdate.getTime() + "F" + this.RandomStr()); // 付款返积分
+											ctaTradingService.addCtaTrading(addChangeCta);
+											cusAccountService.updateField("cacPoints", String.valueOf(addPoints),
+													addChangeCac.getCacId());
+										}
+									}
+								}
+//								Float addChange = 0f;
+//								List<Business> addBus = businessService.queryByCusId(Pcus.get(0).getCusId());
+//								System.out.println("Pcus.get(0).getCusId()--->" + Pcus.get(0).getCusId());
+//								System.out.println("----->business;addBus" + addBus);
+//								if (addBus != null && addBus.size() > 0) {
+//									if (addBus.get(0).getBusLevel() != 1) {
+//
+//										addChange += Float.valueOf(kvm.get("total_fee")) / 100
+//												* Float.valueOf(settingService.queryById(5).getSetValue());
+//										CtaTrading addChangeCta = new CtaTrading();
+//										addChangeCta.setCtaMoney(addChange);
+//										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
+//										addChangeCta.setCtaType(13);
+//										addChangeCta.setCustomer(Pcus.get(0));
+//										addChangeCta.setCtaStatus(1);
+//										addChangeCta.setCtaId(Pdate.getTime() + "J" + this.RandomStr()); // 付款返商家积分
+//										ctaTradingService.addCtaTrading(addChangeCta);
+//
+//									}
+//								}
+								CusAccount CAC = (CusAccount) cusAccountService.findByCusId(Pcus.get(0).getCusId());
+								System.out.println("%%%%%%%%%%%" + CAC.getCacPoints());
+								if (CAC != null) {
+									Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
+											* bus.getBusScalePoints();
+									CtaTrading addChangeCta = new CtaTrading();
+									city = city.subtract(new BigDecimal(Float.toString(Addpiont)).multiply(new BigDecimal("1000000000000")));
+									addChangeCta.setCtaMoney(Addpiont);
+									addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
+									addChangeCta.setCtaType(14);
+									addChangeCta.setCustomer(Pcus.get(0));
+									addChangeCta.setCtaStatus(1);
+									addChangeCta.setCtaId(Pdate.getTime() + "Z" + this.RandomStr()); // 付款返用户积分
+									ctaTradingService.addCtaTrading(addChangeCta);
+									Addpiont += CAC.getCacPoints();
+									System.out.println("&&&&&&&&&&" + Addpiont);
+									cusAccountService.updateField("cacPoints", String.valueOf(Addpiont),
+											CAC.getCacId());
+								}
 
+							}
+							System.out.println(">>>>>>>>>>>"+city);
 							bigMoney = city;
 							System.out.println("1: " + bigMoney.toString());
 							// 物业收款
@@ -364,72 +436,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 												.add(zong.getAreaTotalMoney()).toString(), 1);
 							}
 							billService.addBill(bill);
-							if (Pcus != null && Pcus.size() > 0) {
-								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
-								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {
-									Friends fri = friendsService.queryByPhone(Pcus.get(0).getCusPhone());
-									if (fri != null) {
-										System.out.println("------>friend find;type->" + fri.getFriType());
-										if (fri.getFriType() == 3) {
-											CusAccount addChangeCac = cusAccountService
-													.findByCusId(fri.getCustomer().getCusId());
-											float addChange = Float.valueOf(kvm.get("total_fee")) / 100
-													* Float.valueOf(settingService.queryById(3).getSetValue());
-											Float addPoints = addChangeCac.getCacChange() + addChange;
-											CtaTrading addChangeCta = new CtaTrading();
-											addChangeCta.setCtaMoney(addChange);
-											addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
-											addChangeCta.setCtaType(2);
-											addChangeCta.setCtaStatus(1);
-											addChangeCta.setCustomer(fri.getCustomer());
-											addChangeCta.setCtaId(Pdate.getTime() + "F" + this.RandomStr()); // 付款返零钱
-											ctaTradingService.addCtaTrading(addChangeCta);
-											cusAccountService.updateField("cacChange", String.valueOf(addPoints),
-													addChangeCac.getCacId());
-										}
-									}
-								}
-								Float addChange = 0f;
-								System.out.println("77777777777777777");
-								List<Business> addBus = businessService.queryByCusId(Pcus.get(0).getCusId());
-								System.out.println("Pcus.get(0).getCusId()--->" + Pcus.get(0).getCusId());
-								System.out.println("----->business;addBus" + addBus);
-								if (addBus != null && addBus.size() > 0) {
-									if (addBus.get(0).getBusLevel() != 1) {
-
-										addChange += Float.valueOf(kvm.get("total_fee")) / 100
-												* Float.valueOf(settingService.queryById(5).getSetValue());
-										CtaTrading addChangeCta = new CtaTrading();
-										addChangeCta.setCtaMoney(addChange);
-										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
-										addChangeCta.setCtaType(13);
-										addChangeCta.setCustomer(Pcus.get(0));
-										addChangeCta.setCtaStatus(1);
-										addChangeCta.setCtaId(Pdate.getTime() + "J" + this.RandomStr()); // 付款返商家积分
-										ctaTradingService.addCtaTrading(addChangeCta);
-
-									}
-								}
-								CusAccount CAC = (CusAccount) cusAccountService.findByCusId(Pcus.get(0).getCusId());
-								System.out.println("%%%%%%%%%%%" + CAC.getCacPoints());
-								if (CAC != null) {
-									Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
-											* bus.getBusScalePoints();
-									CtaTrading addChangeCta = new CtaTrading();
-									addChangeCta.setCtaMoney(Addpiont);
-									addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
-									addChangeCta.setCtaType(14);
-									addChangeCta.setCustomer(Pcus.get(0));
-									addChangeCta.setCtaStatus(1);
-									addChangeCta.setCtaId(Pdate.getTime() + "Z" + this.RandomStr()); // 付款返用户积分
-									ctaTradingService.addCtaTrading(addChangeCta);
-									Addpiont += CAC.getCacPoints() + addChange;
-									System.out.println("&&&&&&&&&&" + Addpiont);
-									cusAccountService.updateField("cacPoints", String.valueOf(Addpiont),
-											CAC.getCacId());
-								}
-
-							}
+							
 							// 存数据库+转账
 							// WxEntPayRequest wxEntPayRequest = new
 							// WxEntPayRequest();

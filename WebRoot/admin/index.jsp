@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>收益统计 | 众帮管家</title>
+    <title>收益统计 | ${sessionScope.netName.setValue}</title>
 
     <!-- Bootstrap -->
     <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>众帮平台后台管理</h3>
+                <h3>${sessionScope.netName.setValue}后台管理</h3>
               </div>
 
               <!-- <div class="title_right">
@@ -97,8 +97,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="x_panel">
                 	<div class="bs-example" data-example-id="simple-jumbotron">
                     <div class="jumbotron">
-                      <h1>众帮管家</h1>
-                      <p>欢迎使用众帮管家后台管理系统！</p>
+                      <h1>${sessionScope.netName.setValue}</h1>
+                      <p>欢迎使用${sessionScope.netName.setValue}后台管理系统！</p>
                     </div>
                   </div>
                 </div>

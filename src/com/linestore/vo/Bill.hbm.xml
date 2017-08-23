@@ -10,19 +10,14 @@
             <column name="bil_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="areaByThuPropertyId" class="com.linestore.vo.Area" fetch="select" lazy="false">
+            <column name="thu_property_id">
+                <comment>物业</comment>
+            </column>
+        </many-to-one>
         <many-to-one name="business" class="com.linestore.vo.Business" fetch="select" lazy="false">
             <column name="bus_id">
                 <comment>店铺</comment>
-            </column>
-        </many-to-one>
-        <many-to-one name="areaByThuCityId" class="com.linestore.vo.Area" fetch="select" lazy="false">
-            <column name="thu_city_id">
-                <comment>市</comment>
-            </column>
-        </many-to-one>
-        <many-to-one name="areaByThuProvinceId" class="com.linestore.vo.Area" fetch="select" lazy="false">
-            <column name="thu_province_id">
-                <comment>省</comment>
             </column>
         </many-to-one>
         <many-to-one name="areaByThuCountyId" class="com.linestore.vo.Area" fetch="select" lazy="false">
@@ -35,28 +30,33 @@
                 <comment>用户</comment>
             </column>
         </many-to-one>
-        <many-to-one name="areaByThuPropertyId" class="com.linestore.vo.Area" fetch="select">
-            <column name="thu_property_id">
-                <comment>物业</comment>
+        <many-to-one name="areaByThuCityId" class="com.linestore.vo.Area" fetch="select" lazy="false">
+            <column name="thu_city_id">
+                <comment>市</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="areaByThuProvinceId" class="com.linestore.vo.Area" fetch="select" lazy="false">
+            <column name="thu_province_id">
+                <comment>省</comment>
             </column>
         </many-to-one>
         <property name="bilCusMoney" type="java.math.BigDecimal">
-            <column name="bil_cus_money" precision="20" scale="12" />
+            <column name="bil_cus_money" precision="20" scale="0" />
         </property>
         <property name="bilBusMoney" type="java.math.BigDecimal">
-            <column name="bil_bus_money" precision="20" scale="12" />
+            <column name="bil_bus_money" precision="20" scale="0" />
         </property>
         <property name="bilPropertyMoney" type="java.math.BigDecimal">
-            <column name="bil_property_money" precision="20" scale="12" />
+            <column name="bil_property_money" precision="20" scale="0" />
         </property>
         <property name="bilCountyMoney" type="java.math.BigDecimal">
-            <column name="bil_county_money" precision="20" scale="12" />
+            <column name="bil_county_money" precision="20" scale="0" />
         </property>
         <property name="bilCityMoney" type="java.math.BigDecimal">
-            <column name="bil_city_money" precision="20" scale="12" />
+            <column name="bil_city_money" precision="20" scale="0" />
         </property>
         <property name="bilProvinceMoney" type="java.math.BigDecimal">
-            <column name="bil_province_money" precision="20" scale="12" />
+            <column name="bil_province_money" precision="20" scale="0" />
         </property>
         <property name="bilDate" type="java.sql.Timestamp">
             <column name="bil_date" length="19">
@@ -64,7 +64,7 @@
             </column>
         </property>
         <property name="bilZongMoney" type="java.math.BigDecimal">
-            <column name="bil_zong_money" precision="20" scale="12" />
+            <column name="bil_zong_money" precision="20" scale="0" />
         </property>
     </class>
 </hibernate-mapping>

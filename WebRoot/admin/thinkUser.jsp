@@ -191,7 +191,7 @@
 															<a href="#" class="btn btn-danger btn-xs" onclick="javascript:return (function () { 
 																$('#qrcode').css('display','block');
 																<%-- var url = '<%=basePath %>'+'WxOauthRedirect!adminBindWeChat?thuId=${root.thuId}'; --%>
-																var url = 'http://yanglan520.com/ZButler/WxOauthRedirect!adminBindWeChat.action?thuId=${root.thuId}';
+																var url = 'http://www.codwiki.cn/ZButler/WxOauthRedirect!adminBindWeChat.action?thuId=${root.thuId}';
 																new QRCode(document.getElementById('qrcode'), url);
 																if ($('#qrcode').children('img').length > 1) {
 																	$('#qrcode img:first').remove();

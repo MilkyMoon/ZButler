@@ -8,9 +8,11 @@ import java.util.Random;
 
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
+import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
+import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -25,6 +27,8 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	private BusinessService businessService;
 
 	private CustomerService customerService;
+	
+	private CusAccountService cusAccountService;
 
 	private float money;
 
@@ -37,6 +41,16 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	@Override
 	public BusTrading getModel() {
 		return busTrading;
+	}			
+	
+	private void init(Customer cus) {
+		CusAccount cusAccount = new CusAccount();
+		cusAccount.setCacPoints((float) 0);
+		cusAccount.setCacChange((float) 0);
+		cusAccount.setCacBonus((float) 0);
+		cusAccount.setCustomer(cus);
+		cusAccountService.addCusAccount(cusAccount);
+		customerService.select(cus);
 	}
 
 	public String add() {
@@ -75,6 +89,16 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	}
 
 	public String payByCash() {
+		if (customerService.findByPhone(tel) == null) {
+			Customer customer = new Customer();
+			customer.setCusPhone(tel);
+			customer.setCusNickname("ZB_" + tel);
+			customer.setCusImgUrl("home/dist/wx_image/111.jpg");
+			customer.setCusStatus(1);
+			customer.setCusPassword("111");
+			customerService.addCustomer(customer);
+			init(customer);
+		}
 		ActionContext.getContext().getSession().put("payByCashMoney", money);
 		ActionContext.getContext().getSession().put("payByCashCusID", busId);
 		return "payBgyCash";
@@ -145,5 +169,15 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	public void setBusId(int busId) {
 		this.busId = busId;
 	}
+
+	public CusAccountService getCusAccountService() {
+		return cusAccountService;
+	}
+
+	public void setCusAccountService(CusAccountService cusAccountService) {
+		this.cusAccountService = cusAccountService;
+	}
+	
+	
 
 }

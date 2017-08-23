@@ -112,4 +112,23 @@ public class LogDaoImpl extends HibernateDaoSupport implements LogDao {
 		return count.intValue();
 	}
 
+	@Override
+	public int qureyAll() {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		Query query= session.createQuery("select count(*) from Log");
+		int count = Integer.parseInt(String.valueOf(query.uniqueResult()));
+		
+		return count;
+	}
+
+	@Override
+	public List<Log> selectAll() {
+		// TODO Auto-generated method stub
+		Session session = this.getSessionFactory().getCurrentSession();
+		String hql = "from Log order by logDate desc";
+		Query query = session.createQuery(hql);
+		return query.list();
+	}
+
 }

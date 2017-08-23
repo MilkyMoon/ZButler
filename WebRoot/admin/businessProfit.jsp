@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>招商管理</title>
+    <title>线下商家管理 | ${sessionScope.netName.setValue}</title>
 
     <!-- Bootstrap -->
     <link href="./vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -66,7 +66,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>代理商管理<small>代理商基本信息管理</small></h2>
+                    <h2>线下商家管理<small>商家基本信息管理</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -86,7 +86,7 @@
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      供应商入驻列表
+                      线下商家列表
                     </p>
                     <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
                       <thead>

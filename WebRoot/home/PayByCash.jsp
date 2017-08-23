@@ -31,7 +31,7 @@
 				</div>
 				<div class="cell-item cell-item-last">
 					<div class="cell-right">
-						<input type="number" class="cell-input" id="number" name="money"
+						<input type="text" class="cell-input" id="number" name="money"
 							placeholder="会员消费金额，需大于10元" autocomplete="off" />
 					</div>
 				</div>

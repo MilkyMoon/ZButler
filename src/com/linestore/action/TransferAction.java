@@ -93,6 +93,7 @@ public class TransferAction extends ActionSupport implements ModelDriven<Transfe
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))){
 			pageNow = "1";
 		}
@@ -115,6 +116,7 @@ public class TransferAction extends ActionSupport implements ModelDriven<Transfe
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))){
 			pageNow = "1";
 		}

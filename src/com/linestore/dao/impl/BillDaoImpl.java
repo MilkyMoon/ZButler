@@ -132,8 +132,8 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	}
 
 	@Override
-	public List<Bill> selectByTime(Page page, Integer id, String timeMin, String timeMax, Float amountMin,
-			Float amountMax) {
+	public List<Bill> selectByTime(Page page, Integer id, String timeMin, String timeMax, BigDecimal amountMin,
+			BigDecimal amountMax) {
 		// TODO Auto-generated method stub
 		
 		Session session = this.getSessionFactory().getCurrentSession();
@@ -146,7 +146,7 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 	}
 
 	@Override
-	public List<Bill> selectAllByTime(Page page, String timeMin, String timeMax, Float amountMin, Float amountMax) {
+	public List<Bill> selectAllByTime(Page page, String timeMin, String timeMax, BigDecimal amountMin, BigDecimal amountMax) {
 		// TODO Auto-generated method stub
 		
 		Session session = this.getSessionFactory().getCurrentSession();
@@ -176,10 +176,10 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		Query query = session.createQuery("select sum(bilZongMoney) from Bill where date_format(bilDate,'%Y-%m-%d') = date_format(?,'%Y-%m-%d')");
 		query.setDate(0, date);
 		List<BigDecimal> money = query.list();
-		if (money.size() > 0) {
+		if (money.size() > 0 && money.get(0) != null) {
 			return money.get(0);
 		}
-		return null;
+		return new BigDecimal(0);
 	}
 
 	@Override
@@ -189,10 +189,10 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		Date date = new Date();
 		query.setDate(0, date);
 		List<BigDecimal> money = query.list();
-		if (money.size() > 0) {
+		if (money.size() > 0 && money.get(0) != null) {
 			return money.get(0);
 		}
-		return null;
+		return new BigDecimal(0);
 	}
 
 	@Override
@@ -202,20 +202,20 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		Date date = new Date();
 		query.setDate(0, date);
 		List<BigDecimal> money = query.list();
-		if (money.size() > 0) {
+		if (money.size() > 0 && money.get(0) != null) {
 			return money.get(0);
 		}
-		return null;
+		return new BigDecimal(0);
 	}
 	
 	public BigDecimal totalMoney() {
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery("select sum(bilZongMoney) from Bill");
 		List<BigDecimal> money = query.list();
-		if (money.size() > 0) {
+		if (money.size() > 0 && money.get(0) != null) {
 			return money.get(0);
 		}
-		return null;
+		return new BigDecimal(0);
 	}
 	
 	public List<Bill> queryToDate(Date dateOne, Date dateTwo) {
@@ -224,6 +224,12 @@ public class BillDaoImpl extends HibernateDaoSupport implements BillDao{
 		query.setDate(0, dateOne);
 		query.setDate(1, dateTwo);
 		return query.list();
+	}
+
+	@Override
+	public List<Bill> selectByExcel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

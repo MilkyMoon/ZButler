@@ -98,9 +98,7 @@
 				$('#telDiv').append(telError);
 			} else {
 				var tel = $("#tel").val();
-				if (tel != "${user.cusPhone}") {
-					window.YDUI.dialog.alert("请输入绑定手机号");
-				} else {
+				
 
 					$.post("<%=basePath%>ForgetPassJson",
 						{
@@ -126,7 +124,7 @@
 							}
 						});
 					console.log("-------");
-				}
+				
 
 			}
 		});

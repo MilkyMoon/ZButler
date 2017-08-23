@@ -20,6 +20,9 @@
 <link rel="stylesheet" href="<%=basePath%>home/dist/wx_css/font-awesome.min.css">
 <script type="text/javascript"
 	src="http://api.map.baidu.com/api?v=2.0&ak=cVhx3uWyeevirtDxTzlz0GofE0qWHbR9"></script>
+<script type="text/javascript">
+	
+</script>
 
 </head>
 
@@ -29,7 +32,7 @@
 		<header class="m-navbar">
 		<div class="navbar-item">
 			<input type="text" readonly id="J_Address"
-				placeholder='<c:if test="${empty city}">朝阳区</c:if><c:if test="${!empty city}">${city}</c:if>'
+				placeholder='<c:if test="${empty city}">北京</c:if><c:if test="${!empty city}">${city}</c:if>'
 				class="choosePlace">
 		</div>
 		<div class="navbar-center">
@@ -94,11 +97,11 @@
 						<img src="${bus.busOrgUrl}" />
 						<div class="guess_content">
 							<div>
-								<span class="guess_name">${bus.busShopName}</span> <span
-									class="guess_mark"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
+								<span class="guess_name">${bus.busShopName}</span>
 							</div>
+							<span class="guess_mark" style="text-align:right"><fmt:formatNumber type="number" maxFractionDigits="0" value="${bus.busScalePoints * 100}" />%</span>
 							<div>
-								<span>${bus.cateLine.calName}</span> <span>其他</span>
+								<span>${bus.cateLine.calName}</span>
 							</div>
 						</div>
 					</div> </a>
@@ -109,52 +112,61 @@
 </body>
 <script src="<%=basePath%>home/dist/wx_js/ydui.flexible.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/jquery.2.1.1min.js"></script>
-<script src="<%=basePath%>home/dist/wx_js/ydui.js"></script>
+<script src="<%=basePath%>home/dist/wx_js/yduiOne.js"></script>
 <script src="<%=basePath%>home/dist/wx_js/ydui.citys.js"></script>
 <!--百度地图定位-->
 <script type="text/javascript">
 // 百度地图API功能
-/* var map = new BMap.Map("allmap");
-var point = new BMap.Point(116.331398, 39.897445);
-map.centerAndZoom(point, 12);
-var geoc = new BMap.Geocoder();
-var geolocation = new BMap.Geolocation();
-geolocation.getCurrentPosition(function(r) {
-	if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-		var mk = new BMap.Marker(r.point);
-		map.addOverlay(mk);
-		map.panTo(r.point);
-		//            ip逆解析
-		var pt = new BMap.Point(r.point.lng, r.point.lat);
-		geoc.getLocation(pt, function(rs) {
-			var addComp = rs.addressComponents;
-			function province(pro) {
-				var ans;
-				if (pro[pro.length - 1] == "市") {
-					ans = pro.substring(0, pro.length - 1);
+if ('${city}' == '北京') {
+	var map = new BMap.Map("allmap");
+	/* var point = new BMap.Point(116.331398, 39.897445); */
+	/* map.centerAndZoom(point, 12); */
+	var geoc = new BMap.Geocoder();
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r) {
+		if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay(mk);
+			map.panTo(r.point);
+			//            ip逆解析
+			var pt = new BMap.Point(r.point.lng, r.point.lat);
+			geoc.getLocation(pt, function(rs) {
+				var addComp = rs.addressComponents;
+				function province(pro) {
+					var ans;
+					if (pro[pro.length - 1] == "市" || pro[pro.length - 1] == "州") {
+						ans = pro.substring(0, pro.length - 1);
+					} else {
+						ans = pro;
+					}
+					return ans;
 				}
-				return ans;
-			}
-			if (addComp.city == '') {
-				$('#J_Address').attr('placeholder', '北京');
-			} else {
-				$('#J_Address').attr('placeholder', addComp.city);
-			}
-		});
-	} else {
-		$('#J_Address').attr('placeholder', province("北京"));
-	}
-}, {
-	enableHighAccuracy : true
-}) */
-
+				console.log();
+				addComp.city = province(addComp.city);
+				if (addComp.city != '北京') {
+					window.location.href = "<%=basePath%>offlineStore!offline.action?city=" + addComp.city;
+				}
+				//if (addComp.city == '') {
+					//$('#J_Address').attr('placeholder', '北京');
+				//} else {
+					//$('#J_Address').attr('placeholder', addComp.city);
+				//}
+				
+			});
+		} else {
+			$('#J_Address').attr('placeholder', province("北京"));
+		}
+	}, {
+		enableHighAccuracy : true
+	});
+}
 	function seach() {
 		window.location.href = "<%=basePath%>offlineStore!seach.action?city=" + $("#city").val() + "&seach=" + $("#seach").val();
 	}
 
 	function province(pro) {
 		var ans;
-		if (pro[pro.length - 1] == "市") {
+		if (pro[pro.length - 1] == "市" || pro[pro.length - 1] == "州") {
 			ans = pro.substring(0, pro.length - 1);
 		} else {
 			ans = pro;
@@ -182,7 +194,7 @@ geolocation.getCurrentPosition(function(r) {
 		/* 省：ret.provance */
 		/* 市：ret.city */
 		/* 县：ret.area */
-		$(this).val(ret.city);
+		//$(this).val(ret.city);
 
 		ret.city = province(ret.city);
 
