@@ -617,7 +617,9 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		}
 		return "err_code: " + wxEntPayResult.getErrCode() + "err_code_des: " + wxEntPayResult.getErrCodeDes();
 	}
-
+	
+	
+	
 	public void queryResult() throws WxPayException {
 		// 构建查询体
 		String partner_trade_no = "";

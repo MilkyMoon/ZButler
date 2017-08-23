@@ -60,7 +60,7 @@
                                                autocomplete="off"/></div>
             </div> -->
 			</div>
-			<p>${lq.configValue}</p>
+			<p>${lq.btaMoney}</p>
 			<div class="takeSmallMoney_button">
 				<button type="submit" class="btn-block btn-primary">提交</button>
 			</div>
