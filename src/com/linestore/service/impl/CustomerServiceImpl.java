@@ -2,15 +2,14 @@ package com.linestore.service.impl;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.transaction.annotation.Transactional;
 
+import com.linestore.dao.CusAccountDao;
 import com.linestore.dao.CustomerDao;
 import com.linestore.service.CustomerService;
 import com.linestore.util.Page;
-import com.linestore.util.QrCodeUtil;
 import com.linestore.util.QrExistsUtil;
+import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
 
 
@@ -18,6 +17,8 @@ import com.linestore.vo.Customer;
 public class CustomerServiceImpl implements CustomerService {
 	
 	private CustomerDao customerDao;
+	
+	private CusAccountDao cusAccountDao;
 
 	public CustomerDao getCustomerDao() {
 		return customerDao;
@@ -25,6 +26,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public void setCustomerDao(CustomerDao customerDao) {
 		this.customerDao = customerDao;
+	}
+
+	public CusAccountDao getCusAccountDao() {
+		return cusAccountDao;
+	}
+
+	public void setCusAccountDao(CusAccountDao cusAccountDao) {
+		this.cusAccountDao = cusAccountDao;
 	}
 
 	@Override
@@ -121,5 +130,26 @@ public class CustomerServiceImpl implements CustomerService {
 			status = 2;
 		}
 		return customerDao.search(keywords,status);
+	}
+
+	@Override
+	public void addByOpenId(Customer cus) {
+		if (customerDao.findByOpenId(cus.getCusOpenId()).size() == 0) {
+			cus.setCusPassword("111");
+			cus.setCusStatus(1);
+			this.addCustomer(cus);
+			cus = this.findByOpenId(cus.getCusOpenId()).get(0);
+			init(cus);
+		}
+	}
+	
+	private void init(Customer cus) {
+		CusAccount cusAccount = new CusAccount();
+		cusAccount.setCacPoints((float) 0);
+		cusAccount.setCacChange((float) 0);
+		cusAccount.setCacBonus((float) 0);
+		cusAccount.setCustomer(cus);
+		cusAccountDao.addCusAccount(cusAccount);
+		this.select(cus);
 	}
 }

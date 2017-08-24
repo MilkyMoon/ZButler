@@ -12,9 +12,11 @@ import java.util.Random;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.components.Else;
 
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
+import com.linestore.dao.CustomerDao;
 import com.linestore.service.BusinessService;
 import com.linestore.service.CatetoryService;
 import com.linestore.service.CtaTradingService;
@@ -246,22 +248,28 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String update() {
 		String value = null;
 
-		if (ActionContext.getContext().getSession().get("Bind") != null) {
-			field = (String) ActionContext.getContext().getSession().get("Bind");
-			value = (String) ActionContext.getContext().getSession().get("openId");
-			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
-			if (check.size() > 0) {
-				Customer cusOpenId = check.get(0);
-				if (cusOpenId.getCusPhone() == null || "".equals(cusOpenId.getCusPhone())) {
-					customerService.delCustomer(check.get(0).getCusId());
-				} else {
-					Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
-					request.put("doubleError", "<script>YDUI.dialog.alert('此微信你已绑定过其他手机号！');</script>");
-					return "gotoCusMessage";
-				}
-			}
-			ActionContext.getContext().getSession().put("Bind", null);
-		}
+//		if (ActionContext.getContext().getSession().get("Bind") != null) {
+//			field = (String) ActionContext.getContext().getSession().get("Bind");
+//			value = (String) ActionContext.getContext().getSession().get("openId");
+//			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
+//			if (check.size() > 0) {
+//				Customer cusOpenId = check.get(0);
+//				if (cusOpenId.getCusPhone() == null || "".equals(cusOpenId.getCusPhone())) {
+//					customerService.delCustomer(check.get(0).getCusId());
+//				} else {
+//					Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+//					request.put("doubleError", "<script>YDUI.dialog.alert('此微信你已绑定过其他手机号！');</script>");
+//					return "gotoCusMessage";
+//				}
+//			}
+//			ActionContext.getContext().getSession().put("Bind", null);
+//		}
+		if ("cusPhone".equals(field)) {
+				value = customer.getCusPhone();
+				List<Customer> addPhone = customerService.findByPhone(value);
+				customerService.delCustomer(addPhone.get(0).getCusId());
+				return "gotoCusMessage";
+		} 
 		if ("cusNickname".equals(field)) {
 			value = customer.getCusNickname();
 		} else if ("cusHobby".equals(field)) {
@@ -271,8 +279,6 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		} else if ("cusBirth".equals(field)) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			value = sdf.format(customer.getCusBirth());
-		} else if ("cusPhone".equals(field)) {
-			value = customer.getCusPhone();
 		} else if ("cusPassword".equals(field)) {
 			value = customer.getCusPassword();
 		} else if ("cusPayPassword".equals(field)) {
@@ -282,6 +288,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			System.out.println("-----------------------");
 		} else if ("cusImgUrl".equals(field)) {
 			value = customer.getCusImgUrl();
+		} else if ("cusPhone".equals(field)) {
+			value = customer.getCusPhone();
 		}
 		customer = (Customer) ActionContext.getContext().getSession().get("user");
 		customerService.updateField(field, value, customer.getCusId());
@@ -318,7 +326,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public String BindPhone() throws ServerException, ClientException {
 		Map<String, Object> map = new HashMap<String, Object>();
-		if (customerService.findByPhone(customer.getCusPhone()).size() >= 1) {
+		List<Customer> customers = customerService.findByPhone(customer.getCusPhone());
+		if (customers.size() >= 1 && customers.get(0).getCusOpenId() == null) {
 			map.put("isError", "true");
 			map.put("ErrorMessage", "手机号已绑定！");
 			this.result = JSONObject.fromObject(map).toString();
