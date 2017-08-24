@@ -33,8 +33,8 @@
 				<div class="userName">${user.cusNickname}</div>
 				<span><c:if test="${empty user.businesses}">普通会员</c:if> <c:forEach
 						var="business" items="${user.businesses}" begin="0" end="0">
-						<c:if test="${business.busLevel == 0}">会员</c:if>
-						<c:if test="${business.busLevel == 1}">商家</c:if>
+						<c:if test="${business.busLevel == 1}">会员</c:if>
+						<c:if test="${business.busLevel == 0}">商家</c:if>
 						<c:if test="${business.busLevel == 2}">创业合伙人</c:if>
 					</c:forEach></span>
 			</div>

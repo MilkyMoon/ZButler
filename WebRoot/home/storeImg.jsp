@@ -32,6 +32,7 @@
 <body>
 	<div class="addHeadImg" style="padding-top:53px;">
 		<jsp:include page="back.jsp" />
+		<p><code>注意：</code>图片大小有限制，最好小于2M</p>
 	<div id="showResult">
 	    <div id="changeAvatar" style="margin-top: 60px;">
 	        <img src='${store.busOrgUrl}' style="width: 100px;display:block;">

@@ -101,6 +101,7 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 		}
 		ActionContext.getContext().getSession().put("payByCashMoney", money);
 		ActionContext.getContext().getSession().put("payByCashCusID", busId);
+		ActionContext.getContext().getSession().put("payByCashTel", tel);
 		return "payBgyCash";
 	}
 
