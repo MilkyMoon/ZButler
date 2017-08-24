@@ -1,24 +1,34 @@
 package com.linestore.action;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.linestore.service.AreaService;
 import com.linestore.service.BillService;
 import com.linestore.service.ThuTradingService;
+import com.linestore.util.ExportExcel;
 import com.linestore.util.Page;
 import com.linestore.util.PageUtil;
 import com.linestore.vo.Area;
 import com.linestore.vo.Bill;
+import com.linestore.vo.Customer;
 import com.linestore.vo.ThinkUser;
 import com.linestore.vo.ThuTrading;
 import com.opensymphony.xwork2.ActionContext;
@@ -52,8 +62,8 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private String tranTime;
 	private String startTime;
 	private String endTime;
-	private Float amountMin;
-	private Float amountMax;
+	private BigDecimal amountMin;
+	private BigDecimal amountMax;
 
 	private Integer thuId;
 	@Override
@@ -78,6 +88,13 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		System.out.println("amountMax:"+amountMax);
 		String hql;
 		
+		BigDecimal amount = new BigDecimal("1000000000000");
+		
+		amountMin = amountMin.multiply(amount);
+		amountMax = amountMax.multiply(amount);
+		
+		System.out.println("amountMax:"+amountMax);
+		
 		if(think.getArea().getPid() == 0){
 			hql = "select count(*) from Bill where bilDate >= '"+timeMin+"' and bilDate <= '"+timeMax+"' and bilCusMoney <= "+amountMax+" and bilCusMoney >= "+amountMin;
 		} else {
@@ -90,6 +107,7 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 			pageNow = "1";
 		}
@@ -126,9 +144,14 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Float.valueOf(everyPage)))){
 			pageNow = "1";
 		}
+		
+		System.out.println("totalCount:"+totalCount);
+		System.out.println("everyPage:"+everyPage);
+		
 		Page page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		
 		if(think.getArea().getPid() == 0){
@@ -208,10 +231,10 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		ThinkUser thu = (ThinkUser) ActionContext.getContext().getSession().get("admin");
 		Area area = thu.getArea();
 		if (area.getAreId() == 1) {
-			day = billService.todayMoney();
-			month = billService.monthMoney();
-			year = billService.yearMoney();
-			total = billService.totalMoney();
+			day = day.add(billService.todayMoney());
+			month = month.add(billService.monthMoney());
+			year = year.add(billService.yearMoney());
+			total = total.add(billService.totalMoney());
 		}
 		List<Bill> bills = billService.queryByArea(area.getAreId());
 		int type = -1;
@@ -388,6 +411,51 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		return "selectAll";
 	}
 	
+	public String excel(){
+        // 测试学生  
+        ExportExcel<Bill> ex = new ExportExcel<Bill>();
+        String[] headers = { "用户", "用户付款", "商家", "商家收款", "物业", "物业收款", "县级代理", "县级收款", "市级代理", "市级收款", "省级代理", "省级收款", "众帮收款", "订单时间"};  
+        List<Bill> dataset = new ArrayList<Bill>();
+        
+        getId();
+		String hql;
+		if(think.getArea().getPid() == 0){
+			hql ="select count(*) from Bill";
+		}else{
+			hql ="select count(*) from Bill where areaByThuPropertyId.areId = "+thuId+" or areaByThuCityId.areId = "+thuId+" or areaByThuProvinceId.areId = "+thuId+" or areaByThuCountyId.areId = "+thuId;
+		}
+		
+		int totalCount = billService.queryAll(hql);
+		everyPage = String.valueOf(totalCount);
+		
+		selectAll();
+        
+        for(int i = 0; i < billList.size(); i++){
+        	
+//        	dataset.add((billList.get(0).getCustomer().getCusNickname()));
+        }
+        
+//        dataset.add();
+//        dataset.add(new Bill());  
+//        dataset.add(new Bill(30000003, "王五", 22, true, new Date()));  
+
+        try  
+        {  
+            OutputStream out = new FileOutputStream("a.xls");
+            ex.exportExcel(headers, billList, out);  
+            out.close();  
+            JOptionPane.showMessageDialog(null, "导出成功!");  
+            System.out.println("excel导出成功！");  
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+        } 
+	
+		
+		return "excel";
+	}
+	
 	public void setBillService(BillService billService) {
 		this.billService = billService;
 	}
@@ -439,19 +507,19 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 		this.tranTime = tranTime;
 	}
 
-	public Float getAmountMin() {
+	public BigDecimal getAmountMin() {
 		return amountMin;
 	}
 
-	public void setAmountMin(Float amountMin) {
+	public void setAmountMin(BigDecimal amountMin) {
 		this.amountMin = amountMin;
 	}
 
-	public Float getAmountMax() {
+	public BigDecimal getAmountMax() {
 		return amountMax;
 	}
 
-	public void setAmountMax(Float amountMax) {
+	public void setAmountMax(BigDecimal amountMax) {
 		this.amountMax = amountMax;
 	}
 

@@ -77,6 +77,18 @@ public class LogServiceImpl implements LogService {
 	public void setLogDao(LogDao logDao) {
 		this.logDao = logDao;
 	}
+
+	@Override
+	public int qureyAll() {
+		// TODO Auto-generated method stub
+		return logDao.qureyAll();
+	}
+
+	@Override
+	public List<Log> selectAll() {
+		// TODO Auto-generated method stub
+		return logDao.selectAll();
+	}
 	
 	
 

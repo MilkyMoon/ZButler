@@ -50,7 +50,7 @@ public class ValidateInterceptor extends MethodFilterInterceptor {
 						log.setLogAreaId(thu.getArea().getAreId());
 						log.setLogAreaName(thu.getArea().getArea());
 						log.setLogThuId(thu.getThuId());
-						log.setLogThuName(thu.getThuUsername());
+						log.setLogThuName(thu.getThuName());
 						log.setLogContent(rg.getRule().getTitle());
 						log.setLogStatus(1);
 						log.setLogDate(new Timestamp(date.getTime()));

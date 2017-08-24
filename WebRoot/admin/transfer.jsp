@@ -31,6 +31,13 @@
 <link href="./vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 <!-- iCheck -->
 <link href="./vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- Datatables -->
+<link href="./vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="./vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="./vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+<link href="./vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+<link href="./vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
 
 <!-- Custom Theme Style -->
 <link href="./build/css/custom.min.css" rel="stylesheet">
@@ -132,55 +139,56 @@
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-
+								
 								<div class="x_content">
-									<div class="table-responsive">
-										<table class="table table-striped jambo_table bulk_action">
-											<thead>
-												<tr class="headings">
-													<th>
-														<th><input type="checkbox" id="check-all" class="flat" /></th>
-													</th>
-													<th class="column-title">店铺名称</th>
-													<th class="column-title">店主姓名</th>
-													<th class="column-title">转账人</th>
-													<th class="column-title">金额</th>
-													<th class="column-title">时间</th>
-													<th class="column-title no-link last">操作</th>
-													<th class="bulk-actions" colspan="7"><a class="antoo"
-														style="color:#fff; font-weight:500;">Bulk Actions ( <span
-															class="action-cnt"> </span> ) <i
-															class="fa fa-chevron-down"></i></a></th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<c:forEach var="list" items="${list}">
-													<tr class="even pointer">
-														<td class="a-center ">
-															<th><input type="checkbox" class="flat" name="table_records" /></th>
-														</td>
-														
-														<td>${list.business.busShopName}</td>
-														<td>${list.business.busOwnerName}</td>
-														<td>${list.thinkUser.thuName}</td>
-														<td>${list.traMoney}</td>
-														<td>${list.traDate}</td>
-														<td>
-															<a class="btn btn-primary btn-xs" href="thinkUser_select><i class="fa fa-folder"></i>&nbsp;&nbsp;查看转账人</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a class="btn btn-primary btn-xs" href="business_read?busId=${list.business.busId}"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看店铺</a>&nbsp;&nbsp;&nbsp;&nbsp;
-														</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										
-									</div>
-								</div>
+				                    <p class="text-muted font-13 m-b-30">
+				                      可以导出到Excel文件
+				                    </p>
+				                    <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
+				                      <thead>
+				                        <tr class="headings">
+											<th>
+												<th><input type="checkbox" id="check-all" class="flat" /></th>
+											</th>
+											<th class="column-title">店铺名称</th>
+											<th class="column-title">店主姓名</th>
+											<th class="column-title">转账人</th>
+											<th class="column-title">金额</th>
+											<th class="column-title">时间</th>
+											<th class="column-title no-link last">操作</th>
+											<th class="bulk-actions" colspan="7"><a class="antoo"
+												style="color:#fff; font-weight:500;">Bulk Actions ( <span
+													class="action-cnt"> </span> ) <i
+													class="fa fa-chevron-down"></i></a></th>
+										</tr>
+				                      </thead>
+				
+				
+				                      <tbody>
+				                      	<c:forEach var="list" items="${list}">
+											<tr class="even pointer">
+												<td class="a-center ">
+													<th><input type="checkbox" class="flat" name="table_records" /></th>
+												</td>
+												
+												<td>${list.business.busShopName}</td>
+												<td>${list.business.busOwnerName}</td>
+												<td>${list.thinkUser.thuName}</td>
+												<td>${list.traMoney}</td>
+												<td>${list.traDate}</td>
+												<td>
+													<a class="btn btn-primary btn-xs" href="thinkUser_select><i class="fa fa-folder"></i>&nbsp;&nbsp;查看转账人</a>&nbsp;&nbsp;&nbsp;&nbsp;
+													<a class="btn btn-primary btn-xs" href="business_read?busId=${list.business.busId}"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看店铺</a>&nbsp;&nbsp;&nbsp;&nbsp;
+												</td>
+											</tr>
+										</c:forEach>
+				                      </tbody>
+				                    </table>
+				                  </div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<%-- <div class="row">
 						<form action="transfer_selectAll">
 							<div class="col-sm-5">
 								<div class="dataTables_info" id="datatable-checkbox_info" role="status" aria-live="polite" style="margin: 20px 0;height: 32px;line-height: 32px;">
@@ -242,7 +250,7 @@
 		                        </div>
 							</div>
 						</form>
-					</div>
+					</div> --%>
 				</div>
 			</div>
 			<!-- /page content -->
@@ -268,6 +276,22 @@
 	<script src="./vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 	<!-- iCheck -->
 	<script src="./vendors/iCheck/icheck.min.js"></script>
+	<!-- Datatables -->
+	<script src="./vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="./vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="./vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="./vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="./vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="./vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="./vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="./vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script src="./vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script src="./vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script src="./vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script src="./vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	<script src="./vendors/jszip/dist/jszip.min.js"></script>
+	<script src="./vendors/pdfmake/build/pdfmake.min.js"></script>
+	<script src="./vendors/pdfmake/build/vfs_fonts.js"></script>
 
 	<!-- Custom Theme Scripts -->
 	<script src="./build/js/custom.min.js"></script>

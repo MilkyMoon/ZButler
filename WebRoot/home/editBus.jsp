@@ -258,8 +258,7 @@ ${error}
 				bbBank : "required",
 				busSmallCate : "required",
 				bbBankCard : {
-					required : true,
-					rangelength : [ 23, 23 ]
+					required : true
 				}
 			},
 			messages : {
@@ -274,8 +273,7 @@ ${error}
 				busSmallCate : "请选择经营小类别",
 				bbBank : "请输入开户行",
 				bbBankCard : {
-					required : "请输入银行卡号",
-					rangelength : "卡号为23位"
+					required : "请输入银行卡号"
 				}
 			}
 		});

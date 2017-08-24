@@ -42,11 +42,11 @@
 				<div class="pay_storeTel">${pay_business.busPhone}</div>
 			</div>
  			<c:if test="${empty sessionScope.payByCashMoney}">
-				<input type="text" pattern="[0-9]*" name="num" class="cell-input"
+				<input type="text"  name="num" class="cell-input"
 					placeholder="消费金额" autocomplete="off" id="payNum" value="" />
 			</c:if>
 			<c:if test="${!empty sessionScope.payByCashMoney}">
-				<input type="text" pattern="[0-9]*" name="num" class="cell-input"
+				<input type="text"  name="num" class="cell-input"
 					placeholder="消费金额" autocomplete="off" id="payNum" value="${sessionScope.payByCashMoney}" />
 			</c:if>
 			
@@ -64,7 +64,7 @@
 	$.ajax({
 		type : "post",
 		dataType : "json",
-		url : "<%=basePath%>WxJsApi",
+		url : "<%=basePath%>JsApiParams",
 		async : true,
 		data : {
 			url : location.href.split("#")[0]

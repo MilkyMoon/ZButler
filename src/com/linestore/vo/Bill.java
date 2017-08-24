@@ -12,12 +12,12 @@ public class Bill implements java.io.Serializable {
 	// Fields
 
 	private Integer bilId;
+	private Area areaByThuPropertyId;
 	private Business business;
-	private Area areaByThuCityId;
-	private Area areaByThuProvinceId;
 	private Area areaByThuCountyId;
 	private Customer customer;
-	private Area areaByThuPropertyId;
+	private Area areaByThuCityId;
+	private Area areaByThuProvinceId;
 	private BigDecimal bilCusMoney;
 	private BigDecimal bilBusMoney;
 	private BigDecimal bilPropertyMoney;
@@ -34,16 +34,16 @@ public class Bill implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Bill(Business business, Area areaByThuCityId, Area areaByThuProvinceId, Area areaByThuCountyId,
-			Customer customer, Area areaByThuPropertyId, BigDecimal bilCusMoney, BigDecimal bilBusMoney,
-			BigDecimal bilPropertyMoney, BigDecimal bilCountyMoney, BigDecimal bilCityMoney, BigDecimal bilProvinceMoney,
-			Timestamp bilDate, BigDecimal bilZongMoney) {
+	public Bill(Area areaByThuPropertyId, Business business, Area areaByThuCountyId, Customer customer,
+			Area areaByThuCityId, Area areaByThuProvinceId, BigDecimal bilCusMoney, BigDecimal bilBusMoney,
+			BigDecimal bilPropertyMoney, BigDecimal bilCountyMoney, BigDecimal bilCityMoney,
+			BigDecimal bilProvinceMoney, Timestamp bilDate, BigDecimal bilZongMoney) {
+		this.areaByThuPropertyId = areaByThuPropertyId;
 		this.business = business;
-		this.areaByThuCityId = areaByThuCityId;
-		this.areaByThuProvinceId = areaByThuProvinceId;
 		this.areaByThuCountyId = areaByThuCountyId;
 		this.customer = customer;
-		this.areaByThuPropertyId = areaByThuPropertyId;
+		this.areaByThuCityId = areaByThuCityId;
+		this.areaByThuProvinceId = areaByThuProvinceId;
 		this.bilCusMoney = bilCusMoney;
 		this.bilBusMoney = bilBusMoney;
 		this.bilPropertyMoney = bilPropertyMoney;
@@ -64,28 +64,20 @@ public class Bill implements java.io.Serializable {
 		this.bilId = bilId;
 	}
 
+	public Area getAreaByThuPropertyId() {
+		return this.areaByThuPropertyId;
+	}
+
+	public void setAreaByThuPropertyId(Area areaByThuPropertyId) {
+		this.areaByThuPropertyId = areaByThuPropertyId;
+	}
+
 	public Business getBusiness() {
 		return this.business;
 	}
 
 	public void setBusiness(Business business) {
 		this.business = business;
-	}
-
-	public Area getAreaByThuCityId() {
-		return this.areaByThuCityId;
-	}
-
-	public void setAreaByThuCityId(Area areaByThuCityId) {
-		this.areaByThuCityId = areaByThuCityId;
-	}
-
-	public Area getAreaByThuProvinceId() {
-		return this.areaByThuProvinceId;
-	}
-
-	public void setAreaByThuProvinceId(Area areaByThuProvinceId) {
-		this.areaByThuProvinceId = areaByThuProvinceId;
 	}
 
 	public Area getAreaByThuCountyId() {
@@ -104,12 +96,20 @@ public class Bill implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	public Area getAreaByThuPropertyId() {
-		return this.areaByThuPropertyId;
+	public Area getAreaByThuCityId() {
+		return this.areaByThuCityId;
 	}
 
-	public void setAreaByThuPropertyId(Area areaByThuPropertyId) {
-		this.areaByThuPropertyId = areaByThuPropertyId;
+	public void setAreaByThuCityId(Area areaByThuCityId) {
+		this.areaByThuCityId = areaByThuCityId;
+	}
+
+	public Area getAreaByThuProvinceId() {
+		return this.areaByThuProvinceId;
+	}
+
+	public void setAreaByThuProvinceId(Area areaByThuProvinceId) {
+		this.areaByThuProvinceId = areaByThuProvinceId;
 	}
 
 	public BigDecimal getBilCusMoney() {

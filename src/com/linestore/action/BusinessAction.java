@@ -155,7 +155,9 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 		System.out.println("BusId: " + business.getBusId());
 		if (businessTmpService.queryById(business.getBusId()) != null) {
 			Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			List<CateLine> smalls = cateLineService.selectChildren(0);
 			request.put("error", "<script>YDUI.dialog.alert('已经提交过啦！等待后台人员审核！');</script>");
+			request.put("roots", smalls);
 			return "gotoEdit";
 		}
 		String str = business.getBaProvince();

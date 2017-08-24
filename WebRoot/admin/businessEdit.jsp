@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>代理商管理 | 众帮管家</title>
+<title>线下商家管理 | ${sessionScope.netName.setValue}</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -141,7 +141,7 @@
 												</div>
 											</div>
 
-											<div class="form-group">
+											<%-- <div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">税务登记<span
 													class="required">*</span>
 												</label>
@@ -149,7 +149,7 @@
 													<textarea class="form-control" rows="3" name="busTaxUrl"
 														placeholder='<s:property value="busTaxUrl"/>'><s:property value="busTaxUrl"/></textarea>
 												</div>
-											</div>
+											</div> --%>
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">商家图片<span
 													class="required">*</span>

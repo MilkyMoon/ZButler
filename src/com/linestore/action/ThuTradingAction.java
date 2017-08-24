@@ -62,6 +62,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
 		}
+		everyPage = String.valueOf(totalCount);
 		if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 			pageNow = "1";
 		}
@@ -115,6 +116,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			if(everyPage.equals("") || everyPage == null){
 				everyPage = "10";
 			}
+			everyPage = String.valueOf(totalCount);
 			if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 				pageNow = "1";
 			}
@@ -129,6 +131,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			if(everyPage.equals("") || everyPage == null){
 				everyPage = "10";
 			}
+			everyPage = String.valueOf(totalCount);
 			if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 				pageNow = "1";
 			}
@@ -142,6 +145,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			if(everyPage.equals("") || everyPage == null){
 				everyPage = "10";
 			}
+			everyPage = String.valueOf(totalCount);
 			if(pageNow.equals("") || pageNow == null || (Integer.parseInt(pageNow) > Math.ceil(totalCount/Integer.parseInt(everyPage)))){
 				pageNow = "1";
 			}
@@ -190,7 +194,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 		//修改area表中的值
 		area = areaService.queryById(think.getArea().getAreId());
 		BigDecimal b1 = new BigDecimal(Float.toString(thuTrading.getThuMoney()));
-		area.setAreaTotalMoney(area.getAreaTotalMoney().subtract(b1));
+		area.setAreaTotalMoney(area.getAreaTotalMoney().subtract(b1.multiply(new BigDecimal("1000000000000"))));
 		areaService.updateArea(area);
 		
 		//添加账单到数据库
@@ -206,7 +210,7 @@ public class ThuTradingAction extends ActionSupport implements ModelDriven<ThuTr
 			thuTradingResule = thuTradingService.selectById(thuTrading.getThtId());
 			
 			areaReaslut = areaService.queryById(thuTradingResule.getAreId());
-			areaReaslut.setAreaTotalMoney(areaReaslut.getAreaTotalMoney().add(new BigDecimal(Float.toString(thuTradingResule.getThuMoney()))));
+			areaReaslut.setAreaTotalMoney(areaReaslut.getAreaTotalMoney().add((new BigDecimal(Float.toString(thuTradingResule.getThuMoney()))).multiply(new BigDecimal("1000000000000"))));
 			
 			areaService.updateArea(areaReaslut);
 			

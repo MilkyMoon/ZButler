@@ -232,8 +232,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		}
 
 		String js = "<script>YDUI.dialog.alert('用户名或密码错误！');</script>";
-
-
+		request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("js", js);
 		String Iwant = (String) ActionContext.getContext().getSession().get("Iwant");
 		if (Iwant != null) {
 			HttpServletResponse response = ServletActionContext.getResponse();

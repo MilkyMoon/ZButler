@@ -192,8 +192,8 @@
 												<div class="jumbotron" style="padding: 5px 36px;">
 													<h1>
 														¥
-														<fmt:formatNumber type="number" maxFractionDigits="10"
-															value="${profit}" />
+														<fmt:formatNumber type="number" maxFractionDigits="1"
+															value="${profit.divide(10000000000)}" />
 													</h1>
 													<p>
 														${dateOne}
@@ -215,19 +215,19 @@
 				                              <tbody>
 				                                <tr>
 				                                  <th style="width:50%">本日收益:</th>
-				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Today}" /></td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="1" value="${Today.divide(10000000000)}" /></td>
 				                                </tr>
 				                                <tr>
 				                                  <th>本月收益:</th>
-				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Month}" /></td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="1" value="${Month.divide(10000000000)}" /></td>
 				                                </tr>
 				                                <tr>
 				                                  <th>本年收益:</th>
-				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="1" value="${Year.divide(10000000000)}" /></td>
 				                                </tr>
 				                                <tr>
 				                                  <th>累计收益:</th>
-				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="10" value="${Year}" /></td>
+				                                  <td>￥<fmt:formatNumber type="number" maxFractionDigits="1" value="${Total.divide(10000000000)}" /></td>
 				                                </tr>
 				                              </tbody>
 				                            </table>
