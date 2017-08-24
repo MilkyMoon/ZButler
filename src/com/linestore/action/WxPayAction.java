@@ -364,6 +364,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									cusAccountService.updateField("cacPoints", String.valueOf(Addpiont),
 											CAC.getCacId());
 								}
+								ActionContext.getContext().getSession().put("payByCashTel", null);
 							}
 							System.out.println(">>>>>>>>>>>" + city);
 							bigMoney = city;

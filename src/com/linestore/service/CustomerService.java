@@ -33,4 +33,6 @@ public interface CustomerService {
 	void update(String hql);
 	
 	public List<Customer> search(String keywords);
+	
+	public void addByOpenId(Customer cus);
 }

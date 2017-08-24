@@ -206,6 +206,7 @@
 	</bean>
 	<bean id="customerService" class="com.linestore.service.impl.CustomerServiceImpl">
 		<property name="customerDao" ref="customerDao"></property>
+		<property name="cusAccountDao" ref="cusAccountDao"></property>
 	</bean>
 	<bean id="cusCouponService" class="com.linestore.service.impl.CusCouponServiceImpl">
 		<property name="cusCouponDao" ref="cusCouponDao"></property>
@@ -297,6 +298,7 @@
 	<bean id="logService" class="com.linestore.service.impl.LogServiceImpl">
 		<property name="logDao" ref="logDao"></property>
 	</bean>
+	
 
 	<!-- 配置一个事务管理器 -->
 	<bean id="transactionManager"
