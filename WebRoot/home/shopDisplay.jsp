@@ -41,6 +41,7 @@
 <body>
 	<div class="storeImg" style="padding-top:53px;">
 		<jsp:include page="back.jsp" />
+		<p style="margin:10px;"><code>注意：</code>每张图片要比例一致，建议16:9（长:宽）</p>
 		<div class="storeImg_content">
 			<div class="storeImg_addImg">
 				<div class="addImg">

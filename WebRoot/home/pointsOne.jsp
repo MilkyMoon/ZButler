@@ -32,7 +32,7 @@
 
 					<div class="integral_content_canUse">
 						我的积分&nbsp;&nbsp;<span><fmt:formatNumber type="number"
-								maxFractionDigits="4" value="${cac.cacPoints}" /></span>
+								maxFractionDigits="5" value="${cac.cacPoints}" /></span>
 					</div>
 					<!-- <div class="integral_content_cantUse">
 					<span>亲，您没有积分，会错过奖金哦！</span><br> <span>线下消费、淘宝天猫京东购物、零钱充值，都可以获得积分！</span>

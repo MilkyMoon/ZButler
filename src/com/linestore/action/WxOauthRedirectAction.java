@@ -155,7 +155,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		case "bindWeChat":
 			WxMpUser wxMpUserBind = this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
 			ActionContext.getContext().getSession().put("openId", wxMpUserBind.getOpenId());
-			ActionContext.getContext().getSession().put("Bind", "cusOpenId");
+			//ActionContext.getContext().getSession().put("Bind", "cusOpenId");
 			returnString = "gotoBind";
 			break;
 		case "adminBindWeChat":

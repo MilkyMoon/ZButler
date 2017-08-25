@@ -43,7 +43,7 @@
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="btn-block btn-primary">注册</button>
+				<button type="submit" class="btn-block btn-primary" id="regiset">注册</button>
 			</form>
 		</div>
 		<div class="share_comment">
@@ -197,6 +197,8 @@ ${js}
 				if ($("#data").val() != hex_md5($("#code").val())) {
 					e.preventDefault();
 					window.YDUI.dialog.alert('验证码错误！');
+				} else {
+					$("#regiset").attr("disabled","disabled");
 				}
 			} else {
 				e.preventDefault();
