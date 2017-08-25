@@ -152,7 +152,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		config.setSecret("4ad3ebbd02e8f82aede3a22d1a3335a6"); // 设置微信公众号的
 																// appsecret
 		config.setToken("wxdev"); // 设置微信公众号的token
-		config.setOauth2redirectUri(BASE_PATH+"WxOauthRedirect!oauth.action");
+		config.setOauth2redirectUri(BASE_PATH + "WxOauthRedirect!oauth.action");
 		this.wxService = new WxMpServiceImpl();
 		wxService.setWxMpConfigStorage(config);
 	}
@@ -198,7 +198,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 		Map<String, String> payInfo = this.wxPayService.getPayInfo(
 				WxPayUnifiedOrderRequest.newBuilder().body(orderTitle).totalFee(WxPayBaseRequest.yuanToFee(payNum))
 						.spbillCreateIp(ServletActionContext.getRequest().getRemoteAddr())
-						.notifyURL(BASE_PATH+"WxPay!payNotify.action").tradeType("JSAPI") // 交易类型
+						.notifyURL(BASE_PATH + "WxPay!payNotify.action").tradeType("JSAPI") // 交易类型
 						.outTradeNo(out_trade_no) // 唯一订单
 						.openid((String) ActionContext.getContext().getSession().get("SCOPE_BASE_OPENID")).build());
 		this.result = JSONObject.fromObject(payInfo).toString();
@@ -253,15 +253,13 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							bill.setBilCusMoney(bigMoney);
 							// 商家收款
 							BigDecimal city = new BigDecimal(Float.toString(bus.getBusScale()));
-							System.out.println("!!!!!!!!!"+bus.getBusScale());
-							System.out.println("!!!!!!!!!"+city);
+							System.out.println("!!!!!!!!!" + bus.getBusScale());
+							System.out.println("!!!!!!!!!" + city);
 							city = bigMoney.subtract(bigMoney.multiply(city));
 							bill.setBusiness(bus);
 							bill.setBilBusMoney(bigMoney.subtract(city));
 							bill.setBilDate(new Timestamp(Pdate.getTime()));
-							
-							
-							
+
 							if (Pcus != null && Pcus.size() > 0) {
 								System.out.println("-----phone--->" + Pcus.get(0).getCusPhone());
 								if (Pcus.get(0).getCusPhone() != null && !"".equals(Pcus.get(0).getCusPhone())) {
@@ -273,7 +271,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 													.findByCusId(fri.getCustomer().getCusId());
 											float addChange = Float.valueOf(kvm.get("total_fee")) / 100
 													* Float.valueOf(settingService.queryById(3).getSetValue());
-											city = city.subtract(new BigDecimal(Float.toString(addChange)).multiply(new BigDecimal("1000000000000")));
+											city = city.subtract(new BigDecimal(Float.toString(addChange))
+													.multiply(new BigDecimal("1000000000000")));
 											Float addPoints = addChangeCac.getCacPoints() + addChange;
 											CtaTrading addChangeCta = new CtaTrading();
 											addChangeCta.setCtaMoney(addChange);
@@ -288,33 +287,41 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										}
 									}
 								}
-//								Float addChange = 0f;
-//								List<Business> addBus = businessService.queryByCusId(Pcus.get(0).getCusId());
-//								System.out.println("Pcus.get(0).getCusId()--->" + Pcus.get(0).getCusId());
-//								System.out.println("----->business;addBus" + addBus);
-//								if (addBus != null && addBus.size() > 0) {
-//									if (addBus.get(0).getBusLevel() != 1) {
-//
-//										addChange += Float.valueOf(kvm.get("total_fee")) / 100
-//												* Float.valueOf(settingService.queryById(5).getSetValue());
-//										CtaTrading addChangeCta = new CtaTrading();
-//										addChangeCta.setCtaMoney(addChange);
-//										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
-//										addChangeCta.setCtaType(13);
-//										addChangeCta.setCustomer(Pcus.get(0));
-//										addChangeCta.setCtaStatus(1);
-//										addChangeCta.setCtaId(Pdate.getTime() + "J" + this.RandomStr()); // 付款返商家积分
-//										ctaTradingService.addCtaTrading(addChangeCta);
-//
-//									}
-//								}
+								// Float addChange = 0f;
+								// List<Business> addBus =
+								// businessService.queryByCusId(Pcus.get(0).getCusId());
+								// System.out.println("Pcus.get(0).getCusId()--->"
+								// + Pcus.get(0).getCusId());
+								// System.out.println("----->business;addBus" +
+								// addBus);
+								// if (addBus != null && addBus.size() > 0) {
+								// if (addBus.get(0).getBusLevel() != 1) {
+								//
+								// addChange +=
+								// Float.valueOf(kvm.get("total_fee")) / 100
+								// *
+								// Float.valueOf(settingService.queryById(5).getSetValue());
+								// CtaTrading addChangeCta = new CtaTrading();
+								// addChangeCta.setCtaMoney(addChange);
+								// addChangeCta.setCtaTime(new
+								// Timestamp(Pdate.getTime()));
+								// addChangeCta.setCtaType(13);
+								// addChangeCta.setCustomer(Pcus.get(0));
+								// addChangeCta.setCtaStatus(1);
+								// addChangeCta.setCtaId(Pdate.getTime() + "J" +
+								// this.RandomStr()); // 付款返商家积分
+								// ctaTradingService.addCtaTrading(addChangeCta);
+								//
+								// }
+								// }
 								CusAccount CAC = (CusAccount) cusAccountService.findByCusId(Pcus.get(0).getCusId());
 								System.out.println("%%%%%%%%%%%" + CAC.getCacPoints());
 								if (CAC != null) {
 									Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
 											* bus.getBusScalePoints();
 									CtaTrading addChangeCta = new CtaTrading();
-									city = city.subtract(new BigDecimal(Float.toString(Addpiont)).multiply(new BigDecimal("1000000000000")));
+									city = city.subtract(new BigDecimal(Float.toString(Addpiont))
+											.multiply(new BigDecimal("1000000000000")));
 									addChangeCta.setCtaMoney(Addpiont);
 									addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
 									addChangeCta.setCtaType(14);
@@ -329,7 +336,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								}
 
 							}
-							System.out.println(">>>>>>>>>>>"+city);
+							System.out.println(">>>>>>>>>>>" + city);
 							bigMoney = city;
 							System.out.println("1: " + bigMoney.toString());
 							// 物业收款
@@ -436,15 +443,14 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 												.add(zong.getAreaTotalMoney()).toString(), 1);
 							}
 							billService.addBill(bill);
-							
+
 							// 存数据库+转账
-							// WxEntPayRequest wxEntPayRequest = new
-							// WxEntPayRequest();
-							// wxEntPayRequest.setAmount(Integer.parseInt(kvm.get("total_fee")));
-							// wxEntPayRequest.setDescription("");
-							// wxEntPayRequest.setOpenid("");
-							// this.payToIndividual(wxEntPayRequest,
-							// wxPayService);
+							WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
+							wxEntPayRequest.setAmount(Integer.parseInt(kvm.get("total_fee")));
+							wxEntPayRequest.setDescription("测试接口");
+							wxEntPayRequest.setOpenid(kvm.get("openid"));
+							wxEntPayRequest.setPartnerTradeNo("11111122223333336");
+							this.payToIndividual(wxEntPayRequest, wxPayService);
 							break;
 						case 'R':
 							CtaTrading cta = new CtaTrading();
