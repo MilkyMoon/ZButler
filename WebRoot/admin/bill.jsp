@@ -200,8 +200,13 @@
 													<div class="jumbotron" style="padding: 5px 36px;">
 														<h1>
 															¥
-															<fmt:formatNumber type="number" maxFractionDigits="1"
-																value="${area.areaTotalMoney.divide(1000000000000) -0.1}"/>
+															<c:if test="${(area.areaTotalMoney.divide(1000000000000) - 0.1) <= 0}">
+																0
+															</c:if>
+															<c:if test="${(area.areaTotalMoney.divide(1000000000000) - 0.1) > 0}">
+																<fmt:formatNumber type="number" maxFractionDigits="1"
+																value="${area.areaTotalMoney.divide(1000000000000) - 0.1}"/>
+															</c:if>
 														</h1>
 														<p>
 															可提现总额
