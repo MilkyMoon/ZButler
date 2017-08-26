@@ -475,12 +475,12 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							billService.addBill(bill);
 
 							// 存数据库+转账
-							WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-							wxEntPayRequest.setAmount(Integer.parseInt(kvm.get("total_fee")));
-							wxEntPayRequest.setDescription("测试接口");
-							wxEntPayRequest.setOpenid(kvm.get("openid"));
-							wxEntPayRequest.setPartnerTradeNo("11111122223333336");
-							this.payToIndividual(wxEntPayRequest, wxPayService);
+//							WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
+//							wxEntPayRequest.setAmount(Integer.parseInt(kvm.get("total_fee")));
+//							wxEntPayRequest.setDescription("测试接口");
+//							wxEntPayRequest.setOpenid(kvm.get("openid"));
+//							wxEntPayRequest.setPartnerTradeNo("11111122223333336");
+//							this.payToIndividual(wxEntPayRequest, wxPayService);
 							break;
 						case 'R':
 							System.out.println("123123123");
