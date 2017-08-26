@@ -168,7 +168,7 @@ ${js}
 		url : "<%=basePath%>hasNewNotice.action",
 		async : false,
 		success : function(result) {	
-			if (window.sessionStorage.getItem("notice")==="0"||JSON.parse(result).count==="0"){
+			if (window.sessionStorage.getItem("notice")==="0"||JSON.parse(result).count===0){
 				$("#notice").css("display","none");
 			}else{
 				window.sessionStorage.setItem("notice",JSON.parse(result).count);
