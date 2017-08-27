@@ -70,7 +70,7 @@ public class AdminCustomerAction extends ActionSupport implements ModelDriven<Cu
 	}
 	
 	public String reset(){
-		customer.setCusPassword("111");
+		customer.setCusPassword("888888");
 		update();
 		return "select";
 	}

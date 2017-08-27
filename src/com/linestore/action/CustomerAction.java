@@ -248,26 +248,22 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String update() {
 		String value = null;
 
-//		if (ActionContext.getContext().getSession().get("Bind") != null) {
-//			field = (String) ActionContext.getContext().getSession().get("Bind");
-//			value = (String) ActionContext.getContext().getSession().get("openId");
-//			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
-//			if (check.size() > 0) {
-//				Customer cusOpenId = check.get(0);
-//				if (cusOpenId.getCusPhone() == null || "".equals(cusOpenId.getCusPhone())) {
-//					customerService.delCustomer(check.get(0).getCusId());
-//				} else {
-//					Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
-//					request.put("doubleError", "<script>YDUI.dialog.alert('此微信你已绑定过其他手机号！');</script>");
-//					return "gotoCusMessage";
-//				}
-//			}
-//			ActionContext.getContext().getSession().put("Bind", null);
-//		}
+		if (ActionContext.getContext().getSession().get("Bind") != null) {
+			field = (String) ActionContext.getContext().getSession().get("Bind");
+			value = (String) ActionContext.getContext().getSession().get("openId");
+			ActionContext.getContext().getSession().put("Bind", null);
+		}
 		if ("cusPhone".equals(field)) {
-				value = customer.getCusPhone();
+				value = customer.getCusPhone();  
 				List<Customer> addPhone = customerService.findByPhone(value);
-				customerService.delCustomer(addPhone.get(0).getCusId());
+				if (addPhone.size() < 1) {
+					customer = (Customer) ActionContext.getContext().getSession().get("user");
+					customerService.updateField(field, value, customer.getCusId());
+					customer = customerService.findById(customer.getCusId());
+					ActionContext.getContext().getSession().put("user", customer);
+				} else {
+					customerService.delCustomer(addPhone.get(0).getCusId());
+				}                                                                                                                                                                                                                                                                                          
 				return "gotoCusMessage";
 		} 
 		if ("cusNickname".equals(field)) {

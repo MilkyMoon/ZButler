@@ -120,7 +120,7 @@ public class AreaDaoImpl extends HibernateDaoSupport implements AreaDao {
 	@Override
 	public List<Area> selectByKey(String keywords) {
 		// TODO Auto-generated method stub
-		List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where status !=2 and area like '"+keywords+"'");
+		List<Area> areas = (List<Area>) this.getHibernateTemplate().find("from Area where status !=2 and area like %'"+keywords+"'%");
 		
 		return areas;
 	}
