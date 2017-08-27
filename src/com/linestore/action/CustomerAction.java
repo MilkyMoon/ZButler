@@ -96,7 +96,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		SiteConfig siteConfig = siteConfigService.selectById(30);
 		ActionContext.getContext().getSession().put("lq", siteConfig);
 		if (customerService.findByOpenId(cus.getCusOpenId()).size() < 1) {
-			cus.setCusPassword("111");
+			cus.setCusPassword("888888");
 			cus.setCusStatus(1);
 			customerService.addCustomer(cus);
 			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
@@ -300,7 +300,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			template.setFirst("手机账号绑定成功,但账号存在风险，请及时修改密码");
 			Map<String, String> keywordMap = new HashMap<String, String>();
 			keywordMap.put("keyword1", customer.getCusPhone());
-			keywordMap.put("keyword2", "初始密码为111，请及时修改");
+			keywordMap.put("keyword2", "初始密码为888888，请及时修改");
 
 			template.setKeyword(keywordMap);
 			template.setOpenId(customer.getCusOpenId());
