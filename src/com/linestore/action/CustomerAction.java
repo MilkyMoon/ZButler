@@ -96,7 +96,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		SiteConfig siteConfig = siteConfigService.selectById(30);
 		ActionContext.getContext().getSession().put("lq", siteConfig);
 		if (customerService.findByOpenId(cus.getCusOpenId()).size() < 1) {
-			cus.setCusPassword("111");
+			cus.setCusPassword("888888");
 			cus.setCusStatus(1);
 			customerService.addCustomer(cus);
 			cus = customerService.findByOpenId(cus.getCusOpenId()).get(0);
@@ -248,26 +248,22 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String update() {
 		String value = null;
 
-//		if (ActionContext.getContext().getSession().get("Bind") != null) {
-//			field = (String) ActionContext.getContext().getSession().get("Bind");
-//			value = (String) ActionContext.getContext().getSession().get("openId");
-//			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
-//			if (check.size() > 0) {
-//				Customer cusOpenId = check.get(0);
-//				if (cusOpenId.getCusPhone() == null || "".equals(cusOpenId.getCusPhone())) {
-//					customerService.delCustomer(check.get(0).getCusId());
-//				} else {
-//					Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
-//					request.put("doubleError", "<script>YDUI.dialog.alert('此微信你已绑定过其他手机号！');</script>");
-//					return "gotoCusMessage";
-//				}
-//			}
-//			ActionContext.getContext().getSession().put("Bind", null);
-//		}
+		if (ActionContext.getContext().getSession().get("Bind") != null) {
+			field = (String) ActionContext.getContext().getSession().get("Bind");
+			value = (String) ActionContext.getContext().getSession().get("openId");
+			ActionContext.getContext().getSession().put("Bind", null);
+		}
 		if ("cusPhone".equals(field)) {
-				value = customer.getCusPhone();
+				value = customer.getCusPhone();  
 				List<Customer> addPhone = customerService.findByPhone(value);
-				customerService.delCustomer(addPhone.get(0).getCusId());
+				if (addPhone.size() < 1) {
+					customer = (Customer) ActionContext.getContext().getSession().get("user");
+					customerService.updateField(field, value, customer.getCusId());
+					customer = customerService.findById(customer.getCusId());
+					ActionContext.getContext().getSession().put("user", customer);
+				} else {
+					customerService.delCustomer(addPhone.get(0).getCusId());
+				}                                                                                                                                                                                                                                                                                          
 				return "gotoCusMessage";
 		} 
 		if ("cusNickname".equals(field)) {
@@ -300,7 +296,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 			template.setFirst("手机账号绑定成功,但账号存在风险，请及时修改密码");
 			Map<String, String> keywordMap = new HashMap<String, String>();
 			keywordMap.put("keyword1", customer.getCusPhone());
-			keywordMap.put("keyword2", "初始密码为111，请及时修改");
+			keywordMap.put("keyword2", "初始密码为888888，请及时修改");
 
 			template.setKeyword(keywordMap);
 			template.setOpenId(customer.getCusOpenId());

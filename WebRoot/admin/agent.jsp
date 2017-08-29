@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>地区管理 | 众帮管家</title>
+<title>三级代理商利润管理 | 众帮管家</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -100,7 +100,7 @@
 							<div class="x_panel">
 								<div class="x_title">
 									<h2>
-										平台用户管理 <small>管理员基本信息管理</small>
+										三级代理利润分配管理
 									</h2>
 									
 									<div class="clearfix"></div>

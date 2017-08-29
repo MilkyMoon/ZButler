@@ -158,7 +158,7 @@
 															<a href="area_edit?areId=${root.areId}" class="btn btn-info btn-xs">
 															    <i class="fa fa-pencil"></i>&nbsp;&nbsp;编辑
 															</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															<a href="area_status?areId=${root.areId}&status=0" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">
+															<a href="area_status?areId=${root.areId}&status=2" class="btn btn-danger btn-xs" onclick="javascript:return del('您真的确定要删除吗？\n\n删除后将不能恢复!');">
 																<i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除
 															</a>
 														</td>

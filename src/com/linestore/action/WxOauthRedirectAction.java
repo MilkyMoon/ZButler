@@ -11,12 +11,14 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.linestore.service.BusinessService;
+import com.linestore.service.CustomerService;
 import com.linestore.vo.Business;
 import com.linestore.vo.Customer;
 import com.opensymphony.xwork2.ActionContext;
 
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpUserService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import net.sf.json.JSONObject;
@@ -28,7 +30,18 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 	private String result;
 
 	private int busId;
+
+	public CustomerService getCustomerService() {
+		return customerService;
+	}
+
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
 	private BusinessService businessService;
+
+	private CustomerService customerService;
 
 	public int getBusId() {
 		return busId;
@@ -146,6 +159,18 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 			break;
 		case "pay":
 			ActionContext.getContext().getSession().put("SCOPE_BASE_OPENID", wxMpOAuth2AccessToken.getOpenId());
+			WxMpUserService wxMpUserService = this.wxService.getUserService();
+			WxMpUser wxMpUser2 = wxMpUserService.userInfo(wxMpOAuth2AccessToken.getOpenId());
+
+			// Session 存储
+			Customer customer2 = new Customer();
+			customer2.setCusSex(wxMpUser2.getSexId());
+			customer2.setCusImgUrl(wxMpUser2.getHeadImgUrl());
+			customer2.setCusNickname(wxMpUser2.getNickname());
+			customer2.setCusOpenId(wxMpUser2.getOpenId());
+			
+			customerService.addByOpenId(customer2);
+			
 			returnString = "gotoPay";
 			break;
 		case "reChage":
@@ -155,7 +180,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 		case "bindWeChat":
 			WxMpUser wxMpUserBind = this.wxService.oauth2getUserInfo(wxMpOAuth2AccessToken, null);
 			ActionContext.getContext().getSession().put("openId", wxMpUserBind.getOpenId());
-			//ActionContext.getContext().getSession().put("Bind", "cusOpenId");
+			ActionContext.getContext().getSession().put("Bind", "cusOpenId");
 			returnString = "gotoBind";
 			break;
 		case "adminBindWeChat":
