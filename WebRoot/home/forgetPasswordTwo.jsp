@@ -24,7 +24,7 @@
 	<div class="forgetPassword2" style="padding-top:53px;">
 		<jsp:include page="back.jsp" />
 		<form id="signupForm" method="post"
-			action="<%=basePath%>Customer!update.action">
+			action="<%=basePath%>Customer!ForgetPassword.action">
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right">
