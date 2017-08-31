@@ -89,7 +89,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		}
 		
 		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
-		ctaTradingList = ctaTradingService.selectAllType(page,1);
+		ctaTradingList = ctaTradingService.selectAllType(page,4);
 	
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", ctaTradingList);
@@ -113,7 +113,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		
 		totalCount = ctaTradingService.queryAllType(4);
 		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
-		ctaTradingList = ctaTradingService.selectAllType(page,4);
+		ctaTradingList = ctaTradingService.selectAllType(page,1);
 	
 		request = (Map<String, Object>) ActionContext.getContext().get("request");
 		request.put("roots", ctaTradingList);
