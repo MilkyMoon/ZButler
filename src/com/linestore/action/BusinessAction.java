@@ -214,7 +214,7 @@ public class BusinessAction extends ActionSupport implements ModelDriven<Busines
 
 	public String delete() {
 		businessService.delete(business);
-		businessList = businessService.selectAll();
+		 = businessService.selectAll();
 		ActionContext.getContext().getSession().put("list", businessList);
 
 		return "selectAll";

@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>人工转账 | 众帮管家</title>
+<title>人工转账 | ${sessionScope.netName.setValue}</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
