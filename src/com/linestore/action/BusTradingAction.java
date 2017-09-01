@@ -95,7 +95,7 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 			customer.setCusNickname("ZB_" + tel);
 			customer.setCusImgUrl("home/dist/wx_image/111.jpg");
 			customer.setCusStatus(1);
-			customer.setCusPassword("111");
+			customer.setCusPassword("888888");
 			customerService.addCustomer(customer);
 			init(customer);
 		}
