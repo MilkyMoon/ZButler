@@ -275,7 +275,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 														.findByCusId(fri.getCustomer().getCusId());
 												float addChange = Float.valueOf(kvm.get("total_fee")) / 100
 														* Float.valueOf(settingService.queryById(3).getSetValue());
-												city = city.subtract(new BigDecimal(Float.toString(addChange))
+												city = city.subtract(new BigDecimal(Float.toString(addChange * Float.valueOf(settingService.queryById(8).getSetValue())))
 														.multiply(new BigDecimal("1000000000000")));
 												Float addPoints = addChangeCac.getCacPoints() + addChange;
 												CtaTrading addChangeCta = new CtaTrading();
@@ -298,7 +298,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
 												* bus.getBusScalePoints();
 										CtaTrading addChangeCta = new CtaTrading();
-										BigDecimal zhuanghuan = new BigDecimal(Addpiont).setScale(6,
+										BigDecimal zhuanghuan = new BigDecimal(Addpiont * Float.valueOf(settingService.queryById(8).getSetValue())).setScale(6,
 												BigDecimal.ROUND_DOWN);
 										city = city.subtract(zhuanghuan.multiply(new BigDecimal("1000000000000")));
 										addChangeCta.setCtaMoney(Addpiont);
@@ -324,7 +324,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 												.findByCusId(fri.getCustomer().getCusId());
 										float addChange = Float.valueOf(kvm.get("total_fee")) / 100
 												* Float.valueOf(settingService.queryById(3).getSetValue());
-										city = city.subtract(new BigDecimal(Float.toString(addChange))
+										city = city.subtract(new BigDecimal(Float.toString(addChange * Float.valueOf(settingService.queryById(8).getSetValue())))
 												.multiply(new BigDecimal("1000000000000")));
 										Float addPoints = addChangeCac.getCacPoints() + addChange;
 										CtaTrading addChangeCta = new CtaTrading();
@@ -349,7 +349,7 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
 											* bus.getBusScalePoints();
 									CtaTrading addChangeCta = new CtaTrading();
-									BigDecimal zhuanghuan = new BigDecimal(Addpiont).setScale(6,
+									BigDecimal zhuanghuan = new BigDecimal(Addpiont * Float.valueOf(settingService.queryById(8).getSetValue())).setScale(6,
 											BigDecimal.ROUND_DOWN);
 									city = city.subtract(zhuanghuan.multiply(new BigDecimal("1000000000000")));
 									addChangeCta.setCtaMoney(Addpiont);
