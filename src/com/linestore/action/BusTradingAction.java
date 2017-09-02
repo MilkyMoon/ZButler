@@ -89,7 +89,7 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	}
 
 	public String payByCash() {
-		if (customerService.findByPhone(tel) == null) {
+		if (customerService.findByPhone(tel).size() < 1) {
 			Customer customer = new Customer();
 			customer.setCusPhone(tel);
 			customer.setCusNickname("ZB_" + tel);

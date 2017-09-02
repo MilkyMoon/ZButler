@@ -135,7 +135,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void addByOpenId(Customer cus) {
 		if (customerDao.findByOpenId(cus.getCusOpenId()).size() == 0) {
-			cus.setCusPassword("111");
+			cus.setCusPassword("888888");
 			cus.setCusStatus(1);
 			this.addCustomer(cus);
 			cus = this.findByOpenId(cus.getCusOpenId()).get(0);
