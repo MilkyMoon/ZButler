@@ -177,7 +177,7 @@
 												<td>${list.traMoney}</td>
 												<td>${list.traDate}</td>
 												<td>
-													<a class="btn btn-primary btn-xs" href="thinkUser_select><i class="fa fa-folder"></i>&nbsp;&nbsp;查看转账人</a>&nbsp;&nbsp;&nbsp;&nbsp;
+													<a class="btn btn-primary btn-xs" href="thinkUser_select"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看转账人</a>&nbsp;&nbsp;&nbsp;&nbsp;
 													<a class="btn btn-primary btn-xs" href="business_read?busId=${list.business.busId}"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看店铺</a>&nbsp;&nbsp;&nbsp;&nbsp;
 												</td>
 											</tr>
