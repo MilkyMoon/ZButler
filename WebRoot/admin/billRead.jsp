@@ -64,7 +64,7 @@
 							<h3>账单管理</h3>
 						</div>
 
-						<<form action="bill_select" method="get">
+						<form action="bill_select" method="get">
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
