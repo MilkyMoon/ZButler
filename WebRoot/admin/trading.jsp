@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>商家账单申请管理 | 众帮管家</title>
+<title>商家账单申请管理 | ${sessionScope.netName.setValue}</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -151,7 +151,7 @@
 												<td>${root.ctaMoney}</td>
 												<td>${root.ctaTime}</td>
 												<td>
-													<c:if test="${root.ctaType == 1 && root.ctaStatus == 0}">
+													<c:if test="${root.ctaType == 4 && root.ctaStatus == 0}">
 														<a href="trading_status?ctaId=${root.ctaId}&ctaStatus=1" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
 															<i class="fa fa-folder"></i>&nbsp;&nbsp;允许
 														</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -160,12 +160,12 @@
 															<i class="fa fa-folder"></i>&nbsp;&nbsp;不允许
 														</a>&nbsp;&nbsp;&nbsp;&nbsp;
 													</c:if>
-													<c:if test="${root.ctaType == 1 && root.ctaStatus == 1}">
+													<c:if test="${root.ctaType == 4 && root.ctaStatus == 1}">
 														<a class="btn btn-primary btn-xs">
 															<i class="fa fa-folder"></i>&nbsp;&nbsp;已允许
 														</a>&nbsp;&nbsp;&nbsp;&nbsp;
 													</c:if>
-													<c:if test="${root.ctaType == 4}">
+													<c:if test="${root.ctaType == 1}">
 														<a class="btn btn-primary btn-xs">
 															<i class="fa fa-folder"></i>&nbsp;&nbsp;已充值
 														</a>&nbsp;&nbsp;&nbsp;&nbsp;
