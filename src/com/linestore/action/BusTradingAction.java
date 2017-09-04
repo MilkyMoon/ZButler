@@ -6,14 +6,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.struts2.components.Else;
+
 import com.linestore.service.BusTradingService;
 import com.linestore.service.BusinessService;
 import com.linestore.service.CusAccountService;
 import com.linestore.service.CustomerService;
+import com.linestore.service.FriendsService;
 import com.linestore.vo.BusTrading;
 import com.linestore.vo.Business;
 import com.linestore.vo.CusAccount;
 import com.linestore.vo.Customer;
+import com.linestore.vo.Friends;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -29,6 +33,8 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 	private CustomerService customerService;
 	
 	private CusAccountService cusAccountService;
+	
+	private FriendsService friendsService;
 
 	private float money;
 
@@ -98,6 +104,20 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 			customer.setCusPassword("888888");
 			customerService.addCustomer(customer);
 			init(customer);
+			Friends fri = new Friends();
+			Date date = new Date();
+			fri.setFriDate(new Timestamp(date.getTime()));
+			fri.setFriPhone(tel);
+			Business bus = businessService.select(busId);
+			fri.setCustomer(bus.getCustomer());
+			if (bus.getBusLevel() == 0) {
+				fri.setFriType(Integer.valueOf(2));
+			} else if (bus.getBusLevel() == 2) {
+				fri.setFriType(Integer.valueOf(3));
+			} else {
+				fri.setFriType(Integer.valueOf(1));
+			}
+			friendsService.save(fri);
 		}
 		ActionContext.getContext().getSession().put("payByCashMoney", money);
 		ActionContext.getContext().getSession().put("payByCashCusID", busId);
@@ -177,6 +197,14 @@ public class BusTradingAction extends ActionSupport implements ModelDriven<BusTr
 
 	public void setCusAccountService(CusAccountService cusAccountService) {
 		this.cusAccountService = cusAccountService;
+	}
+
+	public FriendsService getFriendsService() {
+		return friendsService;
+	}
+
+	public void setFriendsService(FriendsService friendsService) {
+		this.friendsService = friendsService;
 	}
 	
 	
