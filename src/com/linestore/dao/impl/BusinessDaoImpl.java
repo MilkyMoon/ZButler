@@ -132,7 +132,7 @@ public class BusinessDaoImpl extends HibernateDaoSupport implements BusinessDao 
 	public List<Business> queryByShopName(String seach, String city) {
 		Session session = this.getSessionFactory().getCurrentSession();
 		Query query = session.createQuery(
-				"from Business where baCity like '%" + city + "%' and busShopName='%" + seach + "%' and busStatus=1");
+				"from Business where baCity like '%" + city + "%' and busShopName like '%" + seach + "%' and busStatus=1");
 		return query.list();
 	}
 

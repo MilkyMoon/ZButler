@@ -168,9 +168,7 @@ public class WxOauthRedirectAction extends WeXinConfigAction implements ServletR
 			customer2.setCusImgUrl(wxMpUser2.getHeadImgUrl());
 			customer2.setCusNickname(wxMpUser2.getNickname());
 			customer2.setCusOpenId(wxMpUser2.getOpenId());
-			
 			customerService.addByOpenId(customer2);
-			
 			returnString = "gotoPay";
 			break;
 		case "reChage":
