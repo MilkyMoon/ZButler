@@ -55,7 +55,6 @@ public class BillAction extends ActionSupport implements ModelDriven<Bill>{
 	private static final long serialVersionUID = 1L;
     //此变量必须有setter与getter方法
     private String result;
-    
 	private String pageNow = "1";
 	private String everyPage = "10";
 	private String keywords = "";

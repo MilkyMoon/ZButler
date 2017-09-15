@@ -15,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>人工转账记录管理 | 众帮管家</title>
+<title>人工转账记录管理 | ${sessionScope.netName.setValue}</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -177,7 +177,7 @@
 												<td>${list.traMoney}</td>
 												<td>${list.traDate}</td>
 												<td>
-													<a class="btn btn-primary btn-xs" href="thinkUser_select><i class="fa fa-folder"></i>&nbsp;&nbsp;查看转账人</a>&nbsp;&nbsp;&nbsp;&nbsp;
+													<a class="btn btn-primary btn-xs" href="thinkUser_select"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看转账人</a>&nbsp;&nbsp;&nbsp;&nbsp;
 													<a class="btn btn-primary btn-xs" href="business_read?busId=${list.business.busId}"><i class="fa fa-folder"></i>&nbsp;&nbsp;查看店铺</a>&nbsp;&nbsp;&nbsp;&nbsp;
 												</td>
 											</tr>

@@ -121,10 +121,10 @@
 				href="<c:if test="${fn:length(user.businesses) ne 0}">javascript:return false;</c:if><c:if test="${fn:length(user.businesses) eq 0}"><%=basePath%>cateLine_queryRoot</c:if>"
 				class="mine_function_sqrz">
 				<div></div> <span>申请入驻</span>
-			</a>  --%> <a href="<%=basePath%>business_store.action"
+			</a>  --%> <%-- <a href="<%=basePath%>business_store.action"
 				class="mine_function_wddp">
 				<div></div> <span>我的店铺</span>
-			</a>
+			</a> --%>
 			<a href="<%=basePath%>home/busSmallMoney.jsp"
 				class="mine_function_sqrz">
 				<div></div> <span>零钱提现</span>

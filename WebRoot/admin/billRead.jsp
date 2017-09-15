@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>账单查看 | 众帮管家</title>
+<title>账单查看 | ${sessionScope.netName.setValue}</title>
 
 <!-- Bootstrap -->
 <link href="./vendors/bootstrap/dist/css/bootstrap.min.css"
@@ -64,7 +64,7 @@
 							<h3>账单管理</h3>
 						</div>
 
-						<<form action="bill_select" method="get">
+						<form action="bill_select" method="get">
 							<div class="title_right">
 								<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 									<div class="input-group">
@@ -113,7 +113,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">交付金额:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCusMoney}" /></div>
+												<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCusMoney.divide(1000000000000)}" /></div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -125,7 +125,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">收取金额:</label>
 											<div class="col-md-6 col-sm-9 col-xs-12">
-												<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilPropertyMoney}" /></div>
+												<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilPropertyMoney.divide(1000000000000)}" /></div>
 											</div>
 										</div>
 										
@@ -141,7 +141,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">县收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCountyMoney}" /></div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCountyMoney.divide(1000000000000)}" /></div>
 												</div>
 											</div>
 										</c:if>
@@ -157,7 +157,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">市收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCityMoney}" /></div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilCityMoney.divide(1000000000000)}" /></div>
 												</div>
 											</div>
 										</c:if>
@@ -174,7 +174,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">省收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilProvinceMoney}" /></div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilProvinceMoney.divide(1000000000000)}" /></div>
 												</div>
 											</div>
 										</c:if>
@@ -182,7 +182,7 @@
 											<div class="form-group">
 												<label class="control-label col-md-3 col-sm-3 col-xs-12">众帮收取金额:</label>
 												<div class="col-md-6 col-sm-9 col-xs-12">
-													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilZongMoney}" /></div>
+													<div class="form-control"><fmt:formatNumber type="number" maxFractionDigits="12" value="${roots.bilZongMoney.divide(1000000000000)}" /></div>
 												</div>
 											</div>
 										</c:if>

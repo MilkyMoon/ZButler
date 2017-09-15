@@ -162,7 +162,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customer.setCusNickname("ZB_" + customer.getCusPhone());
 		customer.setCusImgUrl("home/dist/wx_image/111.jpg");
 		customer.setCusStatus(1);
-		customer.setCusPassword("111");
+		customer.setCusPassword("888888");
 		if (ReType != null) {
 			customerService.addCustomer(customer);
 			init(customer);
@@ -248,26 +248,22 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String update() {
 		String value = null;
 
-//		if (ActionContext.getContext().getSession().get("Bind") != null) {
-//			field = (String) ActionContext.getContext().getSession().get("Bind");
-//			value = (String) ActionContext.getContext().getSession().get("openId");
-//			List<Customer> check = (List<Customer>) customerService.findByOpenId(value);
-//			if (check.size() > 0) {
-//				Customer cusOpenId = check.get(0);
-//				if (cusOpenId.getCusPhone() == null || "".equals(cusOpenId.getCusPhone())) {
-//					customerService.delCustomer(check.get(0).getCusId());
-//				} else {
-//					Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
-//					request.put("doubleError", "<script>YDUI.dialog.alert('此微信你已绑定过其他手机号！');</script>");
-//					return "gotoCusMessage";
-//				}
-//			}
-//			ActionContext.getContext().getSession().put("Bind", null);
-//		}
+		if (ActionContext.getContext().getSession().get("Bind") != null) {
+			field = (String) ActionContext.getContext().getSession().get("Bind");
+			value = (String) ActionContext.getContext().getSession().get("openId");
+			ActionContext.getContext().getSession().put("Bind", null);
+		}
 		if ("cusPhone".equals(field)) {
-				value = customer.getCusPhone();
+				value = customer.getCusPhone();  
 				List<Customer> addPhone = customerService.findByPhone(value);
-				customerService.delCustomer(addPhone.get(0).getCusId());
+				if (addPhone.size() < 1) {
+					customer = (Customer) ActionContext.getContext().getSession().get("user");
+					customerService.updateField(field, value, customer.getCusId());
+					customer = customerService.findById(customer.getCusId());
+					ActionContext.getContext().getSession().put("user", customer);
+				} else {
+					customerService.delCustomer(addPhone.get(0).getCusId());
+				}                                                                                                                                                                                                                                                                                          
 				return "gotoCusMessage";
 		} 
 		if ("cusNickname".equals(field)) {
@@ -295,7 +291,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		customerService.updateField(field, value, customer.getCusId());
 		customer = customerService.findById(customer.getCusId());
 		ActionContext.getContext().getSession().put("user", customer);
-		if ("111".equals(customer.getCusPassword())) {
+		if ("888888".equals(customer.getCusPassword())) {
 			Template template = new Template();
 			template.setFirst("手机账号绑定成功,但账号存在风险，请及时修改密码");
 			Map<String, String> keywordMap = new HashMap<String, String>();
@@ -317,6 +313,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
 	public String forgetPass() throws ServerException, ClientException {
 		Map<String, Object> map = new HashMap<String, Object>();
+		List<Customer> customers = customerService.findByPhone(customer.getCusPhone());
+		if (customers.size() < 1) {
+			map.put("isError", "true");
+			map.put("ErrorMessage", "该手机号未注册！");
+			this.result = JSONObject.fromObject(map).toString();
+			return SUCCESS;
+		}
+		ActionContext.getContext().getSession().put("forget", customers.get(0));
 		map.put("isError", "false");
 		String code = sendCode(customer.getCusPhone());
 		map.put("code", code);
@@ -395,6 +399,16 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String toForgetTwo() {
 		return "gotoForgetTwo";
 	}
+	
+	public String ForgetPassword() {
+		String value = customer.getCusPassword();
+		customer = (Customer) ActionContext.getContext().getSession().get("forget");
+		ActionContext.getContext().getSession().put("forget", null);
+		customerService.updateField(field, value, customer.getCusId());
+		return "gotoLogin";
+	}
+	
+	
 
 	public String getField() {
 		return field;

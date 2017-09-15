@@ -29,8 +29,8 @@
 			<div class="m-cell">
 				<div class="cell-item cell-item-first">
 					<div class="cell-right" id="telDiv">
-						<input type="number" name="tel" class="cell-input" id="tel"
-							placeholder="请输入手机号" autocomplete="off" value="${user.cusPhone}" />
+						<input type="number" name="tel" class="cell-input" id="tel" name="cusPhone"
+							placeholder="请输入手机号" autocomplete="off" />
 					</div>
 				</div>
 				<div class="cell-item cell-item-last">
@@ -106,7 +106,7 @@
 						},
 						function(data) {
 							data = $.parseJSON(data);
-							//console.log(data);
+							console.log(data);
 							if (data.isError === "true") {
 								window.YDUI.dialog.alert(data.ErrorMessage);
 							} else {
