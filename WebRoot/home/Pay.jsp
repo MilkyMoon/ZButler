@@ -41,15 +41,16 @@
 				</div>
 				<div class="pay_storeTel">${pay_business.busPhone}</div>
 			</div>
- 			<c:if test="${empty sessionScope.payByCashMoney}">
-				<input type="text"  name="num" class="cell-input"
-					placeholder="消费金额" autocomplete="off" id="payNum" value="" />
+			<c:if test="${empty sessionScope.payByCashMoney}">
+				<input type="text" name="num" class="cell-input" placeholder="消费金额"
+					autocomplete="off" id="payNum" value="" placeholder="会员消费金额，需大于10元" />
 			</c:if>
 			<c:if test="${!empty sessionScope.payByCashMoney}">
-				<input type="text"  name="num" class="cell-input"
-					placeholder="消费金额" autocomplete="off" id="payNum" value="${sessionScope.payByCashMoney}" />
+				<input type="text" name="num" class="cell-input" placeholder="消费金额"
+					autocomplete="off" id="payNum"
+					value="${sessionScope.payByCashMoney}" placeholder="会员消费金额，需大于10元" />
 			</c:if>
-			
+
 			<div class="pay_button">
 				<button type="button" class="btn-block btn-primary" id="pay">确认支付</button>
 			</div>
@@ -103,7 +104,7 @@
 	$("#pay").click(function() {
 		// 获取支付金额
 		var payNum = $("#payNum").val();
-		if ('' != payNum) {
+		if ('' != payNum || payNum < 1) {
 			$.ajax({
 				type : "post",
 				dataType : "json",

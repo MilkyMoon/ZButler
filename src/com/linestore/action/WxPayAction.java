@@ -258,8 +258,8 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							city = bigMoney.subtract(bigMoney.multiply(city));
 							bill.setBusiness(bus);
 							bill.setBilBusMoney(bigMoney.subtract(city));
+							BigDecimal mc_money = bigMoney.subtract(city).divide(new BigDecimal("10000000000"));
 							bill.setBilDate(new Timestamp(Pdate.getTime()));
-
 							String TPhone = (String) ActionContext.getContext().getSession().get("payByCashTel");
 
 							if (TPhone == null) {
@@ -275,8 +275,9 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 														.findByCusId(fri.getCustomer().getCusId());
 												float addChange = Float.valueOf(kvm.get("total_fee")) / 100
 														* Float.valueOf(settingService.queryById(3).getSetValue());
-												city = city.subtract(new BigDecimal(Float.toString(addChange * Float.valueOf(settingService.queryById(8).getSetValue())))
-														.multiply(new BigDecimal("1000000000000")));
+												city = city.subtract(new BigDecimal(Float.toString(addChange
+														* Float.valueOf(settingService.queryById(8).getSetValue())))
+																.multiply(new BigDecimal("1000000000000")));
 												Float addPoints = addChangeCac.getCacPoints() + addChange;
 												CtaTrading addChangeCta = new CtaTrading();
 												addChangeCta.setCtaMoney(addChange);
@@ -291,15 +292,15 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 											}
 										}
 									}
-									
+
 									CusAccount CAC = (CusAccount) cusAccountService.findByCusId(Pcus.get(0).getCusId());
-									System.out.println("%%%%%%%%%%%" + CAC.getCacPoints());
 									if (CAC != null) {
 										Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
 												* bus.getBusScalePoints();
 										CtaTrading addChangeCta = new CtaTrading();
-										BigDecimal zhuanghuan = new BigDecimal(Addpiont * Float.valueOf(settingService.queryById(8).getSetValue())).setScale(6,
-												BigDecimal.ROUND_DOWN);
+										BigDecimal zhuanghuan = new BigDecimal(
+												Addpiont * Float.valueOf(settingService.queryById(8).getSetValue()))
+														.setScale(6, BigDecimal.ROUND_DOWN);
 										city = city.subtract(zhuanghuan.multiply(new BigDecimal("1000000000000")));
 										addChangeCta.setCtaMoney(Addpiont);
 										addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
@@ -309,7 +310,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 										addChangeCta.setCtaId(Pdate.getTime() + "Z" + this.RandomStr()); // 付款返用户积分
 										ctaTradingService.addCtaTrading(addChangeCta);
 										Addpiont += CAC.getCacPoints();
-										System.out.println("&&&&&&&&&&" + Addpiont);
 										cusAccountService.updateField("cacPoints", String.valueOf(Addpiont),
 												CAC.getCacId());
 									}
@@ -318,14 +318,14 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 							} else {
 								Friends fri = friendsService.queryByPhone(TPhone);
 								if (fri != null) {
-									System.out.println("------>friend find;type->" + fri.getFriType());
 									if (fri.getFriType() != 1) {
 										CusAccount addChangeCac = cusAccountService
 												.findByCusId(fri.getCustomer().getCusId());
 										float addChange = Float.valueOf(kvm.get("total_fee")) / 100
 												* Float.valueOf(settingService.queryById(3).getSetValue());
-										city = city.subtract(new BigDecimal(Float.toString(addChange * Float.valueOf(settingService.queryById(8).getSetValue())))
-												.multiply(new BigDecimal("1000000000000")));
+										city = city.subtract(new BigDecimal(Float.toString(
+												addChange * Float.valueOf(settingService.queryById(8).getSetValue())))
+														.multiply(new BigDecimal("1000000000000")));
 										Float addPoints = addChangeCac.getCacPoints() + addChange;
 										CtaTrading addChangeCta = new CtaTrading();
 										addChangeCta.setCtaMoney(addChange);
@@ -344,13 +344,13 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 								if (cusPhone.size() > 0) {
 									CAC = (CusAccount) cusAccountService.findByCusId(cusPhone.get(0).getCusId());
 								}
-								System.out.println("%%%%%%%%%%%" + CAC.getCacPoints());
 								if (CAC != null) {
 									Float Addpiont = Float.valueOf(kvm.get("total_fee")) / 100
 											* bus.getBusScalePoints();
 									CtaTrading addChangeCta = new CtaTrading();
-									BigDecimal zhuanghuan = new BigDecimal(Addpiont * Float.valueOf(settingService.queryById(8).getSetValue())).setScale(6,
-											BigDecimal.ROUND_DOWN);
+									BigDecimal zhuanghuan = new BigDecimal(
+											Addpiont * Float.valueOf(settingService.queryById(8).getSetValue()))
+													.setScale(6, BigDecimal.ROUND_DOWN);
 									city = city.subtract(zhuanghuan.multiply(new BigDecimal("1000000000000")));
 									addChangeCta.setCtaMoney(Addpiont);
 									addChangeCta.setCtaTime(new Timestamp(Pdate.getTime()));
@@ -360,7 +360,6 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 									addChangeCta.setCtaId(Pdate.getTime() + "Z" + this.RandomStr()); // 付款返用户积分
 									ctaTradingService.addCtaTrading(addChangeCta);
 									Addpiont += CAC.getCacPoints();
-									System.out.println("&&&&&&&&&&" + Addpiont);
 									cusAccountService.updateField("cacPoints", String.valueOf(Addpiont),
 											CAC.getCacId());
 								}
@@ -473,14 +472,16 @@ public class WxPayAction extends WeiXinPayConfigAction implements ServletRequest
 												.add(zong.getAreaTotalMoney()).toString(), 1);
 							}
 							billService.addBill(bill);
-
 							// 存数据库+转账
-//							WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
-//							wxEntPayRequest.setAmount(Integer.parseInt(kvm.get("total_fee")));
-//							wxEntPayRequest.setDescription("测试接口");
-//							wxEntPayRequest.setOpenid(kvm.get("openid"));
-//							wxEntPayRequest.setPartnerTradeNo("11111122223333336");
-//							this.payToIndividual(wxEntPayRequest, wxPayService);
+							WxEntPayRequest wxEntPayRequest = new WxEntPayRequest();
+							wxEntPayRequest.setAmount(mc_money.intValue());
+							// 转账							
+							wxEntPayRequest.setDescription("零钱付款");
+							wxEntPayRequest.setOpenid(bus.getCustomer().getCusOpenId());
+							wxEntPayRequest.setPartnerTradeNo(out_trade_no);
+							this.payToIndividual(wxEntPayRequest, wxPayService);
+							
+							
 							break;
 						case 'R':
 							System.out.println("123123123");
