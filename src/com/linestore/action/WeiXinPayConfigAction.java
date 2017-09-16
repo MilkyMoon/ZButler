@@ -12,8 +12,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class WeiXinPayConfigAction extends ActionSupport {
 	protected WxPayService wxPayService;
 	protected WxPayConfig payConfig;
-	protected final String BASE_PATH = "http://www.codwiki.cn/ZButler/";
-	//protected final String BASE_PATH = "http://yanglan520.com/ZButler/";
+//	protected final String BASE_PATH = "http://www.codwiki.cn/ZButler/";
+	protected final String BASE_PATH = "http://yanglan520.com/ZButler/";
 
 	public WeiXinPayConfigAction() {
 		super();
