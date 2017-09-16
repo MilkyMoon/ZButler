@@ -194,140 +194,138 @@
 								</div>
 								
 								<div class="col-md-6 col-sm-12 col-xs-12">
-										<div class="x_content">
-											<form action="thuTrading_add" method="post" id="submitForm">
-												<div class="bs-example" data-example-id="simple-jumbotron">
-													<div class="jumbotron" style="padding: 5px 36px;">
-														<h1>
-															¥
-															<c:if test="${(area.areaTotalMoney.divide(1000000000000) - 0.1) <= 0}">
-																0
-															</c:if>
-															<c:if test="${(area.areaTotalMoney.divide(1000000000000) - 0.1) > 0}">
-																<fmt:formatNumber type="number" maxFractionDigits="1"
-																value="${area.areaTotalMoney.divide(1000000000000) - 0.1}"/>
-															</c:if>
-														</h1>
-														<p>
-															可提现总额
-														</p>
-													</div>
+									<div class="x_content">
+										<form action="thuTrading_add" method="post" id="submitForm">
+											<div class="bs-example" data-example-id="simple-jumbotron">
+												<div class="jumbotron" style="padding: 5px 36px;">
+													<h1>
+														¥
+														<c:if test="${(area.areaTotalMoney.divide(1000000000000) - 0.1) <= 0}">
+															0
+														</c:if>
+														<c:if test="${(area.areaTotalMoney.divide(1000000000000) - 0.1) > 0}">
+															<fmt:formatNumber type="number" maxFractionDigits="1"
+															value="${area.areaTotalMoney.divide(1000000000000) - 0.1}"/>
+														</c:if>
+													</h1>
+													<p>
+														可提现总额
+													</p>
 												</div>
-												
-												<div class="form-group">
-							                        <div class="col-md-9 col-sm-9 col-xs-12">
-							                          <input type="number" class="form-control" required="required" name="money" id="money" placeholder="请输入提现金额"/>
-							                        </div>
-							                        <div class="col-md-3 col-sm-9 col-xs-12">
-							                          <button class="btn btn-success" type="submit" style="float:right">&nbsp;&nbsp;提现&nbsp;&nbsp;</button>
-							                        </div>
-							                      </div>	
-											</form>
-										</div>
+											</div>
+											
+											<div class="form-group">
+						                        <div class="col-md-9 col-sm-9 col-xs-12">
+						                          <input type="number" class="form-control" required="required" name="money" id="money" placeholder="请输入提现金额"/>
+						                        </div>
+						                        <div class="col-md-3 col-sm-9 col-xs-12">
+						                          <button class="btn btn-success" type="submit" style="float:right">&nbsp;&nbsp;提现&nbsp;&nbsp;</button>
+						                        </div>
+						                      </div>	
+										</form>
 									</div>
-									
-									<div class="x_panel">
-						                  <div class="x_content">
-						                    <p class="text-muted font-13 m-b-30">
-						                      可以导出到Excel文件
-						                    </p>
-						                    <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
-						                      <thead>
-						                        <tr>
-						                          <th>
-														<th><input type="checkbox" id="check-all" class="flat" /></th>
-													</th>
-													<th class="column-title">用户</th>
-													<th class="column-title">用户付款</th>
-													<th class="column-title">商家</th>
-													<th class="column-title">商家收款</th>
-													<th class="column-title">物业</th>
-													<th class="column-title">物业收款</th>
-													<th class="column-title">县级代理</th>
-													<th class="column-title">县级收款</th>
-													<th class="column-title">市级代理</th>
-													<th class="column-title">市级收款</th>
-													<th class="column-title">省级代理</th>
-													<th class="column-title">省级收款</th>
-													
-													<c:if test="${sessionScope.admin.area.pid == 0}">
-														<th class="column-title">众帮收款</th>
-													</c:if>
-													<th class="column-title">订单时间</th>
-													
-													<th class="column-title no-link last">操作</th>
-													<th class="bulk-actions" colspan="7"><a class="antoo"
-														style="color:#fff; font-weight:500;">Bulk Actions ( <span
-															class="action-cnt"> </span> ) <i
-															class="fa fa-chevron-down"></i></a></th>
-						                        </tr>
-						                      </thead>
-						
-						
-						                      <tbody>
-						                      	<c:forEach var="root" items="${roots}">
-							                        <tr>
-							                          <td class="a-center ">
-															<th><input type="checkbox" class="flat" name="table_records" /></th>
-														</td>
-														<td>${root.customer.cusNickname}</td>
-														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCusMoney.divide(1000000000000)}" /></td>
-														<td>${root.business.busShopName}</td>
-														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilBusMoney.divide(1000000000000)}" /></td>
-														<td>${root.areaByThuPropertyId.area}</td>
-														<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilPropertyMoney.divide(1000000000000)}" /></td>
-														<!-- 判断当前用户是否显示县级代理 -->					
-														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId}">
-															<td>${root.areaByThuCountyId.area}</td>
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCountyMoney.divide(1000000000000)}" /></td>
-														</c:if>
-														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId}">
-															<td></td>
-															<td></td>
-														</c:if>
-														<!-- 判断当前用户是否显示市级代理 -->	
-														<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
-															<td>${root.areaByThuCityId.area}</td>
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCityMoney.divide(1000000000000)}" /></td>
-														</c:if>
-														<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
-															<td></td>
-															<td></td>
-														</c:if>
-														<!-- 判断当前用户是否显示省级代理 -->	
-														<c:if test="${sessionScope.admin.area.areId != root.areaByThuCityId.areId && sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
-															<td>${root.areaByThuProvinceId.area}</td>
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilProvinceMoney.divide(1000000000000)}" /></td>
-														</c:if>
-														<c:if test="${sessionScope.admin.area.areId == root.areaByThuCityId.areId || sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
-															<td></td>
-															<td></td>
-														</c:if>
-														<c:if test="${sessionScope.admin.area.pid == 0}">
-															<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilZongMoney.divide(1000000000000)}" /></td>
-														</c:if>
-														<td>${root.bilDate}</td>
-														<td>
-															<%-- <c:if test="${root.cusStatus == 1}">
-																<a href="customer_update?cusStatus=0&cusId=${root.cusId}" class="btn btn-primary btn-xs">
-																	<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
-																</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															</c:if>
-															<c:if test="${root.cusStatus == 0}">
-																<a href="customer_update?cusStatus=1&cusId=${root.cusId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
-																	<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
-																</a>&nbsp;&nbsp;&nbsp;&nbsp;
-															</c:if> --%>
-															<a href="bill_read?bilId=${root.bilId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
-														</td>
-							                        </tr>
-						                        </c:forEach>
-						                      </tbody>
-						                    </table>
-						                  </div>
-						                </div>
-
+								</div>
 								
+								<div class="x_panel">
+				                  <div class="x_content">
+				                    <p class="text-muted font-13 m-b-30">
+				                      可以导出到Excel文件
+				                    </p>
+				                    <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
+				                      <thead>
+				                        <tr>
+				                          <th>
+												<th><input type="checkbox" id="check-all" class="flat" /></th>
+											</th>
+											<th class="column-title">用户</th>
+											<th class="column-title">用户付款</th>
+											<th class="column-title">商家</th>
+											<th class="column-title">商家收款</th>
+											<th class="column-title">物业</th>
+											<th class="column-title">物业收款</th>
+											<th class="column-title">县级代理</th>
+											<th class="column-title">县级收款</th>
+											<th class="column-title">市级代理</th>
+											<th class="column-title">市级收款</th>
+											<th class="column-title">省级代理</th>
+											<th class="column-title">省级收款</th>
+											
+											<c:if test="${sessionScope.admin.area.pid == 0}">
+												<th class="column-title">众帮收款</th>
+											</c:if>
+											<th class="column-title">订单时间</th>
+											
+											<th class="column-title no-link last">操作</th>
+											<th class="bulk-actions" colspan="7"><a class="antoo"
+												style="color:#fff; font-weight:500;">Bulk Actions ( <span
+													class="action-cnt"> </span> ) <i
+													class="fa fa-chevron-down"></i></a></th>
+				                        </tr>
+				                      </thead>
+				
+				
+				                      <tbody>
+				                      	<c:forEach var="root" items="${roots}">
+					                        <tr>
+					                          <td class="a-center ">
+													<th><input type="checkbox" class="flat" name="table_records" /></th>
+												</td>
+												<td>${root.customer.cusNickname}</td>
+												<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCusMoney.divide(1000000000000)}" /></td>
+												<td>${root.business.busShopName}</td>
+												<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilBusMoney.divide(1000000000000)}" /></td>
+												<td>${root.areaByThuPropertyId.area}</td>
+												<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilPropertyMoney.divide(1000000000000)}" /></td>
+												<!-- 判断当前用户是否显示县级代理 -->					
+												<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId}">
+													<td>${root.areaByThuCountyId.area}</td>
+													<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCountyMoney.divide(1000000000000)}" /></td>
+												</c:if>
+												<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId}">
+													<td></td>
+													<td></td>
+												</c:if>
+												<!-- 判断当前用户是否显示市级代理 -->	
+												<c:if test="${sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
+													<td>${root.areaByThuCityId.area}</td>
+													<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilCityMoney.divide(1000000000000)}" /></td>
+												</c:if>
+												<c:if test="${sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
+													<td></td>
+													<td></td>
+												</c:if>
+												<!-- 判断当前用户是否显示省级代理 -->	
+												<c:if test="${sessionScope.admin.area.areId != root.areaByThuCityId.areId && sessionScope.admin.area.areId != root.areaByThuPropertyId.areId && sessionScope.admin.area.areId != root.areaByThuCountyId.areId}">
+													<td>${root.areaByThuProvinceId.area}</td>
+													<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilProvinceMoney.divide(1000000000000)}" /></td>
+												</c:if>
+												<c:if test="${sessionScope.admin.area.areId == root.areaByThuCityId.areId || sessionScope.admin.area.areId == root.areaByThuPropertyId.areId || sessionScope.admin.area.areId == root.areaByThuCountyId.areId}">
+													<td></td>
+													<td></td>
+												</c:if>
+												<c:if test="${sessionScope.admin.area.pid == 0}">
+													<td><fmt:formatNumber type="number" maxFractionDigits="12" value="${root.bilZongMoney.divide(1000000000000)}" /></td>
+												</c:if>
+												<td>${root.bilDate}</td>
+												<td>
+													<%-- <c:if test="${root.cusStatus == 1}">
+														<a href="customer_update?cusStatus=0&cusId=${root.cusId}" class="btn btn-primary btn-xs">
+															<i class="fa fa-folder"></i>&nbsp;&nbsp;关闭
+														</a>&nbsp;&nbsp;&nbsp;&nbsp;
+													</c:if>
+													<c:if test="${root.cusStatus == 0}">
+														<a href="customer_update?cusStatus=1&cusId=${root.cusId}" class="btn btn-primary btn-xs" style="background-color:#3bce83;border-color: #28b90e;">
+															<i class="fa fa-folder"></i>&nbsp;&nbsp;开启
+														</a>&nbsp;&nbsp;&nbsp;&nbsp;
+													</c:if> --%>
+													<a href="bill_read?bilId=${root.bilId}" class="btn btn-info btn-xs" style="background-color:#e08254;border-color: #d48e50;"><i class="fa fa-file-text"></i>&nbsp;&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;
+												</td>
+					                        </tr>
+				                        </c:forEach>
+				                      </tbody>
+				                    </table>
+				                  </div>
+				                </div>
 							</div>
 						</div>
 					</div>

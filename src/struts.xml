@@ -16,7 +16,7 @@
 				class="com.linestore.inteceptor.LoginInteceptor">
 				<param name="excludeMethods">
 					login,weChat,oauth,forgetPass,sendMessage,offline,queryBusines,seach,WeXinLoginJson,
-					wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu,IntoPayPage,adminBindWeChat,toForgetTwo,ForgetPassword
+					wxConfig,JsApiParams,payNotify,queryCate,askRegister,register,createMenu,IntoPayPage,adminBindWeChat,toForgetTwo,ForgetPassword,postalThu
 				</param>
 			</interceptor>
 			<!-- 定义公共的拦截器链，在action标签中只需要引用拦截器链 -->

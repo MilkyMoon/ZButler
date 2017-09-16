@@ -65,6 +65,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		Page page = null;
 		
 		totalCount = ctaTradingService.queryAll();
+		everyPage = String.valueOf(totalCount);
 		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		ctaTradingList = ctaTradingService.selectAll(page);
 	
@@ -79,7 +80,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		int totalCount = 0;
 		Page page = null;
 		
-		totalCount = ctaTradingService.queryAllType(1);
+		totalCount = ctaTradingService.queryAllType(4);
 		
 		if(everyPage.equals("") || everyPage == null){
 			everyPage = "10";
@@ -88,6 +89,7 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 			pageNow = "1";
 		}
 		
+		everyPage = String.valueOf(totalCount);
 		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		ctaTradingList = ctaTradingService.selectAllType(page,4);
 	
@@ -111,7 +113,9 @@ public class AdminTradingAction extends ActionSupport implements ModelDriven<Cta
 		int totalCount = 0;
 		Page page = null;
 		
-		totalCount = ctaTradingService.queryAllType(4);
+		totalCount = ctaTradingService.queryAllType(1);
+		everyPage = String.valueOf(totalCount);
+		System.out.println("rech:"+totalCount);
 		page = PageUtil.createPage(Integer.parseInt(everyPage), totalCount, Integer.parseInt(pageNow));
 		ctaTradingList = ctaTradingService.selectAllType(page,1);
 	
